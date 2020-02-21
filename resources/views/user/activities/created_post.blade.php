@@ -1,0 +1,1 @@
+<li class="list-group-item">Zverejnenie dokladu <a href="{{ url(auth()->user()->slug, $activity->subject->slug ) }}"> {{ $activity->subject->title }}</a> <span title="{{ $activity->created_at }}" class="pull-right">{{ $activity->created_at->diffForHumans() }}</span></li>
