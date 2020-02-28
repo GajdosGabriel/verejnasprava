@@ -6,19 +6,20 @@ use Carbon\Carbon;
 use App\Services\FileUpload;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Intervention\Image\Facades\Image;
 
 
 class Post extends Model
 {
-    use RecordsActivity, FileUpload;
+    use RecordsActivity, FileUpload, SoftDeletes;
 
     protected $guarded = [];
-    protected $with = ['posts', 'category', 'file','company'];
+    protected $with = ['category', 'file', 'contact'];
 
-    public function company()
+    public function contact()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Contact::class);
     }
 
     public function organization()
@@ -28,7 +29,7 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class)->orderBy('created_at', 'desc');
+        return $this->belongsTo(Category::class);
     }
 
     public function file()
@@ -63,25 +64,25 @@ class Post extends Model
         return number_format($this->price, 2, ',', ' ');
     }
 
-//    public function saveImage($request) {
-//        if ($request->hasFile('filename')){
-//
-//            $imageName =  request()->file('filename')->store('username' .  auth()->id() );
+    public function saveImage($request) {
+        if ($request->hasFile('filename')){
+
+            $imageName =  request()->file('filename')->store('public/username' .  auth()->id() );
 //            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
-//            $path = storage_path('username' . auth()->id()) . '/' . basename($file);
-//
-//            $this->file()->create([
-//                'filename' => $imageName,
-//                'name' => $request->filename->getClientOriginalName(),
-//            ]);
-//
+//            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
+
+            $this->file()->create([
+                'filename' => $imageName,
+                'org_name' => $request->filename->getClientOriginalName(),
+            ]);
+
 //            if (getimagesize($path)) {
 //                $resize = Image::make($path);
 //                $resize->widen(1000);
 //                $resize->save($path, 75);
 //            }
-//        }
-//    }
+        }
+    }
 
 
 //    public function setDate_inAttribute($value)

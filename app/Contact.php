@@ -3,12 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+class Contact extends Model
 {
-    use Notifiable;
+    use RecordsActivity, SoftDeletes;
 
     protected $guarded = [];
 
@@ -31,5 +30,4 @@ class Company extends Model
     public function getformatPscAttribute() {
         return substr($this->psc,0,3)." ".substr($this->psc,3,2);
     }
-
 }

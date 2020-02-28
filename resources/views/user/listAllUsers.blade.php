@@ -1,11 +1,11 @@
-@guest
+
     <div class="container" style="margin-bottom: 15px">
         <div class="clearfix">
         </div>
 
         <div style="display: none" id="zoznam"> <h2>Zoznam používateľov <small id="zrusit"><a href=""> X</a></small></h2>
             <ul style="column-count: 3;column-rule: 1px solid gray;column-gap: 70px;list-style: none;">
-                @forelse($users as $user)
+                @forelse($organizations as $user)
                     <li><a href="{{ url($user->slug ) }}">
                                 {{ Str::limit($user->first_name, 33) }} <span class="pull-right">{{ $user->posts_count }}</span>
                         </a>
@@ -20,6 +20,7 @@
 
 
 @section('script')
+
     <script>
         $(document).ready(function(){
 
@@ -36,4 +37,3 @@
     </script>
 @endsection
 
-@endguest

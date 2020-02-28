@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\SaveOrderRequest;
 use App\Notifications\OrderCreate;
+use App\Organization;
 use Barryvdh\DomPDF\PDF as PDF;
 use App\Order;
 use App\OrderItem;
@@ -12,23 +13,25 @@ use App\User;
 use App\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
     use Notifiable;
 
-    public function index(User $user) {
-        $orders = $user->orders()->get();
-        return view('order.index', compact('orders'));
+    public function index(Organization $organization, $slug) {
+        $orders = $organization->orders;
+        return view('order.index', compact('organization'))->with('orders', $orders);
     }
 
-    public function show(User $user, Order $order) {
+    public function show(Order $order, $slug) {
         return view('order.show', compact('order'));
     }
 
 
-    public function create(User $user) {
-        return view('order.create')->with('user', $user);
+    public function create(Organization $organization) {
+        $contacts = $organization->contacts;
+        return view('order.create', compact('organization'))->with('contacts', $contacts);
     }
 
 
@@ -39,9 +42,6 @@ class OrderController extends Controller
     }
 
 
-
-
-
     public function editOrder(User $user, Order $order) {
         $this->authorize('delete-post', $order);
         return view('order.edit')
@@ -49,18 +49,17 @@ class OrderController extends Controller
             ->with('user', $user);
     }
 
-    public function storeOrder(User $user, SaveOrderRequest $request) {
+    public function store(Organization $organization, SaveOrderRequest $request) {
 
-       $order = $user->orders()->create([
-            'customer_id' => $request->input('customer_id'),
-            'worker_id' => $request->input('worker_id'),
-            'orderPublished' => $request->input('orderPublished'),
+       $order = $organization->orders()->create([
+            'contact_id' => $request->input('contact_id'),
+            'user_id' => auth()->user()->id,
             'payment' => $request->input('payment'),
-            'order_send' => $request->input('order_send'),
-            'grandTotal' => $request->input('totalPrice'),
-            'order_number' => \Auth::user()->orders->count() + 1,
-//            'notice' => $request->input('notice')
+            'order_number' => $organization->orders->count() + 1,
+            'notes' => $request->input('notes')
         ]);
+
+//        dd($request->all());
 
 
         foreach($request->name as $key => $value) {
@@ -73,13 +72,13 @@ class OrderController extends Controller
 
         }
 
-        // Send email notify to customer
-        if($request->input('order_send') == 1) {
-       $order->company->notify( new OrderCreate($order));
-        }
+//        // Send email notify to customer
+//        if($request->input('order_send') == 1) {
+//       $order->company->notify( new OrderCreate($order));
+//        }
 
 //        flash()->success('Úspešné uložené');
-        return redirect(auth()->user()->slug.'/orderindex');
+        return redirect()->route('org.order.index', [$organization->id, $organization->slug]);
     }
 
 
@@ -140,8 +139,8 @@ class OrderController extends Controller
     }
 
 
-    public function deleteOrder(Order $order) {
-        $this->authorize('delete-post', $order);
+    public function delete(Order $order) {
+//        $this->authorize('delete-post', $order);
         $order->delete();
         if ( request()->expectsJson() ) {
             return response(['status' => 'Order Deleted']);

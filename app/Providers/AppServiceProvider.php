@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contact;
+use App\Observers\ContactObserver;
 use App\User;
 use App\Worker;
-use App\Company;
 use App\Category;
 use App\Organization;
 use App\Observers\UserObserver;
@@ -34,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Company::observe(Company::class);
         User::observe(UserObserver::class);
+        Contact::observe(ContactObserver::class);
         Organization::observe(OrganizationObserver::class);
 
         Carbon::setLocale(config('app.locale'));
@@ -43,15 +44,9 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('user.listAllUsers', function($view)
         {
-            $view->with('users', User::withCount('posts')->where('role', '<>', 'admin')->orderBy('company', 'asc')->get() );
+            $view->with('organizations', Organization::withCount('posts')->get() );
         });
 
-
-
-        view()->composer('post.postform', function($view)
-        {
-            $view->with('categories', Category::pluck('name', 'id'));
-        });
 
         view()->composer('modul.categoryList',  function($view)
         {
@@ -59,12 +54,5 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        //Validation of select, dont be a 0
-        \Validator::extend('requiredSelectBox', function($attribute, $value, $parameters, $validator) {
-            if($value<1) {
-                return false;
-            }
-            return true;
-        });
     }
 }

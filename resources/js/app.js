@@ -8,13 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-////Autorizovanie pre canUpdate
-Vue.prototype.authorize = function(handler) {
-    let user = window.App.user;
-    return user ? handler(user) : false;
-};
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,14 +19,10 @@ Vue.prototype.authorize = function(handler) {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('workers', require    ('./components/Workers.vue').default);
-Vue.component('order', require    ('./components/OrderBody.vue').default);
-Vue.component('order-list', require ('./components/OrderLists.vue').default);
+Vue.component('order-index', require('./components/Order-index.vue').default);
+Vue.component('order0', require('./components/Order0.vue').default);
+Vue.component('index-table', require('./contacts/indexTable.vue').default);
 
-
-
-//export const bus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

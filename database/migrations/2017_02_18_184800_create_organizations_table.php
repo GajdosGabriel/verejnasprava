@@ -24,7 +24,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('psc', 6)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('web', 50)->nullable();
-            $table->string('ico', 12)->nullable();
+            $table->string('ico', 12)->unique();
             $table->string('dic', 20)->nullable();
             $table->string('ic_dic', 20)->nullable();
             $table->string('bank_name', 50)->nullable();

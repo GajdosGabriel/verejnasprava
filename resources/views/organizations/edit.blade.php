@@ -8,7 +8,7 @@
 
     <h1>Organization edit</h1>
 
-    <form action="{{ route('organization.update', [ $organization->id, $organization->slug ]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('org.update', [ $organization->id, $organization->slug ]) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('PUT')
         @include('organizations._form')
 

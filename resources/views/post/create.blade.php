@@ -5,9 +5,8 @@
 @endsection
 
 @section('content')
-
     <h1>Vytvoriť doklad</h1>
-    <form action="{{ route('post.store', [$organization->id,$organization->slug ]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('org.post.store', [auth()->user()->active_organization, auth()->user()->slug ]) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('POST')
 
         @include('post.postform')
@@ -15,7 +14,7 @@
 
 
     <h3 class="mt-4">Posledné pridané doklady</h3>
-    {{--@include('post.post-tableTri')--}}
+{{--    @include('post.post-tableTri')--}}
 @endsection
 
 

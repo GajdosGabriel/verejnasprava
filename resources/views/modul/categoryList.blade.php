@@ -9,7 +9,7 @@
 
 <div>
     @if(Auth::user())
-        <a href="{{ route('post.create', [auth()->user()->id, auth()->user()->slug ])  }}"><button class="btn btn-danger pull-right">Nový doklad</button></a>
+        <a href=""><button class="btn btn-danger pull-right">Nový doklad</button></a>
     @endif
 </div>
 

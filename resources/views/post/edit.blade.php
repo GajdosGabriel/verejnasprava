@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
+@section('navigation')
+    @include('organizations.navigation')
+@endsection
+
 @section('content')
 
-    <h1>Upraviť doklad <i style="color: #1b3d8d" class="fa fa-pencil"></i></h1>
-    {!! Form::model($post, ['url' => ['update', $post->id ], 'method' => 'put', 'files'=> 'true', 'class' => 'post', 'id' => 'add-form']) !!}
-   @include('post.postform')
+    <h1>Upraviť doklad</h1>
+    <form action="{{ route('org.post.update', [$post->id, $post->slug ]) }}" method="POST" enctype="multipart/form-data">
+        @csrf @method('PUT')
 
-    {{ Form::close() }}
+        @include('post.postform')
+    </form>
 
 
-    @endsection
+@endsection
+
+

@@ -3,12 +3,10 @@
     <table class="table">
         <thead class="bg-success">
         <tr>
-            <th>Por.</th>
-            <th>Dodávateľ</th>
-            <th>Mesto</th>
             <th>Vystavená</th>
+            <th>Dodávateľ</th>
             <th>Platba</th>
-            <th>Podpísal</th>
+            <th>Vystavil</th>
             <th>Suma</th>
             <th>Status</th>
             <th>Panel</th>
@@ -16,7 +14,7 @@
         </thead>
 
         <tbody v-for="(order, index) in reverse" class="thead-inverse">
-        <orderlist :orders="order" ></orderlist>
+        <orderItem :row="order" ></orderItem>
         </tbody>
 
     </table>
@@ -25,16 +23,13 @@
 
 <script>
     import moment from 'moment';
-    import orderlist from './OrderList.vue';
+    import orderItem from './Order-index-item.vue';
     export default {
         props: ['orders'],
-        components: { orderlist },
+        components: { orderItem },
         data: function() {
             return {
                 order: this.orders
-
-
-
 
             }
         },

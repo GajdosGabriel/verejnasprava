@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('navigation')
+    @include('organizations.navigation')
+@endsection
+
 @section('content')
 
         <h2>Kopírovať objednávku</h2>

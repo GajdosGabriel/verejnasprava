@@ -24,11 +24,11 @@ class SavePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|requiredSelectBox',
-            'customer_id' => 'required|requiredSelectBox',
-            'name' => 'required|min:3',
+            'category_id' => 'required|integer|exists:categories,id',
+            'contact_id' => 'required|integer|exists:contacts,id',
+            'name' => 'required|string|min:3',
             'price' => 'required|numeric',
-            'filename' => 'mimes:jpeg,bmp,png,pdf,doc,docx,txt,svg|max:5024',
+            'filename.*' => 'mimes:jpeg,jpg,bmp,png,pdf,doc,docx,txt,svg|max:9024',
         ];
 
     }

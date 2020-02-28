@@ -25,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            if(auth()->user()->active_organization)
+           return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug ]);
+        }
         return view('home.index');
     }
 

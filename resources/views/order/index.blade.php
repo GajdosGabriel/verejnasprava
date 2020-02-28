@@ -6,10 +6,14 @@
 
 @section('content')
 
-    <h1 style="color: brown" class="text-center">@if( !empty(\Auth::user()->company)) {{ Auth::user()->company }}@endif<small> Zoznam objednávok</small></h1>
-    <a href="{{ route('order.create', [ Auth::user()->id, Auth::user()->slug]) }}"><button class="btn btn-danger pull-right"><strong>+</strong> Nová objednávka</button></a>
+    <div class="d-block justify-content-between">
+        <h1>Zoznam objednávok</h1>
+            <a class="btn btn-primary pull-right" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
+    </div>
 
-    <order-list  :orders="{{ $orders }}"></order-list>
+
+
+    <order-index  :orders="{{ $organization->orders }}"></order-index>
 
     {{--<table class="table">--}}
         {{--<thead class="bg-success">--}}

@@ -27,6 +27,8 @@ class QuestionsController extends Controller
     }
     public function store(Request $request) {
 
+        return $request->all();
+
         $validator = Validator::make ($request->all(),[
             'question' => 'required|min:3'
         ]);
@@ -39,11 +41,12 @@ class QuestionsController extends Controller
 
        $question =  \Auth::user()->questions()->create($request->all());
 
-        $question->user->notify(new Questions($question));
-        $question->user->find(1)->notify(new Questions($question));
+//        $question->user->notify(new Questions($question));
+//        $question->user->find(1)->notify(new Questions($question));
 
 //        flash()->success('Správa bola odoslaná');
 
+        return $validator;
         return redirect()->back();
 
     }

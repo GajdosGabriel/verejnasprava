@@ -21,7 +21,7 @@
         <h3>História aktivít</h3>
         <ul class="list-group">
             @forelse($activities as $activity)
-                @include("user.activities.{$activity->type}")
+                @include("organizations.activities.{$activity->type}")
                 @empty
                 <p>Bez záznamu</p>
             @endforelse

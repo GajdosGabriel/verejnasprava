@@ -24,13 +24,13 @@ class OrganizationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:250',
+            'name' => 'required|max:250',
             'email' => 'required|email',
-            'street' => 'required|string|max:250',
-            'psc' => 'required|string|max:6',
-            'city' => 'required|string|max:50',
-            'ico' => 'required|string|max:8',
-            'dic' => 'required|string|max:20',
+            'street' => 'required|max:250',
+            'psc' => 'required|max:6',
+            'city' => 'required|max:50',
+            'ico' => 'required|max:8',
+            'dic' => 'max:20',
         ];
     }
 }

@@ -16,14 +16,13 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('organization_id');
-            $table->unsignedInteger('company_id');
+            $table->unsignedInteger('contact_id');
             $table->unsignedInteger('order_number');
-            $table->unsignedInteger('worker_id');
-            $table->date('orderPublished');
+            $table->unsignedInteger('user_id');
             $table->string('payment');
             $table->string('notes')->nullable();
             $table->smallInteger('status')->default(0);
-            $table->date('order_send')->nullable();
+            $table->dateTime('order_send')->nullable();
             $table->boolean('viewed')->default(false);
             $table->string('unique_hash')->nullable();
             $table->decimal('amount', 10, 2)->default('0.00');

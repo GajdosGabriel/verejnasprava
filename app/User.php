@@ -6,11 +6,12 @@ use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
-use App\Worker;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -27,11 +28,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
-    public function orders() {
-        return $this->hasMany(Order::class);
-    }
 
 
     public function activity()
@@ -61,8 +57,7 @@ class User extends Authenticatable
     public function setFirstNameAttribute($value)
     {
         $this->attributes['first_name'] = ucfirst($value);
-//        $this->attributes['last_name'] = ucfirst($value);
-//        $this->attributes['slug'] = Str::slug($this->attributes['first_name'] .' '. $this->attributes['last_name'], '-');
+        $this->attributes['last_name'] = ucfirst($value);
     }
 
     public function getDateInAttribute( $value )

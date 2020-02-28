@@ -24,12 +24,10 @@ class SaveOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_id' => 'required|exists:customers,id',
-            'worker_id' => 'required|exists:workers,id',
+            'contact_id' => 'required|exists:contacts,id',
             'payment' => 'required',
-            'orderPublished' => 'required|date_format:Y-m-d',
-            'itemName.*' => 'required',
-            'quantity.*' => 'required',
+            'name.*' => 'required',
+            'quantity.*' => 'required|numeric',
             'price.*' => 'required|numeric'
         ];
     }

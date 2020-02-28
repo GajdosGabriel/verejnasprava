@@ -10,7 +10,7 @@
 
         </div>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <div>
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;

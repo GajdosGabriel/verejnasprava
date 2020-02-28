@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         @section('navigation')
-        @include('layouts.navigation')
+
         @show
 
         <div class="container">

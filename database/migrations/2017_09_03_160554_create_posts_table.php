@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->decimal('price',10,2);
             $table->date('date_in');
             $table->integer('organization_id')->unsigned();
-            $table->integer('company_id')->unsigned();
+            $table->integer('contact_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
