@@ -17,7 +17,7 @@
                 <tbody  style="background: rgba(107, 99, 100, 0.23)">
                     <tr v-for="(item, index) in items">
                         <td>{{ index +1 }}</td>
-                        <td><textarea style="width: 100%" name="itemName[]" v-model="item.itemName" rows="1" required>Objednávame </textarea></td>
+                        <td><textarea style="width: 100%" name="name[]" v-model="item.name" rows="1" required>Objednávame </textarea></td>
                         <td><input placeholder="počet" type="number" required name="quantity[]"  v-model="item.quantity" ></td>
                         <td><input placeholder="cena" type="number" v-on:keyup.enter="addItem" step="0.01" required name="price[]" v-model="item.price"></td>
                         <td style="width: 10%">{{ item.quantity * item.price | zaokruhlenie }},-</td>
@@ -31,7 +31,7 @@
         </div>
 
         <!-- Total -->
-        <input type="hidden" name="totalPrice" :value="totalPrice">
+        <input type="hidden" name="amount" :value="totalPrice">
 
         <table class="table" style="margin-bottom: 55px">
             <thead>
@@ -40,6 +40,7 @@
 
                 <td><strong>Počet {{ totalQuantity }}</strong></td>
                 <td class="pull-right"><strong style="font-size: 115%">Celkom: {{ totalPrice }},- Eu</strong></td>
+
                 <td>
                     <div class=" btn-group pull-right">
                         <button type="submit" name="order_send" value="0" class="btn btn-primary">Uložiť</button>
@@ -56,12 +57,12 @@
     export default {
         data: function() {
             return {
-                items: [{itemName: "Objednávame ", quantity: "1", price: "" }]
+                items: [{name: "Objednávame ", quantity: "1", price: "" }]
             }
         },
               methods: {
                 addItem: function(){
-                    this.items.push( {itemName: "Objednávame ", quantity: "1", price: "0"});
+                    this.items.push( {name: "", quantity: "1", price: "0"});
                 },
 
                 removeItem: function(item){

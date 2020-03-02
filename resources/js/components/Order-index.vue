@@ -1,14 +1,15 @@
 <template>
     <div>
-    <table class="table">
+    <table class="table table-bordered">
         <thead class="bg-success">
         <tr>
+            <th>Číslo</th>
             <th>Vystavená</th>
             <th>Dodávateľ</th>
             <th>Platba</th>
             <th>Vystavil</th>
             <th>Suma</th>
-            <th>Status</th>
+            <th>Stav</th>
             <th>Panel</th>
         </tr>
         </thead>

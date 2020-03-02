@@ -6,7 +6,7 @@
         {{-- Title Field --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Firma</span>
+                <span class="input-group-text text-danger" id="basic-addon1">Firma</span>
             </div>
             <input type="text" name="name" class = "form-control"  placeholder="Názov firmy" value="{{ old('name') ?? $organization->name }}" aria-describedby="basic-addon1"/>
         </div>
@@ -22,7 +22,7 @@
         {{-- PSČ --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">PSČ</span>
+                <span class="input-group-text text-danger" id="basic-addon3">PSČ</span>
             </div>
             <input type="number" name="psc" class = "form-control"  placeholder="Poštové smerové číslo" value="{{ old('psc') ?? $organization->psc }}" aria-describedby="basic-addon3" required/>
         </div>
@@ -30,7 +30,7 @@
         {{-- Mesto --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon4">Mesto</span>
+                <span class="input-group-text text-danger" id="basic-addon4">Mesto</span>
             </div>
             <input type="text" name="city" class = "form-control"  placeholder="Mesto" value="{{ old('city') ?? $organization->city}}" aria-describedby="basic-addon4" required/>
         </div>
@@ -38,7 +38,7 @@
         {{-- Email --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon5">Email</span>
+                <span class="input-group-text text-danger" id="basic-addon5">Email</span>
             </div>
             <input type="email" name="email" class = "form-control"  placeholder="Email dodávateľa" value="{{ old('email') ?? $organization->email }}" aria-describedby="basic-addon5" required/>
         </div>
@@ -59,7 +59,7 @@
         {{-- ICO Field --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon7">IČO</span>
+                <span class="input-group-text text-danger" id="basic-addon7">IČO</span>
             </div>
             <input type="number" name="ico" class = "form-control"  placeholder="IČO organizácie" value="{{ old('ico') ?? $organization->ico }}" maxlength="8" aria-describedby="basic-addon7"/>
         </div>

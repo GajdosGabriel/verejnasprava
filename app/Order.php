@@ -10,7 +10,7 @@ class Order extends Model
     use RecordsActivity, SoftDeletes;
 
     protected $guarded = ['id'];
-    protected $with = ['contact', 'orderItems', 'worker', 'organization', 'user'];
+    protected $with = ['contact', 'orderItems', 'organization', 'user'];
 
 
     public function contact()
@@ -21,11 +21,6 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function worker()
-    {
-        return $this->belongsTo(Worker::class);
     }
 
     public function orderItems()

@@ -6,6 +6,7 @@
 
 @section('content')
 
+
     <div class="d-block justify-content-between">
         <h1>Zoznam objednávok</h1>
             <a class="btn btn-primary pull-right" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
@@ -61,6 +62,8 @@
             {{--@endforelse--}}
         {{--</tbody>--}}
     {{--</table>--}}
+
+
 
 @endsection
 

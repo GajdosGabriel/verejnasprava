@@ -10,12 +10,13 @@
         <form action="{{ route('order.store', [ $organization->id, $organization->slug ]) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
 
-            @include('order._form_header')
-            @include('order._form_body_create')
-            @include('order._form_bottom')
+            {{--@include('order._form_header')--}}
+{{--            @include('order._form_body_create')--}}
+{{--            @include('order._form_bottom')--}}
 
+            <order0 :order="{{ $organization }}" :contacts="{{ $contacts }}"></order0>
         </form>
 
-        {{--<order0 :order="{{ $organization }}" :contacts="{{ $contacts }}"></order0>--}}
+
 @endsection
 

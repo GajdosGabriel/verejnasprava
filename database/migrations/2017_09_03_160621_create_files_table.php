@@ -17,11 +17,12 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned();
             $table->string('filename');
+            $table->string('path');
             $table->string('org_name');
+            $table->string('mime',10)->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

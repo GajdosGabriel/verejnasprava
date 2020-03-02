@@ -53,9 +53,9 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="exampleSelect2">Firma</label>
                         </div>
-                        <select v-model="selected" class="form-control" required id="exampleSelect2">
+                        <select name="contact_id" v-model="selected" class="form-control" required id="exampleSelect2">
                             <option value="" selected disabled >Vybrať dodávateľa</option>
-                            <option :value="contact" v-for="contact in contacts">
+                            <option :value="contact.id" v-for="contact in contacts">
                                 {{ contact.name }}
                             </option>
                         </select>

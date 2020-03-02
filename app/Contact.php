@@ -30,4 +30,11 @@ class Contact extends Model
     public function getformatPscAttribute() {
         return substr($this->psc,0,3)." ".substr($this->psc,3,2);
     }
+
+//    public function phoneNumber() {
+//        // add logic to correctly format number here
+//        // a more robust ways would be to use a regular expression
+//        return "(".substr($this->phone, 0, 3).") ".substr($this->phone, 3, 3)." ".substr($this->phone,6);
+//    }
+
 }

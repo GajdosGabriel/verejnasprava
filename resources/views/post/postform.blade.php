@@ -64,7 +64,7 @@
         <strong>Príloha</strong>
         <ul>
             @forelse($post->file as $file)
-                <li>{{ $file->name }}</li>
+                <li>{{ $file->org_name }}</li>
             @empty
                 <li>Bez prílohy</li>
             @endforelse

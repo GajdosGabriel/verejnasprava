@@ -10,6 +10,7 @@ use App\Organization;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -57,15 +58,6 @@ class UserController extends Controller
 
 
 
-    public function download ($filepath = '')
-    {
-        if ($filepath != '') {
-            $file = File::where('name', $filepath)->first();
-            return response()->file( storage_path('app/' . $file->filename));
-        } else {
-            abort(404);
-        }
-    }
 
 
 

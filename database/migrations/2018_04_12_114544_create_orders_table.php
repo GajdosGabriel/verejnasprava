@@ -21,7 +21,6 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('payment');
             $table->string('notes')->nullable();
-            $table->smallInteger('status')->default(0);
             $table->dateTime('order_send')->nullable();
             $table->boolean('viewed')->default(false);
             $table->string('unique_hash')->nullable();

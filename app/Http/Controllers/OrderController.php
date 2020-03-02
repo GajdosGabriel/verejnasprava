@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
 use App\Http\Requests\SaveOrderRequest;
 use App\Notifications\OrderCreate;
 use App\Organization;
@@ -10,7 +9,7 @@ use Barryvdh\DomPDF\PDF as PDF;
 use App\Order;
 use App\OrderItem;
 use App\User;
-use App\Worker;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Controllers\Controller;
@@ -35,10 +34,9 @@ class OrderController extends Controller
     }
 
 
-    public function showPdf(User $user, Order $order) {
-        $pdf = \PDF::loadView('order.orderShowPdf', [ 'order' => $order]);
+    public function printPdf(Order $order, $slug) {
+        $pdf = \PDF::loadView('order.print', compact('order'));
         return $pdf->stream();
-
     }
 
 
@@ -51,34 +49,35 @@ class OrderController extends Controller
 
     public function store(Organization $organization, SaveOrderRequest $request) {
 
+//                dd($request->all());
+
        $order = $organization->orders()->create([
             'contact_id' => $request->input('contact_id'),
             'user_id' => auth()->user()->id,
             'payment' => $request->input('payment'),
             'order_number' => $organization->orders->count() + 1,
-            'notes' => $request->input('notes')
+            'notes' => $request->input('notes'),
+            'amount' => $request->input('amount')
         ]);
 
 //        dd($request->all());
 
-
         foreach($request->name as $key => $value) {
-
             $order->saveOrderItems([
                 'name' => $request->name[$key],
                 'quantity' => $request->quantity[$key],
                 'price' => $request->price[$key],
             ]);
-
         }
 
 //        // Send email notify to customer
-//        if($request->input('order_send') == 1) {
+        if($request->input('order_send') == 1) {
+            $order->update(['order_send' => Carbon::now()]);
 //       $order->company->notify( new OrderCreate($order));
-//        }
+        }
 
 //        flash()->success('Úspešné uložené');
-        return redirect()->route('org.order.index', [$organization->id, $organization->slug]);
+        return redirect()->route('order.index', [$organization->id, $organization->slug]);
     }
 
 
@@ -97,9 +96,6 @@ class OrderController extends Controller
             ]);
 
         }
-
-
-
 
         if($order->id !=0) {
 

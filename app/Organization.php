@@ -16,7 +16,7 @@ class Organization extends Model
     }
 
     public function posts() {
-        return $this->hasMany(Post::class)->orderBy('date_in', 'desc');
+        return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
     }
 
     public function orders() {

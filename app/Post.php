@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use App\Services\FileUpload;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -67,20 +68,28 @@ class Post extends Model
     public function saveImage($request) {
         if ($request->hasFile('filename')){
 
-            $imageName =  request()->file('filename')->store('public/username' .  auth()->id() );
-//            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
-//            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
+            foreach($request->filename as $file) {
 
-            $this->file()->create([
-                'filename' => $imageName,
-                'org_name' => $request->filename->getClientOriginalName(),
-            ]);
+    //            $path =  $file->store('public/username' .  auth()->id() );
+    //            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
+    //            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
 
-//            if (getimagesize($path)) {
-//                $resize = Image::make($path);
-//                $resize->widen(1000);
-//                $resize->save($path, 75);
-//            }
+              $url =  Storage::disk('public')->put('username' .  auth()->id(), $file);
+
+                $this->file()->create([
+                    'filename' => $this->slug,
+                    'path' => $url,
+                    'org_name' => $file->getClientOriginalName(),
+                    'mime' => $file->getClientOriginalExtension()
+                ]);
+
+    //            if (getimagesize($path)) {
+    //                $resize = Image::make($path);
+    //                $resize->widen(1000);
+    //                $resize->save($path, 75);
+    //            }
+
+            }
         }
     }
 
@@ -89,6 +98,7 @@ class Post extends Model
 //    {
 //        return  Carbon::parse($value);
 //    }
+
 
 
 

@@ -26,7 +26,9 @@ class ContactsController extends Controller
     }
 
     public function create(Organization $organization, $slug) {
-        return view('contacts.create', compact('organization'));
+        $org = $organization; // for route
+        $organization = new Organization; // for form
+        return view('contacts.create', compact('organization', 'org'));
     }
 
 

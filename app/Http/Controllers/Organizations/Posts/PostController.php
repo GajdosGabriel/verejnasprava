@@ -82,12 +82,12 @@ class PostController extends Controller
     public function update(Post $post, SavePostRequest $request)
     {
 //        $this->authorize('update', $post);
-        $post->update( $request->all() );
+        $post->update($request->except('filename') );
 //        Cache::forget('posts');
         $post->saveImage($request, $post);
 
 //        flash()->success('Doklad opravený! ');
-        return \Redirect::route('create', ['slug' => \Auth::user()->slug ]);
+        return redirect()->route('org.post.index', [ $post->organization->id, $post->organization->slug ]);
     }
 
 
