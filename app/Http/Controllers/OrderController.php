@@ -33,19 +33,18 @@ class OrderController extends Controller
         return view('order.create', compact('organization'))->with('contacts', $contacts);
     }
 
+    // nedokončená
+    public function edit(Order $order) {
+//        $this->authorize('delete-post', $order);
+        $organization = Organization::whereId(auth()->user()->active_organization)->first();
+        return view('order.edit', compact('order', 'organization'));
+    }
 
     public function printPdf(Order $order, $slug) {
         $pdf = \PDF::loadView('order.print', compact('order'));
         return $pdf->stream();
     }
 
-
-    public function editOrder(User $user, Order $order) {
-        $this->authorize('delete-post', $order);
-        return view('order.edit')
-            ->with('order', $order)
-            ->with('user', $user);
-    }
 
     public function store(Organization $organization, SaveOrderRequest $request) {
 

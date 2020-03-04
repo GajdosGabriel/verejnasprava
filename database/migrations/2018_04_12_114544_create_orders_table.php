@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment');
             $table->string('notes')->nullable();
             $table->dateTime('order_send')->nullable();
-            $table->boolean('viewed')->default(false);
+            $table->dateTime('confirmed')->nullable();
             $table->string('unique_hash')->nullable();
             $table->decimal('amount', 10, 2)->default('0.00');
             $table->date('due_date')->nullable();

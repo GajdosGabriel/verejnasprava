@@ -7,10 +7,33 @@
         <td>{{ row.user.last_name }}</td>
         <td>{{ row.amount }}</td>
         <td v-text="orderSend"></td>
-        <th class="d-flex justify-content-between">
-            <a :href="urlShow">Show</a>
-            <a :href="urlPdf" target="_blank">Tlačiť</a>
-            <a :href="urlDelete">X</a>
+        <th>
+
+            <a class="nav-link p-0 d-flex justify-content-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-cog text-secondary"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                <a class="dropdown-item" :href="urlShow">
+                    <i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                    Zobraziť
+                </a>
+
+                <a class="dropdown-item" :href="urlEdit">
+                    <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                    Upraviť
+                </a>
+                <a class="dropdown-item" :href="urlPdf" target="_blank">
+                    <i class="fa fa-copy" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                    Tlačiť
+                </a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" :href="urlDelete">
+                    <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                    Zmazať
+                </a>
+            </div>
         </th>
     </tr>
 </template>
@@ -22,6 +45,7 @@
         data:function() {
             return {
                 urlShow: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/show',
+                urlEdit: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/edit',
                 urlDelete: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/delete',
                 urlPdf: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/pdf',
             }

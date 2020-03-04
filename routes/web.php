@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/orders', 'OrderController@index')->name('index');
         Route::get('{organization}/{slug}/order/create', 'OrderController@create')->name('create');
         Route::get('{order}/{slug}/order/show', 'OrderController@show')->name('show');
+        Route::get('{order}/{slug}/order/edit', 'OrderController@edit')->name('edit');
         Route::get('{order}/{slug}/order/delete', 'OrderController@delete')->name('delete');
         Route::get('{order}/{slug}/order/pdf', 'OrderController@printPdf')->name('printPdf');
         Route::post('{organization}/{slug}/order/store', 'OrderController@store')->name('store');

@@ -1,7 +1,7 @@
 <template>
     <div>
-    <table class="table table-bordered">
-        <thead class="bg-success">
+    <table class="table table-bordered  table-hover">
+        <thead class="alert-info">
         <tr>
             <th>Číslo</th>
             <th>Vystavená</th>

@@ -1,8 +1,8 @@
 <template>
     <div class="card">
-        <div class="card-header">Objednávka č.: <strong style="font-size: 120%;">
+        <div class="card-header">Nová objednávka <strong style="font-size: 120%;">
 
-            {{ subject.name }}
+
             <!--@if( !empty($order->order_number) )-->
             <!--{{ $order->order_number }} / {{ $order->created_at->format('Y') }}-->
             <!--@else-->

@@ -31,7 +31,7 @@
             <td>{{ $post->int_number }}</td>
 
             {{--@can( 'update', $post)--}}
-            <td>
+            <td class="d-flex justify-content-center">
                 <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Akcia
                 </a>
