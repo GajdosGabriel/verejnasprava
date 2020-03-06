@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Contact;
 use App\Observers\ContactObserver;
+use App\Observers\OrderItemObserver;
+use App\OrderItem;
 use App\User;
-use App\Worker;
 use App\Category;
 use App\Organization;
 use App\Observers\UserObserver;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Contact::observe(ContactObserver::class);
         Organization::observe(OrganizationObserver::class);
+        OrderItem::observe(OrderItemObserver::class);
 
         Carbon::setLocale(config('app.locale'));
 

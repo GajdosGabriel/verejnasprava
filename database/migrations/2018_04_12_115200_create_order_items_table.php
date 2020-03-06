@@ -17,9 +17,11 @@ class CreateOrderItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('order_id');
             $table->text('name');
-            $table->decimal('price',10,2)->nullable();
+            $table->decimal('price_with_vat', 10, 2)->nullable();
+            $table->decimal('price_total', 10, 2)->nullable();
+            $table->integer('vat');
             $table->integer('quantity')->nullable();
-            $table->integer('vat')->nullable();
+            $table->string('unique_hash')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('order_id')

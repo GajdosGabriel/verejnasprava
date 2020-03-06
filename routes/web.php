@@ -5,7 +5,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@redirect')->name('redirect');
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
 
-
+Route::get('{organization}/{slug}/index', 'HomeController@publishedPosts')->name('publishedPosts');
 Route::get('pdf/{file}/{filename?}/download/pdf', 'FilesController@show')->name('file.show');
 
 

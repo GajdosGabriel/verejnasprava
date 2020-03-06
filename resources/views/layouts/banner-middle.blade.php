@@ -1,29 +1,48 @@
 
-<div class="col-md-12">
+<div class="col-md-12 mt-5">
         <div class="row">
 
-            <div class="col-md-6">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe src="https://www.youtube.com/embed/sXCDTYenouQ" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {{--<div class="col-md-4">--}}
+                {{--<img style="width: 50%" class="img-responsive" src="{{asset('image/certifikat.jpg')}}" >--}}
+            {{--</div>--}}
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                       <h4>Vystavujte objednávky</h4>
+                    </div>
+
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/sXCDTYenouQ" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-sm-6"  style="background: aliceblue;">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Zverejňujte faktúry</h4>
+                    </div>
 
-                                <img style=" max-height: 293px" class="img-responsive" src="{{asset('image/certifikat.jpg')}}" >
-
-                        </div>
-
-                        <div class="col-sm-6">
-                            <h2>Certifikát</h2>
-                            <span style="font-size: 120%">Obdržíte certifikát ktorý potvrdzuje že zverejňujete informácie ktoré spĺňujú požiadavky zákona. Sú valídne pre zobrazenie
-                            a verejné príspupné podľa zákona o informácií.</span>
-                        </div>
-
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/sXCDTYenouQ" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Dane a poplatky</h4>
+                    </div>
+
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/sXCDTYenouQ" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

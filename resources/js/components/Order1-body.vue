@@ -8,6 +8,7 @@
                     <td class="w-50">Položka</td>
                     <td>Počet</td>
                     <td>Cena/ks</td>
+                    <td>Dph</td>
                     <td>Cena/Euro</td>
                     <td>Panel</td>
                 </tr>
@@ -19,7 +20,24 @@
                         <td>{{ index +1 }}</td>
                         <td><textarea style="width: 100%" name="name[]" v-model="item.name" rows="1" required>Objednávame </textarea></td>
                         <td><input placeholder="počet" type="number" required name="quantity[]"  v-model="item.quantity" ></td>
-                        <td><input placeholder="cena" type="number" v-on:keyup.enter="addItem" step="0.01" required name="price[]" v-model="item.price"></td>
+                        <td >
+
+                            <div style="width: 200px" class="input-group">
+                                <input placeholder="cena" type="number" v-on:keyup.enter="addItem" step="0.01" required name="price_with_vat[]" v-model="item.price">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <!--<input type="radio" aria-label="Radio button for following text input" checked>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width: 60px">
+                            <select style="width: 70px" name="vat[]" class="custom-select custom-select-sm" required>
+                                <option value="20" selected>20%</option>
+                                <option value="10">10%</option>
+                                <option value="0">0%</option>
+                            </select>
+                        </td>
                         <td style="width: 10%">{{ item.quantity * item.price | zaokruhlenie }},-</td>
                         <td><a title="Zmazať položku" class="btn btn-default btn-xs pull-right" @click="removeItem(index)">X</a></td>
                     </tr>

@@ -28,7 +28,8 @@ class SaveOrderRequest extends FormRequest
             'payment' => 'required',
             'name.*' => 'required',
             'quantity.*' => 'required|numeric',
-            'price.*' => 'required|numeric'
+            'price_with_vat.*' => 'required|numeric',
+            'vat.*' => 'required|numeric'
         ];
     }
 }

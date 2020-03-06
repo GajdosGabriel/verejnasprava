@@ -74,6 +74,7 @@
                                     <th>Popis položky</th>
                                     <th>Počet</th>
                                     <th>Cena/ks</th>
+                                    <th>Dph</th>
                                     <th>Spolu</th>
                                 </tr>
                                 </thead>
@@ -83,8 +84,9 @@
                                     <tr>
                                         <td><strong>{{ $item->name }}</strong></td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        <td>{{ $grandSum = $item->quantity * $item->price }},- Eu</td>
+                                        <td>{{ $item->price_with_vat }}</td>
+                                        <td>{{ $item->vat }}%</td>
+                                        <td>{{ $item->price_total }},- Eu</td>
                                     </tr>
                                 @empty
                                     <p>Bez položiek</p>
@@ -94,7 +96,8 @@
                                     <td>Celkom</td>
                                     <td>{{ $order->orderItems->sum('quantity') }} Kusov</td>
                                     <td></td>
-                                    <td>Suma spolu</td>
+                                    <td></td>
+                                    <td>Suma spolu: {{ $order->orderItems->sum('price') }}</td>
                                 </tr>
                                 </tbody>
 

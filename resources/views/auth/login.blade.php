@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('navigation')
-    @include('home.navigation')
+    @include('public.navigation')
 @endsection
 
 @section('content')

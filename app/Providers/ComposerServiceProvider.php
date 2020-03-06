@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Activity;
 use App\Organization;
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +37,18 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('organizations.index', function ($view) {
             $activities = Activity::whereUserId(auth()->user()->id)->latest()->with('subject')->paginate(20);
             $view->with('activities', $activities);
+        });
+
+        view()->composer('post.create', function ($view) {
+            $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get()->take(4);
+            $view->with('posts', $posts);
+        });
+
+        view()->composer('public.index', function ($view) {
+            $posts =  Post::orderBy('date_in', 'desc')->get()->groupBy(function($item){
+                return Carbon::parse($item->date_in)->format('F-Y');
+            });
+            $view->with('posts', $posts);
         });
 
     }

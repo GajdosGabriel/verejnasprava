@@ -1,13 +1,6 @@
 <template>
     <div class="card">
         <div class="card-header">Nová objednávka <strong style="font-size: 120%;">
-
-
-            <!--@if( !empty($order->order_number) )-->
-            <!--{{ $order->order_number }} / {{ $order->created_at->format('Y') }}-->
-            <!--@else-->
-            <!--{{ $organization->orders()->count() + 1 }} / {{ date('Y') }}-->
-            <!--@endif-->
         </strong>
             <a href="#" class="btn btn-default pull-right">Zrušiť</a>
         </div>
@@ -53,18 +46,18 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="exampleSelect2">Firma</label>
                         </div>
-                        <select name="contact_id" v-model="selected" class="form-control" required id="exampleSelect2">
+                        <select name="contact_id" @change="changeContact($event)" class="form-control" required id="exampleSelect2">
                             <option value="" selected disabled >Vybrať dodávateľa</option>
-                            <option :value="contact.id" v-for="contact in contacts">
+                            <option :value="contact.id" v-for="contact in subject.contacts">
                                 {{ contact.name }}
                             </option>
                         </select>
                     </div>
                     Dodávateľ:
-                    <strong>{{ selected.name }}</strong><br>
-                    {{ selected.street }}<br>
-                    {{ selected.psc }} {{ selected.city }}<br>
-                    Ico: {{ selected.ico }} Dic: {{ selected.dic }}<br>
+                    <strong>{{ selectedContact }}</strong><br>
+                    <!--{{ selected.street }}<br>-->
+                    <!--{{ selected.psc }} {{ selected.city }}<br>-->
+                    <!--Ico: {{ selected.ico }} Dic: {{ selected.dic }}<br>-->
                 </div>
             </div>
         </div>
@@ -77,19 +70,22 @@
     import swal from 'sweetalert2';
 
     export default {
-        props: ['subject', 'contacts'],
+        props: ['subject'],
         components: { swal },
         data: function() {
             return {
                 className: { danger: "text-danger", primary: "text-primary" },
 //                send: this.orders.order_send
-                selected: ''
+                selectedContact: null
             }
         },
 
         methods: {
-            changeStatus: function(id) {
+            changeContact: function(event) {
+                    this.selectedContact = event.target.options[event.target.options.selectedIndex].text
+                },
 
+            changeStatus: function(id) {
                 swal({
                     title: 'Odoslať objednávku?',
                     text: "Odoslanie na email dodávateľa!",

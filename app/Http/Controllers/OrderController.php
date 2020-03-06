@@ -29,8 +29,7 @@ class OrderController extends Controller
 
 
     public function create(Organization $organization) {
-        $contacts = $organization->contacts;
-        return view('order.create', compact('organization'))->with('contacts', $contacts);
+        return view('order.create', compact('organization'));
     }
 
     // nedokončená
@@ -65,7 +64,8 @@ class OrderController extends Controller
             $order->saveOrderItems([
                 'name' => $request->name[$key],
                 'quantity' => $request->quantity[$key],
-                'price' => $request->price[$key],
+                'price_with_vat' => $request->price_with_vat[$key],
+                'vat' => $request->vat[$key],
             ]);
         }
 

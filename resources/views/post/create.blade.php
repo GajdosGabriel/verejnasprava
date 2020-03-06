@@ -14,7 +14,7 @@
 
 
     <h3 class="mt-4">Posledné pridané doklady</h3>
-{{--    @include('post.post-tableTri')--}}
+    @include('post.table_index')
 @endsection
 
 

@@ -29,7 +29,7 @@ class OrganizationFormRequest extends FormRequest
             'street' => 'required|max:250',
             'psc' => 'required|max:6',
             'city' => 'required|max:50',
-            'ico' => 'required|max:8',
+            'ico' => 'required|unique:organizations|max:8',
             'dic' => 'max:20',
         ];
     }

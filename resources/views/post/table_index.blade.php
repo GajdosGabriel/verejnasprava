@@ -33,7 +33,7 @@
             {{--@can( 'update', $post)--}}
             <td class="d-flex justify-content-center">
                 <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Akcia
+                    <i class="fa fa-cog text-secondary"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 

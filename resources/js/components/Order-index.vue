@@ -9,7 +9,7 @@
             <th>Platba</th>
             <th>Vystavil</th>
             <th>Suma</th>
-            <th>Stav</th>
+            <th>Odoslané</th>
             <th>Panel</th>
         </tr>
         </thead>

@@ -14,7 +14,7 @@
 {{--            @include('order._form_body_create')--}}
 {{--            @include('order._form_bottom')--}}
 
-            <order0 :order="{{ $organization }}" :contacts="{{ $contacts }}"></order0>
+            <order0 :order="{{ $organization }}"></order0>
         </form>
 
 

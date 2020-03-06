@@ -31,7 +31,7 @@
 
     <div class="form-group  col-sm-3 ">
         <label for="noInvoice">Číslo faktúry / objednávky</label>
-        <input type="text" name="int_number" value="{{ old('int_number')  ?? $post->int_number }}" placeholder="Interné číslo dokladu" id="noInvoice" class="form-control" required>
+        <input type="text" name="int_number" value="{{ old('int_number')  ?? $post->int_number }}" placeholder="Interné číslo dokladu" id="noInvoice" class="form-control">
         {{--<input type="datetime-local" name="date_in" value="{{ old('date_in') ?? $post->date_in->format('Y-m-d\TH:i') }}" id="dateStart" class="form-control" required>--}}
     </div>
 

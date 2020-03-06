@@ -6,7 +6,7 @@
         <td>{{ row.payment }}</td>
         <td>{{ row.user.last_name }}</td>
         <td>{{ row.amount }}</td>
-        <td v-text="orderSend"></td>
+        <td v-html="orderSend"></td>
         <th>
 
             <a class="nav-link p-0 d-flex justify-content-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
         },
         computed: {
           orderSend: function() {
-              if(this.row.order_send == null)  return 'Neodoslaná';
+              if(this.row.order_send == null)  return '<span class="badge badge-secondary">Odoslať</span>';
               if(this.row.order_send !== null )  return moment(this.row.order_send).format('L');
               }
         },
@@ -63,3 +63,9 @@
         }
     }
 </script>
+<style>
+    .badge {
+        cursor: pointer;
+    }
+
+</style>

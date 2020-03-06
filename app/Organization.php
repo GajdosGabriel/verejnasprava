@@ -11,6 +11,8 @@ class Organization extends Model
 
     protected $guarded = [];
 
+    protected $with = ['contacts'];
+
     public function user() {
         return $this->hasMany(User::class);
     }

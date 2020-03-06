@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('navigation')
-    @include('home.navigation')
+    @include('public.navigation')
 @endsection
 
 @section('content')
@@ -77,6 +77,20 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="iamHuman" class="col-md-4 col-form-label text-md-right">Som človek 3 + 5 =</label>
+
+                            <div class="col-md-6">
+                                <input id="iamHuman" type="number" class="form-control" placeholder="napíšte číslo 5" name="iamHuman" required>
+
+                                @error('iamHuman')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

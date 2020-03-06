@@ -16,5 +16,9 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class);
     }
 
+//    public function priceWithVat() {
+//        return ($this->price /100) * (100 + $this->vat);
+//    }
+
 
 }
