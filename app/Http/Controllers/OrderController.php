@@ -47,8 +47,6 @@ class OrderController extends Controller
 
     public function store(Organization $organization, SaveOrderRequest $request) {
 
-//                dd($request->all());
-
        $order = $organization->orders()->create([
             'contact_id' => $request->input('contact_id'),
             'user_id' => auth()->user()->id,
@@ -81,41 +79,23 @@ class OrderController extends Controller
 
 
 
-    public function updateOrder(SaveOrderRequest $request, Order $order) {
-//        dd($order);
+    public function update(SaveOrderRequest $request, Order $order) {
+        $order->update([
+            'contact_id' => $request->input('contact_id'),
+            'amount' => $request->input('amount')
+        ]);
+//        dd($request->all());
 
-        $this->authorize('delete-post', $order);
+//        $this->authorize('delete-post', $order);
 
         foreach($request->name as $key => $value) {
-
             $order->saveOrderItems([
                 'name' => $request->name[$key],
                 'quantity' => $request->quantity[$key],
-                'price' => $request->price[$key],
+                'price_with_vat' => $request->price_with_vat[$key],
+                'vat' => $request->vat[$key],
             ]);
-
         }
-
-        if($order->id !=0) {
-
-            foreach($request->nameame as $key => $value) {
-                 if( isset( $request->orderItemId[$key] )) {
-
-                     $order->orderItems()->update([
-                        'name' => $request->name[$key],
-                        'quantity' => $request->quantity[$key],
-                        'price' => $request->price[$key],
-                    ]);
-
-                } else {
-                     $order->orderItems()->insert([
-                        'name' => $request->name[$key],
-                        'quantity' => $request->quantity[$key],
-                        'price' => $request->price[$key],
-                    ]);
-                 }
-            } // end of loop
-        } // end of condition
 
         // Send email notify for company
         if($request->input('order_send') == 1) {
@@ -123,7 +103,7 @@ class OrderController extends Controller
         }
 
 //        flash()->success('Úspešné uložené');
-        return back();
+        return redirect()->route('order.index', [auth()->user()->active_organization, auth()->user()->active_organization]);
     }
 
     public function copyOrder(User $user, Order $order) {

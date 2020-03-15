@@ -22,7 +22,7 @@ class Organization extends Model
     }
 
     public function orders() {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class)->orderBy('id', 'desc');
     }
 
     public function contacts() {

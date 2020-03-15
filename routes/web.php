@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{order}/{slug}/order/delete', 'OrderController@delete')->name('delete');
         Route::get('{order}/{slug}/order/pdf', 'OrderController@printPdf')->name('printPdf');
         Route::post('{organization}/{slug}/order/store', 'OrderController@store')->name('store');
+        Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
     });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
