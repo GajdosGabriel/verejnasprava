@@ -14,7 +14,7 @@ class Organization extends Model
     protected $with = ['contacts'];
 
     public function user() {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function posts() {
@@ -22,7 +22,7 @@ class Organization extends Model
     }
 
     public function orders() {
-        return $this->hasMany(Order::class)->orderBy('id', 'desc');
+        return $this->hasMany(Order::class)->orderBy('id', 'asc');
     }
 
     public function contacts() {

@@ -26,6 +26,20 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        \DB::table('users')->insert([
+        [
+            'id' => 1,
+            'first_name' => 'Gabriel',
+            'last_name' => 'Gajdoš',
+            'email' => 'gajdosgabo@gmail.com',
+            'slug' => 'gajdos-gabriel',
+            'active_organization' => 1,
+            'password' => 'sekcovska',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ],
+    ]);
     }
 
     /**

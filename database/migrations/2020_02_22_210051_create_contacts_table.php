@@ -33,6 +33,31 @@ class CreateContactsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        \DB::table('contacts')->insert([
+            [
+                'id' => 1,
+                'organization_id' => 1,
+                'name' => 'Reprezent',
+                'slug' => 'reprezent',
+                'city' => 'Prešov',
+                'email' => 'reprezent@reprezent.com',
+                'ico' => 154777,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 2,
+                'organization_id' => 1,
+                'name' => 'Telemont',
+                'slug' => 'telemont',
+                'city' => 'Košice',
+                'email' => 'telemont@info.com',
+                'ico' => 19954777,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
     }
 
     /**

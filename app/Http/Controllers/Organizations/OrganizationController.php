@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {
-    public function index() {
+    public function index(Organization $organization, $slug) {
         return view('organizations.index');
     }
 
