@@ -28,7 +28,7 @@
                     <div>
                         <strong style="font-size: 200%">{{ $order->organization->name }}</strong> <br>
                         {{ $order->organization->street }}, <br>
-                        <strong>{{ $order->organization->psc }}  {{ $order->organization->city }}</strong> <br>
+                        <span>{{ $order->contact->psc }}</span>  <strong>{{ $order->contact->city }}</strong> <br>
                         Ičo: {{ $order->organization->ico }}
                     </div>
 
@@ -54,7 +54,7 @@
                     <div>
                         <strong style="font-size: 200%">{{ $order->contact->name }}</strong> <br>
                         {{ $order->contact->street }}, <br>
-                        <strong>{{ $order->contact->psc }}  {{ $order->contact->city }}</strong> <br>
+                        <span>{{ $order->contact->psc }}</span>  <strong>{{ $order->contact->city }}</strong> <br>
                         Ičo: {{ $order->contact->ico }}
                     </div>
                     <p></p>
@@ -93,11 +93,11 @@
                                 @endforelse
 
                                 <tr style="background: #b90000; color: whitesmoke">
-                                    <td>Celkom</td>
+                                    <td>Sumár</td>
                                     <td>{{ $order->orderItems->sum('quantity') }} Kusov</td>
                                     <td></td>
                                     <td></td>
-                                    <td>Suma spolu: {{ $order->orderItems->sum('price') }}</td>
+                                    <td>Celkom: {{ $order->amount }}</td>
                                 </tr>
                                 </tbody>
 

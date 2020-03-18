@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-        <div class="card-header">Nová objednávka <strong style="font-size: 120%;">
-        </strong>
+        <div class="card-header">
+            <strong style="font-size: 120%;"> {{ createOrEditTitle }} {{ order.order_number }}</strong>
             <a href="#" class="btn btn-default pull-right">Zrušiť</a>
         </div>
 
@@ -26,7 +26,6 @@
                             <div class="form-group input-group-sm">
                                 <label>Úhrada:</label>
                                 <select name="payment" class="form-control" required >
-                                    <option value="" selected disabled>Typ úhrady</option>
                                     <option selected value="Bankový prevod">Bankový prevod</option>
                                     <option value="Hotovosť">Hotovosť</option>
                                     <option value="Dobierka">Dobierka</option>
@@ -44,7 +43,7 @@
                 <div class="col-md-6">
                     <div class="input-group mt-3 mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="exampleSelect2">Firma</label>
+                            <label class="input-group-text">Firma</label>
                         </div>
                         <select name="contact_id" @change="changeContact($event)" class="form-control" required id="exampleSelect2">
                             <option value="" selected disabled >Vybrať dodávateľa</option>
@@ -68,12 +67,14 @@
 <script>
     import moment from 'moment';
     import swal from 'sweetalert2';
+    import multiselect from 'vue-multiselect';
 
     export default {
         props: ['subject'],
-        components: { swal },
+        components: { swal, multiselect },
         data: function() {
             return {
+                order: this.subject,
                 className: { danger: "text-danger", primary: "text-primary" },
 //                send: this.orders.order_send
                 selectedContact: null
@@ -125,11 +126,17 @@
 
         },
 
-//        computed: {
-//            year: function() {
-//        return moment(this.orders.created_at).format('Y');
-//            }
-//        }
+       computed: {
+           createOrEditTitle(){
+               if (this.order.amounto > 0) {
+                   return 'Upraviť objednávku';
+               }
+               return 'Nová objednávka';
+           },
+           year: function() {
+       return moment(this.orders.created_at).format('Y');
+           }
+       }
 
     }
 </script>

@@ -73,44 +73,45 @@
 </template>
 <script>
     export default {
+        props:['attribute'],
         data: function() {
             return {
-                items: [{name: "Objednávame ", quantity: "1", price: "" }]
+                localAttribute: this.attribute,
+                items: [{name: "Objednávame ", quantity: "1", price: "" }],
+                line: {name: "", quantity: "1", price: "0"}
             }
         },
-              methods: {
-                addItem: function(){
-                    this.items.push( {name: "", quantity: "1", price: "0"});
-                },
-
-                removeItem: function(item){
-                    if(this.items.length > 1) {
-                        this.$delete(this.items, item);
-                    }
-                }
+        methods: {
+            addItem: function(){
+                this.items.push( this.line );
             },
-            computed: {
-                totalPrice: function () {
-                    var total = 0;
-                    this.items.forEach(function (item) {
-                        total += item.price * item.quantity;
-                    });
-                    return total.toFixed(2);
-                },
 
-                totalQuantity: function() {
-                    var quantity = 0;
-                    this.items.forEach(function(item) {
-                        quantity += +item.quantity;
-                    });
-                    return quantity;
+            removeItem: function(item){
+                if(this.items.length > 1) {
+                    this.$delete(this.items, item);
                 }
-
-
+            }
         },
-         filters: {
+        computed: {
+            totalPrice: function () {
+                var total = 0;
+                this.items.forEach(function (item) {
+                    total += item.price * item.quantity;
+                });
+                return total.toFixed(2);
+            },
+
+            totalQuantity: function() {
+                var quantity = 0;
+                this.items.forEach(function(item) {
+                    quantity += +item.quantity;
+                });
+                return quantity;
+            }
+        },
+        filters: {
              vat20: function(value) {
-        return (value*1.20).toFixed(2);
+                return (value*1.20).toFixed(2);
             },
 
              vat10: function(value) {
@@ -120,9 +121,7 @@
              zaokruhlenie: function(value) {
                  return (value).toFixed(2);
              }
-         }
-
-
+        }
     }
 
 </script>

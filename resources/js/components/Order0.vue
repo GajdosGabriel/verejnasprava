@@ -1,7 +1,7 @@
 <template>
     <div>
         <orderHeader :subject="order"></orderHeader>
-        <orderBody></orderBody>
+        <orderBody :attribute="order"></orderBody>
 
     </div>
 </template>

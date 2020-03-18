@@ -13,6 +13,10 @@ class Organization extends Model
 
     protected $with = ['contacts'];
 
+    protected $withCount = [
+        'orders',
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }

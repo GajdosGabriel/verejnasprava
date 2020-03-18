@@ -6,7 +6,9 @@
         <td>{{ row.payment }}</td>
         <td>{{ row.user.last_name }}</td>
         <td>{{ row.amount }}</td>
-        <td v-html="orderSend"></td>
+        <td>
+            <a :href="this.urlSend"> <span v-html="orderSend"></span></a>
+        </td>
         <th>
 
             <a class="nav-link p-0 d-flex justify-content-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,12 +50,15 @@
                 urlEdit: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/edit',
                 urlDelete: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/delete',
                 urlPdf: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/pdf',
+                urlSend: '/obj/' + this.row.id + '/'  + this.row.contact.name + '/order/send',
+
             }
         },
         computed: {
           orderSend: function() {
-              if(this.row.order_send == null)  return '<span class="badge badge-secondary">Odoslať</span>';
-              if(this.row.order_send !== null )  return moment(this.row.order_send).format('L');
+              if(this.row.order_send == null)  return '<span class="badge badge-danger">Odoslať</span>';
+              if(this.row.order_send !== null)  return '<span class="badge badge-success">Odoslané</span>';
+              // if(this.row.order_send !== null )  return moment(this.row.order_send).format('L');
               }
         },
         filters: {

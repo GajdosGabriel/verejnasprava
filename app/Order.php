@@ -35,7 +35,6 @@ class Order extends Model
     public function saveOrderItems($data) {
 
         $this->orderItems()->create($data);
-
     }
 
 

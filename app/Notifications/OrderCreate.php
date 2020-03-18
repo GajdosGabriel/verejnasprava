@@ -43,9 +43,9 @@ class OrderCreate extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject($this->order->company->name . ' Vám zaslal objednávku' )
-            ->line( 'Firma: ' . $this->order->company->name . ' Vám zaslal objednávku.')
-            ->action( 'Zobraziť objednávku', url($this->order->user->slug . '/ordershow/' . $this->order->id. '/pdf'))
+            ->subject($this->order->contact->name . ' Vám zaslal objednávku' )
+            ->line( 'Firma: ' . $this->order->contact->name . ' Vám zaslal objednávku.')
+            ->action( 'Zobraziť objednávku', route('order.printPdf', [$this->order->id, $this->order->organization->slug]) )
             ->line('Objednávka je v prílohe!');
     }
 

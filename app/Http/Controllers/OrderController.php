@@ -53,7 +53,7 @@ class OrderController extends Controller
             'payment' => $request->input('payment'),
             'order_number' => $organization->orders->count() + 1,
             'notes' => $request->input('notes'),
-            'amount' => $request->input('amount')
+            'amount' => $request->input('amount'),
         ]);
 
 //        dd($request->all());
@@ -70,7 +70,7 @@ class OrderController extends Controller
 //        // Send email notify to customer
         if($request->input('order_send') == 1) {
             $order->update(['order_send' => Carbon::now()]);
-//       $order->company->notify( new OrderCreate($order));
+            $order->contact->notify( new OrderCreate($order));
         }
 
 //        flash()->success('Úspešné uložené');
@@ -99,7 +99,7 @@ class OrderController extends Controller
 
         // Send email notify for company
         if($request->input('order_send') == 1) {
-            $order->company->notify( new OrderCreate($order));
+            $order->contact->notify( new OrderCreate($order));
         }
 
 //        flash()->success('Úspešné uložené');
@@ -111,6 +111,12 @@ class OrderController extends Controller
         return view('order.copy')
             ->with('user', $user)
             ->with('order', $order);
+    }
+
+    public function send(Order $order){
+        $order->contact->notify( new OrderCreate($order));
+        $order->update(['order_send' => Carbon::now()]);
+        return back();
     }
 
 

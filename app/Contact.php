@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Contact extends Model
 {
-    use RecordsActivity, SoftDeletes;
+    use RecordsActivity, SoftDeletes, Notifiable;
 
     protected $guarded = [];
 

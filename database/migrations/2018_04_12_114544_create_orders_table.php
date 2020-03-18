@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('contact_id');
-            $table->unsignedInteger('order_number');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('order_number');
             $table->string('payment');
             $table->string('notes')->nullable();
             $table->dateTime('order_send')->nullable();
