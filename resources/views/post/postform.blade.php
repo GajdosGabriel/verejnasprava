@@ -63,7 +63,7 @@
     <div class="form-group col-sm-3">
         <strong>Príloha</strong>
         <ul>
-            @forelse($post->file as $file)
+            @forelse($post->files as $file)
                 <li>{{ $file->org_name }}</li>
             @empty
                 <li>Bez prílohy</li>

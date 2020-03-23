@@ -7,7 +7,6 @@
        <table class="table table-striped">
            <thead>
            <tr>
-               <th>Pč</th>
                <th>Názov firmy</th>
                <th>Adresa</th>
                <th>Mesto</th>
@@ -21,7 +20,6 @@
            </thead>
            <tbody>
                <tr  v-for="contact in contacts">
-                   <th scope="row">1</th>
                    <td v-text="contact.name"></td>
                    <td v-text="contact.street"></td>
                    <td v-text="contact.city"></td>

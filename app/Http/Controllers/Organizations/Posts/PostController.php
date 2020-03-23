@@ -22,6 +22,7 @@ class PostController extends Controller
     }
 
     public function index(Organization $organization, $slug) {
+        $this->authorize('update', $organization);
         $posts = $organization->posts;
         return view('post.index', compact('posts'));
     }
@@ -42,20 +43,20 @@ class PostController extends Controller
 
 
     public function create(Organization $organization, $slug) {
+        $this->authorize('update', $organization);
         return view('post.create', compact('organization'))->with('post', new Post);
     }
 
 
     public function edit(Post $post, $slug)
     {
-//        $this->authorize('update', $post);
-
+        $this->authorize('update', $post);
         return view('post.edit', compact('post'));
     }
 
     public function copy(Post $post, $slug)
     {
-//        $this->authorize('update', $post);
+        $this->authorize('update', $post);
 
         return view('post.create', compact('post'));
     }
@@ -69,8 +70,8 @@ class PostController extends Controller
 
     public function store(Organization $organization, SavePostRequest $request)
     {
+        $this->authorize('update', $organization);
         $post = $organization->posts()->create($request->except('filename'));
-//        $this->authorize('update', $post);
 //        Cache::forget('posts');
 
         $post->saveImage($request);
@@ -81,7 +82,7 @@ class PostController extends Controller
 
     public function update(Post $post, SavePostRequest $request)
     {
-//        $this->authorize('update', $post);
+        $this->authorize('update', $post);
         $post->update($request->except('filename') );
 //        Cache::forget('posts');
         $post->saveImage($request, $post);
@@ -93,7 +94,7 @@ class PostController extends Controller
 
     public function delete(Post $organization)
     {
-//        $this->authorize('update', $post);
+        $this->authorize('update', $organization);
 //        Cache::forget('posts');
 
 //        $post->file->each(function($post){

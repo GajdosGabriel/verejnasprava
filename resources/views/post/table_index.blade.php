@@ -22,7 +22,7 @@
             <td>{{ $post->contact->name }}</td>
             <td>{{ number_format($post->price, 2, ',', ' ') }} Eu</td>
             <td>
-            @forelse($post->file as $file)
+            @forelse($post->files as $file)
               <a target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>
             @empty
                 Bez prílohy

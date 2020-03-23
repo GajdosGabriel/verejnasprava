@@ -20,7 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('order-index', require('./components/Order-index.vue').default);
-Vue.component('order0', require('./components/Order0.vue').default);
+// Vue.component('order0', require('./components/Order0.vue').default);
+Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
 Vue.component('index-table', require('./contacts/indexTable.vue').default);
 
 

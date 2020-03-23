@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="iamHuman" class="col-md-4 col-form-label text-md-right">Som človek 3 + 5 =</label>
+                            <label for="iamHuman" class="col-md-4 col-form-label text-md-right">Som človek 3 + 2 =</label>
 
                             <div class="col-md-6">
                                 <input id="iamHuman" type="number" class="form-control" placeholder="napíšte číslo 5" name="iamHuman" required>

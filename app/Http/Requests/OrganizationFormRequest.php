@@ -29,7 +29,8 @@ class OrganizationFormRequest extends FormRequest
             'street' => 'required|max:250',
             'psc' => 'required|max:6',
             'city' => 'required|max:50',
-            'ico' => 'required|max:8|unique:organizations,ico,' . $this->organization->id,
+//            'ico' => 'required|max:8|unique:organizations,ico,' . $this->organization->id,
+            'ico' => 'required|max:8|unique:organizations,ico,' ,
             'dic' => 'max:20',
         ];
     }

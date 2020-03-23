@@ -25,6 +25,10 @@ class Organization extends Model
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
     }
 
+    public function councils() {
+        return $this->hasMany(Council::class)->orderBy('created_at', 'desc');
+    }
+
     public function orders() {
         return $this->hasMany(Order::class)->orderBy('id', 'asc');
     }

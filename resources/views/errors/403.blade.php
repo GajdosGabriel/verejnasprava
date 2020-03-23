@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html lang="sk">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name', 'Verejná správa') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/2bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Fonts -->
+    {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
+    <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+@yield('stylesheet')
+
+<!-- Styles -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
-@include('modul.navigation')
+{{--@include('modul.navigation')--}}
 
 
 <div class="container">
-    <h1>Túto položku nemôžete vymazať.</h1>
+    <h1>Nie ste autorizovaný.</h1>
     <h3>Ak sa domievate že ide o chybu, kontaktujte administrátora! Kod 403</h3>
 
   <a href="{{ url('/') }}"><button class="btn btn-primary btn-lg">Vrátiť sa späť</button></a>

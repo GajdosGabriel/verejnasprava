@@ -16,7 +16,7 @@ class Post extends Model
     use RecordsActivity, FileUpload, SoftDeletes;
 
     protected $guarded = [];
-    protected $with = ['category', 'file', 'contact'];
+    protected $with = ['category', 'files', 'contact'];
 
     public function contact()
     {
@@ -33,10 +33,14 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function file()
-    {
-        return $this->hasMany(File::class);
+    public function files() {
+        return $this->morphMany(File::class, 'fileable');
     }
+
+//    public function file()
+//    {
+//        return $this->hasMany(File::class);
+//    }
 
     /**
      * @param  $value
@@ -76,7 +80,7 @@ class Post extends Model
 
               $url =  Storage::disk('public')->put('username' .  auth()->id(), $file);
 
-                $this->file()->create([
+                $this->files()->create([
                     'filename' => $this->slug,
                     'path' => $url,
                     'org_name' => $file->getClientOriginalName(),

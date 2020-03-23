@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@redirect')->name('redirect');
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
@@ -16,6 +15,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function() {
         Route::get('{user}/{name}/index',  'UserController@index')->name('index');
         Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
+        Route::post('user/store/new/worker', 'UserController@store')->name('store');
     });
 
     Route::prefix('obj')->name('order.')->group(function() {
@@ -28,6 +28,17 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{order}/{slug}/order/pdf', 'OrderController@printPdf')->name('printPdf');
         Route::post('{organization}/{slug}/order/store', 'OrderController@store')->name('store');
         Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
+    });
+
+    Route::name('zast.')->namespace('Councils')->group(function() {
+        Route::get('{organization}/{slug}/zastupitelstvo', 'CouncilController@index')->name('index');
+        Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
+        Route::get('{organization}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
+        Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
+
+        Route::name('meet.')->group(function() {
+            Route::get('{organization}/{slug}/meeting', 'MeetingController@index')->name('index');
+        });
     });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {

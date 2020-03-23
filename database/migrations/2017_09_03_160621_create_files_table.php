@@ -15,14 +15,16 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned();
+            $table->unsignedInteger('fileable_id')->index();
+            $table->string('fileable_type');
             $table->string('filename');
             $table->string('path');
             $table->string('org_name');
             $table->string('mime',10)->nullable();
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['fileable_type', 'fileable_id', 'path']);
         });
     }
 
