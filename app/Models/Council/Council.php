@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\Council;
 
+use App\Meeting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class Council extends Model
     protected $guarded = [];
 
     public function meetings(){
-        return $this->hasMany(Meeting::class);
+        return $this->hasMany(Meeting::class)->orderBy('start_at', 'asc');
     }
 
     public function user() {

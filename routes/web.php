@@ -30,15 +30,26 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
     });
 
-    Route::name('zast.')->namespace('Councils')->group(function() {
-        Route::get('{organization}/{slug}/zastupitelstvo', 'CouncilController@index')->name('index');
+    Route::prefix('zast')->name('zast.')->namespace('Councils')->group(function() {
+        Route::get('{organization}/{slug}/zastupitelstva', 'CouncilController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
         Route::get('{organization}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 
-        Route::name('meet.')->group(function() {
-            Route::get('{organization}/{slug}/meeting', 'MeetingController@index')->name('index');
-        });
+    });
+
+    Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
+        Route::get('{council}/{slug}/meeting', 'MeetingController@index')->name('index');
+        Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
+        Route::get('{council}/{slug}/meeting/show', 'MeetingController@show')->name('show');
+        Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
+    });
+
+    Route::name('item.')->group(function() {
+//            Route::get('{council}/{slug}/meeting', 'MeetingItemController@index')->name('index');
+        Route::get('{meeting}/{slug}/item/create', 'MeetingItemController@create')->name('create');
+//            Route::get('{council}/{slug}/meeting/show', 'MeetingItemController@show')->name('show');
+//            Route::post('{council}/{slug}/meeting/store', 'MeetingItemController@store')->name('store');
     });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {

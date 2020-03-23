@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <form method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
+                        <form method="POST" action="{{ route('zast.item.store', [$meeting->id, $meeting->slug]) }}">
                             @csrf @method('POST')
 
                             <div class="form-group row">

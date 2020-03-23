@@ -2,46 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Council.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/CouncilController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Meeting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/OrganizationPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Vote.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_21_211920_create_councils_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_21_211951_create_votes_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_21_212738_create_meetings_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/modules/order/Order-body.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/modules/order/Order-header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/modules/order/OrderGroup.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/ItemController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Item.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting_item/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Organizations/Posts/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/Posts/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OrganizationFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OrganizationFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserUpdateRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Organization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Organization.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/PostPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/PostPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_09_03_160621_create_files_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2017_09_03_160621_create_files_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/contacts/indexTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/contacts/indexTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/errors/403.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/errors/404.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/order/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/order/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/post/postform.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/postform.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/post/table_index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/table_index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Council.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Council/Council.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Meeting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Meeting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Vote.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Vote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_21_211920_create_councils_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_21_211920_create_councils_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_21_211951_create_votes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174115_create_votes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_21_212738_create_meetings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_173650_create_meetings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,24 +179,24 @@
     <property name="SearchEverywhereHistoryKey" value="home&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;orde&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;web&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;con&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;user&#9;null&#9;null&#10;postC&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;co&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;Ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;r/v/o/c&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/order/create.blade.php&#10;Orde&#9;null&#9;null&#10;Pos&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;we&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;hom&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Home&#9;null&#9;null&#10;Ho&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Cus&#9;null&#9;null&#10;nav&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/layouts/navigation.blade.php&#10;Or&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;Wor&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/WorkerController.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/council/meeting" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/council/meeting_item" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\www\verejnasprava\resources\views\council\meeting" />
-      <recent name="C:\www\verejnasprava\resources\views\council" />
-      <recent name="C:\www\verejnasprava\resources\views\contacts" />
-      <recent name="C:\www\verejnasprava\resources\js\modules\order" />
-      <recent name="C:\www\verejnasprava\resources\views\home" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\www\verejnasprava\app\Models\Councel" />
       <recent name="C:\www\verejnasprava\app\Http\Controllers\Councils" />
       <recent name="C:\www\verejnasprava\app\Http\Controllers" />
       <recent name="C:\www\verejnasprava\resources\views\user" />
       <recent name="C:\www\verejnasprava\resources\js\components" />
-      <recent name="C:\www\verejnasprava\resources\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\www\verejnasprava\resources\views\council\meeting_item" />
+      <recent name="C:\www\verejnasprava\resources\views\council\meeting" />
+      <recent name="C:\www\verejnasprava\resources\views\council" />
+      <recent name="C:\www\verejnasprava\resources\views\contacts" />
+      <recent name="C:\www\verejnasprava\resources\js\modules\order" />
     </key>
   </component>
   <component name="RunManager">
@@ -275,7 +253,8 @@
       <workItem from="1584853793494" duration="6056000" />
       <workItem from="1584878192279" duration="5883000" />
       <workItem from="1584898437664" duration="5725000" />
-      <workItem from="1584943446242" duration="3253000" />
+      <workItem from="1584943446242" duration="12424000" />
+      <workItem from="1584960835059" duration="3568000" />
     </task>
     <servers />
   </component>
@@ -316,13 +295,13 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584904795162">
+    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584981455717">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584904795162" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1584878452961">
+    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584981455717" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1584953094946">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1584878452961" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1584953094946" />
   </component>
 </project>

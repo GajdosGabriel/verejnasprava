@@ -7,16 +7,16 @@
 @section('content')
 
 
-    <h1>Body</h1>
+    <h1>{{ $council->name }} zastupiteľstvo</h1>
     <div class="col-md-12">
-        <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nová schôdza</a>
+        <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
                 <tr class="alert-info">
                     <th>Dátum</th>
                     <th>Popis</th>
-                    <th>Kategória</th>
+                    <th>Typ</th>
                     <th>Vystavil</th>
                     <th>Príloha</th>
                     <th>Panel</th>
@@ -26,17 +26,21 @@
             <tr>
 
 
-{{--                @forelse($organization->councils as $council)--}}
-{{--                    <td>{{ $council->start_at }}</td>--}}
-{{--                    <td>{{ $council->name }}</td>--}}
-{{--                    <td>{{ $council->description }}</td>--}}
-{{--                    <td>{{ $council->user->full_name() }}</td>--}}
-{{--                    <td>--}}
-{{--                        @forelse($council->files as $file)--}}
-{{--                            <a target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>--}}
-{{--                        @empty--}}
-{{--                            Bez prílohy--}}
-{{--                @endforelse--}}
+                @forelse($council->meetings as $council)
+                    <td>{{ $council->start_at }}</td>
+                    <td>
+                        <a href="{{ route('meet.show', [$council->id, $council->slug]) }}">
+                            {{ $council->name }}
+                        </a>
+                    </td>
+                    <td>{{ $council->description }}</td>
+                    <td>{{ $council->user->full_name() }}</td>
+                    <td>
+                        @forelse($council->files as $file)
+                            <a target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>
+                        @empty
+                            Bez prílohy
+                        @endforelse
 
     {{--                        <td>{{ $post->int_number }}</td>--}}
 
@@ -62,9 +66,9 @@
                 </td>
                 {{--@endcan--}}
             </tr>
-{{--            @empty--}}
+            @empty
                 {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}
-{{--            @endforelse--}}
+            @endforelse
 
             </tbody>
         </table>
