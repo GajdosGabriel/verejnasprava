@@ -2,7 +2,7 @@
     <div class="form-group col-sm-3">
         <label for="categor">Typ dokladu</label>
         <select id="categor" name="category_id" class="form-control">
-            @foreach(\App\Category::all() as $category)
+            @foreach(\App\Models\Category::all() as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
@@ -12,7 +12,7 @@
         <label>Dodávateľ</label>
         <select name="contact_id" class="form-control" required id="exampleSelect1">
             <option value="" selected disabled >Vybrať dodávateľa</option>
-            @foreach(\App\Contact::where('organization_id', '=',auth()->user()->active_organization)->get() as $contact)
+            @foreach(\App\Models\Contact::where('organization_id', '=',auth()->user()->active_organization)->get() as $contact)
                 <option
                         @if( isset($post->contact->id) AND $post->contact->id == $contact->id )
                         selected

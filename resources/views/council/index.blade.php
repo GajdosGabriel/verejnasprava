@@ -7,7 +7,7 @@
 @section('content')
 
 
-    <h1>Vytvorené zastupiteľstvá</h1>
+    <h1>Vaše zastupiteľstvá</h1>
     <div class="col-md-12">
         <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
 
@@ -17,6 +17,7 @@
                     <th>Popis</th>
                     <th>Typ</th>
                     <th>Založil</th>
+                    <th>Počet zasadnutí</th>
                     <th>Panel</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                     </td>
                     <td>{{ $council->description }}</td>
                     <td>{{ $council->user->full_name() }}</td>
+                    <td>{{ $council->meetings()->count() }}</td>
 
 
 

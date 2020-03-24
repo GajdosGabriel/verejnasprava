@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Councils;
 
-use App\Council;
-use App\CouncilMeeting;
+use App\Models\Council\Council;
 use App\Http\Controllers\Controller;
-use App\Meeting;
-use App\Organization;
+use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
@@ -25,7 +23,8 @@ class MeetingController extends Controller
     }
 
     public function store(Request $request, Council $council) {
-        $council->meetings()->create(array_merge($request->all(), ['user_id' => auth()->user()->id]));
+        $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+        $meeting->saveImage($request);
         return back();
     }
 }

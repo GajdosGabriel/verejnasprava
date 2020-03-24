@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Organization;
-use App\User;
+use App\Models\Organization;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Question;
+use App\Models\Question;
 
 class HomeController extends Controller
 {

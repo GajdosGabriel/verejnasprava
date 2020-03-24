@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Organization;
+use App\Models\User;
+use App\Models\Organization;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrganizationPolicy

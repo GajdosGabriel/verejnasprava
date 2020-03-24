@@ -6,7 +6,7 @@
  * Time: 19:37
  */
 
-namespace App;
+namespace App\Models;
 
 
 trait RecordsActivity
@@ -54,7 +54,7 @@ trait RecordsActivity
      */
     public function activity()
     {
-        return $this->morphMany('App\Activity', 'subject');
+        return $this->morphMany('App\Models\Activity', 'subject');
     }
     /**
      * Determine the activity type.

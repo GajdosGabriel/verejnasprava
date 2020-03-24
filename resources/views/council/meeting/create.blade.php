@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <form method="POST" action="{{ route('meet.store', [$council->id, $council->slug]) }}">
+                        <form method="POST" action="{{ route('meet.store', [$council->id, $council->slug]) }}" enctype="multipart/form-data">
                             @csrf @method('POST')
 
                             <div class="form-group row">
@@ -50,6 +50,20 @@
                                 <div class="col-md-8">
                                     <input type="datetime-local" name="start_at" value="{{ old('start_at') ?? $council->start_at }}" id="start_at" class="form-control" required>
                                     @error('start_at')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="filename" class="col-md-4 col-form-label text-md-right">Prílohy pre schôdzu</label>
+
+                                <div class="col-md-8">
+                                    <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
+
+                                    @error('filename')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

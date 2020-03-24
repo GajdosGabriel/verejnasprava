@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\RecordsActivity;
 use Carbon\Carbon;
 use App\Services\FileUpload;
 use Illuminate\Support\Facades\Storage;
@@ -37,11 +38,6 @@ class Post extends Model
         return $this->morphMany(File::class, 'fileable');
     }
 
-//    public function file()
-//    {
-//        return $this->hasMany(File::class);
-//    }
-
     /**
      * @param  $value
      * @return bool|string
@@ -69,33 +65,6 @@ class Post extends Model
         return number_format($this->price, 2, ',', ' ');
     }
 
-    public function saveImage($request) {
-        if ($request->hasFile('filename')){
-
-            foreach($request->filename as $file) {
-
-    //            $path =  $file->store('public/username' .  auth()->id() );
-    //            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
-    //            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
-
-              $url =  Storage::disk('public')->put('username' .  auth()->id(), $file);
-
-                $this->files()->create([
-                    'filename' => $this->slug,
-                    'path' => $url,
-                    'org_name' => $file->getClientOriginalName(),
-                    'mime' => $file->getClientOriginalExtension()
-                ]);
-
-    //            if (getimagesize($path)) {
-    //                $resize = Image::make($path);
-    //                $resize->widen(1000);
-    //                $resize->save($path, 75);
-    //            }
-
-            }
-        }
-    }
 
 
 //    public function setDate_inAttribute($value)

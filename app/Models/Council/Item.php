@@ -2,27 +2,17 @@
 
 namespace App\Models\Council;
 
-
-
+use App\Models\File;
+use App\Services\FileUpload;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Models\User;
-use App\Models\File;
 
-
-class Council extends Model
+class Item extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, FileUpload;
     protected $guarded = [];
-
-    public function meetings(){
-        return $this->hasMany(Meeting::class)->orderBy('start_at', 'asc');
-    }
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
@@ -33,8 +23,6 @@ class Council extends Model
         $this->attributes['name'] = ucfirst($value);
         $this->attributes['slug'] = Str::slug($value);
     }
-
-
 
 
 }

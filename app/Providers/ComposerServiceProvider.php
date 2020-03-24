@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Activity;
-use App\Organization;
-use App\Post;
+use App\Models\Activity;
+use App\Models\Organization;
+use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\ServiceProvider;

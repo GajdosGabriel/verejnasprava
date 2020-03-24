@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\Council;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Vote extends Model
 {
     //
 }

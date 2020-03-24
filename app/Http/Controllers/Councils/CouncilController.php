@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Councils;
 
-use App\Council;
+
 use App\Http\Controllers\Controller;
-use App\Organization;
+use App\Models\Council\Council;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
 class CouncilController extends Controller

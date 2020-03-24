@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Organizations\Contacts;
 
 
 
-use App\Contact;
+use App\Models\Contact;
 use App\Http\Requests\OrganizationFormRequest;
-use App\Organization;
+use App\Models\Organization;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

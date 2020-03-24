@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveOrderRequest;
 use App\Notifications\OrderCreate;
-use App\Organization;
+use App\Models\Organization;
 use Barryvdh\DomPDF\PDF as PDF;
-use App\Order;
-use App\OrderItem;
-use App\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;

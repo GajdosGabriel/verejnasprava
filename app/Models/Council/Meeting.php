@@ -1,14 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models\Council;
 
+use App\Services\FileUpload;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use App\Models\File;
+use App\Models\User;
 
 class Meeting extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, FileUpload;
     protected $guarded = [];
 
     public function user() {
@@ -17,6 +20,10 @@ class Meeting extends Model
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
+    }
+
+    public function items() {
+        return $this->hasMany(Item::class);
     }
 
 
