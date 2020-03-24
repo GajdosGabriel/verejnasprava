@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Councils;
 
-use App\Council;
-use App\CouncilMeeting;
+use App\Models\Council\Council;
 use App\Http\Controllers\Controller;
-use App\Meeting;
-use App\Organization;
+use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller

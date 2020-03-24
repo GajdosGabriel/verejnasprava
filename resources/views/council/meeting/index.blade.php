@@ -7,7 +7,7 @@
 @section('content')
 
 
-    <h1>{{ $council->name }} zastupiteľstvo</h1>
+    <h1>Zastupiteľstvo: {{ $council->name }} </h1>
     <div class="col-md-12">
         <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
 
@@ -19,6 +19,7 @@
                     <th>Typ</th>
                     <th>Vystavil</th>
                     <th>Príloha</th>
+                    <th>Body rokovania</th>
                     <th>Panel</th>
                 </tr>
             </thead>
@@ -41,8 +42,8 @@
                         @empty
                             Bez prílohy
                         @endforelse
-
-    {{--                        <td>{{ $post->int_number }}</td>--}}
+                    </td>
+                    <td>{{ $council->items()->count() }}</td>
 
                 {{--@can( 'update', $post)--}}
                 <td class="d-flex justify-content-center">

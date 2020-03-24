@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Organizations\Posts;
 
 
-use App\Organization;
-use App\Post;
-use App\User;
+use App\Models\Organization;
+use App\Models\Post;
+use App\Models\User;
 use Cache;
 use Illuminate\Http\Request;
 use App\Http\Requests\SavePostRequest;

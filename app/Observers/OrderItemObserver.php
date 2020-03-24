@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\OrderItem;
+use App\Models\OrderItem;
 
 class OrderItemObserver
 {

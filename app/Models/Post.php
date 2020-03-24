@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\RecordsActivity;
 use Carbon\Carbon;
 use App\Services\FileUpload;
 use Illuminate\Support\Facades\Storage;
@@ -37,11 +38,6 @@ class Post extends Model
         return $this->morphMany(File::class, 'fileable');
     }
 
-//    public function file()
-//    {
-//        return $this->hasMany(File::class);
-//    }
-
     /**
      * @param  $value
      * @return bool|string
@@ -75,10 +71,10 @@ class Post extends Model
             foreach($request->filename as $file) {
 
     //            $path =  $file->store('public/username' .  auth()->id() );
-    //            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
+    //            $file = $request->filename->move(storage_path('organization' . auth()->id()), $imageName);
     //            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
 
-              $url =  Storage::disk('public')->put('username' .  auth()->id(), $file);
+              $url =  Storage::disk('public')->put('organization' .  auth()->user()->active_organization, $file);
 
                 $this->files()->create([
                     'filename' => $this->slug,

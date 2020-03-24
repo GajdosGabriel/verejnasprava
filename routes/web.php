@@ -45,11 +45,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
     });
 
-    Route::name('item.')->group(function() {
-//            Route::get('{council}/{slug}/meeting', 'MeetingItemController@index')->name('index');
-        Route::get('{meeting}/{slug}/item/create', 'MeetingItemController@create')->name('create');
-//            Route::get('{council}/{slug}/meeting/show', 'MeetingItemController@show')->name('show');
-//            Route::post('{council}/{slug}/meeting/store', 'MeetingItemController@store')->name('store');
+    Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
+//            Route::get('{council}/{slug}/meeting', 'ItemController@index')->name('index');
+        Route::get('{meeting}/{slug}/item/create', 'ItemController@create')->name('create');
+//            Route::get('{council}/{slug}/meeting/show', 'ItemController@show')->name('show');
+            Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
     });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {

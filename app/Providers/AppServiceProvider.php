@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Contact;
+use App\Models\Contact;
 use App\Observers\ContactObserver;
 use App\Observers\OrderItemObserver;
-use App\OrderItem;
-use App\User;
-use App\Category;
-use App\Organization;
+use App\Models\OrderItem;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Organization;
 use App\Observers\UserObserver;
 use App\Observers\OrganizationObserver;
 use Carbon\Carbon;

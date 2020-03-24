@@ -1,7 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\OrderItem;
+use App\Models\Organization;
+use App\Models\RecordsActivity;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Organizations;
 
-use App\User;
-use App\Organization;
+use App\Models\User;
+use App\Models\Organization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrganizationFormRequest;
 use Illuminate\Http\Request;

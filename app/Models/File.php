@@ -1,20 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Activity extends Model
+class File extends Model
 {
     use SoftDeletes;
 
-
     protected $guarded = [];
 
-
-    public function subject()
+    public function fileable()
     {
         return $this->morphTo();
     }
+
 }
