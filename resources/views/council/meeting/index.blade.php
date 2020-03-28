@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('navigation')
-    @include('organizations.navigation')
+    @include('council.meeting.navigation')
 @endsection
 
 @section('content')
 
 
-    <h1>Zastupiteľstvo: {{ $council->name }} </h1>
+    <h2>Zoznam zasadnutí </h2>
     <div class="col-md-12">
         <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
 

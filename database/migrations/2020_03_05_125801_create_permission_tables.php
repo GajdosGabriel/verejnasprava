@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 
 class CreatePermissionTables extends Migration
 {
@@ -23,6 +26,7 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('category');
             $table->string('guard_name');
             $table->timestamps();
         });
@@ -88,82 +92,125 @@ class CreatePermissionTables extends Migration
             ->forget(config('permission.cache.key'));
 
 
-        \DB::table('permissions')->insert([
-            [
-                'id' => 1,
-                'name' => 'role-list',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 2,
-                'name' => 'role-create',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 3,
-                'name' => 'role-edit',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 4,
-                'name' => 'role-delete',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 5,
-                'name' => 'role-destroy',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+        $permissions = [
+            'role view'   => 'role',
+            'role create' => 'role',
+            'role edit'   => 'role',
+            'role delete' => 'role',
+
+            'customer edit'    => 'customer',
+            'customer view'    => 'customer',
+            'customer create'  => 'customer',
+            'customer delete'  => 'customer',
+
+            'organization edit'    => 'organization',
+            'organization view'    => 'organization',
+            'organization create'  => 'organization',
+            'organization delete'  => 'organization',
+
+            'order edit'    => 'order',
+            'order view'    => 'order',
+            'order create'  => 'order',
+            'order delete'  => 'order',
+
+            'post edit'    => 'post',
+            'post view'    => 'post',
+            'post create'  => 'post',
+            'post delete'  => 'post',
+
+            'council edit'    => 'council',
+            'council view'    => 'council',
+            'council create'  => 'council',
+            'council delete'  => 'council',
+            ];
+
+foreach ($permissions as $permission => $category) {
+    Permission::create([
+        'name'     => $permission,
+        'category' => $category,
+    ]);
+}
+
+        $roles = [
+            'super admin',
+            'manager',
+            'financial',
+            'crew leader',
+            'crew member',
+        ];
+
+        foreach ($roles as $role) {
+            Role::create(['name' => $role]);
+        }
 
 
-        \DB::table('roles')->insert([
-            [
-                'id' => 1,
-                'name' => 'superadmin',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 2,
-                'name' => 'admin',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 3,
-                'name' => 'editor',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 4,
-                'name' => 'publisher',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 5,
-                'name' => 'user',
-                'guard_name' => 'web',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+//        $permissions = [
+////        'role-list',
+////        'role-create',
+////        'role-edit',
+////        'role-delete',
+////        'product-list',
+////        'product-create',
+////        'product-edit',
+////        'product-delete'
+////    ];
+////
+
+//        foreach ($permissions as $permission) {
+//            Permission::create(['name' => $permission]);
+//        }
+//
+//        $roles = [
+//            'super-admin',
+//            'admin',
+//            'editor',
+//            'publisher',
+//            'user',
+//        ];
+//
+//        foreach ($roles as $permission) {
+//            \Spatie\Permission\Models\Role::create(['name' => $permission]);
+//        }
+
+
+//
+//        \DB::table('roles')->insert([
+//            [
+//                'id' => 1,
+//                'name' => 'superadmin',
+//                'guard_name' => 'web',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'id' => 2,
+//                'name' => 'admin',
+//                'guard_name' => 'web',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'id' => 3,
+//                'name' => 'editor',
+//                'guard_name' => 'web',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'id' => 4,
+//                'name' => 'publisher',
+//                'guard_name' => 'web',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'id' => 5,
+//                'name' => 'user',
+//                'guard_name' => 'web',
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ]
+//        ]);
     }
 
     /**

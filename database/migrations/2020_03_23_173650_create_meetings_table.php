@@ -21,6 +21,7 @@ class CreateMeetingsTable extends Migration
             $table->string('slug');
             $table->string('description')->nullable();
             $table->dateTime('start_at')->nullable();
+            $table->boolean('published')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

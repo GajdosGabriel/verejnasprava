@@ -21,6 +21,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-decoupled-document": "^18.0.0",
     "bootstrap": "^4.4.1",
     "bootstrap-scss": "^4.4.1",
     "fund": "^1.0.0",

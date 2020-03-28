@@ -25,6 +25,6 @@ class MeetingController extends Controller
     public function store(Request $request, Council $council) {
         $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveImage($request);
-        return back();
+        return redirect()->route('meet.index', [$council->id, $council->slug]);
     }
 }

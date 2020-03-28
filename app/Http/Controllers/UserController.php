@@ -19,7 +19,10 @@ class UserController extends Controller
             if(auth()->user()->active_organization != null)
                 return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug ]);
         }
-        return view('user.index');
+
+//        Po registrácií presmeruje na org. formulár
+        return redirect()->route('user.new-organization', [ auth()->user()->id, auth()->user()->slug]);
+//        return view('user.index');
     }
 
     public function newOrganization() {

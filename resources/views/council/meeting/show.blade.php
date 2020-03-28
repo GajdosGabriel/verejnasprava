@@ -1,45 +1,62 @@
 @extends('layouts.app')
 
 @section('navigation')
-    @include('organizations.navigation')
+    @include('council.meeting.navigation')
 @endsection
 
 @section('content')
 
 
-    <div class="col-md-12 d-flex justify-content-between">
-        <h1>{{ $council->name }} zastupiteľstvo</h1>
-        <a href="{{ route('item.create', [ $council->id, $council->slug ]) }}" class="btn btn-secondary">Nový návrh</a>
-    </div>
-
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-8">
+            <div class="col-12 mb-5">
+                <a style="float: right" href="{{ route('item.create', [ $council->id, $council->slug ]) }}" class="btn btn-secondary">Nový návrh</a>
+                <h2>Program schôdze</h2>
+            </div>
+
+            <ol type="1">
             @forelse($council->items as $item)
-                <div class="card">
-                    <div class="card-header">
-                        <span class="badge badge-primary">Hlasovanie verejné</span>
-                        <span class="badge badge-light">Do rozpravy</span>
+                    <li>
+                        {{-- Published button--}}
+                        @if($item->published)
+                            <span style="float: right" class="badge badge-success">Publikované</span>
+                        @else
+                            <span style="float: right" class="badge badge-secondary">Publikovať</span>
+                        @endif
 
-                    </div>
-                    <div class="card-body">
-                        <h5>{{ $item->name }}</h5>
-                        <p class="card-text"> {{ $item->description }}</p>
-                        <p class="card-text"> Prílohy</p>
-                    </div>
+                        @if($item->vote_enable)
+{{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}
+                        @else
+                            <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
+                        @endif
 
-                    <div class="card-footer d-flex justify-content-between">
-                        <a href="#" class="btn btn-primary">Súhlasim</a>
-                        <a href="#" class="btn btn-danger pull-right">Nesúhlasím</a>
-                    </div>
-                </div>
+                        <h5 style="border-bottom: 2px solid silver">
+                            <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
+                                {{ $item->name }}
+                            </a>
+                        </h5>
+
+                        <p> {{ $item->description }}</p>
+
+                        {{-- Files --}}
+                        @if( $item->files->count())
+
+                            @forelse($item->files as $file)
+                                <a class="mr-2" target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>
+                            @empty
+                                Bez prílohy
+                            @endforelse
+                        @endif
+                    </li>
             @empty
                 bez záznamu
             @endforelse
+            </ol>
         </div>
 
         <div class="col-md-4">
-            <a href="#" class="btn btn-secondary">Umožniť hlasovanie</a>
+
         </div>
 
     </div>

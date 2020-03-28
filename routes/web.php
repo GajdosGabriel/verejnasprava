@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@redirect')->name('redirect');
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
@@ -39,17 +40,22 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
-        Route::get('{council}/{slug}/meeting', 'MeetingController@index')->name('index');
+        Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
         Route::get('{council}/{slug}/meeting/show', 'MeetingController@show')->name('show');
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
-//            Route::get('{council}/{slug}/meeting', 'ItemController@index')->name('index');
+//        Route::get('{council}/{slug}/index', 'ItemController@index')->name('index');
         Route::get('{meeting}/{slug}/item/create', 'ItemController@create')->name('create');
-//            Route::get('{council}/{slug}/meeting/show', 'ItemController@show')->name('show');
-            Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
+        Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
+        Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
+    });
+
+    Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {
+        Route::get('{item}/{slug}/vote/enable', 'VoteController@voteEnable')->name('voteEnable');
+        Route::post('{item}/{slug}/vote/store', 'VoteController@store')->name('store');
     });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {

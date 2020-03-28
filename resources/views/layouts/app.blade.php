@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Verejná správa') }}</title>
 
+@yield('script-header')
+
     <!-- Fonts -->
     {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
     {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
@@ -39,7 +41,7 @@
     {{--$('div.alert').not('.alert-important').delay(3900).fadeOut(350);--}}
 {{--</script>--}}
 
-@yield('script')
+@yield('script-down')
 
 </body>
 </html>

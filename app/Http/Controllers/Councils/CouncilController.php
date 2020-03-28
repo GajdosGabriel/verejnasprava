@@ -26,6 +26,6 @@ class CouncilController extends Controller
 
     public function store(Request $request, Organization $organization) {
         $organization->councils()->create(array_merge($request->all(), ['user_id' => auth()->user()->id]));
-        return back();
+        return redirect()->route('zast.index', [$organization->id, $organization->slug]);
     }
 }

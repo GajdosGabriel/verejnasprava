@@ -18,6 +18,6 @@ class UserObserver
         // Create super admin access
         if($user->id == 1)
             // $user->givePermissionTo('role-list');
-            $user->assignRole('superadmin');
+            $user->assignRole('super-admin');
     }
 }

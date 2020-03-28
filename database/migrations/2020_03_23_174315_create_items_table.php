@@ -19,7 +19,10 @@ class CreateItemsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('slug');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('vote_enable')->default(0);
+            $table->boolean('published')->default(0);
+            $table->boolean('vote_typ')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

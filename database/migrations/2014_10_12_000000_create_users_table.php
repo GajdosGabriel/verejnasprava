@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             'email' => 'gajdosgabo@gmail.com',
             'slug' => 'gajdos-gabriel',
             'active_organization' => 1,
-            'password' => 'sekcovska',
+            'password' => '$2y$10$Ngve.m4xLY2xOtUNPIdcxeOW/hsum/VWJsCFEkpV6uAtq.QGe2LQO',
             'created_at' => now(),
             'updated_at' => now(),
         ],

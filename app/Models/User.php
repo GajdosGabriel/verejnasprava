@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Council\Item;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,6 +32,11 @@ class User extends Authenticatable
     ];
 
 
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
     public function activity()
     {
         return $this->hasMany(Activity::class);
@@ -40,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany(Organization::class);
     }
 
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
+    }
 
     public function questions()
     {
