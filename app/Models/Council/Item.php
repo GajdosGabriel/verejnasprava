@@ -35,13 +35,24 @@ class Item extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function voteEnable(){
-        if($this->vote_enable == 0) {
-            $this->update(['vote_enable' => 1 ]);
+    public function voteDisable(){
+        if($this->vote_disabled == 0) {
+            $this->update(['vote_disabled' => 1 ]);
         } else {
-            $this->update(['vote_enable' => 0 ]);
+            $this->update(['vote_disabled' => 0 ]);
         }
 
+    }
+
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @param $value
+     */
+
+    public function descriptionLimit($value){
+        return Str::limit($this->description, $value, ' (...)');
     }
 
 

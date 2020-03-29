@@ -2,126 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_212553_council_user.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/LICENSE.TXT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/changelog.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/jquery.tinymce.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/langs/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/langs/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/advlist/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/anchor/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/autolink/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/autoresize/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/autosave/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/bbcode/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/charmap/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/code/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/codesample/css/prism.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/codesample/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/colorpicker/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/contextmenu/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/directionality/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/emoticons/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/fullpage/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/fullscreen/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/help/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/help/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/hr/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/image/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/imagetools/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/importcss/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/insertdatetime/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/legacyoutput/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/link/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/lists/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/media/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/nonbreaking/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/noneditable/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/pagebreak/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/paste/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/preview/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/print/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/save/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/searchreplace/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/spellchecker/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/tabfocus/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/table/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/template/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/textcolor/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/textpattern/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/toc/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/visualblocks/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/visualchars/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/plugins/wordcount/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/content.inline.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/content.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/content.mobile.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/img/anchor.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/img/loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/img/object.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/img/trans.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/skin.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/themes/inlite/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/themes/mobile/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/themes/modern/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tinymce/js/tinymce/tinymce.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/items/navigation.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/WorkerController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_29_115106_organization_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/navigation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/CouncilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/CouncilController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/VoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/VoteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Council/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Council/Item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Council/Vote.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Organization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Organization.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/OrganizationObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/OrganizationObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/UserObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/UserObserver.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_125801_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_05_125801_create_permission_tables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_173650_create_meetings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_173650_create_meetings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_174115_create_votes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_24_154822_item_user.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/organizations/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/org.create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/workers/workerForm.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -281,24 +186,24 @@
     <property name="SearchEverywhereHistoryKey" value="home&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;orde&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;web&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;con&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;user&#9;null&#9;null&#10;postC&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;co&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;Ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;r/v/o/c&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/order/create.blade.php&#10;Orde&#9;null&#9;null&#10;Pos&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;we&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;hom&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Home&#9;null&#9;null&#10;Ho&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Cus&#9;null&#9;null&#10;nav&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/layouts/navigation.blade.php&#10;Or&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;Wor&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/WorkerController.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/organizations/workers" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\www\verejnasprava\public" />
-      <recent name="C:\www\verejnasprava\resources\views\council\items" />
-      <recent name="C:\www\verejnasprava\resources\views\council\meeting" />
-      <recent name="C:\www\verejnasprava\resources\views\council\meeting_item" />
-      <recent name="C:\www\verejnasprava\resources\views\council" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\www\verejnasprava\resources\views\organizations\workers" />
+      <recent name="C:\www\verejnasprava\resources\views\organizations" />
       <recent name="C:\www\verejnasprava\app\Models" />
       <recent name="C:\www\verejnasprava\app\Models\Council" />
       <recent name="C:\www\verejnasprava\app\Models\Councel" />
-      <recent name="C:\www\verejnasprava\app\Http\Controllers\Councils" />
-      <recent name="C:\www\verejnasprava\app\Http\Controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\www\verejnasprava\resources\views\organizations\workers" />
+      <recent name="C:\www\verejnasprava\resources\views\user" />
+      <recent name="C:\www\verejnasprava\public" />
+      <recent name="C:\www\verejnasprava\resources\views\council\items" />
+      <recent name="C:\www\verejnasprava\resources\views\council\meeting" />
     </key>
   </component>
   <component name="RunManager">
@@ -371,7 +276,10 @@
       <workItem from="1585313707327" duration="2328000" />
       <workItem from="1585339969634" duration="1585000" />
       <workItem from="1585373521786" duration="39000" />
-      <workItem from="1585375222781" duration="6979000" />
+      <workItem from="1585375222781" duration="18065000" />
+      <workItem from="1585474514787" duration="2413000" />
+      <workItem from="1585487883996" duration="2416000" />
+      <workItem from="1585497779463" duration="2748000" />
     </task>
     <servers />
   </component>
@@ -403,10 +311,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585315598911">
+    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585475784223">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585315598911" />
+    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585475784223" />
     <state x="690" y="223" key="FileChooserDialogImpl" timestamp="1585373559111">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -423,13 +331,13 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="717" y="92" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1585025280202" />
-    <state x="594" y="188" width="731" height="674" key="find.popup" timestamp="1585036289323">
+    <state x="594" y="188" width="731" height="674" key="find.popup" timestamp="1585389781304">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585036289323" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1585376025459">
+    <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585389781304" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1585488350953">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585376025459" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585488350953" />
   </component>
 </project>

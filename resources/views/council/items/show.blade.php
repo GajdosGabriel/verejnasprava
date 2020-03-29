@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <h5 style="border-bottom: 2px solid silver">{{ $item->name }}</h5>
-                        <p class="card-text"> {{ $item->description }}</p>
+                        <p class="card-text"> {!! $item->description !!}</p>
 
                         {{--File--}}
                         @if( $item->files->count())
@@ -37,9 +37,9 @@
                         @csrf @method('POST')
                         <div class="card-footer d-flex justify-content-between">
                             <button name="vote" value="1" class="btn btn-primary"
-                            @if($item->vote_enable) disabled @endif >Súhlasim</button>
-                            <button name="vote" value="2" class="btn btn-light" @if($item->vote_enable) disabled @endif>Zdržal</button>
-                            <button name="vote" value="0" class="btn btn-danger pull-right" @if($item->vote_enable) disabled @endif>Nesúhlasim</button>
+                            @if($item->vote_disabled) disabled @endif >Súhlasim</button>
+                            <button name="vote" value="2" class="btn btn-light" @if($item->vote_disabled) disabled @endif>Zdržal</button>
+                            <button name="vote" value="0" class="btn btn-danger pull-right" @if($item->vote_disabled) disabled @endif>Nesúhlasim</button>
                         </div>
                     </form>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="col-12 mb-4">
                     <h5 style="float: left">Výsledok hlasovania</h5>
                     {{--Vote Admin Button --}}
-                    @if($item->vote_enable)
+                    @if($item->vote_disabled)
                         <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-secondary pull-right btn-sm">Zapnúť hlasovanie</a>
                     @else
                         <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-success pull-right btn-sm">Hlasovanie zapnuté</a>

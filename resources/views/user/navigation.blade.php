@@ -16,8 +16,12 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{ route('user.new-organization', [Auth::user()->id, Auth::user()->slug]) }}">Založiť organizáciu</a>--}}
+{{--                </li>--}}
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.new-organization', [Auth::user()->id, Auth::user()->slug]) }}">Založiť organizáciu</a>
+                    <a class="nav-link" href="{{ route('org.new.user', [Auth::user()->id, Auth::user()->slug]) }}">Nový zamestnanec</a>
                 </li>
 
                 <li class="nav-item dropdown">

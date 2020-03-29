@@ -16,7 +16,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function() {
         Route::get('{user}/{name}/index',  'UserController@index')->name('index');
         Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
-        Route::post('user/store/new/worker', 'UserController@store')->name('store');
     });
 
     Route::prefix('obj')->name('order.')->group(function() {
@@ -81,6 +80,12 @@ Route::group(['middleware' => 'auth'], function() {
             Route::get('{organization}/{slug}/contact/edit', 'ContactsController@edit')->name('edit');
             Route::post('{organization}/{slug}/contact/store', 'ContactsController@store')->name('store');
             Route::put('{organization}/{slug}/contact/update', 'ContactsController@update')->name('update');
+        });
+
+        Route::prefix('work')->name('worker.')->group(function() {
+            Route::get('{organization}/{slug}/index', 'WorkerController@index')->name('index');
+            Route::get('{organization}/{slug}/create', 'WorkerController@create')->name('create');
+            Route::post('{organization}/store/new/worker', 'WorkerController@store')->name('store');
         });
 
     });

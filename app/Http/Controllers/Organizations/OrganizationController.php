@@ -18,6 +18,7 @@ class OrganizationController extends Controller
         return view('organizations.edit', compact('organization'));
     }
 
+
     public function store(User $user, $name, OrganizationFormRequest $request) {
         $user->organizations()->create($request->all());
         return redirect()->route('org.index', [ auth()->user()->active_organization, auth()->user()->slug]);

@@ -1,7 +1,7 @@
 
 
             <div class="card">
-                <div class="card-header">Člen zastupiteľstva</div>
+                <div class="card-header">Pridať osobu</div>
 
                 <div class="card-body">
                         <div class="form-group row">
@@ -50,12 +50,11 @@
                     <div class="form-group row {{ $errors->has('company_id') ? ' has-error' : '' }}">
                         <label class="col-md-4 col-form-label text-md-right">Funkcia</label>
                         <div class="col-md-8">
-                            <select name="status" class="form-control" required id="exampleSelect1">
+                            <select name="role" class="form-control" required id="exampleSelect1">
                                 <option value="" selected >Vybrať funkciu</option>
-                                <option value="1">Zamestnanec</option>
-                                <option value="2">Zastupiteľstvo</option>
-                                <option value="3">Zapisovateľ</option>
-                                <option value="3">Volená funkcia</option>
+                                <option value="role view">Zamestnanec</option>
+                                <option value="council view">Zastupiteľstvo</option>
+                                <option value="council create">Zapisovateľ</option>
                             </select>
                         </div>
                     </div>

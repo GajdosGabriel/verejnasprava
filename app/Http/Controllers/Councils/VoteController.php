@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class VoteController extends Controller
 {
     public function voteEnable(Item $item) {
-        $item->voteEnable();
+        $item->voteDisable();
         return back();
     }
     public function store(Request $request, Item $item){

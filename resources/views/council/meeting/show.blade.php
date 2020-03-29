@@ -25,7 +25,7 @@
                             <span style="float: right" class="badge badge-secondary">Publikovať</span>
                         @endif
 
-                        @if($item->vote_enable)
+                        @if($item->vote_disabled)
 {{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}
                         @else
                             <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
@@ -37,7 +37,7 @@
                             </a>
                         </h5>
 
-                        <p> {{ $item->description }}</p>
+                        <p>{!! $item->descriptionLimit(320) !!}</p>
 
                         {{-- Files --}}
                         @if( $item->files->count())

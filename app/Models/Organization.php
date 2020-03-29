@@ -15,7 +15,7 @@ class Organization extends Model
 
     protected $guarded = [];
 
-    protected $with = ['contacts'];
+    protected $with = ['contacts', 'users'];
 
     protected $withCount = [
         'orders',
@@ -23,6 +23,10 @@ class Organization extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class);
     }
 
     public function posts() {
