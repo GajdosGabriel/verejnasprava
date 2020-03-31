@@ -52,9 +52,9 @@
                         <div class="col-md-8">
                             <select name="role" class="form-control" required id="exampleSelect1">
                                 <option value="" selected >Vybrať funkciu</option>
-                                <option value="council show">Člen zastupiteľstva</option>
-                                <option value="council edit">Zapisovateľ zastupiteľstva</option>
-                                <option value="council delete">Predseda zastupiteľstva</option>
+                                <option value="show">Člen zastupiteľstva</option>
+                                <option value="edit">Zapisovateľ zastupiteľstva</option>
+                                <option value="admin">Predseda zastupiteľstva</option>
                             </select>
                         </div>
                     </div>

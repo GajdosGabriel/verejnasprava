@@ -19,7 +19,6 @@
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$organizationNav->id, $organizationNav->slug ]) }}">Zverejňovanie</a></li>--}}
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$organizationNav->id, $organizationNav->slug ]) }}">Kontakty</a></li>--}}
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$organizationNav->id, $organizationNav->slug]) }}">Objednávky</a></li>--}}
-            <li class="nav-item"><a class="nav-link" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Späť</a></li>
 
 
             <li class="nav-item dropdown">
@@ -28,7 +27,7 @@
                 </a>
                 <div class="dropdown-menu">
 {{--                    <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>--}}
-                    <a class="dropdown-item" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zamestnanci</a>
+{{--                    <a class="dropdown-item" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zamestnanci</a>--}}
 
                     @role('superadmin')
                     <div class="dropdown-divider"></div>

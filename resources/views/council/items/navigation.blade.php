@@ -3,8 +3,8 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('meet.show', [$council->id, $council->slug])  }}">
-                {{ $organizationNav->name }} - {{ $council->name }}
+            <a class="navbar-brand" href="{{ route('meet.show', [$meeting->id, $meeting->slug])  }}">
+                {{ $organizationNav->name }} - {{ $meeting->name }}
             </a>
         </div>
 
@@ -19,7 +19,7 @@
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$organizationNav->id, $organizationNav->slug ]) }}">Zverejňovanie</a></li>--}}
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$organizationNav->id, $organizationNav->slug ]) }}">Kontakty</a></li>--}}
 {{--            <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$organizationNav->id, $organizationNav->slug]) }}">Objednávky</a></li>--}}
-            <li class="nav-item"><a class="nav-link" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zastupiteľstva</a></li>
+{{--            <li class="nav-item"><a class="nav-link" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zastupiteľstva</a></li>--}}
 
 
             <li class="nav-item dropdown">
@@ -28,7 +28,7 @@
                 </a>
                 <div class="dropdown-menu">
 {{--                    <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>--}}
-                    <a class="dropdown-item" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zamestnanci</a>
+{{--                    <a class="dropdown-item" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zamestnanci</a>--}}
 
                     @role('superadmin')
                     <div class="dropdown-divider"></div>

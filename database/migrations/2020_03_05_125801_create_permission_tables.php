@@ -133,11 +133,11 @@ foreach ($permissions as $permission => $category) {
 
         $roles = [
             'super-admin',
-            'role-admin',
-            'role-delete',
-            'role-create',
-            'role-edit',
-            'role-show',
+            'admin',
+            'delete',
+            'create',
+            'edit',
+            'show',
         ];
 
         foreach ($roles as $role) {

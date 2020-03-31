@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container">
         <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ route('user.index', [auth()->user()->id, auth()->user()->slug])  }}">
+        <a class="navbar-brand" href="{{ route('user.home', [auth()->user()->id, auth()->user()->slug])  }}">
             {{ auth()->user()->full_name() }}
         </a>
 

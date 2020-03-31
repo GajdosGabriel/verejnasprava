@@ -3,7 +3,7 @@
 
 
 @section('navigation')
-    @include('organizations.navigation')
+    @include('council.items.navigation')
 @endsection
 
 @section('content')

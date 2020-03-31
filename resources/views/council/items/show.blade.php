@@ -11,7 +11,7 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-8">
-            <h2>Program: {{ $council->name }} zastupiteľstvo</h2>
+            <h2>Program: {{ $meeting->name }} zastupiteľstvo</h2>
             <div class="card mt-3">
                     <div class="card-header">
                         <span class="badge badge-primary">Hlasovanie verejné</span>

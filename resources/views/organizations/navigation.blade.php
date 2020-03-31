@@ -28,8 +28,8 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>
-                    <a class="dropdown-item" href="{{ route('org.worker.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
-                    <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zastupiteľstva</a>
+                    <a class="dropdown-item" href="{{ route('user.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
+                    <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
 
                     @role('superadmin')
                     <div class="dropdown-divider"></div>

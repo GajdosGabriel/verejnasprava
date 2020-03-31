@@ -9,7 +9,7 @@
 
     <h1>Vaše zastupiteľstvá</h1>
     <div class="col-md-12">
-        <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
+        <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
