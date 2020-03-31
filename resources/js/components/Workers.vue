@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h2>Zamestnanci</h2>
+        <h2>Ľudia</h2>
         <button style="margin-top: -19px;" id="novyzamestnanec" class="btn btn-primary pull-right">Pridať zamestnanca</button>
         <table class="table">
             <thead>

@@ -13,15 +13,9 @@ class WorkerController extends Controller
 {
 
     public function index(Organization $organization, $slug) {
+        $users = User::whereActive_organization(auth()->user()->active_organization)->get();
 
-        $user = User::first();
-       $organization = $user->whereHas('organizations', function ($query) use ($organization){
-            $query->whereOrganizationId($organization->id);
-        })->get();
-
-//        $organization = $organization->whereHas('users')->get();
-//        dd($organization);
-        return view('organizations.workers.index', compact('organization'));
+        return view('organizations.workers.index', compact(['users', 'organization']));
     }
 
     public function create(Organization $organization, $slug) {
@@ -39,8 +33,7 @@ class WorkerController extends Controller
             'active_organization' => auth()->user()->active_organization
         ]);
 
-        $user->givePermissionTo('council view');
-        $organization->users()->attach($user);
+        $user->givePermissionTo( $userUpdateRequest->input('role') );
 
         return back();
     }

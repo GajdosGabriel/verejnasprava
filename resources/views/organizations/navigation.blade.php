@@ -28,7 +28,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>
-                    <a class="dropdown-item" href="{{ route('org.worker.create', [$organizationNav->id, $organizationNav->slug ]) }}">Zamestnanci</a>
+                    <a class="dropdown-item" href="{{ route('org.worker.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
                     <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zastupiteľstva</a>
 
                     @role('superadmin')

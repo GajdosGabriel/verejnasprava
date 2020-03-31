@@ -15,10 +15,9 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned()->index();
-            $table->integer('user_id')->unsigned();
             $table->string('slug',250);
             $table->string('name', 250);
-            $table->string('email',100)->unique();
+            $table->string('email',100);
             $table->string('street', 100)->nullable();
             $table->string('city', 50)->nullable();
             $table->string('psc', 6)->nullable();
@@ -37,7 +36,6 @@ class CreateOrganizationsTable extends Migration
         \DB::table('organizations')->insert([
             [
                 'id' => 1,
-                'user_id' => 1,
                 'name' => 'Reprezent',
                 'slug' => 'reprezent',
                 'city' => 'Trenčín',

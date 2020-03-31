@@ -6,7 +6,7 @@
 
 @section('content')
 
-        <h2>Nový zamestnanec</h2>
+        <h2>Nový užívateľ</h2>
 
         <form action="{{ route('org.worker.store', [ auth()->user()->id, auth()->user()->slug ]) }}" method="POST" enctype="multipart/form-data">
            @csrf @method('POST')

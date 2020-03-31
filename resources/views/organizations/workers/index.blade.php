@@ -7,15 +7,16 @@
 @section('content')
 
 
-    <h1>Zamestnanci</h1>
+    <h1>Ľudia</h1>
     <div class="col-md-12">
-        <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
+        <a class="btn btn-primary float-right" href="{{ route('org.worker.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
                 <tr class="alert-info">
                     <th>Meno</th>
                     <th>Typ</th>
+                    <th>Status</th>
                     <th>Role</th>
                     <th>Panel</th>
                 </tr>
@@ -23,15 +24,19 @@
             <tbody>
             <tr>
 
-
-                @forelse($organization as $user)
+                @forelse($users as $user)
                     <td>{{ $user->full_name() }}</td>
                     <td>
                         <a href="{{ route('meet.index', [$user->id, $user->slug]) }}">
                             {{ $user->email }}
                         </a>
                     </td>
-                    <td>{{ $user->description }}</td>
+                    <td><span class="badge badge-secondary">Aktívny</span><span class="badge badge-secondary">Poslať pozvánku</span></td>
+                    <td><span class="badge badge-secondary">
+                            @foreach($user->roles as $role)
+                                {{ $role->name }}
+                                @endforeach
+                        </span></td>
 
 
                 {{--@can( 'update', $post)--}}

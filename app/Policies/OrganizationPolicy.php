@@ -22,6 +22,6 @@ class OrganizationPolicy
 
     public function update(User $user, Organization $organization)
     {
-        return $user->active_organization == $organization->user_id;
+        return $user->active_organization == $organization->id;
     }
 }

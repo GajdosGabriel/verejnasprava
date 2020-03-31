@@ -17,8 +17,6 @@ class OrganizationUser extends Migration
             $table->engine = 'MyISAM';
             $table->integer('organization_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->timestamps();
-
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('user_id')->references('id')->on('users');
 

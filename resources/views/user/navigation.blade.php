@@ -21,7 +21,7 @@
 {{--                </li>--}}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('org.new.user', [Auth::user()->id, Auth::user()->slug]) }}">Nový zamestnanec</a>
+{{--                    <a class="nav-link" href="{{ route('org.new.user', [Auth::user()->id, Auth::user()->slug]) }}">Nový zamestnanec</a>--}}
                 </li>
 
                 <li class="nav-item dropdown">

@@ -2,31 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/WorkerController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_03_29_115106_organization_user.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/organizations/workers/navigation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/VoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/VoteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Organizations/WorkerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/WorkerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Council/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Council/Item.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OrganizationFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OrganizationFormRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Organization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Organization.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/organizations/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Observers/OrganizationObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/OrganizationObserver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/OrganizationPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/OrganizationPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2017_02_18_184800_create_organizations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2017_02_18_184800_create_organizations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_125801_create_permission_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_05_125801_create_permission_tables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_29_115106_organization_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_29_115106_organization_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Workers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Workers.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/organizations/workers/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/organizations/workers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organizations/workers/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/org.create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/workers/workerForm.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/org.create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/org-create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +272,17 @@
       <workItem from="1585375222781" duration="18065000" />
       <workItem from="1585474514787" duration="2413000" />
       <workItem from="1585487883996" duration="2416000" />
-      <workItem from="1585497779463" duration="2748000" />
+      <workItem from="1585497779463" duration="3642000" />
+      <workItem from="1585509354292" duration="2728000" />
+      <workItem from="1585547716634" duration="18000" />
+      <workItem from="1585547832039" duration="56000" />
+      <workItem from="1585548207056" duration="10000" />
+      <workItem from="1585550789752" duration="10000" />
+      <workItem from="1585592674190" duration="242000" />
+      <workItem from="1585593361200" duration="1881000" />
+      <workItem from="1585633004522" duration="58000" />
+      <workItem from="1585642808001" duration="4247000" />
+      <workItem from="1585661262977" duration="268000" />
     </task>
     <servers />
   </component>
@@ -331,13 +334,13 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="717" y="92" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1585025280202" />
-    <state x="594" y="188" width="731" height="674" key="find.popup" timestamp="1585389781304">
+    <state x="594" y="188" width="731" height="674" key="find.popup" timestamp="1585511501513">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585389781304" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1585488350953">
+    <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585511501513" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1585661471005">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585488350953" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585661471005" />
   </component>
 </project>

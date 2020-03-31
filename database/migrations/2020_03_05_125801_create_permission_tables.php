@@ -118,8 +118,8 @@ class CreatePermissionTables extends Migration
             'post create'  => 'post',
             'post delete'  => 'post',
 
-            'council edit'    => 'council',
             'council view'    => 'council',
+            'council edit'    => 'council',
             'council create'  => 'council',
             'council delete'  => 'council',
             ];
@@ -132,11 +132,12 @@ foreach ($permissions as $permission => $category) {
 }
 
         $roles = [
-            'super admin',
-            'manager',
-            'financial',
-            'crew leader',
-            'crew member',
+            'super-admin',
+            'role-admin',
+            'role-delete',
+            'role-create',
+            'role-edit',
+            'role-show',
         ];
 
         foreach ($roles as $role) {

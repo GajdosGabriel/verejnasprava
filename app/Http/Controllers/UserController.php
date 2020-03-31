@@ -27,7 +27,7 @@ class UserController extends Controller
 
 
     public function newOrganization() {
-        return view('user.org.create', ['organization' => new Organization]);
+        return view('user.org-create', ['organization' => new Organization]);
     }
 
 

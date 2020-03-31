@@ -15,15 +15,11 @@ class Organization extends Model
 
     protected $guarded = [];
 
-    protected $with = ['contacts', 'users'];
+    protected $with = ['contacts'];
 
     protected $withCount = [
         'orders',
     ];
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
 
     public function users() {
         return $this->belongsToMany(User::class);
