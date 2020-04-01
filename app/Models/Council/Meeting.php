@@ -3,6 +3,7 @@
 namespace App\Models\Council;
 
 use App\Services\FileUpload;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -12,7 +13,12 @@ use App\Models\User;
 class Meeting extends Model
 {
     use SoftDeletes, FileUpload;
+
     protected $guarded = [];
+
+    protected $casts = [
+        'start_at' => 'datetime',
+    ];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -21,6 +27,7 @@ class Meeting extends Model
     public function files() {
         return $this->morphMany(File::class, 'fileable');
     }
+
 
     public function items() {
         return $this->hasMany(Item::class);

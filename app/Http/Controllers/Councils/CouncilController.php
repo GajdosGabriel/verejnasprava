@@ -19,8 +19,13 @@ class CouncilController extends Controller
         return view('council.create', compact('organization','council') );
     }
 
-    public function edit(Council $organization){
-        return view('council.edit', compact('organization') );
+    public function edit(Council $council){
+        return view('council.edit', compact('council') );
+    }
+
+    public function update(Request $request, Council $council) {
+        $council->update(array_merge($request->all(), ['user_id' => auth()->user()->id]));
+        return redirect()->route('zast.index', [$council->organization_id, $council->slug]);
     }
 
 

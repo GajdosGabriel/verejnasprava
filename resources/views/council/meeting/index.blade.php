@@ -51,7 +51,7 @@
                         <i class="fa fa-cog text-secondary"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('zast.edit', [$council->id, $council->slug]) }}">
+                        <a class="dropdown-item" href="{{ route('meet.edit', [$council->id, $council->slug]) }}">
                             <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
                             Upraviť položku
                         </a>

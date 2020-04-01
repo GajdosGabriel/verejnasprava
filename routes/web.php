@@ -36,7 +36,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('zast')->name('zast.')->namespace('Councils')->group(function() {
         Route::get('{organization}/{slug}/index', 'CouncilController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
-        Route::get('{organization}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
+        Route::get('{council}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
+        Route::put('{council}/{slug}/update/zast', 'CouncilController@update')->name('update');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 
     });
@@ -44,7 +45,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
         Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
+        Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{council}/{slug}/meeting/show', 'MeetingController@show')->name('show');
+        Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
     });
 
