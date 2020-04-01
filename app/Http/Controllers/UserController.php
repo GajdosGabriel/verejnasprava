@@ -27,6 +27,7 @@ class UserController extends Controller
 
 
     public function create(Organization $organization, $slug) {
+//        dd($organization);
         return view('user.create', compact('organization'));
     }
 
@@ -48,6 +49,10 @@ class UserController extends Controller
 
         auth()->user()->assignRole($userUpdateRequest->input('role'));
 //        $user->givePermissionTo( $userUpdateRequest->input('role') );
+
+//        if($userUpdateRequest->input('council')) {
+//            $user->councils()->create($userUpdateRequest->input('council'));
+//        }
 
         return back();
     }

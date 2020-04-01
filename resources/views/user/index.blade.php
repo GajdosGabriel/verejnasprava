@@ -1,20 +1,14 @@
-@extends('layouts.app')
 
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
 
-@section('content')
 
-    <h1>Ľudia</h1>
     <div class="col-md-12">
-        <a class="btn btn-primary float-right" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
+{{--        <a class="btn btn-primary float-right" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>--}}
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
             <tr class="alert-info">
                 <th>Meno</th>
-                <th>Typ</th>
+                <th>Priezvisko</th>
                 <th>Status</th>
                 <th>Role</th>
                 <th>Panel</th>
@@ -69,4 +63,4 @@
     </div>
 
 
-@endsection
+

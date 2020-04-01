@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Models\Council\Council;
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,8 +28,9 @@ class Organization extends Model
     }
 
     public function councils() {
-        return $this->hasMany(Council::class)->orderBy('created_at', 'desc');
+        return $this->belongsToMany(Council::class);
     }
+
 
     public function orders() {
         return $this->hasMany(Order::class)->orderBy('id', 'asc');

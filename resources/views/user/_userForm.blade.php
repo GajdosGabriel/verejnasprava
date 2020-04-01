@@ -47,23 +47,22 @@
                             </div>
                         </div>
 
-                    <div class="form-group row {{ $errors->has('company_id') ? ' has-error' : '' }}">
-                        <label class="col-md-4 col-form-label text-md-right">Funkcia</label>
-                        <div class="col-md-8">
-                            <select name="role" class="form-control" required id="exampleSelect1">
-                                <option value="" selected >Vybrať funkciu</option>
-                                <option value="show">Člen zastupiteľstva</option>
-                                <option value="edit">Zapisovateľ zastupiteľstva</option>
-                                <option value="admin">Predseda zastupiteľstva</option>
-                            </select>
-                        </div>
-                    </div>
-
+{{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
+{{--                        <label class="col-md-4 col-form-label text-md-right">Funkcia</label>--}}
+{{--                        <div class="col-md-8">--}}
+{{--                            <select name="role" class="form-control" required id="exampleSelect1">--}}
+{{--                                <option value="" selected >Vybrať funkciu</option>--}}
+{{--                                <option value="show">Člen zastupiteľstva</option>--}}
+{{--                                <option value="edit">Zapisovateľ zastupiteľstva</option>--}}
+{{--                                <option value="admin">Predseda zastupiteľstva</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Registrácia
+                                    Uložiť
                                 </button>
                             </div>
                         </div>

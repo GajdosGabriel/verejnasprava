@@ -18,6 +18,7 @@
                     <th>Typ</th>
                     <th>Založil</th>
                     <th>Počet zasadnutí</th>
+                    <th>Počet členov</th>
                     <th>Panel</th>
                 </tr>
             </thead>
@@ -32,6 +33,15 @@
                     <td>{{ $council->description }}</td>
                     <td>{{ $council->user->full_name() }}</td>
                     <td>{{ $council->meetings()->count() }}</td>
+                    <td>
+                        <a href="{{ route('zast.userList', [$council->id, $council->slug]) }}">
+                            <span style="float: right" class="badge badge-secondary">Pridať člena</span>
+                        </a>
+
+                        <a href="{{ route('zast.createUser', [$council->id, $council->slug]) }}">
+                            {{ $council->users()->count() }}
+                        </a>
+                    </td>
 
                 {{--@can( 'update', $post)--}}
                 <td class="d-flex justify-content-center">

@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/index', 'CouncilController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
         Route::get('{council}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
+        Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+        Route::get('{council}/{slug}/edit/createUser', 'CouncilController@createUser')->name('createUser');
+        Route::post('{council}/{slug}/edit/storeUser', 'CouncilController@storeUser')->name('storeUser');
         Route::put('{council}/{slug}/update/zast', 'CouncilController@update')->name('update');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 

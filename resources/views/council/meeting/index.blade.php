@@ -7,7 +7,7 @@
 @section('content')
 
 
-    <h2>Zoznam zasadnutí </h2>
+    <h2>Zoznam zasadnutí</h2>
     <div class="col-md-12">
         <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
 

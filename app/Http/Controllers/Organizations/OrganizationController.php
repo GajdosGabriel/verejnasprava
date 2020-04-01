@@ -13,7 +13,7 @@ class OrganizationController extends Controller
     public function index(Organization $organization, $slug) {
 //              auth()->user()->givePermissionTo( 'council edit' );
 
-        return view('organizations.index');
+        return view('organizations.home');
     }
 
     public function edit(Organization $organization, $slug) {

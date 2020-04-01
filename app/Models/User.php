@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Council\Council;
 use App\Models\Council\Item;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,10 @@ class User extends Authenticatable
 
     public function organizations() {
         return $this->belongsToMany(Organization::class);
+    }
+
+    public function councils() {
+        return $this->belongsToMany(Council::class);
     }
 
 
