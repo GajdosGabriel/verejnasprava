@@ -19,6 +19,15 @@ class UserController extends Controller
 
     }
 
+
+    // Zastupiteľstva v ktorých je členom
+    public function userCouncils(User $organization){
+        return view('council.index', compact('organization'));
+    }
+
+
+
+
     public function index(Organization $organization, $slug) {
         $users = User::whereActive_organization(auth()->user()->active_organization)->get();
 
@@ -29,6 +38,20 @@ class UserController extends Controller
     public function create(Organization $organization, $slug) {
 //        dd($organization);
         return view('user.create', compact('organization'));
+    }
+
+    public function edit(User $user, $slug) {
+        return view('user.edit', compact('user'));
+    }
+
+    public function update(User $user, UserUpdateRequest $userUpdateRequest) {
+
+        $user->update([
+            'first_name' => $userUpdateRequest['first_name'],
+            'last_name' => $userUpdateRequest['last_name'],
+            'email' => $userUpdateRequest['email'],
+        ]);
+        return back();
     }
 
 

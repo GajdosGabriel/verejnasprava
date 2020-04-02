@@ -20,7 +20,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$organizationNav->id, $organizationNav->slug ]) }}">Kontakty</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$organizationNav->id, $organizationNav->slug]) }}">Objednávky</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('question.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{  route('user.userCouncils', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a></li>
 
 
             <li class="nav-item dropdown">
@@ -30,7 +30,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>
                     <a class="dropdown-item" href="{{ route('user.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
-{{--                    <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>--}}
+                    <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
 
                     @role('superadmin')
                     <div class="dropdown-divider"></div>

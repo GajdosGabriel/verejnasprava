@@ -35,10 +35,6 @@
                     <td>{{ $council->meetings()->count() }}</td>
                     <td>
                         <a href="{{ route('zast.userList', [$council->id, $council->slug]) }}">
-                            <span style="float: right" class="badge badge-secondary">Pridať člena</span>
-                        </a>
-
-                        <a href="{{ route('zast.createUser', [$council->id, $council->slug]) }}">
                             {{ $council->users()->count() }}
                         </a>
                     </td>
@@ -52,6 +48,10 @@
                         <a class="dropdown-item" href="{{ route('zast.edit', [$council->id, $council->slug]) }}">
                             <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
                             Upraviť položku
+                        </a>
+                        <a class="dropdown-item" href="{{ route('zast.createUser', [$council->id, $council->slug]) }}">
+                            <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                            Pridať člena
                         </a>
                         <div class="dropdown-divider"></div>
     {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}

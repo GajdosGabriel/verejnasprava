@@ -6,7 +6,7 @@
 
 @section('content')
 
-        <h2>Nový užívateľ</h2>
+        <h2>Nový člen pre: <strong>{{ $council->name }}</strong></h2>
 
         <form action="{{ route('zast.storeUser', [ $council->id, $council->slug ]) }}" method="POST" enctype="multipart/form-data">
            @csrf @method('POST')

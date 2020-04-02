@@ -1,31 +1,17 @@
 @extends('layouts.app')
 
 @section('navigation')
-    @include('user.navigation')
+    @include('organizations.navigation')
 @endsection
 
 @section('content')
 
-{{--Profil organizácie--}}
-    <div class="col-md-6">
-        <h3>Upraviť Profil <small>{{ $user->company }}</small></h3>
-        <form action="{{ route('userupdate', [ $user->slug ]) }}" method="PUT" >
-            @csrf @method('PUT')
-            {{--@include('customers.customerForm')--}}
-            @include('companies.bankForm')
+        <h2>Upraviť užívateľa</h2>
+
+        <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
+           @csrf @method('PATCH')
+            @include('user._userForm')
         </form>
 
-    </div>
+@endsection
 
-    <div class="col-md-6">
-        <h3>História aktivít</h3>
-        <ul class="list-group">
-            @forelse($activities as $activity)
-                @include("organizations.activities.{$activity->type}")
-                @empty
-                <p>Bez záznamu</p>
-            @endforelse
-        </ul>
-    </div>
-
-    @endsection

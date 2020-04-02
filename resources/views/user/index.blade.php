@@ -1,8 +1,8 @@
 
 
 
-    <div class="col-md-12">
-{{--        <a class="btn btn-primary float-right" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>--}}
+
+
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
@@ -38,10 +38,10 @@
                             <i class="fa fa-cog text-secondary"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {{--                        <a class="dropdown-item" href="{{ route('zast.edit', [$council->id, $council->slug]) }}">--}}
-                            {{--                            <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>--}}
-                            {{--                            Upraviť položku--}}
-                            {{--                        </a>--}}
+                            <a class="dropdown-item" href="{{ route('user.edit', [$user->id, $user->slug]) }}">
+                                <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť užívateľa"></i>
+                                Upraviť užívateľa
+                            </a>
                             <div class="dropdown-divider"></div>
                             {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
                             {{--                                    @csrf @method('DELETE')--}}
@@ -60,7 +60,7 @@
 
             </tbody>
         </table>
-    </div>
+
 
 
 

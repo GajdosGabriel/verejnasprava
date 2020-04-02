@@ -17,8 +17,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
         Route::get('{organization}/{slug}/index', 'UserController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
+        Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
+        Route::get('{organization}/{slug}/councils', 'UserController@userCouncils')->name('userCouncils');
         Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
         Route::post('{organization}/store/store', 'UserController@store')->name('store');
+        Route::patch('{user}/update/update', 'UserController@update')->name('update');
     });
 
     Route::prefix('obj')->name('order.')->group(function() {

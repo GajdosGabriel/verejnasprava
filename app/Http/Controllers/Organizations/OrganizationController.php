@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class OrganizationController extends Controller
 {
     public function index(Organization $organization, $slug) {
-//              auth()->user()->givePermissionTo( 'council edit' );
+//            dd( auth()->user()->councils );
 
         return view('organizations.home');
     }

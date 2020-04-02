@@ -8,7 +8,7 @@
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">Meno</label>
 
                             <div class="col-md-8">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="name" autofocus>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') ?? $user->first_name }}" required autocomplete="name" autofocus>
 
                                 @error('first_name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">Priezvisko</label>
 
                             <div class="col-md-8">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name">
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') ?? $user->last_name }}" required autocomplete="last_name">
 
                                 @error('first_name')
                                 <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email}}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
 {{--                    </div>--}}
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Uložiť
                                 </button>
