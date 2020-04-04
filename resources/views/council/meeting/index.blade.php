@@ -19,6 +19,7 @@
                     <th>Typ</th>
                     <th>Vystavil</th>
                     <th>Príloha</th>
+                    <th>Publikované</th>
                     <th>Body rokovania</th>
                     <th>Panel</th>
                 </tr>
@@ -28,7 +29,7 @@
 
 
                 @forelse($council->meetings as $council)
-                    <td>{{ $council->start_at->format('d. m. Y') }} {{ $council->start_at->format('H:i') }} hod.</td>
+                    <td>{{ $council->start_at->format('d. m. Y') }} <strong>{{ $council->start_at->format('H:i') }} hod.</strong></td>
                     <td>
                         <a href="{{ route('meet.show', [$council->id, $council->slug]) }}">
                             {{ $council->name }}
@@ -42,6 +43,15 @@
                         @empty
                             Bez prílohy
                         @endforelse
+                    </td>
+                    <td>
+                        <a href="{{ route('meet.published', [ $council->id, $council->slug]) }}">
+                            @if($council->published)
+                            <span class="badge badge-primary">Publikovať</span>
+                            @else
+                            <span class="badge badge-secondary">Zverejnené</span>
+                            @endif
+                        </a>
                     </td>
                     <td>{{ $council->items()->count() }}</td>
 

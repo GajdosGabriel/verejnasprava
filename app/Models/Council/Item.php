@@ -44,15 +44,14 @@ class Item extends Model
 
     }
 
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @param $value
-     */
-
     public function descriptionLimit($value){
         return Str::limit($this->description, $value, ' (...)');
+    }
+
+    public function published(){
+        if($this->published == 1) return $this->update(['published' => 0]);
+        $this->update(['published' => 1]);
+
     }
 
 

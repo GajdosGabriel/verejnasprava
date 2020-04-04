@@ -49,7 +49,7 @@
                             <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
                             Upraviť položku
                         </a>
-                        <a class="dropdown-item" href="{{ route('zast.createUser', [$council->id, $council->slug]) }}">
+                        <a class="dropdown-item" href="{{ route('user.create', [$council->id, $council->slug]) }}">
                             <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
                             Pridať člena
                         </a>

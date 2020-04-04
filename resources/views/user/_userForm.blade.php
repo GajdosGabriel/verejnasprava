@@ -47,7 +47,30 @@
                             </div>
                         </div>
 
-{{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
+                    {{-- Section Counsils --}}
+                    <div class="col-md-8 offset-4">
+                       <strong>Zastupiteľstvá</strong>
+                    </div>
+
+{{--                     Councils--}}
+                    @forelse($councils as $council)
+                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">
+                        <label class="col-md-4 col-form-label text-md-right"></label>
+                        <div class="col-md-8">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="council" type="checkbox" id="counsil" value="{{ $council->id }}"
+                                @if($council->users->contains($user->id) ) checked @endif
+                                >
+                                <label class="form-check-label" for="counsil">{{ $council->name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    @endforelse
+
+
+
+                    {{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
 {{--                        <label class="col-md-4 col-form-label text-md-right">Funkcia</label>--}}
 {{--                        <div class="col-md-8">--}}
 {{--                            <select name="role" class="form-control" required id="exampleSelect1">--}}

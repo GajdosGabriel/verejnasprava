@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Activity;
+use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -49,6 +50,11 @@ class ComposerServiceProvider extends ServiceProvider
                 return Carbon::parse($item->date_in)->format('F-Y');
             });
             $view->with('posts', $posts);
+        });
+
+        view()->composer(['user.edit', 'user.create'], function ($view) {
+            $counsils =  Council::where('user_id', auth()->user()->active_organization)->get();
+            $view->with('councils', $counsils);
         });
 
     }

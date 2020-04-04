@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
         Route::post('{organization}/store/store', 'UserController@store')->name('store');
         Route::patch('{user}/update/update', 'UserController@update')->name('update');
+        Route::get('{user}/{slug}/delete/delete', 'UserController@delete')->name('delete');
     });
 
     Route::prefix('obj')->name('order.')->group(function() {
@@ -41,8 +42,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
         Route::get('{council}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
         Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
-        Route::get('{council}/{slug}/edit/createUser', 'CouncilController@createUser')->name('createUser');
-        Route::post('{council}/{slug}/edit/storeUser', 'CouncilController@storeUser')->name('storeUser');
         Route::put('{council}/{slug}/update/zast', 'CouncilController@update')->name('update');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 
@@ -53,6 +52,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
         Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{council}/{slug}/meeting/show', 'MeetingController@show')->name('show');
+        Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
         Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
     });
@@ -61,7 +61,10 @@ Route::group(['middleware' => 'auth'], function() {
 //        Route::get('{council}/{slug}/index', 'ItemController@index')->name('index');
         Route::get('{meeting}/{slug}/item/create', 'ItemController@create')->name('create');
         Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
+        Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');
+        Route::get('{item}/{slug}/item/published', 'ItemController@published')->name('published');
         Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
+        Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
     });
 
     Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {

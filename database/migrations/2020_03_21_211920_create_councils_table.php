@@ -19,7 +19,7 @@ class CreateCouncilsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

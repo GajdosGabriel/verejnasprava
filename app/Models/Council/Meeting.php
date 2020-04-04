@@ -39,4 +39,10 @@ class Meeting extends Model
         $this->attributes['name'] = ucfirst($value);
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function published(){
+        if($this->published == 1) return $this->update(['published' => 0]);
+        $this->update(['published' => 1]);
+
+    }
 }

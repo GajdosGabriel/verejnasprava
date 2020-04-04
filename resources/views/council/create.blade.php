@@ -16,7 +16,7 @@
                         <form method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
                             @csrf @method('POST')
 
-                            @include('council.form')
+                            @include('council._form')
 
                         </form>
 

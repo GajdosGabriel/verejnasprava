@@ -16,6 +16,9 @@
                     <div class="card-header">
                         <span class="badge badge-primary">Hlasovanie verejné</span>
                         <span class="badge badge-light">Do rozpravy</span>
+                        <a href="{{ route('item.edit', [ $item->id, $item->slug]) }}">
+                            <span class="badge badge-light pull-right">Upraviť</span>
+                        </a>
                     </div>
                     <div class="card-body">
                         <h5 style="border-bottom: 2px solid silver">{{ $item->name }}</h5>
@@ -78,16 +81,42 @@
                                     <span class="pull-right"><strong>Zdržal</strong></span>
                                 </li>
                         @endif
-                    @empty
-                    @endforelse
-                </ul>
+                        @empty
+                        @endforelse
+                    </ul>
                 </div>
             </div>
+
+            {{-- Vote results Variant I. --}}
+            <ul class="list-group mt-4">
+                <li class="list-group-item active">Hlasovalo:  {{ $item->users()->count() }}</li>
+                <li class="list-group-item">Za: <strong class="text-right">{{ $item->users()->where('vote', 1)->count() }}</strong></li>
+                <li class="list-group-item">Proti: <strong>{{ $item->users()->where('vote', 0)->count() }}</strong></li>
+                <li class="list-group-item">Zdržal: <strong>{{ $item->users()->where('vote', 2)->count() }}</strong></li>
+            </ul>
+
+            {{-- Vote results Variant II. --}}
+            <dl class="row mt-4">
+
+                <dt class="col-sm-3">Za:</dt>
+                <dd class="col-sm-9"><strong class="text-right">{{ $item->users()->where('vote', 1)->count() }}</strong></dd>
+
+                <dt class="col-sm-3">Proti:</dt>
+                <dd class="col-sm-9"><strong class="text-right">{{ $item->users()->where('vote', 0)->count() }}</strong></dd>
+
+                <dt class="col-sm-3">Zdržal:</dt>
+                <dd class="col-sm-9"><strong class="text-right">{{ $item->users()->where('vote', 2)->count() }}</strong></dd>
+
+                <dt class="col-sm-3">Hlasovalo:</dt>
+                <dd class="col-sm-9"><strong class="text-right">{{ $item->users()->count() }}</strong></dd>
+
+            </dl>
+
         </div>
     </div>
 </div>
 
-</div>
+
 
 
 

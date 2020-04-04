@@ -9,9 +9,10 @@
     <div class="col-md-12">
     <h2>Členovia výboru: <strong>{{ $council->name }}</strong></h2>
 
-    <a class="btn btn-primary float-right" href="{{ route('zast.createUser', [$council->id, $council->slug]) }}">Nový člen</a>
+    <a class="btn btn-primary float-right" href="{{ route('user.create', [$council->id, $council->slug]) }}">Nový člen</a>
 
-    @include('user.index')
+    @include('user._userTable')
+
     </div>
 
 @endsection

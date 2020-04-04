@@ -9,10 +9,10 @@
 @section('content')
 
 
-        <h1>Nový bod programu</h1>
+        <h1>Uprava návrhu</h1>
 
-        <form method="POST" action="{{ route('item.store', [$meeting->id, $meeting->slug]) }}" enctype="multipart/form-data">
-            @csrf @method('POST')
+        <form method="POST" action="{{ route('item.update', [$item->id, $item->slug]) }}" enctype="multipart/form-data">
+            @csrf @method('PUT')
 
             <div class="col-md-12">
                 <div class="card">
@@ -21,7 +21,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Bod programu</label>
 
                             <div class="col-md-8">
-                                <input id="name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $item->name }}" required autocomplete="name" autofocus>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                                 <label class="col-md-4 col-form-label text-md-right">Popis návrhu</label>
 
                                 <div class="col-md-8">
-                                    <textarea id="editor" class="form-control" name="description" rows="10"></textarea>
+                                    <textarea id="editor" class="form-control" name="description" rows="10">{{ $item->description }}</textarea>
                                 </div>
                             </div>
 
@@ -44,12 +44,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="vote_type" class="col-md-4 col-form-label text-md-right">Hlasovanie</label>
+                                <label for="vote_typ" class="col-md-4 col-form-label text-md-right">Hlasovanie</label>
 
                                 <div class="col-md-8">
-                                    <select name="vote_type" class="custom-select" id="vote_type">
-                                        <option value="1">Verejné</option>
-                                        <option value="2">Tajné</option>
+                                    <select name="vote_typ" class="custom-select" id="vote_typ">
+                                        <option value="1"
+                                        @if($item->vote_type == 1) selected @endif
+                                        >Verejné</option>
+                                        <option value="2"
+                                                @if($item->vote_type == 2) selected @endif
+                                        >Tajné</option>
                                     </select>
                                 </div>
                             </div>

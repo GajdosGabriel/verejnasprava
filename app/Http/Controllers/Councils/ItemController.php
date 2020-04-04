@@ -18,9 +18,24 @@ class ItemController extends Controller
         return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting]);
     }
 
+    public function edit(Item $item) {
+        return view('council.items.edit', compact('item'))->with(['meeting' => $item->meeting]);
+    }
+
+    public function update(Request $request, Item $item) {
+        $item->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+        $item->saveImage($request);
+        return redirect()->route('meet.show',[$item->meeting->id, $item->meeting->slug]);
+    }
+
     public function store(Request $request, Meeting $meeting) {
         $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $item->saveImage($request);
         return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
+    }
+
+    public function published(Item $item) {
+        $item->published();
+        return back();
     }
 }

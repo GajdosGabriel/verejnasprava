@@ -16,7 +16,7 @@
                         <form method="POST" action="{{ route('meet.update', [$meeting->id, $meeting->slug]) }}">
                             @csrf @method('PUT')
 
-                            @include('council.meeting.form')
+                            @include('council.meeting._form')
 
                         </form>
 

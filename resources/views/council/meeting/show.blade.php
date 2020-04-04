@@ -19,11 +19,18 @@
             @forelse($council->items as $item)
                     <li>
                         {{-- Published button--}}
-                        @if($item->published)
-                            <span style="float: right" class="badge badge-success">Publikované</span>
-                        @else
-                            <span style="float: right" class="badge badge-secondary">Publikovať</span>
-                        @endif
+                        <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
+                            @if($item->published)
+                                <span style="float: right" class="badge badge-primary">Publikované</span>
+                            @else
+                                <span style="float: right" class="badge badge-secondary">Publikovať</span>
+                            @endif
+
+                            @if($item->vote_type == 2)
+                                    <span style="float: right" class="badge badge-info">Publikované</span>
+                            @else
+                            @endif
+                        </a>
 
                         @if($item->vote_disabled)
 {{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}

@@ -16,7 +16,7 @@
                         <form method="POST" action="{{ route('zast.update', [$council->id, $council->slug]) }}">
                             @csrf @method('PUT')
 
-                            @include('council.form')
+                            @include('council._form')
 
                         </form>
 

@@ -17,7 +17,7 @@
     <label for="first_name" class="col-md-4 col-form-label text-md-right">Popis schôdze</label>
 
     <div class="col-md-8">
-        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $meeting->description }}" required autocomplete="name" autofocus>
+        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $meeting->description }}" autocomplete="name" autofocus>
 
         @error('description')
         <span class="invalid-feedback" role="alert">

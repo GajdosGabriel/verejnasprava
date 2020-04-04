@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Councils;
 
 
+use App\Http\Requests\UserCreateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Council\Council;
@@ -37,22 +39,8 @@ class CouncilController extends Controller
     }
 
 
-    public function createUser(Council $council, $slug) {
-        return view('council.createUser', compact('council'));
-    }
-
     public function userList(Council $council, $slug) {
         return view('council.users', compact('council'))->with('users', $council->users()->get());
     }
 
-    public function storeUser(Council $council, UserUpdateRequest $userUpdateRequest) {
-        $council->users()->create([
-            'first_name' => $userUpdateRequest['first_name'],
-            'last_name' => $userUpdateRequest['last_name'],
-            'email' => $userUpdateRequest['email'],
-            'password' => Hash::make('randompassword'),
-            'active_organization' => auth()->user()->active_organization
-        ]);
-        return redirect()->route('zast.userList',[$council->id, $council->slug]);
-    }
 }

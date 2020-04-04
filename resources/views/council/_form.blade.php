@@ -15,10 +15,10 @@
 </div>
 
 <div class="form-group row">
-    <label for="first_name" class="col-md-4 col-form-label text-md-right">Popis komisie</label>
+    <label for="description" class="col-md-4 col-form-label text-md-right">Popis komisie</label>
 
     <div class="col-md-8">
-        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" required autocomplete="name" autofocus>
+        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
 
         @error('description')
         <span class="invalid-feedback" role="alert">

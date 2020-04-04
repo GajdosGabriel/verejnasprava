@@ -37,4 +37,10 @@ class MeetingController extends Controller
         $meeting->saveImage($request);
         return redirect()->route('meet.index', [$council->id, $council->slug]);
     }
+
+    public function published(Meeting $meeting) {
+
+        $meeting->published();
+        return back();
+    }
 }

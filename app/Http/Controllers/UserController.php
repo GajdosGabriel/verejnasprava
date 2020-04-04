@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests;
+use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Organization;
 use App\Models\User;
@@ -36,8 +37,8 @@ class UserController extends Controller
 
 
     public function create(Organization $organization, $slug) {
-//        dd($organization);
-        return view('user.create', compact('organization'));
+        $user= new User();
+        return view('user.create', compact('organization', 'user'));
     }
 
     public function edit(User $user, $slug) {
@@ -45,12 +46,11 @@ class UserController extends Controller
     }
 
     public function update(User $user, UserUpdateRequest $userUpdateRequest) {
+        $userUpdateRequest->save($user);
 
-        $user->update([
-            'first_name' => $userUpdateRequest['first_name'],
-            'last_name' => $userUpdateRequest['last_name'],
-            'email' => $userUpdateRequest['email'],
-        ]);
+        if ($userUpdateRequest->input('counsil'))
+            $user->councils()->attach($userUpdateRequest->input('counsil'));
+
         return back();
     }
 
@@ -59,24 +59,27 @@ class UserController extends Controller
         return view('user.org-create', ['organization' => new Organization]);
     }
 
-    public function store(Organization $organization, UserUpdateRequest $userUpdateRequest) {
+    public function store(Organization $organization, UserCreateRequest $userCreateRequest) {
 
-//        dd($userUpdateRequest->all());
+//        dd($userCreateRequest->all());
         $user = User::create([
-            'first_name' => $userUpdateRequest['first_name'],
-            'last_name' => $userUpdateRequest['last_name'],
-            'email' => $userUpdateRequest['email'],
+            'first_name' => $userCreateRequest['first_name'],
+            'last_name' => $userCreateRequest['last_name'],
+            'email' => $userCreateRequest['email'],
             'password' => Hash::make('randompassword'),
             'active_organization' => auth()->user()->active_organization
         ]);
 
-        auth()->user()->assignRole($userUpdateRequest->input('role'));
-//        $user->givePermissionTo( $userUpdateRequest->input('role') );
+        auth()->user()->assignRole($userCreateRequest->input('role'));
 
-//        if($userUpdateRequest->input('council')) {
-//            $user->councils()->create($userUpdateRequest->input('council'));
-//        }
+        if($userCreateRequest->input('council'))
+            $user->councils()->attach($userCreateRequest->input('council'));
 
+        return back();
+    }
+
+    public function delete(User $user) {
+        $user->delete();
         return back();
     }
 

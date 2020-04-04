@@ -16,7 +16,7 @@
                         <form method="POST" action="{{ route('meet.store', [$council->id, $council->slug]) }}" enctype="multipart/form-data">
                             @csrf @method('POST')
 
-                            @include('council.meeting.form')
+                            @include('council.meeting._form')
 
                         </form>
 
