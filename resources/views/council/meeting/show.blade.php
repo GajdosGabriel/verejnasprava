@@ -25,12 +25,12 @@
                             @else
                                 <span style="float: right" class="badge badge-secondary">Publikovať</span>
                             @endif
-
-                            @if($item->vote_type == 2)
-                                    <span style="float: right" class="badge badge-info">Publikované</span>
-                            @else
-                            @endif
                         </a>
+
+                        {{-- Hlasovanie  --}}
+                        @if($item->vote_type)
+                            <span style="float: right" class="badge badge-info">Tajné</span>
+                        @endif
 
                         @if($item->vote_disabled)
 {{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}

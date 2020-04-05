@@ -15,6 +15,8 @@ class HomeController extends Controller
     {
         if(auth()->user()) {
             if(auth()->user()->active_organization)
+            // Verificed auth user
+//           auth()->user()->update(['email_verified_at' => \Carbon\Carbon::now()]);
            return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug ]);
         }
         return view('public.index');

@@ -47,12 +47,12 @@
                                 <label for="vote_typ" class="col-md-4 col-form-label text-md-right">Hlasovanie</label>
 
                                 <div class="col-md-8">
-                                    <select name="vote_typ" class="custom-select" id="vote_typ">
+                                    <select name="vote_type" class="custom-select" id="vote_typ">
                                         <option value="1"
                                         @if($item->vote_type == 1) selected @endif
                                         >Verejné</option>
-                                        <option value="2"
-                                                @if($item->vote_type == 2) selected @endif
+                                        <option value="0"
+                                                @if($item->vote_type == 0) selected @endif
                                         >Tajné</option>
                                     </select>
                                 </div>

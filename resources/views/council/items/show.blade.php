@@ -64,21 +64,41 @@
                     <ul class="list-group">
                     @forelse($item->users as $user)
 
+                        {{-- Hlas Za --}}
                         @if($user->pivot->vote == 1 )
-                            <li class="list-group-item list-group-item-primary">  {{ $user->full_name() }}
-                            <span class="pull-right"><strong>Áno</strong></span>
+                            <li class="list-group-item list-group-item-primary">
+                                @if($item->vote_type == 1)
+                                    Hlas
+                                    <span class="pull-right"><strong>Za</strong></span>
+                                @else
+                                    {{ $user->full_name() }}
+                                    <span class="pull-right"><strong>Áno</strong></span>
+                                 @endif
                             </li>
                         @endif
-
+                            {{-- Hlas Proti --}}
                         @if($user->pivot->vote == 0 )
-                                <li class="list-group-item list-group-item-danger">  {{ $user->full_name() }}
-                                    <span class="pull-right"><strong>Nie</strong></span>
+                                <li class="list-group-item list-group-item-danger">
+                                    @if($item->vote_type == 0)
+                                        {{ $user->full_name() }}
+                                        <span class="pull-right"><strong>Áno</strong></span>
+                                    @else
+                                        Hlas
+                                        <span class="pull-right"><strong>Proti</strong></span>
+                                    @endif
                                 </li>
                         @endif
 
+                        {{-- Zdržal sa --}}
                         @if($user->pivot->vote == 2 )
-                                <li class="list-group-item list-group-item-secondary">  {{ $user->full_name() }}
-                                    <span class="pull-right"><strong>Zdržal</strong></span>
+                                <li class="list-group-item list-group-item-secondary">
+                                    @if($item->vote_type == 2)
+                                        Hlas
+                                        <span class="pull-right"><strong>Zdržal</strong></span>
+                                    @else
+                                        {{ $user->full_name() }}
+                                        <span class="pull-right"><strong>Áno</strong></span>
+                                    @endif
                                 </li>
                         @endif
                         @empty

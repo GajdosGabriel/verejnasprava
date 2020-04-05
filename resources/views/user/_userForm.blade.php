@@ -54,14 +54,14 @@
 
 {{--                     Councils--}}
                     @forelse($councils as $council)
-                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">
+                    <div class="form-group row {{ $errors->has('council') ? ' has-error' : '' }}">
                         <label class="col-md-4 col-form-label text-md-right"></label>
                         <div class="col-md-8">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="council" type="checkbox" id="counsil" value="{{ $council->id }}"
+                                <input class="form-check-input" name="council" type="checkbox" id="council" value="{{ $council->id }}"
                                 @if($council->users->contains($user->id) ) checked @endif
                                 >
-                                <label class="form-check-label" for="counsil">{{ $council->name }}</label>
+                                <label class="form-check-label" for="council">{{ $council->name }}</label>
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Organization;
 use App\Models\User;
+use App\Notifications\User\InviteUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,8 +49,7 @@ class UserController extends Controller
     public function update(User $user, UserUpdateRequest $userUpdateRequest) {
         $userUpdateRequest->save($user);
 
-        if ($userUpdateRequest->input('counsil'))
-            $user->councils()->attach($userUpdateRequest->input('counsil'));
+        $user->councils()->sync($userUpdateRequest->input('council'));
 
         return back();
     }
@@ -72,14 +72,18 @@ class UserController extends Controller
 
         auth()->user()->assignRole($userCreateRequest->input('role'));
 
-        if($userCreateRequest->input('council'))
-            $user->councils()->attach($userCreateRequest->input('council'));
+        $user->councils()->sync($userCreateRequest->input('council'));
 
         return back();
     }
 
     public function delete(User $user) {
         $user->delete();
+        return back();
+    }
+
+    public function sendInvitation(User $user) {
+        $user->notify(new InviteUser($user));
         return back();
     }
 

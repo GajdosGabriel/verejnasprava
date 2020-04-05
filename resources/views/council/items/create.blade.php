@@ -48,8 +48,8 @@
 
                                 <div class="col-md-8">
                                     <select name="vote_type" class="custom-select" id="vote_type">
-                                        <option value="1">Verejné</option>
-                                        <option value="2">Tajné</option>
+                                        <option value="0">Verejné</option>
+                                        <option value="1">Tajné</option>
                                     </select>
                                 </div>
                             </div>

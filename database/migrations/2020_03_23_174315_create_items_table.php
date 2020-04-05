@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('vote_disabled')->default(1);
             $table->boolean('published')->default(0);
-            $table->boolean('vote_type')->default(1);
+            $table->boolean('vote_type')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

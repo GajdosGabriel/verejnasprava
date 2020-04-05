@@ -3,8 +3,9 @@
             <thead>
             <tr class="alert-info">
                 <th>Meno</th>
-                <th>Priezvisko</th>
+                <th>Email</th>
                 <th>Status</th>
+                <th>Člen</th>
                 <th>Role</th>
                 <th>Panel</th>
             </tr>
@@ -20,15 +21,21 @@
                         @if($user->email_verified_at)
                             <span class="badge badge-secondary">Aktívny</span>
                         @else
-                            <a href="#" title="Poslať pozvánku">
-                                <span class="badge badge-info">Neaktívny</span>
+                            <a href="{{ route('user.invitation', [$user->id, $user->slug]) }}" title="Poslať pozvánku">
+                                <span class="badge badge-info">Poslať pozvánku</span>
                             </a>
                         @endif
 
                     </td>
                     <td>
-                        @foreach($user->roles as $role)
+                        @foreach($user->councils as $role)
                         <span class="badge badge-secondary">{{ $role->name }}</span>
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($user->roles as $role)
+                            <span class="badge badge-secondary">{{ $role->name }}</span>
                         @endforeach
                     </td>
 

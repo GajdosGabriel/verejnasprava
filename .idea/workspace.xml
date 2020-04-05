@@ -2,40 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UserCreateRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/council/items/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/_userTable.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notifications/User/InviteUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/CouncilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/CouncilController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Councils/MeetingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Organizations/OrganizationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserUpdateRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Council/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Council/Item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Council/Meeting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Council/Meeting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_21_211920_create_councils_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_21_211920_create_councils_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contacts/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contacts/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/createUser.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/editor.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/_editor.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/council/items/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/navigation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/users.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/edit-nezname.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/_userTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userTable.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -316,6 +293,9 @@
       <workItem from="1585927380283" duration="1721000" />
       <workItem from="1585934385755" duration="1620000" />
       <workItem from="1585978193060" duration="6111000" />
+      <workItem from="1585989106515" duration="6675000" />
+      <workItem from="1586021908520" duration="4983000" />
+      <workItem from="1586080095738" duration="767000" />
     </task>
     <servers />
   </component>
@@ -351,6 +331,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585759053105" />
+    <state x="740" y="436" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1586005281399">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="436" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#/0.0.1920.1050@0.0.1920.1050" timestamp="1586005281399" />
     <state x="545" y="46" key="CommitChangelistDialog2" timestamp="1585808707955">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -383,9 +367,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585923070521" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1585984942247">
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1586022447250">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585984942247" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1586022447250" />
   </component>
 </project>
