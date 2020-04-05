@@ -28,6 +28,10 @@ class Meeting extends Model
         return $this->morphMany(File::class, 'fileable');
     }
 
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
+
 
     public function items() {
         return $this->hasMany(Item::class);
