@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Notifications/User/InviteUser.php" afterDir="false" />
+    <list default="true" id="e5a7786c-6929-4254-9fd8-ad75dc53f3d8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/verejnasprava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/verejnasprava.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_23_174315_create_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/items/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/council/meeting/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userForm.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/_userTable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_userTable.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,17 +25,8 @@
       <executable />
     </execution>
   </component>
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="verejnasprava" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PhpServers">
-    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -64,16 +54,20 @@
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
@@ -96,12 +90,14 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
@@ -124,6 +120,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
@@ -147,229 +144,55 @@
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
-      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
-      <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
-      <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
-      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
-      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1Z6v4x6xkK0IZiJIj8LmUXgvbUL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1a9Zewc7igConkpZt2seHGAoLia" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="home&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;orde&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;web&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;con&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;user&#9;null&#9;null&#10;postC&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;co&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Contacts/ContactsController.php&#10;Ord&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;r/v/o/c&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/order/create.blade.php&#10;Orde&#9;null&#9;null&#10;Pos&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/Organizations/Posts/PostController.php&#10;we&#9;FILE&#9;file://C:/www/verejnasprava/routes/web.php&#10;hom&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Home&#9;null&#9;null&#10;Ho&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/HomeController.php&#10;Cus&#9;null&#9;null&#10;nav&#9;FILE&#9;file://C:/www/verejnasprava/resources/views/layouts/navigation.blade.php&#10;Or&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/OrderController.php&#10;Wor&#9;FILE&#9;file://C:/www/verejnasprava/app/Http/Controllers/WorkerController.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/user" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\www\verejnasprava\resources\views\organizations" />
-      <recent name="C:\www\verejnasprava\resources\views\user" />
-      <recent name="C:\www\verejnasprava\resources\views\organizations\workers" />
-      <recent name="C:\www\verejnasprava\app\Models" />
-      <recent name="C:\www\verejnasprava\app\Models\Council" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\www\verejnasprava\resources\views\user" />
-      <recent name="C:\www\verejnasprava\resources\views\council\items" />
-      <recent name="C:\www\verejnasprava\resources\views\council" />
-      <recent name="C:\www\verejnasprava\resources\views\council\users" />
-      <recent name="C:\www\verejnasprava\resources\views\council\meeting" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\Gabriel\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e49cf75c-67e2-42e9-af50-6e240cc8d42d" name="Default" comment="" />
-      <created>1581944447910</created>
+      <changelist id="e5a7786c-6929-4254-9fd8-ad75dc53f3d8" name="Default Changelist" comment="" />
+      <created>1586149869286</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581944447910</updated>
-      <workItem from="1584172176959" duration="4463000" />
-      <workItem from="1584180964033" duration="9000" />
-      <workItem from="1584252290972" duration="4174000" />
-      <workItem from="1584263937871" duration="3497000" />
-      <workItem from="1584271205139" duration="2235000" />
-      <workItem from="1584284984379" duration="1014000" />
-      <workItem from="1584385181377" duration="2406000" />
-      <workItem from="1584429177174" duration="6047000" />
-      <workItem from="1584459795877" duration="51000" />
-      <workItem from="1584527375142" duration="7325000" />
-      <workItem from="1584564491550" duration="5028000" />
-      <workItem from="1584596007273" duration="768000" />
-      <workItem from="1584596812943" duration="6350000" />
-      <workItem from="1584821853249" duration="4328000" />
-      <workItem from="1584853793494" duration="6056000" />
-      <workItem from="1584878192279" duration="5883000" />
-      <workItem from="1584898437664" duration="5725000" />
-      <workItem from="1584943446242" duration="12424000" />
-      <workItem from="1584960835059" duration="5905000" />
-      <workItem from="1584994890996" duration="1516000" />
-      <workItem from="1585023253851" duration="9960000" />
-      <workItem from="1585039593227" duration="653000" />
-      <workItem from="1585042841887" duration="9983000" />
-      <workItem from="1585077172489" duration="2545000" />
-      <workItem from="1585113140499" duration="6360000" />
-      <workItem from="1585122516541" duration="17158000" />
-      <workItem from="1585163891852" duration="314000" />
-      <workItem from="1585197136656" duration="2385000" />
-      <workItem from="1585283536864" duration="3928000" />
-      <workItem from="1585304198289" duration="2544000" />
-      <workItem from="1585313707327" duration="2328000" />
-      <workItem from="1585339969634" duration="1585000" />
-      <workItem from="1585373521786" duration="39000" />
-      <workItem from="1585375222781" duration="18065000" />
-      <workItem from="1585474514787" duration="2413000" />
-      <workItem from="1585487883996" duration="2416000" />
-      <workItem from="1585497779463" duration="3642000" />
-      <workItem from="1585509354292" duration="2728000" />
-      <workItem from="1585547716634" duration="18000" />
-      <workItem from="1585547832039" duration="56000" />
-      <workItem from="1585548207056" duration="10000" />
-      <workItem from="1585550789752" duration="10000" />
-      <workItem from="1585592674190" duration="242000" />
-      <workItem from="1585593361200" duration="1881000" />
-      <workItem from="1585633004522" duration="58000" />
-      <workItem from="1585642808001" duration="4247000" />
-      <workItem from="1585661262977" duration="2992000" />
-      <workItem from="1585668604395" duration="4378000" />
-      <workItem from="1585683591738" duration="3278000" />
-      <workItem from="1585718447839" duration="7736000" />
-      <workItem from="1585741690508" duration="389000" />
-      <workItem from="1585751255182" duration="4426000" />
-      <workItem from="1585767306221" duration="2297000" />
-      <workItem from="1585800737779" duration="10312000" />
-      <workItem from="1585821270382" duration="925000" />
-      <workItem from="1585839711253" duration="1588000" />
-      <workItem from="1585843505803" duration="3964000" />
-      <workItem from="1585854569773" duration="2769000" />
-      <workItem from="1585890430571" duration="1368000" />
-      <workItem from="1585896045653" duration="597000" />
-      <workItem from="1585897973117" duration="8484000" />
-      <workItem from="1585927380283" duration="1721000" />
-      <workItem from="1585934385755" duration="1620000" />
-      <workItem from="1585978193060" duration="6111000" />
-      <workItem from="1585989106515" duration="6675000" />
-      <workItem from="1586021908520" duration="4983000" />
-      <workItem from="1586080095738" duration="767000" />
+      <updated>1586149869286</updated>
+      <workItem from="1586149874719" duration="191000" />
+      <workItem from="1586150417201" duration="540000" />
+      <workItem from="1587361386560" duration="420000" />
+      <workItem from="1587470639179" duration="141000" />
+      <workItem from="1587470836930" duration="13000" />
+      <workItem from="1587574884562" duration="407000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585759053105">
+    <state x="452" y="100" key="#Composer" timestamp="1586149999261">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="627" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585759053105" />
-    <state x="740" y="436" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#" timestamp="1586005281399">
+    <state x="452" y="100" key="#Composer/0.0.1920.1050@0.0.1920.1050" timestamp="1586149999261" />
+    <state x="352" y="82" key="SettingsEditor" timestamp="1587361565041">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="436" key="#com.jetbrains.php.lang.intentions.PhpImportClassDialog#/0.0.1920.1050@0.0.1920.1050" timestamp="1586005281399" />
-    <state x="545" y="46" key="CommitChangelistDialog2" timestamp="1585808707955">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="545" y="46" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1585808707955" />
-    <state x="690" y="223" key="FileChooserDialogImpl" timestamp="1585740211068">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="690" y="223" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1585740211068" />
-    <state x="805" y="395" width="310" height="259" key="Github.ShareDialog" timestamp="1585036618492">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="805" y="395" width="310" height="259" key="Github.ShareDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585036618492" />
-    <state x="751" y="299" key="NewPhpClassDialog" timestamp="1585037769660">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="751" y="299" key="NewPhpClassDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585037769660" />
-    <state x="790" y="169" key="RollbackChangesDialog" timestamp="1585814122279">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="790" y="169" key="RollbackChangesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1585814122279" />
-    <state x="717" y="92" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585025280202">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="717" y="92" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1585025280202" />
-    <state x="738" y="422" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585806075721">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="738" y="422" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1585806075721" />
-    <state x="594" y="188" width="731" height="674" key="find.popup" timestamp="1585923070521">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="594" y="188" width="731" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1585923070521" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1586022447250">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1586022447250" />
+    <state x="352" y="82" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1587361565041" />
   </component>
 </project>
