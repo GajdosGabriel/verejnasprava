@@ -10,6 +10,7 @@
         <h1>Organization index</h1>
         <div class="row">
             <div class="col">
+{{--                {{    auth()->user()->organizations()->attach(2) }}--}}
                 <div class="alert alert-primary" role="alert">
                     Zverejňovať <a href="#" class="alert-link">zmlúvy a faktúry</a>!
                 </div>

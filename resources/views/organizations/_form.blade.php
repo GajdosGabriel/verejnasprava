@@ -14,7 +14,7 @@
         {{-- Ulica --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2">Ulica a číslo</span>
+                <span class="input-group-text text-danger" id="basic-addon2">Ulica a číslo</span>
             </div>
             <input type="text" name="street" class = "form-control"  placeholder="Ulica a číslo" value="{{ old('street') ?? $organization->slug}}" aria-describedby="basic-addon2"/>
         </div>

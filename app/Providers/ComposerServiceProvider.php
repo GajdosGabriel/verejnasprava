@@ -6,8 +6,9 @@ use App\Models\Activity;
 use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 
