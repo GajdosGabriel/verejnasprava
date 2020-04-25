@@ -29,13 +29,9 @@ class Meeting extends Model
     }
 
     public function items() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class)->orderBy('order', 'asc');
     }
 
-
-    public function items() {
-        return $this->hasMany(Item::class);
-    }
 
 
     public function setNameAttribute($value)

@@ -30,6 +30,9 @@ class ItemController extends Controller
 
     public function store(Request $request, Meeting $meeting) {
         $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+
+        $item->update(['order' => $meeting->items()->count() +1] );
+
         $item->saveImage($request);
         return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
     }
