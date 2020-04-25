@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection
+
 @section('navigation')
     @include('public.navigation')
 @endsection

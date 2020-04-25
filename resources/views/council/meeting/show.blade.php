@@ -27,6 +27,16 @@
                             @endif
                         </a>
 
+                        {{-- Item Up button--}}
+                        <a href="{{ route('item.up', [ $item->id, $item->slug]) }}">
+                            <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Hore"><i class="fa fa-caret-up"></i></span>
+                        </a>
+
+                        {{-- Item Down button--}}
+                        <a href="{{ route('item.down', [ $item->id, $item->slug]) }}">
+                            <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Dole"><i class="fa fa-caret-down"></i></span>
+                        </a>
+
                         {{-- Hlasovanie  --}}
                         @if($item->vote_type)
                             <span style="float: right" class="badge badge-info">Tajné</span>

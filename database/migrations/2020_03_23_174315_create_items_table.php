@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->integer('meeting_id')->unsigned()->index();
             $table->integer('user_id')->unsigned();
+            $table->integer('order')->unsigned()->default(0);
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();

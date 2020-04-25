@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Verejná správa') }}</title>
 
+    @yield('recaptcha')
+
 @yield('script-header')
 
     <!-- Fonts -->
