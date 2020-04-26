@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Role;
 
 
 class ComposerServiceProvider extends ServiceProvider
@@ -55,7 +56,8 @@ class ComposerServiceProvider extends ServiceProvider
 
         view()->composer(['user.edit', 'user.create'], function ($view) {
             $counsils =  Council::where('user_id', auth()->user()->active_organization)->get();
-            $view->with('councils', $counsils);
+            $roles =  Role::all();
+            $view->with('councils', $counsils)->with('roles', $roles);
         });
 
     }

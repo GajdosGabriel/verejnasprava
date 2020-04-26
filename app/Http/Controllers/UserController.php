@@ -28,10 +28,8 @@ class UserController extends Controller
     }
 
 
-
-
     public function index(Organization $organization, $slug) {
-        $users = User::whereActive_organization(auth()->user()->active_organization)->get();
+        $users = User::whereActive_organization(auth()->user()->active_organization)->latest()->get();
 
         return view('user.index', compact(['users', 'organization']));
     }
@@ -43,15 +41,16 @@ class UserController extends Controller
     }
 
     public function edit(User $user, $slug) {
+//        dd($user);
         return view('user.edit', compact('user'));
     }
 
-    public function update(User $user, UserUpdateRequest $userUpdateRequest) {
-        $userUpdateRequest->save($user);
+    public function update(User $user, UserUpdateRequest $userRequest) {
+        $userRequest->save($user);
 
-        $user->councils()->sync($userUpdateRequest->input('council'));
+        $this->userRoles($user, $userRequest);
 
-        return back();
+        return redirect()->route('user.index', [$user->active_organization, 'slug']);
     }
 
 
@@ -59,22 +58,26 @@ class UserController extends Controller
         return view('user.org-create', ['organization' => new Organization]);
     }
 
-    public function store(Organization $organization, UserCreateRequest $userCreateRequest) {
+    public function store(Organization $organization, UserCreateRequest $userRequest) {
 
 //        dd($userCreateRequest->all());
         $user = User::create([
-            'first_name' => $userCreateRequest['first_name'],
-            'last_name' => $userCreateRequest['last_name'],
-            'email' => $userCreateRequest['email'],
+            'first_name' => $userRequest['first_name'],
+            'last_name' => $userRequest['last_name'],
+            'email' => $userRequest['email'],
             'password' => Hash::make('randompassword'),
             'active_organization' => auth()->user()->active_organization
         ]);
 
-        auth()->user()->assignRole($userCreateRequest->input('role'));
+        $this->userRoles($user, $userRequest);
 
-        $user->councils()->sync($userCreateRequest->input('council'));
+        return redirect()->route('user.index', [$user->active_organization, 'slug']);
+    }
 
-        return back();
+    // For update ane store User
+    private function userRoles($user, $userRequest) {
+        $user->councils()->sync($userRequest->input('council'));
+        $user->roles()->sync($userRequest->input('role'));
     }
 
     public function delete(User $user) {
