@@ -20,7 +20,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$organizationNav->id, $organizationNav->slug ]) }}">Kontakty</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$organizationNav->id, $organizationNav->slug]) }}">Objednávky</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('question.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{  route('user.userCouncils', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [$organizationNav->id, $organizationNav->slug ]) }}">Zastupiteľstva</a></li>
 
 
             <li class="nav-item dropdown">

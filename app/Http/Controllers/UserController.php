@@ -21,13 +21,6 @@ class UserController extends Controller
 
     }
 
-
-    // Zastupiteľstva v ktorých je členom
-    public function userCouncils(User $organization){
-        return view('council.index', compact('organization'));
-    }
-
-
     public function index(Organization $organization, $slug) {
         $users = User::whereActive_organization(auth()->user()->active_organization)->latest()->get();
 

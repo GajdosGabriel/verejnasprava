@@ -18,7 +18,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/index', 'UserController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
         Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
-        Route::get('{organization}/{slug}/councils', 'UserController@userCouncils')->name('userCouncils');
         Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
         Route::post('{organization}/store/store', 'UserController@store')->name('store');
@@ -99,6 +98,7 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('{organization}/{slug}/contact/store', 'ContactsController@store')->name('store');
             Route::put('{organization}/{slug}/contact/update', 'ContactsController@update')->name('update');
         });
+
 
     });
 

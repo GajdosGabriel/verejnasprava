@@ -54,7 +54,7 @@
                             <div class="col-md-4">
                            <strong>Zastupiteľstvá</strong>
 
-                            @forelse($councils as $council)
+                            @forelse($organization->councils as $council)
                             <div class="form-group row {{ $errors->has('council') ? ' has-error' : '' }}">
                                 <label class="col-form-label"></label>
                                 <div class="form-check form-check-inline">

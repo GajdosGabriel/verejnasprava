@@ -55,9 +55,9 @@ class ComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer(['user.edit', 'user.create'], function ($view) {
-            $counsils =  Council::where('user_id', auth()->user()->active_organization)->get();
+//            $counsils =  Council::where('organization_id', auth()->user()->active_organization)->get();
             $roles =  Role::all();
-            $view->with('councils', $counsils)->with('roles', $roles);
+            $view->with('roles', $roles);
         });
 
     }

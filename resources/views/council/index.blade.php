@@ -16,7 +16,6 @@
                 <tr class="alert-info">
                     <th>Popis</th>
                     <th>Typ</th>
-                    <th>Založil</th>
                     <th>Počet zasadnutí</th>
                     <th>Počet členov</th>
                     <th>Panel</th>
@@ -31,7 +30,6 @@
                         </a>
                     </td>
                     <td>{{ $council->description }}</td>
-                    <td>{{ $council->user->full_name() }}</td>
                     <td>{{ $council->meetings()->count() }}</td>
                     <td>
                         <a href="{{ route('zast.userList', [$council->id, $council->slug]) }}">
