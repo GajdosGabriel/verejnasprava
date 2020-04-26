@@ -53,7 +53,6 @@
                             {{-- Section Counsils --}}
                             <div class="col-md-4">
                            <strong>Zastupiteľstvá</strong>
-
                             @forelse($organization->councils as $council)
                             <div class="form-group row {{ $errors->has('council') ? ' has-error' : '' }}">
                                 <label class="col-form-label"></label>

@@ -28,7 +28,7 @@ class Organization extends Model
     }
 
     public function councils() {
-        return $this->belongsToMany(Council::class);
+        return $this->hasMany(Council::class);
     }
 
 
