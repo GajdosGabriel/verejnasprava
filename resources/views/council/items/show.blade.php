@@ -108,7 +108,7 @@
             </div>
 
             {{-- Vote results Variant I. --}}
-            <ul class="list-group mt-4">
+            <ul class="list-group">
                 <li class="list-group-item active">Hlasovalo:  {{ $item->users()->count() }}</li>
                 <li class="list-group-item">Za: <strong class="text-right">{{ $item->users()->where('vote', 1)->count() }}</strong></li>
                 <li class="list-group-item">Proti: <strong>{{ $item->users()->where('vote', 0)->count() }}</strong></li>

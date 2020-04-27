@@ -17,7 +17,7 @@
 
             <ol type="1">
             @forelse($council->items as $item)
-                    <li>
+                    <li class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
                         <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
                             @if($item->published)
@@ -45,7 +45,9 @@
                         @if($item->vote_disabled)
 {{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}
                         @else
-                            <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
+                            <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">
+                                <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
+                            </a>
                         @endif
 
                         <h5 style="border-bottom: 2px solid silver">
@@ -54,7 +56,13 @@
                             </a>
                         </h5>
 
-                        <p>{!! $item->descriptionLimit(320) !!}</p>
+                        <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>
+
+                        <div class=" bg-light text-dark text-center">
+                            Za: {{ $item->users()->where('vote', 1)->count() }}
+                            Proti: {{ $item->users()->where('vote', 0)->count() }}
+                            Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
+                        </div>
 
                         {{-- Files --}}
                         @if( $item->files->count())

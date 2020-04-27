@@ -53,11 +53,12 @@
                             {{-- Section Counsils --}}
                             <div class="col-md-4">
                            <strong>Zastupiteľstvá</strong>
+
                             @forelse($organization->councils as $council)
                             <div class="form-group row {{ $errors->has('council') ? ' has-error' : '' }}">
                                 <label class="col-form-label"></label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="council" type="checkbox" id="council" value="{{ $council->id }}"
+                                    <input class="form-check-input" name="council[]" type="checkbox" id="council" value="{{ $council->id }}"
                                     @if($council->users->contains($user->id) ) checked @endif
                                     >
                                     <label class="form-check-label" for="council">{{ $council->name }}</label>

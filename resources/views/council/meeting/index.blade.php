@@ -47,9 +47,9 @@
                     <td>
                         <a href="{{ route('meet.published', [ $council->id, $council->slug]) }}">
                             @if($council->published)
-                            <span class="badge badge-primary">Publikovať</span>
+                            <span class="badge badge-secondary">Nezverejnené</span>
                             @else
-                            <span class="badge badge-secondary">Zverejnené</span>
+                            <span class="badge badge-primary">Zverejnené</span>
                             @endif
                         </a>
                     </td>
