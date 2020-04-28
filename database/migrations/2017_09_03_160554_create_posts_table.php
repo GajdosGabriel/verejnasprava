@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->string('name', 250);
             $table->string('int_number', 30)->nullable();
             $table->string('slug')->nullable();
@@ -27,9 +27,9 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-//            $table->foreign('organization_id')
-//                ->references('id')->on('organizations')
-//                ->onDelete('cascade');
+            $table->foreign('organization_id')
+                ->references('id')->on('organizations')
+                ->onDelete('cascade');
         });
     }
 

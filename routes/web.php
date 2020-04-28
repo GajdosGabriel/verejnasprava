@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
         Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
+        Route::get('{meeting}/{slug}/meeting/delete', 'MeetingController@delete')->name('delete');
+
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {

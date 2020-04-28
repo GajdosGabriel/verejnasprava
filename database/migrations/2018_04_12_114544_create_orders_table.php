@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('contact_id');
             $table->unsignedInteger('user_id');
@@ -28,8 +28,8 @@ class CreateOrdersTable extends Migration
             $table->date('due_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
-//            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-//            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

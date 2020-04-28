@@ -14,7 +14,7 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->unsignedInteger('order_id');
             $table->text('name');
             $table->decimal('price_with_vat', 10, 2)->nullable();

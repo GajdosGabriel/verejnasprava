@@ -14,7 +14,7 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->index();
             $table->integer('meeting_id')->unsigned()->index();
             $table->integer('user_id')->unsigned();
             $table->integer('order')->unsigned()->default(0);
@@ -26,6 +26,10 @@ class CreateItemsTable extends Migration
             $table->boolean('vote_type')->default(0);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('meeting_id')->references('id')->on('meetings')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Councils;
 use App\Models\Council\Council;
 use App\Http\Controllers\Controller;
 use App\Models\Council\Meeting;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
@@ -36,6 +37,11 @@ class MeetingController extends Controller
         $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveImage($request);
         return redirect()->route('meet.index', [$council->id, $council->slug]);
+    }
+
+    public function delete(Meeting $meeting) {
+        $meeting->delete();
+        return back();
     }
 
     public function published(Meeting $meeting) {

@@ -14,7 +14,7 @@ class CreateContactsTable extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned()->index();
+            $table->increments('id')->unsigned()->index();
             $table->integer('organization_id')->unsigned();
             $table->string('slug',200);
             $table->string('name', 200);
@@ -32,6 +32,8 @@ class CreateContactsTable extends Migration
             $table->string('bank_iban', 50)->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+
         });
 
         \DB::table('contacts')->insert([

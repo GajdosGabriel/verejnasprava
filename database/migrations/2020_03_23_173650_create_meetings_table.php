@@ -14,7 +14,7 @@ class CreateMeetingsTable extends Migration
     public function up()
     {
         Schema::create('meetings', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->index();
             $table->integer('council_id')->unsigned()->index();
             $table->integer('user_id')->unsigned();
             $table->string('name');
@@ -24,6 +24,8 @@ class CreateMeetingsTable extends Migration
             $table->boolean('published')->default(0);
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('council_id')->references('id')->on('councils')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

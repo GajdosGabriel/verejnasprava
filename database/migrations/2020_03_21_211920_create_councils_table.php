@@ -14,13 +14,14 @@ class CreateCouncilsTable extends Migration
     public function up()
     {
         Schema::create('councils', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->index();
             $table->integer('organization_id')->unsigned();
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateOrganizationsTable extends Migration
     public function up()
     {
         Schema::create('organizations', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned()->index();
+            $table->increments('id')->index();
             $table->string('slug',250);
             $table->string('name', 250);
             $table->string('email',100);
