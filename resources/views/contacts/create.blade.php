@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title', 'Nový kontakt')
 @section('navigation')
     @include('organizations.navigation')
 @endsection

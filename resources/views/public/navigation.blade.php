@@ -12,14 +12,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;
-                    <a id="zobrazit"  class="btn btn-info">Zoznam používateľov</a>
-            </ul>
+{{--            <ul class="nav navbar-nav">--}}
+{{--                &nbsp;--}}
+{{--                    <a id="zobrazit"  class="btn btn-info">Zoznam používateľov</a>--}}
+{{--            </ul>--}}
 
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ route('home.zverejnovanie') }}">Zverejňovanie</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('home.contact') }}">Kontakt</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Registrácia</a></li>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page-title', 'Kontakt')
+
 @section('navigation')
     @include('public.navigation')
 @endsection

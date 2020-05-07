@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title', 'Zoznam dokumentov')
 @section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page-title', 'Vytvoriť zverejnenie')
+
 @section('navigation')
     @include('organizations.navigation')
 @endsection

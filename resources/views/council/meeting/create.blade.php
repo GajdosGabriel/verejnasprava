@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title', 'Nové zasadnutie')
 @section('navigation')
     @include('council.meeting.navigation')
 @endsection

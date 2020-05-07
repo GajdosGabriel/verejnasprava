@@ -41,7 +41,7 @@
                             <td><strong>{{ $post->contact->name }}</strong><br> {{ $post->contact->city }}, <small>ico:{{ $post->contact->ico }}</small></td>
                             <td style="width: 10%"><strong>{{ $post->DisplayPrice }} Eu</strong></td>
                             <td>
-                                @forelse($post->file as $file)
+                                @forelse($post->files as $file)
                                     <a target="_blank" href="{{ URL::to('/')}}/download/{{  $file->name }}">Príloha</a>
                                 @empty
                                     Bez prílohy

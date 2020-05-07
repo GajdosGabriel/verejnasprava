@@ -48,5 +48,10 @@ class HomeController extends Controller
         return view('public.contact');
     }
 
+    public function zverejnovanie() {
+
+        return view('public.zverejnovanie');
+    }
+
 
 }

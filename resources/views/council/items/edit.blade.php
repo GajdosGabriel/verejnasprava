@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('page-title', 'Upraviť návrh')
 
 @section('navigation')
     @include('council.items.navigation')

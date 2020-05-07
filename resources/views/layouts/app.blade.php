@@ -7,11 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Verejná správa') }}</title>
+    <title>@yield('page-title', config('app.name'))</title>
 
     @yield('recaptcha')
 
-@yield('script-header')
+    @yield('script-header')
 
     <!-- Fonts -->
     {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
