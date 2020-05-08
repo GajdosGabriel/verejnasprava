@@ -81,7 +81,7 @@
                                 <li class="list-group-item list-group-item-danger">
                                     @if($item->vote_type == 0)
                                         {{ $user->full_name() }}
-                                        <span class="pull-right"><strong>Áno</strong></span>
+                                        <span class="pull-right"><strong>Nie</strong></span>
                                     @else
                                         Hlas
                                         <span class="pull-right"><strong>Proti</strong></span>
@@ -97,7 +97,7 @@
                                         <span class="pull-right"><strong>Zdržal</strong></span>
                                     @else
                                         {{ $user->full_name() }}
-                                        <span class="pull-right"><strong>Áno</strong></span>
+                                        <span class="pull-right"><strong>Zdržal</strong></span>
                                     @endif
                                 </li>
                         @endif
