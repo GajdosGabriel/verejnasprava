@@ -15,7 +15,7 @@
         <h3 class="text-center mt-5">Zverejňovanie dokladov</h3>
 
 {{--        @include('modul.categoryList')--}}
-{{--        @include('post.post-table-predna')--}}
+        @include('post.post-table-predna')
 
 
         {{--    {!! $posts ->render() !!}--}}

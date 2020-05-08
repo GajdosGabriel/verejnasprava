@@ -47,7 +47,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('posts', $posts);
         });
 
-        view()->composer('public.index', function ($view) {
+        view()->composer('post.post-table-predna', function ($view) {
             $posts =  Post::orderBy('date_in', 'desc')->get()->groupBy(function($item){
                 return Carbon::parse($item->date_in)->format('F-Y');
             });

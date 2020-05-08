@@ -175,43 +175,13 @@ foreach ($permissions as $permission => $category) {
 
 
 //
-//        \DB::table('roles')->insert([
-//            [
-//                'id' => 1,
-//                'name' => 'superadmin',
-//                'guard_name' => 'web',
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ],
-//            [
-//                'id' => 2,
-//                'name' => 'admin',
-//                'guard_name' => 'web',
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ],
-//            [
-//                'id' => 3,
-//                'name' => 'editor',
-//                'guard_name' => 'web',
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ],
-//            [
-//                'id' => 4,
-//                'name' => 'publisher',
-//                'guard_name' => 'web',
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ],
-//            [
-//                'id' => 5,
-//                'name' => 'user',
-//                'guard_name' => 'web',
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ]
-//        ]);
+        \DB::table('model_has_permissions')->insert([
+            [
+                'permission_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 1,
+            ],
+        ]);
     }
 
     /**
