@@ -28,10 +28,11 @@
                     {{ auth()->user()->full_name() }}
                 </a>
                 <div class="dropdown-menu">
+                    @can('delete')
                     <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>
                     <a class="dropdown-item" href="{{ route('user.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
                     <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
-
+                    @endcan
                     @role('superadmin')
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url( 'admin/user') }}">Zoznam regist.</a>

@@ -9,7 +9,9 @@
 
     <h1>Vaše zastupiteľstvá</h1>
     <div class="col-md-12">
+        @can('delete')
         <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
+        @endcan
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
@@ -18,7 +20,9 @@
                     <th>Typ</th>
                     <th>Počet zasadnutí</th>
                     <th>Počet členov</th>
+                    @can('delete')
                     <th>Panel</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +41,7 @@
                         </a>
                     </td>
 
-                {{--@can( 'update', $post)--}}
+                @can('delete')
                 <td class="d-flex justify-content-center">
                     <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog text-secondary"></i>
@@ -61,7 +65,7 @@
     {{--                                </form>--}}
                     </div>
                 </td>
-                {{--@endcan--}}
+                @endcan
             </tr>
             @empty
                 {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}

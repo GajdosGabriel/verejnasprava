@@ -16,9 +16,11 @@
                     <div class="card-header">
                         <span class="badge badge-primary">Hlasovanie verejné</span>
                         <span class="badge badge-light">Do rozpravy</span>
+                        @can('delete')
                         <a href="{{ route('item.edit', [ $item->id, $item->slug]) }}">
                             <span class="badge badge-light pull-right">Upraviť</span>
                         </a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <h5 style="border-bottom: 2px solid silver">{{ $item->name }}</h5>
@@ -53,12 +55,14 @@
             <div class="row">
                 <div class="col-12 mb-4">
                     <h5 style="float: left">Výsledok hlasovania</h5>
-                    {{--Vote Admin Button --}}
-                    @if($item->vote_disabled)
-                        <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-secondary pull-right btn-sm">Zapnúť hlasovanie</a>
-                    @else
-                        <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-success pull-right btn-sm">Hlasovanie zapnuté</a>
-                    @endif
+                    @can('delete')
+                        {{--Vote Admin Button --}}
+                        @if($item->vote_disabled)
+                            <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-secondary pull-right btn-sm">Zapnúť hlasovanie</a>
+                        @else
+                            <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}" class="btn btn-success pull-right btn-sm">Hlasovanie zapnuté</a>
+                        @endif
+                    @endcan
                 </div>
                 <div class="col-12">
                     <ul class="list-group">

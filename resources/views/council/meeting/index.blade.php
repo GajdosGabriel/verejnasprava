@@ -9,7 +9,9 @@
 
     <h2>Zoznam zasadnutí</h2>
     <div class="col-md-12">
+        @can('delete')
         <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
+        @endcan
 
         <table class="table table-bordered table-inverse table-hover">
             <thead>
@@ -21,7 +23,9 @@
                     <th>Príloha</th>
                     <th>Publikované</th>
                     <th>Body rokovania</th>
+                    @can('delete')
                     <th>Panel</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +49,7 @@
                         @endforelse
                     </td>
                     <td>
+                        @can('delete')
                         <a href="{{ route('meet.published', [ $council->id, $council->slug]) }}">
                             @if($council->published)
                             <span class="badge badge-secondary">Nezverejnené</span>
@@ -52,10 +57,11 @@
                             <span class="badge badge-primary">Zverejnené</span>
                             @endif
                         </a>
+                        @endcan
                     </td>
                     <td>{{ $council->items()->count() }}</td>
 
-                {{--@can( 'update', $post)--}}
+                @can('delete')
                 <td class="d-flex justify-content-center">
                     <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog text-secondary"></i>
@@ -73,7 +79,7 @@
                         </a>
                     </div>
                 </td>
-                {{--@endcan--}}
+                @endcan
             </tr>
             @empty
                 {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}

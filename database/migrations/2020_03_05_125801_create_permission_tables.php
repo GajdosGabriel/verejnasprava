@@ -93,10 +93,10 @@ class CreatePermissionTables extends Migration
 
 
         $permissions = [
-            'role view'   => 'role',
-            'role create' => 'role',
-            'role edit'   => 'role',
-            'role delete' => 'role',
+            'view'   => 'role',
+            'create' => 'role',
+            'edit'   => 'role',
+            'delete' => 'role',
 
             'customer edit'    => 'customer',
             'customer view'    => 'customer',
@@ -177,7 +177,7 @@ foreach ($permissions as $permission => $category) {
 //
         \DB::table('model_has_permissions')->insert([
             [
-                'permission_id' => 2,
+                'permission_id' => 4,
                 'model_type' => 'App\Models\User',
                 'model_id' => 1,
             ],

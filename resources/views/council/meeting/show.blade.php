@@ -11,7 +11,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="col-12 mb-5">
+                @can('delete')
                 <a style="float: right" href="{{ route('item.create', [ $council->id, $council->slug ]) }}" class="btn btn-secondary">Nový návrh</a>
+                @endcan
                 <h2>Program schôdze</h2>
             </div>
 
@@ -19,6 +21,7 @@
             @forelse($council->items as $item)
                     <li class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
+                        @can('delete')
                         <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
                             @if($item->published)
                                 <span style="float: right" class="badge badge-primary">Publikované</span>
@@ -36,6 +39,7 @@
                         <a href="{{ route('item.down', [ $item->id, $item->slug]) }}">
                             <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Dole"><i class="fa fa-caret-down"></i></span>
                         </a>
+                        @endcan
 
                         {{-- Hlasovanie  --}}
                         @if($item->vote_type)
