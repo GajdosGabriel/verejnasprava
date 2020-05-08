@@ -4,7 +4,7 @@
 
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ route('meet.index', [$council->id, $council->slug])  }}">
-                {{ $organizationNav->name }} - {{ $council->name }}
+                {{ $object->name }} - {{ $council->name }}
             </a>
         </div>
 
@@ -27,7 +27,7 @@
                 </a>
                 <div class="dropdown-menu">
 {{--                    // Admin--}}
-                    <a class="dropdown-item" href="{{ route('org.index', [$organizationNav->id, $organizationNav->slug]) }}">Hlavna strana</a>
+                    <a class="dropdown-item" href="{{ route('org.index', [$object->id, $object->slug]) }}">Hlavna strana</a>
 {{--                    <a class="dropdown-item" href="{{ route('zast.index', [auth()->user()->id, auth()->user()->slug ]) }}">Zamestnanci</a>--}}
 
                     @role('superadmin')

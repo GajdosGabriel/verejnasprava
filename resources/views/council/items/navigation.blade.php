@@ -3,8 +3,8 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('meet.show', [$meeting->id, $meeting->slug])  }}">
-                {{ $organizationNav->name }} - {{ $meeting->name }}
+            <a class="navbar-brand" href="{{ route('item.index', [$meeting->id, $meeting->slug])  }}">
+                {{ $object->name }} - {{ $meeting->name }}
             </a>
         </div>
 

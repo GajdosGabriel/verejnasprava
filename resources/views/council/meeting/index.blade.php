@@ -35,7 +35,7 @@
                 @forelse($council->meetings as $council)
                     <td>{{ $council->start_at->format('d. m. Y') }} <strong>{{ $council->start_at->format('H:i') }} hod.</strong></td>
                     <td>
-                        <a href="{{ route('meet.show', [$council->id, $council->slug]) }}">
+                        <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
                             {{ $council->name }}
                         </a>
                     </td>

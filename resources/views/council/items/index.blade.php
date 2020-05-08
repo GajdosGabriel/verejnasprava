@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Program zasadnutia')
 @section('navigation')
-    @include('council.meeting.navigation')
+    @include('council.items.navigation')
 @endsection
 
 @section('content')
@@ -9,16 +9,16 @@
 
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="col-12 mb-5">
                 @can('delete')
-                <a style="float: right" href="{{ route('item.create', [ $council->id, $council->slug ]) }}" class="btn btn-secondary">Nový návrh</a>
+                <a style="float: right" href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}" class="btn btn-secondary">Nový návrh</a>
                 @endcan
                 <h2>Program schôdze</h2>
             </div>
 
             <ol type="1">
-            @forelse($council->items as $item)
+            @forelse($meeting->items as $item)
                     <li class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
                         @can('delete')
@@ -62,11 +62,7 @@
 
                         <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>
 
-                        <div class=" bg-light text-dark text-center">
-                            Za: {{ $item->users()->where('vote', 1)->count() }}
-                            Proti: {{ $item->users()->where('vote', 0)->count() }}
-                            Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
-                        </div>
+
 
                         {{-- Files --}}
                         @if( $item->files->count())
@@ -78,13 +74,19 @@
                             @endforelse
                         @endif
                     </li>
+
+                    <div class=" bg-secondary text-white text-center">
+                        Za: {{ $item->users()->where('vote', 1)->count() }}
+                        Proti: {{ $item->users()->where('vote', 0)->count() }}
+                        Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
+                    </div>
             @empty
                 bez záznamu
             @endforelse
             </ol>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
         </div>
 

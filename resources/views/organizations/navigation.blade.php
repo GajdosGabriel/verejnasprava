@@ -3,8 +3,8 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('org.index', [$organizationNav->id, $organizationNav->slug])  }}">
-                {{ $organizationNav->name }}
+            <a class="navbar-brand" href="{{ route('org.index', [$object->id, $object->slug])  }}">
+                {{ $object->name }}
             </a>
         </div>
 
@@ -16,11 +16,11 @@
 
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$organizationNav->id, $organizationNav->slug ]) }}">Zverejňovanie</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$organizationNav->id, $organizationNav->slug ]) }}">Kontakty</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$organizationNav->id, $organizationNav->slug]) }}">Objednávky</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$object->id, $object->slug ]) }}">Zverejňovanie</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$object->id, $object->slug ]) }}">Kontakty</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$object->id, $object->slug]) }}">Objednávky</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('question.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [$organizationNav->id, $organizationNav->slug ]) }}">Zastupiteľstva</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [$object->id, $object->slug ]) }}">Zastupiteľstva</a></li>
 
 
             <li class="nav-item dropdown">
@@ -29,8 +29,8 @@
                 </a>
                 <div class="dropdown-menu">
                     @can('delete')
-                    <a class="dropdown-item" href="{{ route('org.edit', [$organizationNav->id, $organizationNav->slug]) }}">Upraviť profil</a>
-                    <a class="dropdown-item" href="{{ route('user.index', [$organizationNav->id, $organizationNav->slug ]) }}">Ľudia</a>
+                    <a class="dropdown-item" href="{{ route('org.edit', [$object->id, $object->slug]) }}">Upraviť profil</a>
+                    <a class="dropdown-item" href="{{ route('user.index', [$object->id, $object->slug ]) }}">Ľudia</a>
                     <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
                     @endcan
                     @role('superadmin')

@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    public function index(Meeting $meeting){
+        return view('council.items.index', compact('meeting') );
+    }
 
     public function create(Meeting $meeting) {
         return view('council.items.create', compact('meeting'));

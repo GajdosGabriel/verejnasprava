@@ -23,9 +23,6 @@ class MeetingController extends Controller
         return view('council.meeting.edit', compact('meeting') );
     }
 
-    public function show(Meeting $council){
-        return view('council.meeting.show', compact('council') );
-    }
 
     public function update(Request $request, Meeting $meeting) {
         $meeting->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
