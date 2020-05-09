@@ -29,7 +29,7 @@ class ItemController extends Controller
     public function update(Request $request, Item $item) {
         $item->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $item->saveImage($request);
-        return redirect()->route('meet.show',[$item->meeting->id, $item->meeting->slug]);
+        return redirect()->route('item.index',[$item->meeting->id, $item->meeting->slug]);
     }
 
     public function store(Request $request, Meeting $meeting) {
@@ -38,7 +38,7 @@ class ItemController extends Controller
         $item->update(['order' => $meeting->items()->count() +1] );
 
         $item->saveImage($request);
-        return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
+        return redirect()->route('item.index',[$meeting->id, $meeting->slug]);
     }
 
     public function published(Item $item) {

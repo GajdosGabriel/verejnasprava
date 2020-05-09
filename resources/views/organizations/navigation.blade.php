@@ -29,11 +29,14 @@
                 </a>
                 <div class="dropdown-menu">
                     @can('delete')
-                    <a class="dropdown-item" href="{{ route('org.edit', [$object->id, $object->slug]) }}">Profil</a>
+                    <a class="dropdown-item" href="{{ route('org.edit', [$object->id, $object->slug]) }}">Nastavenia</a>
                     <a class="dropdown-item" href="{{ route('user.index', [$object->id, $object->slug ]) }}">Ľudia</a>
                     <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
                     @endcan
-                    @role('superadmin')
+
+                    <a class="dropdown-item" href="{{ route('user.index', [auth()->user()->id, auth()->user()->slug ]) }}">Môj profil</a>
+
+                        @role('superadmin')
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url( 'admin/user') }}">Zoznam regist.</a>
                     @endrole

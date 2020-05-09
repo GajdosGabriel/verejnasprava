@@ -17,9 +17,8 @@
                 <h2>Program schôdze</h2>
             </div>
 
-            <ol type="1">
             @forelse($items as $item)
-                    <li class="mt-4 bg-white px-3 pt-3">
+                    <div class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
                         @can('delete')
                         <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
@@ -56,7 +55,7 @@
 
                         <h5 style="border-bottom: 2px solid silver">
                             <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
-                                {{ $item->name }}
+                                {{ $loop->iteration }}.  {{ $item->name }}
                             </a>
                         </h5>
 
@@ -73,7 +72,7 @@
                                 Bez prílohy
                             @endforelse
                         @endif
-                    </li>
+                    </div>
 
                     <div class=" bg-secondary text-white text-center">
                         Za: {{ $item->users()->where('vote', 1)->count() }}
@@ -83,7 +82,6 @@
             @empty
                 bez záznamu
             @endforelse
-            </ol>
         </div>
 
         <div class="col-md-3">
