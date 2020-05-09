@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('active_organization', 5)->nullable();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('send_invitation')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

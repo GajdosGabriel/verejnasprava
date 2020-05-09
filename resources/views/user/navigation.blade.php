@@ -17,29 +17,19 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 {{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{ route('user.new-organization', [Auth::user()->id, Auth::user()->slug]) }}">Založiť organizáciu</a>--}}
+{{--                    <a class="nav-link" href="{{ route('user.edit', [$user->id, $user->slug]) }}"> Upraviť užívateľa</a>--}}
 {{--                </li>--}}
-
-                <li class="nav-item">
-{{--                    <a class="nav-link" href="{{ route('org.new.user', [Auth::user()->id, Auth::user()->slug]) }}">Nový zamestnanec</a>--}}
-                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->email }}
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('user.new-organization', [Auth::user()->id, Auth::user()->slug]) }}">Založiť organizáciu</a>
+                        <a class="dropdown-item" href="{{ route('user.edit', [auth()->user()->id, auth()->user()->slug]) }}">Profil</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('org.index', [auth()->user()->id, auth()->user()->slug]) }}">Späť</a>
 
-                        <a class="dropdown-item" href="{{ url('/logout') }}"
-                           onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            Odhlásiť
-                        </a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                         @csrf
-                        </form>
+
                     </div>
                 </li>
             </ul>

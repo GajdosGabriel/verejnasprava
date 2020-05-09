@@ -80,6 +80,7 @@ class UserController extends Controller
 
     public function sendInvitation(User $user) {
         $user->notify(new InviteUser($user));
+        $user->update(['send_invitation' => now()]);
         return back();
     }
 

@@ -19,10 +19,14 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         @if($user->email_verified_at)
-                            <span class="badge badge-secondary">Aktívny</span>
+                            <span class="badge badge-success">Aktívny</span>
                         @else
-                            <a href="{{ route('user.invitation', [$user->id, $user->slug]) }}" title="Poslať pozvánku">
-                                <span class="badge badge-info">Poslať pozvánku</span>
+                            <a href="{{ route('user.invitation', [$user->id, $user->slug]) }}">
+                                @if($user->send_invitation == null)
+                                <span class="badge badge-info"  title="Poslať pozvánku">Poslať pozvánku</span>
+                                @else
+                                <span class="badge badge-primary" title="Pozvánka poslaná dňa">Poslané: {{ $user->send_invitation }}</span>
+                                @endif
                             </a>
                         @endif
 
