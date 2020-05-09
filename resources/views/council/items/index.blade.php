@@ -18,7 +18,7 @@
             </div>
 
             <ol type="1">
-            @forelse($meeting->items as $item)
+            @forelse($items as $item)
                     <li class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
                         @can('delete')

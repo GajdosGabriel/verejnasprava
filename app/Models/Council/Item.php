@@ -54,5 +54,13 @@ class Item extends Model
 
     }
 
+    public function scopePublished($query){
+        // For admin
+        if (auth()->user()->hasPermissionTo('delete')) return $query;
+
+        // For common user
+        return $query->wherePublished(1);
+    }
+
 
 }
