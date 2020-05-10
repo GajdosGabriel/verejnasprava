@@ -41,6 +41,11 @@ class ItemController extends Controller
         return redirect()->route('item.index',[$meeting->id, $meeting->slug]);
     }
 
+    public function delete(Item $item) {
+        $item->delete();
+        return back();
+    }
+
     public function published(Item $item) {
         $item->published();
         return back();

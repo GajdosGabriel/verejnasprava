@@ -21,6 +21,33 @@
                     <div class="mt-4 bg-white px-3 pt-3">
                         {{-- Published button--}}
                         @can('delete')
+
+                            @can('delete')
+                                <a class="nav-link p-0 pull-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-cog text-secondary"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('item.delete', [$item->id, $item->slug]) }}">
+                                        <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                                        Zmazať
+                                    </a>
+                                    {{--                                <div class="dropdown-divider"></div>--}}
+                                    {{--                                <a class="dropdown-item" href="{{ route('item.delete', [$item->id, $item->slug]) }}">--}}
+                                    {{--                                    <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>--}}
+                                    {{--                                    Zmazať--}}
+                                    {{--                                </a>--}}
+
+                                    {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
+                                    {{--                                    @csrf @method('DELETE')--}}
+                                    {{--                                    <a class="dropdown-item" href="#" onclick="get_form(this).submit(); return false">--}}
+                                    {{--                                        <i @if(Auth::id() === $post->user_id) @else style="font-size: 118%; color: grey" @endif style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>--}}
+                                    {{--                                        Zmazať--}}
+                                    {{--                                    </a>--}}
+                                    {{--                                </form>--}}
+                                </div>
+
+                            @endcan
+
                         <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
                             @if($item->published)
                                 <span style="float: right" class="badge badge-primary">Publikované</span>
@@ -38,6 +65,7 @@
                         <a href="{{ route('item.down', [ $item->id, $item->slug]) }}">
                             <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Dole"><i class="fa fa-caret-down"></i></span>
                         </a>
+
                         @endcan
 
                         {{-- Hlasovanie  --}}

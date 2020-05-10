@@ -69,6 +69,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/{slug}/item/down', 'ItemOrderController@itemDown')->name('down');
         Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
+        Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
+
     });
 
     Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {
