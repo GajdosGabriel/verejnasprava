@@ -34,7 +34,7 @@
                     <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
                     @endcan
 
-                    <a class="dropdown-item" href="{{ route('user.index', [auth()->user()->id, auth()->user()->slug ]) }}">Môj profil</a>
+                    <a class="dropdown-item" href="{{ route('user.home', [auth()->user()->id, auth()->user()->slug ]) }}">Môj profil</a>
 
                         @role('superadmin')
                     <div class="dropdown-divider"></div>
