@@ -9,6 +9,7 @@
 
     <title>@yield('page-title', config('app.name'))</title>
 
+
     @yield('recaptcha')
 
     @yield('script-header')
@@ -22,6 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -39,10 +42,9 @@
 
 
 <script src="{{ mix('js/app.js') }}" defer></script>
-{{--<script>--}}
-    {{--$('div.alert').not('.alert-important').delay(3900).fadeOut(350);--}}
-{{--</script>--}}
 
+
+@livewireScripts
 @yield('script-down')
 
 </body>

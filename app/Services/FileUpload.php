@@ -8,15 +8,10 @@ use Intervention\Image\Facades\Image;
 
 trait FileUpload
 {
-    public function saveImage($request) {
+    public function saveFile($request) {
         if ($request->hasFile('filename')){
 
             foreach($request->filename as $file) {
-
-                //            $path =  $file->store('public/username' .  auth()->id() );
-                //            $file = $request->filename->move(storage_path('organization' . auth()->id()), $imageName);
-                //            $path = storage_path('public/username' . auth()->id()) . '/' . basename($file);
-
                 $url =  Storage::disk('public')->put('organization' .  auth()->user()->active_organization, $file);
 
                 $this->files()->create([
@@ -34,10 +29,18 @@ trait FileUpload
 
             }
         }
+
+
+        // Delete files in edit form
+        if ($request->has('fileDelete')){
+            foreach($request->fileDelete as $file) {
+                $this->files()->delete();
+            }
+        }
     }
 
 
-//    public function saveImage($request) {
+//    public function saveFile($request) {
 //        if (request()->hasFile('filename')){
 //
 //            $imageName =  request()->file('filename')->store('organization' .  auth()->user()->active_organization );

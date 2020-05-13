@@ -27,8 +27,8 @@ class ItemController extends Controller
     }
 
     public function update(Request $request, Item $item) {
-        $item->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
-        $item->saveImage($request);
+        $item->update(array_merge($request->except('filename', 'fileDelete'), ['user_id' => auth()->user()->id]));
+        $item->saveFile($request);
         return redirect()->route('item.index',[$item->meeting->id, $item->meeting->slug]);
     }
 
@@ -37,7 +37,7 @@ class ItemController extends Controller
 
         $item->update(['order' => $meeting->items()->count() +1] );
 
-        $item->saveImage($request);
+        $item->saveFile($request);
         return redirect()->route('item.index',[$meeting->id, $meeting->slug]);
     }
 

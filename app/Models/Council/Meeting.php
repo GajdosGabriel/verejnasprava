@@ -2,6 +2,7 @@
 
 namespace App\Models\Council;
 
+use App\Models\Comment;
 use App\Services\FileUpload;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,9 @@ class Meeting extends Model
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
+    }
+    public function comments() {
+        return $this->morphMany(Comment::class, 'fileable');
     }
 
     public function items() {

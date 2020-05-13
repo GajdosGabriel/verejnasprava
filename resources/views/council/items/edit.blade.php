@@ -35,13 +35,34 @@
                             </div>
 
                             {{--Príloha--}}
-                            <div class="form-group row">
+                            <div class="form-group row mt-5">
                                 <label for="filename" class="col-md-4 col-form-label text-md-right">Prílohy k návrhu</label>
 
                                 <div class="col-md-8">
                                     <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
+
+                                    {{--File--}}
+                                    @if( $item->files->count())
+                                        <div class="float-right">
+                                        <h5>Príloha</h5>
+                                        @forelse($item->files as $file)
+                                            <a class="mr-2" target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}. Príloha</a>
+
+                                            {{-- Check box --}}
+                                            <div class="form-group form-check float-right">
+                                                <input name="fileDelete[]" value="{{ $file->id }}" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">Zmazať</label>
+                                            </div>
+                                        @empty
+                                            Bez prílohy
+                                        @endforelse
+                                        </div>
+
+                                    @endif
                                 </div>
                             </div>
+
+
 
                             <div class="form-group row">
                                 <label for="vote_typ" class="col-md-4 col-form-label text-md-right">Hlasovanie</label>
@@ -58,16 +79,20 @@
                                 </div>
                             </div>
 
+                            <div class="form-group  float-right">
+                                {{-- Return back button --}}
+                                <a href="{{ url()->previous() }}" class="btn btn-light mx-4">Späť</a>
 
-
-                            {{-- Save button --}}
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary float-right">Uložiť</button>
+                                {{-- Save button --}}
+                                <button type="submit" class="btn btn-primary">Uložiť</button>
                             </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </form>
+
+
+
 
     @include('council.items._editor')
 @endsection

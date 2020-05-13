@@ -18,15 +18,73 @@
             </div>
 
             @forelse($items as $item)
-                    <div class="mt-4 bg-white px-3 pt-3">
-                        {{-- Published button--}}
-                        @can('delete')
+                    <div class="mt-4 bg-white">
+
+                        <div class="d-flex justify-content-between mb-2" style="border-bottom: 2px solid #656565">
+
+                        <h5>
+                            <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
+                                {{ $loop->iteration }}.  {{ $item->name }}
+                            </a>
+                        </h5>
+
+
+                        <div class="d-flex align-items-center">
+
+                            {{-- Hlasovanie  --}}
+                            @if($item->vote_type)
+                                <span class="badge badge-info">Tajné</span>
+                            @endif
+
+                            @if($item->vote_disabled)
+                                {{--  <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}
+                            @else
+                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">
+                                    <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
+                                </a>
+                            @endif
+
 
                             @can('delete')
-                                <a class="nav-link p-0 pull-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{-- Published button--}}
+                                <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
+                                    @if($item->published)
+                                        <span class="badge badge-primary ml-2">Publikované</span>
+                                    @else
+                                        <span class="badge badge-secondary ml-2">Publikovať</span>
+                                    @endif
+                                </a>
+
+                                {{-- Item Up button--}}
+{{--                                <a href="{{ route('item.up', [ $item->id, $item->slug]) }}">--}}
+{{--                                    <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Hore"><i class="fa fa-caret-up"></i></span>--}}
+{{--                                </a>--}}
+
+                                {{-- Item Down button--}}
+{{--                                <a href="{{ route('item.down', [ $item->id, $item->slug]) }}">--}}
+{{--                                    <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Dole"><i class="fa fa-caret-down"></i></span>--}}
+{{--                                </a>--}}
+
+                                <a class="nav-link ml-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-cog text-secondary"></i>
                                 </a>
+
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    {{-- Item Up button--}}
+                                    <a class="dropdown-item" href="{{ route('item.up', [ $item->id, $item->slug]) }}" title="Presunúť položku smerom hore">
+                                        <i class="fa fa-caret-up"></i>
+                                        Presúnúť položku hore
+                                    </a>
+
+                                    {{-- Item Down button--}}
+                                    <a class="dropdown-item" href="{{ route('item.down', [ $item->id, $item->slug]) }}" title="Presunúť položku smerom dole">
+                                        <i class="fa fa-caret-down"></i>
+                                        Presúnúť položku dole
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
                                     <a class="dropdown-item" href="{{ route('item.delete', [$item->id, $item->slug]) }}">
                                         <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
                                         Zmazať
@@ -48,44 +106,9 @@
 
                             @endcan
 
-                        <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
-                            @if($item->published)
-                                <span style="float: right" class="badge badge-primary">Publikované</span>
-                            @else
-                                <span style="float: right" class="badge badge-secondary">Publikovať</span>
-                            @endif
-                        </a>
+                        </div>
+                        </div>
 
-                        {{-- Item Up button--}}
-                        <a href="{{ route('item.up', [ $item->id, $item->slug]) }}">
-                            <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Hore"><i class="fa fa-caret-up"></i></span>
-                        </a>
-
-                        {{-- Item Down button--}}
-                        <a href="{{ route('item.down', [ $item->id, $item->slug]) }}">
-                            <span style="float: right; margin-right: .2rem" class="badge badge-light" title="Dole"><i class="fa fa-caret-down"></i></span>
-                        </a>
-
-                        @endcan
-
-                        {{-- Hlasovanie  --}}
-                        @if($item->vote_type)
-                            <span style="float: right" class="badge badge-info">Tajné</span>
-                        @endif
-
-                        @if($item->vote_disabled)
-{{--                            <span style="float: right" class="badge badge-secondary">Hlasovanie vypnuté</span>--}}
-                        @else
-                            <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">
-                                <span style="float: right" class="badge badge-success">Hlasovanie zapnuté</span>
-                            </a>
-                        @endif
-
-                        <h5 style="border-bottom: 2px solid silver">
-                            <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
-                                {{ $loop->iteration }}.  {{ $item->name }}
-                            </a>
-                        </h5>
 
                         <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>
 
@@ -112,8 +135,9 @@
             @endforelse
         </div>
 
+{{-- ASIDE --}}
         <div class="col-md-3">
-
+            <livewire:comments :meeting="$meeting" />
         </div>
 
     </div>

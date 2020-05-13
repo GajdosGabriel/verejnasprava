@@ -13,21 +13,14 @@ class QuestionsController extends Controller
 
     public function index() {
 
-        $questions = Question::orderBy('created_at', 'desc')->paginate(8);
-////        only for me
-//        if ($user->role == 'admin') {
-//            $questions = Question::orderBy('created_at', 'desc')->paginate(8);
-//        } else {
-//            //        for all others
-//            $questions = Question::where("user_id", "=", $user->id)->orderBy('id', 'DESC')->paginate(8);
-//        }
+        $questions = Question::whereUserId(auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('questions.index')->with('questions', $questions);
 
     }
     public function store(Request $request) {
 
-        return $request->all();
+//        return $request->all();
 
         $validator = Validator::make ($request->all(),[
             'question' => 'required|min:3'
@@ -46,7 +39,7 @@ class QuestionsController extends Controller
 
 //        flash()->success('Správa bola odoslaná');
 
-        return $validator;
+//        return $validator;
         return redirect()->back();
 
     }

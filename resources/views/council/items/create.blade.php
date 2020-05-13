@@ -56,8 +56,12 @@
 
 
 
-                            {{-- Save button --}}
-                            <div class="form-group">
+
+                            <div class="form-group float-right">
+                                {{-- Return back button --}}
+                                <a href="{{ url()->previous() }}" class="btn btn-light mx-4">Späť</a>
+
+                                {{-- Save button --}}
                                 <button type="submit" class="btn btn-primary float-right">Uložiť</button>
                             </div>
                         </div>

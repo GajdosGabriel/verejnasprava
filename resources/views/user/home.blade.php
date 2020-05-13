@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <h2>User Home</h2>
+            <h2>Vitaj home user</h2>
             <div class="alert alert-primary" role="alert" class="accordion" id="accordionExample">
                 Zverejňovať <a href="#" class="alert-link">zmlúvy a faktúry</a>!
 

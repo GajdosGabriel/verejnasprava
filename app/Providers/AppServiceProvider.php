@@ -2,15 +2,17 @@
 
 namespace App\Providers;
 
-use App\Models\Contact;
-use App\Observers\ContactObserver;
-use App\Observers\OrderItemObserver;
-use App\Models\OrderItem;
-use App\Models\User;
-use App\Models\Category;
-use App\Models\Organization;
 use App\Observers\UserObserver;
+use App\Observers\ContactObserver;
+use App\Observers\ItemOrderObserver;
+use App\Observers\OrderItemObserver;
 use App\Observers\OrganizationObserver;
+use App\Models\User;
+use App\Models\Contact;
+use App\Models\Category;
+use App\Models\OrderItem;
+use App\Models\Council\Item;
+use App\Models\Organization;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         Contact::observe(ContactObserver::class);
         Organization::observe(OrganizationObserver::class);
         OrderItem::observe(OrderItemObserver::class);
+        Item::observe(ItemOrderObserver::class);
+
 
         Carbon::setLocale(config('app.locale'));
 

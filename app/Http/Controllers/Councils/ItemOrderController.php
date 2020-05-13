@@ -9,21 +9,32 @@ use Illuminate\Http\Request;
 class ItemOrderController extends Controller
 {
     public function ItemUp(Item $item){
-        if($item->order > 1){
 
-      $itemBefore =  Item::whereMeetingId($item->meeting_id)->whereOrder($item->order - 1)->first();
-        $item->decrement('order');
-        $itemBefore->increment('order');
-        }
+        $itemUp = Item::whereMeetingId($item->meeting_id)->orderBy('order', 'asc')->where('order', '<', $item->order)->first();
+
+        session()->put('itemUp',  $itemUp->order);
+        session()->put('itemDown',  $item->order);
+
+
+        $item->update(['order' =>  session('itemUp')]);
+        $itemUp->update(['order' =>  session('itemDown')]);
+
+
 
         return back();
     }
 
     public function ItemDown(Item $item){
-        if($itemBefore = Item::whereMeetingId($item->meeting_id)->whereOrder($item->order + 1)->first()){
-        $item->increment('order');
-        $itemBefore->decrement('order');
-        }
+
+        $itemUp = Item::whereMeetingId($item->meeting_id)->orderBy('order', 'asc')->where('order', '>', $item->order)->first();
+
+        session()->put('itemUp',  $itemUp->order);
+        session()->put('itemDown',  $item->order);
+
+
+        $item->update(['order' =>  session('itemUp')]);
+        $itemUp->update(['order' =>  session('itemDown')]);
+
 
         return back();
     }

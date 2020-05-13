@@ -8,13 +8,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm">
-                <div id="commentGroup"></div>
-            </div>
-            <div class="col-sm">
-                One of three columns
-            </div>
-            <div class="col-sm">
+            <div class="col-8">
                 <h2>Máte otázku</h2>
                 <div class="card">
                     <div class="card-header">Napíšte otázku || Položiť otázku, poslať podnet</div>
@@ -35,30 +29,23 @@
 
                         @forelse($questions as $question)
 
-
-
-                            {{--Odpovede administrátora--}}
-                            {{--@if($question->user->role == 'admin')--}}
-
+                            {{-- User --}}
                             <div class="media">
-                                <img style="width: 8%" src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class="ml-3" alt="...">
-
+                                <img style="width:8%" src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class="align-self-start mr-3" alt="...">
                                 <div class="media-body">
-                                    <h5 class="mt-0">Otázka</h5>
-                                    {{ $question->question }}
-
-                                    <div class="media mt-3">
-                                        <a class="mr-3" href="#">
-                                            <img style="width: 50%" src="{{asset('image/administrator.jpg')}}" class="mr-3" alt="...">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="mt-0">Odpoveď správcu</h5>
-                                            {{ $question->question }}
-                                        </div>
-                                    </div>
+                                    <h5 class="mt-0">Top-aligned media</h5>
+                                    <p>{{ $question->question }}</p>
                                 </div>
                             </div>
 
+                            {{-- Administrátor --}}
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">Administrátor</h5>
+                                    <p>{{ $question->question }}</p>
+                                </div>
+                                <img style="width:8%" src="{{asset('image/administrator.jpg')}}" class="ml-3" alt="...">
+                            </div>
                         @empty
                             Zatiaľ ste sa nepoložili žiadnu otázku.
                         @endforelse

@@ -74,7 +74,7 @@ class PostController extends Controller
         $post = $organization->posts()->create($request->except('filename'));
 //        Cache::forget('posts');
 
-        $post->saveImage($request);
+        $post->saveFile($request);
 //        flash()->success('Doklad bol pridaný. ');
         return back();
     }

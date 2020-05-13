@@ -64,6 +64,10 @@ class User extends Authenticatable
         return $this->hasMany(Question::class)->orderBy('created_at', 'desc');
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function full_name(){
         return $this->first_name .' '. $this->last_name;
     }
