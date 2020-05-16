@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+@section('page-title', 'Zoznam príspevkov')
+
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 

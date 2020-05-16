@@ -182,6 +182,13 @@ foreach ($permissions as $permission => $category) {
                 'model_id' => 1,
             ],
         ]);
+
+        \DB::table('model_has_roles')->insert([
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User'
+            ],
+        ]);
     }
 
     /**

@@ -34,7 +34,6 @@ class UserController extends Controller
     }
 
     public function edit(User $user, $slug) {
-//        dd($user);
         return view('user.edit', compact('user'));
     }
 
@@ -53,7 +52,6 @@ class UserController extends Controller
 
     public function store(Organization $organization, UserCreateRequest $userRequest) {
 
-//        dd($userCreateRequest->all());
         $user = User::create([
             'first_name' => $userRequest['first_name'],
             'last_name' => $userRequest['last_name'],

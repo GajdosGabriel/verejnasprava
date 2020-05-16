@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('public.navigation')
-@endsection
+@section('page-title', 'Prihlásenie')
+
+@section('navigation') @include('public.navigation') @endsection
 
 @section('content')
 <div class="container">

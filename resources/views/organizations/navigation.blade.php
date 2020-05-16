@@ -18,10 +18,12 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$object->id, $object->slug ]) }}">Zverejňovanie</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$object->id, $object->slug ]) }}">Kontakty</a></li>
+
+            @role('super-admin')
             <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$object->id, $object->slug]) }}">Objednávky</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('question.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
             <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [$object->id, $object->slug ]) }}">Zastupiteľstva</a></li>
-
+            @endrole
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,8 +38,8 @@
 
                     <a class="dropdown-item" href="{{ route('user.home', [auth()->user()->id, auth()->user()->slug ]) }}">Môj profil</a>
 
-                        @role('superadmin')
                     <div class="dropdown-divider"></div>
+                    @role('superadmin')
                     <a class="dropdown-item" href="{{ url( 'admin/user') }}">Zoznam regist.</a>
                     @endrole
 

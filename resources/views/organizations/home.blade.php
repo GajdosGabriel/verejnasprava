@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+@section('page-title', 'Úvodná stránka')
+
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 
@@ -25,6 +25,7 @@
                 </div>
             </div>
             <div class="col-md-4">
+                @can('admin')
                 <h2>História aktivít</h2>
                 <ul class="list-group">
                     @forelse($activities as $activity)
@@ -33,10 +34,11 @@
                         <p>Bez záznamu</p>
                     @endforelse
                 </ul>
+                @endcan
             </div>
         </div>
 
-    </div>
+
 
 
 @endsection
