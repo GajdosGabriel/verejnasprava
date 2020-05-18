@@ -4,7 +4,7 @@
 
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ route('item.index', [$meeting->id, $meeting->slug])  }}">
-                {{ $object->name }} - {{ $meeting->name }}
+                {{ $meeting->name }}
             </a>
         </div>
 

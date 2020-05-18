@@ -4,7 +4,7 @@
 
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ route('meet.index', [$council->id, $council->slug])  }}">
-                {{ $object->name }} - {{ $council->name }}
+                {{ $council->name }}
             </a>
         </div>
 
@@ -35,6 +35,7 @@
                     <a class="dropdown-item" href="{{ url( 'admin/user') }}">Zoznam regist.</a>
                     @endrole
 
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url('/logout') }}"
                        onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">

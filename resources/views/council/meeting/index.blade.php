@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam zasadnutí')
-@section('navigation')
-    @include('council.meeting.navigation')
-@endsection
+@section('navigation') @include('council.meeting.navigation') @endsection
 
 @section('content')
 
