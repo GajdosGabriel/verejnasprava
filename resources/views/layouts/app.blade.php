@@ -32,7 +32,7 @@
 
         @show
 
-        <div class="container pt-4" style="background: white;min-height: 85vh;">
+        <div class="">
             @yield('content')
 
             {{--Errors--}}
