@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam dokladov')
-@section('navigation') @include('public.navigation') @endsection
+
+@section('navigation') <x-navigation /> @endsection
 
 @section('content')
+
 
     @include('layouts.banner-top')
     @include('layouts.banner-middle')

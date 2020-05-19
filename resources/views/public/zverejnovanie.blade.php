@@ -2,9 +2,7 @@
 
 @section('page-title', 'Zverejňovanie dokumentov')
 
-@section('navigation')
-    @include('public.navigation')
-@endsection
+@section('navigation') <x-navigation /> @endsection
 
 @section('content')
 
