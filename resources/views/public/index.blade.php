@@ -9,8 +9,8 @@
     @include('layouts.banner-top')
 
     <div class="w-full p-6 bg-blue-100">
-        <div class="w-48 mx-auto pt-6 border-b-2 border-orange-500 text-center text-2xl text-blue-700">OUR SERVICES</div>
-        <div class="p-2 text-center text-lg text-gray-700">We offer the best web development solutions.</div>
+        <div class="w-48 mx-auto pt-6 border-b-2 border-orange-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
+        <div class="p-2 text-center text-lg text-gray-700">Najlepšie webové riešenie. Registrácie zadarmo.</div>
         <div class="flex justify-center flex-wrap p-10">
 
             <div class="relative w-48 h-64 m-5 bg-white shadow-lg">
@@ -42,7 +42,7 @@
 
     <div class="col-12 text-center my-5 d-flex justify-content-center flex-column">
         <div><a href="{{ url('/register') }}" class="btn btn-primary">Začať zdarma bez záväzkov</a></div>
-        <small class="text-secondary">Registrácia bez poplatkov</small>
+{{--        <small class="text-secondary">Registrácia bez poplatkov</small>--}}
     </div>
 
     <div class="col-md-12">
