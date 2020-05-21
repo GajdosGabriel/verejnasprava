@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam kontaktov')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+
+@section('navigation') <x-navigationOrganization /> @endsection
+{{--@section('navigation')--}}
+{{--    @include('organizations.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
@@ -12,7 +14,9 @@
             {{--@include('organizations._form')--}}
         {{--</form>--}}
 
+        <div class="container mx-auto min-h-screen p-6">
         <index-table  :contacts="{{ $organization->contacts }}" :organization="{{ $organization }}"></index-table>
+        </div>
 
 
 

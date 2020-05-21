@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('user.navigation')
-@endsection
+@section('navigation') <x-navigationUser /> @endsection
+
+{{--@section('navigation')--}}
+{{--    @include('user.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
 
-    <div class="row">
+    <div class="container mx-auto">
         <div class="col-md-8">
             <h2>Vitaj home user</h2>
             <div class="alert alert-primary" role="alert" class="accordion" id="accordionExample">

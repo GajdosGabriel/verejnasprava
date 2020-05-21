@@ -1,14 +1,14 @@
 <table class="table table-bordered table-inverse table-hover">
     <thead>
-    <tr class="alert-info">
-        <th>Dátum</th>
-        <th>Popis</th>
-        <th>Kategória</th>
-        <th>Dodávateľ</th>
-        <th>Cena spolu</th>
-        <th>Súbor</th>
-        <th>Int. číslo</th>
-        <th>Panel</th>
+    <tr class="table-auto">
+        <th class="px-4 py-2">Popis</th>
+        <th class="px-4 py-2">Dátum</th>
+        <th class="px-4 py-2">Kategória</th>
+        <th class="px-4 py-2">Dodávateľ</th>
+        <th class="px-4 py-2">Cena spolu</th>
+        <th class="px-4 py-2">Súbor</th>
+        <th class="px-4 py-2">Int. číslo</th>
+        <th class="px-4 py-2">Panel</th>
     </tr>
     </thead>
     <tbody>
@@ -16,22 +16,22 @@
 
 
         @forelse($posts as $post)
-            <td>{{ $post->date_in }}</td>
-            <td>{{ $post->name }}</td>
-            <td>{{ $post->category->name }}</td>
-            <td>{{ $post->contact->name }}</td>
-            <td>{{ number_format($post->price, 2, ',', ' ') }} Eu</td>
-            <td>
+            <td class="border px-4 py-2">{{ $post->date_in }}</td>
+            <td class="border px-4 py-2">{{ $post->name }}</td>
+            <td class="border px-4 py-2">{{ $post->category->name }}</td>
+            <td class="border px-4 py-2">{{ $post->contact->name }}</td>
+            <td class="border px-4 py-2">{{ number_format($post->price, 2, ',', ' ') }} Eu</td>
+            <td class="border px-4 py-2">
             @forelse($post->files as $file)
               <a target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>
             @empty
                 Bez prílohy
             @endforelse
 
-            <td>{{ $post->int_number }}</td>
+            <td class="border px-4 py-2"> {{ $post->int_number }}</td>
 
             {{--@can( 'update', $post)--}}
-            <td class="d-flex justify-content-center">
+            <td class="border px-4 py-2">
                 <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog text-secondary"></i>
                 </a>

@@ -1,26 +1,24 @@
 @extends('layouts.app')
 @section('page-title', 'Nové zasadnutie')
-@section('navigation')
-    @include('council.meeting.navigation')
-@endsection
+@section('navigation') <x-navigationMeeting /> @endsection
 
 @section('content')
 
 
-        <h1>Vytvoriť zasadnutie zastupiteľstva</h1>
 
-        <div class="row">
+
+        <div class="container mx-auto p-6 min-h-screen">
+            <h1 class="font-bold">Vytvoriť zasadnutie</h1>
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-8">
-                        <form method="POST" action="{{ route('meet.store', [$council->id, $council->slug]) }}" enctype="multipart/form-data">
-                            @csrf @method('POST')
+                <div class="md:w-full">
 
-                            @include('council.meeting._form')
+                    <form method="POST" action="{{ route('meet.store', [$council->id, $council->slug]) }}" enctype="multipart/form-data">
+                        @csrf @method('POST')
 
-                        </form>
+                        @include('council.meeting._form')
+                    </form>
 
-                     </div>
+
 
                     <div class="col-md-4">
 

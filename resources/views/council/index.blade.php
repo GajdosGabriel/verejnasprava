@@ -1,48 +1,50 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam zastupiteľstiev')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+
+@section('navigation') <x-navigationOrganization /> @endsection
 
 @section('content')
 
 
-    <h1>Vaše zastupiteľstvá</h1>
-    <div class="col-md-12">
-        @can('delete')
-        <a class="btn btn-primary float-right" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
-        @endcan
 
-        <table class="table table-bordered table-inverse table-hover">
+    <div class="container mx-auto min-h-screen p-6">
+        <div class="flex justify-between">
+            <h1>Vaše zastupiteľstvá</h1>
+            @can('delete')
+                <a class="btn btn-blue" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
+            @endcan
+        </div>
+
+        <table class="table-auto">
             <thead>
                 <tr class="alert-info">
-                    <th>Popis</th>
-                    <th>Typ</th>
-                    <th>Počet zasadnutí</th>
-                    <th>Počet členov</th>
+                    <th class="px-4 py-2">Popis</th>
+                    <th class="px-4 py-2">Typ</th>
+                    <th class="px-4 py-2">Počet zasadnutí</th>
+                    <th class="px-4 py-2">Počet členov</th>
                     @can('delete')
-                    <th>Panel</th>
+                    <th class="px-4 py-2">Panel</th>
                     @endcan
                 </tr>
             </thead>
             <tbody>
             <tr>
                 @forelse($organization->councils as $council)
-                    <td>
+                    <td class="border px-4 py-2">
                         <a href="{{ route('meet.index', [$council->id, $council->slug]) }}">
                             {{ $council->name }}
                         </a>
                     </td>
-                    <td>{{ $council->description }}</td>
-                    <td>{{ $council->meetings()->count() }}</td>
-                    <td>
+                    <td class="border px-4 py-2">{{ $council->description }}</td>
+                    <td class="border px-4 py-2">{{ $council->meetings()->count() }}</td>
+                    <td class="border px-4 py-2">
                         <a href="{{ route('zast.userList', [$council->id, $council->slug]) }}">
                             {{ $council->users()->count() }}
                         </a>
                     </td>
 
                 @can('delete')
-                <td class="d-flex justify-content-center">
+                <td class="border px-4 py-2">
                     <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog text-secondary"></i>
                     </a>

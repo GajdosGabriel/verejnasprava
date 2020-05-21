@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('page-title', 'Upraviť zasadnutie')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+@section('navigation') <x-navigationOrganization /> @endsection
 
 @section('content')
 

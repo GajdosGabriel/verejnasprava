@@ -1,34 +1,37 @@
 <template>
    <div>
-       <h1>Zoznam dodávateľov</h1>
+
+       <div class="flex justify-between max-w-4xl py-5">
+       <h1 class="font-bold">Zoznam dodávateľov</h1>
+       <a :href="urlNewContact" class="btn btn-blue">Nový kontakt</a>
+       </div>
 
 
-       <a :href="urlNewContact" class="btn btn-secondary btn-sm pull-right">Nový kontakt</a>
-       <table class="table table-striped">
+       <table class="table-auto">
            <thead>
            <tr>
-               <th>Názov firmy</th>
-               <th>Adresa</th>
-               <th>Mesto</th>
-               <th>Psč</th>
-               <th>Ičo</th>
-               <th>Dič</th>
-               <th>Email</th>
-               <th>Tel.</th>
-               <th>Panel</th>
+               <th class="px-4 py-2">Názov firmy</th>
+               <th class="px-4 py-2">Adresa</th>
+               <th class="px-4 py-2">Mesto</th>
+               <th class="px-4 py-2">Psč</th>
+               <th class="px-4 py-2">Ičo</th>
+               <th class="px-4 py-2">Dič</th>
+               <th class="px-4 py-2">Email</th>
+               <th class="px-4 py-2">Tel.</th>
+               <th class="px-4 py-2">Panel</th>
            </tr>
            </thead>
            <tbody>
                <tr  v-for="contact in contacts">
-                   <td v-text="contact.name"></td>
-                   <td v-text="contact.street"></td>
-                   <td v-text="contact.city"></td>
-                   <td v-text="contact.psc"></td>
-                   <td v-text="contact.ico"></td>
-                   <td v-text="contact.dic"></td>
-                   <td v-text="contact.email"></td>
-                   <td v-text="contact.phone"></td>
-                   <td>
+                   <td class="border px-4 py-2" v-text="contact.name"></td>
+                   <td class="border px-4 py-2" v-text="contact.street"></td>
+                   <td class="border px-4 py-2" v-text="contact.city"></td>
+                   <td class="border px-4 py-2" v-text="contact.psc"></td>
+                   <td class="border px-4 py-2" v-text="contact.ico"></td>
+                   <td class="border px-4 py-2" v-text="contact.dic"></td>
+                   <td class="border px-4 py-2" v-text="contact.email"></td>
+                   <td class="border px-4 py-2" v-text="contact.phone"></td>
+                   <td class="border px-4 py-2">
                        <a :href="'/org/' + contact.id + '/'  + contact.slug + '/contact/edit'">Edit</a>
                    </td>
                </tr>
@@ -55,4 +58,8 @@
         }
     }
 </script>
+
+<style lang="scss">
+
+</style>
 

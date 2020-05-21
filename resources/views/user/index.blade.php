@@ -2,6 +2,8 @@
 
 @section('page-title', 'Home profil')
 
+
+
 @section('navigation') @include('user.navigation') @endsection
 
 @section('content')

@@ -1,15 +1,19 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam objednávok')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+
+@section('navigation') <x-navigationOrganization /> @endsection
+{{--@section('navigation')--}}
+{{--    @include('organizations.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
 
-    <div class="d-block justify-content-between">
-        <h1>Zoznam objednávok</h1>
-            <a class="btn btn-primary pull-right" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
+    <div class="container min-h-screen p-6">
+        <div class="flex justify-between items-center">
+        <h1 class="font-bold">Zoznam objednávok</h1>
+         <a class="btn btn-blue" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
+        </div>
     </div>
 
 

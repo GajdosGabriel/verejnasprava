@@ -15,9 +15,19 @@ require('laravel-mix-purgecss');
 // mix.js('resources/js/app.js', 'public/js')
 //    .sass('resources/sass/app.scss', 'public/css').sourceMaps();
 
+// mix.js('resources/js/app.js', 'public/js')
+//     .sass('resources/sass/app.scss', 'public/css')
+//     .options({
+//         processCssUrls: false,
+//         postCss: [ tailwindcss('./tailwind.config.js') ],
+//     }).purgeCss();
+
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.js') ],
-    }).purgeCss();
+    });
+
+// Disable success notifications
+mix.disableSuccessNotifications();

@@ -2,7 +2,8 @@
 
 @section('page-title', 'Zoznam príspevkov')
 
-@section('navigation') @include('organizations.navigation') @endsection
+@section('navigation') <x-navigationOrganization /> @endsection
+{{--@section('navigation') @include('organizations.navigation') @endsection--}}
 
 @section('content')
 

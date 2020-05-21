@@ -1,26 +1,31 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam zasadnutí')
-@section('navigation') @include('council.meeting.navigation') @endsection
+
+@section('navigation') <x-navigationMeeting /> @endsection
+{{--@section('navigation') @include('council.meeting.navigation') @endsection--}}
 
 @section('content')
 
 
-    <h2>Zoznam zasadnutí</h2>
-    <div class="col-md-12">
-        @can('delete')
-        <a class="btn btn-primary float-right" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
-        @endcan
+    <div class="container mx-auto p-6 min-h-screen">
 
-        <table class="table table-bordered table-inverse table-hover">
+        <div class=" flex justify-between">
+        <h1 class="font-bold">Zoznam zasadnutí</h1>
+            @can('delete')
+                <a class="btn btn-blue" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
+            @endcan
+        </div>
+
+        <table class="table-auto">
             <thead>
                 <tr class="alert-info">
-                    <th>Dátum</th>
-                    <th>Popis</th>
-                    <th>Typ</th>
-                    <th>Vystavil</th>
-                    <th>Príloha</th>
-                    <th>Publikované</th>
-                    <th>Body rokovania</th>
+                    <th class="px-4 py-2">Dátum</th>
+                    <th class="px-4 py-2">Popis</th>
+                    <th class="px-4 py-2">Typ</th>
+                    <th class="px-4 py-2">Vystavil</th>
+                    <th class="px-4 py-2">Príloha</th>
+                    <th class="px-4 py-2">Publikované</th>
+                    <th class="px-4 py-2">Body rokovania</th>
                     @can('delete')
                     <th>Panel</th>
                     @endcan
@@ -31,22 +36,22 @@
 
 
                 @forelse($council->meetings as $council)
-                    <td>{{ $council->start_at->format('d. m. Y') }} <strong>{{ $council->start_at->format('H:i') }} hod.</strong></td>
-                    <td>
+                    <td class="border px-4 py-2">{{ $council->start_at->format('d. m. Y') }} <strong>{{ $council->start_at->format('H:i') }} hod.</strong></td>
+                    <td class="border px-4 py-2">
                         <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
                             {{ $council->name }}
                         </a>
                     </td>
-                    <td>{{ $council->description }}</td>
-                    <td>{{ $council->user->full_name() }}</td>
-                    <td>
+                    <td class="border px-4 py-2">{{ $council->description }}</td>
+                    <td class="border px-4 py-2">{{ $council->user->full_name() }}</td>
+                    <td class="border px-4 py-2">
                         @forelse($council->files as $file)
                             <a target="_blank" href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}.Príloha</a>
                         @empty
                             Bez prílohy
                         @endforelse
                     </td>
-                    <td>
+                    <td class="border px-4 py-2">
                         @can('delete')
                         <a href="{{ route('meet.published', [ $council->id, $council->slug]) }}">
                             @if($council->published)
@@ -57,10 +62,10 @@
                         </a>
                         @endcan
                     </td>
-                    <td>{{ $council->items()->count() }}</td>
+                    <td class="border px-4 py-2">{{ $council->items()->count() }}</td>
 
                 @can('delete')
-                <td class="d-flex justify-content-center">
+                <td class="border px-4 py-2">
                     <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog text-secondary"></i>
                     </a>
