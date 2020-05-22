@@ -1,5 +1,5 @@
 @forelse($posts as $key => $value)
-<table class="table-auto container mx-auto">
+<table class="table-auto">
     <thead>
     <tr>
         <th class="px-4 py-2">Organizácia</th>

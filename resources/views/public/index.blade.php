@@ -45,7 +45,7 @@
 {{--        <small class="text-secondary">Registrácia bez poplatkov</small>--}}
     </div>
 
-    <div class="col-md-12">
+    <div class="container mx-auto">
 
         <h3 class="text-center mt-5">Zoznam publikovaných dokladov</h3>
 

@@ -18,9 +18,11 @@
             {{--  // --}}
         </div>
         <div>
+            @if(isset($headerMenu))
             @foreach($headerMenu as $link)
                 <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="{{$link['url']}}">{{$link['title']}}</a>
             @endforeach
+            @endif
             <dropdown></dropdown>
         </div>
     </div>
