@@ -2120,12 +2120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -58676,34 +58670,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "a",
-      {
-        staticClass:
-          "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4",
-        attrs: { href: "#" },
-        on: {
-          click: function($event) {
-            _vm.isOpen = !_vm.isOpen
-          }
-        }
-      },
-      [_vm._v("aaa")]
-    ),
-    _vm._v(" "),
-    _vm.isOpen
-      ? _c(
-          "a",
-          {
-            staticClass:
-              "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4",
-            attrs: { href: "#" }
-          },
-          [_vm._v("okno")]
-        )
-      : _vm._e()
-  ])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -58728,168 +58695,169 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          { staticStyle: { background: "rgba(107, 99, 100, 0.23)" } },
-          _vm._l(_vm.items, function(item, index) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(index + 1))]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "textarea",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: item.name,
-                        expression: "item.name"
-                      }
-                    ],
-                    staticStyle: { width: "100%" },
-                    attrs: { name: "name[]", rows: "1", required: "" },
-                    domProps: { value: item.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(item, "name", $event.target.value)
-                      }
-                    }
-                  },
-                  [_vm._v("Objednávame ")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
+    _c("table", { staticClass: "table-auto" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        { staticStyle: { background: "rgba(107, 99, 100, 0.23)" } },
+        _vm._l(_vm.items, function(item, index) {
+          return _c("tr", [
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              _vm._v(_vm._s(index + 1))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              _c(
+                "textarea",
+                {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: item.quantity,
-                      expression: "item.quantity"
+                      value: item.name,
+                      expression: "item.name"
                     }
                   ],
-                  attrs: {
-                    placeholder: "počet",
-                    type: "number",
-                    required: "",
-                    name: "quantity[]"
-                  },
-                  domProps: { value: item.quantity },
+                  staticStyle: { width: "100%" },
+                  attrs: { name: "name[]", rows: "1", required: "" },
+                  domProps: { value: item.name },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(item, "quantity", $event.target.value)
+                      _vm.$set(item, "name", $event.target.value)
                     }
                   }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "div",
+                },
+                [_vm._v("Objednávame ")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "input-group",
-                    staticStyle: { width: "200px" }
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: item.price,
-                          expression: "item.price"
-                        }
-                      ],
-                      attrs: {
-                        placeholder: "cena",
-                        type: "number",
-                        step: "0.01",
-                        required: "",
-                        name: "price_with_vat[]"
-                      },
-                      domProps: { value: item.price },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.addItem($event)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(item, "price", $event.target.value)
-                        }
+                    name: "model",
+                    rawName: "v-model",
+                    value: item.quantity,
+                    expression: "item.quantity"
+                  }
+                ],
+                attrs: {
+                  placeholder: "počet",
+                  type: "number",
+                  required: "",
+                  name: "quantity[]"
+                },
+                domProps: { value: item.quantity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(item, "quantity", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              _c(
+                "div",
+                { staticClass: "input-group", staticStyle: { width: "200px" } },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.price,
+                        expression: "item.price"
                       }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(1, true)
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(2, true),
-              _vm._v(" "),
-              _c("td", { staticStyle: { width: "10%" } }, [
+                    ],
+                    attrs: {
+                      placeholder: "cena",
+                      type: "number",
+                      step: "0.01",
+                      required: "",
+                      name: "price_with_vat[]"
+                    },
+                    domProps: { value: item.price },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.addItem($event)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "price", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(2, true),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "border px-4 py-2",
+                staticStyle: { width: "10%" }
+              },
+              [
                 _vm._v(
                   _vm._s(_vm._f("zaokruhlenie")(item.quantity * item.price)) +
                     ",-"
                 )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-default btn-xs pull-right",
-                    attrs: { title: "Zmazať položku" },
-                    on: {
-                      click: function($event) {
-                        return _vm.removeItem(index)
-                      }
+              ]
+            ),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-xs pull-right",
+                  attrs: { title: "Zmazať položku" },
+                  on: {
+                    click: function($event) {
+                      return _vm.removeItem(index)
                     }
-                  },
-                  [_vm._v("X")]
-                )
-              ])
+                  }
+                },
+                [_vm._v("X")]
+              )
             ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex justify-content-end mt-n3" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-secondary btn-sm",
-            on: { click: _vm.addItem }
-          },
-          [_vm._v("Nový riadok")]
-        )
-      ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex justify-content-end mt-n3" }, [
+      _c(
+        "a",
+        { staticClass: "btn btn-secondary btn-sm", on: { click: _vm.addItem } },
+        [_vm._v("Nový riadok")]
+      )
     ]),
     _vm._v(" "),
     _c("input", {
@@ -58932,27 +58900,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "thead",
-      { staticStyle: { background: "#464646", color: "white" } },
-      [
-        _c("tr", [
-          _c("td", [_vm._v("Por.")]),
-          _vm._v(" "),
-          _c("td", { staticClass: "w-50" }, [_vm._v("Položka")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Počet")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Cena/ks")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Dph")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Cena/Euro")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Panel")])
-        ])
-      ]
-    )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Por.")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Položka")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Počet")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Cena/ks")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dph")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Cena/Euro")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Panel")])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -58966,7 +58930,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticStyle: { width: "60px" } }, [
+    return _c("td", { staticClass: "border px-4 py-2" }, [
       _c(
         "select",
         {

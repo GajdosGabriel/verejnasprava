@@ -17,14 +17,36 @@
         <div class="text-sm lg:flex-grow">
             {{--  // --}}
         </div>
+
         <div>
             @if(isset($headerMenu))
-            @foreach($headerMenu as $link)
-                <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="{{$link['url']}}">{{$link['title']}}</a>
-            @endforeach
+                @foreach($headerMenu as $link)
+                    <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="{{$link['url']}}">{{$link['title']}}</a>
+                @endforeach
             @endif
-            <dropdown></dropdown>
         </div>
+
+        {{-- Dropdown component  --}}
+        @auth
+        <dropdown inline-template>
+            <div class="relative">
+                <button @click="isOpen =! isOpen" class="inline-flex items-center mt-4 lg:mt-0 text-teal-200 hover:text-white mr-4">
+                    {{ auth()->user()->full_name() }}
+                    <svg class="fill-current h-4 w-4 mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </button>
+
+                <ul v-show="isOpen" class="dropdown-menu absolute text-gray-700 pt-1 right-0">
+                    @if(isset($dropDownItems))
+                        @foreach($dropDownItems as $item)
+                    <li><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{$item['url']}}">{{$item['title']}}</a></li>
+                        @endforeach
+                    @endif
+                </ul>
+
+            </div>
+        </dropdown>
+        @endauth
+        {{-- End Dropdown component  --}}
     </div>
 </nav>
 

@@ -62,4 +62,30 @@ class navigationOrganization extends Component
             ]
         ];
     }
+
+
+    public function dropDownItems(){
+        return [
+            [
+                'title' => 'Nastavenia',
+                'url' => route('org.edit', [$this->object->id, $this->object->slug ])
+            ],
+            [
+                'title' => 'Ľudia',
+                'url' => route('user.index', [$this->object->id, $this->object->slug ])
+            ],
+            [
+                'title' => 'Objednávky',
+                'url' => route('order.index', [$this->object->id, $this->object->slug ])
+            ],
+            [
+                'title' => 'Zastupiteľstva',
+                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
+            ],
+            [
+                'title' => 'Návody',
+                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug ])
+            ]
+        ];
+    }
 }

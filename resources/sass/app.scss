@@ -13,6 +13,13 @@
     @apply bg-blue-700;
 }
 
+.input-label {
+    @apply bg-gray-200 text-gray-700 py-1 px-2 shadow-md;
+}
+.input-control {
+    @apply w-full border-2 border-gray-400 px-2 shadow-md;
+}
+
 @tailwind utilities;
 
 

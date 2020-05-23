@@ -1,52 +1,52 @@
 <template>
     <div>
-        <div class="card">
-            <table class="table">
-                <thead style="background: #464646; color:white">
-                <tr>
-                    <td>Por.</td>
-                    <td class="w-50">Položka</td>
-                    <td>Počet</td>
-                    <td>Cena/ks</td>
-                    <td>Dph</td>
-                    <td>Cena/Euro</td>
-                    <td>Panel</td>
-                </tr>
-                </thead>
 
-                <!-- Riadky objednávky -->
-                <tbody  style="background: rgba(107, 99, 100, 0.23)">
-                    <tr v-for="(item, index) in items">
-                        <td>{{ index +1 }}</td>
-                        <td><textarea style="width: 100%" name="name[]" v-model="item.name" rows="1" required>Objednávame </textarea></td>
-                        <td><input placeholder="počet" type="number" required name="quantity[]"  v-model="item.quantity" ></td>
-                        <td >
+        <table class="table-auto">
+            <thead>
+            <tr>
+                <th class="px-4 py-2">Por.</th>
+                <th class="px-4 py-2">Položka</th>
+                <th class="px-4 py-2">Počet</th>
+                <th class="px-4 py-2">Cena/ks</th>
+                <th class="px-4 py-2">Dph</th>
+                <th class="px-4 py-2">Cena/Euro</th>
+                <th class="px-4 py-2">Panel</th>
+            </tr>
+            </thead>
 
-                            <div style="width: 200px" class="input-group">
-                                <input placeholder="cena" type="number" v-on:keyup.enter="addItem" step="0.01" required name="price_with_vat[]" v-model="item.price">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <!--<input type="radio" aria-label="Radio button for following text input" checked>-->
-                                    </div>
+            <!-- Riadky objednávky -->
+            <tbody  style="background: rgba(107, 99, 100, 0.23)">
+                <tr v-for="(item, index) in items">
+                    <td class="border px-4 py-2">{{ index +1 }}</td>
+                    <td class="border px-4 py-2"><textarea style="width: 100%" name="name[]" v-model="item.name" rows="1" required>Objednávame </textarea></td>
+                    <td class="border px-4 py-2"><input placeholder="počet" type="number" required name="quantity[]"  v-model="item.quantity" ></td>
+                    <td class="border px-4 py-2" >
+
+                        <div style="width: 200px" class="input-group">
+                            <input placeholder="cena" type="number" v-on:keyup.enter="addItem" step="0.01" required name="price_with_vat[]" v-model="item.price">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <!--<input type="radio" aria-label="Radio button for following text input" checked>-->
                                 </div>
                             </div>
-                        </td>
-                        <td style="width: 60px">
-                            <select style="width: 70px" name="vat[]" class="custom-select custom-select-sm" required>
-                                <option value="20" selected>20%</option>
-                                <option value="10">10%</option>
-                                <option value="0">0%</option>
-                            </select>
-                        </td>
-                        <td style="width: 10%">{{ item.quantity * item.price | zaokruhlenie }},-</td>
-                        <td><a title="Zmazať položku" class="btn btn-default btn-xs pull-right" @click="removeItem(index)">X</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-end mt-n3">
-                <a @click="addItem" class="btn btn-secondary btn-sm">Nový riadok</a>
-            </div>
+                        </div>
+                    </td>
+                    <td class="border px-4 py-2">
+                        <select style="width: 70px" name="vat[]" class="custom-select custom-select-sm" required>
+                            <option value="20" selected>20%</option>
+                            <option value="10">10%</option>
+                            <option value="0">0%</option>
+                        </select>
+                    </td>
+                    <td class="border px-4 py-2" style="width: 10%">{{ item.quantity * item.price | zaokruhlenie }},-</td>
+                    <td class="border px-4 py-2"><a title="Zmazať položku" class="btn btn-default btn-xs pull-right" @click="removeItem(index)">X</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end mt-n3">
+            <a @click="addItem" class="btn btn-secondary btn-sm">Nový riadok</a>
         </div>
+
 
         <!-- Total -->
         <input type="hidden" name="amount" :value="totalPrice">

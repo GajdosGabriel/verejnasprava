@@ -1,11 +1,5 @@
 <template>
-    <div>
-        <a @click="isOpen = !isOpen" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="#">aaa</a>
-        <a v-if="isOpen" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="#">okno</a>
 
-
-
-    </div>
 </template>
 
 <script>

@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('page-title', 'Nový kontakt')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+
+@section('navigation') <x-navigationOrganization /> @endsection
 
 @section('content')
 
-    <h1>Nový kontakt</h1>
+    <div class="container mx-auto min-h-screen p-6">
 
-    <form action="{{ route('org.contact.store', [ $organization->id, $organization->slug]) }}" method="POST">
-        @csrf @method('POST')
+        <h1 class="font-bold mb-4">Nový kontakt</h1>
+        <form class="" action="{{ route('org.contact.store', [ $org->id, $org->slug]) }}" method="POST">
+            @csrf @method('POST')
+            @include('organizations._form')
+        </form>
 
-        @include('organizations._form')
-
-    </form>
+    </div>
 
     @endsection
