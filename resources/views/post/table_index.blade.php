@@ -12,10 +12,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-
-
-        @forelse($posts as $post)
+    @forelse($posts as $post)
+        <tr class="hover:bg-gray-100">
             <td class="border px-4 py-2">{{ $post->date_in }}</td>
             <td class="border px-4 py-2">{{ $post->name }}</td>
             <td class="border px-4 py-2">{{ $post->category->name }}</td>
@@ -56,7 +54,7 @@
                 </div>
             </td>
             {{--@endcan--}}
-    </tr>
+        </tr>
     @empty
         {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}
     @endforelse

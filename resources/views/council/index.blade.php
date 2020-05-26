@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr class="hover:bg-gray-100">
                 @forelse($organization->councils as $council)
                     <td class="border px-4 py-2">
                         <a href="{{ route('meet.index', [$council->id, $council->slug]) }}">

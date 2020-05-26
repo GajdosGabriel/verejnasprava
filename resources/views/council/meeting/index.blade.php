@@ -16,8 +16,8 @@
             @endcan
         </div>
 
-        <table class="table-auto">
-            <thead>
+        <table class="table-auto mt-4 rounded-lg">
+            <thead class="bg-gray-300">
                 <tr class="alert-info">
                     <th class="px-4 py-2">Dátum</th>
                     <th class="px-4 py-2">Popis</th>
@@ -32,10 +32,8 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-
-
                 @forelse($council->meetings as $council)
+                <tr class="hover:bg-gray-100">
                     <td class="border px-4 py-2">{{ $council->start_at->format('d. m. Y') }} <strong>{{ $council->start_at->format('H:i') }} hod.</strong></td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
@@ -64,26 +62,26 @@
                     </td>
                     <td class="border px-4 py-2">{{ $council->items()->count() }}</td>
 
-                @can('delete')
-                <td class="border px-4 py-2">
-                    <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog text-secondary"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('meet.edit', [$council->id, $council->slug]) }}">
-                            <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
-                            Upraviť položku
+                    @can('delete')
+                    <td class="border px-4 py-2">
+                        <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog text-secondary"></i>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('meet.delete', [$council->id, $council->slug]) }}" onclick="get_form(this).submit(); return false">
-                            <i style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>
-                            Zmazať
-                        </a>
-                    </div>
-                </td>
-                @endcan
-            </tr>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('meet.edit', [$council->id, $council->slug]) }}">
+                                <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
+                                Upraviť položku
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('meet.delete', [$council->id, $council->slug]) }}" onclick="get_form(this).submit(); return false">
+                                <i style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>
+                                Zmazať
+                            </a>
+                        </div>
+                    </td>
+                    @endcan
+                </tr>
             @empty
                 {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}
             @endforelse

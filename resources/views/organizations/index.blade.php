@@ -7,32 +7,34 @@
 
 @section('content')
 
-    <h1>Ľudia</h1>
-    <div class="col-md-12">
-        <a class="btn btn-primary float-right" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
+    <div class="container p-6 mx-auto">
 
-        <table class="table table-bordered table-inverse table-hover">
+        <div class="flex justify-between">
+        <h1>Ľudia</h1>
+        <a class="btn btn-blue" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
+        </div>
+
+        <table class="table-auto">
             <thead>
             <tr class="alert-info">
-                <th>Meno</th>
-                <th>Typ</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Panel</th>
+                <th class="px-4 py-2">Meno</th>
+                <th class="px-4 py-2">Typ</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Role</th>
+                <th class="px-4 py-2">Panel</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-
-                @forelse($users as $user)
-                    <td>{{ $user->full_name() }}</td>
-                    <td>
+            @forelse($users as $user)
+                <tr class="hover:bg-gray-100">
+                    <td class="border px-4 py-2">{{ $user->full_name() }}</td>
+                    <td class="border px-4 py-2">
                         <a href="{{ route('meet.index', [$user->id, $user->slug]) }}">
                             {{ $user->email }}
                         </a>
                     </td>
-                    <td><span class="badge badge-secondary">Aktívny</span><span class="badge badge-secondary">Poslať pozvánku</span></td>
-                    <td>
+                    <td class="border px-4 py-2"><span class="badge badge-secondary">Aktívny</span><span class="badge badge-secondary">Poslať pozvánku</span></td>
+                    <td class="border px-4 py-2">
                         @foreach($user->roles as $role)
                         <span class="badge badge-secondary">{{ $role->name }}</span>
                         @endforeach
@@ -40,7 +42,7 @@
 
 
                     {{--@can( 'update', $post)--}}
-                    <td class="d-flex justify-content-center">
+                    <td class="border px-4 py-2">
                         <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-cog text-secondary"></i>
                         </a>

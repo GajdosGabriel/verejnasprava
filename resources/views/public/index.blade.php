@@ -6,7 +6,36 @@
 @section('content')
 
 
-    @include('layouts.banner-top')
+
+    <div class="container md:flex">
+        {{-- Image--}}
+{{--        <div class="w-64 h-64 bg-cover" style="background-image: url({{ asset('image/dievca-left.png') }})" title="Woman holding a mug">--}}
+        <img class="sm:w-1/3" src="{{ asset('image/dievca-left.png') }}" title="Woman holding a mug">
+        </img>
+
+            <div class="mb-8 p-6 flex flex-col items-center justify-center">
+                <div class="text-gray-900 text-3xl mb-2">Can coffee make you a better developer?</div>
+                <p class="text-gray-700 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+            <button class="btn btn-blue mt-5">Registrácia</button>
+            </div>
+
+    </div>
+
+{{--    @include('layouts.banner-top')--}}
+{{--<div class="md:flex">--}}
+{{--    <img class="w-auto md:-mt-4 md:-mb-24" src="{{ asset('image/dievca-left.png') }}">--}}
+
+{{--    <div class="flex flex-col items-center p-2 md:justify-center text-gray-700">--}}
+{{--        <div class="text-center mb-3 md:text-2xl">Obdržíte certifikát ktorý potvrdzuje že zverejňujete informácie ktoré spĺňujú požiadavky zákona</div>--}}
+
+{{--        <a href="{{ url('/register') }}" class="btn btn-blue text-center shadow-lg">Začať zdarma bez záväzkov</a>--}}
+{{--        <p><small class="text-gray-600">Registrácia bez poplatkov</small></p>--}}
+
+{{--    </div>--}}
+{{--</div>--}}
+
+
+
 
     <div class="w-full p-6 bg-blue-100">
         <div class="w-48 mx-auto pt-6 border-b-2 border-orange-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
@@ -40,17 +69,13 @@
 
 {{--    @include('layouts.banner-middle')--}}
 
-    <div class="col-12 text-center my-5 d-flex justify-content-center flex-column">
-        <div><a href="{{ url('/register') }}" class="btn btn-primary">Začať zdarma bez záväzkov</a></div>
-{{--        <small class="text-secondary">Registrácia bez poplatkov</small>--}}
-    </div>
 
-    <div class="container mx-auto">
+    <div class="container mx-auto ">
 
-        <h3 class="text-center mt-5">Zoznam publikovaných dokladov</h3>
+        <h3 class="text-center mt-5 text-3xl text-gray-500">Publikované doklady</h3>
 
 {{--        @include('modul.categoryList')--}}
-        @include('post.post-table-predna')
+{{--        @include('post.post-table-predna')--}}
         </div>
 
         {{--    {!! $posts ->render() !!}--}}

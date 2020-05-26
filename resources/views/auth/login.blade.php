@@ -14,12 +14,12 @@
                     <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
                         <div class="rounded-t mb-0 px-6 py-6">
                             <div class="text-center mb-3">
-                                <h6 class="text-gray-600 text-sm font-bold">Sign in with</h6></div>
+                                <h6 class="text-gray-600 text-sm font-bold">Prihlásenie cez</h6></div>
                             <div class="btn-wrapper text-center">
                                 <button
                                     class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                                     type="button"
-                                >Login with Facebook</button>
+                                >Login cez Facebook</button>
 {{--                                <button class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs" type="button" style="transition: all 0.15s ease 0s;"><img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/tailwindcss-starter-project/static/media/github.4ffd4fe7.svg">Github</button>--}}
 {{--                                <button class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs" type="button" style="transition: all 0.15s ease 0s;"><img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/tailwindcss-starter-project/static/media/google.87be59a1.svg">Google</button>--}}
                             </div>
