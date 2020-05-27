@@ -1,11 +1,10 @@
 <div>
-     <h4>Pripomienky</h4>
+     <h2 class="font-bold text-2xl text-gray-700 mb-2">Pripomienky</h2>
+
     <form wire:submit.prevent="addComment">
-        <div class="input-group mb-3">
-            <input wire:model.lazy="newComment" type="text" class="form-control" placeholder="Napíšte podnet" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Poslať</button>
-            </div>
+        <div class="flex">
+            <input wire:model.lazy="newComment" type="text" class="w-full border-2 border-gray-400 p-2 rounded-l-lg" placeholder="Napíšte podnet" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-blue rounded-r-lg" type="submit" >Poslať</button>
         </div>
     </form>
 
@@ -13,7 +12,7 @@
         @forelse($comments as $comment)
            <div class="mb-2">
                <div class="d-flex justify-content-between">
-                   <strong>{{ $comment->user->full_name() }}</strong>
+                   <span class="text-gray-600 text-sm ">{{ $comment->user->full_name() }}</span>
                    <small>{{ $comment->created_at->diffForHumans() }}</small>
                </div>
                {{ $comment->body }}

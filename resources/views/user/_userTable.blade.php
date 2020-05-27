@@ -1,29 +1,28 @@
 
-        <table class="table table-bordered table-inverse table-hover">
+        <table class="table-auto">
             <thead>
-            <tr class="alert-info">
-                <th>Meno</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Člen</th>
-                <th>Role</th>
-                <th>Panel</th>
+            <tr>
+                <th  class="px-4 py-2">Meno</th>
+                <th  class="px-4 py-2">Email</th>
+                <th  class="px-4 py-2">Status</th>
+                <th  class="px-4 py-2">Člen</th>
+                <th  class="px-4 py-2">Role</th>
+                <th  class="px-4 py-2">Panel</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-
                 @forelse($users as $user)
-                    <td>{{ $user->full_name() }}</td>
+                <tr>
+                    <td class="border px-4 py-2">{{ $user->full_name() }}</td>
 
-                    <td>{{ $user->email }}</td>
-                    <td>
+                    <td class="border px-4 py-2">{{ $user->email }}</td>
+                    <td class="border px-4 py-2">
                         @if($user->email_verified_at)
-                            <span class="badge badge-success">Aktívny</span>
+                            <span class="badge badge-primary">Aktívny</span>
                         @else
                             <a href="{{ route('user.invitation', [$user->id, $user->slug]) }}">
                                 @if($user->send_invitation == null)
-                                <span class="badge badge-info"  title="Poslať pozvánku">Poslať pozvánku</span>
+                                <span class="badge badge-primary"  title="Poslať pozvánku">Poslať pozvánku</span>
                                 @else
                                 <span class="badge badge-primary" title="Pozvánka poslaná dňa">Poslané: {{ $user->send_invitation }}</span>
                                 @endif
@@ -31,13 +30,13 @@
                         @endif
 
                     </td>
-                    <td>
+                    <td class="border px-4 py-2">
                         @foreach($user->councils as $role)
                         <span class="badge badge-secondary">{{ $role->name }}</span>
                         @endforeach
                     </td>
 
-                    <td>
+                    <td class="border px-4 py-2">
                         @foreach($user->roles as $role)
                             <span class="badge badge-secondary">{{ $role->name }}</span>
                         @endforeach
@@ -45,7 +44,7 @@
 
 
                     {{--@can( 'update', $post)--}}
-                    <td class="d-flex justify-content-center">
+                    <td class="border px-4 py-2">
                         <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-cog text-secondary"></i>
                         </a>

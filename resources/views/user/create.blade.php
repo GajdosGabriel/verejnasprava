@@ -1,17 +1,22 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+@section('navigation') <x-navigationUser /> @endsection
+{{--@section('navigation')--}}
+{{--    @include('organizations.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
-        <h2>Nový užívateľ</h2>
+    <div class="container mx-auto p-6 min-h-screen">
+        <h1 class="font-bold text-2xl">Nový užívateľ</h1>
 
         <form action="{{ route('user.store', [ auth()->user()->id, auth()->user()->slug ]) }}" method="POST" enctype="multipart/form-data">
-           @csrf @method('POST')
+            @csrf @method('POST')
             @include('user._userForm')
         </form>
+    </div>
+
+
 
 @endsection
 

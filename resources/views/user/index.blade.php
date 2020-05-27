@@ -2,9 +2,9 @@
 
 @section('page-title', 'Home profil')
 
+@section('navigation') <x-navigationUser /> @endsection
 
-
-@section('navigation') @include('user.navigation') @endsection
+{{--@section('navigation') @include('user.navigation') @endsection--}}
 
 @section('content')
     <h2>Všetci užívatelia</h2>

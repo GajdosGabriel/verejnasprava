@@ -1,7 +1,7 @@
 
 <div class="mb-4">
     <label for="name" class="block text-gray-700 text-sm mb-2">Zvolanie zastupiteľstva</label>
-    <input id="name" type="text" class="hadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $meeting->name }}" required autocomplete="name" autofocus>
+    <input id="name" type="text" class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $meeting->name }}" required autocomplete="name" autofocus>
 
     @error('name')
     <span class="invalid-feedback" role="alert">
@@ -12,7 +12,7 @@
 
 <div class="mb-4">
     <label for="first_name" class="block text-gray-700 text-sm mb-2">Popis schôdze</label>
-    <input id="description" type="text" class="hadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $meeting->description }}" autocomplete="name" autofocus>
+    <input id="description" type="text" class="input-control focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $meeting->description }}" autocomplete="name" autofocus>
     @error('description')
     <span class="text-red-500 text-xs italic" role="alert">
         <strong>{{ $message }}</strong>

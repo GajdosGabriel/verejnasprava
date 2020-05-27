@@ -1,5 +1,4 @@
 <div class="md:flex">
-
     {{--SITE A --}}
     <div class="max-w-sm md:p-4">
 
@@ -65,7 +64,6 @@
         </div>
 
 
-{{--        <div class="font-bold mb-4">Fakturačné údaje</div>--}}
 
         {{-- Bank account--}}
         <div class="flex mb-6">
@@ -86,12 +84,12 @@
         </div>
 
         {{-- Save button --}}
-        <div class="form-group">
+        <div class="">
             <button type="submit" class="btn btn-blue w-full">Uložiť</button>
         </div>
 
-
     </div>
+
 
 
 

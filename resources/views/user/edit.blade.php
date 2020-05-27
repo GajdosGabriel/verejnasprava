@@ -2,9 +2,11 @@
 
 @section('page-title', 'Upraviť profil')
 
-@section('navigation')
-    @include('user.navigation')
-@endsection
+@section('navigation') <x-navigationUser /> @endsection
+
+{{--@section('navigation')--}}
+{{--    @include('user.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 

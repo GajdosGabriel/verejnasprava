@@ -9,7 +9,7 @@
 
     <div class="container mx-auto min-h-screen p-6">
         <div class="flex justify-between">
-            <h1>Vaše zastupiteľstvá</h1>
+            <h1 class="font-bold text-2xl">Vaše zastupiteľstvá</h1>
             @can('delete')
                 <a class="btn btn-blue" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
             @endcan

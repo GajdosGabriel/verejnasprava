@@ -1,15 +1,19 @@
 @extends('layouts.app')
 
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+@section('navigation') <x-navigationOrganization /> @endsection
+
+{{--@section('navigation')--}}
+{{--    @include('organizations.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
-    <div class="col-md-12">
-    <h2>Členovia výboru: <strong>{{ $council->name }}</strong></h2>
+    <div class="container mx-auto min-h-screen p-6">
+        <div class="flex justify-between">
+            <h1 class="font-bold text-2xl">Členovia výboru: {{ $council->name }}</h1>
+            <a class="btn btn-blue text-center" href="{{ route('user.create', [$council->id, $council->slug]) }}">Nový člen</a>
+        </div>
 
-    <a class="btn btn-primary float-right" href="{{ route('user.create', [$council->id, $council->slug]) }}">Nový člen</a>
 
     @include('user._userTable')
 

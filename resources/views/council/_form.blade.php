@@ -1,10 +1,10 @@
 
-<div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">Názov zastupiteľstva</label>
+<div class="my-3">
+    <label for="name" class="font-semibold">Názov zastupiteľstva</label>
 
     <div class="col-md-8">
 
-        <input id="name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $council->name }}" required autocomplete="name" autofocus>
+        <input id="name" type="text" class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $council->name }}" required autocomplete="name" autofocus>
 
         @error('name')
         <span class="invalid-feedback" role="alert">
@@ -14,11 +14,11 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <label for="description" class="col-md-4 col-form-label text-md-right">Popis komisie</label>
+<div class="my-3">
+    <label for="description" class="font-semibold">Popis komisie</label>
 
     <div class="col-md-8">
-        <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
+        <input id="description" type="text" class="input-control focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
 
         @error('description')
         <span class="invalid-feedback" role="alert">
@@ -29,6 +29,8 @@
 </div>
 
 {{-- Save button --}}
-<div class="form-group">
-    <button type="submit" class="btn btn-primary float-right">Uložiť</button>
+<div class="flex justify-between my-4">
+    <a href="{{ URL::previous() }}" class="btn bg-gray-300 text-center text-gray-700 font-semibold border-2 border-gray-500">Späť</a>
+    <button type="submit"  class="btn btn-blue text-center">Uložiť</button>
 </div>
+

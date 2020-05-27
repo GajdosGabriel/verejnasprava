@@ -4,11 +4,16 @@
 
 
  .btn {
-     @apply font-bold py-2 px-4 rounded;
+     @apply font-bold py-2 px-4 rounded shadow-lg;
  }
 .btn-blue {
     @apply bg-blue-500 text-white;
 }
+
+.btn-secondary {
+    @apply bg-gray-200 text-gray-700 border-2 border-gray-400;
+}
+
 .btn-blue:hover {
     @apply bg-blue-700;
 }
@@ -17,8 +22,28 @@
     @apply bg-gray-200 text-gray-700 py-1 px-2 shadow-md;
 }
 .input-control {
-    @apply w-full border-2 border-gray-400 px-2 shadow-md;
+    @apply w-full border-2 border-gray-400 px-2 py-2 rounded-lg shadow-md leading-tight;
 }
+
+    .badge {
+        @apply text-xs rounded tracking-wide px-1 py-1 rounded px-2 py-1 ml-2
+       }
+
+.badge-primary {
+         @apply bg-blue-700  text-gray-100
+         }
+
+.badge-secondary {
+    @apply bg-gray-300  text-gray-700
+    }
+
+.badge-danger {
+    @apply bg-red-200  text-red-700
+    }
+
+
+
+
 
 @tailwind utilities;
 

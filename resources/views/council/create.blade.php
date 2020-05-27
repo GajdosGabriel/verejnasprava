@@ -5,30 +5,21 @@
 @section('content')
 
 
-        <h1>Založiť zastupiteľstvo</h1>
 
-        <div class="row">
+
+        <div class="container mx-auto p-6 min-h-screen">
+            <h1 class="font-bold text-2xl">Založiť zastupiteľstvo</h1>
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-8">
-                        <form method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
-                            @csrf @method('POST')
+                <div class="md:w-1/2 ">
+                    <form  method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
+                        @csrf @method('POST')
 
-                            @include('council._form')
+                        @include('council._form')
 
-                        </form>
+                    </form>
 
-                     </div>
+                 </div>
 
-                    <div class="col-md-4">
-
-                    </div>
-
-{{--                    Aside part--}}
-                    <div class="col-md-4">
-
-                    </div>
-                </div>
             </div>
         </div>
 
