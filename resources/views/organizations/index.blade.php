@@ -11,7 +11,7 @@
 
         <div class="flex justify-between">
         <h1>Ľudia</h1>
-        <a class="btn btn-blue" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
+        <a class="btn btn-primary" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
         </div>
 
         <table class="table-auto">

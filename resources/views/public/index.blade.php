@@ -16,7 +16,7 @@
             <div class="mb-8 p-6 flex flex-col items-center justify-center">
                 <div class="text-gray-900 text-3xl mb-2">Can coffee make you a better developer?</div>
                 <p class="text-gray-700 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-            <button class="btn btn-blue mt-5">Registrácia</button>
+            <button class="btn btn-primary mt-5">Registrácia</button>
             </div>
 
     </div>
@@ -28,7 +28,7 @@
 {{--    <div class="flex flex-col items-center p-2 md:justify-center text-gray-700">--}}
 {{--        <div class="text-center mb-3 md:text-2xl">Obdržíte certifikát ktorý potvrdzuje že zverejňujete informácie ktoré spĺňujú požiadavky zákona</div>--}}
 
-{{--        <a href="{{ url('/register') }}" class="btn btn-blue text-center shadow-lg">Začať zdarma bez záväzkov</a>--}}
+{{--        <a href="{{ url('/register') }}" class="btn btn-primary text-center shadow-lg">Začať zdarma bez záväzkov</a>--}}
 {{--        <p><small class="text-gray-600">Registrácia bez poplatkov</small></p>--}}
 
 {{--    </div>--}}

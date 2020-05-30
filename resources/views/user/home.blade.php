@@ -9,49 +9,40 @@
 @section('content')
 
 
-    <div class="container mx-auto">
-        <div class="col-md-8">
-            <h2>Vitaj home user</h2>
-            <div class="alert alert-primary" role="alert" class="accordion" id="accordionExample">
-                Zverejňovať <a href="#" class="alert-link">zmlúvy a faktúry</a>!
+    <div class="container mx-auto min-h-screen">
 
-                <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    open
-                </button>
+        <h2>Vitaj home user</h2>
 
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
+        <div class="mb-5 max-w-sm bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div class="flex">
+                <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                <div>
+                    <p class="font-bold"> Zverejňovať <a href="#" class="alert-link">zmlúvy a faktúry</p>
+                    <p class="text-sm">Make sure you know how these changes affect you.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="alert alert-secondary" role="alert">
-                Vystavovať <a href="#" class="alert-link">objednávky!</a>
-            </div>
-            <div class="alert alert-success" role="alert">
-                Evidencia <a href="#" class="alert-link">zamestnancov!</a>
-            </div>
-            <div class="alert alert-danger" role="alert">
-                Evidencia <a href="#" class="alert-link">dane a poplatky!</a>
+        <div class="mb-5 max-w-sm bg-blue-100 border-t-4 border-blue-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div class="flex">
+                <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                <div>
+                    <p class="font-bold"> Vystavovať <a href="#" class="alert-link">objednávky!</a></p>
+                    <p class="text-sm">Make sure you know how these changes affect you.</p>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <h2>User Home</h2>
-            <div class="alert alert-primary" role="alert">
-                Zverejňovať <a href="#" class="alert-link">zmlúvy a faktúry</a>!
-            </div>
-            <div class="alert alert-secondary" role="alert">
-                Vystavovať <a href="#" class="alert-link">objednávky!</a>
-            </div>
-            <div class="alert alert-success" role="alert">
-                Evidencia <a href="#" class="alert-link">zamestnancov!</a>
-            </div>
-            <div class="alert alert-danger" role="alert">
-                Evidencia <a href="#" class="alert-link">dane a poplatky!</a>
+        <div class="mb-5 max-w-sm bg-yellow-100 border-t-4 border-yellow-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div class="flex">
+                <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                <div>
+                    Evidencia <a href="#" class="alert-link">zamestnancov!</a>
+                    <p class="text-sm">Make sure you know how these changes affect you.</p>
+                </div>
             </div>
         </div>
+
     </div>
 
 

@@ -10,12 +10,21 @@
 
 @section('content')
 
-        <h2>Upraviť užívateľa</h2>
+    <div class="container mx-auto min-h-screen p-6">
 
-        <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
-           @csrf @method('PATCH')
-            @include('user._userForm')
-        </form>
+        <div class="w-1/2">
+
+            <h1 class="font-bold text-2xl">Upraviť užívateľa</h1>
+
+            <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
+                @csrf @method('PATCH')
+                @include('user._userForm')
+            </form>
+
+        </div>
+
+    </div>
+
 
 @endsection
 

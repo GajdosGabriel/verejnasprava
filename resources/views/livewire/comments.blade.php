@@ -4,7 +4,7 @@
     <form wire:submit.prevent="addComment">
         <div class="flex">
             <input wire:model.lazy="newComment" type="text" class="w-full border-2 border-gray-400 p-2 rounded-l-lg" placeholder="Napíšte podnet" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-blue rounded-r-lg" type="submit" >Poslať</button>
+            <button class="btn btn-primary rounded-r-lg" type="submit" >Poslať</button>
         </div>
     </form>
 
@@ -25,7 +25,7 @@
     @error('newComment') <span class="error text-danger">{{ $message }}</span> @enderror
 
 
-    {{ $comments->links() }}
+    {{ $comments->links('vendor.pagination.default') }}
 
     @if(Session::has('message'))
         <div class="alert alert-success" role="alert" id="success-alert">

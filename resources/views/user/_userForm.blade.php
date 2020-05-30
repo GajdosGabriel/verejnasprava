@@ -1,11 +1,10 @@
 
             <div class="card">
-                <div class="card-header">Pridať osobu</div>
 
                 <div class="card-body">
 
                     {{-- Form First name --}}
-                    <div class="form-group row">
+                    <div class="form-group">
                         <label for="first_name" class="font-semibold">Meno</label>
 
                         <div class="col-md-8">
@@ -20,8 +19,8 @@
                     </div>
 
                     {{-- Form First name --}}
-                    <div class="form-group row">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-right">Priezvisko</label>
+                    <div class="form-group">
+                        <label for="last_name" class="font-semibold">Priezvisko</label>
 
                         <div class="col-md-8">
                             <input id="last_name" type="text" class="input-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') ?? $user->last_name }}" required autocomplete="last_name">
@@ -35,8 +34,8 @@
                     </div>
 
                     {{-- Form Email --}}
-                    <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                    <div class="form-group">
+                            <label for="email" class="font-semibold">Email</label>
 
                             <div class="col-md-8">
                                 <input id="email" type="email" class="input-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email}}" required autocomplete="email">
@@ -52,46 +51,47 @@
                     {{-- Form Role and permission --}}
                     <div class="col-md-8 offset-lg-4">
                         @can('delete')
-                        <div class="row">
-                            {{-- Section Counsils --}}
-                            <div class="col-md-4">
-                           <strong>Zastupiteľstvá</strong>
+                        <div class="flex">
 
-                            @forelse($organization->councils as $council)
-                            <div class="form-group row {{ $errors->has('council') ? ' has-error' : '' }}">
-                                <label class="col-form-label"></label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="council[]" type="checkbox" id="council" value="{{ $council->id }}"
-                                    @if($council->users->contains($user->id) ) checked @endif
-                                    >
-                                    <label class="form-check-label" for="council">{{ $council->name }}</label>
+                            {{-- Section Counsils --}}
+                            <div class="p-4">
+                               <strong>Zastupiteľstvá</strong>
+
+                                @forelse($organization->councils as $council)
+                                <div class="form-group {{ $errors->has('council') ? ' has-error' : '' }}">
+                                    <label class="col-form-label"></label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="council[]" type="checkbox" id="council" value="{{ $council->id }}"
+                                        @if($council->users->contains($user->id) ) checked @endif
+                                        >
+                                        <label class="form-check-label" for="council">{{ $council->name }}</label>
+                                    </div>
                                 </div>
-                            </div>
-                            @empty
-                                Nemáte založené žiadne zastupiteľstvo.
-                            @endforelse
+                                @empty
+                                    Nemáte založené žiadne zastupiteľstvo.
+                                @endforelse
                             </div>
 
                         {{-- Section Counsils --}}
-                        <div class="col-md-4">
+                        <div class="p-4">
                             <strong>Role</strong>
 
-                        {{-- Role --}}
-                        @forelse($roles as $role)
-                            <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">
-                                <label class="col-form-label"></label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="role[]" type="checkbox" id="role" value="{{ $role->id }}"
-                                           @if($user->id == $user->roles->contains($role->id))  checked @endif
-                                    >
-                                    <label class="form-check-label" for="role">{{ $role->name }}</label>
+                                {{-- Role --}}
+                                @forelse($roles as $role)
+                                    <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
+                                        <label for="role{{ $role->id }}" class="col-form-label"></label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}" value="{{ $role->id }}"
+                                                   @if($user->id == $user->roles->contains($role->id))  checked @endif
+                                            >
+                                            <label class="form-check-label" for="role">{{ $role->name }}</label>
+                                        </div>
+                                    </div>
+                                @empty
+                                    Nemáte založené žiadne role.
+                                @endforelse
                                 </div>
-                            </div>
-                        @empty
-                            Nemáte založené žiadne role.
-                        @endforelse
                         </div>
-                    </div>
                         @endcan
 
                     {{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
@@ -106,14 +106,14 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group">
                             <div class="flex justify-between my-3">
                                 <a href="{{ redirect()->back() }}" class="btn btn-secondary">Späť</a>
-                                <button type="submit" class="btn btn-blue">Uložiť</button>
+                                <button type="submit" class="btn btn-primary">Uložiť</button>
                             </div>
                         </div>
                 </div>
-
+                </div>
             </div>
 
 

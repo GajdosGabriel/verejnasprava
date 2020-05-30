@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('page-title', config('app.name'))</title>
+{{--    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">--}}
+{{--    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">--}}
 
 
     @yield('recaptcha')
@@ -28,7 +30,7 @@
     @livewireStyles
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         @section('navigation')
 
         @show

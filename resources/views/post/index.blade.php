@@ -8,7 +8,7 @@
 
         <div class="flex justify-between items-center">
             <h1 class="font-bold">Zverejnené doklady</h1>
-            <a class="btn btn-blue" href="{{ route('org.post.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nový doklad</a>
+            <a class="btn btn-primary" href="{{ route('org.post.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nový doklad</a>
         </div>
 
         @include('post.table_index')

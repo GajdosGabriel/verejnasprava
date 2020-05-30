@@ -44,7 +44,7 @@ class Post extends Model
      */
     public function getDateInAttribute( $value )
     {
-        return date('j M Y', strtotime( $value ));
+        return  \Carbon\Carbon::parse($value)->format('d. m. Y');
     }
 
     public function getCreatedAtAttribute( $value )

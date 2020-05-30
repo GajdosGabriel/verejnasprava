@@ -3,13 +3,13 @@
 
        <div class="flex justify-between max-w-4xl py-5">
        <h1 class="font-bold">Zoznam dodávateľov</h1>
-       <a :href="urlNewContact" class="btn btn-blue">Nový kontakt</a>
+       <a :href="urlNewContact" class="btn btn-primary">Nový kontakt</a>
        </div>
 
 
        <table class="table-auto">
            <thead>
-           <tr>
+           <tr class="bg-gray-300">
                <th class="px-4 py-2">Názov firmy</th>
                <th class="px-4 py-2">Adresa</th>
                <th class="px-4 py-2">Mesto</th>
@@ -22,7 +22,7 @@
            </tr>
            </thead>
            <tbody>
-               <tr  v-for="contact in contacts">
+               <tr class="hover:bg-gray-200"  v-for="contact in contacts">
                    <td class="border px-4 py-2" v-text="contact.name"></td>
                    <td class="border px-4 py-2" v-text="contact.street"></td>
                    <td class="border px-4 py-2" v-text="contact.city"></td>

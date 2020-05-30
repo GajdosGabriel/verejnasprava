@@ -75,7 +75,7 @@
 
 
                         <div class="form-group">
-                            <button class="btn btn-blue w-full">Odoslať</button>
+                            <button class="btn btn-primary w-full">Odoslať</button>
                         </div>
 
                     </form>

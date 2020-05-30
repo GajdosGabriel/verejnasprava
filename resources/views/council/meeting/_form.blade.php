@@ -62,5 +62,5 @@
 
 {{-- Save button --}}
 <div class="form-group">
-    <button type="submit" class="btn btn-blue">Uložiť</button>
+    <button type="submit" class="btn btn-primary">Uložiť</button>
 </div>

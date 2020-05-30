@@ -85,7 +85,7 @@
 
         {{-- Save button --}}
         <div class="">
-            <button type="submit" class="btn btn-blue w-full">Uložiť</button>
+            <button type="submit" class="btn btn-primary w-full">Uložiť</button>
         </div>
 
     </div>

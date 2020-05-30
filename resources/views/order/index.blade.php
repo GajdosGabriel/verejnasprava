@@ -12,7 +12,7 @@
     <div class="container min-h-screen p-6">
         <div class="flex justify-between items-center">
         <h1 class="font-bold">Zoznam objednávok</h1>
-         <a class="btn btn-blue" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
+         <a class="btn btn-primary" href="{{ route('order.create', [ $organization->id, $organization->slug]) }}">Nová objednávka</a>
         </div>
 
         <order-index  :orders="{{ $organization->orders }}"></order-index>

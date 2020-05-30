@@ -11,12 +11,12 @@
         <div class="flex justify-between">
             <h1 class="font-bold text-2xl">Vaše zastupiteľstvá</h1>
             @can('delete')
-                <a class="btn btn-blue" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
+                <a class="btn btn-primary" href="{{ route('zast.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové zastupiteľvo</a>
             @endcan
         </div>
 
         <table class="table-auto">
-            <thead>
+            <thead class="bg-gray-300">
                 <tr class="alert-info">
                     <th class="px-4 py-2">Popis</th>
                     <th class="px-4 py-2">Typ</th>
@@ -45,27 +45,48 @@
 
                 @can('delete')
                 <td class="border px-4 py-2">
-                    <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog text-secondary"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('zast.edit', [$council->id, $council->slug]) }}">
-                            <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
-                            Upraviť položku
-                        </a>
-                        <a class="dropdown-item" href="{{ route('user.create', [$council->id, $council->slug]) }}">
-                            <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>
-                            Pridať člena
-                        </a>
-                        <div class="dropdown-divider"></div>
-    {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
-    {{--                                    @csrf @method('DELETE')--}}
-    {{--                                    <a class="dropdown-item" href="#" onclick="get_form(this).submit(); return false">--}}
-    {{--                                        <i @if(Auth::id() === $post->user_id) @else style="font-size: 118%; color: grey" @endif style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>--}}
-    {{--                                        Zmazať--}}
-    {{--                                    </a>--}}
-    {{--                                </form>--}}
-                    </div>
+
+                    <nav-horizontal inline-template>
+                        <div class="relative flex items-start">
+                            <a @click="isOpen =! isOpen" class="" href="#" >
+                                <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                            </a>
+
+                            <div v-if="isOpen" class="absolute w-32 z-10 py-1 flex flex-col border-2 border-gray-300 shadow-md rounded text-sm bg-white">
+
+                                {{-- Item Up button--}}
+                                <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('zast.edit', [$council->id, $council->slug]) }}" title="Upraviť položku">
+                                    Upraviť položku
+                                </a>
+
+                                {{-- Item Down button--}}
+                                <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('user.create', [$council->id, $council->slug]) }}" title="Pridať člena">
+                                    Pridať člena
+                                </a>
+
+                                <div class="py-1"></div>
+
+{{--                                <a class="hover:bg-gray-200 px-4" href="{{ route('item.delete', [$item->id, $item->slug]) }}">--}}
+{{--                                    <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>--}}
+{{--                                    Zmazať--}}
+{{--                                </a>--}}
+                                {{--                                <div class="dropdown-divider"></div>--}}
+                                {{--                                <a class="dropdown-item" href="{{ route('item.delete', [$item->id, $item->slug]) }}">--}}
+                                {{--                                    <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>--}}
+                                {{--                                    Zmazať--}}
+                                {{--                                </a>--}}
+
+                                {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
+                                {{--                                    @csrf @method('DELETE')--}}
+                                {{--                                    <a class="dropdown-item" href="#" onclick="get_form(this).submit(); return false">--}}
+                                {{--                                        <i @if(Auth::id() === $post->user_id) @else style="font-size: 118%; color: grey" @endif style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>--}}
+                                {{--                                        Zmazať--}}
+                                {{--                                    </a>--}}
+                                {{--                                </form>--}}
+                            </div>
+
+                        </div>
+                    </nav-horizontal>
                 </td>
                 @endcan
             </tr>

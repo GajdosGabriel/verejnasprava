@@ -6,7 +6,8 @@
     export default {
         data() {
             return {
-                isOpen: false
+                isOpen: false,
+                dropdown: false,
             }
         },
         created: function() {
@@ -16,9 +17,12 @@
                 // close dropdown when clicked outside
                 if (!self.$el.contains(e.target)){
                     self.isOpen = false
+                    self.dropdown = false
                 }
             })
         },
 
     }
 </script>
+
+

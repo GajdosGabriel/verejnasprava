@@ -19,7 +19,7 @@
 
                             <div class="flex justify-between my-4">
                                 <input type="text" name="question" placeholder="Napíšte správu ..." class="flex-1 mr-3 pl-3 rounded-lg border-2 border-gray-400">
-                                <button class="btn btn-blue">Poslať</button>
+                                <button class="btn btn-primary">Poslať</button>
                             </div>
                         </form>
 

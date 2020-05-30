@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="relative w-full mb-3">
-                                <button type="submit" class="btn btn-blue">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                         </div>

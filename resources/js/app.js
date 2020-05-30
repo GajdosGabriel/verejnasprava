@@ -22,7 +22,6 @@ window.Vue = require('vue');
 Vue.component('order-index', require('./components/Order-index.vue').default);
 Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
 Vue.component('index-table', require('./contacts/indexTable.vue').default);
-Vue.component('dropdown', require('./dropdown.vue').default);
 Vue.component('nav-horizontal', require('./modules/navigation/navHorizontal.vue').default);
 
 
