@@ -1,13 +1,18 @@
 @extends('layouts.app')
 @section('page-title', 'Upraviť zastupiteľstvo')
-@section('navigation')
-    @include('organizations.navigation')
-@endsection
+
+@section('navigation') <x-navigationOrganization /> @endsection
+
+{{--@section('navigation')--}}
+{{--    @include('organizations.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
+    <div class="container mx-auto p-6 min-h-screen">
+    <h1 class="font-bold text-2xl">Upraviť zastupiteľstvo</h1>
 
-        <h1>Upraviť zastupiteľstvo</h1>
+
 
         <div class="row">
             <div class="col-md-12">
@@ -34,5 +39,5 @@
             </div>
         </div>
 
-
+    </div>
 @endsection

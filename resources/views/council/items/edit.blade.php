@@ -8,35 +8,50 @@
 
 @section('content')
 
-
-        <h1>Uprava návrhu</h1>
+    <div class="container mx-auto p-6 min-h-screen">
+        <h1 class="font-bold text-2xl">Uprava návrhu</h1>
 
         <form method="POST" action="{{ route('item.update', [$item->id, $item->slug]) }}" enctype="multipart/form-data">
             @csrf @method('PUT')
 
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Bod programu</label>
+            <div class="">
+                <div class="">
 
-                            <div class="col-md-8">
-                                <input id="name" type="text" class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $item->name }}" required autocomplete="name" autofocus>
+                    <div class="flex justify-between">
+
+                            <div class="lg:w-3/4">
+                                <label for="name" class="font-semibold">Bod programu</label>
+                                <input id="name" type="text" class="w-full input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror" name="name" value="{{ old('name') ?? $item->name }}" required autocomplete="name" autofocus>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Popis návrhu</label>
 
-                                <div class="col-md-8">
-                                    <textarea id="editor" class="form-control" name="description" rows="10">{{ $item->description }}</textarea>
+
+                            <div class="form-group w-1/4 mx-5">
+                                <label for="vote_typ" class="font-semibold">Hlasovanie</label>
+
+                                <div class="">
+                                    <select name="vote_type" class="custom-select" id="vote_typ">
+                                        <option value="1"
+                                                @if($item->vote_type == 1) selected @endif
+                                        >Verejné</option>
+                                        <option value="0"
+                                                @if($item->vote_type == 0) selected @endif
+                                        >Tajné</option>
+                                    </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="font-semibold">Popis návrhu</label>
+
+                            <div class="col-md-8">
+                                <textarea id="editor" class="form-control" name="description" rows="10">{{ $item->description }}</textarea>
+                            </div>
+                        </div>
 
                             {{--Príloha--}}
                             <div class="form-group row mt-5">
-                                <label for="filename" class="col-md-4 col-form-label text-md-right">Prílohy k návrhu</label>
+                                <label for="filename" class="font-semibold">Prílohy k návrhu</label>
 
                                 <div class="col-md-8">
                                     <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
@@ -64,34 +79,21 @@
 
 
 
-                            <div class="form-group row">
-                                <label for="vote_typ" class="col-md-4 col-form-label text-md-right">Hlasovanie</label>
 
-                                <div class="col-md-8">
-                                    <select name="vote_type" class="custom-select" id="vote_typ">
-                                        <option value="1"
-                                        @if($item->vote_type == 1) selected @endif
-                                        >Verejné</option>
-                                        <option value="0"
-                                                @if($item->vote_type == 0) selected @endif
-                                        >Tajné</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group  float-right">
+                            <div class="flex justify-between mt-5">
                                 {{-- Return back button --}}
-                                <a href="{{ url()->previous() }}" class="btn btn-light mx-4">Späť</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">Späť</a>
 
                                 {{-- Save button --}}
                                 <button type="submit" class="btn btn-primary">Uložiť</button>
                             </div>
-                    </div>
+
                 </div>
             </div>
         </form>
 
 
+    </div>
 
 
     @include('council.items._editor')

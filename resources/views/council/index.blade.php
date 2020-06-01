@@ -60,8 +60,8 @@
                                 </a>
 
                                 {{-- Item Down button--}}
-                                <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('user.create', [$council->id, $council->slug]) }}" title="Pridať člena">
-                                    Pridať člena
+                                <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('zast.delete', [$council->id, $council->slug]) }}" title="Zmazať zastupiteľstvo">
+                                    Zmazať
                                 </a>
 
                                 <div class="py-1"></div>

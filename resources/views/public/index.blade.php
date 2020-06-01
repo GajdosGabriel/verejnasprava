@@ -10,11 +10,12 @@
     <div class="container md:flex">
         {{-- Image--}}
 {{--        <div class="w-64 h-64 bg-cover" style="background-image: url({{ asset('image/dievca-left.png') }})" title="Woman holding a mug">--}}
-        <img class="sm:w-1/3" src="{{ asset('image/dievca-left.png') }}" title="Woman holding a mug">
-        </img>
+        <div>
+            <img class="-mt-4 -mb-12" src="{{ asset('image/dievca-left.png') }}" title="Woman holding a mug">
+        </div>
 
-            <div class="mb-8 p-6 flex flex-col items-center justify-center">
-                <div class="text-gray-900 text-3xl mb-2">Can coffee make you a better developer?</div>
+            <div class="mb-6 p-6 flex flex-col items-center justify-center">
+                <div class="text-gray-900 font-semibold text-2xl mt-5 md:text-3xl  mb-2 text-center">Can coffee make you a better developer?</div>
                 <p class="text-gray-700 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
             <button class="btn btn-primary mt-5">Registrácia</button>
             </div>

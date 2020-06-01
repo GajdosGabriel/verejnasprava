@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('page-title', 'Program zasadnutia')
 
-@section('navigation') <x-navigationItems /> @endsection
+
+{{--@section('navigation') <x-navigationItems /> @endsection--}}
 
 @section('navigation')
     @include('council.items.navigation')
 @endsection
 
 @section('content')
-
 
 <div class="lg:container lg:flex mx-auto lg:px-6 min-h-screen py-6">
 
@@ -22,17 +22,16 @@
 
             @forelse($items as $item)
                     <div class="mt-4 bg-white">
-
                         <div class="flex justify-between">
 
-                        <h5 class="font-bold">
-                            <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
-                                {{ $loop->iteration }}.  {{ $item->name }}
-                            </a>
-                        </h5>
+                            <h5 class="font-bold ">
+                                <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
+                                    {{ $loop->iteration }}.  {{ $item->name }}
+                                </a>
+                            </h5>
 
 
-                        <div class="flex items-center">
+                            <div class="flex items-center">
 
                             {{-- Hlasovanie  --}}
                             @if($item->vote_type)
@@ -65,7 +64,7 @@
                                     <nav-horizontal inline-template>
                                        <div class="relative flex items-start">
                                            <a @click="isOpen =! isOpen" class="" href="#" >
-                                               <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                                               <svg class="w-4 h-4 ml-2 fill-current text-gray-500 hover:text-green-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
                                            </a>
 
                                            <div v-if="isOpen" class="absolute w-32 z-10 py-1 flex flex-col border-2 border-gray-300 shadow-md rounded text-sm bg-white">

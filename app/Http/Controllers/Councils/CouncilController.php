@@ -38,6 +38,11 @@ class CouncilController extends Controller
         return redirect()->route('zast.index', [$organization->id, $organization->slug]);
     }
 
+    public function delete(Council $council) {
+        $council->delete();
+        return back();
+    }
+
 
     public function userList(Council $council, $slug) {
         return view('council.users', compact('council'))->with('users', $council->users()->get());

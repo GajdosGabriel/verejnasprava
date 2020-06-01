@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('page-title', 'Zobraziť návrh')
 
-@section('navigation') <x-navigationItems /> @endsection
-{{--@section('navigation')--}}
-{{--    @include('council.items.navigation')--}}
-{{--@endsection--}}
+{{--@section('navigation') <x-navigationItems /> @endsection--}}
+
+@section('navigation') @include('council.items.navigation') @endsection
 
 @section('content')
 
@@ -22,8 +21,6 @@
                         <div>
                             <span class="badge badge-primary">Hlasovanie verejné</span>
                             <span class="badge badge-light">Do rozpravy</span>
-
-
                         </div>
 
                         @can('delete')

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
         Route::put('{council}/{slug}/update/zast', 'CouncilController@update')->name('update');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
+        Route::get('{council}/{slug}/council/delete', 'CouncilController@delete')->name('delete');
 
     });
 
