@@ -28,7 +28,7 @@ class CouncilController extends Controller
     }
 
     public function update(Request $request, Council $council) {
-        $council->update(array_merge($request->all(), ['user_id' => auth()->user()->id]));
+        $council->update($request->all());
         return redirect()->route('zast.index', [$council->organization_id, $council->slug]);
     }
 

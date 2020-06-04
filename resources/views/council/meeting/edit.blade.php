@@ -4,8 +4,12 @@
 
 @section('content')
 
+    <div class="container mx-auto p-6 min-h-screen">
 
-        <h1>Nové zastupiteľstvo</h1>
+
+
+
+        <h1 class="text-2xl font-semibold">Nové zastupiteľstvo</h1>
 
         <div class="row">
             <div class="col-md-12">
@@ -32,5 +36,5 @@
             </div>
         </div>
 
-
+    </div>
 @endsection

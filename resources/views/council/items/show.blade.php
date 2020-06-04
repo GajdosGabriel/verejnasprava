@@ -13,7 +13,7 @@
         <div class="md:flex">
 
             <div class="w-3/4 md:p-6">
-                <h1 class="font-bold text-2xl">Program: {{ $meeting->name }} zastupiteľstvo</h1>
+                <h1 class="font-bold text-2xl">Rokovací bod: {{ $item->name }} zastupiteľstvo</h1>
                 <div class="card mt-3">
                     <div class="flex justify-between">
                         <h1 class="font-bold text-lg">{{ $item->name }}</h1>
@@ -63,7 +63,7 @@
                         <div class="flex justify-between my-5 bg-gray-100 py-2 @if($item->vote_disabled) opacity-50 @endif">
                             <button name="vote" value="1" class="btn btn-primary font-semibold      @if($item->vote_disabled) cursor-not-allowed @endif" @if($item->vote_disabled) disabled @endif >Súhlasim</button>
                             <button name="vote" value="2" class="btn btn-secondary font-semibold    @if($item->vote_disabled) cursor-not-allowed @endif" @if($item->vote_disabled) disabled @endif >Zdržal</button>
-                            <button name="vote" value="0" class="btn btn-danger font-semibold @if($item->vote_disabled) cursor-not-allowed @endif" @if($item->vote_disabled) disabled @endif >Nesúhlasim</button>
+                            <button name="vote" value="0" class="btn btn-danger font-semibold       @if($item->vote_disabled) cursor-not-allowed @endif" @if($item->vote_disabled) disabled @endif >Nesúhlasim</button>
                         </div>
                     </form>
                 </div>
@@ -104,11 +104,11 @@
                                 {{-- Hlas Proti --}}
                                 @if($user->pivot->vote == 0 )
                                     <li class="list-group-item list-group-item-danger">
-                                        @if($item->vote_type == 0)
-                                            {{ $user->full_name() }}
+                                        @if($item->vote_type == 1)
+                                            Hlas
                                             <span class="pull-right"><strong>Nie</strong></span>
                                         @else
-                                            Hlas
+                                            {{ $user->full_name() }}
                                             <span class="pull-right"><strong>Proti</strong></span>
                                         @endif
                                     </li>
@@ -117,7 +117,7 @@
                                 {{-- Zdržal sa --}}
                                 @if($user->pivot->vote == 2 )
                                     <li class="list-group-item list-group-item-secondary">
-                                        @if($item->vote_type == 2)
+                                        @if($item->vote_type == 1)
                                             Hlas
                                             <span class="pull-right"><strong>Zdržal</strong></span>
                                         @else

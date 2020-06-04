@@ -79,6 +79,11 @@
                                                    Presúnúť dole
                                                </a>
 
+                                               {{-- Item Down button--}}
+                                               <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('item.edit', [ $item->id, $item->slug]) }}" title="Presunúť položku smerom dole">
+                                                   Upraviť
+                                               </a>
+
                                                <div class="py-1"></div>
 
                                                <a class="hover:bg-gray-200 px-4" href="{{ route('item.delete', [$item->id, $item->slug]) }}">

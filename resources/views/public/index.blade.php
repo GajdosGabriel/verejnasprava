@@ -7,7 +7,7 @@
 
 
 
-    <div class="container md:flex">
+    <div class="container mx-auto md:flex">
         {{-- Image--}}
 {{--        <div class="w-64 h-64 bg-cover" style="background-image: url({{ asset('image/dievca-left.png') }})" title="Woman holding a mug">--}}
         <div>

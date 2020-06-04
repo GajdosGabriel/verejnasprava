@@ -31,11 +31,12 @@
 }
 
 .input-label {
-    @apply bg-gray-200 text-gray-700 py-1 px-2 shadow-md;
+    @apply font-semibold text-gray-700;
 }
 .input-control {
-    @apply w-full border-2 border-gray-400 px-2 py-2 rounded-lg shadow-md leading-tight;
+    @apply w-full border-2 text-sm border-gray-400 px-2 py-2 mt-2 rounded-lg shadow-md leading-tight;
 }
+
 
 .form-group {
     @apply w-full my-3;

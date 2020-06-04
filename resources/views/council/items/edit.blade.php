@@ -30,11 +30,11 @@
 
                                 <div class="">
                                     <select name="vote_type" class="custom-select" id="vote_typ">
-                                        <option value="1"
-                                                @if($item->vote_type == 1) selected @endif
-                                        >Verejné</option>
                                         <option value="0"
                                                 @if($item->vote_type == 0) selected @endif
+                                        >Verejné</option>
+                                        <option value="1"
+                                                @if($item->vote_type == 1) selected @endif
                                         >Tajné</option>
                                     </select>
                                 </div>
