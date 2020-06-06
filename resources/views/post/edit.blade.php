@@ -8,8 +8,9 @@
 
 @section('content')
 
-    <h1>Upraviť doklad</h1>
-    <form action="{{ route('org.post.update', [$post->id, $post->slug ]) }}" method="POST" enctype="multipart/form-data">
+    <h1 class="page-title">Upraviť doklad</h1>
+    <form action="{{ route('org.post.update', [$post->id, $post->slug ]) }}" method="POST"
+          enctype="multipart/form-data">
         @csrf @method('PUT')
 
         @include('post.postform')

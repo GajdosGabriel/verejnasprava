@@ -12,7 +12,7 @@
 
     <div class="container mx-auto min-h-screen p-6">
 
-        <h1 class="font-bold text-2xl">Nový bod programu</h1>
+        <h1 class="page-title">Nový bod programu</h1>
 
         <form method="POST" action="{{ route('item.store', [$meeting->id, $meeting->slug]) }}" enctype="multipart/form-data">
             @csrf @method('POST')

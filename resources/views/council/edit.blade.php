@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="container mx-auto p-6 min-h-screen">
-    <h1 class="font-bold text-2xl">Upraviť zastupiteľstvo</h1>
+    <h1 class="page-title">Upraviť zastupiteľstvo</h1>
 
 
 
@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <form method="POST" action="{{ route('zast.update', [$council->id, $council->slug]) }}">
+                        <form method="POST" action="{{ route('zast.admin.update', [$council->id, $council->slug]) }}">
                             @csrf @method('PUT')
 
                             @include('council._form')

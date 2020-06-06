@@ -37,6 +37,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'send_invitation' => 'datetime',
     ];
 
 
@@ -45,11 +46,13 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
-    public function organizations() {
+    public function organizations()
+    {
         return $this->belongsToMany(Organization::class);
     }
 
-    public function councils() {
+    public function councils()
+    {
         return $this->belongsToMany(Council::class);
     }
 
@@ -64,12 +67,14 @@ class User extends Authenticatable
         return $this->hasMany(Question::class)->orderBy('created_at', 'desc');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function full_name(){
-        return $this->first_name .' '. $this->last_name;
+    public function full_name()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 
 
@@ -84,15 +89,15 @@ class User extends Authenticatable
         $this->attributes['last_name'] = ucfirst($value);
     }
 
-    public function getDateInAttribute( $value )
+    public function getDateInAttribute($value)
     {
-        return date('j M Y', strtotime( $value ));
+        return date('j M Y', strtotime($value));
     }
 
 
-    public function getCreatedAtAttribute( $value )
+    public function getCreatedAtAttribute($value)
     {
-        return date('j M Y', strtotime( $value ));
+        return date('j M Y', strtotime($value));
     }
 
 

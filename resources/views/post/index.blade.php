@@ -7,7 +7,7 @@
     <div class="container mx-auto p-6 min-h-screen">
 
         <div class="flex justify-between items-center">
-            <h1 class="font-bold">Zverejnené doklady</h1>
+            <h1 class="page-title">Zverejnené doklady</h1>
             <a class="btn btn-primary" href="{{ route('org.post.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nový doklad</a>
         </div>
 

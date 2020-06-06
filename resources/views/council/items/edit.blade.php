@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="container mx-auto p-6 min-h-screen">
-        <h1 class="font-bold text-2xl">Uprava návrhu</h1>
+        <h1 class="page-title">Uprava návrhu</h1>
 
         <form method="POST" action="{{ route('item.update', [$item->id, $item->slug]) }}" enctype="multipart/form-data">
             @csrf @method('PUT')

@@ -13,7 +13,7 @@
         <div class="md:flex">
 
             <div class="w-3/4 md:p-6">
-                <h1 class="font-bold text-2xl">Rokovací bod: {{ $item->name }} zastupiteľstvo</h1>
+                <h1 class="page-title">Rokovací bod: {{ $item->name }} zastupiteľstvo</h1>
                 <div class="card mt-3">
                     <div class="flex justify-between">
                         <h1 class="font-bold text-lg">{{ $item->name }}</h1>

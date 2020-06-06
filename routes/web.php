@@ -39,14 +39,18 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('zast')->name('zast.')->namespace('Councils')->group(function() {
-        Route::get('{organization}/{slug}/index', 'CouncilController@index')->name('index');
-        Route::get('{organization}/{slug}/create', 'CouncilController@create')->name('create');
-        Route::get('{council}/{slug}/edit/zast', 'CouncilController@edit')->name('edit');
-        Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
-        Route::put('{council}/{slug}/update/zast', 'CouncilController@update')->name('update');
-        Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
-        Route::get('{council}/{slug}/council/delete', 'CouncilController@delete')->name('delete');
 
+        Route::get('{organization}/{slug}/index', 'CouncilController@index')->name('index');
+        Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+
+        Route::prefix('admin')->name('admin.')->group(function() {
+            Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
+            Route::get('{organization}/{slug}/create', 'AdminCouncilController@create')->name('create');
+            Route::get('{council}/{slug}/edit/zast', 'AdminCouncilController@edit')->name('edit');
+            Route::put('{council}/{slug}/update/zast', 'AdminCouncilController@update')->name('update');
+            Route::post('{organization}/{slug}/council/store', 'AdminCouncilController@store')->name('store');
+            Route::get('{council}/{slug}/council/delete', 'AdminCouncilController@delete')->name('delete');
+        });
     });
 
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {

@@ -1,48 +1,53 @@
+
 @forelse($posts as $key => $value)
-<table class="table-auto">
-    <thead>
-    <tr>
-        <th class="px-4 py-2">Organizácia</th>
-        <th class="px-4 py-2">Popis</th>
-        <th class="px-4 py-2">Kategória</th>
-        <th class="px-4 py-2">Dodávateľ</th>
-        <th class="px-4 py-2">Suma</th>
-        <th class="px-4 py-2">Súbor</th>
-        <th class="px-4 py-2" >Dátum</th>
-    </tr>
-    </thead>
-    <tbody>
-    @forelse($value as $post)
+    <table class="table-auto w-full">
+        <thead>
         <tr>
-            <td class="border px-4 py-2"><a href="{{ route('publishedPosts', [$post->organization->id, $post->organization->slug]) }}">{{ $post->organization->name}}</a></td>
-            <td class="border px-4 py-2">{{ $post->name }}</td>
-            <td class="border px-4 py-2">
-                @if($post->category->id === 1)
-                    <img class="" style="height: 23px" src="{{ asset('image/f.gif')  }}" title="Faktúra">
-                @elseif($post->category->id === 2)
-                    <img class="" style="height: 23px" src="{{ asset('image/o.gif')  }}" title="Objednávka">
-                @elseif($post->category->id === 3)
-                    <img class="" style="height: 23px" src="{{ asset('image/z.gif')  }}" title="Zmlúva">
-                @else($post->category->id === 4)
-                    <img class="" style="height: 23px" src="{{ asset('image/v.gif')  }}" title="Všeobecno-záväzné nariadenie">
-                @endif
-            </td>
-            <td class="border px-4 py-2"><strong>{{ $post->contact->name }}</strong><br> {{ $post->contact->city }}, <small>ico:{{ $post->contact->ico }}</small></td>
-            <td class="border px-4 py-2"><strong>{{ $post->DisplayPrice }} Eu</strong></td>
-            <td class="border px-4 py-2">
-                @forelse($post->files as $file)
-                    <a target="_blank" href="{{ URL::to('/')}}/download/{{  $file->name }}">Príloha</a>
-                @empty
-                    Bez prílohy
-                @endforelse
-            </td>
-            <td class="border px-4 py-2">{{ $post->date_in }}</td>
+            <th class="px-4 py-2">Organizácia</th>
+            <th class="px-4 py-2">Popis</th>
+            <th class="px-4 py-2">Kategória</th>
+            <th class="px-4 py-2">Dodávateľ</th>
+            <th class="px-4 py-2">Suma</th>
+            <th class="px-4 py-2">Súbor</th>
+            <th class="px-4 py-2">Dátum</th>
         </tr>
-    @empty
-        Bez záznamu
-    @endforelse
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @forelse($value as $post)
+            <tr>
+                <td class="border px-4 py-2"><a
+                        href="{{ route('publishedPosts', [$post->organization->id, $post->organization->slug]) }}">{{ $post->organization->name}}</a>
+                </td>
+                <td class="border px-4 py-2">{{ $post->name }}</td>
+                <td class="border px-4 py-2">
+                    @if($post->category->id === 1)
+                        <img class="" style="height: 23px" src="{{ asset('image/f.gif')  }}" title="Faktúra">
+                    @elseif($post->category->id === 2)
+                        <img class="" style="height: 23px" src="{{ asset('image/o.gif')  }}" title="Objednávka">
+                    @elseif($post->category->id === 3)
+                        <img class="" style="height: 23px" src="{{ asset('image/z.gif')  }}" title="Zmlúva">
+                    @else($post->category->id === 4)
+                        <img class="" style="height: 23px" src="{{ asset('image/v.gif')  }}"
+                             title="Všeobecno-záväzné nariadenie">
+                    @endif
+                </td>
+                <td class="border px-4 py-2"><strong>{{ $post->contact->name }}</strong><br> {{ $post->contact->city }},
+                    <small>ico:{{ $post->contact->ico }}</small></td>
+                <td class="border px-4 py-2"><strong>{{ $post->DisplayPrice }} Eu</strong></td>
+                <td class="border px-4 py-2">
+                    @forelse($post->files as $file)
+                        <a target="_blank" href="{{ URL::to('/')}}/download/{{  $file->name }}">Príloha</a>
+                    @empty
+                        Bez prílohy
+                    @endforelse
+                </td>
+                <td class="border px-4 py-2">{{ $post->date_in->format('d. m. Y') }}</td>
+            </tr>
+        @empty
+            Bez záznamu
+        @endforelse
+        </tbody>
+    </table>
 
 @empty
     <p>Bez záznamu</p>

@@ -10,7 +10,7 @@
     <div class="container mx-auto p-6 min-h-screen">
 
         <div class=" flex justify-between">
-        <h1 class="font-bold">Zaasadnutia: {{ $council->name }}</h1>
+        <h1 class="page-title">Zaasadnutia: {{ $council->name }}</h1>
             @can('delete')
                 <a class="btn btn-primary" href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
             @endcan

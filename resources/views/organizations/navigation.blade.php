@@ -33,7 +33,7 @@
                     @can('delete')
                     <a class="dropdown-item" href="{{ route('org.edit', [$object->id, $object->slug]) }}">Nastavenia</a>
                     <a class="dropdown-item" href="{{ route('user.index', [$object->id, $object->slug ]) }}">Ľudia</a>
-                    <a class="dropdown-item" href="{{  route('zast.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
+                    <a class="dropdown-item" href="{{  route('zast.admin.index', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Zastupiteľstva</a>
                     @endcan
 
                     <a class="dropdown-item" href="{{ route('user.home', [auth()->user()->id, auth()->user()->slug ]) }}">Môj profil</a>
@@ -43,14 +43,7 @@
                     <a class="dropdown-item" href="{{ url( 'admin/user') }}">Zoznam regist.</a>
                     @endrole
 
-                    <a class="dropdown-item" href="{{ url('/logout') }}"
-                       onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
-                        Odhlásiť
-                    </a>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                     @csrf
-                    </form>
+
                 </div>
             </li>
         </ul>

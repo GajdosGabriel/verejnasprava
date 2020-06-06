@@ -2,16 +2,19 @@
 
 @section('page-title', 'Zoznam príspevkov')
 
-@section('navigation') <x-navigationOrganization /> @endsection
+@section('navigation')
+    <x-navigationOrganization/> @endsection
 {{--@section('navigation') @include('organizations.navigation') @endsection--}}
 
 @section('content')
 
+
     <div class="container p-6 mx-auto">
 
         <div class="flex justify-between">
-        <h1>Ľudia</h1>
-        <a class="btn btn-primary" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový zamestnanec</a>
+            <h1 class="page-title">Ľudia</h1>
+            <a class="btn btn-primary" href="{{ route('user.create', [$organization->id, $organization->slug ]) }}">Nový
+                zamestnanec</a>
         </div>
 
         <table class="table-auto">
@@ -27,27 +30,29 @@
             <tbody>
             @forelse($users as $user)
                 <tr class="hover:bg-gray-100">
-                    <td class="border px-4 py-2">{{ $user->full_name() }}</td>
-                    <td class="border px-4 py-2">
+                    <td class="px-4 py-2 border">{{ $user->full_name() }}</td>
+                    <td class="px-4 py-2 border">
                         <a href="{{ route('meet.index', [$user->id, $user->slug]) }}">
                             {{ $user->email }}
                         </a>
                     </td>
-                    <td class="border px-4 py-2"><span class="badge badge-secondary">Aktívny</span><span class="badge badge-secondary">Poslať pozvánku</span></td>
-                    <td class="border px-4 py-2">
+                    <td class="px-4 py-2 border"><span class="badge badge-secondary">Aktívny</span><span
+                            class="badge badge-secondary">Poslať pozvánku</span></td>
+                    <td class="px-4 py-2 border">
                         @foreach($user->roles as $role)
-                        <span class="badge badge-secondary">{{ $role->name }}</span>
+                            <span class="badge badge-secondary">{{ $role->name }}</span>
                         @endforeach
                     </td>
 
 
                     {{--@can( 'update', $post)--}}
-                    <td class="border px-4 py-2">
-                        <a class="nav-link p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <td class="px-4 py-2 border">
+                        <a class="p-0 nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-cog text-secondary"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {{--                        <a class="dropdown-item" href="{{ route('zast.edit', [$council->id, $council->slug]) }}">--}}
+                            {{--                        <a class="dropdown-item" href="{{ route('zast.admin.edit', [$council->id, $council->slug]) }}">--}}
                             {{--                            <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Upraviť položku"></i>--}}
                             {{--                            Upraviť položku--}}
                             {{--                        </a>--}}
@@ -62,7 +67,7 @@
                         </div>
                     </td>
                     {{--@endcan--}}
-            </tr>
+                </tr>
             @empty
                 {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}
             @endforelse

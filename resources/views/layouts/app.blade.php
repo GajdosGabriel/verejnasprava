@@ -41,17 +41,21 @@
             {{--Errors--}}
             @include('modul.errorsAndFlash')
         </div>
+
+            <flash-message message="{{ session('flash') }}"></flash-message>
     </div>
 
 @include('layouts.footer')
 
 
-<script src="{{ mix('js/app.js') }}" defer></script>
+
+
+
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
 
 @livewireScripts
 @yield('script-down')
-
 
 </body>
 </html>

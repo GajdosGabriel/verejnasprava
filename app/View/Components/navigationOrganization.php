@@ -80,7 +80,7 @@ class navigationOrganization extends Component
             ],
             [
                 'title' => 'Zastupiteľstva',
-                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
+                'url' => route('zast.admin.index', [$this->object->id, $this->object->slug ])
             ],
             [
                 'title' => 'Návody',

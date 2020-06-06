@@ -18,6 +18,9 @@ class Post extends Model
 
     protected $guarded = [];
     protected $with = ['category', 'files', 'contact'];
+    protected $casts = [
+        'date_in' => 'date'
+    ];
 
     public function contact()
     {
@@ -36,20 +39,6 @@ class Post extends Model
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
-    }
-
-    /**
-     * @param  $value
-     * @return bool|string
-     */
-    public function getDateInAttribute( $value )
-    {
-        return  \Carbon\Carbon::parse($value)->format('d. m. Y');
-    }
-
-    public function getCreatedAtAttribute( $value )
-    {
-        return date('j M Y', strtotime( $value ));
     }
 
 

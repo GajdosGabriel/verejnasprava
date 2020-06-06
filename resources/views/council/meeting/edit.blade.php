@@ -9,7 +9,7 @@
 
 
 
-        <h1 class="text-2xl font-semibold">Nové zastupiteľstvo</h1>
+        <h1 class="page-title">Nové zastupiteľstvo</h1>
 
         <div class="row">
             <div class="col-md-12">

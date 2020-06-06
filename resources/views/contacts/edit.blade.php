@@ -9,7 +9,7 @@
 @section('content')
     <div class="container mx-auto min-h-screen p-6">
 
-    <h1 class="font-bold text-2xl">Upraviť dodávateľa</h1>
+    <h1 class="page-title">Upraviť dodávateľa</h1>
 
     <form action="{{ route('org.contact.update', [ $organization->id, $organization->slug]) }}" method="POST">
         @csrf @method('PUT')
