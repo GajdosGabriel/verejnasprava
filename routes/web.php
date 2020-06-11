@@ -75,7 +75,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
+    });
 
+    Route::prefix('inter')->name('interpellation.')->namespace('Councils')->group(function() {
+        Route::get('{item}/{slug}/item/interpellation', 'InterpellationController@store')->name('store');
     });
 
     Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {

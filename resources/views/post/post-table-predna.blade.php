@@ -1,7 +1,7 @@
 
 @forelse($posts as $key => $value)
     <table class="table-auto w-full">
-        <thead>
+        <thead class="bg-gray-600 text-gray-100">
         <tr>
             <th class="px-4 py-2">Organizácia</th>
             <th class="px-4 py-2">Popis</th>
@@ -14,12 +14,12 @@
         </thead>
         <tbody>
         @forelse($value as $post)
-            <tr>
-                <td class="border px-4 py-2"><a
+            <tr class="hover:bg-gray-100">
+                <td class="border px-4 "><a
                         href="{{ route('publishedPosts', [$post->organization->id, $post->organization->slug]) }}">{{ $post->organization->name}}</a>
                 </td>
-                <td class="border px-4 py-2">{{ $post->name }}</td>
-                <td class="border px-4 py-2">
+                <td class="border px-4">{{ $post->name }}</td>
+                <td class="border px-4">
                     @if($post->category->id === 1)
                         <img class="" style="height: 23px" src="{{ asset('image/f.gif')  }}" title="Faktúra">
                     @elseif($post->category->id === 2)
@@ -31,17 +31,17 @@
                              title="Všeobecno-záväzné nariadenie">
                     @endif
                 </td>
-                <td class="border px-4 py-2"><strong>{{ $post->contact->name }}</strong><br> {{ $post->contact->city }},
+                <td class="border px-4"><strong>{{ $post->contact->name }}</strong><br> {{ $post->contact->city }},
                     <small>ico:{{ $post->contact->ico }}</small></td>
-                <td class="border px-4 py-2"><strong>{{ $post->DisplayPrice }} Eu</strong></td>
-                <td class="border px-4 py-2">
+                <td class="border px-4"><strong>{{ $post->DisplayPrice }} Eu</strong></td>
+                <td class="border px-4">
                     @forelse($post->files as $file)
                         <a target="_blank" href="{{ URL::to('/')}}/download/{{  $file->name }}">Príloha</a>
                     @empty
                         Bez prílohy
                     @endforelse
                 </td>
-                <td class="border px-4 py-2">{{ $post->date_in->format('d. m. Y') }}</td>
+                <td class="border px-4">{{ $post->date_in->format('d. m. Y') }}</td>
             </tr>
         @empty
             Bez záznamu

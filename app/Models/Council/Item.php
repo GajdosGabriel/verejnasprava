@@ -2,6 +2,8 @@
 
 namespace App\Models\Council;
 
+use App\Models\Council\Interpellation;
+use App\Models\Comment;
 use App\Models\File;
 use App\Models\User;
 use App\Services\FileUpload;
@@ -14,6 +16,7 @@ class Item extends Model
 {
     use SoftDeletes, FileUpload;
     protected $guarded = [];
+    protected $with = ['interpellations', 'files', 'users'];
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
@@ -28,6 +31,14 @@ class Item extends Model
     {
         return $this->belongsTo(Meeting::class);
     }
+    public function comments() {
+        return $this->morphMany(Comment::class, 'fileable');
+    }
+
+    public function interpellations() {
+        return $this->morphMany(Interpellation::class, 'fileable');
+    }
+
 
     public function setNameAttribute($value)
     {

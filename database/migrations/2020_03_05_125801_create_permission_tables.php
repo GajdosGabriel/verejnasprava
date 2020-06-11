@@ -175,20 +175,21 @@ foreach ($permissions as $permission => $category) {
 
 
 //
-//        \DB::table('model_has_permissions')->insert([
-//            [
-//                'permission_id' => 4,
-//                'model_type' => 'App\Models\User',
-//                'model_id' => 1,
-//            ],
-//        ]);
-//
-//        \DB::table('model_has_roles')->insert([
-//            [
-//                'role_id' => 1,
-//                'model_type' => 'App\Models\User'
-//            ],
-//        ]);
+        \DB::table('model_has_permissions')->insert([
+            [
+                'permission_id' => 4,
+                'model_type' => 'App\Models\User',
+                'model_id' => 1,
+            ],
+        ]);
+
+        \DB::table('model_has_roles')->insert([
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 1
+            ],
+        ]);
     }
 
     /**

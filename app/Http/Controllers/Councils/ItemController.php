@@ -11,6 +11,7 @@ class ItemController extends Controller
 {
     public function index(Meeting $meeting){
         $items = $meeting->items()->published()->get();
+
         return view('council.items.index', compact(['items', 'meeting']) );
     }
 
@@ -19,7 +20,7 @@ class ItemController extends Controller
     }
 
     public function show(Item $item) {
-        return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting]);
+        return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting])->with(['interpellations' => $item->interpellations()->whereStatus(1)->get()]);
     }
 
     public function edit(Item $item) {
@@ -50,4 +51,5 @@ class ItemController extends Controller
         $item->published();
         return back();
     }
+
 }

@@ -17,12 +17,12 @@
                 <h1 class="page-title">Program schôdze</h1>
                 @can('delete')
                     <a href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}"
-                       class="btn btn-primary text-center text-sm">Nový návrh</a>
+                       class="btn btn-primary text-center text-sm flex items-center">Nový návrh</a>
                 @endcan
             </div>
 
             @forelse($items as $item)
-                <div class="mt-4 bg-white">
+                <div class="mt-4 bg-white hover:bg-gray-100 p-2">
                     <div class="flex justify-between">
 
                         <h5 class="font-semibold">
@@ -33,6 +33,10 @@
 
 
                         <div class="flex items-center">
+
+                            {{-- Users Interpellations--}}
+                            @include('council.items.interpellation.button')
+
 
                             {{-- Hlasovanie  --}}
                             @if($item->vote_type)
@@ -141,18 +145,20 @@
                         @forelse($item->files as $file)
                             <a class="mr-2" target="_blank"
                                href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}
-                                .Príloha</a>
+                                .Príloha
+                            </a>
                         @empty
                             Bez prílohy
                         @endforelse
                     @endif
+                    <div class="">
+                        Za: {{ $item->users()->where('vote', 1)->count() }}
+                        Proti: {{ $item->users()->where('vote', 0)->count() }}
+                        Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
+                    </div>
+
                 </div>
 
-                <div class="">
-                    Za: {{ $item->users()->where('vote', 1)->count() }}
-                    Proti: {{ $item->users()->where('vote', 0)->count() }}
-                    Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
-                </div>
             @empty
                 bez záznamu
             @endforelse
