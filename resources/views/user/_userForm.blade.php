@@ -1,7 +1,7 @@
 
-            <div class="card">
+            <div class="">
 
-                <div class="card-body">
+                <div class="">
 
                     {{-- Form First name --}}
                     <div class="form-group">
@@ -49,7 +49,7 @@
                         </div>
 
                     {{-- Form Role and permission --}}
-                    <div class="col-md-8 offset-lg-4">
+                    <div class="">
                         @can('delete')
                         <div class="flex">
 

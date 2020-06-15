@@ -7,7 +7,6 @@
 @section('content')
 
 
-
     <div class="container min-h-screen p-6 mx-auto">
         <div class="flex justify-between">
             <h1 class="page-title">Vaše zastupiteľstvá</h1>
@@ -18,7 +17,7 @@
             @endcan
         </div>
 
-        <table class="table-auto">
+        <table class="table-auto min-w-full">
             <thead class="bg-gray-300">
             <tr class="alert-info">
                 <th class="px-4 py-2">Popis</th>

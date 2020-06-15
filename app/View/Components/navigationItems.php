@@ -41,25 +41,25 @@ class navigationItems extends Component
     public function headerMenu(){
         return [
             [
-                'title' => 'Zverejňovanie',
-                'url' => route('org.post.index', [$this->object->id, $this->object->slug ])
+                'title' => 'Nový návrh',
+                'url' => route('item.create', [$this->object->id, $this->object->slug ])
             ],
-            [
-                'title' => 'Kontakty',
-                'url' => route('org.contact.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Objednávky',
-                'url' => route('order.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Zastupiteľstva',
-                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Návody',
-                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug ])
-            ]
+//            [
+//                'title' => 'Kontakty',
+//                'url' => route('org.contact.index', [$this->object->id, $this->object->slug ])
+//            ],
+//            [
+//                'title' => 'Objednávky',
+//                'url' => route('order.index', [$this->object->id, $this->object->slug ])
+//            ],
+//            [
+//                'title' => 'Zastupiteľstva',
+//                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
+//            ],
+//            [
+//                'title' => 'Návody',
+//                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug ])
+//            ]
         ];
     }
 }

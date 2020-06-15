@@ -23,7 +23,7 @@
         </form>
 
 
-        <h3 class="mb-4 font-bold text-center text-l">Posledné pridané doklady</h3>
+        <h3 class="mb-4  text-lg">Posledné pridané doklady</h3>
 
         @include('post.table_index')
     </div>

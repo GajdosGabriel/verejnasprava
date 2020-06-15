@@ -2,23 +2,23 @@
 @section('page-title', 'Program zasadnutia')
 
 
-{{--@section('navigation') <x-navigationItems /> @endsection--}}
+@section('navigation') <x-navigationItems /> @endsection
 
-@section('navigation')
-    @include('council.items.navigation')
-@endsection
+{{--@section('navigation')--}}
+{{--    @include('council.items.navigation')--}}
+{{--@endsection--}}
 
 @section('content')
 
     <div class="lg:container lg:flex mx-auto lg:px-6 min-h-screen py-6">
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
-            <div class="flex justify-between mb-6">
+            <div class="mb-6">
                 <h1 class="page-title">Program schôdze</h1>
-                @can('delete')
-                    <a href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}"
-                       class="btn btn-primary text-center text-sm flex items-center">Nový návrh</a>
-                @endcan
+{{--                @can('delete')--}}
+{{--                    <a href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}"--}}
+{{--                       class="btn btn-primary text-center text-sm flex items-center">Nový návrh</a>--}}
+{{--                @endcan--}}
             </div>
 
             @forelse($items as $item)
@@ -32,7 +32,7 @@
                         </h5>
 
 
-                        <div class="flex items-center">
+                        <div class="flex items-center space-x-3">
 
                             {{-- Users Interpellations--}}
                             @include('council.items.interpellation.button')

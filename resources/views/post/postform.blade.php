@@ -1,5 +1,5 @@
 <!-- Three columns -->
-<div class="md:flex mb-4">
+<div class="md:flex">
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="category">Typ dokladu</label>
         <div class="relative">
@@ -51,14 +51,14 @@
 </div>
 
 {{--Title Field--}}
-<div class="w-full my-4 p-2">
+<div class="w-full p-2">
     <label class="input-label" for="title">Popis dokladu</label>
     <input class="input-control focus:outline-none focus:shadow-outline" type="text" name="name"
            value="{{ old('name') ?? $post->name }}" placeholder="Názov položky" id="title" required>
 </div>
 
 
-<div class="md:flex mb-4">
+<div class="md:flex">
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="price">Faktúrovaná cena</label>
         <input type="number" name="price" value="{{ old('price') ?? $post->price }}" placeholder="Suma faktúry (Euro)"
@@ -82,7 +82,7 @@
 </div>
 
 
-<div class="my-5 mb-8 flex">
+<div class="flex text-sm">
     <div class="w-1/2">
         <label class="input-label block" for="filename">Príloha</label>
         <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
@@ -92,7 +92,7 @@
     {{--Zobrazenie prílohy--}}
     @if(isset($post))
         <div class="form-group col-sm-3">
-            <strong>Príloha</strong>
+            <span class="font-semibold">Príloha</span>
             <ul>
                 @forelse($post->files as $file)
                     <li>{{ $file->org_name }}</li>

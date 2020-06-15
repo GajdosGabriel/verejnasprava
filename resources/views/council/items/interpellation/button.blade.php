@@ -1,4 +1,4 @@
-<div class="flex relative">
+<div class="my-1">
     @if($item->interpellations)
         <a href="{{ route('interpellation.store', [ $item->id, $item->slug]) }}"
            title="Prihlásený do rozpravy k bodu rokovania">

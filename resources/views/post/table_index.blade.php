@@ -1,6 +1,6 @@
-<table class="table table-bordered table-inverse table-hover">
+<table class="table-auto table-bordered text-sm">
     <thead>
-    <tr class="table-auto bg-gray-300">
+    <tr class="bg-gray-300">
         <th class="px-4 py-2">Popis</th>
         <th class="px-4 py-2">Dátum</th>
         <th class="px-4 py-2">Kategória</th>
