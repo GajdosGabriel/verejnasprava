@@ -2127,6 +2127,14 @@ __webpack_require__.r(__webpack_exports__);
       dropdown: false
     };
   },
+  computed: {
+    signedIn: function signedIn() {
+      return window.App.signedIn;
+    },
+    fullName: function fullName() {
+      return window.App.user.first_name + ' ' + window.App.user.last_name;
+    }
+  },
   created: function created() {
     var self = this;
     window.addEventListener('click', function (e) {

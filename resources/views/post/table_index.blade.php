@@ -14,7 +14,7 @@
     <tbody>
     @forelse($posts as $post)
         <tr class="hover:bg-gray-100">
-            <td class="border px-4 py-2">{{ $post->date_in }}</td>
+            <td class="border px-4 py-2">{{ $post->date_in->format('d. m. Y') }}</td>
             <td class="border px-4 py-2">{{ $post->name }}</td>
             <td class="border px-4 py-2">{{ $post->category->name }}</td>
             <td class="border px-4 py-2">{{ $post->contact->name }}</td>

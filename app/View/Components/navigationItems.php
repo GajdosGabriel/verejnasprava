@@ -37,29 +37,22 @@ class navigationItems extends Component
         return $this->object->name;
     }
 
+    public function isActive($routeName) {
+        if( \Route::currentRouteName() === $routeName  ) {
+            return 'font-semibold text-white underline';
+        }
+        return 'text-teal-200';
+    }
+
 
     public function headerMenu(){
         return [
             [
                 'title' => 'Nový návrh',
-                'url' => route('item.create', [$this->object->id, $this->object->slug ])
+                'url' => route('item.create', [$this->object->id, $this->object->slug ]),
+                'active' => $this->isActive('item.create')
             ],
-//            [
-//                'title' => 'Kontakty',
-//                'url' => route('org.contact.index', [$this->object->id, $this->object->slug ])
-//            ],
-//            [
-//                'title' => 'Objednávky',
-//                'url' => route('order.index', [$this->object->id, $this->object->slug ])
-//            ],
-//            [
-//                'title' => 'Zastupiteľstva',
-//                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
-//            ],
-//            [
-//                'title' => 'Návody',
-//                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug ])
-//            ]
+
         ];
     }
 }

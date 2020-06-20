@@ -10,6 +10,15 @@
                 dropdown: false,
             }
         },
+        computed: {
+            signedIn: function() {
+                return window.App.signedIn;
+            },
+
+            fullName: function () {
+                return window.App.user.first_name + ' ' + window.App.user.last_name;
+            }
+        },
         created: function() {
             let self = this;
 

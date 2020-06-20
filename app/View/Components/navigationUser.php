@@ -34,16 +34,13 @@ class navigationUser extends Component
         return route('user.home', [auth()->user()->id, auth()->user()->slug]);
     }
 
+
     public function headerMenu(){
+
+        $nav = new \App\Services\Navigation();
         return [
-            [
-                'title' => 'Profil',
-                'url' => route('user.edit', [auth()->user()->id, auth()->user()->slug])
-            ],
-            [
-                'title' => 'Späť',
-                'url' => route('org.index', [auth()->user()->id, auth()->user()->slug])
-            ],
+            $nav->userProfil(),
+            $nav->spat(),
         ];
     }
 }

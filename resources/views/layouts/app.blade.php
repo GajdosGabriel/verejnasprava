@@ -27,6 +27,14 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
+    <script>
+        window.App = {!! json_encode([
+                'user' => Auth::user(),
+            'signedIn' => Auth::check(),
+             'baseUrl' => asset('/')
+        ]) !!};
+    </script>
+
     @livewireStyles
 </head>
 <body>

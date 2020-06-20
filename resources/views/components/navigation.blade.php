@@ -27,49 +27,43 @@
             </div>
 
             <div class="">
-                @if(isset($headerMenu))
-                    @foreach($headerMenu as $link)
-                        <a :class="isOpen ? 'block' : 'hidden'"
-                           class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-                           href="{{$link['url']}}">{{$link['title']}}</a>
-                    @endforeach
-                @endif
-                    <a
-                       class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-                       href="{{$link['url']}}">
-{{--                        {{ \Request::routeIs('org/1/reprezent/index') ? 'ano' : 'nie' }}--}}
-{{--                        {{ \Request::route()->getName()  }}/--}}
-                        {{ route('org.index', [1, 'slug'])  }}/
-                        {{ \Request::fullUrl()  }}/
 
-                    </a>
-                @auth
-                    <a @click="dropdown =! dropdown" :class="isOpen ? 'block' : 'hidden'"
-                       class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="#">
-                        <div class="flex items-center">
-                            {{ auth()->user()->full_name() }}
-                            <span class="ml-2"> <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                        transition duration-150 ease-in-out"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     viewBox="0 0 20 20">
+                {{-- headerMenu --}}
+                @forelse($headerMenu as $link)
+                    <a :class="isOpen ? 'block' : 'hidden'"
+                       class="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 {{$link['active']}} "
+                       href="{{$link['url']}}">{{$link['title']}}</a>
+                @empty
+                @endforelse
+
+
+                <a v-if="signedIn" @click="dropdown =! dropdown" :class="isOpen ? 'block' : 'hidden'"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="#">
+                    <div class="flex items-center">
+                        @{{ fullName }}
+                        {{--                            {{ auth()->user()->full_name() }}--}}
+                        <span class="ml-2"> <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
+                                                    transition duration-150 ease-in-out"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 20 20">
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
                       </svg></span>
-                        </div>
-                    </a>
+                    </div>
+                </a>
 
-                    {{-- Dropdown component  --}}
+                {{-- Dropdown component  --}}
 
-                    <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 right-0">
-                        @if(isset($dropDownItems))
-                            @foreach($dropDownItems as $item)
-                                <li>
-                                    <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                       href="{{$item['url']}}">{{$item['title']}}</a></li>
-                            @endforeach
-                        @endif
-                        <li>@include('user._logout')</li>
-                    </ul>
-                @endauth
+                <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 right-0">
+                    @if(isset($dropDownItems))
+                        @foreach($dropDownItems as $item)
+                            <li>
+                                <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                                   href="{{$item['url']}}">{{$item['title']}}</a></li>
+                        @endforeach
+                    @endif
+                    <li>@include('user._logout')</li>
+                </ul>
+
                 {{-- End Dropdown component  --}}
 
             </div>

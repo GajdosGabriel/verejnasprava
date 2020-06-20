@@ -35,23 +35,34 @@ class navigation extends Component
         return route('home.index');
     }
 
+    public function isActive($routeName) {
+        if( \Route::currentRouteName() === $routeName  ) {
+            return 'font-semibold text-white underline';
+        }
+        return 'text-teal-200';
+    }
+
     public function headerMenu(){
         return [
             [
                 'title' => 'Zverejňovanie',
-                'url' => route('home.zverejnovanie')
+                'url' => route('home.zverejnovanie'),
+                'active' => $this->isActive('home.zverejnovanie')
             ],
             [
                 'title' => 'Kontakt',
-                'url' => route('home.contact')
+                'url' => route('home.contact'),
+                'active' => $this->isActive('home.contact')
             ],
             [
                 'title' => 'Login',
-                'url' => url('/login')
+                'url' => url('/login'),
+                'active' => $this->isActive('login')
             ],
             [
                 'title' => 'Registrácia',
-                'url' => url('/register')
+                'url' => url('/register'),
+                'active' => $this->isActive('register')
             ]
         ];
     }

@@ -38,28 +38,16 @@ class navigationMeeting extends Component
     }
 
 
-    public function headerMenu(){
+    public function headerMenu()
+    {
+        $nav = new \App\Services\Navigation();
+        $nav->zverejnovanie($this->object->id, $this->object->slug) ;
         return [
-            [
-                'title' => 'Zverejňovanie',
-                'url' => route('org.post.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Kontakty',
-                'url' => route('org.contact.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Objednávky',
-                'url' => route('order.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Zastupiteľstva',
-                'url' => route('zast.index', [$this->object->id, $this->object->slug ])
-            ],
-            [
-                'title' => 'Návody',
-                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug ])
-            ]
+            $nav->zverejnovanie($this->object->id, $this->object->slug),
+            $nav->contacts($this->object->id, $this->object->slug),
+            $nav->orders($this->object->id, $this->object->slug),
+            $nav->councils($this->object->id, $this->object->slug),
+            $nav->navody($this->object->id, $this->object->slug),
         ];
     }
 }
