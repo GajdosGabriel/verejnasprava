@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 
@@ -57,7 +58,9 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(['user.edit', 'user.create'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
             $roles =  Role::all();
+            $permissions =  Permission::all();
             $view->with('roles', $roles)
+                    ->with('permissions', $permissions)
                     ->with('organization', $organization);
         });
 

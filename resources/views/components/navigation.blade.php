@@ -34,7 +34,15 @@
                            href="{{$link['url']}}">{{$link['title']}}</a>
                     @endforeach
                 @endif
+                    <a
+                       class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                       href="{{$link['url']}}">
+{{--                        {{ \Request::routeIs('org/1/reprezent/index') ? 'ano' : 'nie' }}--}}
+{{--                        {{ \Request::route()->getName()  }}/--}}
+                        {{ route('org.index', [1, 'slug'])  }}/
+                        {{ \Request::fullUrl()  }}/
 
+                    </a>
                 @auth
                     <a @click="dropdown =! dropdown" :class="isOpen ? 'block' : 'hidden'"
                        class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="#">

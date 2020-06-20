@@ -45,19 +45,19 @@
 }
 
 .badge {
-    @apply text-xs rounded tracking-wide px-1 py-1 rounded px-2 py-1
+    @apply text-xs rounded tracking-wide px-1 py-1 rounded px-2 py-1;
     }
 
 .badge-primary {
-    @apply bg-blue-700  text-gray-100
+    @apply bg-blue-700  text-gray-100;
     }
 
 .badge-secondary {
-    @apply bg-gray-300  text-gray-700
+    @apply bg-gray-300  text-gray-700;
     }
 
 .badge-danger {
-    @apply bg-red-200  text-red-700
+    @apply bg-red-200  text-red-700;
     }
 
 [v-cloak] {

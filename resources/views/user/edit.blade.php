@@ -12,7 +12,7 @@
 
     <div class="container mx-auto min-h-screen p-6">
 
-        <div class="w-1/2">
+        <div class="md:w-1/2">
 
             <h1 class="font-bold text-2xl">Upraviť užívateľa</h1>
 
