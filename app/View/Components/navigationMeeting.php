@@ -4,18 +4,21 @@ namespace App\View\Components;
 
 use App\Models\Organization;
 use Illuminate\View\Component;
+use App\Services\Navigation;
 
 class navigationMeeting extends Component
 {
     public $object;
+    public $navigation;
 
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Navigation $navigation
      */
-    public function __construct()
+    public function __construct(Navigation $navigation)
     {
+        $this->navigation = $navigation;
         $this->object = Organization::whereId(auth()->user()->active_organization)->first();
     }
 
@@ -40,14 +43,12 @@ class navigationMeeting extends Component
 
     public function headerMenu()
     {
-        $nav = new \App\Services\Navigation();
-        $nav->zverejnovanie($this->object->id, $this->object->slug) ;
-        return [
-            $nav->zverejnovanie($this->object->id, $this->object->slug),
-            $nav->contacts($this->object->id, $this->object->slug),
-            $nav->orders($this->object->id, $this->object->slug),
-            $nav->councils($this->object->id, $this->object->slug),
-            $nav->navody($this->object->id, $this->object->slug),
-        ];
+        return array(
+            $this->navigation->zverejnovanie($this->object->id, $this->object->slug),
+            $this->navigation->contacts($this->object->id, $this->object->slug),
+            $this->navigation->orders($this->object->id, $this->object->slug),
+            $this->navigation->councils($this->object->id, $this->object->slug),
+            $this->navigation->navody($this->object->id, $this->object->slug),
+        );
     }
 }

@@ -18,7 +18,7 @@
               action="{{ route('org.post.store', [auth()->user()->active_organization, auth()->user()->slug ]) }}"
               method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
-
+            @include('modul.errorsAndFlash')
             @include('post.postform')
         </form>
 

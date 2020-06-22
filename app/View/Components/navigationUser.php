@@ -3,17 +3,19 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-
+use App\Services\Navigation;
 class navigationUser extends Component
 {
+    public $navigation;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Navigation $navigation
      */
-    public function __construct()
+    public function __construct(Navigation $navigation)
     {
-        //
+        $this->navigation = $navigation;
     }
 
     /**
@@ -36,11 +38,9 @@ class navigationUser extends Component
 
 
     public function headerMenu(){
-
-        $nav = new \App\Services\Navigation();
         return [
-            $nav->userProfil(),
-            $nav->spat(),
+            $this->navigation->userProfil(),
+            $this->navigation->spat(),
         ];
     }
 }

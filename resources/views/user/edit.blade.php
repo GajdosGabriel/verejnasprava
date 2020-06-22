@@ -18,6 +18,7 @@
 
             <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('PATCH')
+                @include('modul.errorsAndFlash')
                 @include('user._userForm')
             </form>
 

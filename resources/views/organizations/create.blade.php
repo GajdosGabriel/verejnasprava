@@ -9,6 +9,7 @@
         <h2 class="page-title">Profil organizácie</h2>
         <form action="{{ route('organization.store', [ auth()->user()->id, auth()->user()->slug ]) }}" method="POST" enctype="multipart/form-data">
            @csrf @method('POST')
+            @include('modul.errorsAndFlash')
             @include('organizations._form')
         </form>
 

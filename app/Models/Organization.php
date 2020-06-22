@@ -19,27 +19,31 @@ class Organization extends Model
         'orders',
     ];
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
     }
 
-    public function councils() {
+    public function councils()
+    {
         return $this->hasMany(Council::class);
     }
 
 
-    public function orders() {
+    public function orders()
+    {
         return $this->hasMany(Order::class)->orderBy('id', 'asc');
     }
 
-    public function contacts() {
+    public function contacts()
+    {
         return $this->hasMany(Contact::class)->orderBy('name', 'asc');
     }
-
 
 
 }

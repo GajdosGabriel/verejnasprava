@@ -18,7 +18,7 @@
         <form method="POST" action="{{ route('item.store', [$meeting->id, $meeting->slug]) }}"
               enctype="multipart/form-data">
             @csrf @method('POST')
-
+            @include('modul.errorsAndFlash')
             <div class="">
                 <div class="">
                     <div class="flex w-full">
