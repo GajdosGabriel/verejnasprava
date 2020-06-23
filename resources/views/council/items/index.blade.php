@@ -152,9 +152,9 @@
                         @endforelse
                     @endif
                     <div class="">
-                        Za: {{ $item->users()->where('vote', 1)->count() }}
-                        Proti: {{ $item->users()->where('vote', 0)->count() }}
-                        Nehlasoval: {{ $item->users()->where('vote', 2)->count() }}
+                        Za: {{ $item->votes()->where('vote', 1)->count() }}
+                        Proti: {{ $item->votes()->where('vote', 0)->count() }}
+                        Nehlasoval: {{ $item->votes()->where('vote', 2)->count() }}
                     </div>
 
                 </div>

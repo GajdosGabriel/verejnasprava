@@ -11,7 +11,6 @@ class ItemController extends Controller
 {
     public function index(Meeting $meeting){
         $items = $meeting->items()->published()->get();
-
         return view('council.items.index', compact(['items', 'meeting']) );
     }
 

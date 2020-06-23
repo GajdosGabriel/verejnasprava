@@ -24,8 +24,13 @@ class Item extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('vote');
+        return $this->belongsTo(User::class);
     }
+
+    public function votes(){
+        return $this->hasMany(Vote::class);
+    }
+
 
     public function meeting()
     {

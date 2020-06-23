@@ -113,41 +113,41 @@
             <div class="">
                 <h2 class="my-5 font-semibold">Výsledok hlasovania</h2>
                 <ul class="">
-                    @forelse($item->users as $user)
+                    @forelse($item->votes as $vote)
 
                         {{-- Hlas Za --}}
-                        @if($user->pivot->vote == 1 )
+                        @if($vote->vote == 1 )
                             <li class="list-group-item list-group-item-primary">
-                                @if($item->vote_type == 1)
+                                @if($vote == 1)
                                     Hlas
                                     <span class="pull-right"><strong>Za</strong></span>
                                 @else
-                                    {{ $user->full_name() }}
+                                    {{ $vote->user->full_name() }}
                                     <span class="pull-right"><strong>Áno</strong></span>
                                 @endif
                             </li>
                         @endif
                         {{-- Hlas Proti --}}
-                        @if($user->pivot->vote == 0 )
+                        @if($vote->vote == 0 )
                             <li class="list-group-item list-group-item-danger">
-                                @if($item->vote_type == 1)
+                                @if($vote == 1)
                                     Hlas
                                     <span class="pull-right"><strong>Nie</strong></span>
                                 @else
-                                    {{ $user->full_name() }}
+                                    {{ $vote->user->full_name() }}
                                     <span class="pull-right"><strong>Proti</strong></span>
                                 @endif
                             </li>
                         @endif
 
                         {{-- Zdržal sa --}}
-                        @if($user->pivot->vote == 2 )
+                        @if($vote->vote == 2 )
                             <li class="list-group-item list-group-item-secondary">
-                                @if($item->vote_type == 1)
+                                @if($vote == 1)
                                     Hlas
                                     <span class="pull-right"><strong>Zdržal</strong></span>
                                 @else
-                                    {{ $user->full_name() }}
+                                    {{ $vote->user->full_name() }}
                                     <span class="pull-right"><strong>Zdržal</strong></span>
                                 @endif
                             </li>
@@ -157,17 +157,17 @@
                 </ul>
             </div>
 
-            @if($item->users()->count() > 0)
+            @if($item->votes()->count() > 0)
                 {{-- Vote results Variant I. --}}
                 <ul class="mb-10">
                     <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Hlasovalo:</span>
-                        <span>{{ $item->users()->count() }}</span></li>
+                        <span>{{ $item->votes()->count() }}</span></li>
                     <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Za:</span>
-                        <span>{{ $item->users()->where('vote', 1)->count() }}</span></li>
+                        <span>{{ $item->votes()->where('vote', 1)->count() }}</span></li>
                     <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Proti:</span>
-                        <span>{{ $item->users()->where('vote', 0)->count() }}</span></li>
+                        <span>{{ $item->votes()->where('vote', 0)->count() }}</span></li>
                     <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Zdržal:</span>
-                        <span>{{ $item->users()->where('vote', 2)->count() }}</span></li>
+                        <span>{{ $item->votes()->where('vote', 2)->count() }}</span></li>
                 </ul>
             @endif
 
