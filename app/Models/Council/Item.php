@@ -16,13 +16,13 @@ class Item extends Model
 {
     use SoftDeletes, FileUpload;
     protected $guarded = [];
-    protected $with = ['interpellations', 'files', 'users'];
+    protected $with = ['interpellations', 'files', 'user'];
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

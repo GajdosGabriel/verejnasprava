@@ -16,7 +16,7 @@
                 <h1 class="text-lg page-title">Rokovací bod: {{ $item->name }} zastupiteľstvo</h1>
 
                 {{-- Badge line --}}
-                <div class="flex justify-between mt-3 ">
+                <div class="flex justify-between mt-3">
                     <div class="flex flex-wrap items-center space-x-3">
                         {{-- Users Interpellations--}}
                         @include('council.items.interpellation.button')
@@ -57,18 +57,48 @@
                     <form method="POST" action="{{ route('vote.store', [ $item->id, $item->slug]) }}">
                         @csrf @method('POST')
                         <div
-                            class="flex justify-between my-5 bg-gray-100 py-2 @if($item->vote_disabled) opacity-50 @endif">
+                            class="md:flex justify-between my-5 bg-gray-100 @if($item->vote_disabled) opacity-50 @endif">
+                            {{-- Button YES--}}
                             <button name="vote" value="1"
-                                    class="btn btn-primary font-semibold      @if($item->vote_disabled) cursor-not-allowed @endif"
-                                    @if($item->vote_disabled) disabled @endif >Súhlasim
+                                    class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3  @if($item->vote_disabled) cursor-not-allowed @endif"
+                                    @if($item->vote_disabled) disabled @endif >
+                                Súhlasim
+
+                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 1)
+                                    <svg class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path
+                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>
+                                    </svg>
+                                @endif
                             </button>
+
+                            {{-- Button WAIT--}}
                             <button name="vote" value="2"
-                                    class="btn btn-secondary font-semibold    @if($item->vote_disabled) cursor-not-allowed @endif"
-                                    @if($item->vote_disabled) disabled @endif >Zdržal
+                                    class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3 @if($item->vote_disabled) cursor-not-allowed @endif"
+                                    @if($item->vote_disabled) disabled @endif >
+                                Zdržal
+                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 2)
+                                    <svg class="w-5 h-5 ml-2 text-blue-600 fill-current"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path
+                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>
+                                    </svg>
+                                @endif
                             </button>
+                            {{-- Button No--}}
                             <button name="vote" value="0"
-                                    class="btn btn-danger font-semibold       @if($item->vote_disabled) cursor-not-allowed @endif"
-                                    @if($item->vote_disabled) disabled @endif >Nesúhlasim
+                                    class="btn btn-danger font-semibold  flex items-center justify-center md:w-auto w-full  my-3  @if($item->vote_disabled) cursor-not-allowed @endif"
+                                    @if($item->vote_disabled) disabled @endif >
+                                Nesúhlasim
+                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 0)
+                                    <svg class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path
+                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>
+                                    </svg>
+                                @endif
                             </button>
                         </div>
                     </form>
@@ -110,63 +140,17 @@
                 @endcan
             </div>
 
-            <div class="">
-                <h2 class="my-5 font-semibold">Výsledok hlasovania</h2>
-                <ul class="">
-                    @forelse($item->votes as $vote)
-
-                        {{-- Hlas Za --}}
-                        @if($vote->vote == 1 )
-                            <li class="list-group-item list-group-item-primary">
-                                @if($vote == 1)
-                                    Hlas
-                                    <span class="pull-right"><strong>Za</strong></span>
-                                @else
-                                    {{ $vote->user->full_name() }}
-                                    <span class="pull-right"><strong>Áno</strong></span>
-                                @endif
-                            </li>
-                        @endif
-                        {{-- Hlas Proti --}}
-                        @if($vote->vote == 0 )
-                            <li class="list-group-item list-group-item-danger">
-                                @if($vote == 1)
-                                    Hlas
-                                    <span class="pull-right"><strong>Nie</strong></span>
-                                @else
-                                    {{ $vote->user->full_name() }}
-                                    <span class="pull-right"><strong>Proti</strong></span>
-                                @endif
-                            </li>
-                        @endif
-
-                        {{-- Zdržal sa --}}
-                        @if($vote->vote == 2 )
-                            <li class="list-group-item list-group-item-secondary">
-                                @if($vote == 1)
-                                    Hlas
-                                    <span class="pull-right"><strong>Zdržal</strong></span>
-                                @else
-                                    {{ $vote->user->full_name() }}
-                                    <span class="pull-right"><strong>Zdržal</strong></span>
-                                @endif
-                            </li>
-                        @endif
-                    @empty
-                    @endforelse
-                </ul>
-            </div>
 
             @if($item->votes()->count() > 0)
                 {{-- Vote results Variant I. --}}
-                <ul class="mb-10">
-                    <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Hlasovalo:</span>
+                <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md">
+                    <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>
                         <span>{{ $item->votes()->count() }}</span></li>
-                    <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Za:</span>
+                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>
                         <span>{{ $item->votes()->where('vote', 1)->count() }}</span></li>
-                    <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Proti:</span>
+                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Proti:</span>
                         <span>{{ $item->votes()->where('vote', 0)->count() }}</span></li>
-                    <li class="flex justify-between font-semibold border-b-2 border-dotted"><span>Zdržal:</span>
+                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Zdržal:</span>
                         <span>{{ $item->votes()->where('vote', 2)->count() }}</span></li>
                 </ul>
             @endif
@@ -174,6 +158,52 @@
             {{-- Users Interpellations--}}
             @include('council.items.interpellation.aside-list')
 
+            <div class="">
+                <h2 class="my-5 text-lg font-semibold">Výsledky hlasovania</h2>
+                <ul class="">
+                    @forelse($item->votes as $vote)
+
+                        {{-- Hlas Za --}}
+                        @if($vote->vote == 1 )
+                            <li class="flex justify-between border-b-2 border-dotted">
+                                @if($vote->item->vote_type == 1)
+                                    Hlas
+                                    <span class="font-semibold">Za</span>
+                                @else
+                                    {{ $vote->user->full_name() }}
+                                    <span class="font-semibold">Áno</span>
+                                @endif
+                            </li>
+                        @endif
+                        {{-- Hlas Proti --}}
+                        @if($vote->vote == 0 )
+                            <li class="flex justify-between border-b-2 border-dotted">
+                                @if($vote->item->vote_type == 1)
+                                    Hlas
+                                    <span class="font-semibold">Nie</span>
+                                @else
+                                    {{ $vote->user->full_name() }}
+                                    <span class="font-semibold">Nie</span>
+                                @endif
+                            </li>
+                        @endif
+
+                        {{-- Zdržal sa --}}
+                        @if($vote->vote == 2 )
+                            <li class="flex justify-between border-b-2 border-dotted">
+                                @if($vote->item->vote_type == 1)
+                                    Hlas
+                                    <span class="font-semibold">Zdržal</span>
+                                @else
+                                    {{ $vote->user->full_name() }}
+                                    <span class="font-semibold">Zdržal</span>
+                                @endif
+                            </li>
+                        @endif
+                    @empty
+                    @endforelse
+                </ul>
+            </div>
 
         </div>
     </div>

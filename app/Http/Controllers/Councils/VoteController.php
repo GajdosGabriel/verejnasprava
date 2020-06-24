@@ -11,11 +11,19 @@ class VoteController extends Controller
     public function voteEnable(Item $item)
     {
         // only published item can be voted
-        if ($item->published == 1) {
-            $item->voteDisable();
+        if ($item->published == 0) {
+            session()->flash('flash', 'Položka nie je publikovaná!');
             return back();
         }
-        session()->flash('flash', 'Najprv zapnite publikovanie položky!');
+
+        // Enable vote can only if interpelations list is empty
+        if ($item->interpellations()->whereStatus(1)->count() > 0) {
+            session()->flash('flash', 'Máte prihlásených do rozpravy!');
+            return back();
+        }
+
+        $item->voteDisable();
+
         return back();
     }
 

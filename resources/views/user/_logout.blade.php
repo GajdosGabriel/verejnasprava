@@ -1,4 +1,4 @@
-<a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{ url('/logout') }}"
+<a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left" href="{{ url('/logout') }}"
    onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
     Odhlásiť

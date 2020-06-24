@@ -17,7 +17,9 @@
                 @forelse($item->interpellations()->whereStatus(1)->get() as $interpellation)
                     <li class="flex justify-between border-b-2 border-dotted px-2">
                         <span>{{ $interpellation->user->full_name() }}</span>
-                        <span class="text-gray-800 text-sm cursor-pointer">x</span>
+                        <a href="{{ route('interpellation.store', [ $item->id, $item->slug]) }}">
+                            <span class="text-gray-800 text-sm cursor-pointer">x</span>
+                        </a>
                     </li>
                 @empty
                     <li class="flex justify-between border-b-2 border-dotted px-2">žiadny prihlásený</li>
