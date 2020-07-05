@@ -17,8 +17,8 @@ class VoteController extends Controller
         }
 
         // Enable vote can only if interpelations list is empty
-        if ($item->interpellations()->whereStatus(1)->count() > 0) {
-            session()->flash('flash', 'Máte prihlásených do rozpravy!');
+        if ($item->interpellations()->count() > 0) {
+            session()->flash('flash', 'Zoznam prihlásených do rozpravy nie je prázdny!');
             return back();
         }
 

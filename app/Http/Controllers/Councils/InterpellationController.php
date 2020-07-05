@@ -10,12 +10,13 @@ class InterpellationController extends Controller
 {
     public function store(Item $item)
     {
-        if ($interpellation = $item->interpellations()->whereUserId(auth()->user()->id)->first()) {
+        if ($interpellation = $item->interpellations()->withTrashed()->whereUserId(auth()->user()->id)->first()) {
 
-            if ($interpellation->status == 0) {
-                $interpellation->update(['status' => 1]);
+            if ( $interpellation->deleted_at == null) {
+                $interpellation->delete();
+
             } else {
-                $interpellation->update(['status' => 0]);
+                $interpellation->restore() ;
             }
             return back();
         }
