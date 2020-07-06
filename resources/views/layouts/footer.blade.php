@@ -2,18 +2,18 @@
     <div class="container mx-auto py-8 text-center">
         <nav class="mb-8">
             <a class="text-black no-underline mx-3" href="#">About Us</a>
-            <a class="text-black no-underline mx-3" href="#">Help</a>
-            <a class="text-black no-underline mx-3" href="#">Newsletter</a>
-            <a class="text-black no-underline mx-3" href="#">Terms & Condition</a>
-            <a class="text-black no-underline mx-3" href="#">Privacy Policy</a>
-            <a class="text-black no-underline mx-3" href="#">Inside HQ</a>
-            <a class="text-black no-underline mx-3" href="#">Awards</a>
-            <a class="text-black no-underline mx-3" href="#">Brands</a>
+{{--            <a class="text-black no-underline mx-3" href="#">Help</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Newsletter</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Terms & Condition</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Privacy Policy</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Inside HQ</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Awards</a>--}}
+{{--            <a class="text-black no-underline mx-3" href="#">Brands</a>--}}
             <a class="text-black no-underline mx-3" href="#">Feedback</a>
-            <a class="text-black no-underline mx-3" href="#">Contact</a>
+            <a class="text-black no-underline mx-3" href="{{ route('home.contact') }}">Kontakt</a>
         </nav>
         <a class="inline-block mb-6" href="#"><img src="https://femaledaily.com/static/images/logo_FD.png" alt=""></a>
-        <p class="mb-6 text-grey-dark text-sm">Copyright © 2015 - 2017 Female Daily Network | All the rights reserved</p>
+        <p class="mb-6 text-grey-dark text-sm">Copyright © 2018 - 2020 Verejny portál | All the rights reserved</p>
         <nav>
             <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-facebook"></i></a>
             <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-twitter"></i></a>

@@ -15,8 +15,8 @@
         </div>
 
             <div class="mb-6 p-6 flex flex-col items-center justify-center">
-                <div class="text-gray-900 font-semibold text-2xl mt-5 md:text-3xl  mb-2 text-center">Spravovanie obecného zastupiteľstva</div>
-                <p class="text-gray-700 text-center">Výtváranie zápisov, hlasovanie, evidencia, moderné spravovanie obecného zastupiteľstva.</p>
+                <div class="text-gray-900 font-semibold text-2xl mt-5 md:text-3xl  mb-2 text-center">Správa obecného zastupiteľstva</div>
+                <p class="text-gray-700 text-center">Výtváranie zápisov, elektronické hlasovanie, evidencia, moderné spravovanie obecného zastupiteľstva.</p>
             <button class="btn btn-primary mt-5">Rýchla registrácia</button>
                 <span class="text-xs text-gray-700 mt-1">Registrácia bez poplatkov</span>
             </div>
@@ -40,31 +40,27 @@
 
 
     <div class="w-full p-6 bg-blue-100">
-        <div class="w-48 mx-auto pt-6 border-b-2 border-orange-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
+        <div class="w-48 mx-auto pt-6 border-b-2 border-teal-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
         <div class="p-2 text-center text-lg text-gray-700">Jednou bezplatnou registráciou získate riešenie pre správu obecného zastupiteľstva <br /> a prístup k zverejňovaniu zmlúv a faktúr.
             <span class="font-semibold">Registrácia zadarmo.</span></div>
         <div class="flex justify-center flex-wrap p-6">
 
-            <div class="relative w-48 h-64 m-5 bg-white shadow-lg">
-                <div class="flex items-center w-48 h-20 bg-orange-500">
+            <div class="w-48 h-64 m-5 bg-white shadow-lg text-center">
+                <div class="flex items-center w-48 h-20 bg-teal-500">
                     <i class="fas fa-bezier-curve fa-3x mx-auto text-white">Program 1</i>
                 </div>
                 <p class="mx-2 py-2 border-b-2 text-center text-gray-700 font-semibold uppercase">Zverejňovanie dokladov</p>
-                <p class="p-2 text-sm text-gray-700">Zverejňovanie dokladov, zmlúv a faktúr, jednoduchým spôsobom.</p>
-                <div class="absolute right-0 bottom-0 w-8 h-8 bg-gray-300 hover:bg-orange-300 text-center cursor-pointer">
-                    <i class="fas fa-chevron-right mt-2 text-orange-500"></i>
-                </div>
+                <p class="p-2 text-sm text-gray-700">Zverejňovanie zmlúv a faktúr.</p>
+                <p class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</p>
             </div>
 
-            <div class="relative w-48 h-64 m-5 bg-white shadow-lg">
-                <div class="flex items-center w-48 h-20 bg-orange-500">
+            <div class="w-48 h-64 m-5 bg-white shadow-lg text-center">
+                <div class="flex items-center w-48 h-20 bg-teal-500">
                     <i class="fas fa-bezier-curve fa-3x mx-auto text-white">Program 2</i>
                 </div>
-                <p class="mx-2 py-2 border-b-2 text-center text-gray-700 font-semibold uppercase">Obecné zastupiteľstvo</p>
-                <p class="p-2 text-sm text-gray-700">Výtváranie zápisov, evidencia hlasovania, moderné spravovanie obecného zastupiteľstva..</p>
-                <div class="absolute right-0 bottom-0 w-8 h-8 bg-gray-300 hover:bg-orange-300 text-center cursor-pointer">
-                    <i class="fas fa-chevron-right mt-2 text-orange-500"></i>
-                </div>
+                <p class="mx-2 py-2 border-b-2 text-gray-700 font-semibold uppercase">Obecné zastupiteľstvo</p>
+                <p class="p-2 text-sm text-gray-700">Nástroj pre správu obecného zastupiteľstva.</p>
+                <p class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</p>
             </div>
 {{--            ...--}}
         </div>
