@@ -29,18 +29,26 @@ class navigationUser extends Component
     }
 
     public function logoTitle(){
-        return  auth()->user()->full_name();
+        return  config('app.name', 'Verejná správa');
     }
 
     public function logoUrl(){
-        return route('user.home', [auth()->user()->id, auth()->user()->slug]);
+        return route('home.index');
     }
+
+//    public function logoTitle(){
+//        return  auth()->user()->full_name();
+//    }
+//
+//    public function logoUrl(){
+//        return route('user.home', [auth()->user()->id, auth()->user()->slug]);
+//    }
 
 
     public function headerMenu(){
         return [
-            $this->navigation->userProfil(),
-            $this->navigation->spat(),
+//            $this->navigation->userProfil(),
+//            $this->navigation->spat(),
         ];
     }
 }

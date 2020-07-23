@@ -24,9 +24,6 @@
         data: function() {
             return {
                 show: false
-
-
-
             }
         },
         methods: {

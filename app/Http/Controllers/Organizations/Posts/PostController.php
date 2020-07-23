@@ -22,7 +22,7 @@ class PostController extends Controller
     }
 
     public function index(Organization $organization, $slug) {
-        $this->authorize('update', $organization);
+
         $posts = $organization->posts;
         return view('post.index', compact('posts'));
     }

@@ -17,7 +17,7 @@ class Post extends Model
     use RecordsActivity, FileUpload, SoftDeletes;
 
     protected $guarded = [];
-    protected $with = ['category', 'files', 'contact'];
+    protected $with = ['category', 'files', 'contact', 'organization'];
     protected $casts = [
         'date_in' => 'date'
     ];
@@ -55,12 +55,24 @@ class Post extends Model
     }
 
 
+    public function saveImage($request) {
+        if ($request->hasFile('filename')){
+            $imageName =  request()->file('filename')->store('username' .  auth()->id() );
+            $file = $request->filename->move(storage_path('username' . auth()->id()), $imageName);
+            $path = storage_path('username' . auth()->id()) . '/' . basename($file);
 
-//    public function setDate_inAttribute($value)
-//    {
-//        return  Carbon::parse($value);
-//    }
+            $this->file()->create([
+                'filename' => $imageName,
+                'name' => $request->filename->getClientOriginalName(),
+            ]);
 
+            if (getimagesize($path)) {
+                $resize = Image::make($path);
+                $resize->widen(1000);
+                $resize->save($path, 75);
+            }
+        }
+    }
 
 
 

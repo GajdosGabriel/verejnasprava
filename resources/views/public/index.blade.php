@@ -17,7 +17,7 @@
             <div class="mb-6 p-6 flex flex-col items-center justify-center">
                 <div class="text-gray-900 font-semibold text-2xl mt-5 md:text-3xl  mb-2 text-center">Správa obecného zastupiteľstva</div>
                 <p class="text-gray-700 text-center">Výtváranie zápisov, elektronické hlasovanie, evidencia, moderné spravovanie obecného zastupiteľstva.</p>
-            <button class="btn btn-primary mt-5">Rýchla registrácia</button>
+            <a class="btn btn-primary mt-5 cursor-pointer" href="/register">Rýchla registrácia</a>
                 <span class="text-xs text-gray-700 mt-1">Registrácia bez poplatkov</span>
             </div>
 
@@ -65,7 +65,7 @@
 {{--            ...--}}
         </div>
         <div class="text-center">
-            <button class="btn btn-primary mb-5">Jedna registrácia 2x služby</button>
+            <a class="btn btn-primary mb-5" href="/register">Jedna registrácia 2x služby</a>
         </div>
     </div>
 
@@ -77,7 +77,7 @@
         <h3 class="text-center mt-5 text-3xl text-gray-500">Publikované doklady</h3>
 
 {{--        @include('modul.categoryList')--}}
-{{--        @include('post.post-table-predna')--}}
+        @include('post.post-table-predna')
         </div>
 
         {{--    {!! $posts ->render() !!}--}}

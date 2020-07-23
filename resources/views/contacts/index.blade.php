@@ -15,12 +15,8 @@
         {{--</form>--}}
 
         <div class="container mx-auto min-h-screen p-6">
-        <index-table  :contacts="{{ $organization->contacts }}" :organization="{{ $organization }}"></index-table>
+        <contact-table  :contacts="{{ $organization->contacts }}" :organization="{{ $organization }}"></contact-table>
         </div>
 
-
-
-
-
-
     @endsection
+

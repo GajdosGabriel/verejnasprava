@@ -59,7 +59,7 @@ class navigationOrganization extends Component
     {
         return [
             [
-                'title' => 'Nastavenia',
+                'title' => 'Organizácia',
                 'url' => route('org.edit', [$this->object->id, $this->object->slug])
             ],
             [

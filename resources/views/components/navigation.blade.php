@@ -38,7 +38,7 @@
 
 
                 <button v-if="signedIn" @click="dropdown =! dropdown" :class="isOpen ? 'block' : 'hidden'"
-                   class=" mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 focus:outline-none">
+                        class=" mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 focus:outline-none">
                     <div class="flex items-center">
                         @{{ fullName }}
                         {{--                            {{ auth()->user()->full_name() }}--}}
@@ -51,19 +51,19 @@
                     </div>
 
 
-                {{-- Dropdown component  --}}
-                <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2">
-                    @if(isset($dropDownItems))
-                        @foreach($dropDownItems as $item)
-                            <li>
-                                <a class="rounded bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left"
-                                   href="{{$item['url']}}">{{$item['title']}}</a>
-                            </li>
-                        @endforeach
-                    @endif
-                    <li>@include('user._logout')</li>
-                </ul>
-                {{-- End Dropdown component  --}}
+                    {{-- Dropdown component  --}}
+                    <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2">
+                        @if(isset($dropDownItems))
+                            @foreach($dropDownItems as $item)
+                                <li>
+                                    <a class="rounded bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left"
+                                       href="{{$item['url']}}">{{$item['title']}}</a>
+                                </li>
+                            @endforeach
+                        @endif
+                        <li>@include('user._logout')</li>
+                    </ul>
+                    {{-- End Dropdown component  --}}
                 </button>
             </div>
 

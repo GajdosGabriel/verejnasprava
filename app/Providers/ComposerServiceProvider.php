@@ -48,12 +48,12 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('posts', $posts);
         });
 
-        view()->composer('post.post-table-predna', function ($view) {
-            $posts =  Post::orderBy('date_in', 'desc')->get()->groupBy(function($item){
-                return Carbon::parse($item->date_in)->format('F-Y');
-            });
-            $view->with('posts', $posts);
-        });
+//        view()->composer('post.post-table-predna', function ($view) {
+//            $posts =  Post::orderBy('date_in', 'desc')->get()->groupBy(function($item){
+//                return Carbon::parse($item->date_in)->format('F-Y');
+//            });
+//            $view->with('posts', $posts);
+//        });
 
         view()->composer(['user.edit', 'user.create'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
