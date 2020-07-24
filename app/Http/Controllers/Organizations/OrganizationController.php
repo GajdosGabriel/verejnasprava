@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Organizations;
 
+use App\Http\Requests\OrganizationUpdateRequest;
 use App\Models\User;
 use App\Models\Organization;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class OrganizationController extends Controller
         return redirect()->route('org.index', [ auth()->user()->active_organization, auth()->user()->slug]);
     }
 
-    public function update(Organization $organization, $slug, OrganizationFormRequest $request) {
+    public function update(Organization $organization, $slug, OrganizationUpdateRequest $request) {
         $organization->update($request->all());
         return back();
     }

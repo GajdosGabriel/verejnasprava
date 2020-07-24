@@ -20,9 +20,7 @@ class ContactsController extends Controller
     }
 
     public function index(Organization $organization) {
-        return view('contacts.index', compact('organization'))
-//            ->with('organization', new Organization)
-            ;
+        return view('contacts.index', compact('organization'));
     }
 
     public function create(Organization $organization, $slug) {

@@ -3,6 +3,9 @@
 
         <div class="flex justify-between max-w-4xl py-5">
             <h1 class="page-title">Zoznam dodávateľov</h1>
+
+            <input type="text" v-model="search" class="px-3 text-sm border-2 border-gray-300 rounded-sm"
+                   placeholder="Name, emial, phone, city">
             <a :href="urlNewContact" class="btn btn-primary">Nový kontakt</a>
         </div>
 
@@ -43,18 +46,38 @@
 
 <script>
     export default {
-        props: ['contacts', 'organization'],
+        props: ['organization'],
         data: function () {
             return {
                 name: false,
+                contacts: [],
+                search: '',
                 urlNewContact: '/org/' + this.organization.id + '/' + this.organization.slug + '/contact/create',
-//                urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
+                // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
+            }
+        },
+        created() {
+            this.getContacts();
+        },
+        watch: {
+            search: function (val) {
+                this.getContacts();
             }
         },
         methods: {
             toggle: function () {
                 this.name = !this.name;
-            }
+            },
+
+            getContacts: function () {
+                let $this = this;
+                axios.get('/api/contacts/' + this.organization.id + '/' + this.search)
+                    .then(response => {
+                            this.contacts = response.data
+                            // this.makePagination(response.data)
+                        }
+                    );
+            },
         }
     }
 </script>

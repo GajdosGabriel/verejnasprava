@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('posts/front', 'ApiController@posts');
+Route::get('contacts/{organization}/{search?}', 'Organizations\Contacts\ApiContactsController@getContacts');

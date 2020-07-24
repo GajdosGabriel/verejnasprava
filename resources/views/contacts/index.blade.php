@@ -15,7 +15,9 @@
         {{--</form>--}}
 
         <div class="container mx-auto min-h-screen p-6">
-        <contact-table  :contacts="{{ $organization->contacts }}" :organization="{{ $organization }}"></contact-table>
+        <contact-table
+            :organization="{{ $organization }}"
+        ></contact-table>
         </div>
 
     @endsection

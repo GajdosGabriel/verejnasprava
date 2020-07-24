@@ -2089,18 +2089,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['contacts', 'organization'],
+  props: ['organization'],
   data: function data() {
     return {
       name: false,
-      urlNewContact: '/org/' + this.organization.id + '/' + this.organization.slug + '/contact/create' //                urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
+      contacts: [],
+      search: '',
+      urlNewContact: '/org/' + this.organization.id + '/' + this.organization.slug + '/contact/create' // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
 
     };
+  },
+  created: function created() {
+    this.getContacts();
+  },
+  watch: {
+    search: function search(val) {
+      this.getContacts();
+    }
   },
   methods: {
     toggle: function toggle() {
       this.name = !this.name;
+    },
+    getContacts: function getContacts() {
+      var _this = this;
+
+      var $this = this;
+      axios.get('/api/contacts/' + this.organization.id + '/' + this.search).then(function (response) {
+        _this.contacts = response.data; // this.makePagination(response.data)
+      });
     }
   }
 });
@@ -58791,6 +58812,28 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "flex justify-between max-w-4xl py-5" }, [
       _c("h1", { staticClass: "page-title" }, [_vm._v("Zoznam dodávateľov")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "px-3 text-sm border-2 border-gray-300 rounded-sm",
+        attrs: { type: "text", placeholder: "Name, emial, phone, city" },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "a",
