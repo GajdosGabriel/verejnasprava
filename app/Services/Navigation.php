@@ -17,7 +17,7 @@ class Navigation
     public function zverejnovanie($id, $slug){
        return [
             'title' => 'Zverejňovanie',
-            'url' => route('org.post.index', [$id, $slug]),
+            'url' => route('post.index'),
             'active' => $this->isActive('org.post.index')
         ];
     }

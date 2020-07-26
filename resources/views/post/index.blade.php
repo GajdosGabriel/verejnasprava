@@ -13,8 +13,7 @@
             <div class="flex justify-between items-center pb-8">
                 <h1 class="page-title">Zverejnené doklady</h1>
                 <a class="btn btn-primary"
-                   href="{{ route('org.post.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nový
-                    doklad</a>
+                   href="{{ route('post.create') }}">Nový doklad</a>
             </div>
 
             @include('post.table_index')

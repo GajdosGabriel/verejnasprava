@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Organizations\Posts;
+namespace App\Http\Controllers\Posts;
 
 
 use App\Models\Organization;
@@ -21,8 +21,8 @@ class PostController extends Controller
         $this->middleware('auth')->only(['create', 'edit', 'update', 'storePost', 'deletePost']);
     }
 
-    public function index(Organization $organization, $slug) {
-        $posts = Post::whereOrganizationId($organization->id)->paginate(20);
+    public function index() {
+        $posts = Post::whereOrganizationId(auth()->user()->active_organization)->paginate(20);
         return view('post.index', compact('posts'));
     }
 
@@ -41,19 +41,19 @@ class PostController extends Controller
 
 
 
-    public function create(Organization $organization, $slug) {
-        $this->authorize('update', $organization);
-        return view('post.create', compact('organization'))->with('post', new Post);
+    public function create() {
+//        $this->authorize('update', $organization);
+        return view('post.create')->with('post', new Post);
     }
 
 
-    public function edit(Post $post, $slug)
+    public function edit(Post $post)
     {
         $this->authorize('update', $post);
         return view('post.edit', compact('post'));
     }
 
-    public function copy(Post $post, $slug)
+    public function copy(Post $post)
     {
         $this->authorize('update', $post);
 
@@ -67,8 +67,9 @@ class PostController extends Controller
             ->with('user', $user);
     }
 
-    public function store(Organization $organization, SavePostRequest $request)
+    public function store(SavePostRequest $request)
     {
+        $organization = Organization::whereId(auth()->user()->active_organization)->first();
         $this->authorize('update', $organization);
         $post = $organization->posts()->create($request->except('filename'));
 //        Cache::forget('posts');
@@ -87,20 +88,20 @@ class PostController extends Controller
         $post->saveImage($request, $post);
 
 //        flash()->success('Doklad opravený! ');
-        return redirect()->route('org.post.index', [ $post->organization->id, $post->organization->slug ]);
+        return redirect()->route('post.index', [ $post->organization->id, $post->organization->slug ]);
     }
 
 
-    public function delete(Post $organization)
+    public function delete(Post $post)
     {
-        $this->authorize('update', $organization);
+        $this->authorize('update', $post);
 //        Cache::forget('posts');
 
 //        $post->file->each(function($post){
 //            Storage::delete($post->filename);
 //       });
 
-        $organization->delete();
+        $post->delete();
 //        flash()->success('Doklad bol zmazaný! ');
         return back();
     }

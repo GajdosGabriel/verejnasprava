@@ -92,17 +92,16 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
 
+    });
 
-        Route::name('post.')->namespace('Posts')->group(function() {
-            Route::get('{organization}/{slug}/post', 'PostController@index')->name('index');
-            Route::get('{organization}/{slug}/post/create', 'PostController@create')->name('create');
-            Route::get('{post}/{slug}/post/copy', 'PostController@copy')->name('copy');
-            Route::get('{post}/{slug}/post/edit', 'PostController@edit')->name('edit');
-            Route::put('{post}/{slug}/post/update', 'PostController@update')->name('update');
-            Route::post('{organization}/{slug}/post/store', 'PostController@store')->name('store');
-            Route::delete('{organization}/{slug}/post/delete', 'PostController@delete')->name('delete');
-        });
-
+    Route::name('post.')->namespace('Posts')->group(function() {
+        Route::get('posts', 'PostController@index')->name('index');
+        Route::get('post/create', 'PostController@create')->name('create');
+        Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
+        Route::get('post/edit/{post}', 'PostController@edit')->name('edit');
+        Route::post('post/store', 'PostController@store')->name('store');
+        Route::put('post/update/{post}', 'PostController@update')->name('update');
+        Route::delete('post/delete/{post}', 'PostController@delete')->name('delete');
     });
 
 

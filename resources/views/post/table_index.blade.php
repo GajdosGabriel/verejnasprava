@@ -39,17 +39,17 @@
                         <div v-if="isOpen" class="absolute z-10 py-1 flex flex-col border-2 border-gray-300 shadow-md rounded text-sm bg-white">
 
                             {{-- Item Up button--}}
-                            <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('org.post.edit', [$post->id, $post->slug]) }}" title="Upraviť položku">
+                            <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap" href="{{ route('post.edit', $post->id) }}" title="Upraviť položku">
                                 Upraviť položku
                             </a>
 
                             {{-- Item Down button--}}
-                            <a class="hover:bg-gray-200 px-4 py-1 flex-1" href="{{ route('org.post.copy', [$post->id, $post->slug]) }}" title="Kopírovať položku">
+                            <a class="hover:bg-gray-200 px-4 py-1 flex-1" href="{{ route('post.copy', $post->id) }}" title="Kopírovať položku">
                                 Kopírovať
                             </a>
 
                             <div class="dropdown-divider"></div>
-                            <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" id="delete-form" method="post">
+                            <form action="{{ route('post.delete', $post->id) }}" id="delete-form" method="post">
                                 @csrf @method('DELETE')
                                 <a class="hover:bg-gray-200 px-4 py-1 flex-1" href="#" onclick="get_form(this).submit(); return false">
                                     <i @if(Auth::id() === $post->user_id) @else style="font-size: 118%; color: grey" @endif style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>

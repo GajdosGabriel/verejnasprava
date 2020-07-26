@@ -15,7 +15,7 @@
         <h1 class="page-title">Vytvoriť doklad</h1>
 
         <form class="md:w-2/3"
-              action="{{ route('org.post.store', [auth()->user()->active_organization, auth()->user()->slug ]) }}"
+              action="{{ route('post.store') }}"
               method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errorsAndFlash')
