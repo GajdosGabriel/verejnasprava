@@ -103,16 +103,18 @@ Route::group(['middleware' => 'auth'], function() {
             Route::delete('{organization}/{slug}/post/delete', 'PostController@delete')->name('delete');
         });
 
-        Route::name('contact.')->namespace('Contacts')->group(function() {
-            Route::get('{organization}/{slug}/contact', 'ContactsController@index')->name('index');
-            Route::get('{organization}/{slug}/contact/create', 'ContactsController@create')->name('create');
-            Route::get('{organization}/{slug}/contact/edit', 'ContactsController@edit')->name('edit');
-            Route::post('{organization}/{slug}/contact/store', 'ContactsController@store')->name('store');
-            Route::put('{organization}/{slug}/contact/update', 'ContactsController@update')->name('update');
-        });
-
-
     });
+
+
+    Route::name('contact.')->namespace('Contacts')->group(function() {
+        Route::get('contacts', 'ContactsController@index')->name('index');
+        Route::get('contact/create/{organization}', 'ContactsController@create')->name('create');
+        Route::get('contact/edit/{organization}', 'ContactsController@edit')->name('edit');
+        Route::put('contact/update/{organization}', 'ContactsController@update')->name('update');
+        Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
+    });
+
+
 
 
     Route::name('question.')->group(function() {

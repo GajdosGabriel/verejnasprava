@@ -15,6 +15,8 @@ use App\Models\Council\Item;
 use App\Models\Organization;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         Organization::observe(OrganizationObserver::class);
         OrderItem::observe(OrderItemObserver::class);
         Item::observe(ItemOrderObserver::class);
+        Paginator::useTailwind();
 
 
         Carbon::setLocale(config('app.locale'));

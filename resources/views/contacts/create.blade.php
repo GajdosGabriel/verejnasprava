@@ -8,7 +8,7 @@
     <div class="container mx-auto min-h-screen p-6">
 
         <h1 class="page-title">Nový kontakt</h1>
-        <form class="md:w-full text-sm" action="{{ route('org.contact.store', [ $org->id, $org->slug]) }}" method="POST">
+        <form class="md:w-full text-sm" action="{{ route('contact.store', $org->id) }}" method="POST">
             @csrf @method('POST')
             @include('organizations._form')
         </form>

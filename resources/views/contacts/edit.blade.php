@@ -11,7 +11,7 @@
 
     <h1 class="page-title">Upraviť dodávateľa</h1>
 
-    <form action="{{ route('org.contact.update', [ $organization->id, $organization->slug]) }}" method="POST">
+    <form action="{{ route('contact.update', $organization->id) }}" method="POST">
         @csrf @method('PUT')
 
         @include('organizations._form')

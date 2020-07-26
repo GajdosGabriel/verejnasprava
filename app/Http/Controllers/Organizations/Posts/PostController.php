@@ -22,8 +22,7 @@ class PostController extends Controller
     }
 
     public function index(Organization $organization, $slug) {
-
-        $posts = $organization->posts;
+        $posts = Post::whereOrganizationId($organization->id)->paginate(20);
         return view('post.index', compact('posts'));
     }
 

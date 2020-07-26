@@ -28,6 +28,7 @@
     "funding": "^1.0.9",
     "jquery": "^3.5.1",
     "moment": "^2.25.3",
+    "numeral": "^2.0.6",
     "sweetalert2": "^9.10.13",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",

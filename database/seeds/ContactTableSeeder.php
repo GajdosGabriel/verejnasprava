@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RolesAndPermissionsSeeder extends Seeder
+class ContactTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\Contact::class, 200)->create();
     }
 }

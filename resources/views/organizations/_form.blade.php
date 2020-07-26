@@ -11,7 +11,7 @@
         {{-- Ulica --}}
         <div class="mb-4">
                 <label class="input-label" id="basic-addon2">Ulica a číslo</label>
-            <input type="text" name="street" class="input-control"  placeholder="Ulica a číslo" value="{{ old('street') ?? $organization->slug}}" />
+            <input type="text" name="street" class="input-control"  placeholder="Ulica a číslo" value="{{ old('street') ?? $organization->street}}" />
         </div>
 
         {{-- PSČ --}}

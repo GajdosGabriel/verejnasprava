@@ -8,6 +8,10 @@ require('./bootstrap');
 require('vue-multiselect/dist/vue-multiselect.min.css');
 window.Vue = require('vue');
 
+// get user Organization
+Vue.prototype.user =  window.App.user;
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

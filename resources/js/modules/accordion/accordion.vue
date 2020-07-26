@@ -44,7 +44,7 @@
                 <td class="border px-4">
                     <strong>{{ item.contact.name }}</strong><br> {{ item.contact.city }},
                     <small>ico:{{ item.contact.ico }}</small></td>
-                <td class="border px-4"><strong>{{ item.price }} Eu</strong></td>
+                <td class="border px-4  whitespace-no-wrap font-semibold">{{ item.price }} Eu</td>
                 <td class="border px-4">
                     <div v-for="file in item.files">
                         <a target="_blank" :href="'/pdf/' + file.id + '/' + file.name + '/download/pdf'">Príloha</a>

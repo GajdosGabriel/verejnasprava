@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Organizations\Contacts;
+namespace App\Http\Controllers\Contacts;
 
 
 
@@ -19,11 +19,11 @@ class ContactsController extends Controller
         //
     }
 
-    public function index(Organization $organization) {
-        return view('contacts.index', compact('organization'));
+    public function index() {
+        return view('contacts.index');
     }
 
-    public function create(Organization $organization, $slug) {
+    public function create(Organization $organization) {
         $org = $organization; // for route
         $organization = new Organization; // for form
         return view('contacts.create', compact('organization', 'org'));
@@ -31,7 +31,7 @@ class ContactsController extends Controller
 
 
 
-    public function edit(Contact $organization, $slug) {
+    public function edit(Contact $organization) {
         return view('contacts.edit', compact('organization'));
     }
 
@@ -47,7 +47,6 @@ class ContactsController extends Controller
 
 
     public function store(Organization $organization, OrganizationFormRequest $request) {
-
         $organization->contacts()->create($request->all());
 //        flash()->success('Dodávateľ bol vytvorený');
         return back();

@@ -25,8 +25,8 @@ class Navigation
     public function contacts($id, $slug){
         return [
             'title' => 'Kontakty',
-            'url' => route('org.contact.index', [$id, $slug]),
-            'active' => $this->isActive('org.contact.index')
+            'url' => route('contact.index'),
+            'active' => $this->isActive('contact.index')
         ];
     }
 

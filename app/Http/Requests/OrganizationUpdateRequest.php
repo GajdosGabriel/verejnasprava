@@ -13,7 +13,7 @@ class OrganizationUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::check();
+        return \Auth::user()->active_organization == $this->organization->id;
     }
 
     /**
@@ -24,7 +24,7 @@ class OrganizationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'ico' => 'required|max:8|unique:organizations,ico,'  .$this->organization->id,
+            'ico' => 'required|max:8|unique:organizations,ico,'  . $this->organization->id,
         ];
     }
 }
