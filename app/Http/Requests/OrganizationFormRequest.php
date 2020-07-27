@@ -30,7 +30,7 @@ class OrganizationFormRequest extends FormRequest
             'psc' => 'required|max:6',
             'city' => 'required|max:50',
 //            'email' => 'required|email|max:8|unique:organizations,email,' . $this->organization->id,
-            'ico' => 'required|max:8|unique:organizations,ico,' ,
+            'ico' => 'max:8|unique:organizations,ico,' ,
             'dic' => 'max:20',
         ];
     }

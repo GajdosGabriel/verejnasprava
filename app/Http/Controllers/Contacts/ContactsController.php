@@ -41,15 +41,14 @@ class ContactsController extends Controller
 //        $this->authorize('update', $company);
         $organization->update($request->all());
 //        flash()->success('Dodávateľ aktualizovaný!');
-        return back();
-
+        return redirect()->route('contact.index');
     }
 
 
     public function store(Organization $organization, OrganizationFormRequest $request) {
         $organization->contacts()->create($request->all());
 //        flash()->success('Dodávateľ bol vytvorený');
-        return back();
+        return redirect()->route('contact.index');
     }
 
 

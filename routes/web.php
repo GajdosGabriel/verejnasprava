@@ -91,7 +91,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
-
     });
 
     Route::name('post.')->namespace('Posts')->group(function() {
@@ -101,7 +100,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('post/edit/{post}', 'PostController@edit')->name('edit');
         Route::post('post/store', 'PostController@store')->name('store');
         Route::put('post/update/{post}', 'PostController@update')->name('update');
-        Route::delete('post/delete/{post}', 'PostController@delete')->name('delete');
+        Route::get('post/delete/{post}', 'PostController@delete')->name('delete');
     });
 
 
@@ -112,8 +111,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('contact/update/{organization}', 'ContactsController@update')->name('update');
         Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
     });
-
-
 
 
     Route::name('question.')->group(function() {
