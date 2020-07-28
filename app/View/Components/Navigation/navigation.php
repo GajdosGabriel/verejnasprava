@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navigation;
 
 use Illuminate\View\Component;
 
@@ -24,7 +24,7 @@ class navigation extends Component
      */
     public function render()
     {
-        return view('components.navigation');
+        return view('components.navigation.navigation');
     }
 
     public function logoTitle(){

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam dokumentov')
 @section('navigation')
-    <x-navigationOrganization/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 @section('content')
 

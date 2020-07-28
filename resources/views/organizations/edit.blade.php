@@ -2,7 +2,7 @@
 
 @section('page-title', 'Upraviť dokument')
 
-@section('navigation') <x-navigationOrganization /> @endsection
+@section('navigation') <x-navigation.navigationOrganization /> @endsection
 
 
 @section('content')

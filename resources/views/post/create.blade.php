@@ -3,7 +3,7 @@
 @section('page-title', 'Vytvoriť zverejnenie')
 
 @section('navigation')
-    <x-navigationOrganization/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 {{--@section('navigation')--}}
 {{--    @include('organizations.navigation')--}}

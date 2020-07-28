@@ -2,7 +2,7 @@
 @section('page-title', 'Zoznam zastupiteľstiev')
 
 @section('navigation')
-    <x-navigationOrganization/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 @section('content')
 

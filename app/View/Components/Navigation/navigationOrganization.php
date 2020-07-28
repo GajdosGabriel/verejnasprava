@@ -1,21 +1,16 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navigation;
 
 use App\Models\Organization;
 use Illuminate\View\Component;
-use App\View\Components\navItems;
+use App\View\Components\Navigation\navItems;
 
 class navigationOrganization extends Component
 {
     public $object;
     public $navigation;
 
-    /**
-     * Create a new component instance.
-     *
-     * @param \App\Services\Navigation $navigation
-     */
     public function __construct(navItems $navigation)
     {
         $this->navigation = $navigation;
@@ -29,7 +24,7 @@ class navigationOrganization extends Component
      */
     public function render()
     {
-        return view('components.navigation');
+        return view('components.navigation.navigation');
     }
 
     public function logoUrl()
@@ -46,11 +41,11 @@ class navigationOrganization extends Component
     public function headerMenu()
     {
         return [
-            $this->navigation->zverejnovanie($this->object->id, $this->object->slug),
-            $this->navigation->contacts($this->object->id, $this->object->slug),
+            $this->navigation->zverejnovanie(),
+            $this->navigation->contacts(),
             $this->navigation->orders($this->object->id, $this->object->slug),
             $this->navigation->councils($this->object->id, $this->object->slug),
-            $this->navigation->navody($this->object->id, $this->object->slug),
+            $this->navigation->navody(),
         ];
     }
 

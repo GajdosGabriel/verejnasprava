@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('navigation') <x-navigationOrganization /> @endsection
+@section('navigation') <x-navigation.navigationOrganization /> @endsection
 
 
 @section('content')
