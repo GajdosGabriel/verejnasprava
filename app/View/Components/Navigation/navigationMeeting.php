@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Navigation;
 
 use App\Models\Organization;
 use Illuminate\View\Component;
-use App\View\Components\navItems;
+use App\View\Components\Navigation\navItems;
 
 class navigationMeeting extends Component
 {
@@ -14,7 +14,7 @@ class navigationMeeting extends Component
     /**
      * Create a new component instance.
      *
-     * @param Navigation $navigation
+     * @param navPublic $navigation
      */
     public function __construct(navItems $navigation)
     {
@@ -29,7 +29,7 @@ class navigationMeeting extends Component
      */
     public function render()
     {
-        return view('components.navigation');
+        return view('components.navigation.navigation');
     }
 
     public function logoUrl(){

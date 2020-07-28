@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam dokladov')
 
-@section('navigation') <x-navigation /> @endsection
+@section('navigation') <x-navigation.navPublic /> @endsection
 
 @section('content')
 

@@ -3,7 +3,7 @@
 @section('page-title', 'Home profil')
 
 @section('navigation')
-    <x-navigationUser/> @endsection
+    <x-navigation.navigationUser/> @endsection
 
 {{--@section('navigation') @include('user.navigation') @endsection--}}
 

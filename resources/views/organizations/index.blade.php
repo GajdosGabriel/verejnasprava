@@ -3,7 +3,7 @@
 @section('page-title', 'Zoznam príspevkov')
 
 @section('navigation')
-    <x-navigationOrganization/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 {{--@section('navigation') @include('organizations.navigation') @endsection--}}
 
 @section('content')

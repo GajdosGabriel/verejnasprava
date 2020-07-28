@@ -2,7 +2,7 @@
 @section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection
 @section('page-title', 'Kontakt')
 
-@section('navigation') <x-navigation /> @endsection
+@section('navigation') <x-navigation.navPublic /> @endsection
 
 @section('content')
 

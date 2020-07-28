@@ -2,7 +2,7 @@
 
 @section('page-title', 'Registrácie')
 @section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection
-@section('navigation') <x-navigation /> @endsection
+@section('navigation') <x-navigation.navPublic /> @endsection
 
 @section('content')
     <section class="absolute w-full h-full">
