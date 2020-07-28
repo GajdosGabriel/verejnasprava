@@ -16,8 +16,8 @@
 
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="{{ route('org.post.index', [$object->id, $object->slug ]) }}">Zverejňovanie</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('org.contact.index', [$object->id, $object->slug ]) }}">Kontakty</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('post.index', [$object->id, $object->slug ]) }}">Zverejňovanie</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('contact.index', [$object->id, $object->slug ]) }}">Kontakty</a></li>
 
             @role('super-admin')
             <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$object->id, $object->slug]) }}">Objednávky</a></li>

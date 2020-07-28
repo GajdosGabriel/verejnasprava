@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services;
+namespace App\View\Components;
 
 
-class Navigation
+class navItems
 {
     protected function isActive($routeName) {
         if( \Route::currentRouteName() === $routeName  ) {
@@ -14,15 +14,15 @@ class Navigation
     }
 
 //    Organization
-    public function zverejnovanie($id, $slug){
+    public function zverejnovanie(){
        return [
             'title' => 'Zverejňovanie',
             'url' => route('post.index'),
-            'active' => $this->isActive('org.post.index')
+            'active' => $this->isActive('post.index')
         ];
     }
 
-    public function contacts($id, $slug){
+    public function contacts(){
         return [
             'title' => 'Kontakty',
             'url' => route('contact.index'),
@@ -33,7 +33,7 @@ class Navigation
     public function orders($id, $slug){
         return [
             'title' => 'Objednávky',
-            'url' => route('order.index', [$id, $slug]),
+            'url' => route('order.index'),
             'active' => $this->isActive('order.index')
         ];
     }
@@ -41,7 +41,7 @@ class Navigation
     public function councils($id, $slug){
         return [
             'title' => 'Zastupiteľstva',
-            'url' => route('zast.index', [$id, $slug]),
+            'url' => route('zast.index'),
             'active' => $this->isActive('zast.index')
         ];
     }

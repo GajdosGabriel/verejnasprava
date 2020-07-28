@@ -59857,7 +59857,7 @@ var render = function() {
           }
         ],
         staticClass: "px-3 text-sm border-2 border-gray-300 rounded-sm",
-        attrs: { type: "text", placeholder: "Name, emial, phone, city" },
+        attrs: { type: "text", placeholder: "Name, email, phone, city" },
         domProps: { value: _vm.search },
         on: {
           input: function($event) {

@@ -18,9 +18,9 @@ class OrderController extends Controller
 {
     use Notifiable;
 
-    public function index(Organization $organization, $slug) {
-        $orders = $organization->orders;
-        return view('order.index', compact('organization'))->with('orders', $orders);
+    public function index() {
+        $organization = Organization::whereId(auth()->user()->active_organization)->first();
+        return view('order.index', compact('organization'))->with('orders', $organization->orders);
     }
 
     public function show(Order $order, $slug) {

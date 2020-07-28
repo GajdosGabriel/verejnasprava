@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Organization;
 use Illuminate\View\Component;
-use App\Services\Navigation;
+use App\View\Components\navItems;
 
 class navigationMeeting extends Component
 {
@@ -16,7 +16,7 @@ class navigationMeeting extends Component
      *
      * @param Navigation $navigation
      */
-    public function __construct(Navigation $navigation)
+    public function __construct(navItems $navigation)
     {
         $this->navigation = $navigation;
         $this->object = Organization::whereId(auth()->user()->active_organization)->first();

@@ -26,8 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{user}/{slug}/delete/delete', 'UserController@delete')->name('delete');
     });
 
-    Route::prefix('obj')->name('order.')->group(function() {
-        Route::get('{organization}/{slug}/orders', 'OrderController@index')->name('index');
+    Route::prefix('objednavky')->name('order.')->group(function() {
+        Route::get('/index', 'OrderController@index')->name('index');
         Route::get('{organization}/{slug}/order/create', 'OrderController@create')->name('create');
         Route::get('{order}/{slug}/order/show', 'OrderController@show')->name('show');
         Route::get('{order}/{slug}/order/edit', 'OrderController@edit')->name('edit');
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('zast')->name('zast.')->namespace('Councils')->group(function() {
 
-        Route::get('{organization}/{slug}/index', 'CouncilController@index')->name('index');
+        Route::get('index', 'CouncilController@index')->name('index');
         Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
 
         Route::prefix('admin')->name('admin.')->group(function() {

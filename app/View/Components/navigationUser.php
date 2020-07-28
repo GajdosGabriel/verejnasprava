@@ -2,8 +2,9 @@
 
 namespace App\View\Components;
 
+use App\View\Components\navItems;
 use Illuminate\View\Component;
-use App\Services\Navigation;
+
 class navigationUser extends Component
 {
     public $navigation;
@@ -13,7 +14,7 @@ class navigationUser extends Component
      *
      * @param Navigation $navigation
      */
-    public function __construct(Navigation $navigation)
+    public function __construct(navItems $navigation)
     {
         $this->navigation = $navigation;
     }

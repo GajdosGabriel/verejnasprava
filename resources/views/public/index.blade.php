@@ -77,7 +77,8 @@
         <h3 class="text-center mt-5 text-3xl text-gray-500">Publikované doklady</h3>
 
 {{--        @include('modul.categoryList')--}}
-        @include('post.post-table-predna')
+        <accordion-table></accordion-table>
+{{--        @include('post.post-table-predna')--}}
         </div>
 
         {{--    {!! $posts ->render() !!}--}}

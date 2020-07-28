@@ -5,7 +5,7 @@
             <h1 class="page-title">Zoznam dodávateľov</h1>
 
             <input type="text" v-model="search" class="px-3 text-sm border-2 border-gray-300 rounded-sm"
-                   placeholder="Name, emial, phone, city">
+                   placeholder="Name, email, phone, city">
             <a :href="urlNewContact" class="btn btn-primary">Nový kontakt</a>
         </div>
 

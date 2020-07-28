@@ -14,7 +14,7 @@ use App\Http\Requests\UserUpdateRequest;
 
 class CouncilController extends Controller
 {
-    public function index(Organization $organization){
+    public function index(){
        $councils = User::find(auth()->user()->id)->councils()->get();
         return view('council.index', compact('councils'));
     }
