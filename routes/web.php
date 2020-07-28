@@ -38,10 +38,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
     });
 
-    Route::prefix('zast')->name('zast.')->namespace('Councils')->group(function() {
+    Route::name('zast.')->namespace('Councils')->group(function() {
 
-        Route::get('index', 'CouncilController@index')->name('index');
-        Route::get('{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+        Route::get('zastupitestva', 'CouncilController@index')->name('index');
+        Route::get('zastupitestvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
 
         Route::prefix('admin')->name('admin.')->group(function() {
             Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
@@ -114,8 +114,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::name('question.')->group(function() {
-        Route::get('{user}/{name}/question/index',  'QuestionsController@index')->name('index');
-        Route::post('question/question/question/store/fasfas',  'QuestionsController@store')->name('store');
+        Route::get('question/index',  'QuestionsController@index')->name('index');
+        Route::post('question/store',  'QuestionsController@store')->name('store');
     });
 
 });

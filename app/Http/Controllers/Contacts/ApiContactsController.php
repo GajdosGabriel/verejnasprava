@@ -15,16 +15,15 @@ use Illuminate\Database\Eloquent\Builder;
 class ApiContactsController extends Controller
 {
 
-
     public function getContacts(Organization $organization, $search = null)
     {
-       $contacts = $organization->contacts()
-           ->where(function (Builder $query) use ($search) {
-               return $query->where('name', 'like', '%' . $search . '%')
-                   ->orWhere('email', 'like', '%' . $search . '%')
-                   ->orWhere('phone', 'like', '%' . $search . '%')
-                   ->orWhere('city', 'like', '%' . $search . '%');
-           })->get();
+        $contacts = $organization->contacts()
+            ->where(function (Builder $query) use ($search) {
+                return $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%')
+                    ->orWhere('city', 'like', '%' . $search . '%');
+            })->get();
         return $contacts;
     }
 

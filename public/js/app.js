@@ -2096,15 +2096,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // props: ['organization'],
   data: function data() {
     return {
       name: false,
       contacts: [],
       numeral: numeral__WEBPACK_IMPORTED_MODULE_0___default.a,
       search: '',
-      user: this.user,
-      urlNewContact: '/contact/create/' + this.user.active_organization // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
+      user: this.user // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
 
     };
   },
@@ -59871,7 +59869,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "a",
-        { staticClass: "btn btn-primary", attrs: { href: _vm.urlNewContact } },
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/contact/create/" + this.user.active_organization }
+        },
         [_vm._v("Nový kontakt")]
       )
     ]),

@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-8">
                 <h2 class="font-bold text-3xl">Máte otázku</h2>
+
                 <div class="card">
                     <div class="text-gray-700">Napíšte otázku alebo podnet</div>
 
@@ -22,7 +23,7 @@
                                 <button class="btn btn-primary">Poslať</button>
                             </div>
                         </form>
-
+                        @include('modul.errorsAndFlash')
 
                         @forelse($questions as $question)
 

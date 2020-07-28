@@ -46,10 +46,10 @@ class navItems
         ];
     }
 
-    public function navody($id, $slug){
+    public function navody(){
         return [
             'title' => 'Návody',
-            'url' => route('question.index', [auth()->user()->id, auth()->user()->slug]),
+            'url' => route('question.index'),
             'active' => $this->isActive('question.index')
         ];
     }

@@ -6,7 +6,7 @@
 
             <input type="text" v-model="search" class="px-3 text-sm border-2 border-gray-300 rounded-sm"
                    placeholder="Name, email, phone, city">
-            <a :href="urlNewContact" class="btn btn-primary">Nový kontakt</a>
+            <a :href="'/contact/create/' + this.user.active_organization" class="btn btn-primary">Nový kontakt</a>
         </div>
 
 
@@ -47,7 +47,6 @@
 <script>
     import numeral from 'numeral';
     export default {
-        // props: ['organization'],
         data: function () {
             return {
                 name: false,
@@ -55,7 +54,6 @@
                 numeral: numeral,
                 search: '',
                 user: this.user,
-                urlNewContact: '/contact/create/' + this.user.active_organization,
                 // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
             }
         },
