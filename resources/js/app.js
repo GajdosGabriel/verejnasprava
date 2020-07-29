@@ -30,6 +30,7 @@ Vue.component('nav-horizontal', require('./modules/navigation/navHorizontal.vue'
 Vue.component('nav-items', require('./modules/navigation/navItems.vue').default);
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
 Vue.component('accordion-table', require('./modules/accordion/accordion.vue').default);
+Vue.component('post-table', require('./posts/postTable.vue').default);
 
 
 

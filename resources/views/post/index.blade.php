@@ -16,10 +16,13 @@
                    href="{{ route('post.create') }}">Nový doklad</a>
             </div>
 
-            @include('post.table_index')
-            <div class="my-6">
-                {{ $posts->links() }}
-            </div>
+            <post-table/>
+
+
+{{--            @include('post.table_index')--}}
+{{--            <div class="my-6">--}}
+{{--                {{ $posts->links() }}--}}
+{{--            </div>--}}
 
         </div>
     </div>

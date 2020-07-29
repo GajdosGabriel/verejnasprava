@@ -17,5 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('posts/front', 'ApiController@posts');
+Route::get('posts/frontPosts', 'Posts\ApiPostController@frontPosts');
+Route::get('posts/index/{userId}', 'Posts\ApiPostController@index');
 Route::get('contacts/{organization}/{search?}', 'Organizations\Contacts\ApiContactsController@getContacts');

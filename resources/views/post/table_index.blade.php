@@ -1,8 +1,8 @@
 <table class="table-auto table-bordered text-sm">
     <thead>
     <tr class="bg-gray-300">
-        <th class="px-4 py-2">Popis</th>
         <th class="px-4 py-2">Dátum</th>
+        <th class="px-4 py-2">Popis</th>
         <th class="px-4 py-2">Kategória</th>
         <th class="px-4 py-2">Dodávateľ</th>
         <th class="px-4 py-2">Cena spolu</th>

@@ -14,18 +14,18 @@
         <tbody>
 
         <!--        @forelse($posts as $key => $value)-->
-        <template v-for="post in posts">
+        <template v-for="(post, key) in posts"  >
             <tr class="hover:bg-gray-100 cursor-pointer  border-2 border-gray-500">
-                <td colspan="7" class="border px-4 bg-gray-300 border-gray-700 py-3 flex-wrap justify-between"
-                    @click="isOpen = ! isOpen">
-<!--                                        <span> {{  key }}</span>-->
+                <td colspan="7" class="border px-4 bg-gray-300 border-gray-700 py-3 flex-wrap"
+                    @click="isOpen =! isOpen">
+                                        <span> {{  key }}</span>
                     <span class="up-Arrow" v-if="isOpen">&#9650;</span>
                     <span class="down-Arrow" v-else>&#9660;</span>
                 </td>
             </tr>
 
             <tr v-for="item in post" class="hover:bg-gray-100 border-2 border-gray-500" v-show="isOpen">
-                <td class="border px-4 ">
+                <td class="border px-4 whitespace-no-wrap">
                     <!--                             <a href="{{ route('publishedPosts', [$post->organization->id, $post->organization->slug]) }}">-->
                     {{ item.organization.name}}
                     <!--                </a>-->
@@ -52,6 +52,7 @@
                 </td>
                 <td class="border px-4">{{ moment(item.date_in).format('L')  }}</td>
             </tr>
+
         </template>
         </tbody>
     </table>
@@ -61,7 +62,7 @@
     export default {
         data() {
             return {
-                isOpen: true,
+                isOpen: false,
                 moment: require('moment'),
                 posts: []
             }
@@ -69,8 +70,8 @@
         methods: {},
 
         created() {
-            axios.get('/api/posts/front').then(response => {
-                this.posts = response.data
+            axios.get('/api/posts/frontPosts').then(response => {
+                this.posts = response.data;
             });
         }
 

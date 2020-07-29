@@ -12,7 +12,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'name' => $name,
         'slug' => Str::slug($name, '-'),
         'organization_id' => $faker->numberBetween($min = 1, $max = 2),
-        'contact_id' => $faker->numberBetween($min = 1, $max = 10),
+        'contact_id' => $faker->numberBetween($min = 1, $max = 2),
         'category_id' => 1,
         'number_invoice' => $faker->numberBetween($min = 1000, $max = 9000),
         'price' => $faker->numberBetween($min = 10, $max = 2000),
