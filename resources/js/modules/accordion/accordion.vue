@@ -1,3 +1,4 @@
+import swal from "sweetalert2";
 <template>
     <table class="table-auto w-full mb-5">
         <thead class="bg-gray-600 text-gray-100">
@@ -12,9 +13,7 @@
         </tr>
         </thead>
         <tbody>
-
-        <!--        @forelse($posts as $key => $value)-->
-        <template v-for="(post, key) in posts"  >
+        <template v-for="(post, key, index) in posts"  >
             <tr class="hover:bg-gray-100 cursor-pointer  border-2 border-gray-500">
                 <td colspan="7" class="border px-4 bg-gray-300 border-gray-700 py-3 flex-wrap"
                     @click="isOpen =! isOpen">
@@ -32,7 +31,6 @@
                 </td>
                 <td class="border px-4">{{ item.name }}</td>
                 <td class="border px-4">
-                    <!--                                    @if($post->category->id === 1)-->
                     <img v-if="item.category.id == 1" class="" style="height: 23px" :src="'image/f.gif'"
                          title="Faktúra">
                     <img v-if="item.category.id == 2" class="" style="height: 23px" :src="'image/o.gif'"
@@ -50,7 +48,7 @@
                         <a target="_blank" :href="'/pdf/' + file.id + '/' + file.name + '/download/pdf'">Príloha</a>
                     </div>
                 </td>
-                <td class="border px-4">{{ moment(item.date_in).format('L')  }}</td>
+                <td class="border px-4">{{ moment(item.date_in).format('L') }}</td>
             </tr>
 
         </template>
@@ -59,6 +57,7 @@
 </template>
 <script>
     // import moment from 'moment';
+
     export default {
         data() {
             return {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam zasadnutí')
 
-@section('navigation') <x-navigationMeeting /> @endsection
+@section('navigation') <x-navigation.navigationMeeting /> @endsection
 {{--@section('navigation') @include('council.meeting.navigation') @endsection--}}
 
 @section('content')
@@ -16,10 +16,10 @@
             @endcan
         </div>
 
-        <table class="table-auto mt-4 rounded-lg">
+        <table class="table-auto mt-4 rounded-lg w-full">
             <thead class="bg-gray-300">
                 <tr class="alert-info">
-                    <th class="px-4 py-2">Dátum</th>
+                    <th class="px-4 py-2">Zasadnutie</th>
                     <th class="px-4 py-2">Popis</th>
                     <th class="px-4 py-2">Typ</th>
                     <th class="px-4 py-2">Vystavil</th>

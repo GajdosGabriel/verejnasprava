@@ -23,8 +23,6 @@ class CreateCommentsTable extends Migration
             $table->boolean('interpellation')->default(0);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unique(['fileable_type', 'fileable_id', 'user_id']);
         });
     }
 

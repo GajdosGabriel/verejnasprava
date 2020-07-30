@@ -65,8 +65,8 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
-        Route::get('{meeting}/{slug}/item/index', 'ItemController@index')->name('index');
-        Route::get('{meeting}/{slug}/item/create', 'ItemController@create')->name('create');
+        Route::get('{meeting}/{slug}/index', 'ItemController@index')->name('index');
+        Route::get('{meeting}/{slug}/create', 'ItemController@create')->name('create');
         Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
         Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');
         Route::get('{item}/{slug}/item/published', 'ItemController@published')->name('published');

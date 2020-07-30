@@ -2202,8 +2202,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 // import moment from 'moment';
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2805,7 +2803,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       posts: [],
       user: this.user,
-      moment: moment__WEBPACK_IMPORTED_MODULE_0___default.a,
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       adminPanel: false
     };
   },
@@ -59966,7 +59964,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table-auto" }, [
+    _c("table", { staticClass: "table-auto w-full" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -60079,7 +60077,7 @@ var render = function() {
     _c(
       "tbody",
       [
-        _vm._l(_vm.posts, function(post, key) {
+        _vm._l(_vm.posts, function(post, key, index) {
           return [
             _c(
               "tr",
@@ -60933,93 +60931,97 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table-auto table-bordered text-sm" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "tbody",
-      _vm._l(_vm.posts, function(post) {
-        return _c("tr", { key: post.id, staticClass: "hover:bg-gray-100" }, [
-          _c("td", {
-            staticClass: "border px-4 py-2 whitespace-no-wrap",
-            domProps: {
-              textContent: _vm._s(_vm.moment(post.date_in).format("L"))
-            }
-          }),
-          _vm._v(" "),
-          _c("td", {
-            staticClass: "border px-4 py-2",
-            domProps: { textContent: _vm._s(post.name) }
-          }),
-          _vm._v(" "),
-          _c("td", {
-            staticClass: "border px-4 py-2",
-            domProps: { textContent: _vm._s(post.category.name) }
-          }),
-          _vm._v(" "),
-          _c("td", {
-            staticClass: "border px-4 py-2",
-            domProps: { textContent: _vm._s(post.contact.name) }
-          }),
-          _vm._v(" "),
-          _c("td", { staticClass: "border px-4 py-2 whitespace-no-wrap" }, [
-            _vm._v(_vm._s(_vm._f("priceFormat")(post.price)) + " Eu")
-          ]),
-          _vm._v(" "),
-          _c("td", { staticClass: "border px-4 py-2" }, [
-            post.files.length > 0
-              ? _c(
-                  "span",
-                  _vm._l(post.files, function(file) {
-                    return _c("div", [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            target: "_blank",
-                            href:
-                              "/pdf/" +
-                              file.id +
-                              "/" +
-                              file.name +
-                              "/download/pdf"
-                          }
-                        },
-                        [_vm._v("Príloha")]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              : _c("span", [_vm._v("Bez prílohy")])
-          ]),
-          _vm._v(" "),
-          _c("td", {
-            staticClass: "border px-4 py-2",
-            domProps: { textContent: _vm._s(post.int_number) }
-          }),
-          _vm._v(" "),
-          _c(
-            "td",
-            {
-              staticClass: "border px-4 py-2 cursor-pointer",
-              on: {
-                click: function($event) {
-                  _vm.adminPanel = post.id
-                }
+  return _c(
+    "table",
+    { staticClass: "table-auto table-bordered text-sm w-full" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.posts, function(post) {
+          return _c("tr", { key: post.id, staticClass: "hover:bg-gray-100" }, [
+            _c("td", {
+              staticClass: "border px-4 py-2 whitespace-no-wrap",
+              domProps: {
+                textContent: _vm._s(_vm.moment(post.date_in).format("L"))
               }
-            },
-            [
-              _vm.adminPanel == post.id
-                ? _c("div", [_vm._v("Items")])
-                : _c("div", { staticClass: "mx-auto" }, [_vm._v("...")])
-            ]
-          )
-        ])
-      }),
-      0
-    )
-  ])
+            }),
+            _vm._v(" "),
+            _c("td", {
+              staticClass: "border px-4 py-2",
+              domProps: { textContent: _vm._s(post.name) }
+            }),
+            _vm._v(" "),
+            _c("td", {
+              staticClass: "border px-4 py-2",
+              domProps: { textContent: _vm._s(post.category.name) }
+            }),
+            _vm._v(" "),
+            _c("td", {
+              staticClass: "border px-4 py-2",
+              domProps: { textContent: _vm._s(post.contact.name) }
+            }),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2 whitespace-no-wrap" }, [
+              _vm._v(_vm._s(_vm._f("priceFormat")(post.price)) + " Eu")
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "border px-4 py-2" }, [
+              post.files.length > 0
+                ? _c(
+                    "span",
+                    _vm._l(post.files, function(file) {
+                      return _c("div", [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              target: "_blank",
+                              href:
+                                "/pdf/" +
+                                file.id +
+                                "/" +
+                                file.name +
+                                "/download/pdf"
+                            }
+                          },
+                          [_vm._v("Príloha")]
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                : _c("span", [_vm._v("Bez prílohy")])
+            ]),
+            _vm._v(" "),
+            _c("td", {
+              staticClass: "border px-4 py-2",
+              domProps: { textContent: _vm._s(post.int_number) }
+            }),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "border px-4 py-2 cursor-pointer",
+                on: {
+                  click: function($event) {
+                    _vm.adminPanel = post.id
+                  }
+                }
+              },
+              [
+                _vm.adminPanel == post.id
+                  ? _c("div", [_vm._v("Items")])
+                  : _c("div", { staticClass: "mx-auto" }, [_vm._v("...")])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

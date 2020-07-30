@@ -8,7 +8,8 @@
 
 
     <div class="container min-h-screen p-6 mx-auto">
-        <div class="flex justify-between">
+
+        <div class="flex justify-between mb-8">
             <h1 class="page-title">Vaše zastupiteľstvá</h1>
             @can('delete')
                 <a class="btn btn-primary"
@@ -21,7 +22,7 @@
             <thead class="bg-gray-300">
             <tr class="alert-info">
                 <th class="px-4 py-2">Popis</th>
-                <th class="px-4 py-2">Typ</th>
+                <th class="px-4 py-2">Obdobie</th>
                 <th class="px-4 py-2">Počet zasadnutí</th>
                 <th class="px-4 py-2">Počet členov</th>
                 @can('delete')
@@ -86,7 +87,7 @@
 
             </tr>
             @empty
-                <td>Požiadať správcu o prístup.</td>
+                <td>Zastupiteľstvá nie sú vytvorené.</td>
             @endforelse
 
             </tbody>

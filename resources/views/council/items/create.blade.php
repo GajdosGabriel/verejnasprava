@@ -3,7 +3,7 @@
 @section('page-title', 'Vytvoriť návrh')
 
 @section('navigation')
-    <x-navigationItems/> @endsection
+    <x-navigation.navigationItems/> @endsection
 
 {{--@section('navigation')--}}
 {{--    @include('council.items.navigation')--}}
