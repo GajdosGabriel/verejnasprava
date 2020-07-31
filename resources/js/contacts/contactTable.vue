@@ -42,6 +42,21 @@
             </tbody>
         </table>
 
+        <div class="flex justify-center my-10 space-x-3">
+            <button @click="fetchPaginate(pagination.prev_page_url)"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    :disabled="! pagination.prev_page_url"> <<
+            </button>
+            <div
+                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-gray-700 rounded-sm">
+                {{ pagination.current_page}} / {{ pagination.last_page}}
+            </div>
+            <button @click="fetchPaginate(pagination.next_page_url)"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    :disabled="! pagination.next_page_url"> >>
+            </button>
+        </div>
+
     </div>
 </template>
 
@@ -52,9 +67,11 @@
             return {
                 name: false,
                 contacts: [],
+                pagination: [],
                 numeral: numeral,
                 search: '',
                 user: this.user,
+                url: '/api/contacts/' + this.user.active_organization + '/'
                 // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
             }
         },
@@ -72,14 +89,27 @@
             },
 
             getContacts: function () {
-                let $this = this;
-                axios.get('/api/contacts/' + this.user.active_organization + '/' + this.search)
+                axios.get(this.url + this.search)
                     .then(response => {
-                            this.contacts = response.data
-                            // this.makePagination(response.data)
+                            this.contacts = response.data.data;
+                            this.makePagination(response.data)
                         }
                     );
             },
+
+            makePagination: function (data) {
+                let pagination = {
+                    current_page: data.current_page,
+                    last_page: data.last_page,
+                    next_page_url: data.next_page_url,
+                    prev_page_url: data.prev_page_url,
+                };
+                this.pagination = pagination;
+            },
+            fetchPaginate: function (url) {
+                this.url = url;
+                this.getContacts()
+            }
         },
         filters: {
             pscFormat: function(value){

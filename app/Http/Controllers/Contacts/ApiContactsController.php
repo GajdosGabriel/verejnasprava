@@ -23,7 +23,7 @@ class ApiContactsController extends Controller
                     ->orWhere('email', 'like', '%' . $search . '%')
                     ->orWhere('phone', 'like', '%' . $search . '%')
                     ->orWhere('city', 'like', '%' . $search . '%');
-            })->get();
+            })->paginate();
         return $contacts;
     }
 

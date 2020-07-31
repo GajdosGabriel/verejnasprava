@@ -2095,15 +2095,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: false,
       contacts: [],
+      pagination: [],
       numeral: numeral__WEBPACK_IMPORTED_MODULE_0___default.a,
       search: '',
-      user: this.user // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
+      user: this.user,
+      url: '/api/contacts/' + this.user.active_organization + '/' // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
 
     };
   },
@@ -2122,10 +2139,24 @@ __webpack_require__.r(__webpack_exports__);
     getContacts: function getContacts() {
       var _this = this;
 
-      var $this = this;
-      axios.get('/api/contacts/' + this.user.active_organization + '/' + this.search).then(function (response) {
-        _this.contacts = response.data; // this.makePagination(response.data)
+      axios.get(this.url + this.search).then(function (response) {
+        _this.contacts = response.data.data;
+
+        _this.makePagination(response.data);
       });
+    },
+    makePagination: function makePagination(data) {
+      var pagination = {
+        current_page: data.current_page,
+        last_page: data.last_page,
+        next_page_url: data.next_page_url,
+        prev_page_url: data.prev_page_url
+      };
+      this.pagination = pagination;
+    },
+    fetchPaginate: function fetchPaginate(url) {
+      this.url = url;
+      this.getContacts();
     }
   },
   filters: {
@@ -60078,6 +60109,55 @@ var render = function() {
           ])
         }),
         0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer",
+          attrs: { disabled: !_vm.pagination.prev_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginate(_vm.pagination.prev_page_url)
+            }
+          }
+        },
+        [_vm._v(" <<\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-gray-700 rounded-sm"
+        },
+        [
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.pagination.current_page) +
+              " / " +
+              _vm._s(_vm.pagination.last_page) +
+              "\n        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer",
+          attrs: { disabled: !_vm.pagination.next_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginate(_vm.pagination.next_page_url)
+            }
+          }
+        },
+        [_vm._v(" >>\n        ")]
       )
     ])
   ])
