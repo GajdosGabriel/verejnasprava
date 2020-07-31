@@ -54,6 +54,7 @@
 
                 {{-- Votes Buttons--}}
                 @if(! $item->vote_disabled)
+                    <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
                     <form method="POST" action="{{ route('vote.store', [ $item->id, $item->slug]) }}">
                         @csrf @method('POST')
                         <div
@@ -153,11 +154,9 @@
                     <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Zdržal:</span>
                         <span>{{ $item->votes()->where('vote', 2)->count() }}</span></li>
                 </ul>
-            @endif
 
-            {{-- Users Interpellations--}}
-            @include('council.items.interpellation.aside-list')
 
+            {{-- Výsledky hlasovania--}}
             <div class="">
                 <h2 class="my-5 text-lg font-semibold">Výsledky hlasovania</h2>
                 <ul class="">
@@ -204,6 +203,10 @@
                     @endforelse
                 </ul>
             </div>
+            @endif
+
+            {{-- Users Interpellations--}}
+            @include('council.items.interpellation.aside-list')
 
         </div>
     </div>

@@ -2094,6 +2094,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2796,27 +2797,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       posts: [],
+      pagination: [],
       user: this.user,
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
-      adminPanel: false
+      adminPanel: false,
+      search: '',
+      url: '/api/posts/' + this.user.active_organization + '/'
     };
   },
   created: function created() {
     this.getPosts();
   },
+  watch: {
+    search: function search(val) {
+      this.getPosts();
+    }
+  },
   methods: {
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('/api/posts/index/' + this.user.active_organization).then(function (response) {
+      axios.get(this.url + this.search).then(function (response) {
         _this.posts = response.data.data;
+
+        _this.makePagination(response.data);
       });
+    },
+    makePagination: function makePagination(data) {
+      var pagination = {
+        current_page: data.current_page,
+        last_page: data.last_page,
+        next_page_url: data.next_page_url,
+        prev_page_url: data.prev_page_url
+      };
+      this.pagination = pagination;
+    },
+    fetchPaginate: function fetchPaginate(url) {
+      this.url = url;
+      this.getPosts();
     }
   },
   filters: {
@@ -59932,28 +59977,6 @@ var render = function() {
     _c("div", { staticClass: "flex justify-between max-w-4xl py-5" }, [
       _c("h1", { staticClass: "page-title" }, [_vm._v("Zoznam dodávateľov")]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
-        staticClass: "px-3 text-sm border-2 border-gray-300 rounded-sm",
-        attrs: { type: "text", placeholder: "Name, email, phone, city" },
-        domProps: { value: _vm.search },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.search = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
       _c(
         "a",
         {
@@ -59963,6 +59986,43 @@ var render = function() {
         [_vm._v("Nový kontakt")]
       )
     ]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.search,
+          expression: "search"
+        }
+      ],
+      staticClass: "p-1 border-2 border-gray-300 rounded-sm",
+      attrs: { type: "text", placeholder: "Name, email, phone, city" },
+      domProps: { value: _vm.search },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.search = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.search !== ""
+      ? _c(
+          "span",
+          {
+            staticClass: "cursor-pointer text-gray-500",
+            on: {
+              click: function($event) {
+                _vm.search = ""
+              }
+            }
+          },
+          [_vm._v("X")]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("table", { staticClass: "table-auto w-full" }, [
       _vm._m(0),
@@ -60931,10 +60991,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "table",
-    { staticClass: "table-auto table-bordered text-sm w-full" },
-    [
+  return _c("div", [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.search,
+          expression: "search"
+        }
+      ],
+      staticClass: "p-1 focus:border-purple-500",
+      attrs: { type: "text", placeholder: "hľadať v popis, cena" },
+      domProps: { value: _vm.search },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.search = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.search !== ""
+      ? _c(
+          "span",
+          {
+            staticClass: "cursor-pointer text-gray-500",
+            on: {
+              click: function($event) {
+                _vm.search = ""
+              }
+            }
+          },
+          [_vm._v("X")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("table", { staticClass: "table-auto table-bordered text-sm w-full" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -61020,8 +61115,57 @@ var render = function() {
         }),
         0
       )
-    ]
-  )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer",
+          attrs: { disabled: !_vm.pagination.prev_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginate(_vm.pagination.prev_page_url)
+            }
+          }
+        },
+        [_vm._v(" <<\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-gray-700 rounded-sm"
+        },
+        [
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.pagination.current_page) +
+              " / " +
+              _vm._s(_vm.pagination.last_page) +
+              "\n        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer",
+          attrs: { disabled: !_vm.pagination.next_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginate(_vm.pagination.next_page_url)
+            }
+          }
+        },
+        [_vm._v(" >>\n        ")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {

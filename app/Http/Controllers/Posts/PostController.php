@@ -22,8 +22,8 @@ class PostController extends Controller
     }
 
     public function index() {
-        $posts = Post::whereOrganizationId(auth()->user()->active_organization)->paginate(20);
-        return view('post.index', compact('posts'));
+//        $posts = Post::whereOrganizationId(auth()->user()->active_organization)->paginate(20);
+        return view('post.index');
     }
 
 

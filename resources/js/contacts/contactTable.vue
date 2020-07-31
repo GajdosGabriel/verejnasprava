@@ -4,12 +4,13 @@
         <div class="flex justify-between max-w-4xl py-5">
             <h1 class="page-title">Zoznam dodávateľov</h1>
 
-            <input type="text" v-model="search" class="px-3 text-sm border-2 border-gray-300 rounded-sm"
-                   placeholder="Name, email, phone, city">
+
             <a :href="'/contact/create/' + this.user.active_organization" class="btn btn-primary">Nový kontakt</a>
         </div>
 
-
+        <input type="text" v-model="search" class="p-1 border-2 border-gray-300 rounded-sm"
+               placeholder="Name, email, phone, city">
+        <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''" >X</span>
         <table class="table-auto w-full">
             <thead>
             <tr class="bg-gray-300">
