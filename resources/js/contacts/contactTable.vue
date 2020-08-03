@@ -29,12 +29,12 @@
             <tr class="hover:bg-gray-200" v-for="contact in contacts">
                 <td class="px-4 py-2 border" v-text="contact.name"></td>
                 <td class="px-4 py-2 border" v-text="contact.street"></td>
-                <td class="px-4 py-2 border" v-text="contact.city"></td>
+                <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.city"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.psc | pscFormat }}</td>
                 <td class="px-4 py-2 border" v-text="contact.ico"></td>
                 <td class="px-4 py-2 border" v-text="contact.dic"></td>
                 <td class="px-4 py-2 border" v-text="contact.email"></td>
-                <td class="px-4 py-2 border" v-text="contact.phone"></td>
+                <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.phone"></td>
                 <td class="px-4 py-2 border">
                     <a :href="'/contact/edit/' + contact.id">Edit</a>
                 </td>
@@ -44,15 +44,15 @@
 
         <div class="flex justify-center my-10 space-x-3">
             <button @click="fetchPaginate(pagination.prev_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
                     :disabled="! pagination.prev_page_url"> <<
             </button>
             <div
-                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-gray-700 rounded-sm">
+                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm">
                 {{ pagination.current_page}} / {{ pagination.last_page}}
             </div>
             <button @click="fetchPaginate(pagination.next_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
                     :disabled="! pagination.next_page_url"> >>
             </button>
         </div>

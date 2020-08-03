@@ -22,8 +22,11 @@
                         </a>
                     </li>
                 @empty
-                    <li class="flex justify-between border-b-2 border-dotted px-2">žiadny prihlásený</li>
+{{--                    <li class="flex justify-between border-b-2 border-dotted px-2">žiadny prihlásený</li>--}}
                 @endforelse
+
+                    {{-- Users Interpellations--}}
+{{--                    @include('council.items.interpellation.button')--}}
             </ul>
         </div>
     </div>

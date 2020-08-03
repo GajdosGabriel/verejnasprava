@@ -11,6 +11,8 @@ class Interpellation extends Model
     use SoftDeletes;
     protected $guarded = [];
 
+    protected $with = ['user'];
+
     public function fileable()
     {
         return $this->morphTo();

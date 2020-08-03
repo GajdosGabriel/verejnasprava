@@ -44,13 +44,13 @@
                             @endif
 
                             @if($item->vote_disabled)
-                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">
+{{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
                                     <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>
-                                </a>
+{{--                                </a>--}}
                             @else
-                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">
+{{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
                                     <span class="badge badge-primary " title="Hlasovanie zapnuté">Hlasovanie</span>
-                                </a>
+{{--                                </a>--}}
                             @endif
 
 

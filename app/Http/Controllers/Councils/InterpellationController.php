@@ -18,13 +18,13 @@ class InterpellationController extends Controller
             } else {
                 $interpellation->restore() ;
             }
-            return back();
+            return $item->interpellations()->get();
         }
         $item->interpellations()->create([
             'name' => 'Prihlásený do rozpravy',
             'body' => $item->name,
             'user_id' => auth()->user()->id,
         ]);
-        return back();
+        return $item->interpellations()->get();
     }
 }

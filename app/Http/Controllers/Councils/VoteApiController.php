@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
 use Illuminate\Http\Request;
 
-class VoteController extends Controller
+class VoteApiController extends Controller
 {
     public function voteEnable(Item $item)
     {
@@ -27,6 +27,14 @@ class VoteController extends Controller
         return back();
     }
 
+    public function store(Request $request, Item $item)
+    {
+     $myVote =   $item->votes()->whereUserId($request->userId)->updateOrCreate([
+            'user_id' => $request->userId,
+        ], [
+            'vote' => $request->vote
+        ]);
 
+        return $myVote;
+    }
 }
-

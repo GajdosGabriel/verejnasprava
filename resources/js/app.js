@@ -31,8 +31,12 @@ Vue.component('nav-items', require('./modules/navigation/navItems.vue').default)
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
 Vue.component('accordion-table', require('./modules/accordion/accordion.vue').default);
 Vue.component('post-table', require('./posts/postTable.vue').default);
+Vue.component('interpelation-table', require('./interpellations/InterpelationCard.vue').default);
+Vue.component('vote-form-button', require('./votes/voteFormButtons.vue').default);
+Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 
 
+export const bus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

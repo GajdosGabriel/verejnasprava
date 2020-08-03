@@ -81,10 +81,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/{slug}/item/interpellation', 'InterpellationController@store')->name('store');
     });
 
-    Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {
-        Route::get('{item}/{slug}/vote/enable', 'VoteController@voteEnable')->name('voteEnable');
-        Route::post('{item}/{slug}/vote/store', 'VoteController@store')->name('store');
-    });
+//    Route::prefix('vote')->name('vote.')->namespace('Councils')->group(function() {
+//        Route::get('{item}/{slug}/vote/enable', 'VoteController@voteEnable')->name('voteEnable');
+//
+//    });
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');

@@ -47,15 +47,15 @@
 
         <div class="flex justify-center my-10 space-x-3">
             <button @click="fetchPaginate(pagination.prev_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
                     :disabled="! pagination.prev_page_url"> <<
             </button>
             <div
-                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-gray-700 rounded-sm">
+                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm">
                 {{ pagination.current_page}} / {{ pagination.last_page}}
             </div>
             <button @click="fetchPaginate(pagination.next_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-600 border-2 border-black rounded-sm cursor-pointer"
+                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
                     :disabled="! pagination.next_page_url"> >>
             </button>
         </div>
