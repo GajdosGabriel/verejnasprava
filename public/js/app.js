@@ -3034,39 +3034,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
+  props: ['itemid'],
   data: function data() {
     return {
-      show: this.item.vote_disabled,
-      vote: []
+      item: '',
+      vote: ''
     };
   },
-  computed: {
-    disabledButton: function disabledButton() {
-      return this.item.vote_disabled == 0 ? true : false;
-    }
-  },
+  // computed: {
+  //     voteStatus: function() {
+  //        return this.item.vote_disabled == 0 ? true : false;
+  //     }
+  // },
   created: function created() {
     var _this = this;
 
+    this.getItem();
     _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('startVote', function (data) {
-      _this.toggle();
+      _this.getItem();
     });
   },
   methods: {
-    toggle: function toggle() {
-      this.show = !this.show;
+    getItem: function getItem() {
+      var _this2 = this;
+
+      axios.get('/api/vote/getItem/' + this.itemid).then(function (response) {
+        _this2.item = response.data;
+      });
     },
     storeVote: function storeVote(val) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('/api/vote/' + this.item.id + '/store', {
         userId: this.item.user_id,
         vote: val
       }).then(function (response) {
-        _this2.vote = response.data;
+        _this3.vote = response.data;
+
+        _this3.getItem();
       });
     }
   }
@@ -3091,25 +3099,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
+  props: ['itemid'],
   data: function data() {
-    return {};
+    return {
+      item: ''
+    };
+  },
+  created: function created() {
+    this.getItem();
   },
   computed: {
     buttonClass: function buttonClass() {
-      return this.item.vote_disabled ? 'btn-primary' : 'btn-secondary';
+      return this.item.vote_disabled == 0 ? 'btn-secondary' : 'btn-primary';
     },
     buttonTitle: function buttonTitle() {
-      return this.item.vote_disabled ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
+      return this.item.vote_disabled == 0 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie';
+    },
+    canStartVote: function canStartVote() {
+      if (this.item.interpellations.length > 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   methods: {
-    startVote: function startVote() {
-      axios.get('/api/vote/enableVote/' + this.item.id); // .then()
+    getItem: function getItem() {
+      var _this = this;
 
-      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('startVote');
+      axios.get('/api/vote/getItem/' + this.itemid).then(function (response) {
+        _this.item = response.data;
+      });
+    },
+    startVote: function startVote() {
+      var _this2 = this;
+
+      if (!this.canStartVote) {
+        alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+      }
+
+      axios.get('/api/vote/enableVote/' + this.item.id).then(function (response) {
+        _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('startVote', false);
+
+        _this2.getItem();
+      });
     }
   }
 });
@@ -61593,7 +61629,12 @@ var render = function() {
     "div",
     {
       directives: [
-        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.item.vote_disabled,
+          expression: "item.vote_disabled"
+        }
       ]
     },
     [
@@ -61630,7 +61671,7 @@ var render = function() {
                 },
                 [
                   _vm._v("\n                Súhlasim\n                "),
-                  _vm.disabledButton
+                  _vm.vote.vote == 1
                     ? _c(
                         "svg",
                         {
@@ -61666,7 +61707,7 @@ var render = function() {
                 },
                 [
                   _vm._v("\n                Zdržal\n                "),
-                  _vm.disabledButton
+                  _vm.vote.vote == 2
                     ? _c(
                         "svg",
                         {
@@ -61703,7 +61744,7 @@ var render = function() {
                 },
                 [
                   _vm._v("\n                Nesúhlasim\n                "),
-                  _vm.disabledButton
+                  _vm.vote.vote == 0
                     ? _c(
                         "svg",
                         {
@@ -61762,7 +61803,7 @@ var render = function() {
       domProps: { textContent: _vm._s(_vm.buttonTitle) },
       on: { click: _vm.startVote }
     },
-    [_vm._v("Zapnúť hlasovanie " + _vm._s(_vm.item.vote_disabled) + "\n")]
+    [_vm._v("\n    Zapnúť hlasovanie\n")]
   )
 }
 var staticRenderFns = []

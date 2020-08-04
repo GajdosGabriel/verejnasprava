@@ -19,9 +19,7 @@ class ItemController extends Controller
     }
 
     public function show(Item $item) {
-        return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting])
-//            ->with(['interpellations' => $item->interpellations()->get()])
-            ;
+        return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting]);
     }
 
     public function edit(Item $item) {

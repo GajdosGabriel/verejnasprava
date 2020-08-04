@@ -54,60 +54,7 @@
                 </div>
 
                 {{-- Votes Buttons--}}
-
-                <vote-form-button :item="{{ $item }}"></vote-form-button>
-
-{{--                @if(! $item->vote_disabled)--}}
-{{--                    <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>--}}
-{{--                    <form method="POST" action="{{ route('vote.store', [ $item->id, $item->slug]) }}">--}}
-{{--                        @csrf @method('POST')--}}
-{{--                        <div--}}
-{{--                            class="md:flex justify-between my-5 bg-gray-100 @if($item->vote_disabled) opacity-50 @endif">--}}
-{{--                             Button YES--}}
-{{--                            <button name="vote" value="1"--}}
-{{--                                    class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3  @if($item->vote_disabled) cursor-not-allowed @endif"--}}
-{{--                                    @if($item->vote_disabled) disabled @endif >--}}
-{{--                                Súhlasim--}}
-
-{{--                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 1)--}}
-{{--                                    <svg class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         viewBox="0 0 20 20">--}}
-{{--                                        <path--}}
-{{--                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>--}}
-{{--                                    </svg>--}}
-{{--                                @endif--}}
-{{--                            </button>--}}
-
-{{--                             Button WAIT--}}
-{{--                            <button name="vote" value="2"--}}
-{{--                                    class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3 @if($item->vote_disabled) cursor-not-allowed @endif"--}}
-{{--                                    @if($item->vote_disabled) disabled @endif >--}}
-{{--                                Zdržal--}}
-{{--                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 2)--}}
-{{--                                    <svg class="w-5 h-5 ml-2 text-blue-600 fill-current"--}}
-{{--                                         xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         viewBox="0 0 20 20">--}}
-{{--                                        <path--}}
-{{--                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>--}}
-{{--                                    </svg>--}}
-{{--                                @endif--}}
-{{--                            </button>--}}
-{{--                             Button No--}}
-{{--                            <button name="vote" value="0"--}}
-{{--                                    class="btn btn-danger font-semibold  flex items-center justify-center md:w-auto w-full  my-3  @if($item->vote_disabled) cursor-not-allowed @endif"--}}
-{{--                                    @if($item->vote_disabled) disabled @endif >--}}
-{{--                                Nesúhlasim--}}
-{{--                                @if($item->votes()->whereUserId(auth()->user()->id)->pluck('vote')->first() == 0)--}}
-{{--                                    <svg class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         viewBox="0 0 20 20">--}}
-{{--                                        <path--}}
-{{--                                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>--}}
-{{--                                    </svg>--}}
-{{--                                @endif--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                @endif--}}
+                <vote-form-button :itemid="{{ $item->id }}"></vote-form-button>
 
                 {{-- Body text--}}
                 <div class="py-3">
@@ -132,21 +79,7 @@
         {{--Aside part--}}
         <div class="p-3 md:w-1/4 xs:w-full">
 
-{{--            --}}{{--Vote Admin Button --}}
-{{--            <div class="w-full mb-6 text-center">--}}
-{{--                @can('delete')--}}
-{{--                    @if($item->vote_disabled)--}}
-{{--                        <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}"--}}
-{{--                           class="text-xs btn btn-secondary">Zapnúť hlasovanie</a>--}}
-{{--                    @else--}}
-{{--                        <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}"--}}
-{{--                           class="text-xs btn btn-primary">Hlasovanie zapnuté</a>--}}
-{{--                    @endif--}}
-{{--                @endcan--}}
-{{--            </div>--}}
-
-
-            <vote-start-button :item="{{ $item }}"></vote-start-button>
+            <vote-start-button :itemid="{{ $item->id }}"></vote-start-button>
 
             @if($item->votes()->count() > 0)
                 {{-- Vote results Variant I. --}}

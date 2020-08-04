@@ -16,7 +16,7 @@ class Item extends Model
 {
     use SoftDeletes, FileUpload;
     protected $guarded = [];
-    protected $with = ['interpellations', 'files', 'user'];
+    protected $with = ['interpellations', 'files', 'user', 'votes'];
 
     public function files() {
         return $this->morphMany(File::class, 'fileable');
@@ -52,9 +52,12 @@ class Item extends Model
     }
 
     public function voteDisable(){
+
         if($this->vote_disabled == 0) {
+
             $this->update(['vote_disabled' => 1 ]);
         } else {
+
             $this->update(['vote_disabled' => 0 ]);
         }
 

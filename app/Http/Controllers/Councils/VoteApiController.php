@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 
 class VoteApiController extends Controller
 {
+    public function getItem(Item $item){
+        return $item;
+    }
+
     public function voteEnable(Item $item)
     {
+
         // only published item can be voted
         if ($item->published == 0) {
             session()->flash('flash', 'Položka nie je publikovaná!');
@@ -22,8 +27,7 @@ class VoteApiController extends Controller
             return back();
         }
 
-        $item->voteDisable();
-
+       $item->voteDisable();
         return back();
     }
 

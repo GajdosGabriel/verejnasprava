@@ -23,3 +23,4 @@ Route::get('contacts/{organization}/{search?}', 'Organizations\Contacts\ApiConta
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
 Route::post('vote/{item}/store', 'Councils\VoteApiController@store');
 Route::get('vote/enableVote/{item}', 'Councils\VoteApiController@voteEnable');
+Route::get('vote/getItem/{item}', 'Councils\VoteApiController@getItem');
