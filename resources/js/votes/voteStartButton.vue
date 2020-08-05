@@ -1,16 +1,24 @@
 <template>
 
-    <button class="text-xs btn mb-6 w-full" :class="buttonClass" @click="startVote" v-text=" buttonTitle">
-        Zapnúť hlasovanie
-    </button>
+    <div>
+        <button class="text-xs btn mb-3 w-full" :class="buttonClass" @click="startVote" v-text=" buttonTitle">
+            Zapnúť hlasovanie
+        </button>
+
+        <interpelation-table :item="item"/>
+    </div>
+
+
 
 </template>
 
 <script>
     import {bus} from '../app';
+    import interpelationTable from '../interpellations/InterpelationCard.vue';
 
     export default {
         props: ['itemid'],
+        components: {interpelationTable},
         data: function () {
             return {
                 item: ''
@@ -18,6 +26,9 @@
         },
         created() {
             this.getItem();
+            bus.$on('interpelationChange', (data) => {
+                this.getItem();
+            });
         },
         computed: {
             buttonClass: function () {

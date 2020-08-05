@@ -147,15 +147,6 @@
             @endif
 
 
-
-
-
-            <interpelation-table :item="{{ $item }}"/>
-
-
-            {{-- Users Interpellations--}}
-{{--                        @include('council.items.interpellation.aside-list')--}}
-{{----}}
         </div>
     </div>
 

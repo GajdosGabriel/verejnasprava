@@ -3,6 +3,7 @@
 
 @section('navigation') <x-navigation.navPublic /> @endsection
 
+
 @section('content')
 
 

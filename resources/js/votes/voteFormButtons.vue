@@ -56,8 +56,6 @@
             return {
                 item: '',
                 vote: ''
-
-
             }
         },
         // computed: {

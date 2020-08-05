@@ -13,6 +13,11 @@ use App\Models\Category;
 use App\Models\OrderItem;
 use App\Models\Council\Item;
 use App\Models\Organization;
+use App\View\Components\Navigation\navigationItems;
+use App\View\Components\Navigation\navigationMeeting;
+use App\View\Components\Navigation\navigationOrganization;
+use App\View\Components\Navigation\navigationUser;
+use App\View\Components\Navigation\navPublic;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -61,6 +66,13 @@ class AppServiceProvider extends ServiceProvider
         {
             $view->with('categories', Category::all());
         });
+
+
+        \Blade::component('navigation.navPublic',  navPublic::class);
+        \Blade::component('navigation.navigationOrganization',  navigationOrganization::class);
+        \Blade::component('navigation.navigationUser',  navigationUser::class);
+        \Blade::component('navigation.navigationMeeting',  navigationMeeting::class);
+        \Blade::component('navigation.navigationItems',  navigationItems::class);
 
 
     }
