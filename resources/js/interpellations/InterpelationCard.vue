@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 rounded-md border-gray-300 my-5" v-show="item.vote_disabled == 0">
+    <div class="border-2 rounded-md border-gray-300 my-5" v-show="item.vote_disabled == 1">
         <div class="flex justify-between mb-3 bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Prihlásnenie do rozpravy</h4>
             <span class="text-sm" v-text="interpellations.length"></span>

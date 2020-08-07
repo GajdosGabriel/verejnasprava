@@ -8,6 +8,8 @@ require('./bootstrap');
 require('vue-multiselect/dist/vue-multiselect.min.css');
 window.Vue = require('vue');
 
+import store from './store';
+
 // get user Organization
 Vue.prototype.user =  window.App.user;
 
@@ -45,5 +47,6 @@ export const bus = new Vue();
  */
 
 const app = new Vue({
+    store,
     el: '#app',
 });

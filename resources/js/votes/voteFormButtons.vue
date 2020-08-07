@@ -1,5 +1,5 @@
 <template>
-    <div v-show="item.vote_disabled">
+    <div v-show="voteStatus">
 
         <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
         <form method="POST" @submit.prevent>
@@ -58,11 +58,11 @@
                 vote: ''
             }
         },
-        // computed: {
-        //     voteStatus: function() {
-        //        return this.item.vote_disabled == 0 ? true : false;
-        //     }
-        // },
+        computed: {
+            voteStatus: function() {
+               return this.item.vote_disabled == 0 ? true : false;
+            }
+        },
         created: function () {
             this.getItem();
             bus.$on('startVote', (data) => {

@@ -2,7 +2,8 @@
 @section('page-title', 'Program zasadnutia')
 
 
-@section('navigation') <x-navigation.navigationItems /> @endsection
+@section('navigation')
+    <x-navigation.navigationItems/> @endsection
 
 {{--@section('navigation')--}}
 {{--    @include('council.items.navigation')--}}
@@ -14,25 +15,28 @@
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
             <div class="mb-6">
-                <h1 class="page-title">{{ $meeting->name }} <small class="text-gray-500">{{ $meeting->start_at->format('d. m. Y') }} <strong>{{ $meeting->start_at->format('H:i') }} hod.</strong></small></h1>
-{{--                @can('delete')--}}
-{{--                    <a href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}"--}}
-{{--                       class="btn btn-primary text-center text-sm flex items-center">Nový návrh</a>--}}
-{{--                @endcan--}}
+                <h1 class="page-title">{{ $meeting->name }} <small
+                        class="text-gray-500">{{ $meeting->start_at->format('d. m. Y') }}
+                        <strong>{{ $meeting->start_at->format('H:i') }} hod.</strong></small></h1>
+                {{--                @can('delete')--}}
+                {{--                    <a href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}"--}}
+                {{--                       class="btn btn-primary text-center text-sm flex items-center">Nový návrh</a>--}}
+                {{--                @endcan--}}
             </div>
 
             @forelse($items as $item)
-                <div class="mt-4 bg-white hover:bg-gray-100 p-2">
-                    <div class="flex justify-between">
+                <div class="mt-4 bg-white hover:bg-gray-100 p-2 odd:bg-gray-500">
+                    <div class="flex justify-between flex-wrap mt-2 mb-5">
 
-                        <h5 class="font-semibold">
+                        <h5 class="font-semibold mb-4">
                             <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
                                 {{ $loop->iteration }}. {{ $item->name }}
                             </a>
                         </h5>
 
 
-                        <div class="flex items-center space-x-3">
+                        <div class="flex flex-wrap items-center space-x-3">
+
 
                             {{-- Users Interpellations--}}
                             @include('council.items.interpellation.button')
@@ -44,14 +48,16 @@
                             @endif
 
                             @if($item->vote_disabled)
-{{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
-                                    <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>
-{{--                                </a>--}}
+                                {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
+                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>
+                                {{--                                </a>--}}
                             @else
-{{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
-                                    <span class="badge badge-primary " title="Hlasovanie zapnuté">Hlasovanie</span>
-{{--                                </a>--}}
+                                {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
+                                <span class="badge badge-primary " title="Hlasovanie zapnuté">Hlasovanie</span>
+                                {{--                                </a>--}}
                             @endif
+
+
 
 
                             @can('delete')
@@ -128,15 +134,16 @@
 
 
 
-
-
                             @endcan
 
                         </div>
+
                     </div>
+                    <vote-start-button :itemid="{{ $item->id }}"></vote-start-button>
+                    {{-- Votes Buttons--}}
+                    <vote-form-button :itemid="{{ $item->id }}"></vote-form-button>
 
-
-                    <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>
+                    {{--                    <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>--}}
 
 
                     {{-- Files --}}
@@ -151,12 +158,14 @@
                             Bez prílohy
                         @endforelse
                     @endif
-                    <div class="">
-                        Za: {{ $item->votes()->where('vote', 1)->count() }}
-                        Proti: {{ $item->votes()->where('vote', 0)->count() }}
-                        Nehlasoval: {{ $item->votes()->where('vote', 2)->count() }}
-                    </div>
 
+                    @if($item->votes()->count())
+                        <div class="">
+                            Za: {{ $item->votes()->where('vote', 1)->count() }}
+                            Proti: {{ $item->votes()->where('vote', 0)->count() }}
+                            Nehlasoval: {{ $item->votes()->where('vote', 2)->count() }}
+                        </div>
+                    @endif
                 </div>
 
             @empty
