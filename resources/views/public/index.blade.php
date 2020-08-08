@@ -9,6 +9,8 @@
 
 
     <div class="container mx-auto md:flex">
+
+
         {{-- Image--}}
 {{--        <div class="w-64 h-64 bg-cover" style="background-image: url({{ asset('image/dievca-left.png') }})" title="Woman holding a mug">--}}
         <div>
@@ -22,7 +24,10 @@
                 <span class="text-xs text-gray-700 mt-1">Registrácia bez poplatkov</span>
             </div>
 
+
+
     </div>
+
 
 {{--    @include('layouts.banner-top')--}}
 {{--<div class="md:flex">--}}
@@ -41,6 +46,9 @@
 
 
     <div class="w-full p-6 bg-blue-100">
+
+        <todo-component></todo-component>
+        
         <div class="w-48 mx-auto pt-6 border-b-2 border-teal-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
         <div class="p-2 text-center text-lg text-gray-700">Jednou bezplatnou registráciou získate riešenie pre správu obecného zastupiteľstva <br /> a prístup k zverejňovaniu zmlúv a faktúr.
             <span class="font-semibold">Registrácia zadarmo.</span></div>

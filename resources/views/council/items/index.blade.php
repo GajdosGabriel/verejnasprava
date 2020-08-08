@@ -143,7 +143,7 @@
                     {{-- Votes Buttons--}}
                     <vote-form-button :itemid="{{ $item->id }}"></vote-form-button>
 
-                    {{--                    <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>--}}
+                    {{--  <p>{!! strip_tags( $item->descriptionLimit(340) ) !!}</p>--}}
 
 
                     {{-- Files --}}
@@ -160,10 +160,10 @@
                     @endif
 
                     @if($item->votes()->count())
-                        <div class="">
-                            Za: {{ $item->votes()->where('vote', 1)->count() }}
-                            Proti: {{ $item->votes()->where('vote', 0)->count() }}
-                            Nehlasoval: {{ $item->votes()->where('vote', 2)->count() }}
+                        <div class="flex justify-between">
+                            <span>Za: {{ $item->votes()->where('vote', 1)->count() }}</span>
+                            <span>Nehlasoval: {{ $item->votes()->where('vote', 2)->count() }}</span>
+                            <span>Proti: {{ $item->votes()->where('vote', 0)->count() }}</span>
                         </div>
                     @endif
                 </div>

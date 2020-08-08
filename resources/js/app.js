@@ -38,6 +38,9 @@ Vue.component('vote-form-button', require('./votes/voteFormButtons.vue').default
 Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 
 
+Vue.component('todo-component', require('./tasks/Todos.vue').default);
+
+
 export const bus = new Vue();
 
 /**

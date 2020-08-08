@@ -5,7 +5,7 @@
         <form method="POST" @submit.prevent>
             <div class="md:flex justify-between my-5 bg-gray-100">
                 <!--   Button YES-->
-                <button type="submit" @click="storeVote(1)"
+                <button type="submit" @click="storeVote( item.id, 1)"
                         class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                     Súhlasim
                     <svg v-if="vote.vote == 1" class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@
 
 
                 <!--   Button NotVote-->
-                <button  @click="storeVote(2)"
+                <button  @click="storeVote(item.id, 2)"
                         class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                     Zdržal
                     <svg v-if="vote.vote == 2" class="w-5 h-5 ml-2 text-blue-600 fill-current"
@@ -30,7 +30,7 @@
 
 
                 <!--   Button No-->
-                <button @click="storeVote(0)"
+                <button @click="storeVote(item.id, 0)"
                         class="btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3">
                     Nesúhlasim
                     <svg v-if="vote.vote == 0" class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -71,13 +71,13 @@
         },
         methods: {
             getItem: function () {
-                axios.get('/api/vote/getItem/' + this.itemid)
+                axios.get('/api/item/' + this.itemid)
                     .then(response => {
                         this.item = response.data
                     })
             },
-            storeVote: function (val) {
-                axios.post('/api/vote/' + this.item.id + '/store', { userId: this.item.user_id,  vote: val})
+            storeVote: function (id, val) {
+                axios.put('/api/vote/' + id, { userId: this.item.user_id,  vote: val})
                 .then(response => {
                     this.vote = response.data;
                     this.getItem();

@@ -21,6 +21,9 @@ Route::get('posts/frontPosts', 'Posts\ApiPostController@frontPosts');
 Route::get('posts/{userId}/{search?}', 'Posts\ApiPostController@index');
 Route::get('contacts/{organization}/{search?}', 'Organizations\Contacts\ApiContactsController@getContacts');
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
-Route::post('vote/{item}/store', 'Councils\VoteApiController@store');
-Route::get('vote/enableVote/{item}', 'Councils\VoteApiController@voteEnable');
-Route::get('vote/getItem/{item}', 'Councils\VoteApiController@getItem');
+
+
+Route::apiResources([
+    'vote' => 'Api\VoteController',
+    'item' => 'Api\ItemController',
+]);

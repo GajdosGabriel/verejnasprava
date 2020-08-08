@@ -1,7 +1,7 @@
 <template>
 
-    <div>
-        <button class="text-xs btn mb-3 w-full" :class="buttonClass" @click="startVote" v-text=" buttonTitle">
+    <div class="text-center">
+        <button class="text-xs btn mb-3 " :class="buttonClass" @click="startVote" v-text=" buttonTitle">
             Zapnúť hlasovanie
         </button>
 
@@ -47,7 +47,7 @@
         },
         methods: {
             getItem: function () {
-                axios.get('/api/vote/getItem/' + this.itemid)
+                axios.get('/api/item/' + this.itemid)
                     .then(response => {
                         this.item = response.data
                     })
@@ -56,7 +56,7 @@
                 if(! this.canStartVote) {
                     alert('Zoznam prihlásených do rozpravy nie je prázdny.')
                 }
-                axios.get('/api/vote/enableVote/' + this.item.id)
+                axios.put('/api/item/' + this.item.id)
                     .then(response => {
                         bus.$emit('startVote', false);
                         this.getItem();

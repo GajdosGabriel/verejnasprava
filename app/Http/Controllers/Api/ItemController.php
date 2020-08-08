@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Councils;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Council\Item;
 use Illuminate\Http\Request;
 
-class ApiVoteController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +35,9 @@ class ApiVoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Item $item)
     {
-        //
+        return $item;
     }
 
     /**
@@ -46,9 +47,22 @@ class ApiVoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        // only published item can be voted
+        if ($item->published == 0) {
+            session()->flash('flash', 'Položka nie je publikovaná!');
+            return back();
+        }
+
+        // Enable vote can only if interpelations list is empty
+        if ($item->interpellations()->count() > 0) {
+            session()->flash('flash', 'Zoznam prihlásených do rozpravy nie je prázdny!');
+            return back();
+        }
+
+        $item->voteDisable();
+//        return back();
     }
 
     /**
