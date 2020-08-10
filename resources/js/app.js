@@ -39,6 +39,7 @@ Vue.component('vote-start-button', require('./votes/voteStartButton.vue').defaul
 
 
 Vue.component('todo-component', require('./tasks/Todos.vue').default);
+Vue.component('notification-list', require('./notifications/NotificationList.vue').default);
 
 
 export const bus = new Vue();

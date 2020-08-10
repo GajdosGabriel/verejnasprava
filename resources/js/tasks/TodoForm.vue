@@ -18,7 +18,7 @@
         },
         methods: {
             addNewTodoItem: function() {
-                this.$store.dispatch('addNewTodo', this.newTodoItem);
+                this.$store.dispatch('todos/addNewTodo', this.newTodoItem);
                 this.newTodoItem = '';
             }
         }

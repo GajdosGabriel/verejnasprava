@@ -14,10 +14,10 @@
 
         methods: {
             deleteTodo:function () {
-                this.$store.dispatch('deleteTodo', this.todo);
+                this.$store.dispatch('todos/deleteTodo', this.todo);
             },
             toggleTodoStatus: function() {
-                this.$store.dispatch('toggleTodoStatus', this.todo);
+                this.$store.dispatch('todos/toggleTodoStatus', this.todo);
             }
         }
 
