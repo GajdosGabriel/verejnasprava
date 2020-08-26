@@ -46,6 +46,14 @@ class navItems
         ];
     }
 
+    public function tasks(){
+        return [
+            'title' => 'Úlohy',
+            'url' => route('task.index'),
+            'active' => $this->isActive('task.index')
+        ];
+    }
+
     public function navody(){
         return [
             'title' => 'Návody',

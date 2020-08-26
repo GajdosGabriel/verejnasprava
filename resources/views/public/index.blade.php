@@ -47,8 +47,6 @@
 
     <div class="w-full p-6 bg-blue-100">
 
-        <todo-component></todo-component>
-
         <div class="w-48 mx-auto pt-6 border-b-2 border-teal-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
         <div class="p-2 text-center text-lg text-gray-700">Jednou bezplatnou registráciou získate riešenie pre správu obecného zastupiteľstva <br /> a prístup k zverejňovaniu zmlúv a faktúr.
             <span class="font-semibold">Registrácia zadarmo.</span></div>
@@ -77,7 +75,6 @@
             <a class="btn btn-primary mb-5" href="/register">Jedna registrácia 2x služby</a>
         </div>
 
-        <notification-list></notification-list>
     </div>
 
 {{--    @include('layouts.banner-middle')--}}

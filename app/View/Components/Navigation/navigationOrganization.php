@@ -43,6 +43,7 @@ class navigationOrganization extends Component
         return [
             $this->navigation->zverejnovanie(),
             $this->navigation->contacts(),
+            $this->navigation->tasks(),
             $this->navigation->orders($this->object->id, $this->object->slug),
             $this->navigation->councils($this->object->id, $this->object->slug),
             $this->navigation->navody(),

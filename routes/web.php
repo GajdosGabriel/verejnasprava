@@ -108,6 +108,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
     });
 
+    Route::name('task.')->group(function() {
+        Route::get('tasks', 'TaskController@index')->name('index');
+    });
+
 
     Route::name('question.')->group(function() {
         Route::get('question/index',  'QuestionsController@index')->name('index');
