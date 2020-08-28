@@ -45,11 +45,6 @@ class UserController extends Controller
         return redirect()->route('user.index', [$user->active_organization, 'slug']);
     }
 
-
-    public function newOrganization() {
-        return view('user.org-create', ['organization' => new Organization]);
-    }
-
     public function store(Organization $organization, UserCreateRequest $userRequest) {
 
         $user = User::create([

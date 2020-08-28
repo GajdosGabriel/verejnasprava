@@ -19,6 +19,10 @@ class OrganizationController extends Controller
         return view('organizations.edit', compact('organization'));
     }
 
+    public function create() {
+        return view('organizations.create', ['organization' => new Organization]);
+    }
+
 
     public function store(User $user, $name, OrganizationFormRequest $request) {
         $user->organizations()->create($request->all());

@@ -16,7 +16,7 @@ class ApiPostController extends Controller
                 return $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%')
                     ->orWhere('price', 'like', '%' . $search . '%');
-            })->paginate();
+            })->latest()->paginate();
         return $posts;
     }
 

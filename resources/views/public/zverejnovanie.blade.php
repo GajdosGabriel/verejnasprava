@@ -27,7 +27,7 @@
 
         <h3 class="font-semibold text-2xl text-center mt-12 mb-6">Zverejnené doklady</h3>
         {{--        @include('modul.categoryList')--}}
-        @include('post.post-table-predna')
+{{--        @include('post.post-table-predna')--}}
 
 
         {{--    {!! $posts ->render() !!}--}}

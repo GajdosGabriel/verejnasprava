@@ -36,12 +36,9 @@ class HomeController extends Controller
                 return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug ]);
         }
 
-        //        Po registrácií presmeruje na org. formulár
-        return redirect()->route('user.new-organization', [ auth()->user()->id, auth()->user()->slug]);
+        //        Po registrácií presmeruje na create org formulár
+        return redirect()->route('org.create', [ auth()->user()->id, auth()->user()->slug]);
 
-        // Stará verzia
-        //        return view('user.index');
-//        return redirect()->route('user.index', [auth()->user()->id, auth()->user()->slug]);
     }
 
     public function contact() {

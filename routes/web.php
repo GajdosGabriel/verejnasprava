@@ -19,7 +19,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/index', 'UserController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
         Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
-        Route::get('{user}/{name}/new-organization', 'UserController@newOrganization')->name('new-organization');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
         Route::post('{organization}/store/store', 'UserController@store')->name('store');
         Route::patch('{user}/update/update', 'UserController@update')->name('update');
@@ -84,6 +83,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');
+        Route::get('{user}/{name}/create', 'OrganizationController@create')->name('create');
         Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
