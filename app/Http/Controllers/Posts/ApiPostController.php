@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 class ApiPostController extends Controller
 {
     public function index($userId, $search = null ) {
-        $posts = Post::
+
+        $posts = Post::whereOrganizationId($userId)->
             where(function (Builder $query) use ($search) {
                 return $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%')

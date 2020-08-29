@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');
-        Route::get('{user}/{name}/create', 'OrganizationController@create')->name('create');
+        Route::get('{cokolvek}/{name}/create', 'OrganizationController@create')->name('create');
         Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');

@@ -36,7 +36,7 @@
                 <td class="border px-4 py-2" v-text="post.int_number"></td>
 
                 <td class="border px-4 py-2 cursor-pointer" @click="adminPanel = post.id">
-                    <div v-if="adminPanel == post.id">Items</div>
+                    <a :href="'post/edit/' + post.id" v-if="adminPanel == post.id">Upraviť</a>
                     <div v-else class="mx-auto">...</div>
                 </td>
 
