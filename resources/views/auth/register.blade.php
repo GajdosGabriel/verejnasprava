@@ -77,19 +77,19 @@
                             <input id="password-confirm" type="password" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
-                        <div class="relative w-full mb-3">
-                            <label for="iamHuman" class="block uppercase text-gray-700 text-xs font-bold mb-2">Som človek 3 + 2 =</label>
+{{--                        <div class="relative w-full mb-3">--}}
+{{--                            <label for="iamHuman" class="block uppercase text-gray-700 text-xs font-bold mb-2">Som človek 3 + 2 =</label>--}}
 
-                            <div class="col-md-6">
-                                <input id="iamHuman" type="number" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full" placeholder="napíšte číslo 5" name="iamHuman" required>
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="iamHuman" type="number" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full" placeholder="napíšte číslo 5" name="iamHuman" required>--}}
 
-                                @error('iamHuman')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+{{--                                @error('iamHuman')--}}
+{{--                                <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="relative w-full mb-3">
                                 <button type="submit" class="btn btn-primary">
