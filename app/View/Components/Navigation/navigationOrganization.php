@@ -62,18 +62,9 @@ class navigationOrganization extends Component
                 'title' => 'Ľudia',
                 'url' => route('user.index', [$this->object->id, $this->object->slug])
             ],
-            [
-                'title' => 'Objednávky',
-                'url' => route('order.index', [$this->object->id, $this->object->slug])
-            ],
-            [
-                'title' => 'Zastupiteľstva',
-                'url' => route('zast.admin.index', [$this->object->id, $this->object->slug])
-            ],
-            [
-                'title' => 'Návody',
-                'url' => route('question.index', [auth()->user()->id, auth()->user()->slug])
-            ]
+            $this->navigation->navody(),
+            $this->navigation->orders($this->object->id, $this->object->slug),
+            $this->navigation->councils($this->object->id, $this->object->slug),
         ];
     }
 }

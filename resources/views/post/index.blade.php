@@ -7,7 +7,7 @@
 
     <div class="container mx-auto p-6 min-h-screen">
 
-        <div class="w-8/12">
+        <div class="w-full">
 
 
             <div class="flex justify-between items-center pb-8">

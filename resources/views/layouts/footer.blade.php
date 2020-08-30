@@ -1,7 +1,7 @@
-<footer class="bg-gray-200 flex-none border-t border-red h-64">
+<footer class="bg-gray-200 flex-none border-t border-red h-48">
     <div class="container mx-auto py-8 text-center">
         <nav class="mb-8">
-            <a class="text-black no-underline mx-3" href="#">About Us</a>
+            <a class="text-black no-underline mx-3" href="#">O nás</a>
 {{--            <a class="text-black no-underline mx-3" href="#">Help</a>--}}
 {{--            <a class="text-black no-underline mx-3" href="#">Newsletter</a>--}}
 {{--            <a class="text-black no-underline mx-3" href="#">Terms & Condition</a>--}}
@@ -12,8 +12,10 @@
             <a class="text-black no-underline mx-3" href="#">Feedback</a>
             <a class="text-black no-underline mx-3" href="{{ route('home.contact') }}">Kontakt</a>
         </nav>
-        <a class="inline-block mb-6" href="#"><img src="https://femaledaily.com/static/images/logo_FD.png" alt=""></a>
-        <p class="mb-6 text-grey-dark text-sm">Copyright © 2018 - 2020 Verejny portál | All the rights reserved</p>
+{{--        <a class="inline-block mb-6" href="#">--}}
+{{--            <img style="height: 180px" src="{{ asset('image/certifikat.jpg') }}" alt="">--}}
+{{--        </a>--}}
+        <p class="mb-6 text-grey-dark text-sm">Copyright © 2018 - 2020 Verejny portál | Všetky práva vyhradené</p>
         <nav>
             <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-facebook"></i></a>
             <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-twitter"></i></a>

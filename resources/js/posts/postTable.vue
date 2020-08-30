@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" v-model="search" placeholder="hľadať v popis, cena" class="p-1 focus:border-purple-500">
+        <input type="text" v-model="search" placeholder="hľadať v popis, cena" class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm">
         <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''" >X</span>
 
         <table class="table-auto table-bordered text-sm w-full">
@@ -22,7 +22,7 @@
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('L')"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
-                <td class="border px-4 py-2" v-text="post.contact.name"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.contact.name"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
@@ -30,13 +30,14 @@
                     <a target="_blank" :href="'/pdf/' + file.id + '/' + file.name + '/download/pdf'">Príloha</a>
                     </div>
                </span>
-                    <span v-else>Bez prílohy</span>
+                    <span v-else class="whitespace-no-wrap">Bez prílohy</span>
                 </td>
 
                 <td class="border px-4 py-2" v-text="post.int_number"></td>
 
-                <td class="border px-4 py-2 cursor-pointer" @click="adminPanel = post.id">
-                    <a :href="'post/edit/' + post.id" v-if="adminPanel == post.id">Upraviť</a>
+                <td class="border px-4 py-2 cursor-pointer flex flex-col" @click="adminPanel = post.id">
+                    <a :href="'post/edit/' + post.id" v-if="adminPanel == post.id" class="hover:underline">Upraviť</a>
+                    <a :href="'post/delete/' + post.id" v-if="adminPanel == post.id" class="hover:underline">Zmazať</a>
                     <div v-else class="mx-auto">...</div>
                 </td>
 

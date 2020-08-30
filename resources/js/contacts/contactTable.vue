@@ -36,7 +36,7 @@
                 <td class="px-4 py-2 border" v-text="contact.email"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.phone"></td>
                 <td class="px-4 py-2 border">
-                    <a :href="'/contact/edit/' + contact.id">Edit</a>
+                    <a :href="'/contact/edit/' + contact.id" class="hover:underline">Edit</a>
                 </td>
             </tr>
             </tbody>

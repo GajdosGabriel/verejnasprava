@@ -38,6 +38,7 @@
     @livewireStyles
 </head>
 <body>
+@include ('modul.kodSledovania')
     <div id="app" v-cloak>
         @section('navigation')
 

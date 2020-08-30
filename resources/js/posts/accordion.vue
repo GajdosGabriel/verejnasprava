@@ -13,11 +13,11 @@ import swal from "sweetalert2";
         </tr>
         </thead>
         <tbody>
-        <template v-for="(post, key, index) in posts"  >
+        <template v-for="(post, key, index) in posts">
             <tr class="hover:bg-gray-100 cursor-pointer  border-2 border-gray-500">
                 <td colspan="7" class="border px-4 bg-gray-300 border-gray-700 py-3 flex-wrap"
                     @click="isOpen =! isOpen">
-                                        <span> {{  key }}</span>
+                    <span> {{  key }}</span>
                     <span class="up-Arrow" v-if="isOpen">&#9650;</span>
                     <span class="down-Arrow" v-else>&#9660;</span>
                 </td>
@@ -44,9 +44,12 @@ import swal from "sweetalert2";
                     <small>ico:{{ item.contact.ico }}</small></td>
                 <td class="border px-4  whitespace-no-wrap font-semibold">{{ item.price }} Eu</td>
                 <td class="border px-4">
+                      <span v-if="item.files.length > 0">
                     <div v-for="file in item.files">
                         <a target="_blank" :href="'/pdf/' + file.id + '/' + file.name + '/download/pdf'">Príloha</a>
                     </div>
+                            </span>
+                    <span v-else class="whitespace-no-wrap">Bez prílohy</span>
                 </td>
                 <td class="border px-4">{{ moment(item.date_in).format('L') }}</td>
             </tr>
