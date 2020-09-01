@@ -55,14 +55,13 @@ class navigationOrganization extends Component
     {
         return [
             [
-                'title' => 'Organizácia',
-                'url' => route('org.edit', [$this->object->id, $this->object->slug])
+                'title' => 'Nastavenia',
+                'url' => route('org.setup', [$this->object->id, $this->object->slug])
             ],
             [
                 'title' => 'Ľudia',
                 'url' => route('user.index', [$this->object->id, $this->object->slug])
             ],
-            $this->navigation->navody(),
             $this->navigation->orders($this->object->id, $this->object->slug),
             $this->navigation->councils($this->object->id, $this->object->slug),
         ];

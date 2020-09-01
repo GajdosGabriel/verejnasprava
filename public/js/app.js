@@ -60714,7 +60714,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "bg-gray-300" }, [
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Názov firmy")]),
+        _c("th", { staticClass: "px-4 py-2 whitespace-no-wrap" }, [
+          _vm._v("Názov firmy")
+        ]),
         _vm._v(" "),
         _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Adresa")]),
         _vm._v(" "),

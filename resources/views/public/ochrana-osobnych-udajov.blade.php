@@ -7,10 +7,10 @@
 
     <div class="container mx-auto">
         <div class="page-content">
-            <h3>Ochrana osobných údajov</h3>
+            <h2 class="text-2xl m-4">Ochrana osobných údajov</h2>
 
-            <p>
-                Podmienky spracúvania osobných údajov na eshope (www.zastavy-vlajky.sk).
+            <p class="m-3">
+                Podmienky spracúvania osobných údajov na portály www.verejnyportal.eu.
 
                 Ak ste mojim zákazníkom, odberateľom noviniek alebo návštevníkom webu, zverujete mi svoje osobné údaje.
                 Zodpovedám za ich ochranu a zabezpečenie. Zoznámte sa preto, prosím, s ochranou osobných údajov,
@@ -19,7 +19,7 @@
 
             </p>
 
-            <p>
+            <p class="m-3">
                 <strong>Kto je správca?</strong>
 
                 Správcom osobných údajov pre zákazníkom, odberateľom noviniek je firma Gajdoš Gabriel, programátor projektu.
@@ -31,11 +31,12 @@
                 Prípadne vyberám ďalších spracovateľov, ktorí mi s ich spracovaním budú pomáhať.
 
             <p/>
-            <p><strong>Kontaktné údaje</strong>
+            <p class="m-3">
+                <strong>Kontaktné údaje</strong>
 
                 Kontaktovať správcu osobných údajov môžete z tejto webovej stránky v záložke Kontakt.
             <p/>
-            <p>
+            <p class="m-3">
 
                 <strong>Prehlásenie</strong>
 
@@ -55,7 +56,7 @@
                 Poskytovanie služieb, plnenie zmluvy. Vaše osobné údaje v rozsahu: e-mail, nevyhnutne potrebujeme k
                 plneniu zmluvy (napr. zaslanie prístupov do aplikácie, alebo informácií o produktoch).
             <p/>
-            <p>
+            <p class="m-3">
                 <strong>Vedenie účtovníctva.</strong>
                 Ak ste mojimi zákazníkmi, tak vaše osobné údaje (fakturačné údaje) nevyhnutne potrebujem, aby sa
                 vyhovelo zákonnej povinnosti pre vystavovanie a evidenciu daňových dokladov.
@@ -70,7 +71,7 @@
                 Vaše osobné údaje si ponechávam počas doby premlčacích období, pokiaľ zákon nestanoví ďalšiu dobu k ich
                 uchovaniu alebo som v konkrétnych prípadoch neuviedli inak.
             <p/>
-            <p>
+            <p class="m-3">
                 <strong>Cookies</strong>
 
                 Pri prechádzaní našich webových stránok zaznamenávam vašu IP adresu, ako dlho sa na stránke zdržíte a z
@@ -84,7 +85,7 @@
                 Používanie cookies môžete na svojom počítači zakázať.
 
             <p/>
-            <p>
+            <p class="m-3">
                 Zabezpečenie a ochrana osobných údajov
 
                 V maximálnej možnej miere chránim osobné údaje pomocou moderných technológií, ktoré zodpovedajú stupňu
@@ -109,7 +110,7 @@
                 Akékoľvek spracovanie osobných údajov bude vykonávané na území EU.
 
             <p/>
-            <p>
+            <p class="m-3">
 
                 <strong>Vaše práva v súvislosti s ochranou osobných údajov</strong>
 
@@ -134,7 +135,7 @@
                 strojovo čitateľnej podobe. V tomto prípade potrebujem na to aspoň 20 dní.
 
             <p/>
-            <p>
+            <p class="m-3">
                 <strong>Právo na výmaz.</strong> Vaším ďalším právom je právo na výmaz (byť zabudnutý). Nechcem na vás
                 zabudnúť, ale pokiaľ si to budete želať, máte na to právo. V takomto prípade vymažem všetky vaše osobné
                 údaje zo svojho systému a zo systémov všetkých ďalších spracovateľov a záloh. Na zabezpečenie práva na
@@ -154,7 +155,7 @@
                 ste, posielam vám ich len na základe vášho súhlasu. V oboch prípadoch môžete ukončiť odber mojich
                 emailov kliknutím na odhlasovací odkaz v každom zaslanom maile.
             <p/>
-            <p>
+            <p class="m-3">
                 <strong>Mlčanlivosť</strong>
 
                 Dovoľujeme si Vás uistiť, že moji zamestnanci i spolupracovníci, ktorí budú spracovávať vaše osobné
@@ -167,9 +168,9 @@
                 osobných údajov, ktorej pôvodné znenie je tu:
 
             <p/>
-            <p>
+            <p class="m-3">
                 Podmienky spracúvania osobných údajov prostredníctvom webovej stránky internetového obchodu
-                www.zastavy-vlajky.sk.
+                www.verejnyportal.eu
 
                 firma Gajdoš Gabriel, Východná 3, 911 08 Trenčín, (ďalej len
                 „prevádzkovateľ“) spracúva Vami poskytnuté osobné údaje, v súlade s ustanoveniami Zákona č.122/2013 Z.
@@ -204,7 +205,7 @@
 
                 Poskytnuté osobné údaje sa nebudú zverejňovať, ani prenášať do tretích krajín mimo EU a EHP.
             <p/>
-            <p>
+            <p class="m-3">
 
                 Vaše osobné údaje bude prevádzkovateľ spracúvať od zaregistrovania na web stránke prevádzkovateľa až po
                 dobu vášho odhlásenia z databázy. Prostredníctvom odkazu nachádzajúcom sa v každom maile budú Vaše
@@ -213,10 +214,6 @@
                 Zároveň môžete požiadať prevádzkovateľa o preukázanie totožnosti oprávnenej osoby u prevádzkovateľa,
                 ktorá získava Vaše osobné údaje, a využiť svoje práva pri spracúvaní osobných údajov, podľa § 28 zákona.
             </p>
-
-                <h4> Podmienky spracovania osobných údajov prostredníctvom tretích strán</h4>
-                <a target="_blank" href="https://www.youtube.com/t/terms">YouTube podmienky.</a> <br />
-                <a target="_blank" href="https://policies.google.com/privacy">Google podmienky.</a>
 
         </div>
     </div>

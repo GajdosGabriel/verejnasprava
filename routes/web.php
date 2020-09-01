@@ -26,9 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
         Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
-        Route::post('{organization}/store/store', 'UserController@store')->name('store');
-        Route::patch('{user}/update/update', 'UserController@update')->name('update');
-        Route::get('{user}/{slug}/delete/delete', 'UserController@delete')->name('delete');
+        Route::post('{organization}/store', 'UserController@store')->name('store');
+        Route::patch('{user}/update', 'UserController@update')->name('update');
+        Route::get('{user}/{slug}/delete', 'UserController@delete')->name('delete');
     });
 
     Route::prefix('objednavky')->name('order.')->group(function() {
@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');
         Route::get('{cokolvek}/{name}/create', 'OrganizationController@create')->name('create');
         Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
+        Route::get('{organization}/{slug}/setup', 'OrganizationController@setup')->name('setup');
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
     });

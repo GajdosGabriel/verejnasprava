@@ -33,4 +33,8 @@ class OrganizationController extends Controller
         $organization->update($request->all());
         return back();
     }
+
+    public function setup(Organization $organization, $slug) {
+        return view('organizations.admin.setup');
+    }
 }

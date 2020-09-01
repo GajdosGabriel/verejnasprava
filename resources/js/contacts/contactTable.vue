@@ -14,7 +14,7 @@
         <table class="table-auto w-full">
             <thead>
             <tr class="bg-gray-300">
-                <th class="px-4 py-2">Názov firmy</th>
+                <th class="px-4 py-2 whitespace-no-wrap">Názov firmy</th>
                 <th class="px-4 py-2">Adresa</th>
                 <th class="px-4 py-2">Mesto</th>
                 <th class="px-4 py-2">Psč</th>
