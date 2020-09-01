@@ -39,6 +39,8 @@
 </head>
 <body>
 @include ('modul.kodSledovania')
+@include ('modul.facebook_login')
+
     <div id="app" v-cloak>
         @section('navigation')
 

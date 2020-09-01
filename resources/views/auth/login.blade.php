@@ -16,10 +16,9 @@
                             <div class="text-center mb-3">
                                 <h6 class="text-gray-600 text-sm font-bold">Prihlásenie cez</h6></div>
                             <div class="btn-wrapper text-center">
-                                <button
+                                <a href="/auth/facebook"
                                     class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-                                    type="button"
-                                >Login cez Facebook</button>
+                                >Login cez Facebook</a>
 {{--                                <button class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs" type="button" style="transition: all 0.15s ease 0s;"><img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/tailwindcss-starter-project/static/media/github.4ffd4fe7.svg">Github</button>--}}
 {{--                                <button class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs" type="button" style="transition: all 0.15s ease 0s;"><img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/tailwindcss-starter-project/static/media/google.87be59a1.svg">Google</button>--}}
                             </div>
@@ -29,7 +28,7 @@
                     <form method="POST" action="{{ route('login') }}">
                             @csrf
                         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                            <div class="text-gray-500 text-center mb-3 font-bold"><small>prihlásenie cez údaje</small></div>
+                            <div class="text-gray-500 text-center mb-3 font-bold"><small>Prihlásenie cez údaje</small></div>
                             <form>
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Email</label>
@@ -46,13 +45,14 @@
                                 <div class="text-center mt-6">
                                     <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full" type="submit" style="transition: all 0.15s ease 0s;">Prihlásiť sa</button>
                                 </div>
+
+                                <div class="flex flex-wrap mt-6">
+                                    <div class="w-1/2"><a href="{{ route('password.request')  }}" class="text-gray-900"><small>Zabudnuté heslo?</small></a></div>
+                                    <div class="w-1/2 text-right"><a href="#pablo" class="text-gray-900"><small>Vytvoriť nový účet</small></a></div>
+                                </div>
                             </form>
                         </div>
                     </form>
-                    </div>
-                    <div class="flex flex-wrap mt-6">
-                        <div class="w-1/2"><a href="#pablo" class="text-gray-300"><small>Forgot password?</small></a></div>
-                        <div class="w-1/2 text-right"><a href="#pablo" class="text-gray-300"><small>Create new account</small></a></div>
                     </div>
                 </div>
             </div>

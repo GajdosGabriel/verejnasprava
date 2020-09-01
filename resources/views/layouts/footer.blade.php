@@ -9,7 +9,7 @@
 {{--            <a class="text-black no-underline mx-3" href="#">Inside HQ</a>--}}
 {{--            <a class="text-black no-underline mx-3" href="#">Awards</a>--}}
 {{--            <a class="text-black no-underline mx-3" href="#">Brands</a>--}}
-            <a class="text-black no-underline mx-3" href="#">Feedback</a>
+            <a class="text-black no-underline mx-3" href="{{ route('home.gdpr') }}">Ochrana osobných údajov</a>
             <a class="text-black no-underline mx-3" href="{{ route('home.contact') }}">Kontakt</a>
         </nav>
 {{--        <a class="inline-block mb-6" href="#">--}}

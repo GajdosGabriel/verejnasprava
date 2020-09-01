@@ -1,7 +1,14 @@
 @extends('layouts.app')
+@section('page-title', 'Zoznam dokladov')
+
+@section('navigation') <x-navigation.navPublic /> @endsection
+
 
 @section('content')
-<div class="container">
+
+
+
+    <div class="container mx-auto md:flex">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

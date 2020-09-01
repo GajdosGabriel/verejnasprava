@@ -59,5 +59,9 @@ class HomeController extends Controller
         return view('public.zverejnovanie');
     }
 
+    public function gdpr(){
+        return view('public.ochrana-osobnych-udajov');
+    }
+
 
 }
