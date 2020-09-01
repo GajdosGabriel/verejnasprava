@@ -56,7 +56,7 @@ class navigationOrganization extends Component
         return [
             [
                 'title' => 'Nastavenia',
-                'url' => route('org.setup', [$this->object->id, $this->object->slug])
+                'url' => route('admin.home')
             ],
             [
                 'title' => 'Ľudia',

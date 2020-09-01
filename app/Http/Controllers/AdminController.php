@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,11 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
+    public function home() {
+        return view('admin.setup');
+    }
+
+
     public function indexUser() {
         $posts = Post::where('date_in', '>=', Carbon::now()->startOfMonth())->orderBy('date_in', 'DESC')->get();
 //        $posts = Post::where('created_at', '>=', Carbon::now()->subYear())->get();

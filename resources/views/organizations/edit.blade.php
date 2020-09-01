@@ -1,11 +1,3 @@
-@extends('layouts.app')
-
-@section('page-title', 'Upraviť dokument')
-
-@section('navigation') <x-navigation.navigationOrganization /> @endsection
-
-
-@section('content')
 
     <div class="container mx-auto p-6 min-h-screen">
 
@@ -21,4 +13,4 @@
     </form>
     </div>
 
-@endsection
+

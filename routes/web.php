@@ -91,7 +91,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');
         Route::get('{cokolvek}/{name}/create', 'OrganizationController@create')->name('create');
         Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
-        Route::get('{organization}/{slug}/setup', 'OrganizationController@setup')->name('setup');
         Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
         Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
     });
@@ -118,6 +117,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::name('task.')->group(function() {
         Route::get('tasks', 'TaskController@index')->name('index');
     });
+
+    Route::prefix('admin')->name('admin.')->group(function() {
+        Route::get('home', 'AdminController@home')->name('home');
+    });
+
 
 
     Route::name('question.')->group(function() {

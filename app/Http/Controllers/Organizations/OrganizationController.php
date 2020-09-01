@@ -15,9 +15,6 @@ class OrganizationController extends Controller
         return view('organizations.home');
     }
 
-    public function edit(Organization $organization, $slug) {
-        return view('organizations.edit', compact('organization'));
-    }
 
     public function create() {
         return view('organizations.create', ['organization' => new Organization]);
@@ -34,7 +31,4 @@ class OrganizationController extends Controller
         return back();
     }
 
-    public function setup(Organization $organization, $slug) {
-        return view('organizations.admin.setup');
-    }
 }
