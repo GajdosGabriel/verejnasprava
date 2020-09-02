@@ -59,7 +59,7 @@
                                 <strong>Role</strong>
 
                                 {{-- Role --}}
-                                @forelse($roles as $role)
+                                @forelse($user->roles as $role)
                                     <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role{{ $role->id }}" class="col-form-label"></label>
                                         <div class="form-check form-check-inline">
@@ -97,7 +97,7 @@
                             <div class="p-4">
                                 <strong>Prístup</strong>
 
-                                @forelse($permissions as $council)
+                                @forelse($user->permissions as $council)
                                     <div class="form-group {{ $errors->has('council') ? ' has-error' : '' }}">
                                         <label class="col-form-label"></label>
                                         <div class="form-check form-check-inline">
