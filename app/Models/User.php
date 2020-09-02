@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, HasRoles;
 
-    protected $with = ['roles'];
+    protected $with = ['roles', 'organization'];
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +51,10 @@ class User extends Authenticatable
     public function organizations()
     {
         return $this->belongsToMany(Organization::class);
+    }
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class, 'active_organization');
     }
 
     public function councils()

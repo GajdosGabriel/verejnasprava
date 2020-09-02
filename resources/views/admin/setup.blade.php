@@ -12,8 +12,8 @@
 
 
         <organization-edit></organization-edit>
+        <user-edit></user-edit>
 
-        <h3 class="text-lg cursor-pointer">Osobné údaje</h3>
         <h3 class="text-lg cursor-pointer">Zamestnanci</h3>
 
     </div>

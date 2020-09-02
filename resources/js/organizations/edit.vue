@@ -1,109 +1,124 @@
 <template>
 
-    <div class="md:flex">
-        <h3 class="text-lg cursor-pointer" @click="toggle">Firemmné údaje</h3>
-        <!-- SITE A -->
-        <div class="max-w-sm md:p-4" v-if="show">
+    <div class="md:w-1/2 sm:w-full hover:bg-gray-200 p-2 rounded-sm  cursor-pointer">
 
-            <!-- Title Field-->
-            <div class="mb-4">
-                <label class="input-label" id="basic-addon1">Firma</label>
-                <input type="text" name="name" class="input-control" placeholder="Názov firmy"
-                       v-model="organization.name"/>
-            </div>
+        <div class="flex justify-between items-center"  @click="toggle">
 
-            <!-- Ulica-->
-            <div class="mb-4">
-                <label class="input-label" id="basic-addon2">Ulica a číslo</label>
-                <input type="text" name="street" class="input-control" placeholder="Ulica a číslo"
-                       v-model="organization.street"/>
-            </div>
+            <h3 class="fill-current text-lg">Firemnné údaje</h3>
 
-            <!-- PSČ-->
-            <div class="mb-4">
-                <label class="input-label" id="basic-addon3">PSČ</label>
-                <input type="number" name="psc" class="input-control" placeholder="Poštové smerové číslo"
-                       v-model="organization.psc" aria-describedby="basic-addon3" required/>
-            </div>
+            <svg v-if="show" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
+            </svg>
 
-            <!-- Mesto-->
-            <div class="mb-4">
-                <label class="input-label" id="basic-addon4">Mesto</label>
-                <input type="text" name="city" class="input-control" placeholder="Mesto"
-                       v-model="organization.city" aria-describedby="basic-addon4" required/>
-            </div>
-
-            <!-- Email-->
-            <div class="mb-4">
-
-                <label class="input-label" id="basic-addon5">Email</label>
-
-                <input type="email" name="email" class="input-control" placeholder="Email dodávateľa"
-                       v-model="organization.email" aria-describedby="basic-addon5" required/>
-            </div>
-
-            <!-- Phone-->
-            <div class="mb-4">
-                <label class="input-label" id="basic-addon6">Telefón</label>
-                <input type="text" name="phone" class="input-control" placeholder="Telefón dodávateľa"
-                       v-model="organization.phone" aria-describedby="basic-addon6"/>
-            </div>
-
+            <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
+            </svg>
 
         </div>
 
-        <!-- SITE B-->
-        <div class="max-w-sm md:p-4" v-if="show">
-            <!-- ICO Field-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="basic-addon7">IČO</label>
-                <input type="number" name="ico" class="input-control" placeholder="IČO organizácie"
-                       v-model="organization.ico" maxlength="8" aria-describedby="basic-addon7"/>
+        <form method="POST" @submit.prevent>
+            <!-- SITE A -->
+            <div class="sm:w-full md:p-4" v-if="show">
+
+                <!-- Title Field-->
+                <div class="mb-4">
+                    <label class="input-label" id="basic-addon1">Firma</label>
+                    <input type="text" name="name" class="input-control" placeholder="Názov firmy"
+                           v-model="organization.name" required/>
+                </div>
+
+                <!-- Ulica-->
+                <div class="mb-4">
+                    <label class="input-label" id="basic-addon2">Ulica a číslo</label>
+                    <input type="text" name="street" class="input-control" placeholder="Ulica a číslo"
+                           v-model="organization.street" required/>
+                </div>
+
+                <!-- PSČ-->
+                <div class="mb-4">
+                    <label class="input-label" id="basic-addon3">PSČ</label>
+                    <input type="number" name="psc" class="input-control" placeholder="Poštové smerové číslo"
+                           v-model="organization.psc" aria-describedby="basic-addon3" required/>
+                </div>
+
+                <!-- Mesto-->
+                <div class="mb-4">
+                    <label class="input-label" id="basic-addon4">Mesto</label>
+                    <input type="text" name="city" class="input-control" placeholder="Mesto"
+                           v-model="organization.city" aria-describedby="basic-addon4" required/>
+                </div>
+
+                <!-- Email-->
+                <div class="mb-4">
+
+                    <label class="input-label" id="basic-addon5">Email</label>
+
+                    <input type="email" name="email" class="input-control" placeholder="Email dodávateľa"
+                           v-model="organization.email" aria-describedby="basic-addon5" required/>
+                </div>
+
+                <!-- Phone-->
+                <div class="mb-4">
+                    <label class="input-label" id="basic-addon6">Telefón</label>
+                    <input type="text" name="phone" class="input-control" placeholder="Telefón dodávateľa"
+                           v-model="organization.phone" aria-describedby="basic-addon6"/>
+                </div>
+
+
             </div>
 
-            <!-- DIČ Field-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="basic-addon8">DIČ</label>
-                <input type="text" name="dic" class="input-control" placeholder="DIČ dodávateľa"
-                       v-model="organization.dic" aria-describedby="basic-addon8"/>
+            <!-- SITE B-->
+            <div class="sm:w-full md:p-4" v-if="show">
+                <!-- ICO Field-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="basic-addon7">IČO</label>
+                    <input type="number" name="ico" class="input-control" placeholder="IČO organizácie"
+                           v-model="organization.ico" maxlength="8" aria-describedby="basic-addon7"/>
+                </div>
+
+                <!-- DIČ Field-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="basic-addon8">DIČ</label>
+                    <input type="text" name="dic" class="input-control" placeholder="DIČ dodávateľa"
+                           v-model="organization.dic" aria-describedby="basic-addon8"/>
+                </div>
+
+                <!-- IC DIČ Field-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="basic-addon9">IC DIČ</label>
+                    <input type="text" name="ic_dic" class="input-control" placeholder="IC DIČ pre plátcov DPH"
+                           v-model="organization.ic_dic" aria-describedby="basic-addon9"/>
+                </div>
+
+
+                <!-- Bank account-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="banka">Názov banky</label>
+                    <input type="text" name="bank_name" class="input-control" placeholder="Bankový účet"
+                           v-model="organization.bank_name" aria-describedby="banka"/>
+                </div>
+
+                <!--  Bank No-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="bankaNo">Číslo účtu</label>
+                    <input type="text" name="bank_number" class="input-control" placeholder="Číslo účtu"
+                           v-model="organization.bank_number" aria-describedby="bankaNo"/>
+                </div>
+
+                <!-- IBAN-->
+                <div class="mb-4">
+                    <label class="flex-shrink-0 input-label" id="bank_iban">IBAN</label>
+                    <input type="text" name="bank_iban" class="input-control" placeholder="Iban"
+                           v-model="organization.bank_iban" aria-describedby="bankaNo"/>
+                </div>
+
+                <!--  Save button-->
+                <div class="">
+                    <button type="submit" class="w-full btn btn-primary">Uložiť</button>
+                </div>
+
             </div>
-
-            <!-- IC DIČ Field-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="basic-addon9">IC DIČ</label>
-                <input type="text" name="ic_dic" class="input-control" placeholder="IC DIČ pre plátcov DPH"
-                       v-model="organization.ic_dic" aria-describedby="basic-addon9"/>
-            </div>
-
-
-            <!-- Bank account-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="banka">Názov banky</label>
-                <input type="text" name="bank_name" class="input-control" placeholder="Bankový účet"
-                       v-model="organization.bank_name" aria-describedby="banka"/>
-            </div>
-
-            <!--  Bank No-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="bankaNo">Číslo účtu</label>
-                <input type="text" name="bank_number" class="input-control" placeholder="Číslo účtu"
-                       v-model="organization.bank_number" aria-describedby="bankaNo"/>
-            </div>
-
-            <!-- IBAN-->
-            <div class="mb-4">
-                <label class="flex-shrink-0 input-label" id="bank_iban">IBAN</label>
-                <input type="text" name="bank_iban" class="input-control" placeholder="Iban"
-                       v-model="organization.bank_iban" aria-describedby="bankaNo"/>
-            </div>
-
-            <!--  Save button-->
-            <div class="">
-                <button type="submit" class="w-full btn btn-primary">Uložiť</button>
-            </div>
-
-        </div>
-
+        </form>
 
     </div>
 
@@ -114,12 +129,13 @@
     export default {
         data: function () {
             return {
-                show: false
+                show: false,
+                organization: this.user.organization
             }
         },
         methods: {
-            toggle: function(){
-                this.show =! this.show
+            toggle: function () {
+                this.show = !this.show
             }
         }
 
