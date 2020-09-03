@@ -14,7 +14,7 @@ class ApiPostController extends Controller
 
         $posts = Post::whereOrganizationId($userId)->
             where(function (Builder $query) use ($search) {
-                return $query->where('name', 'like', '%' . $search . '%')
+                return $query
                     ->orWhere('name', 'like', '%' . $search . '%')
                     ->orWhere('price', 'like', '%' . $search . '%');
             })->latest()->paginate();
