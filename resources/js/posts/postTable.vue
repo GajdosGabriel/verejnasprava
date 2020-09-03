@@ -22,7 +22,7 @@
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('L')"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.contact.name"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.name)"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
@@ -109,7 +109,10 @@
             fetchPaginate: function (url) {
                 this.url = url;
                 this.getPosts()
-            }
+            },
+            searchByContact: function(contact){
+                this.search = contact;
+            },
         },
 
         filters: {

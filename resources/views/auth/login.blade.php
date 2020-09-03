@@ -48,7 +48,7 @@
 
                                 <div class="flex flex-wrap mt-6">
                                     <div class="w-1/2"><a href="{{ route('password.request')  }}" class="text-gray-900"><small>Zabudnuté heslo?</small></a></div>
-                                    <div class="w-1/2 text-right"><a href="#pablo" class="text-gray-900"><small>Vytvoriť nový účet</small></a></div>
+                                    <div class="w-1/2 text-right"><a href="/register" class="text-gray-900"><small>Vytvoriť nový účet</small></a></div>
                                 </div>
                             </form>
                         </div>

@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{organization}/store', 'UserController@store')->name('store');
         Route::patch('{user}/update', 'UserController@update')->name('update');
         Route::get('{user}/{slug}/delete', 'UserController@delete')->name('delete');
+
+        Route::get('user/setup/', 'UserController@setup')->name('setup');
     });
 
     Route::prefix('objednavky')->name('order.')->group(function() {
@@ -116,10 +118,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::name('task.')->group(function() {
         Route::get('tasks', 'TaskController@index')->name('index');
-    });
-
-    Route::prefix('admin')->name('admin.')->group(function() {
-        Route::get('home', 'AdminController@home')->name('home');
     });
 
 

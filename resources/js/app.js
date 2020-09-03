@@ -31,7 +31,7 @@ Vue.component('contact-table', require('./contacts/contactTable.vue').default);
 Vue.component('nav-horizontal', require('./modules/navigation/navHorizontal.vue').default);
 Vue.component('nav-items', require('./modules/navigation/navItems.vue').default);
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
-Vue.component('accordion-table', require('./posts/accordion.vue').default);
+Vue.component('accordion-table', require('./posts/postTableFronted.vue').default);
 Vue.component('post-table', require('./posts/postTable.vue').default);
 Vue.component('interpelation-table', require('./interpellations/InterpelationCard.vue').default);
 Vue.component('vote-form-button', require('./votes/voteFormButtons.vue').default);

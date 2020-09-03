@@ -130,7 +130,8 @@
         data: function () {
             return {
                 show: false,
-                organization: this.user.organization
+                authUser: this.user,
+                // organization: this.user.organization
             }
         },
         methods: {

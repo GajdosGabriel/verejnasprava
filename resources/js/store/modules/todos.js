@@ -38,7 +38,7 @@ const actions = {
     deleteTodo: function ({commit, dispatch}, todoData) {
         commit('DELETETODO', todoData);
 
-        // Notifi for deleteing task
+        // Notify for deleteing task
         dispatch('notification/addNewNotification', {
             type: 'bg-red-400',
             message: 'Task has been deleted.'

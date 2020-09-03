@@ -77,6 +77,12 @@ class UserController extends Controller
         return back();
     }
 
+    public function setup() {
+        $organization = auth()->user()->organization;
+        $user = auth()->user();
+        return view('user.setup', compact(['organization', 'user']));
+    }
+
 
 
 

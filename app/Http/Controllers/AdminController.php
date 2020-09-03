@@ -12,11 +12,7 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
-    public function home() {
-        $organization = auth()->user()->organization;
-        $user = auth()->user();
-        return view('admin.setup', compact(['organization', 'user']));
-    }
+
 
 
     public function indexUser() {
