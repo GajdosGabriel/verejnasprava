@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filters\PostFilters;
 use App\Models\RecordsActivity;
 use Carbon\Carbon;
 use App\Services\FileUpload;
@@ -72,6 +73,11 @@ class Post extends Model
                 $resize->save($path, 75);
             }
         }
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
     }
 
 

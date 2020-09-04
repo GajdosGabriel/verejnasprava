@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('test/test/{id}', 'TestController@test');
 Route::get('posts/frontPosts', 'Posts\ApiPostController@frontPosts');
-Route::get('posts/{userId}/{search?}', 'Posts\ApiPostController@index');
+Route::get('posts/{userId}', 'Posts\ApiPostController@index');
 Route::get('contacts/{organization}/{search?}', 'Organizations\Contacts\ApiContactsController@getContacts');
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
 
