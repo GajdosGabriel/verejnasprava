@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" v-model="search" placeholder="hľadať v popis, cena" class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm">
+        <input type="text" v-model="search" placeholder="hľadať v popise" class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm">
         <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''" >X</span>
 
         <table class="table-auto table-bordered text-sm w-full">
@@ -76,7 +76,7 @@
                 moment: require('moment'),
                 adminPanel: false,
                 search: '',
-                url: '/api/posts/' + this.user.active_organization + '/'
+                url: '/api/posts/' + this.user.active_organization + '?name='
             }
         },
 

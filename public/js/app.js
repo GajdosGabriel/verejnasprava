@@ -3068,7 +3068,7 @@ __webpack_require__.r(__webpack_exports__);
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       adminPanel: false,
       search: '',
-      url: '/api/posts/' + this.user.active_organization + '/'
+      url: '/api/posts/' + this.user.active_organization + '?name='
     };
   },
   created: function created() {
@@ -61877,7 +61877,7 @@ var render = function() {
       ],
       staticClass:
         "p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm",
-      attrs: { type: "text", placeholder: "hľadať v popis, cena" },
+      attrs: { type: "text", placeholder: "hľadať v popise" },
       domProps: { value: _vm.search },
       on: {
         input: function($event) {

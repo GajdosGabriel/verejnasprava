@@ -4,30 +4,18 @@ namespace App\Filters;
 
 
 
+use App\Models\Contact;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostFilters extends Filters
 {
     protected $filters = [
         'id',
-        'all',
         'name',
-        'code',
-        'priceMin',
-        'priceMax',
-        'retailPriceMin',
-        'retailPriceMax',
-        'status',
-        'quantity',
+        'contact',
         'categories',
-        'weightFilter',
         'supplierFilter'
     ];
-
-    public function all()
-    {
-        return $this->builder->take(5);
-    }
 
     public function id($id)
     {
@@ -39,61 +27,24 @@ class PostFilters extends Filters
         return $this->builder->where('name', 'like', "%$search%");
     }
 
-    public function code($code)
-    {
-        return $this->builder->where('code', $code);
-    }
 
-    public function priceMin($priceMin)
+    public function contact($contactName)
     {
-        return $this->builder->where('retail_price_with_iva', '>=', $priceMin);
-    }
-
-    public function priceMax($priceMax)
-    {
-        return $this->builder->where('retail_price_with_iva', '<=', $priceMax);
-    }
-
-    public function weightFilter($weightFilter)
-    {
-        return $this->builder->where('weight', $weightFilter);
-    }
-
-    public function retailPriceMin($retailPriceMin)
-    {
-        return $this->builder->where('retail_price', '>=', $retailPriceMin);
-    }
-
-    public function retailPriceMax($retailPriceMax)
-    {
-        return $this->builder->where('retail_price', '<=', $retailPriceMax);
-    }
-
-    public function supplierFilter($supplier)
-    {
-        $supplier_id = Supplier::where('name', $supplier)->first()->id;
-        return $this->builder->whereHas('suppliers', function (Builder $query) use ($supplier_id) {
-            $query->where('supplier_id', $supplier_id);
+        $supplier_id = Contact::where('name', $contactName)->first()->id;
+        return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
+            $query->where('contact_id', $supplier_id);
         });
     }
 
-    public function status($status)
-    {
-        return $this->builder->where('status', $status);
-    }
 
-    public function quantity($quantity)
-    {
-        return $this->builder->where('quantity', $quantity);
-    }
 
-    public function categories($categories)
-    {
-        $ids = explode(',', $categories);
-
-        return $this->builder->whereHas('categories', function (Builder $query) use ($ids) {
-            $query->whereIn('category_id', $ids);
-        });
-    }
+//    public function categories($categories)
+//    {
+//        $ids = explode(',', $categories);
+//
+//        return $this->builder->whereHas('categories', function (Builder $query) use ($ids) {
+//            $query->whereIn('category_id', $ids);
+//        });
+//    }
 
 }

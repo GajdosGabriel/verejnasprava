@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Posts;
 
+use App\Filters\PostFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -10,15 +11,11 @@ use Illuminate\Http\Request;
 
 class ApiPostController extends Controller
 {
-    public function index($userId, $search = null ) {
-
-        $posts = Post::whereOrganizationId($userId)->
-            where(function (Builder $query) use ($search) {
-                return $query
-                    ->orWhere('name', 'like', '%' . $search . '%')
-                    ->orWhere('price', 'like', '%' . $search . '%');
-            })->latest()->paginate();
-        return $posts;
+    public function index($userId, PostFilters $postFilters )
+    {
+        return Post::whereOrganizationId($userId)
+            ->filter($postFilters)
+           ->latest()->paginate();
     }
 
     public function frontPosts() {
