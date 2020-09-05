@@ -3062,21 +3062,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: [],
+      // posts: [],
       pagination: [],
       user: this.user,
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       adminPanel: false,
       search: '',
-      url: '/api/posts/' + this.user.active_organization + '?name='
+      url: '/api/posts/' + this.user.active_organization
     };
   },
+  computed: {
+    posts: function posts() {
+      return this.$store.state.posts.posts;
+    }
+  },
   created: function created() {
-    this.getPosts();
+    this.$store.dispatch('posts/loadPosts', this.url); // this.getPosts();
   },
   watch: {
     search: function search(val) {
-      this.getPosts();
+      this.$store.dispatch('posts/loadPosts', this.url + '?name=' + this.search); // this.getPosts();
     }
   },
   methods: {
@@ -3225,9 +3230,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      pagination: [],
+      user: this.user,
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
+      adminPanel: false,
+      search: '',
+      url: '/api/posts/' + this.user.active_organization + '?name='
+    };
+  },
   computed: {
     posts: function posts() {
-      return this.$store.state;
+      return this.$store.state.posts.posts;
+    }
+  },
+  mounted: function mounted() {
+    this.loadPosts();
+  },
+  methods: {
+    loadPosts: function loadPosts() {
+      this.$store.dispatch('posts/loadPosts', this.user);
     }
   }
 });
@@ -62347,16 +62370,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "ul",
+      { on: { click: _vm.loadPosts } },
+      _vm._l(_vm.posts, function(post) {
+        return _c("li", { domProps: { textContent: _vm._s(post.name) } })
+      }),
+      0
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("ul")])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -77509,6 +77534,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_todos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/todos */ "./resources/js/store/modules/todos.js");
 /* harmony import */ var _modules_notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/notification */ "./resources/js/store/modules/notification.js");
+/* harmony import */ var _modules_posts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/posts */ "./resources/js/store/modules/posts.js");
+
 
 
 
@@ -77518,7 +77545,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     todos: _modules_todos__WEBPACK_IMPORTED_MODULE_2__["default"],
-    notification: _modules_notification__WEBPACK_IMPORTED_MODULE_3__["default"]
+    notification: _modules_notification__WEBPACK_IMPORTED_MODULE_3__["default"],
+    posts: _modules_posts__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
 
@@ -77563,6 +77591,42 @@ var actions = {
   removeNotification: function removeNotification(_ref2, notification) {
     var commit = _ref2.commit;
     commit('REMOVE_NOTIFICATION', notification);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/posts.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/posts.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  posts: []
+};
+var getters = {};
+var actions = {
+  loadPosts: function loadPosts(_ref, url) {
+    var commit = _ref.commit;
+    axios.get(url).then(function (response) {
+      commit('SET_POSTS', response.data.data);
+    });
+  }
+};
+var mutations = {
+  SET_POSTS: function SET_POSTS(state, posts) {
+    state.posts = posts;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
