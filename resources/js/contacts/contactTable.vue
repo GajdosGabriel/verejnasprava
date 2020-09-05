@@ -15,7 +15,7 @@
             <thead>
             <tr class="bg-gray-300">
                 <th class="px-4 py-2 whitespace-no-wrap">Názov firmy</th>
-                <th class="px-4 py-2">Adresa</th>
+                <th class="px-4 py-2">Ulica</th>
                 <th class="px-4 py-2">Mesto</th>
                 <th class="px-4 py-2">Psč</th>
                 <th class="px-4 py-2">Ičo</th>
@@ -66,7 +66,6 @@
         data: function () {
             return {
                 name: false,
-                contacts: [],
                 pagination: [],
                 numeral: numeral,
                 search: '',
@@ -75,12 +74,17 @@
                 // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
             }
         },
+        computed: {
+          contacts: function () {
+            return this.$store.state.contacts.contacts;
+          }
+        },
         created() {
-            this.getContacts();
+            this.$store.dispatch('contacts/loadContacts', this.url);
         },
         watch: {
             search: function (val) {
-                this.getContacts();
+                this.$store.dispatch('contacts/loadContacts', this.url + '?multi=' + this.search);
             }
         },
         methods: {

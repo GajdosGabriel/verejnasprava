@@ -40,4 +40,9 @@ class Contact extends Model
 //        return "(".substr($this->phone, 0, 3).") ".substr($this->phone, 3, 3)." ".substr($this->phone,6);
 //    }
 
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
 }

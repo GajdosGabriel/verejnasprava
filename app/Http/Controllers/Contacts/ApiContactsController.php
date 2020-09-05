@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Organizations\Contacts;
 
 
+use App\Filters\ContactFilters;
 use App\Models\Contact;
 use App\Http\Requests\OrganizationFormRequest;
 use App\Models\Organization;
@@ -15,16 +16,11 @@ use Illuminate\Database\Eloquent\Builder;
 class ApiContactsController extends Controller
 {
 
-    public function getContacts(Organization $organization, $search = null)
+    public function getContacts($organizationId, ContactFilters $contactFilters)
     {
-        $contacts = $organization->contacts()
-            ->where(function (Builder $query) use ($search) {
-                return $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('phone', 'like', '%' . $search . '%')
-                    ->orWhere('city', 'like', '%' . $search . '%');
-            })->paginate();
-        return $contacts;
+        return Contact::whereOrganizationId($organizationId)
+            ->filter($contactFilters)
+            ->latest()->paginate();
     }
 
 

@@ -1,20 +1,25 @@
 const state = {
-    posts: [
-        {name: '1 post', price: 72},
-        {name: '2 post', price: 62},
-        {name: '3 post', price: 52},
-        {name: '4 post', price: 42},
-        {name: '5 post', price: 32},
-    ]
+    posts: []
 };
 
 
 const getters = {};
 
-const mutations = {};
 
+const actions = {
+    loadPosts: function({commit}, url) {
+        axios.get(url)
+            .then(response => {
+                commit('SET_POSTS', response.data.data)
+            })
+    }
+};
 
-const actions = {};
+const mutations = {
+    SET_POSTS: function (state, posts) {
+        state.posts = posts;
+    }
+};
 
 export default {
     namespaced: true,

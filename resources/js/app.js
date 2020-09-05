@@ -38,7 +38,7 @@ Vue.component('vote-form-button', require('./votes/voteFormButtons.vue').default
 Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 Vue.component('organization-edit', require('./organizations/edit.vue').default);
 Vue.component('user-edit', require('./user/edit.vue').default);
-Vue.component('posts-vuex', require('./posts/postVuex.vue').default);
+
 
 
 Vue.component('todo-component', require('./tasks/Todos.vue').default);
