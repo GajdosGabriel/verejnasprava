@@ -8,6 +8,8 @@
 
 @section('content')
 
+    <posts-vuex></posts-vuex>
+
     <div class="container mx-auto min-h-screen p-6 flex">
         <div class="max-w-sm m-5">
             <h2 class="text-lg">Plne funkčne</h2>

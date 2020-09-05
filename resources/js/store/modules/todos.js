@@ -28,7 +28,7 @@ const actions = {
     addNewTodo: function ({commit, dispatch}, todoData) {
         commit('NEWTODO', todoData);
 
-        // Notifi for add task
+        // Notify for add task
         dispatch('notification/addNewNotification', {
             type: 'bg-green-400',
             message: 'Add new task'
@@ -45,7 +45,7 @@ const actions = {
         }, {root: true})
     },
     toggleTodoStatus: function ({commit}, todoItem ) {
-        commit('toggle_todo_status', todoItem);
+        commit('TOOGLE_TODO_STATUS', todoItem);
     }
 };
 const mutations = {
@@ -59,7 +59,7 @@ const mutations = {
         let index = state.todos.indexOf(todoData);
         state.todos.splice(index, 1);
     },
-    toggle_todo_status: function(state, todoItem) {
+    TOOGLE_TODO_STATUS: function(state, todoItem) {
         todoItem.completed = ! todoItem.completed;
     }
 };
