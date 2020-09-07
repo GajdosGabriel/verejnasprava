@@ -26,9 +26,9 @@ class OrganizationFormRequest extends FormRequest
         return [
             'name' => 'required|max:250',
             'email' => 'required|email',
-            'street' => 'required|max:250',
-            'psc' => 'required|max:6',
-            'city' => 'required|max:50',
+            'street' => 'max:250',
+            'psc' => 'max:6',
+            'city' => 'max:50',
 //            'email' => 'required|email|max:8|unique:organizations,email,' . $this->organization->id,
             'ico' => 'max:8|unique:organizations,ico,' ,
             'dic' => 'max:20',

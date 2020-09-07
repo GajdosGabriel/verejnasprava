@@ -25,6 +25,11 @@ class Contact extends Model
         $this->attributes['psc']  = str_replace(' ', '', $value);
     }
 
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['psc']  = str_replace(' ', '', $value);
+    }
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucfirst($value);
