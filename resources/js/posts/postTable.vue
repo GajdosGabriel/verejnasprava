@@ -19,7 +19,7 @@
             <tbody>
 
             <tr class="hover:bg-gray-100" v-for="post in posts" :key="post.id">
-                <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('L')"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('l')"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.name)"></td>
@@ -66,26 +66,34 @@
 <script>
     import moment from 'moment';
     import numeral from 'numeral';
+    import { mapState } from 'vuex';
 
     export default {
         data: function () {
             return {
-                posts: [],
+                // posts: [],
                 pagination: [],
                 user: this.user,
                 moment: require('moment'),
                 adminPanel: false,
                 search: '',
-                url: '/api/posts/' + this.user.active_organization + '?name='
+                url: '/api/posts/' + this.user.active_organization
             }
         },
 
+        computed: mapState ({
+            posts: state => state.posts.posts
+        }),
+
         created() {
-            this.getPosts();
+            this.$store.dispatch('posts/fetchPosts', this.url);
+            // this.getPosts();
         },
+
         watch: {
           search: function (val) {
-              this.getPosts();
+              this.$store.dispatch('posts/fetchPosts', this.url + '?name=' + this.search);
+              // this.getPosts();
           }
         },
         methods: {

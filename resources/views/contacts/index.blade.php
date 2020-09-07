@@ -18,6 +18,7 @@
 
         <contact-table />
         </div>
-
+        <contact-edit></contact-edit>
+        <notification-list></notification-list>
     @endsection
 

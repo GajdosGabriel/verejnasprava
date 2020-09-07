@@ -13,7 +13,7 @@
         props:['todo'],
 
         methods: {
-            deleteTodo:function () {
+            deleteTodo: function () {
                 this.$store.dispatch('todos/deleteTodo', this.todo);
             },
             toggleTodoStatus: function() {

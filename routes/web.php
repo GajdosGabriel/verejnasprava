@@ -112,7 +112,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('contacts', 'ContactsController@index')->name('index');
         Route::get('contact/create/{organization}', 'ContactsController@create')->name('create');
         Route::get('contact/edit/{organization}', 'ContactsController@edit')->name('edit');
-        Route::put('contact/update/{organization}', 'ContactsController@update')->name('update');
+        Route::patch('contact/update/{contact}', 'ContactsController@update')->name('update');
         Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
     });
 

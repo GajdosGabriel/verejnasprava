@@ -4,6 +4,7 @@ import todos from "./modules/todos";
 import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";
+import modal from "./modules/modal";
 // import currentUser from "./modules/currentUser";
 
 Vue.use(Vuex);
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         todos,
         notification,
         posts,
-        contacts
+        contacts,
+        modal
     }
 })

@@ -10,7 +10,7 @@
 
         <input type="text" v-model="search" class="p-1 border-2 border-gray-300 rounded-sm"
                placeholder="Name, email, phone, city">
-        <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''" >X</span>
+        <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''">X</span>
         <table class="table-auto w-full">
             <thead>
             <tr class="bg-gray-300">
@@ -36,7 +36,10 @@
                 <td class="px-4 py-2 border" v-text="contact.email"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.phone"></td>
                 <td class="px-4 py-2 border">
-                    <a :href="'/contact/edit/' + contact.id" class="hover:underline">Edit</a>
+<!--                    :href="'/contact/edit/' + contact.id"-->
+                    <a
+
+                        class="hover:underline cursor-pointer" @click="showEdit(contact)">Edit</a>
                 </td>
             </tr>
             </tbody>
@@ -62,7 +65,10 @@
 
 <script>
     import numeral from 'numeral';
+    import { mapState } from 'vuex';
+    import edit from './edit';
     export default {
+        components: { edit },
         data: function () {
             return {
                 name: false,
@@ -71,23 +77,25 @@
                 search: '',
                 user: this.user,
                 url: '/api/contacts/' + this.user.active_organization + '/'
-                // urlEditContact: '/org/' + this.contact.id + '/'  + this.contact.slug + '/contact/edit',
             }
         },
-        computed: {
-          contacts: function () {
-            return this.$store.state.contacts.contacts;
-          }
-        },
+        computed: mapState({
+            contacts: state => state.contacts.contacts,
+
+            // noPhone: getters => getters['contacts/noPhone']
+        }),
         created() {
-            this.$store.dispatch('contacts/loadContacts', this.url);
+            this.$store.dispatch('contacts/fetchContacts', this.url);
         },
         watch: {
             search: function (val) {
-                this.$store.dispatch('contacts/loadContacts', this.url + '?multi=' + this.search);
+                this.$store.dispatch('contacts/fetchContacts', this.url + '?multi=' + this.search);
             }
         },
         methods: {
+            showEdit: function(contact){
+                this.$store.dispatch('modal/modalToggle', contact)
+            },
             toggle: function () {
                 this.name = !this.name;
             },
@@ -116,7 +124,7 @@
             }
         },
         filters: {
-            pscFormat: function(value){
+            pscFormat: function (value) {
                 return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
             }
         }

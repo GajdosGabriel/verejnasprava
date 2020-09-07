@@ -80,7 +80,6 @@
 
             save: function () {
                 axios.patch('/user/'+ this.form.id + '/', this.form);
-
             }
         }
     }

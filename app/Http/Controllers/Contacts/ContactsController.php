@@ -37,9 +37,9 @@ class ContactsController extends Controller
 
 
 
-    public function update(Contact $organization, OrganizationFormRequest $request) {
+    public function update(Contact $contact, OrganizationFormRequest $request) {
 //        $this->authorize('update', $company);
-        $organization->update($request->all());
+        $contact->update($request->all());
 //        flash()->success('Dodávateľ aktualizovaný!');
         return redirect()->route('contact.index');
     }

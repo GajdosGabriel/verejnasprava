@@ -1,19 +1,31 @@
 const state = {
+    loadingStatus: 'notLoading',
     contacts: []
 };
-const getters = {};
+const getters = {
+    noPhone: function (state) {
+        return state.contacts.filter(contact => {
+            return contact.phone == null;
+        })
+    }
+};
 
 const mutations = {
+    SET_LOADING_STATUS: function (state, status) {
+        state.loadingStatus = status
+    },
     SET_CONTACTS: function (state, contacts) {
         state.contacts = contacts;
     }
 
 };
 const actions = {
-    loadContacts({commit}, url) {
+    fetchContacts(context, url) {
+        context.commit('SET_LOADING_STATUS', 'loading');
         axios.get(url)
             .then(response => {
-                    commit('SET_CONTACTS', response.data.data)
+                    context.commit('SET_LOADING_STATUS', 'notLoading');
+                    context.commit('SET_CONTACTS', response.data.data);
                 }
             );
     }
