@@ -34,7 +34,7 @@
                 <td class="px-4 py-2 border" v-text="contact.ico"></td>
                 <td class="px-4 py-2 border" v-text="contact.dic"></td>
                 <td class="px-4 py-2 border" v-text="contact.email"></td>
-                <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.phone"></td>
+                <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.phone }}</td>
                 <td class="px-4 py-2 border">
 <!--                    :href="'/contact/edit/' + contact.id"-->
                     <a

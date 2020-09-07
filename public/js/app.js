@@ -2373,6 +2373,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -2391,7 +2392,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.patch('/contact/update/' + this.contact.id, this.contact).then(this.closeModal(), // Notify for add task
       this.$store.dispatch('notification/addNewNotification', {
         type: 'bg-green-400',
-        message: 'Add new task'
+        message: 'Kontakt uložený'
       }));
     }
   }
@@ -3295,7 +3296,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      // posts: [],
       pagination: [],
       user: this.user,
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
@@ -61125,10 +61125,9 @@ var render = function() {
               domProps: { textContent: _vm._s(contact.email) }
             }),
             _vm._v(" "),
-            _c("td", {
-              staticClass: "px-4 py-2 border whitespace-no-wrap",
-              domProps: { textContent: _vm._s(contact.phone) }
-            }),
+            _c("td", { staticClass: "px-4 py-2 border whitespace-no-wrap" }, [
+              _vm._v(_vm._s(contact.phone))
+            ]),
             _vm._v(" "),
             _c("td", { staticClass: "px-4 py-2 border" }, [
               _c(
@@ -61309,14 +61308,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "form",
-                            {
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.saveContact($event)
-                                }
-                              }
-                            },
+                            { attrs: { "submit.prevent": "saveContact" } },
                             [
                               _c("div", { staticClass: "mt-2" }, [
                                 _c("div", { staticClass: "md:flex" }, [
@@ -61901,7 +61893,7 @@ var render = function() {
                           {
                             staticClass:
                               "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "button" },
+                            attrs: { type: "submit" },
                             on: { click: _vm.closeModal }
                           },
                           [_vm._v("\n        Zrušiť\n      ")]
