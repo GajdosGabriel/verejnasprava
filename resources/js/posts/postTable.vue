@@ -36,8 +36,11 @@
                 <td class="border px-4 py-2" v-text="post.int_number"></td>
 
                 <td class="border px-4 py-2 cursor-pointer flex flex-col" @click="adminPanel = post.id">
-                    <a :href="'post/edit/' + post.id" v-if="adminPanel == post.id" class="hover:underline">Upraviť</a>
-                    <a :href="'post/delete/' + post.id" v-if="adminPanel == post.id" class="hover:underline">Zmazať</a>
+                    <ul v-if="adminPanel == post.id"  class="dropdown-menu absolute text-gray-700 p-2
+                    border-gray-400 bg-white border-2 rounded-sm">
+                        <li class="mb-2"><a :href="'post/edit/' + post.id"  class="hover:underline">Upraviť</a></li>
+                        <li><a :href="'post/delete/' + post.id"  class="hover:underline">Zmazať</a></li>
+                        </ul>
                     <div v-else class="mx-auto">...</div>
                 </td>
 
@@ -71,7 +74,6 @@
     export default {
         data: function () {
             return {
-                // posts: [],
                 pagination: [],
                 user: this.user,
                 moment: require('moment'),
@@ -87,7 +89,6 @@
 
         created() {
             this.$store.dispatch('posts/fetchPosts', this.url);
-            // this.getPosts();
         },
 
         watch: {
@@ -120,7 +121,7 @@
             },
             searchByContact: function(contact){
                 this.search = contact;
-            },
+            }
         },
 
         filters: {

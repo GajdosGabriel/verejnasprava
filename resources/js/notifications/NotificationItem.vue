@@ -1,6 +1,7 @@
 <template>
+
     <div :class="typeClass" class="p-3 m-4 rounded border-2 border-green-700 flex justify-between">
-       {{ notification.message }}
+        {{ notification.message }}
         <span @click="remove" class="cursor-pointer">x</span>
     </div>
 </template>
@@ -9,7 +10,7 @@
     import notification from "../store/modules/notification";
 
     export default {
-        props:[ 'notification' ],
+        props: ['notification'],
 
         computed: {
             typeClass: function () {
@@ -22,7 +23,7 @@
                 this.$store.dispatch('notification/removeNotification', this.notification);
             }
         },
-        created: function(){
+        created: function () {
             setTimeout(() => {
                 this.$store.dispatch('notification/removeNotification', this.notification)
 
@@ -31,3 +32,4 @@
 
     }
 </script>
+

@@ -49,7 +49,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="font-bold"> Hlasovanie pre porady a zastupiteľstvá<a href="#" class="alert-link">objednávky!</a></p>
+                        <p class="font-bold"> Hlasovanie pre porady a zastupiteľstvá</p>
                         <p class="text-sm">Modul sa pripravuje.</p>
                     </div>
                 </div>

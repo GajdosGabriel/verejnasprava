@@ -2999,6 +2999,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['notification'],
@@ -3034,6 +3035,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notifications_NotificationItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../notifications/NotificationItem */ "./resources/js/notifications/NotificationItem.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
 //
 //
 //
@@ -3290,6 +3294,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3310,7 +3317,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }),
   created: function created() {
-    this.$store.dispatch('posts/fetchPosts', this.url); // this.getPosts();
+    this.$store.dispatch('posts/fetchPosts', this.url);
   },
   watch: {
     search: function search(val) {
@@ -3923,7 +3930,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".notification-list {\n  position: fixed;\n  bottom: 0;\n  right: 0;\n  margin-right: 15px;\n  width: 320px;\n}\n", ""]);
+exports.push([module.i, ".notification-list {\n  position: fixed;\n  bottom: 0;\n  right: 0;\n  margin-right: 15px;\n  width: 320px;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .6s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -62709,7 +62716,7 @@ var render = function() {
       class: _vm.typeClass
     },
     [
-      _vm._v("\n   " + _vm._s(_vm.notification.message) + "\n    "),
+      _vm._v("\n    " + _vm._s(_vm.notification.message) + "\n    "),
       _c("span", { staticClass: "cursor-pointer", on: { click: _vm.remove } }, [
         _vm._v("x")
       ])
@@ -62741,12 +62748,19 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "notification-list" },
-    _vm._l(_vm.notifications, function(notification) {
-      return _c("notification-item", {
-        key: notification.id,
-        attrs: { notification: notification }
-      })
-    }),
+    [
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        _vm._l(_vm.notifications, function(notification) {
+          return _c("notification-item", {
+            key: notification.id,
+            attrs: { notification: notification }
+          })
+        }),
+        1
+      )
+    ],
     1
   )
 }
@@ -62921,23 +62935,34 @@ var render = function() {
               [
                 _vm.adminPanel == post.id
                   ? _c(
-                      "a",
+                      "ul",
                       {
-                        staticClass: "hover:underline",
-                        attrs: { href: "post/edit/" + post.id }
+                        staticClass:
+                          "dropdown-menu absolute text-gray-700 p-2\n                border-gray-400 bg-white border-2 rounded-sm"
                       },
-                      [_vm._v("Upraviť")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.adminPanel == post.id
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "hover:underline",
-                        attrs: { href: "post/delete/" + post.id }
-                      },
-                      [_vm._v("Zmazať")]
+                      [
+                        _c("li", { staticClass: "mb-2" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "hover:underline",
+                              attrs: { href: "post/edit/" + post.id }
+                            },
+                            [_vm._v("Upraviť")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "hover:underline",
+                              attrs: { href: "post/delete/" + post.id }
+                            },
+                            [_vm._v("Zmazať")]
+                          )
+                        ])
+                      ]
                     )
                   : _c("div", { staticClass: "mx-auto" }, [_vm._v("...")])
               ]
