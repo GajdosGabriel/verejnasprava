@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Contacts;
 
 
 
+use App\Http\Requests\OrganizationUpdateRequest;
 use App\Models\Contact;
 use App\Http\Requests\OrganizationFormRequest;
 use App\Models\Organization;
@@ -37,11 +38,11 @@ class ContactsController extends Controller
 
 
 
-    public function update(Contact $contact, OrganizationFormRequest $request) {
+    public function update(Contact $contact, Request $request) {
 //        $this->authorize('update', $company);
         $contact->update($request->all());
 //        flash()->success('Dodávateľ aktualizovaný!');
-        return redirect()->route('contact.index');
+//        return redirect()->route('contact.index');
     }
 
 

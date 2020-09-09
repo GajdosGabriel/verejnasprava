@@ -2419,15 +2419,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
       return state.contacts.contact;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, mapActions(['openEditForm', 'deleteContact'])), {}, {
-    update: function update() {
-      axios.patch('/contact/update/' + this.contact.id, this.contact).then(this.closeModal(), // Notify for add task
-      this.$store.dispatch('notification/addNewNotification', {
-        type: 'bg-green-400',
-        message: 'Kontakt uložený'
-      }));
-    }
-  })
+  methods: _objectSpread({}, mapActions(['openEditForm', 'deleteContact', 'updateContact']))
 });
 
 /***/ }),
@@ -62883,7 +62875,11 @@ var render = function() {
                             staticClass:
                               "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
                             attrs: { type: "button" },
-                            on: { click: _vm.update }
+                            on: {
+                              click: function($event) {
+                                return _vm.updateContact(_vm.contact)
+                              }
+                            }
                           },
                           [_vm._v("\n        Uložiť\n      ")]
                         )
@@ -80314,6 +80310,35 @@ var actions = {
           }
         }
       }, _callee);
+    }))();
+  },
+  updateContact: function updateContact(_ref4, contact) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context2.next = 3;
+              return axios.patch('/contact/update/' + contact.id, contact);
+
+            case 3:
+              commit('SHOW_FORM'); // Notify for add task
+
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt uložený!'
+              }, {
+                root: true
+              });
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
     }))();
   }
 };
