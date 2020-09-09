@@ -1,11 +1,12 @@
 <template>
     <div>
 
-        <div class="flex justify-between max-w-4xl py-5">
+        <div class="flex justify-between py-5">
             <h1 class="page-title">Zoznam dodávateľov</h1>
 
-
-            <a :href="'/contact/create/' + this.user.active_organization" class="btn btn-primary">Nový kontakt</a>
+            <button @click="newContact" class="btn btn-primary">
+                Nový kontakt
+            </button>
         </div>
 
         <input type="text" v-model="search" class="p-1 border-2 border-gray-300 rounded-sm"
@@ -26,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="hover:bg-gray-200" v-for="contact in contacts">
+            <tr class="hover:bg-gray-200" v-for="contact in contacts.data">
                 <td class="px-4 py-2 border" v-text="contact.name"></td>
                 <td class="px-4 py-2 border" v-text="contact.street"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.city"></td>
@@ -36,10 +37,10 @@
                 <td class="px-4 py-2 border" v-text="contact.email"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.phone }}</td>
                 <td class="px-4 py-2 border">
-<!--                    :href="'/contact/edit/' + contact.id"-->
+                    <!--                    :href="'/contact/edit/' + contact.id"-->
                     <a
 
-                        class="hover:underline cursor-pointer" @click="showEdit(contact)">Edit</a>
+                        class="hover:underline cursor-pointer" @click="showEditForm(contact)">Edit</a>
                 </td>
             </tr>
             </tbody>
@@ -65,10 +66,11 @@
 
 <script>
     import numeral from 'numeral';
-    import { mapState } from 'vuex';
-    import edit from './edit';
+    import {mapState} from 'vuex';
+    // import edit from './edit';
+
     export default {
-        components: { edit },
+        components: {},
         data: function () {
             return {
                 name: false,
@@ -81,11 +83,10 @@
         },
         computed: mapState({
             contacts: state => state.contacts.contacts,
-
-            // noPhone: getters => getters['contacts/noPhone']
         }),
         created() {
             this.$store.dispatch('contacts/fetchContacts', this.url);
+
         },
         watch: {
             search: function (val) {
@@ -93,8 +94,11 @@
             }
         },
         methods: {
-            showEdit: function(contact){
-                this.$store.dispatch('modal/modalToggle', contact)
+            newContact: function (contact) {
+                this.$store.dispatch('contacts/newContactToggle', contact)
+            },
+            showEditForm: function (contact) {
+                this.$store.dispatch('contacts/openEditForm', contact)
             },
             toggle: function () {
                 this.name = !this.name;
@@ -110,6 +114,7 @@
             },
 
             makePagination: function (data) {
+                console.log(data);
                 let pagination = {
                     current_page: data.current_page,
                     last_page: data.last_page,
@@ -120,7 +125,7 @@
             },
             fetchPaginate: function (url) {
                 this.url = url;
-                this.getContacts()
+                // this.contacts
             }
         },
         filters: {

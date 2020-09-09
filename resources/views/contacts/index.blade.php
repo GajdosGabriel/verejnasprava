@@ -19,6 +19,7 @@
         <contact-table />
         </div>
         <contact-edit></contact-edit>
+        <contact-create></contact-create>
         <notification-list></notification-list>
     @endsection
 

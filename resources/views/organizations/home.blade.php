@@ -49,8 +49,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="font-bold"> Hlasovanie pre porady a zastupiteľstvá</p>
-                        <p class="text-sm">Modul sa pripravuje.</p>
+                        <p class="font-bold">Online hlasovanie zastupiteľstvá</p>
+                        <p class="text-sm">Už čoskoro!</p>
                     </div>
                 </div>
             </div>

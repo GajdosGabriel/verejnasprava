@@ -14,7 +14,7 @@ const actions = {
         axios.get(url)
             .then(response => {
                 commit('SET_LOADING_STATUS', 'notLoading');
-                commit('SET_POSTS', response.data.data)
+                commit('SET_POSTS', response.data)
             })
     }
 };

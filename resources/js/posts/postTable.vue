@@ -18,7 +18,7 @@
             </thead>
             <tbody>
 
-            <tr class="hover:bg-gray-100" v-for="post in posts" :key="post.id">
+            <tr class="hover:bg-gray-100" v-for="post in posts.data" :key="post.id">
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('l')"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
@@ -88,7 +88,7 @@
         }),
 
         created() {
-            this.$store.dispatch('posts/fetchPosts', this.url);
+          this.$store.dispatch('posts/fetchPosts', this.url);
         },
 
         watch: {

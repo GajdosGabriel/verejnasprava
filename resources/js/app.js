@@ -39,6 +39,7 @@ Vue.component('vote-start-button', require('./votes/voteStartButton.vue').defaul
 Vue.component('organization-edit', require('./organizations/edit.vue').default);
 Vue.component('user-edit', require('./user/edit.vue').default);
 Vue.component('contact-edit', require('./contacts/edit.vue').default);
+Vue.component('contact-create', require('./contacts/newContact.vue').default);
 
 
 

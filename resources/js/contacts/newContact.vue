@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed z-10 inset-0 overflow-y-auto" v-if="showModal">
+    <div class="fixed z-10 inset-0 overflow-y-auto" v-if="showNewForm">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!--
               Background overlay, show/hide based on modal state.
@@ -40,7 +40,7 @@
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                             <div class="flex justify-between">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                    Upraviť - {{contact.name }}
+                                    Nový kontakt
                                 </h3>
                                 <span @click="closeModal" class="cursor-pointer text-gray-500">X</span>
                             </div>
@@ -161,7 +161,7 @@
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
           <button type="button"
-                  @click="update"
+                  @click="save"
                   class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Uložiť
           </button>
@@ -185,25 +185,30 @@
     import {mapState} from 'vuex'
 
     export default {
+        data: function(){
+          return {
+              contact:{},
+              user: this.user
+          }
+        },
         computed: mapState({
-            showModal: state => state.contacts.showEditForm,
-            contact: state => state.contacts.contact
+            showNewForm: state => state.contacts.showCreateForm
         }),
 
         methods: {
             closeModal: function () {
-                this.$store.dispatch('contacts/openEditForm', false)
+                this.$store.dispatch('contacts/newContactToggle', false)
             },
 
-            update: function () {
-                axios.patch('/contact/update/' + this.contact.id, this.contact)
+            save: function () {
+                axios.post('/contact/store/' + this.user.active_organization , this.contact)
                     .then(
                         this.closeModal(),
 
                         // Notify for add task
                         this.$store.dispatch('notification/addNewNotification', {
                             type: 'bg-green-400',
-                            message: 'Kontakt uložený'
+                            message: 'Kontakt uložený!'
                         })
                     )
             }
