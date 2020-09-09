@@ -4,7 +4,7 @@
         <div class="flex justify-between py-5">
             <h1 class="page-title">Zoznam dodávateľov</h1>
 
-            <button @click="newContact" class="btn btn-primary">
+            <button @click="newContactToggle" class="btn btn-primary">
                 Nový kontakt
             </button>
         </div>
@@ -40,7 +40,7 @@
                     <!--                    :href="'/contact/edit/' + contact.id"-->
                     <a
 
-                        class="hover:underline cursor-pointer" @click="showEditForm(contact)">Edit</a>
+                        class="hover:underline cursor-pointer" @click="openEditForm(contact)">Edit</a>
                 </td>
             </tr>
             </tbody>
@@ -67,13 +67,14 @@
 <script>
     import numeral from 'numeral';
     import {mapState} from 'vuex';
-    // import edit from './edit';
+
+
+    import { createNamespacedHelpers } from 'vuex';
+    const { mapActions } = createNamespacedHelpers('contacts');
 
     export default {
-        components: {},
         data: function () {
             return {
-                name: false,
                 pagination: [],
                 numeral: numeral,
                 search: '',
@@ -94,15 +95,10 @@
             }
         },
         methods: {
-            newContact: function (contact) {
-                this.$store.dispatch('contacts/newContactToggle', contact)
-            },
-            showEditForm: function (contact) {
-                this.$store.dispatch('contacts/openEditForm', contact)
-            },
-            toggle: function () {
-                this.name = !this.name;
-            },
+            ...mapActions([
+                'newContactToggle',
+                'openEditForm'
+            ]),
 
             getContacts: function () {
                 axios.get(this.url + this.search)

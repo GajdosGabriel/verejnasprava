@@ -2049,6 +2049,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2116,13 +2122,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
- // import edit from './edit';
+
+
+
+var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_1__["createNamespacedHelpers"])('contacts'),
+    mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
-      name: false,
       pagination: [],
       numeral: numeral__WEBPACK_IMPORTED_MODULE_0___default.a,
       search: '',
@@ -2143,16 +2151,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('contacts/fetchContacts', this.url + '?multi=' + this.search);
     }
   },
-  methods: {
-    newContact: function newContact(contact) {
-      this.$store.dispatch('contacts/newContactToggle', contact);
-    },
-    showEditForm: function showEditForm(contact) {
-      this.$store.dispatch('contacts/openEditForm', contact);
-    },
-    toggle: function toggle() {
-      this.name = !this.name;
-    },
+  methods: _objectSpread(_objectSpread({}, mapActions(['newContactToggle', 'openEditForm'])), {}, {
     getContacts: function getContacts() {
       var _this = this;
 
@@ -2175,7 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPaginate: function fetchPaginate(url) {
       this.url = url; // this.contacts
     }
-  },
+  }),
   filters: {
     pscFormat: function pscFormat(value) {
       return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
@@ -61272,7 +61271,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", on: { click: _vm.newContact } },
+        { staticClass: "btn btn-primary", on: { click: _vm.newContactToggle } },
         [_vm._v("\n            Nový kontakt\n        ")]
       )
     ]),
@@ -61366,7 +61365,7 @@ var render = function() {
                   staticClass: "hover:underline cursor-pointer",
                   on: {
                     click: function($event) {
-                      return _vm.showEditForm(contact)
+                      return _vm.openEditForm(contact)
                     }
                   }
                 },
@@ -80116,8 +80115,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\www\verejnasprava\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\www\verejnasprava\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\www\verejnasprava\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\www\verejnasprava\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
