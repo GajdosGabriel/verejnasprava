@@ -2,7 +2,8 @@ const state = {
     loadingStatus: 'notLoading',
     contacts: [],
     showEditForm: false,
-    showCreateForm: false
+    showCreateForm: false,
+    contact: []
 };
 const getters = {};
 
@@ -21,6 +22,11 @@ const mutations = {
     SHOW_NEW_FORM: function(state, data){
         state.showCreateForm =! state.showCreateForm;
         state.contact = data
+    },
+    REMOVE_CONTACT:function (state, id) {
+        state.contacts = state.contacts.data.filter(
+            contact => contact.id !== id
+        )
     }
 
 };
@@ -41,6 +47,17 @@ const actions = {
 
     newContactToggle({commit}, data){
         commit('SHOW_NEW_FORM', data)
+    },
+    async deleteContact({commit}, id){
+      await axios.delete('/api/contacts/' + id);
+
+        commit('REMOVE_CONTACT', id);
+        commit('SHOW_FORM');
+
+        commit('notification/NEW_NOTIFICATION', {
+            type: 'bg-green-400',
+            message: 'Kontakt zmazaný!'
+        }, { root: true })
     }
 
 };

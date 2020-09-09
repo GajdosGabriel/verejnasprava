@@ -85,9 +85,8 @@
         computed: mapState({
             contacts: state => state.contacts.contacts,
         }),
-        created() {
+        mounted() {
             this.$store.dispatch('contacts/fetchContacts', this.url);
-
         },
         watch: {
             search: function (val) {

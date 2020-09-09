@@ -23,5 +23,9 @@ class ApiContactsController extends Controller
             ->latest()->paginate();
     }
 
+    public function delete(Contact $contact){
+        $contact->delete();
+    }
+
 
 }
