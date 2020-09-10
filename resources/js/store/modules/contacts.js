@@ -3,7 +3,7 @@ const state = {
     contacts: [],
     showEditForm: false,
     showCreateForm: false,
-    contact: []
+    contact: {}
 };
 const getters = {};
 
@@ -13,6 +13,10 @@ const mutations = {
     },
     SET_CONTACTS: function (state, contacts) {
         state.contacts = contacts;
+    },
+
+    INSERT_CONTACT: function (state, contact) {
+        state.contacts.data.unshift(contact);
     },
     SHOW_FORM: function (state, data) {
         state.showEditForm = !state.showEditForm;
@@ -31,16 +35,6 @@ const mutations = {
 
 };
 const actions = {
-    fetchContacts(context, url) {
-        context.commit('SET_LOADING_STATUS', 'loading');
-        axios.get(url)
-            .then(response => {
-                    context.commit('SET_LOADING_STATUS', 'notLoading');
-                    context.commit('SET_CONTACTS', response.data);
-                }
-            );
-    },
-
     openEditForm({commit}, data) {
         commit('SHOW_FORM', data)
     },
@@ -48,6 +42,11 @@ const actions = {
     newContactToggle({commit}, data) {
         commit('SHOW_NEW_FORM', data)
     },
+
+    insert_contact({commit}, data) {
+        commit('INSERT_CONTACT', data)
+    },
+
     async deleteContact({commit}, id) {
         await axios.delete('/api/contacts/' + id);
 
@@ -57,7 +56,20 @@ const actions = {
         commit('notification/NEW_NOTIFICATION', {
             type: 'bg-green-400',
             message: 'Kontakt zmazaný!'
+        }, {root: true});
+    },
+
+    async saveContact({commit}, organizationId, data) {
+        await axios.post('/contact/store/' + organizationId, data);
+
+        // commit('SHOW_FORM');
+
+        // Notify for add task
+        commit('notification/NEW_NOTIFICATION', {
+            type: 'bg-green-400',
+            message: 'Kontakt uložený!'
         }, {root: true})
+
     },
 
     async updateContact({commit}, contact) {
@@ -71,7 +83,17 @@ const actions = {
             message: 'Kontakt uložený!'
         }, {root: true})
 
-    }
+    },
+
+    fetchContacts(context, url) {
+        context.commit('SET_LOADING_STATUS', 'loading');
+        axios.get(url)
+            .then(response => {
+                    context.commit('SET_LOADING_STATUS', 'notLoading');
+                    context.commit('SET_CONTACTS', response.data);
+                }
+            );
+    },
 
 };
 

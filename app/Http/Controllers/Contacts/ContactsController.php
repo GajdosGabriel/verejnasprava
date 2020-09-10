@@ -49,7 +49,7 @@ class ContactsController extends Controller
     public function store(Organization $organization, OrganizationFormRequest $request) {
         $organization->contacts()->create($request->all());
 //        flash()->success('Dodávateľ bol vytvorený');
-        return redirect()->route('contact.index');
+//        return redirect()->route('contact.index');
     }
 
 

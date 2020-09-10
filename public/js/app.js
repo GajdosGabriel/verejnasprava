@@ -2403,7 +2403,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2434,7 +2433,12 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2618,6 +2622,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNamespacedHelpers"])('contacts'),
+    mapActions = _createNamespacedHelp.mapActions;
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2630,18 +2639,16 @@ __webpack_require__.r(__webpack_exports__);
       return state.contacts.showCreateForm;
     }
   }),
-  methods: {
-    closeModal: function closeModal() {
-      this.$store.dispatch('contacts/newContactToggle', false);
-    },
-    save: function save() {
-      axios.post('/contact/store/' + this.user.active_organization, this.contact).then(this.closeModal(), // Notify for add task
+  methods: _objectSpread(_objectSpread({}, mapActions(['newContactToggle' // 'saveContact'
+  ])), {}, {
+    saveContact: function saveContact() {
+      axios.post('/contact/store/' + this.user.active_organization, this.contact).then(this.$store.state.contacts.showCreateForm = false, this.$store.dispatch('contacts/insert_contact', this.contact), // Notify for add task
       this.$store.dispatch('notification/addNewNotification', {
         type: 'bg-green-400',
         message: 'Kontakt uložený!'
       }));
     }
-  }
+  })
 });
 
 /***/ }),
@@ -62881,7 +62888,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("\n        Uložiť\n      ")]
+                          [
+                            _vm._v(
+                              "\n                        Uložiť\n                  "
+                            )
+                          ]
                         )
                       ]
                     ),
@@ -62901,7 +62912,11 @@ var render = function() {
                             attrs: { type: "submit" },
                             on: { click: _vm.openEditForm }
                           },
-                          [_vm._v("\n        Zrušiť\n      ")]
+                          [
+                            _vm._v(
+                              "\n                    Zrušiť\n                "
+                            )
+                          ]
                         )
                       ]
                     ),
@@ -62927,7 +62942,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    Zmazať\n                "
+                              "\n                        Zmazať\n                    "
                             )
                           ]
                         )
@@ -63032,7 +63047,7 @@ var render = function() {
                               "span",
                               {
                                 staticClass: "cursor-pointer text-gray-500",
-                                on: { click: _vm.closeModal }
+                                on: { click: _vm.newContactToggle }
                               },
                               [_vm._v("X")]
                             )
@@ -63606,7 +63621,11 @@ var render = function() {
                             staticClass:
                               "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
                             attrs: { type: "button" },
-                            on: { click: _vm.save }
+                            on: {
+                              click: function($event) {
+                                return _vm.saveContact(1, _vm.contact)
+                              }
+                            }
                           },
                           [_vm._v("\n        Uložiť\n      ")]
                         )
@@ -63626,7 +63645,7 @@ var render = function() {
                             staticClass:
                               "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
                             attrs: { type: "submit" },
-                            on: { click: _vm.closeModal }
+                            on: { click: _vm.newContactToggle }
                           },
                           [_vm._v("\n        Zrušiť\n      ")]
                         )
@@ -80243,7 +80262,7 @@ var state = {
   contacts: [],
   showEditForm: false,
   showCreateForm: false,
-  contact: []
+  contact: {}
 };
 var getters = {};
 var mutations = {
@@ -80252,6 +80271,9 @@ var mutations = {
   },
   SET_CONTACTS: function SET_CONTACTS(state, contacts) {
     state.contacts = contacts;
+  },
+  INSERT_CONTACT: function INSERT_CONTACT(state, contact) {
+    state.contacts.data.unshift(contact);
   },
   SHOW_FORM: function SHOW_FORM(state, data) {
     state.showEditForm = !state.showEditForm;
@@ -80268,13 +80290,6 @@ var mutations = {
   }
 };
 var actions = {
-  fetchContacts: function fetchContacts(context, url) {
-    context.commit('SET_LOADING_STATUS', 'loading');
-    axios.get(url).then(function (response) {
-      context.commit('SET_LOADING_STATUS', 'notLoading');
-      context.commit('SET_CONTACTS', response.data);
-    });
-  },
   openEditForm: function openEditForm(_ref, data) {
     var commit = _ref.commit;
     commit('SHOW_FORM', data);
@@ -80283,14 +80298,18 @@ var actions = {
     var commit = _ref2.commit;
     commit('SHOW_NEW_FORM', data);
   },
-  deleteContact: function deleteContact(_ref3, id) {
+  insert_contact: function insert_contact(_ref3, data) {
+    var commit = _ref3.commit;
+    commit('INSERT_CONTACT', data);
+  },
+  deleteContact: function deleteContact(_ref4, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref3.commit;
+              commit = _ref4.commit;
               _context.next = 3;
               return axios["delete"]('/api/contacts/' + id);
 
@@ -80312,15 +80331,44 @@ var actions = {
       }, _callee);
     }))();
   },
-  updateContact: function updateContact(_ref4, contact) {
+  saveContact: function saveContact(_ref5, organizationId, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref5.commit;
               _context2.next = 3;
+              return axios.post('/contact/store/' + organizationId, data);
+
+            case 3:
+              // commit('SHOW_FORM');
+              // Notify for add task
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt uložený!'
+              }, {
+                root: true
+              });
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  updateContact: function updateContact(_ref6, contact) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context3.next = 3;
               return axios.patch('/contact/update/' + contact.id, contact);
 
             case 3:
@@ -80335,11 +80383,18 @@ var actions = {
 
             case 5:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
+  },
+  fetchContacts: function fetchContacts(context, url) {
+    context.commit('SET_LOADING_STATUS', 'loading');
+    axios.get(url).then(function (response) {
+      context.commit('SET_LOADING_STATUS', 'notLoading');
+      context.commit('SET_CONTACTS', response.data);
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
