@@ -62117,13 +62117,16 @@ var render = function() {
               domProps: { textContent: _vm._s(contact.dic) }
             }),
             _vm._v(" "),
-            _c("td", {
-              staticClass: "px-4 py-2 border",
-              domProps: { textContent: _vm._s(contact.email) }
-            }),
+            _c("td", { staticClass: "px-4 py-2 border" }, [
+              _c("a", { attrs: { href: "mailto: contact.email" } }, [
+                _vm._v(_vm._s(contact.email))
+              ])
+            ]),
             _vm._v(" "),
             _c("td", { staticClass: "px-4 py-2 border whitespace-no-wrap" }, [
-              _vm._v(_vm._s(contact.phone))
+              _c("a", { attrs: { href: "tel: contact.phone" } }, [
+                _vm._v(_vm._s(contact.phone))
+              ])
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "px-4 py-2 border" }, [

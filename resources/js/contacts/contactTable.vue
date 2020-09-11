@@ -34,8 +34,8 @@
                 <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.psc | pscFormat }}</td>
                 <td class="px-4 py-2 border" v-text="contact.ico"></td>
                 <td class="px-4 py-2 border" v-text="contact.dic"></td>
-                <td class="px-4 py-2 border" v-text="contact.email"></td>
-                <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.phone }}</td>
+                <td class="px-4 py-2 border"><a href="mailto: contact.email">{{ contact.email }}</a></td>
+                <td class="px-4 py-2 border whitespace-no-wrap"><a href="tel: contact.phone">{{ contact.phone }}</a></td>
                 <td class="px-4 py-2 border">
                     <!--                    :href="'/contact/edit/' + contact.id"-->
                     <a
