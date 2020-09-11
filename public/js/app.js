@@ -2403,6 +2403,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -62264,7 +62269,7 @@ var render = function() {
             _c("span", {
               staticClass: "hidden sm:inline-block sm:align-middle sm:h-screen"
             }),
-            _vm._v("​\n        "),
+            _vm._v("​\n            "),
             _vm._v(" "),
             _c(
               "div",
@@ -62300,9 +62305,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Upraviť - " +
+                                  "\n                                    Upraviť - " +
                                     _vm._s(_vm.contact.name) +
-                                    "\n                            "
+                                    "\n                                "
                                 )
                               ]
                             ),
@@ -62679,7 +62684,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "IC\n                                                DIČ"
+                                              "IC\n                                                    DIČ"
                                             )
                                           ]
                                         ),
@@ -62869,7 +62874,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+                      "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse flex justify-between items-center"
                   },
                   [
                     _c(
@@ -62883,7 +62888,22 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                              "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                            attrs: { type: "submit" },
+                            on: { click: _vm.openEditForm }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Zrušiť\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "ml-3 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
@@ -62893,31 +62913,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Uložiť\n                  "
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.openEditForm }
-                          },
-                          [
-                            _vm._v(
-                              "\n                    Zrušiť\n                "
+                              "\n                            Uložiť\n                        "
                             )
                           ]
                         )
@@ -80334,7 +80330,7 @@ var actions = {
       }, _callee);
     }))();
   },
-  saveContact: function saveContact(_ref5, organizationId, data) {
+  updateContact: function updateContact(_ref5, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -80343,35 +80339,6 @@ var actions = {
             case 0:
               commit = _ref5.commit;
               _context2.next = 3;
-              return axios.post('/contact/store/' + organizationId, data);
-
-            case 3:
-              // commit('SHOW_FORM');
-              // Notify for add task
-              commit('notification/NEW_NOTIFICATION', {
-                type: 'bg-green-400',
-                message: 'Kontakt uložený!'
-              }, {
-                root: true
-              });
-
-            case 4:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  },
-  updateContact: function updateContact(_ref6, contact) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var commit;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              commit = _ref6.commit;
-              _context3.next = 3;
               return axios.patch('/contact/update/' + contact.id, contact);
 
             case 3:
@@ -80385,6 +80352,35 @@ var actions = {
               });
 
             case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  saveContact: function saveContact(_ref6, organizationId, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context3.next = 3;
+              return axios.post('/contact/store/' + organizationId, data);
+
+            case 3:
+              // commit('SHOW_FORM');
+              // Notify for add task
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt uložený!'
+              }, {
+                root: true
+              });
+
+            case 4:
             case "end":
               return _context3.stop();
           }

@@ -59,10 +59,10 @@ const actions = {
         }, {root: true});
     },
 
-    async saveContact({commit}, organizationId, data) {
-        await axios.post('/contact/store/' + organizationId, data);
+    async updateContact({commit}, contact) {
+        await axios.patch('/contact/update/' + contact.id, contact);
 
-        // commit('SHOW_FORM');
+        commit('SHOW_FORM');
 
         // Notify for add task
         commit('notification/NEW_NOTIFICATION', {
@@ -72,10 +72,10 @@ const actions = {
 
     },
 
-    async updateContact({commit}, contact) {
-        await axios.patch('/contact/update/' + contact.id, contact);
+    async saveContact({commit}, organizationId, data) {
+        await axios.post('/contact/store/' + organizationId, data);
 
-        commit('SHOW_FORM');
+        // commit('SHOW_FORM');
 
         // Notify for add task
         commit('notification/NEW_NOTIFICATION', {
