@@ -3,7 +3,7 @@
 
 
 @section('navigation')
-    <x-navigation.navigationItems/> @endsection
+    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
 
 {{--@section('navigation')--}}
 {{--    @include('council.items.navigation')--}}

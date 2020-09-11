@@ -64522,19 +64522,12 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "notification-list" },
-    [
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        _vm._l(_vm.notifications, function(notification) {
-          return _c("notification-item", {
-            key: notification.id,
-            attrs: { notification: notification }
-          })
-        }),
-        1
-      )
-    ],
+    _vm._l(_vm.notifications, function(notification) {
+      return _c("notification-item", {
+        key: notification.id,
+        attrs: { notification: notification }
+      })
+    }),
     1
   )
 }

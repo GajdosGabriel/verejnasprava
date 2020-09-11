@@ -7,15 +7,16 @@ use Illuminate\View\Component;
 
 class navigationItems extends Component
 {
-    public $object;
+    public $meeting;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($meeting)
     {
+        $this->meeting = $meeting;
         $this->object = Organization::whereId(auth()->user()->active_organization)->first();
     }
 
@@ -49,10 +50,9 @@ class navigationItems extends Component
         return [
             [
                 'title' => 'Nový návrh',
-                'url' => route('item.create', [$this->object->id, $this->object->slug ]),
+                'url' => route('item.create', [ $this->meeting->id, $this->meeting->slug ]),
                 'active' => $this->isActive('item.create')
             ],
-
         ];
     }
 }

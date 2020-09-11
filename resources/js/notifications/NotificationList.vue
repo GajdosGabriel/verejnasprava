@@ -1,10 +1,10 @@
 <template>
 
     <div class="notification-list">
-        <transition name="fade">
+<!--        <transition name="fade">-->
             <notification-item v-for="notification in notifications" :key="notification.id"
                                :notification="notification"></notification-item>
-        </transition>
+<!--        </transition>-->
     </div>
 
 </template>
