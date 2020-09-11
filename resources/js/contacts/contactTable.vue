@@ -12,6 +12,7 @@
         <input type="text" v-model="search" class="p-1 border-2 border-gray-300 rounded-sm"
                placeholder="Name, email, phone, city">
         <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''">X</span>
+
         <table class="table-auto w-full">
             <thead>
             <tr class="bg-gray-300">
@@ -46,25 +47,13 @@
             </tbody>
         </table>
 
-        <div class="flex justify-center my-10 space-x-3">
-            <button @click="fetchPaginate(pagination.prev_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
-                    :disabled="! pagination.prev_page_url"> <<
-            </button>
-            <div
-                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm">
-                {{ pagination.current_page}} / {{ pagination.last_page}}
-            </div>
-            <button @click="fetchPaginate(pagination.next_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
-                    :disabled="! pagination.next_page_url"> >>
-            </button>
-        </div>
+        <paginator :data="contacts"/>
 
     </div>
 </template>
 
 <script>
+    import paginator from '../modules/pagination';
     import numeral from 'numeral';
     import {mapState} from 'vuex';
 
@@ -73,9 +62,9 @@
     const { mapActions } = createNamespacedHelpers('contacts');
 
     export default {
+        components: { paginator },
         data: function () {
             return {
-                pagination: [],
                 numeral: numeral,
                 search: '',
                 user: this.user,
@@ -96,7 +85,8 @@
         methods: {
             ...mapActions([
                 'newContactToggle',
-                'openEditForm'
+                'openEditForm',
+                'filterContact'
             ]),
 
             getContacts: function () {
@@ -106,21 +96,6 @@
                             this.makePagination(response.data)
                         }
                     );
-            },
-
-            makePagination: function (data) {
-                console.log(data);
-                let pagination = {
-                    current_page: data.current_page,
-                    last_page: data.last_page,
-                    next_page_url: data.next_page_url,
-                    prev_page_url: data.prev_page_url,
-                };
-                this.pagination = pagination;
-            },
-            fetchPaginate: function (url) {
-                this.url = url;
-                // this.contacts
             }
         },
         filters: {

@@ -49,32 +49,21 @@
             </tbody>
         </table>
 
-        <div class="flex justify-center my-10 space-x-3">
-            <button @click="fetchPaginate(pagination.prev_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
-                    :disabled="! pagination.prev_page_url"> <<
-            </button>
-            <div
-                class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm">
-                {{ pagination.current_page}} / {{ pagination.last_page}}
-            </div>
-            <button @click="fetchPaginate(pagination.next_page_url)"
-                    class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
-                    :disabled="! pagination.next_page_url"> >>
-            </button>
-        </div>
+        <paginator :data="posts"/>
+
     </div>
 
 </template>
 <script>
+    import paginator from '../modules/pagination';
     import moment from 'moment';
     import numeral from 'numeral';
     import { mapState } from 'vuex';
 
     export default {
+        components: { paginator },
         data: function () {
             return {
-                pagination: [],
                 user: this.user,
                 moment: require('moment'),
                 adminPanel: false,
@@ -94,27 +83,9 @@
         watch: {
           search: function (val) {
               this.$store.dispatch('posts/fetchPosts', this.url + '?name=' + this.search);
-              // this.getPosts();
           }
         },
         methods: {
-            getPosts: function () {
-                axios.get(this.url + this.search)
-                    .then(response => {
-                        this.posts = response.data.data;
-                        this.makePagination(response.data);
-                    })
-            },
-
-            makePagination: function (data) {
-                let pagination = {
-                    current_page: data.current_page,
-                    last_page: data.last_page,
-                    next_page_url: data.next_page_url,
-                    prev_page_url: data.prev_page_url,
-                };
-                this.pagination = pagination;
-            },
             fetchPaginate: function (url) {
                 this.url = url;
                 this.getPosts()
