@@ -5,9 +5,6 @@
 @section('navigation')
     <x-navigation.navigationItems :meeting="$meeting"/> @endsection
 
-{{--@section('navigation')--}}
-{{--    @include('council.items.navigation')--}}
-{{--@endsection--}}
 
 @section('content')
 

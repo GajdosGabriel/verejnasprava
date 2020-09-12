@@ -47,12 +47,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Item $item)
     {
         // only published item can be voted
         if ($item->published == 0) {
             session()->flash('flash', 'Položka nie je publikovaná!');
-            return back();
+            return  back();
         }
 
         // Enable vote can only if interpelations list is empty

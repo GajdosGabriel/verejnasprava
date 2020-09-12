@@ -54,7 +54,13 @@
             },
             startVote: function () {
                 if(! this.canStartVote) {
-                    alert('Zoznam prihlásených do rozpravy nie je prázdny.')
+                    alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+                    return
+                }
+
+                if(! this.item.published) {
+                    alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+                    return
                 }
                 axios.put('/api/item/' + this.item.id)
                     .then(response => {
