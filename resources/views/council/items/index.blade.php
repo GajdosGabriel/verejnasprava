@@ -5,9 +5,6 @@
 @section('navigation')
     <x-navigation.navigationItems :meeting="$meeting"/> @endsection
 
-{{--@section('navigation')--}}
-{{--    @include('council.items.navigation')--}}
-{{--@endsection--}}
 
 @section('content')
 
@@ -49,7 +46,7 @@
 
                             @if($item->vote_disabled)
                                 {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
-                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>
+{{--                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>--}}
                                 {{--                                </a>--}}
                             @else
                                 {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
