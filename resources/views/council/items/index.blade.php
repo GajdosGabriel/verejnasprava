@@ -11,6 +11,9 @@
     <div class="lg:container lg:flex mx-auto lg:px-6 min-h-screen py-6">
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
+            {{-- Vuex component--}}
+            <meeting-items :meeting="{{ $meeting }}"></meeting-items>
+
             <div class="mb-6">
                 <h1 class="page-title">{{ $meeting->name }} <small
                         class="text-gray-500">{{ $meeting->start_at->format('d. m. Y') }}
@@ -46,7 +49,7 @@
 
                             @if($item->vote_disabled)
                                 {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
-{{--                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>--}}
+                                {{--                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>--}}
                                 {{--                                </a>--}}
                             @else
                                 {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}

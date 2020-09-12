@@ -45,7 +45,7 @@
                                 <span @click="openEditForm" class="cursor-pointer text-gray-500">X</span>
                             </div>
 
-                            <form submit.prevent="saveContact">
+                            <form @submit.prevent="saveContact">
                                 <div class="mt-2">
                                     <div class="md:flex">
 
