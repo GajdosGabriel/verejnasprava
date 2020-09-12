@@ -10,7 +10,7 @@ const mutations = {
     },
 
     SET_PUBLISHED_ITEM: function (state, item) {
-        item.vote_disabled = !item.vote_disabled;
+        item.vote_status = !item.vote_status;
     },
 
 };

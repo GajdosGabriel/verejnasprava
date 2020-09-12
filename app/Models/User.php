@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Council\Council;
 use App\Models\Council\Item;
+use App\Models\Council\Vote;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

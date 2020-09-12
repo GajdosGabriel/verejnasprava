@@ -11,6 +11,7 @@
     <div class="lg:container lg:flex mx-auto lg:px-6 min-h-screen py-6">
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
+
             {{-- Vuex component--}}
             <meeting-items :meeting="{{ $meeting }}"></meeting-items>
 
@@ -47,7 +48,7 @@
                                 <span class="badge badge-danger" title="Hlasovanie tajné">Tajné</span>
                             @endif
 
-                            @if($item->vote_disabled)
+                            @if($item->vote_status)
                                 {{--                                <a href="{{ route('vote.voteEnable', [$item->id, $item->slug]) }}">--}}
                                 {{--                                <span class="badge badge-secondary" title="Hlasovanie vypnuté">Hlasovanie</span>--}}
                                 {{--                                </a>--}}

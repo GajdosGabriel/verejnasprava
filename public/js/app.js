@@ -2735,6 +2735,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2755,6 +2806,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$store.dispatch('meetingItems/set_published_item', this.item);
+    },
+    storeVote: function storeVote(id, val) {
+      axios.put('/api/vote/' + id, {
+        userId: this.item.user_id,
+        vote: val
+      });
     }
   }
 });
@@ -2823,11 +2880,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['itemm'],
+  props: ['vote'],
   data: function data() {
-    return {
-      vote: ''
+    return {// vote: ''
     };
   },
   methods: {
@@ -2868,10 +2925,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./item */ "./resources/js/meeting-items/item.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -4172,10 +4225,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     buttonClass: function buttonClass() {
-      return this.item.vote_disabled == 0 ? 'btn-primary' : 'btn-secondary';
+      return this.item.vote_status == 0 ? 'btn-primary' : 'btn-secondary';
     },
     buttonTitle: function buttonTitle() {
-      return this.item.vote_disabled == 0 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
+      return this.item.vote_status == 0 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
     },
     canStartVote: function canStartVote() {
       if (this.item.interpellations.length > 0) {
@@ -63874,39 +63927,178 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-          }
+  return _c("div", { staticClass: "flow-root" }, [
+    _c(
+      "a",
+      {
+        attrs: { href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.item.name) + "\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center" }, [
+      _c("button", {
+        staticClass:
+          "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
+        class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
+        domProps: {
+          textContent: _vm._s(
+            _vm.item.vote_status == 1
+              ? "Zapnúť hlasovanie"
+              : "Vypnúť hlasovanie"
+          )
         },
-        [_vm._v("\n        " + _vm._s(_vm.item.name) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _c("button", {
-          staticClass:
-            "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
-          class: _vm.item.vote_disabled == 0 ? "bg-blue-700 text-gray-200" : "",
-          domProps: {
-            textContent: _vm._s(
-              _vm.item.vote_disabled == 1
-                ? "Zapnúť hlasovanie"
-                : "Vypnúť hlasovanie"
-            )
+        on: { click: _vm.startVote }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.item.vote_status,
+            expression: "! item.vote_status"
+          }
+        ]
+      },
+      [
+        _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
+          _vm._v("Hlasujte")
+        ]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            attrs: { method: "POST" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+              }
+            }
           },
-          on: { click: _vm.startVote }
-        })
-      ]),
-      _vm._v(" "),
-      _c("itemButtons", { attrs: { itemm: _vm.item } })
-    ],
-    1
-  )
+          [
+            _c(
+              "div",
+              { staticClass: "md:flex justify-between my-5 bg-gray-100" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(_vm.item.id, 1)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Súhlasim\n                    "
+                    ),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(_vm.item.id, 2)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Zdržal\n                    "
+                    ),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-blue-600 fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(_vm.item.id, 0)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Nesúhlasim\n                    "
+                    ),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63931,9 +64123,127 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _vm._v("\n            " + _vm._s(_vm.itemm.vote_type) + "\n        ")
-    ])
+    _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
+      _vm._v("Hlasujte")
+    ]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        attrs: { method: "POST" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "md:flex justify-between my-5 bg-gray-100" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  return _vm.storeVote(_vm.item.id, 1)
+                }
+              }
+            },
+            [
+              _vm._v("\n                Súhlasim\n                "),
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+              on: {
+                click: function($event) {
+                  return _vm.storeVote(_vm.item.id, 2)
+                }
+              }
+            },
+            [
+              _vm._v("\n                Zdržal\n                "),
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 ml-2 text-blue-600 fill-current",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
+              on: {
+                click: function($event) {
+                  return _vm.storeVote(_vm.item.id, 0)
+                }
+              }
+            },
+            [
+              _vm._v("\n                Nesúhlasim\n                "),
+              _c(
+                "svg",
+                {
+                  staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -63959,7 +64269,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mb-6" }, [
-    _c("div", { staticClass: "flex justify-between items-center" }, [
+    _c("div", {}, [
       _c("h1", { staticClass: "page-title" }, [
         _vm._v(_vm._s(_vm.meeting.name))
       ]),
@@ -63983,23 +64293,15 @@ var render = function() {
     _c(
       "div",
       { staticClass: "mt-4 bg-white hover:bg-gray-100 p-2 odd:bg-gray-500" },
-      [
-        _c("div", { staticClass: "flex justify-between flex-wrap mt-2 mb-5" }, [
-          _c(
-            "h5",
-            { staticClass: "font-semibold mb-4" },
-            _vm._l(_vm.items, function(item) {
-              return _c(
-                "div",
-                { key: item.id },
-                [_c("item", { attrs: { item: item } })],
-                1
-              )
-            }),
-            0
-          )
-        ])
-      ]
+      _vm._l(_vm.items, function(item) {
+        return _c(
+          "div",
+          { key: item.id },
+          [_c("item", { attrs: { item: item } })],
+          1
+        )
+      }),
+      0
     )
   ])
 }
@@ -80800,7 +81102,7 @@ var mutations = {
     state.items = meeting.items;
   },
   SET_PUBLISHED_ITEM: function SET_PUBLISHED_ITEM(state, item) {
-    item.vote_disabled = !item.vote_disabled;
+    item.vote_status = !item.vote_status;
   }
 };
 var actions = {

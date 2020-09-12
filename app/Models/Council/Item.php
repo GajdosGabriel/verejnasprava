@@ -31,7 +31,6 @@ class Item extends Model
         return $this->hasMany(Vote::class);
     }
 
-
     public function meeting()
     {
         return $this->belongsTo(Meeting::class);
@@ -51,14 +50,14 @@ class Item extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function voteDisable(){
+    public function voteStatus(){
 
-        if($this->vote_disabled == 0) {
+        if($this->vote_status == 0) {
 
-            $this->update(['vote_disabled' => 1 ]);
+            $this->update(['vote_status' => 1 ]);
         } else {
 
-            $this->update(['vote_disabled' => 0 ]);
+            $this->update(['vote_status' => 0 ]);
         }
 
     }

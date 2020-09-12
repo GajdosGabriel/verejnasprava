@@ -32,10 +32,10 @@
         },
         computed: {
             buttonClass: function () {
-                return this.item.vote_disabled == 0 ? 'btn-primary' : 'btn-secondary';
+                return this.item.vote_status == 0 ? 'btn-primary' : 'btn-secondary';
             },
             buttonTitle: function () {
-                return this.item.vote_disabled == 0 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
+                return this.item.vote_status == 0 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
             },
             canStartVote: function () {
                 if(this.item.interpellations.length > 0) {

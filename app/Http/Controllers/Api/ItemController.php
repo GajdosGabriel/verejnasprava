@@ -61,7 +61,7 @@ class ItemController extends Controller
             return back();
         }
 
-        $item->voteDisable();
+        $item->voteStatus();
 //        return back();
     }
 
