@@ -18,9 +18,7 @@
         <div v-show="! item.vote_status">
 
             <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
-            <div v-for="vote in item.votes">
-                <itemButtons :vote="vote"></itemButtons>
-            </div>
+                <itemButtons :votes="userVote" :item="item"></itemButtons>
 
         </div>
     </div>
