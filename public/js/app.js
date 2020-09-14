@@ -2743,54 +2743,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2899,10 +2851,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['votess'],
+  props: ['vote'],
   data: function data() {
     return {};
   },
@@ -63933,42 +63883,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flow-root" },
-    [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-          }
+  return _c("div", { staticClass: "flow-root" }, [
+    _c(
+      "a",
+      {
+        attrs: { href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.item.name) + "\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center" }, [
+      _c("button", {
+        staticClass:
+          "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
+        class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
+        domProps: {
+          textContent: _vm._s(
+            _vm.item.vote_status == 1
+              ? "Zapnúť hlasovanie"
+              : "Vypnúť hlasovanie"
+          )
         },
-        [_vm._v("\n            " + _vm._s(_vm.item.name) + "\n        ")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _c("button", {
-          staticClass:
-            "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
-          class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
-          domProps: {
-            textContent: _vm._s(
-              _vm.item.vote_status == 1
-                ? "Zapnúť hlasovanie"
-                : "Vypnúť hlasovanie"
-            )
-          },
-          on: { click: _vm.startVote }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.userVote, function(vote) {
-        return _c("div", [_c("itemButtons", { attrs: { votess: vote } })], 1)
+        on: { click: _vm.startVote }
       })
-    ],
-    2
-  )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.item.vote_status,
+            expression: "! item.vote_status"
+          }
+        ]
+      },
+      [
+        _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
+          _vm._v("Hlasujte")
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.item.votes, function(vote) {
+          return _c("div", [_c("itemButtons", { attrs: { vote: vote } })], 1)
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63993,10 +63956,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
-      _vm._v("Hlasujte " + _vm._s(_vm.votess))
-    ]),
-    _vm._v(" "),
     _c(
       "form",
       {
@@ -64022,26 +63981,29 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                    Súhlasim\n"),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                    }
-                  })
-                ]
-              )
+              _vm._v("\n                Súhlasim\n                "),
+              _vm.vote.vote == 1
+                ? _c("div", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -64057,26 +64019,29 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                    Zdržal\n"),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "w-5 h-5 ml-2 text-blue-600 fill-current",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                    }
-                  })
-                ]
-              )
+              _vm._v("\n                Zdržal\n                "),
+              _vm.vote.vote == 2
+                ? _c("div", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-blue-600 fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -64092,27 +64057,29 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                    Nesúhlasim\n                    "),
-              _c("div", [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                      }
-                    })
-                  ]
-                )
-              ])
+              _vm._v("\n                Nesúhlasim\n                "),
+              _vm.vote.vote == 0
+                ? _c("div", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e()
             ]
           )
         ])
