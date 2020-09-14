@@ -19,6 +19,10 @@ const actions = {
         commit('SET_ITEMS', meeting)
     },
 
+    get_item({commit}, item) {
+        commit('GET_ITEM', item)
+    },
+
     set_published_item({commit}, item) {
         axios.put('/api/item/' + item.id);
         commit('SET_PUBLISHED_ITEM', item);

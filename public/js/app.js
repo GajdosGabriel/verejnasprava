@@ -2712,7 +2712,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _itemButtons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./itemButtons */ "./resources/js/meeting-items/itemButtons.vue");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_modules_meeting_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/modules/meeting-item */ "./resources/js/store/modules/meeting-item.js");
 //
 //
 //
@@ -2786,6 +2787,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2793,6 +2799,15 @@ __webpack_require__.r(__webpack_exports__);
     itemButtons: _itemButtons__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['item'],
+  computed: {
+    userVote: function userVote() {
+      var _this = this;
+
+      return this.item.votes.filter(function (item) {
+        return item.user_id == _this.user.id;
+      });
+    }
+  },
   methods: {
     startVote: function startVote() {
       if (!this.item.interpellations) {
@@ -2881,30 +2896,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['vote'],
+  props: ['votess'],
   data: function data() {
-    return {// vote: ''
-    };
+    return {};
   },
   methods: {
-    getItem: function getItem() {
-      var _this = this;
-
-      axios.get('/api/item/' + this.itemid).then(function (response) {
-        _this.item = response.data;
-      });
-    },
     storeVote: function storeVote(id, val) {
-      var _this2 = this;
-
       axios.put('/api/vote/' + id, {
         userId: this.item.user_id,
         vote: val
-      }).then(function (response) {
-        _this2.vote = response.data;
-
-        _this2.getItem();
       });
     }
   }
@@ -63927,178 +63933,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flow-root" }, [
-    _c(
-      "a",
-      {
-        attrs: { href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show" }
-      },
-      [_vm._v("\n        " + _vm._s(_vm.item.name) + "\n    ")]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "text-center" }, [
-      _c("button", {
-        staticClass:
-          "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
-        class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
-        domProps: {
-          textContent: _vm._s(
-            _vm.item.vote_status == 1
-              ? "Zapnúť hlasovanie"
-              : "Vypnúť hlasovanie"
-          )
-        },
-        on: { click: _vm.startVote }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.item.vote_status,
-            expression: "! item.vote_status"
+  return _c(
+    "div",
+    { staticClass: "flow-root" },
+    [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
           }
-        ]
-      },
-      [
-        _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
-          _vm._v("Hlasujte")
-        ]),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            attrs: { method: "POST" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-              }
-            }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "md:flex justify-between my-5 bg-gray-100" },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                    attrs: { type: "submit" },
-                    on: {
-                      click: function($event) {
-                        return _vm.storeVote(_vm.item.id, 1)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    Súhlasim\n                    "
-                    ),
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                    on: {
-                      click: function($event) {
-                        return _vm.storeVote(_vm.item.id, 2)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    Zdržal\n                    "
-                    ),
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-5 h-5 ml-2 text-blue-600 fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                    on: {
-                      click: function($event) {
-                        return _vm.storeVote(_vm.item.id, 0)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    Nesúhlasim\n                    "
-                    ),
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]
+        },
+        [_vm._v("\n            " + _vm._s(_vm.item.name) + "\n        ")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c("button", {
+          staticClass:
+            "text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500",
+          class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
+          domProps: {
+            textContent: _vm._s(
+              _vm.item.vote_status == 1
+                ? "Zapnúť hlasovanie"
+                : "Vypnúť hlasovanie"
             )
-          ]
-        )
-      ]
-    )
-  ])
+          },
+          on: { click: _vm.startVote }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.userVote, function(vote) {
+        return _c("div", [_c("itemButtons", { attrs: { votess: vote } })], 1)
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -64124,7 +63994,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
-      _vm._v("Hlasujte")
+      _vm._v("Hlasujte " + _vm._s(_vm.votess))
     ]),
     _vm._v(" "),
     _c(
@@ -64152,7 +64022,8 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                Súhlasim\n                "),
+              _vm._v("\n                    Súhlasim\n"),
+              _vm._v(" "),
               _c(
                 "svg",
                 {
@@ -64186,7 +64057,8 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                Zdržal\n                "),
+              _vm._v("\n                    Zdržal\n"),
+              _vm._v(" "),
               _c(
                 "svg",
                 {
@@ -64220,25 +64092,27 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n                Nesúhlasim\n                "),
-              _c(
-                "svg",
-                {
-                  staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [
-                  _c("path", {
+              _vm._v("\n                    Nesúhlasim\n                    "),
+              _c("div", [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-5 h-5 ml-2 text-white fill-current",
                     attrs: {
-                      d:
-                        "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
                     }
-                  })
-                ]
-              )
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                      }
+                    })
+                  ]
+                )
+              ])
             ]
           )
         ])
@@ -81110,8 +80984,12 @@ var actions = {
     var commit = _ref.commit;
     commit('SET_ITEMS', meeting);
   },
-  set_published_item: function set_published_item(_ref2, item) {
+  get_item: function get_item(_ref2, item) {
     var commit = _ref2.commit;
+    commit('GET_ITEM', item);
+  },
+  set_published_item: function set_published_item(_ref3, item) {
+    var commit = _ref3.commit;
     axios.put('/api/item/' + item.id);
     commit('SET_PUBLISHED_ITEM', item);
   }
