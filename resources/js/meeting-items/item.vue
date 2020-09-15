@@ -1,5 +1,5 @@
 <template>
-    <div class="flow-root">
+    <div class="flow-root hover:bg-gray-100 p-2">
         <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
             {{ item.name }}
         </a>

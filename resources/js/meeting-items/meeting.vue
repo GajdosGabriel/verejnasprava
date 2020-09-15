@@ -8,8 +8,8 @@
             </div>
         </div>
 
-        <div class="mt-4 bg-white hover:bg-gray-100 p-2 odd:bg-gray-500">
-            <div v-for="item in items" :key="item.id" class="">
+        <div class="mt-4 bg-white">
+            <div v-for="item in items" :key="item.id" class="odd:bg-gray-500">
 
                 <item :item="item"></item>
 
