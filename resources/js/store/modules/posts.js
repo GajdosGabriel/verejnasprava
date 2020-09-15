@@ -1,6 +1,7 @@
 const state = {
     loadingStatus: 'notLoading',
-    posts: []
+    posts: [],
+    url: '/api/posts/'
 };
 
 

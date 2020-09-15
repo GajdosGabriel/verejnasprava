@@ -17,22 +17,13 @@
 </template>
 <script>
 
-
+    import { mapState } from 'vuex';
     export default {
-        props: ['data'],
+        props: ['data', 'url'],
+
         methods: {
-            makePagination: function (contacts) {
-                console.log(data);
-                let pagination = {
-                    current_page: contacts.current_page,
-                    last_page: data.last_page,
-                    next_page_url: data.next_page_url,
-                    prev_page_url: data.prev_page_url,
-                };
-                this.pagination = pagination;
-            },
             fetchPaginate: function (url) {
-                this.url = url;
+                this.$store.dispatch('posts/fetchPosts', url)
             }
         }
 

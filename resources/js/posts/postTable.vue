@@ -49,7 +49,7 @@
             </tbody>
         </table>
 
-        <paginator :data="posts"/>
+        <paginator :data="posts" :url="url"/>
 
     </div>
 
@@ -64,32 +64,27 @@
         components: { paginator },
         data: function () {
             return {
-                user: this.user,
                 moment: require('moment'),
                 adminPanel: false,
-                search: '',
-                url: '/api/posts/' + this.user.active_organization
+                search: ''
             }
         },
 
         computed: mapState ({
-            posts: state => state.posts.posts
+            posts: state => state.posts.posts,
+            url: state => state.posts.url
         }),
 
         created() {
-          this.$store.dispatch('posts/fetchPosts', this.url);
+          this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization);
         },
 
         watch: {
           search: function (val) {
-              this.$store.dispatch('posts/fetchPosts', this.url + '?name=' + this.search);
+              this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?name=' + this.search);
           }
         },
         methods: {
-            fetchPaginate: function (url) {
-                this.url = url;
-                this.getPosts()
-            },
             searchByContact: function(contact){
                 this.search = contact;
             }
