@@ -1,14 +1,17 @@
 <template>
     <div class="flow-root hover:bg-gray-100 p-2">
-        <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
-            {{ item.name }}
-        </a>
 
-        <published-item :item="item"></published-item>
+        <div class="flex justify-between">
+            <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
+                {{ item.name }}
+            </a>
+
+            <published-button :item="item"></published-button>
+        </div>
 
 
         <div class="text-center">
-            <button class="text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500"
+            <button class="text-xs btn mb-3 border-gray-700 border-2 hover:bg-gray-400"
                     :class="item.vote_status == 0 ? 'bg-blue-700 text-gray-200' : ''"
                     @click="startVote"
                     v-text="item.vote_status == 1 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie'"
@@ -30,10 +33,10 @@
 <script>
     import itemButtons from './itemButtons';
     import {mapState} from 'vuex';
-    import publishedItem from "./publishedItem";
+    import publishedButton from "./publishedButton";
 
     export default {
-        components: {itemButtons, publishedItem},
+        components: {itemButtons, publishedButton},
         props: ['item'],
         computed: {
             userVote() {

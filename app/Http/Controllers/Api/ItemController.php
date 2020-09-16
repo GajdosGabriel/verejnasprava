@@ -75,4 +75,9 @@ class ItemController extends Controller
     {
         //
     }
+
+    public function published(Item $item) {
+        $item->published();
+        return back();
+    }
 }

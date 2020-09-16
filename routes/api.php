@@ -24,6 +24,8 @@ Route::get('contacts/{organizationId}', 'Organizations\Contacts\ApiContactsContr
 Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsController@delete');
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
 
+Route::get('item/{item}/published', 'Api\ItemController@published');
+
 
 Route::apiResources([
     'vote' => 'Api\VoteController',

@@ -29,6 +29,11 @@ const actions = {
     set_vote_status({commit}, item) {
         axios.put('/api/item/' + item.id);
         commit('SET_VOTE_STATUS', item);
+    },
+
+    publishedToggle({commit}, item) {
+     axios.get('/api/item/' + item.id + '/published');
+
     }
 
 };

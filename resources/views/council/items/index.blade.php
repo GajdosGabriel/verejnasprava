@@ -62,14 +62,6 @@
 
 
                             @can('delete')
-                                {{-- Published button--}}
-                                <a href="{{ route('item.published', [ $item->id, $item->slug]) }}">
-                                    @if($item->published)
-                                        <span class="badge badge-primary">Publikované</span>
-                                    @else
-                                        <span class="badge badge-secondary">Publikovať</span>
-                                    @endif
-                                </a>
 
                                 {{-- Dropdown component  --}}
                                 @auth

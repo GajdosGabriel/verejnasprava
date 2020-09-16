@@ -46,9 +46,5 @@ class ItemController extends Controller
         return back();
     }
 
-    public function published(Item $item) {
-        $item->published();
-        return back();
-    }
 
 }
