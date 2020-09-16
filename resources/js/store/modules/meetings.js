@@ -12,6 +12,10 @@ const mutations = {
 
     SET_VOTE_STATUS: function (state, item) {
         item.vote_status = !item.vote_status;
+    },
+
+    PUBLISHED_STATUS: function (state, item) {
+        item.published = !item.published;
     }
 
 
@@ -33,6 +37,7 @@ const actions = {
 
     publishedToggle({commit}, item) {
      axios.get('/api/item/' + item.id + '/published');
+        commit('PUBLISHED_STATUS', item);
 
     }
 
