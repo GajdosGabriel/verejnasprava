@@ -4,6 +4,8 @@
             {{ item.name }}
         </a>
 
+        <published-post :item="item"></published-post>
+
 
         <div class="text-center">
             <button class="text-xs btn mb-3 border-gray-700 border-2 hover:bg-blue-500"
@@ -29,9 +31,10 @@
     import itemButtons from './itemButtons';
     import {mapState} from 'vuex';
     import meetingItems from "../store/modules/meeting-item";
+    import publishedPost from "../posts/publishedPost.vue";
 
     export default {
-        components: {itemButtons},
+        components: {itemButtons, publishedPost},
         props: ['item'],
         computed: {
             userVote() {
@@ -51,7 +54,7 @@
                     alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
                     return
                 }
-                this.$store.dispatch('meetingItems/set_published_item', this.item);
+                this.$store.dispatch('meetingItems/set_vote_status', this.item);
             },
 
             storeVote: function (id, val) {

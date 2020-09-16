@@ -10,9 +10,9 @@ const mutations = {
         state.items = meeting.items;
     },
 
-    SET_PUBLISHED_ITEM: function (state, item) {
+    SET_VOTE_STATUS: function (state, item) {
         item.vote_status = !item.vote_status;
-    },
+    }
 
 
 
@@ -26,9 +26,9 @@ const actions = {
         commit('GET_ITEM', item)
     },
 
-    set_published_item({commit}, item) {
+    set_vote_status({commit}, item) {
         axios.put('/api/item/' + item.id);
-        commit('SET_PUBLISHED_ITEM', item);
+        commit('SET_VOTE_STATUS', item);
     }
 
 };

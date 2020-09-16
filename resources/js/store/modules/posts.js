@@ -7,6 +7,14 @@ const state = {
 
 const getters = {};
 
+const mutations = {
+    SET_LOADING_STATUS: function (state, status) {
+        state.loadingStatus = status
+    },
+    SET_POSTS: function (state, posts) {
+        state.posts = posts;
+    }
+};
 
 const actions = {
 
@@ -20,14 +28,7 @@ const actions = {
     }
 };
 
-const mutations = {
-    SET_LOADING_STATUS: function (state, status) {
-        state.loadingStatus = status
-    },
-    SET_POSTS: function (state, posts) {
-        state.posts = posts;
-    }
-};
+
 
 export default {
     namespaced: true,

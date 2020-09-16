@@ -5,6 +5,7 @@ import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";
 import meetingItems from "./modules/meeting-item";
+
 // import currentUser from "./modules/currentUser";
 
 Vue.use(Vuex);
