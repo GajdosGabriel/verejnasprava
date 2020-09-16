@@ -11,7 +11,7 @@
 <script>
     import {mapState} from 'vuex';
     export default {
-        props: ['post'],
+        props: ['item'],
 
         methods: {
             postToggle: function(){

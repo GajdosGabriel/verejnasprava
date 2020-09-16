@@ -4,7 +4,7 @@ import todos from "./modules/todos";
 import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";
-import meetingItems from "./modules/meeting-item";
+import meetings from "./modules/meetings";
 
 // import currentUser from "./modules/currentUser";
 
@@ -16,6 +16,6 @@ export default new Vuex.Store({
         notification,
         posts,
         contacts,
-        meetingItems
+        meetings
     }
 })

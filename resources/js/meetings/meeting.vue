@@ -22,7 +22,7 @@
 <script>
     import moment from 'moment';
     import {mapState} from 'vuex';
-    import item from './item';
+    import item from '../items/item';
 
 
     export default {
@@ -34,10 +34,10 @@
             }
         },
         computed: mapState({
-            items: state => state.meetingItems.items
+            items: state => state.meetings.items
         }),
         created() {
-            this.$store.dispatch('meetingItems/set_items', this.meeting);
+            this.$store.dispatch('meetings/set_items', this.meeting);
         },
         methods: {}
 

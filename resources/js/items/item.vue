@@ -4,7 +4,7 @@
             {{ item.name }}
         </a>
 
-        <published-post :item="item"></published-post>
+        <published-item :item="item"></published-item>
 
 
         <div class="text-center">
@@ -30,11 +30,10 @@
 <script>
     import itemButtons from './itemButtons';
     import {mapState} from 'vuex';
-    import meetingItems from "../store/modules/meeting-item";
-    import publishedPost from "../posts/publishedPost.vue";
+    import publishedItem from "./publishedItem";
 
     export default {
-        components: {itemButtons, publishedPost},
+        components: {itemButtons, publishedItem},
         props: ['item'],
         computed: {
             userVote() {
@@ -54,7 +53,7 @@
                     alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
                     return
                 }
-                this.$store.dispatch('meetingItems/set_vote_status', this.item);
+                this.$store.dispatch('meetings/set_vote_status', this.item);
             },
 
             storeVote: function (id, val) {
