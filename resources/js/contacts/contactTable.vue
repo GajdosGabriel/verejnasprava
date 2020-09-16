@@ -47,13 +47,13 @@
             </tbody>
         </table>
 
-        <paginator :data="contacts"/>
+        <paginator :data="contacts" :url="url"/>
 
     </div>
 </template>
 
 <script>
-    import paginator from '../modules/pagination';
+    import paginator from './pagination.vue';
     import numeral from 'numeral';
     import {mapState} from 'vuex';
 
@@ -66,20 +66,20 @@
         data: function () {
             return {
                 numeral: numeral,
-                search: '',
-                user: this.user,
-                url: '/api/contacts/' + this.user.active_organization + '/'
+                search: ''
             }
         },
         computed: mapState({
             contacts: state => state.contacts.contacts,
+            url: state => state.contacts.url
         }),
-        mounted() {
-            this.$store.dispatch('contacts/fetchContacts', this.url);
+        created() {
+            this.$store.dispatch('contacts/fetchContacts', this.url  + this.user.active_organization);
         },
         watch: {
             search: function (val) {
-                this.$store.dispatch('contacts/fetchContacts', this.url + '?multi=' + this.search);
+                console.log('dddd');
+                this.$store.dispatch('contacts/fetchContacts', this.url + this.user.active_organization + '?multi=' + this.search);
             }
         },
         methods: {
@@ -87,17 +87,9 @@
                 'newContactToggle',
                 'openEditForm',
                 'filterContact'
-            ]),
-
-            getContacts: function () {
-                axios.get(this.url + this.search)
-                    .then(response => {
-                            this.contacts = response.data.data;
-                            this.makePagination(response.data)
-                        }
-                    );
-            }
+            ])
         },
+
         filters: {
             pscFormat: function (value) {
                 return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");

@@ -2,7 +2,8 @@ const state = {
     items: []
 
 };
-const getters = {};
+const getters = {
+};
 
 const mutations = {
     SET_ITEMS: function (state, meeting) {
@@ -12,6 +13,8 @@ const mutations = {
     SET_PUBLISHED_ITEM: function (state, item) {
         item.vote_status = !item.vote_status;
     },
+
+
 
 };
 const actions = {

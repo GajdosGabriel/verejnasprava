@@ -3,6 +3,7 @@ const state = {
     contacts: [],
     showEditForm: false,
     showCreateForm: false,
+    url: '/api/contacts/',
     contact: {}
 };
 const getters = {};
