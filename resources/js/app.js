@@ -33,7 +33,6 @@ Vue.component('nav-items', require('./modules/navigation/navItems.vue').default)
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
 Vue.component('accordion-table', require('./posts/postTableFronted.vue').default);
 Vue.component('post-table', require('./posts/postTable.vue').default);
-Vue.component('interpelation-table', require('./interpellations/InterpelationCard.vue').default);
 Vue.component('vote-form-button', require('./items/itemButtons.vue').default);
 Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 Vue.component('organization-edit', require('./organizations/edit.vue').default);

@@ -15,6 +15,7 @@
 
             </div>
         </div>
+
     </div>
 
 </template>
@@ -23,6 +24,9 @@
     import moment from 'moment';
     import {mapState} from 'vuex';
     import item from '../items/item';
+
+
+
 
 
     export default {

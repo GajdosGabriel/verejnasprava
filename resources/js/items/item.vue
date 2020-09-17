@@ -26,6 +26,8 @@
                 <itemButtons :votes="userVote" :item="item"></itemButtons>
 
         </div>
+
+        <interpellation :item="item"></interpellation>
     </div>
 
 </template>
@@ -34,9 +36,10 @@
     import itemButtons from './itemButtons';
     import {mapState} from 'vuex';
     import publishedButton from "./publishedButton";
+    import interpellation from '../interpellations/interpellationCard';
 
     export default {
-        components: {itemButtons, publishedButton},
+        components: {itemButtons, publishedButton, interpellation},
         props: ['item'],
         computed: {
             userVote() {

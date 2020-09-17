@@ -5,7 +5,7 @@
             Zapnúť hlasovanie
         </button>
 
-        <interpelation-table :item="item"/>
+        <interpellation-table :item="item"/>
     </div>
 
 
@@ -14,11 +14,11 @@
 
 <script>
     import {bus} from '../app';
-    import interpelationTable from '../interpellations/InterpelationCard.vue';
+    import interpellationTable from '../interpellations/interpellationCard.vue';
 
     export default {
         props: ['itemid'],
-        components: {interpelationTable},
+        components: {interpellationTable},
         data: function () {
             return {
                 item: ''
