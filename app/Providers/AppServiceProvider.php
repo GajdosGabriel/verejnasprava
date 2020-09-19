@@ -51,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         Carbon::setLocale(config('app.locale'));
+        \Schema::defaultStringLength(191);
 
 
         view()->composer('user.listAllUsers', function($view)

@@ -1,11 +1,24 @@
 const state = {
-    loadingStatus: 'notLoading'
+    loadingStatus: 'notLoading',
+    inter: []
 };
 const getters = {};
 
 const mutations = {
+    SAVE_INTERPELLATION: function(state, item){
+        state.inter.push('xxxxxx')
+    }
 };
-const actions = {};
+const actions = {
+
+    saveInterpellation({commit}, item){
+        axios.get('/inter/' + item.id + '/' + item.slug + '/item/interpellation'),
+            commit('SAVE_INTERPELLATION', item)
+    }
+
+};
+
+;
 
 export default {
     namespaced: true,
