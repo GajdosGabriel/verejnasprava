@@ -15,7 +15,7 @@
 
         methods: {
             publishedToggle: function(item){
-                this.$store.dispatch('meetings/publishedToggle', item)
+                this.$store.dispatch('items/publishedToggle', item)
             }
         }
 

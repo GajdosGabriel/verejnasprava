@@ -18,8 +18,6 @@ const mutations = {
         item.published = !item.published;
     }
 
-
-
 };
 const actions = {
     set_items({commit}, meeting) {
@@ -38,7 +36,6 @@ const actions = {
     publishedToggle({commit}, item) {
      axios.get('/api/item/' + item.id + '/published');
         commit('PUBLISHED_STATUS', item);
-
     }
 
 };

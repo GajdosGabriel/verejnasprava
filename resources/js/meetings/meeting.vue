@@ -38,10 +38,10 @@
             }
         },
         computed: mapState({
-            items: state => state.meetings.items
+            items: state => state.items.items
         }),
         created() {
-            this.$store.dispatch('meetings/set_items', this.meeting);
+            this.$store.dispatch('items/set_items', this.meeting);
         },
         methods: {}
 

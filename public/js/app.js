@@ -2679,9 +2679,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
-//
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2708,11 +2711,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread({
+    meVote: function meVote() {
+      var _this = this;
+
+      return this.item.interpellations.filter(function (item) {
+        return item.user_id == _this.user.id;
+      });
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     inter: function inter(state) {
       return state.interpellations.inter;
     }
-  }),
+  })),
   methods: {
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/saveInterpellation', this.item);
@@ -2735,6 +2746,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interpellations/interpellationCard */ "./resources/js/interpellations/interpellationCard.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -2780,7 +2800,7 @@ __webpack_require__.r(__webpack_exports__);
     interpellation: _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: ['item'],
-  computed: {
+  computed: _objectSpread({
     userVote: function userVote() {
       var _this = this;
 
@@ -2788,7 +2808,11 @@ __webpack_require__.r(__webpack_exports__);
         return item.user_id == _this.user.id;
       });
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    items: function items(state) {
+      return state.meetings.items;
+    }
+  })),
   methods: {
     startVote: function startVote() {
       if (!this.item.interpellations) {
@@ -2801,7 +2825,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      this.$store.dispatch('meetings/set_vote_status', this.item);
+      this.$store.dispatch('items/set_vote_status', this.item);
     },
     storeVote: function storeVote(id, val) {
       axios.put('/api/vote/' + id, {
@@ -2925,7 +2949,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['item'],
   methods: {
     publishedToggle: function publishedToggle(item) {
-      this.$store.dispatch('meetings/publishedToggle', item);
+      this.$store.dispatch('items/publishedToggle', item);
     }
   }
 });
@@ -2982,11 +3006,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     items: function items(state) {
-      return state.meetings.items;
+      return state.items.items;
     }
   }),
   created: function created() {
-    this.$store.dispatch('meetings/set_items', this.meeting);
+    this.$store.dispatch('items/set_items', this.meeting);
   },
   methods: {}
 });
@@ -63922,82 +63946,61 @@ var render = function() {
       staticClass: "border-2 rounded-md border-gray-300 my-5"
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" }, [
+        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+          _vm._v("Prihlásnenie do rozpravy  "),
+          _c("small", { staticClass: "text-sm" }, [
+            _vm._v("(" + _vm._s() + ")")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-sm cursor-pointer",
+            on: { click: _vm.storeInterpellation }
+          },
+          [_vm._v("\n            Prihlásiť sa\n        ")]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "ul",
-        [
-          _vm._l(_vm.item.interpellations, function(interpellation) {
-            return _c(
-              "li",
-              {
-                key: interpellation.user_id,
-                staticClass:
-                  "flex justify-between border-b-2 border-dotted px-2"
-              },
-              [
-                _c("span", {
-                  domProps: {
-                    textContent: _vm._s(
-                      interpellation.user.first_name +
-                        " " +
-                        interpellation.user.last_name
-                    )
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "text-gray-800 text-sm cursor-pointer",
-                    on: { click: _vm.storeInterpellation }
-                  },
-                  [_vm._v("x")]
-                )
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c(
+        _vm._l(_vm.item.interpellations, function(interpellation) {
+          return _c(
             "li",
             {
+              key: interpellation.user_id,
               staticClass: "flex justify-between border-b-2 border-dotted px-2"
             },
             [
+              _c("span", {
+                domProps: {
+                  textContent: _vm._s(
+                    interpellation.user.first_name +
+                      " " +
+                      interpellation.user.last_name
+                  )
+                }
+              }),
+              _vm._v(" "),
               _c(
                 "span",
                 {
-                  staticClass: "text-sm cursor-pointer",
+                  staticClass: "text-gray-800 text-sm cursor-pointer",
                   on: { click: _vm.storeInterpellation }
                 },
-                [_vm._v("Prihlásenie do rozpravy")]
+                [_vm._v("x")]
               )
             ]
           )
-        ],
-        2
+        }),
+        0
       )
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" },
-      [
-        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-          _vm._v("Prihlásnenie do rozpravy")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-sm" }, [_vm._v("počet")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -64042,7 +64045,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "text-center mt-6" }, [
         _c("button", {
           staticClass:
             "text-xs btn mb-3 border-gray-700 border-2 hover:bg-gray-400",
@@ -81081,8 +81084,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/notification */ "./resources/js/store/modules/notification.js");
 /* harmony import */ var _modules_posts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/posts */ "./resources/js/store/modules/posts.js");
 /* harmony import */ var _modules_contacts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/contacts */ "./resources/js/store/modules/contacts.js");
-/* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
-/* harmony import */ var _modules_interpellations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/interpellations */ "./resources/js/store/modules/interpellations.js");
+/* harmony import */ var _modules_interpellations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/interpellations */ "./resources/js/store/modules/interpellations.js");
+/* harmony import */ var _modules_items__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/items */ "./resources/js/store/modules/items.js");
 
 
 
@@ -81099,8 +81102,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     notification: _modules_notification__WEBPACK_IMPORTED_MODULE_3__["default"],
     posts: _modules_posts__WEBPACK_IMPORTED_MODULE_4__["default"],
     contacts: _modules_contacts__WEBPACK_IMPORTED_MODULE_5__["default"],
-    meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_6__["default"],
-    interpellations: _modules_interpellations__WEBPACK_IMPORTED_MODULE_7__["default"]
+    items: _modules_items__WEBPACK_IMPORTED_MODULE_7__["default"],
+    interpellations: _modules_interpellations__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
 }));
 
@@ -81285,21 +81288,21 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   loadingStatus: 'notLoading',
-  inter: []
+  inter: null
 };
 var getters = {};
 var mutations = {
   SAVE_INTERPELLATION: function SAVE_INTERPELLATION(state, item) {
-    state.inter.push('xxxxxx');
+    state.inter = item;
   }
 };
 var actions = {
   saveInterpellation: function saveInterpellation(_ref, item) {
     var commit = _ref.commit;
+    console.log(item);
     axios.get('/inter/' + item.id + '/' + item.slug + '/item/interpellation'), commit('SAVE_INTERPELLATION', item);
   }
 };
-;
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: state,
@@ -81310,10 +81313,10 @@ var actions = {
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/meetings.js":
-/*!************************************************!*\
-  !*** ./resources/js/store/modules/meetings.js ***!
-  \************************************************/
+/***/ "./resources/js/store/modules/items.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/items.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

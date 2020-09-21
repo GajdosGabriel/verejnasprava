@@ -10,7 +10,7 @@
         </div>
 
 
-        <div class="text-center">
+        <div class="text-center mt-6">
             <button class="text-xs btn mb-3 border-gray-700 border-2 hover:bg-gray-400"
                     :class="item.vote_status == 0 ? 'bg-blue-700 text-gray-200' : ''"
                     @click="startVote"
@@ -27,7 +27,10 @@
 
         </div>
 
-        <interpellation :item="item"></interpellation>
+            <interpellation :item="item"></interpellation>
+
+
+
     </div>
 
 </template>
@@ -44,9 +47,10 @@
         computed: {
             userVote() {
                 return this.item.votes.filter(item => item.user_id == this.user.id)
-
-            }
-
+            },
+            ...mapState({
+               items: state => state.meetings.items
+            })
         },
         methods: {
             startVote: function () {
@@ -59,7 +63,7 @@
                     alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
                     return
                 }
-                this.$store.dispatch('meetings/set_vote_status', this.item);
+                this.$store.dispatch('items/set_vote_status', this.item);
             },
 
             storeVote: function (id, val) {
