@@ -81136,22 +81136,22 @@ var state = {
 };
 var getters = {};
 var mutations = {
-  SET_LOADING_STATUS: function SET_LOADING_STATUS(state, status) {
-    state.loadingStatus = status;
+  SET_LOADING_STATUS: function SET_LOADING_STATUS(state, payload) {
+    state.loadingStatus = payload;
   },
-  SET_CONTACTS: function SET_CONTACTS(state, contacts) {
-    state.contacts = contacts;
+  SET_CONTACTS: function SET_CONTACTS(state, payload) {
+    state.contacts = payload;
   },
-  INSERT_CONTACT: function INSERT_CONTACT(state, contact) {
-    state.contacts.data.unshift(contact);
+  INSERT_CONTACT: function INSERT_CONTACT(state, payload) {
+    state.contacts.data.unshift(payload);
   },
-  SHOW_FORM: function SHOW_FORM(state, data) {
+  SHOW_FORM: function SHOW_FORM(state, payload) {
     state.showEditForm = !state.showEditForm;
-    state.contact = data;
+    state.contact = payload;
   },
-  SHOW_NEW_FORM: function SHOW_NEW_FORM(state, data) {
+  SHOW_NEW_FORM: function SHOW_NEW_FORM(state, payload) {
     state.showCreateForm = !state.showCreateForm;
-    state.contact = data;
+    state.contact = payload;
   },
   REMOVE_CONTACT: function REMOVE_CONTACT(state, id) {
     state.contacts = state.contacts.data.filter(function (contact) {

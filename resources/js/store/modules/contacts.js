@@ -9,24 +9,24 @@ const state = {
 const getters = {};
 
 const mutations = {
-    SET_LOADING_STATUS: function (state, status) {
-        state.loadingStatus = status
+    SET_LOADING_STATUS: function (state, payload) {
+        state.loadingStatus = payload
     },
-    SET_CONTACTS: function (state, contacts) {
-        state.contacts = contacts;
+    SET_CONTACTS: function (state, payload) {
+        state.contacts = payload;
     },
 
-    INSERT_CONTACT: function (state, contact) {
-        state.contacts.data.unshift(contact);
+    INSERT_CONTACT: function (state, payload) {
+        state.contacts.data.unshift(payload);
     },
-    SHOW_FORM: function (state, data) {
+    SHOW_FORM: function (state, payload) {
         state.showEditForm = !state.showEditForm;
-        state.contact = data
+        state.contact = payload
     },
 
-    SHOW_NEW_FORM: function (state, data) {
+    SHOW_NEW_FORM: function (state, payload) {
         state.showCreateForm = !state.showCreateForm;
-        state.contact = data
+        state.contact = payload
     },
     REMOVE_CONTACT: function (state, id) {
         state.contacts = state.contacts.data.filter(
