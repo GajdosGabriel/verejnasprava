@@ -12,7 +12,6 @@
     import {mapState} from 'vuex';
     export default {
         props: ['item'],
-
         methods: {
             publishedToggle: function(item){
                 this.$store.dispatch('items/publishedToggle', item)

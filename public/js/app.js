@@ -2709,19 +2709,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
-  computed: _objectSpread({
-    meVote: function meVote() {
-      var _this = this;
-
-      return this.item.interpellations.filter(function (item) {
-        return item.user_id == _this.user.id;
-      });
-    }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     interpellations: function interpellations(state) {
       return state.interpellations.interpellations;
     }
@@ -2906,15 +2899,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['votes', 'item'],
-  data: function data() {
-    return {};
+  computed: {
+    meVote: function meVote() {
+      var _this = this;
+
+      var vote = this.item.votes.find(function (item) {
+        return item.user_id == _this.user.id;
+      }); // if (typeof vote.vote != 'undefined') return 4;
+      // return  vote.vote;
+      // return this.item.votes.find(item => item.user_id == this.user.id)
+    }
   },
   methods: {
     storeVote: function storeVote(id, val) {
       axios.put('/api/vote/' + id, {
         userId: this.item.user_id,
         vote: val
-      });
+      }).then(function (response) {
+        response.data;
+      }); // console.log(response.data);
     }
   }
 });
@@ -63949,7 +63952,7 @@ var render = function() {
         _c("h4", { staticClass: "font-semibold text-gray-800" }, [
           _vm._v("Prihlásnenie do rozpravy  "),
           _c("small", { staticClass: "text-sm" }, [
-            _vm._v("(" + _vm._s() + ")")
+            _vm._v("(" + _vm._s(_vm.interpellations.length) + ")")
           ])
         ]),
         _vm._v(" "),
@@ -64120,8 +64123,8 @@ var render = function() {
           }
         }
       },
-      _vm._l(_vm.votes, function(vote) {
-        return _c("div", [
+      [
+        _c("div", [
           _c(
             "div",
             { staticClass: "md:flex justify-between my-5 bg-gray-100" },
@@ -64138,33 +64141,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _vm._v(
-                    "\n                    Súhlasim\n                    "
-                  ),
-                  vote.vote == 1
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
+                [_vm._v("\n                        Súhlasim\n")]
               ),
               _vm._v(" "),
               _c(
@@ -64178,32 +64155,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _vm._v("\n                    Zdržal\n                    "),
-                  vote.vote == 2
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "w-5 h-5 ml-2 text-blue-600 fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
+                [_vm._v("\n                        Zdržal\n")]
               ),
               _vm._v(" "),
               _c(
@@ -64219,39 +64171,14 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                    Nesúhlasim " +
-                      _vm._s() +
-                      "\n                    "
-                  ),
-                  vote.vote == 0
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
+                    "\n                        Nesúhlasim " + _vm._s() + "\n"
+                  )
                 ]
               )
             ]
           )
         ])
-      }),
-      0
+      ]
     )
   ])
 }
