@@ -86,12 +86,12 @@ const actions = {
 
     },
 
-    fetchContacts(context, url) {
-        context.commit('SET_LOADING_STATUS', 'loading');
+    fetchContacts({commit}, url) {
+        commit('SET_LOADING_STATUS', 'loading');
         axios.get(url)
             .then(response => {
-                    context.commit('SET_LOADING_STATUS', 'notLoading');
-                    context.commit('SET_CONTACTS', response.data);
+                    commit('SET_LOADING_STATUS', 'notLoading');
+                    commit('SET_CONTACTS', response.data);
                 }
             );
     },

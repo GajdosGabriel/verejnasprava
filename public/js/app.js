@@ -2160,7 +2160,9 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createName
   methods: _objectSpread({}, mapActions(['newContactToggle', 'openEditForm', 'filterContact'])),
   filters: {
     pscFormat: function pscFormat(value) {
-      return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
+      if (value != null) {
+        return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
+      }
     }
   }
 });
@@ -2720,14 +2722,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    inter: function inter(state) {
-      return state.interpellations.inter;
+    interpellations: function interpellations(state) {
+      return state.interpellations.interpellations;
     }
   })),
   methods: {
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/saveInterpellation', this.item);
     }
+  },
+  mounted: function mounted() {
+    this.$store.commit("interpellations/SET_INTERPELLATION", this.item.interpellations);
   }
 });
 
@@ -2746,49 +2751,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interpellations/interpellationCard */ "./resources/js/interpellations/interpellationCard.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2800,19 +2798,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     interpellation: _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: ['item'],
-  computed: _objectSpread({
+  computed: {
     userVote: function userVote() {
       var _this = this;
 
-      return this.item.votes.filter(function (item) {
-        return item.user_id == _this.user.id;
+      return this.item.votes.filter(function (i) {
+        return i.user_id == _this.user.id;
       });
+    },
+    currentlyItem: function currentlyItem() {
+      return this.$store.getters['items/getItemById'](this.item.id);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    items: function items(state) {
-      return state.meetings.items;
-    }
-  })),
+  },
   methods: {
     startVote: function startVote() {
       if (!this.item.interpellations) {
@@ -4062,6 +4059,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4070,7 +4068,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addNewTodoItem: function addNewTodoItem() {
-      this.$store.dispatch('todos/addNewTodo', this.newTodoItem);
+      this.$store.commit('todos/NEWTODO', this.newTodoItem); // this.$store.dispatch('todos/addNewTodo', this.newTodoItem);
+
       this.newTodoItem = '';
     }
   }
@@ -63966,7 +63965,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
-        _vm._l(_vm.item.interpellations, function(interpellation) {
+        _vm._l(_vm.interpellations, function(interpellation) {
           return _c(
             "li",
             {
@@ -65650,7 +65649,14 @@ var render = function() {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "btn text-xs", on: { click: _vm.deleteTodo } },
+      {
+        staticClass: "btn text-xs",
+        on: {
+          click: function($event) {
+            return _vm.$store.commit("todos/DELETETODO", _vm.todo)
+          }
+        }
+      },
       [_vm._v("Zmazať")]
     )
   ])
@@ -65687,7 +65693,8 @@ var render = function() {
           expression: "newTodoItem"
         }
       ],
-      staticClass: "p-2",
+      staticClass:
+        "p-2 border-gray-400 border-2 rounded-l-lg focus-within:border-teal-500",
       attrs: { type: "text p-1" },
       domProps: { value: _vm.newTodoItem },
       on: {
@@ -65702,7 +65709,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "btn btn-primary", on: { click: _vm.addNewTodoItem } },
+      {
+        staticClass: "btn btn-primary rounded-l-sm",
+        on: { click: _vm.addNewTodoItem }
+      },
       [_vm._v("Uložiť")]
     )
   ])
@@ -81259,11 +81269,12 @@ var actions = {
       }, _callee3);
     }))();
   },
-  fetchContacts: function fetchContacts(context, url) {
-    context.commit('SET_LOADING_STATUS', 'loading');
+  fetchContacts: function fetchContacts(_ref7, url) {
+    var commit = _ref7.commit;
+    commit('SET_LOADING_STATUS', 'loading');
     axios.get(url).then(function (response) {
-      context.commit('SET_LOADING_STATUS', 'notLoading');
-      context.commit('SET_CONTACTS', response.data);
+      commit('SET_LOADING_STATUS', 'notLoading');
+      commit('SET_CONTACTS', response.data);
     });
   }
 };
@@ -81288,19 +81299,20 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   loadingStatus: 'notLoading',
-  inter: null
+  interpellations: []
 };
 var getters = {};
 var mutations = {
-  SAVE_INTERPELLATION: function SAVE_INTERPELLATION(state, item) {
-    state.inter = item;
+  SET_INTERPELLATION: function SET_INTERPELLATION(state, data) {
+    state.interpellations = data;
   }
 };
 var actions = {
-  saveInterpellation: function saveInterpellation(_ref, item) {
+  saveInterpellation: function saveInterpellation(_ref, payload) {
     var commit = _ref.commit;
-    console.log(item);
-    axios.get('/inter/' + item.id + '/' + item.slug + '/item/interpellation'), commit('SAVE_INTERPELLATION', item);
+    axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation').then(function (response) {
+      commit('SET_INTERPELLATION', response.data);
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -81323,9 +81335,18 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  items: []
+  items: [],
+  item: ''
 };
-var getters = {};
+var getters = {
+  getItemById: function getItemById(state) {
+    return function (id) {
+      return state.items.find(function (i) {
+        return i.id === id;
+      });
+    };
+  }
+};
 var mutations = {
   SET_ITEMS: function SET_ITEMS(state, meeting) {
     state.items = meeting.items;
@@ -81491,6 +81512,21 @@ var getters = {
     }).length;
   }
 };
+var mutations = {
+  NEWTODO: function NEWTODO(state, todoData) {
+    state.todos.push({
+      title: todoData,
+      completed: false
+    });
+  },
+  DELETETODO: function DELETETODO(state, todoData) {
+    var index = state.todos.indexOf(todoData);
+    state.todos.splice(index, 1);
+  },
+  TOOGLE_TODO_STATUS: function TOOGLE_TODO_STATUS(state, todoItem) {
+    todoItem.completed = !todoItem.completed;
+  }
+};
 var actions = {
   addNewTodo: function addNewTodo(_ref, todoData) {
     var commit = _ref.commit,
@@ -81519,21 +81555,6 @@ var actions = {
   toggleTodoStatus: function toggleTodoStatus(_ref3, todoItem) {
     var commit = _ref3.commit;
     commit('TOOGLE_TODO_STATUS', todoItem);
-  }
-};
-var mutations = {
-  NEWTODO: function NEWTODO(state, todoData) {
-    state.todos.push({
-      title: todoData,
-      completed: false
-    });
-  },
-  DELETETODO: function DELETETODO(state, todoData) {
-    var index = state.todos.indexOf(todoData);
-    state.todos.splice(index, 1);
-  },
-  TOOGLE_TODO_STATUS: function TOOGLE_TODO_STATUS(state, todoItem) {
-    todoItem.completed = !todoItem.completed;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

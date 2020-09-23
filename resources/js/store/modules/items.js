@@ -1,8 +1,10 @@
 const state = {
-    items: []
+    items: [],
+    item: ''
 
 };
 const getters = {
+    getItemById: (state) => (id) => state.items.find(i => i.id === id),
 };
 
 const mutations = {

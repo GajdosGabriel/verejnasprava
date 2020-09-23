@@ -29,15 +29,14 @@
 
             <interpellation :item="item"></interpellation>
 
-
-
     </div>
 
 </template>
 
 <script>
     import itemButtons from './itemButtons';
-    import {mapState} from 'vuex';
+    import { mapState } from 'vuex';
+    import { mapGetters } from 'vuex';
     import publishedButton from "./publishedButton";
     import interpellation from '../interpellations/interpellationCard';
 
@@ -46,11 +45,12 @@
         props: ['item'],
         computed: {
             userVote() {
-                return this.item.votes.filter(item => item.user_id == this.user.id)
+                return this.item.votes.filter(i => i.user_id == this.user.id)
             },
-            ...mapState({
-               items: state => state.meetings.items
-            })
+
+            currentlyItem() {
+              return this.$store.getters['items/getItemById'](this.item.id)
+            }
         },
         methods: {
             startVote: function () {

@@ -1,21 +1,21 @@
 const state = {
     loadingStatus: 'notLoading',
-    inter: null
+    interpellations: []
 };
 const getters = {};
 
 const mutations = {
-    SAVE_INTERPELLATION: function(state, item){
-        state.inter = item
+    SET_INTERPELLATION: function (state, data) {
+        state.interpellations = data
     }
 };
 
 const actions = {
-
-    saveInterpellation({commit}, item){
-        console.log(item);
-        axios.get('/inter/' + item.id + '/' + item.slug + '/item/interpellation'),
-            commit('SAVE_INTERPELLATION', item)
+    saveInterpellation({commit}, payload) {
+        axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation')
+            .then(response => {
+              commit('SET_INTERPELLATION', response.data )
+            });
     }
 
 };

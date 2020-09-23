@@ -92,7 +92,9 @@
 
         filters: {
             pscFormat: function (value) {
-                return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
+                if ( value != null) {
+                    return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
+                }
             }
         }
     }

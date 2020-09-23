@@ -25,10 +25,6 @@
     import {mapState} from 'vuex';
     import item from '../items/item';
 
-
-
-
-
     export default {
         props: ['meeting'],
         components: {item},

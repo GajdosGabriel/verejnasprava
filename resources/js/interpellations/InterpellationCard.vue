@@ -8,7 +8,7 @@
         </div>
         <ul>
 
-            <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
+            <li v-for="interpellation in interpellations" :key="interpellation.user_id"
                 class="flex justify-between border-b-2 border-dotted px-2">
                 <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
                 <span @click="storeInterpellation" class="text-gray-800 text-sm cursor-pointer">x</span>
@@ -32,16 +32,19 @@
             },
 
             ...mapState({
-                    inter: state => state.interpellations.inter
+                    interpellations: state => state.interpellations.interpellations
                 })
         },
-
         methods: {
             storeInterpellation: function () {
-                this.$store.dispatch('interpellations/saveInterpellation', this.item)
+                this.$store.dispatch('interpellations/saveInterpellation', this.item);
             },
 
 
+        },
+
+        mounted() {
+                this.$store.commit("interpellations/SET_INTERPELLATION", this.item.interpellations)
         }
     }
 </script>

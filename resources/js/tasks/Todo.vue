@@ -2,7 +2,7 @@
 
     <div class="w-full flex justify-between my-2">
         <span :class="{completed: todo.completed}" class="cursor-pointer" @click="toggleTodoStatus">{{ todo.title }}</span>
-    <button @click="deleteTodo" class="btn text-xs">Zmazať</button>
+    <button @click="$store.commit('todos/DELETETODO', todo)" class="btn text-xs">Zmazať</button>
     </div>
 
 </template>

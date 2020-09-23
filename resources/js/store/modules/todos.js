@@ -24,6 +24,23 @@ const getters = {
         }).length
     }
 };
+
+const mutations = {
+    NEWTODO: function(state, todoData ) {
+        state.todos.push({
+            title: todoData,
+            completed: false
+        });
+    },
+    DELETETODO: function (state, todoData) {
+        let index = state.todos.indexOf(todoData);
+        state.todos.splice(index, 1);
+    },
+    TOOGLE_TODO_STATUS: function(state, todoItem) {
+        todoItem.completed = ! todoItem.completed;
+    }
+};
+
 const actions = {
     addNewTodo: function ({commit, dispatch}, todoData) {
         commit('NEWTODO', todoData);
@@ -48,21 +65,7 @@ const actions = {
         commit('TOOGLE_TODO_STATUS', todoItem);
     }
 };
-const mutations = {
-    NEWTODO: function(state, todoData ) {
-        state.todos.push({
-            title: todoData,
-            completed: false
-        });
-    },
-    DELETETODO: function (state, todoData) {
-        let index = state.todos.indexOf(todoData);
-        state.todos.splice(index, 1);
-    },
-    TOOGLE_TODO_STATUS: function(state, todoItem) {
-        todoItem.completed = ! todoItem.completed;
-    }
-};
+
 
 export default {
     namespaced: true,
