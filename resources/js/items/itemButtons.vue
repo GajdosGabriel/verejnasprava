@@ -59,8 +59,9 @@
 
 </template>
 <script>
+    import {mapState} from "vuex";
+
     export default {
-        props: ['votes', 'item'],
         computed:{
             meVote() {
                 const vote = this.item.votes.find(item => item.user_id == this.user.id);
@@ -71,6 +72,10 @@
                     // return this.item.votes.find(item => item.user_id == this.user.id)
 
             },
+            ...mapState({
+                item: state => state.items.item,
+                votes: state => state.items.votes
+            }),
         },
         methods: {
             storeVote: function (id, val) {
@@ -82,3 +87,5 @@
     }
 
 </script>
+
+

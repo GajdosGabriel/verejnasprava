@@ -32,7 +32,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $item
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
@@ -49,20 +49,7 @@ class ItemController extends Controller
      */
     public function update(Item $item)
     {
-        // only published item can be voted
-        if ($item->published == 0) {
-            session()->flash('flash', 'Položka nie je publikovaná!');
-            return  back();
-        }
-
-        // Enable vote can only if interpelations list is empty
-        if ($item->interpellations()->count() > 0) {
-            session()->flash('flash', 'Zoznam prihlásených do rozpravy nie je prázdny!');
-            return back();
-        }
-
-        $item->voteStatus();
-//        return back();
+       //
     }
 
     /**
@@ -78,6 +65,11 @@ class ItemController extends Controller
 
     public function published(Item $item) {
         $item->published();
-        return back();
+        return $item;
+    }
+
+    public function voteStatus(Item $item) {
+        $item->voteStatus();
+        return $item;
     }
 }

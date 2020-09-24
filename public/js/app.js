@@ -2713,10 +2713,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
+    },
     interpellations: function interpellations(state) {
-      return state.interpellations.interpellations;
+      return state.items.interpellations;
     }
   })),
   methods: {
@@ -2744,6 +2746,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interpellations/interpellationCard */ "./resources/js/interpellations/interpellationCard.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2790,38 +2798,24 @@ __webpack_require__.r(__webpack_exports__);
     publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
     interpellation: _interpellations_interpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['item'],
-  computed: {
-    userVote: function userVote() {
-      var _this = this;
-
-      return this.item.votes.filter(function (i) {
-        return i.user_id == _this.user.id;
-      });
+  props: ['itemId'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
     },
-    currentlyItem: function currentlyItem() {
-      return this.$store.getters['items/getItemById'](this.item.id);
+    votes: function votes(state) {
+      return state.items.votes;
+    },
+    interpellations: function interpellations(state) {
+      return state.items.interpellations;
     }
+  })),
+  mounted: function mounted() {
+    this.$store.dispatch('items/get_item', this.itemId);
   },
   methods: {
-    startVote: function startVote() {
-      if (!this.item.interpellations) {
-        alert('Zoznam prihlásených do rozpravy nie je prázdny.');
-        return;
-      }
-
-      if (!this.item.published) {
-        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
-        return;
-      }
-
+    voteStatus: function voteStatus() {
       this.$store.dispatch('items/set_vote_status', this.item);
-    },
-    storeVote: function storeVote(id, val) {
-      axios.put('/api/vote/' + id, {
-        userId: this.item.user_id,
-        vote: val
-      });
     }
   }
 });
@@ -2837,6 +2831,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2897,9 +2898,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['votes', 'item'],
-  computed: {
+  computed: _objectSpread({
     meVote: function meVote() {
       var _this = this;
 
@@ -2909,7 +2910,14 @@ __webpack_require__.r(__webpack_exports__);
       // return  vote.vote;
       // return this.item.votes.find(item => item.user_id == this.user.id)
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
+    },
+    votes: function votes(state) {
+      return state.items.votes;
+    }
+  })),
   methods: {
     storeVote: function storeVote(id, val) {
       axios.put('/api/vote/' + id, {
@@ -2934,6 +2942,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2946,7 +2960,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
+    }
+  })),
   methods: {
     publishedToggle: function publishedToggle(item) {
       this.$store.dispatch('items/publishedToggle', item);
@@ -63941,8 +63959,8 @@ var render = function() {
         {
           name: "show",
           rawName: "v-show",
-          value: _vm.item.vote_status == 1,
-          expression: "item.vote_status == 1"
+          value: _vm.item.vote_status == 0,
+          expression: "item.vote_status == 0"
         }
       ],
       staticClass: "border-2 rounded-md border-gray-300 my-5"
@@ -64042,7 +64060,7 @@ var render = function() {
             [_vm._v("\n            " + _vm._s(_vm.item.name) + "\n        ")]
           ),
           _vm._v(" "),
-          _c("published-button", { attrs: { item: _vm.item } })
+          _c("published-button")
         ],
         1
       ),
@@ -64051,15 +64069,15 @@ var render = function() {
         _c("button", {
           staticClass:
             "text-xs btn mb-3 border-gray-700 border-2 hover:bg-gray-400",
-          class: _vm.item.vote_status == 0 ? "bg-blue-700 text-gray-200" : "",
+          class: _vm.item.vote_status == 1 ? "bg-blue-700 text-gray-200" : "",
           domProps: {
             textContent: _vm._s(
-              _vm.item.vote_status == 1
+              _vm.item.vote_status == 0
                 ? "Zapnúť hlasovanie"
                 : "Vypnúť hlasovanie"
             )
           },
-          on: { click: _vm.startVote }
+          on: { click: _vm.voteStatus }
         })
       ]),
       _vm._v(" "),
@@ -64070,8 +64088,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: !_vm.item.vote_status,
-              expression: "! item.vote_status"
+              value: _vm.item.vote_status,
+              expression: "item.vote_status"
             }
           ]
         },
@@ -64080,12 +64098,12 @@ var render = function() {
             _vm._v("Hlasujte")
           ]),
           _vm._v(" "),
-          _c("itemButtons", { attrs: { votes: _vm.userVote, item: _vm.item } })
+          _c("itemButtons")
         ],
         1
       ),
       _vm._v(" "),
-      _c("interpellation", { attrs: { item: _vm.item } })
+      _c("interpellation")
     ],
     1
   )
@@ -64275,7 +64293,7 @@ var render = function() {
         return _c(
           "div",
           { key: item.id, staticClass: "odd:bg-gray-500" },
-          [_c("item", { attrs: { item: item } })],
+          [_c("item", { attrs: { itemId: item.id } })],
           1
         )
       }),
@@ -81263,6 +81281,8 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   items: [],
+  votes: [],
+  interpellations: [],
   item: ''
 };
 var getters = {
@@ -81278,6 +81298,15 @@ var mutations = {
   SET_ITEMS: function SET_ITEMS(state, meeting) {
     state.items = meeting.items;
   },
+  SET_ITEM: function SET_ITEM(state, item) {
+    state.item = item;
+  },
+  SET_VOTES: function SET_VOTES(state, item) {
+    state.votes = item;
+  },
+  SET_INTERPELLATIONS: function SET_INTERPELLATIONS(state, item) {
+    state.interpellations = item;
+  },
   SET_VOTE_STATUS: function SET_VOTE_STATUS(state, item) {
     item.vote_status = !item.vote_status;
   },
@@ -81290,13 +81319,28 @@ var actions = {
     var commit = _ref.commit;
     commit('SET_ITEMS', meeting);
   },
-  get_item: function get_item(_ref2, item) {
+  get_item: function get_item(_ref2, itemId) {
     var commit = _ref2.commit;
-    commit('GET_ITEM', item);
+    axios.get('/api/item/' + itemId + '/show').then(function (response) {
+      commit('SET_ITEM', response.data);
+      commit('SET_VOTES', response.data.votes);
+      commit('SET_INTERPELLATIONS', response.data.interpellations);
+    });
   },
   set_vote_status: function set_vote_status(_ref3, item) {
     var commit = _ref3.commit;
-    axios.put('/api/item/' + item.id);
+
+    if (!state.item.published) {
+      alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+      return;
+    }
+
+    if (state.interpellations.length) {
+      alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+      return;
+    }
+
+    axios.get('/api/item/' + item.id + '/voteStatus');
     commit('SET_VOTE_STATUS', item);
   },
   publishedToggle: function publishedToggle(_ref4, item) {

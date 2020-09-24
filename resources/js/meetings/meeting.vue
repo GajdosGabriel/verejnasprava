@@ -11,7 +11,7 @@
         <div class="mt-4 bg-white">
             <div v-for="item in items" :key="item.id" class="odd:bg-gray-500">
 
-                <item :item="item"></item>
+                <item :itemId="item.id"></item>
 
             </div>
         </div>

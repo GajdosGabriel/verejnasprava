@@ -1,6 +1,6 @@
 <template>
 
-    <div class="border-2 rounded-md border-gray-300 my-5"  v-show="item.vote_status == 1">
+    <div class="border-2 rounded-md border-gray-300 my-5"  v-show="item.vote_status == 0">
         <div class="flex justify-between mb-3 bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Prihlásnenie do rozpravy  <small class="text-sm" >({{ interpellations.length }})</small></h4>
             <span @click="storeInterpellation" class="text-sm cursor-pointer">
@@ -25,10 +25,10 @@
     import {bus} from '../app';
     import {mapState} from 'vuex';
     export default {
-        props: ['item'],
         computed:{
             ...mapState({
-                    interpellations: state => state.interpellations.interpellations
+                    item: state => state.items.item,
+                    interpellations: state => state.items.interpellations
                 })
         },
         methods: {
