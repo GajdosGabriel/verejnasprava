@@ -5,11 +5,17 @@
             <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
                 {{ item.name }}
             </a>
-            <published-button></published-button>
+            <div class="flex">
+                <span @click="storeInterpellation" v-if="item.published" class="text-sm cursor-pointer mr-4">
+                    Prihlásiť sa
+                </span>
+                <published-button></published-button>
+            </div>
+
         </div>
 
 
-        <div class="text-center mt-6">
+        <div class="text-center mt-6" v-if="item.published">
             <button class="text-xs btn mb-3 border-gray-700 border-2 hover:bg-gray-400"
                     :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : ''"
                     @click="voteStatus"
@@ -38,7 +44,7 @@
     import {mapState} from 'vuex';
     import {mapGetters} from 'vuex';
     import publishedButton from "./publishedButton";
-    import interpellation from '../interpellations/interpellationCard';
+    import interpellation from './InterpellationCard';
 
     export default {
         components: {itemButtons, publishedButton, interpellation},
@@ -58,7 +64,11 @@
 
             voteStatus: function () {
                 this.$store.dispatch('items/set_vote_status', this.item);
-            }
+            },
+
+            storeInterpellation: function () {
+                this.$store.dispatch('items/saveInterpellation', this.item);
+            },
         }
 
     }

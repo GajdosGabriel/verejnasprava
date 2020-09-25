@@ -46,7 +46,7 @@ import swal from "sweetalert2";
                 <td class="border px-4">
                       <span v-if="item.files.length > 0">
                     <div v-for="file in item.files">
-                        <a target="_blank" :href="'/pdf/' + file.id + '/' + file.name + '/download/pdf'">Príloha</a>
+                        <a target="_blank" :href="'/pdf/' + file.id + '/' + file.filename + '/download/pdf'">Príloha</a>
                     </div>
                             </span>
                     <span v-else class="whitespace-no-wrap">Bez prílohy</span>

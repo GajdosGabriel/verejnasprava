@@ -14,7 +14,7 @@
 
 <script>
     import {bus} from '../app';
-    import interpellationTable from '../interpellations/interpellationCard.vue';
+    import interpellationTable from '../items/InterpellationCard.vue';
 
     export default {
         props: ['itemid'],

@@ -1,21 +1,35 @@
 const state = {
     items: [],
-    votes:[],
-    interpellations:[],
-    item: ''
+    votes: [],
+    interpellations: [],
+    item: '',
+    userVote: null,
+    authUser: ''
 
 };
 const getters = {
-    getItemById: (state) => (id) => state.items.find(i => i.id === id),
+    // meVote:  state => {
+    // return state.votes.find(todo => todo.user_id === state.authUser.id)
+// }
+
 };
 
 const mutations = {
+
+    SET_AUTH_USER: function (state, user) {
+        state.authUser = user;
+    },
+
+
     SET_ITEMS: function (state, meeting) {
         state.items = meeting.items;
     },
 
     SET_ITEM: function (state, item) {
         state.item = item;
+        state.votes = item.votes;
+        state.interpellations = item.interpellations;
+        state.userVote = state.votes.find(vote => vote.user_id === state.authUser.id);
     },
 
     SET_VOTES: function (state, item) {
@@ -26,8 +40,8 @@ const mutations = {
         state.interpellations = item;
     },
 
-    SET_VOTE_STATUS: function (state, item) {
-        item.vote_status = !item.vote_status;
+    SET_VOTE_STATUS: function (state) {
+        state.item.vote_status = ! state.item.vote_status;
     },
 
     PUBLISHED_STATUS: function (state, item) {
@@ -45,8 +59,6 @@ const actions = {
         axios.get('/api/item/' + itemId + '/show')
             .then(response => {
                 commit('SET_ITEM', response.data );
-                commit('SET_VOTES', response.data.votes );
-                commit('SET_INTERPELLATIONS', response.data.interpellations );
             });
     },
 
@@ -62,12 +74,30 @@ const actions = {
         }
 
         axios.get('/api/item/' + item.id + '/voteStatus');
-        commit('SET_VOTE_STATUS', item);
+        commit('SET_VOTE_STATUS');
     },
 
     publishedToggle({commit}, item) {
-      axios.get('/api/item/' + item.id + '/published');
-        commit('PUBLISHED_STATUS', item);
+        if (state.votes.length > 0){
+            alert('Hlasovanie sa už začalo, položku nie je možné zrušiť publikovanie!');
+           return
+        }
+      axios.get('/api/item/' + item.id + '/published')
+          .then(response => {
+              commit('SET_ITEM', response.data );
+
+              // if (state.item.vote_status) {
+              //     commit('SET_VOTE_STATUS');
+              // }
+          });
+    },
+
+
+    saveInterpellation({commit}, payload) {
+        axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation')
+            .then(response => {
+                commit('SET_INTERPELLATIONS', response.data )
+            });
     }
 
 };

@@ -25,7 +25,7 @@
 
 <div class="sm:flex justify-between">
 
-    <div class="mb-4  sm:w-1/4">
+    <div class="mb-4  sm:w-1/2 mr-4">
         <label for="first_name" class="block text-gray-700 text-sm mb-2">Dátum schôdze</label>
 
         {{--    Neviem vyriešiť podmienku ak datum chýba--}}
