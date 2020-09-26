@@ -2730,20 +2730,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
+    };
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     councils: function councils(state) {
@@ -64079,7 +64075,7 @@ var render = function() {
             { staticClass: "flex" },
             [
               _vm._v(
-                "\n               Zasadaní (" +
+                "\n                Zasadaní (" +
                   _vm._s(council.meetings.length) +
                   ")\n\n                "
               ),
@@ -64155,19 +64151,15 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(meeting.name) +
-                        "\n\n                    "
-                    ),
-                    _c("strong", [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(meeting.start_at) +
-                          "\n                    "
-                      )
-                    ]),
-                    _vm._v("\n                    hod.\n                ")
+                    _c("strong", {
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.moment(meeting.start_at).format("DD. MM. YYYY")
+                        )
+                      }
+                    }),
+                    _vm._v("\n                    hod.\n                    "),
+                    _c("strong", [_vm._v(_vm._s(meeting.name))])
                   ]
                 ),
                 _vm._v(" "),
