@@ -14,19 +14,18 @@ use App\Http\Requests\UserUpdateRequest;
 
 class CouncilController extends Controller
 {
-    public function index(){
-       $councils = Council::whereOrganizationId(auth()->user()->active_organization)->get();
-//       $councils = User::find(auth()->user()->id)->councils()->get();
+    public function index()
+    {
+        $organization = Organization::whereId(auth()->user()->active_organization)->first();
+        $councils = $organization->councils()->orderBy('id', 'asc')->get();
         return view('council.index', compact('councils'));
     }
 
 
-
-
-    public function userList(Council $council, $slug) {
+    public function userList(Council $council, $slug)
+    {
         return view('council.users', compact('council'))->with('users', $council->users()->get());
     }
-
 
 
 }

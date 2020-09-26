@@ -9,46 +9,18 @@
 
     <div class="container min-h-screen p-6 mx-auto">
 
-        <div class="flex justify-between mb-8">
-            <h1 class="page-title">Vaše zastupiteľstvá</h1>
-            @can('delete')
-                <a class="btn btn-primary"
-                   href="{{ route('zast.admin.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové
-                    zastupiteľvo</a>
-            @endcan
-        </div>
 
-        <table class="table-auto min-w-full">
-            <thead class="bg-gray-300">
-            <tr class="alert-info">
-                <th class="px-4 py-2">Popis</th>
-                <th class="px-4 py-2">Obdobie</th>
-                <th class="px-4 py-2">Počet zasadnutí</th>
-                <th class="px-4 py-2">Počet členov</th>
-                @can('delete')
-                    <th class="px-4 py-2">Panel</th>
-                @endcan
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="hover:bg-gray-100">
-                @forelse($councils as $council)
-                    <td class="px-4 py-2 border">
-                        <a href="{{ route('meet.index', [$council->id, $council->slug]) }}">
-                            {{ $council->name }}
-                        </a>
-                    </td>
-                    <td class="px-4 py-2 border">{{ $council->description }}</td>
-                    <td class="px-4 py-2 border">{{ $council->meetings()->count() }}</td>
-                    <td class="px-4 py-2 border">
+        @forelse($councils as $council)
+            <div class="mb-4">
+
+                <div class="flex justify-between">
+                    <h1 class="page-title">{{ $council->name }}</h1>
+                    <div class="flex">
                         <a href="{{ route('zast.userList', [$council->id, $council->slug]) }}">
-                            {{ $council->users()->count() }}
+                            Stretnutí: {{ $council->users()->count() }}
                         </a>
-                    </td>
 
-                    @can('delete')
-                        <td class="px-4 py-2 border text-center">
-
+                        @can('delete')
                             <nav-horizontal inline-template>
                                 <div class="relative">
                                     <button @click="isOpen =! isOpen" class="focus:outline-none">
@@ -76,22 +48,51 @@
                                                 Zmazať
                                             </a>
 
-{{--                                            <div class="py-1"></div>--}}
+                                            {{--                                            <div class="py-1"></div>--}}
 
                                         </div>
                                     </button>
                                 </div>
                             </nav-horizontal>
-                        </td>
-                    @endcan
+                        @endcan
+                    </div>
 
-            </tr>
-            @empty
-                <td>Zastupiteľstvá nie sú vytvorené.</td>
-            @endforelse
+                </div>
+                <div class="flex flex-col">
+                    @forelse($council->meetings as $meeting)
 
-            </tbody>
-        </table>
+                        <div class="flex justify-between hover:underline">
+                            <div>
+                                <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
+                                    {{  $meeting->name }}
+                                </a>
+                                <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
+                                    <strong>
+                                        {{ $meeting->start_at->format('d. m. Y') }}
+                                    </strong>
+                                    {{ $meeting->start_at->format('H:i') }}
+                                    hod.
+                                </a>
+                            </div>
+
+                            <div class="cursor-pointer">
+                                <a href="{{ route('item.index', [$council->id, $council->slug]) }}">
+                                    Program ({{  $meeting->items->count() }})
+                                </a>
+                            </div>
+                        </div>
+
+                    @empty
+                        Prázdne
+                    @endforelse
+                </div>
+            </div>
+
+        @empty
+            <span>Zastupiteľstvá nie sú vytvorené.</span>
+        @endforelse
+
+
     </div>
 
 

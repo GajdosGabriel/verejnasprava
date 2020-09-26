@@ -72,6 +72,18 @@
             </div>
 
 
+            <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2">
+
+                <h3 class="fill-current text-lg">Zastupiteľstvá</h3>
+                @can('delete')
+                    <a class=""
+                       href="{{ route('zast.admin.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové
+                        zastupiteľvo</a>
+                @endcan
+
+            </div>
+
+
         </div>
     </div>
 
