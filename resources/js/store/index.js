@@ -5,6 +5,7 @@ import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";
 import items from "./modules/items";
+import councils from "./modules/councils";
 
 // import currentUser from "./modules/currentUser";
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
         notification,
         posts,
         contacts,
-        items
+        items,
+        councils
     }
 })

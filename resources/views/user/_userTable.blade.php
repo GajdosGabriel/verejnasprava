@@ -45,7 +45,7 @@
 
             {{--@can( 'update', $post)--}}
             <td class="border px-4 py-2">
-                <nav-horizontal inline-template>
+                <nav-drop-down inline-template>
                     <div class="relative flex items-start">
                         <a @click="isOpen =! isOpen" class="" href="#">
                             <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -71,7 +71,7 @@
                         </div>
 
                     </div>
-                </nav-horizontal>
+                </nav-drop-down>
             </td>
             {{--@endcan--}}
         </tr>

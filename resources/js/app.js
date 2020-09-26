@@ -28,7 +28,7 @@ Vue.prototype.user =  window.App.user;
 Vue.component('order-index', require('./components/Order-index.vue').default);
 Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
 Vue.component('contact-table', require('./contacts/contactTable.vue').default);
-Vue.component('nav-horizontal', require('./modules/navigation/navHorizontal.vue').default);
+Vue.component('nav-drop-down', require('./modules/navigation/navDropDown.vue').default);
 Vue.component('nav-items', require('./modules/navigation/navItems.vue').default);
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
 Vue.component('accordion-table', require('./posts/postTableFronted.vue').default);
@@ -40,6 +40,7 @@ Vue.component('user-edit', require('./user/edit.vue').default);
 Vue.component('contact-edit', require('./contacts/edit.vue').default);
 Vue.component('contact-create', require('./contacts/newContact.vue').default);
 Vue.component('meeting-items', require('./meetings/meeting.vue').default);
+Vue.component('council-table', require('./councils/councilTable.vue').default);
 
 
 

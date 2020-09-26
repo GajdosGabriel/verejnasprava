@@ -16,7 +16,7 @@ class Council extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
-//    protected $with = ['meetings'];
+    protected $with = ['meetings'];
 
     public function meetings(){
         return $this->hasMany(Meeting::class)->orderBy('start_at', 'asc');
