@@ -63,7 +63,7 @@ class navigationOrganization extends Component
                 'url' => route('user.index', [$this->object->id, $this->object->slug])
             ],
             $this->navigation->orders($this->object->id, $this->object->slug),
-            $this->navigation->councils($this->object->id, $this->object->slug),
+//            $this->navigation->councils($this->object->id, $this->object->slug),
         ];
     }
 }

@@ -54,7 +54,6 @@ Route::group(['middleware' => 'auth'], function() {
             Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
             Route::get('{organization}/{slug}/create', 'AdminCouncilController@create')->name('create');
             Route::get('{council}/{slug}/edit/zast', 'AdminCouncilController@edit')->name('edit');
-            Route::put('{council}/{slug}/update/zast', 'AdminCouncilController@update')->name('update');
             Route::post('{organization}/{slug}/council/store', 'AdminCouncilController@store')->name('store');
             Route::get('{council}/{slug}/council/delete', 'AdminCouncilController@delete')->name('delete');
         });
