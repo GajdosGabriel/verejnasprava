@@ -10,10 +10,17 @@
                     <nav-drop-down>
                         <slot>
                             <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
-                               :href="'admin/'+ council.id + '/' + council.slug + '/edit/zast'"
-                               title="Upraviť položku">
-                                Upraviť položku
+                               :href="'meet/'+ council.id + '/' + council.slug + '/meeting/create'"
+                               title="Vytvoriť nové zasadnutie">
+                                Nové zasadnutie
                             </a>
+
+                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
+                               title="Upraviť položku"
+                                 @click="openForm(council)"
+                            >
+                                Upraviť položku
+                            </div>
 
                             <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
                                :href="'admin/'+ council.id + '/' + council.slug + '/council/delete'"
@@ -44,15 +51,19 @@
                 </div>
             </div>
         </div>
+        <edit-form></edit-form>
     </div>
 </template>
 
 <script>
     import {mapState} from 'vuex';
-    import navDropDown from '../modules/navigation/navDropDown'
+    import {createNamespacedHelpers} from 'vuex';
+    const {mapActions} = createNamespacedHelpers('modals');
+    import navDropDown from '../modules/navigation/navDropDown';
+    import editForm from './edit';
 
     export default {
-        components: {navDropDown},
+        components: {navDropDown, editForm},
         data: function () {
             return {
                 moment: require('moment'),
@@ -62,8 +73,14 @@
             councils: state => state.councils.councils
         }),
 
+        methods:{
+            openForm: function (item) {
+                this.$store.dispatch('modals/open_form',item)
+            }
+        },
+
         created() {
-            this.$store.dispatch('councils/fetchConcils', 1)
+            this.$store.dispatch('councils/fetchConcils', this.user.active_organization)
         }
     }
 </script>

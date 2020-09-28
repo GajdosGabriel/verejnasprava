@@ -39,11 +39,6 @@ const mutations = {
     SET_INTERPELLATIONS: function (state, item) {
         state.interpellations = item;
     },
-
-    SET_VOTE_STATUS: function (state) {
-        state.item.vote_status = ! state.item.vote_status;
-    },
-
     PUBLISHED_STATUS: function (state, item) {
         item.published = !item.published;
     }
@@ -62,8 +57,8 @@ const actions = {
             });
     },
 
-    set_vote_status({commit}, item) {
-        if (! state.item.published) {
+    set_vote_status({commit, dispatch}, item) {
+        if (state.item.published) {
             alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
             return
         }
@@ -73,22 +68,20 @@ const actions = {
             return
         }
 
-        axios.get('/api/item/' + item.id + '/voteStatus');
-        commit('SET_VOTE_STATUS');
+        axios.get('/api/item/' + item.id + '/voteStatus')
+            .then(response => {
+                dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
+            });
     },
 
-    publishedToggle({commit}, item) {
+    publishedToggle({commit, dispatch}, item) {
         if (state.votes.length > 0){
-            alert('Hlasovanie sa už začalo, položku nie je možné zrušiť publikovanie!');
+            alert('Hlasovanie sa už začalo, nie je možné zrušiť publikovanie!');
            return
         }
       axios.get('/api/item/' + item.id + '/published')
           .then(response => {
-              commit('SET_ITEM', response.data );
-
-              // if (state.item.vote_status) {
-              //     commit('SET_VOTE_STATUS');
-              // }
+              dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
           });
     },
 

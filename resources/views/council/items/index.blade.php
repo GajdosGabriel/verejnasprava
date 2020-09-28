@@ -13,7 +13,7 @@
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
 
             {{-- Vuex component--}}
-            <meeting-items :meeting="{{ $meeting }}"></meeting-items>
+            <meeting :meeting="{{ $meeting }}"></meeting>
 
 {{--            <div class="mb-6">--}}
 {{--                <h1 class="page-title">{{ $meeting->name }} <small--}}

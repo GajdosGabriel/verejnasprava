@@ -8,7 +8,7 @@
                     <button type="submit" @click="storeVote( item.id, 1)"
                             class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Súhlasim
-                        <div v-if="userVote == 1">
+                        <div v-if="meVote.vote == 1">
                             <svg
                                 class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20">
@@ -23,7 +23,7 @@
                     <button @click="storeVote(item.id, 2)"
                             class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Zdržal
-                        <div v-if="userVote == 2">
+                        <div v-if="meVote.vote == 2">
                             <svg
                                 class="w-5 h-5 ml-2 text-blue-600 fill-current"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@
                     <button @click="storeVote(item.id, 0)"
                             class="btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Nesúhlasim
-                        <div v-if="userVote == 0">
+                        <div v-if="meVote.vote == 0">
                             <svg
                                 class="w-5 h-5 ml-2 text-white fill-current" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20">
@@ -61,6 +61,12 @@
     import {mapState} from "vuex";
 
     export default {
+        props:['item'],
+        data: function() {
+          return {
+              meVote: ''
+          }
+        },
         computed: {
             // meVote() {
             //    return  this.$store.getters['items/getItemById'];
@@ -72,7 +78,6 @@
             //
             // },
             ...mapState({
-                item: state => state.items.item,
                 votes: state => state.items.votes,
                 userVote: state => state.items.userVote,
                 authUser: state => state.items.authUser,
@@ -85,7 +90,7 @@
             storeVote: function (id, val) {
                 axios.put('/api/vote/' + id, {userId: this.item.user_id, vote: val})
                     .then(response => {
-                        response.data
+                       this.meVote = response.data
                     });
                 // console.log(response.data);
             }

@@ -4,9 +4,9 @@
     v-if="interpellations.length"
     >
         <div class="flex justify-between mb-3 bg-gray-300 p-1">
-            <h4 class="font-semibold text-gray-800">Prihlásnenie do rozpravy <small class="text-sm">
+            <h4 class="font-semibold text-gray-800">Prihlásený do rozpravy <small class="text-sm">
 
-                ( {{ interpellations.length }} )
+                ({{ interpellations.length }})
             </small></h4>
             <span @click="storeInterpellation" class="text-sm cursor-pointer">
                 Prihlásiť sa
@@ -30,9 +30,10 @@
     import {mapState} from 'vuex';
 
     export default {
+        props:['item'],
         computed: {
             ...mapState({
-                item: state => state.items.item,
+                // item: state => state.items.item,
                 interpellations: state => state.items.interpellations
             })
         },

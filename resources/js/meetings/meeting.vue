@@ -11,7 +11,7 @@
         <div class="mt-4 bg-white">
             <div v-for="item in items" :key="item.id" class="odd:bg-gray-500">
 
-                <item :itemId="item.id"></item>
+                <item :item="item"></item>
 
             </div>
         </div>
@@ -34,10 +34,10 @@
             }
         },
         computed: mapState({
-            items: state => state.items.items
+            items: state => state.meetings.items
         }),
         created() {
-            this.$store.dispatch('items/set_items', this.meeting);
+            this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
         },
         methods: {}
 

@@ -18,6 +18,12 @@ class Item extends Model
     protected $guarded = [];
     protected $with = ['interpellations', 'files', 'user', 'votes'];
 
+    protected $casts = [
+        'vote_status' => 'boolean',
+        'published' => 'boolean',
+        'vote_type' => 'boolean',
+    ];
+
     public function files() {
         return $this->morphMany(File::class, 'fileable');
     }
@@ -74,10 +80,11 @@ class Item extends Model
 
     public function scopePublished($query){
         // For admin
-        if (auth()->user()->hasPermissionTo('delete')) return $query;
+//        if (auth()->user()->hasPermissionTo('delete')) return $query;
 
         // For common user
-        return $query->wherePublished(1);
+        return $query; // Dočasné kým nevyriešim Permission
+//        return $query->wherePublished(1);
     }
 
 

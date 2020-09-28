@@ -11,9 +11,10 @@
 <script>
     import {mapState} from 'vuex';
     export default {
+        props:['item'],
         computed:{
             ...mapState({
-                item: state => state.items.item,
+                // item: state => state.items.item,
             }),
         },
         methods: {

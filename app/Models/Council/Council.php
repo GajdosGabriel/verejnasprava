@@ -19,7 +19,7 @@ class Council extends Model
     protected $with = ['meetings'];
 
     public function meetings(){
-        return $this->hasMany(Meeting::class)->orderBy('start_at', 'asc');
+        return $this->hasMany(Meeting::class)->orderBy('start_at', 'desc');
     }
 
     public function organizations() {

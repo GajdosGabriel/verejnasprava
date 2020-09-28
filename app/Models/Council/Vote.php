@@ -10,6 +10,7 @@ class Vote extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+    protected $with = ['user'];
 
     public function item(){
         return $this->belongsTo(Item::class);

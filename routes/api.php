@@ -28,6 +28,7 @@ Route::get('item/{item}/published', 'Api\ItemController@published');
 Route::get('item/{item}/voteStatus', 'Api\ItemController@voteStatus');
 Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
+Route::get('item/{meeting}/{slug}/index', 'Api\ItemController@index');
 
 
 Route::apiResources([

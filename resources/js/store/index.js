@@ -6,6 +6,10 @@ import posts from "./modules/posts";
 import contacts from "./modules/contacts";
 import items from "./modules/items";
 import councils from "./modules/councils";
+import meetings from "./modules/meetings";
+import modals from "./modules/modals";
+
+
 
 // import currentUser from "./modules/currentUser";
 
@@ -18,6 +22,8 @@ export default new Vuex.Store({
         posts,
         contacts,
         items,
-        councils
+        councils,
+        meetings,
+        modals
     }
 })

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
+use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -13,9 +14,8 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Meeting $meeting){
+        return $meeting->items()->published()->get();
     }
 
     /**
