@@ -1,13 +1,15 @@
 <template>
 
-    <div class="border-2 border-gray-700 w-1/2 p-2">
-        <h2 class="text-lg font-semibold mb-2">Výsledky hlasovania</h2>
+    <div class="border-2 rounded-md border-gray-300 my-5 max-w-sm">
+        <div class="flex justify-between mb-3 bg-gray-300 p-1">
+            <h4 class="font-semibold text-gray-800">Výsledky hlasovania</h4>
+        </div>
 
         <ul>
             <!-- Hlas Za-->
             <li class="flex justify-between border-b-2 border-dotted">
                 {{ vote.user.first_name + ' ' +vote.user.last_name}}
-                <span class="font-semibold">{{ voteType }}</span>
+                <span class="font-medium">{{ voteType }}</span>
             </li>
         </ul>
     </div>

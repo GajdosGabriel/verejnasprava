@@ -2,7 +2,7 @@
     <h2 class="font-bold text-2xl text-gray-700 mb-2 text-center">Diskusia</h2>
 
     <form wire:submit.prevent="addComment">
-        <div class="flex mb-5">
+        <div class="flex mb-5 max-w-sm">
             <input wire:model.lazy="newComment" type="text"
                    class="w-full border-2 border-gray-400 pl-3 rounded-l-g text-sm focus:outline-none"
                    placeholder="Napíšte podnet" aria-label="Recipient's username" aria-describedby="button-addon2">

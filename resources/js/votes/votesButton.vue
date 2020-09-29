@@ -5,7 +5,7 @@
             <div>
                 <div class="md:flex justify-between my-5 bg-gray-100">
                     <!--   Button YES-->
-                    <button type="submit" @click="storeVote( item.id, 1)"
+                    <button type="submit" @click="storeVote( 1)"
                             class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Súhlasim
                         <div v-if="meVote.vote == 1">
@@ -20,7 +20,7 @@
 
 
                     <!--   Button NotVote-->
-                    <button @click="storeVote(item.id, 2)"
+                    <button @click="storeVote( 2)"
                             class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Zdržal
                         <div v-if="meVote.vote == 2">
@@ -36,7 +36,7 @@
 
 
                     <!--   Button No-->
-                    <button @click="storeVote(item.id, 0)"
+                    <button @click="storeVote( 0)"
                             class="btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3">
                         Nesúhlasim
                         <div v-if="meVote.vote == 0">
@@ -87,12 +87,8 @@
             this.$store.commit('items/SET_AUTH_USER', this.user)
         },
         methods: {
-            storeVote: function (id, val) {
-                axios.put('/api/vote/' + id, {userId: this.item.user_id, vote: val})
-                    .then(response => {
-                       this.meVote = response.data
-                    });
-                // console.log(response.data);
+            storeVote: function (val) {
+                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.user.id, vote:val, meetingId: this.item.meeting_id }, {root:true})
             }
         }
     }

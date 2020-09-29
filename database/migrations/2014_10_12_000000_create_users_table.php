@@ -29,17 +29,39 @@ class CreateUsersTable extends Migration
         });
 
         \DB::table('users')->insert([
-        [
-            'id' => 1,
-            'first_name' => 'Gabriel',
-            'last_name' => 'Gajdoš',
-            'email' => 'gajdosgabo@gmail.com',
-            'slug' => 'gajdos-gabriel',
-            'active_organization' => 1,
-            'password' => '$2y$10$Ngve.m4xLY2xOtUNPIdcxeOW/hsum/VWJsCFEkpV6uAtq.QGe2LQO',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
+            [
+                'id' => 1,
+                'first_name' => 'Gabriel',
+                'last_name' => 'Gajdoš',
+                'email' => 'gajdosgabo@gmail.com',
+                'slug' => 'gajdos-gabriel',
+                'active_organization' => 1,
+                'password' => '$2y$10$Ngve.m4xLY2xOtUNPIdcxeOW/hsum/VWJsCFEkpV6uAtq.QGe2LQO',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 2,
+                'first_name' => 'Ján',
+                'last_name' => 'Novák',
+                'email' => 'novak@gmail.com',
+                'slug' => 'jan-novak',
+                'active_organization' => 1,
+                'password' => '$2y$10$Ngve.m4xLY2xOtUNPIdcxeOW/hsum/VWJsCFEkpV6uAtq.QGe2LQO',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 3,
+                'first_name' => 'Peter',
+                'last_name' => 'Vavrek',
+                'email' => 'vavrek@gmail.com',
+                'slug' => 'peter-vavrek',
+                'active_organization' => 1,
+                'password' => '$2y$10$Ngve.m4xLY2xOtUNPIdcxeOW/hsum/VWJsCFEkpV6uAtq.QGe2LQO',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
     ]);
     }
 

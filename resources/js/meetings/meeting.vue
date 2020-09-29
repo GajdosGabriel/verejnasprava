@@ -1,8 +1,9 @@
 <template>
     <div class="mb-6">
+
         <div class="">
             <h1 class="page-title">{{ meeting.name }}</h1>
-            <div>
+            <div class="">
                 <span class="text-gray-700">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
                 <strong>{{ moment(meeting.start_at).format('h:mm') }} hod.</strong>
             </div>

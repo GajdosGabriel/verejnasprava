@@ -27,7 +27,7 @@
                     </div>
 
                     @can('delete')
-                        <nav-Drophorizontal inline-template>
+                        <nav-drop-down inline-template>
                             <div class="relative flex items-center">
                                 <a @click="isOpen =! isOpen"
                                    class="flex items-center justify-center w-6 h-6 bg-gray-500 rounded-md opacity-50"
@@ -49,7 +49,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </nav-Drophorizontal>
+                        </nav-drop-down>
                     @endcan
                 </div>
 

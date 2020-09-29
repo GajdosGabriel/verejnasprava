@@ -23,6 +23,18 @@ class CreateCouncilsTable extends Migration
             $table->softDeletes();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
         });
+
+        \DB::table('councils')->insert([
+            [
+                'id' => 1,
+                'organization_id' => 1,
+                'name' => 'Obecné zastupiteľstvo',
+                'slug' => 'obecne-zastupitelstvo',
+                'description' => 'Obecné zastupiteľstvo 2019-2023',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 
     /**

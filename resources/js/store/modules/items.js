@@ -83,11 +83,21 @@ const actions = {
     },
 
 
-    saveInterpellation({commit}, payload) {
+    saveInterpellation({commit, dispatch}, payload) {
         axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation')
             .then(response => {
-                commit('SET_INTERPELLATIONS', response.data )
+                // commit('SET_INTERPELLATIONS', response.data )
+                dispatch('meetings/fetchMeeting', payload.meeting_id, {root:true})
             });
+    },
+
+    storeVote({commit, dispatch}, payload) {
+        console.log(payload);
+        axios.put('/api/vote/' + payload.id, payload)
+            .then(response => {
+                dispatch('meetings/fetchMeeting', payload.meetingId, {root:true})
+            });
+
     }
 
 };

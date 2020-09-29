@@ -1,17 +1,19 @@
 <template>
-    <div class="flow-root hover:bg-gray-100 p-2 mb-20 ">
+    <div class="flow-root hover:bg-gray-100 p-2 mb-20 flex ">
 
-        <div class="flex flex-col border-2 border-gray-300">
+        <div class="border-2 border-gray-300 max-w-sm">
             <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
                 <strong>{{ item.name }}</strong>
             </a>
 
             <div class="flex justify-between">
+
+                <published-button :item="item"></published-button>
+
                 <span @click="storeInterpellation" v-if="item.published"
                       class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
-                    Prihlásiť sa
+                    Rozprava
                 </span>
-                <published-button :item="item"></published-button>
 
 
                 <div class="text-center whitespace-no-wrap" v-if="item.published">
@@ -26,16 +28,13 @@
         </div>
 
         <div v-show="item.vote_status">
-
             <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
-
             <vote-buttons :item="item"></vote-buttons>
-
         </div>
 
         <interpellation :item="item"></interpellation>
 
-        <div v-for="vote in item.votes">
+        <div v-for="vote in item.votes" class="max-w-sm">
             <vote-list :vote="vote"></vote-list>
         </div>
 

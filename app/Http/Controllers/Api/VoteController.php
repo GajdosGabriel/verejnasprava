@@ -49,7 +49,6 @@ class VoteController extends Controller
      */
     public function update(Item $vote, Request $request)
     {
-
         $myVote =   $vote->votes()->whereUserId($request->userId)->updateOrCreate([
             'user_id' => $request->userId,
         ], [
