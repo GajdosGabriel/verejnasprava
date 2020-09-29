@@ -3,7 +3,11 @@ const state = {
     meeting: '',
     items: [],
 };
-const getters = {};
+const getters = {
+    activeItem:  state => {
+        return state.items.find(todo => todo.id === 1)
+    }
+};
 
 const mutations = {
     SET_LOADING_STATUS: function (state, payload) {

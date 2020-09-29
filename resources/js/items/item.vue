@@ -55,11 +55,16 @@
         props: ['item'],
         components: {voteButtons, publishedButton, interpellation},
         computed: {
+            ddddddd: function () {
+                return this.$store.getters['meetings/activeItem']
+            },
             ...mapState({
-                // item: state => state.items.item,
                 votes: state => state.items.votes,
                 interpellations: state => state.items.interpellations,
             }),
+        },
+        mounted() {
+            this.$store.commit('items/SET_ITEM', this.item, {root:true})
         },
         methods: {
             voteStatus: function () {

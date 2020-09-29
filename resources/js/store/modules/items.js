@@ -8,9 +8,6 @@ const state = {
 
 };
 const getters = {
-    // meVote:  state => {
-    // return state.votes.find(todo => todo.user_id === state.authUser.id)
-// }
 
 };
 

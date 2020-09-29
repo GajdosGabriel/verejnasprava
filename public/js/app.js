@@ -3052,8 +3052,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
     interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    // item: state => state.items.item,
+  computed: _objectSpread({
+    ddddddd: function ddddddd() {
+      return this.$store.getters['meetings/activeItem'];
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     votes: function votes(state) {
       return state.items.votes;
     },
@@ -3061,6 +3064,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.items.interpellations;
     }
   })),
+  mounted: function mounted() {
+    this.$store.commit('items/SET_ITEM', this.item, {
+      root: true
+    });
+  },
   methods: {
     voteStatus: function voteStatus() {
       this.$store.dispatch('items/set_vote_status', this.item);
@@ -82318,10 +82326,7 @@ var state = {
   userVote: null,
   authUser: ''
 };
-var getters = {// meVote:  state => {
-  // return state.votes.find(todo => todo.user_id === state.authUser.id)
-  // }
-};
+var getters = {};
 var mutations = {
   SET_AUTH_USER: function SET_AUTH_USER(state, user) {
     state.authUser = user;
@@ -82424,7 +82429,13 @@ var state = {
   meeting: '',
   items: []
 };
-var getters = {};
+var getters = {
+  activeItem: function activeItem(state) {
+    return state.items.find(function (todo) {
+      return todo.id === 1;
+    });
+  }
+};
 var mutations = {
   SET_LOADING_STATUS: function SET_LOADING_STATUS(state, payload) {
     state.loadingStatus = payload;
