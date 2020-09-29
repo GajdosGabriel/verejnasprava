@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('inter')->name('interpellation.')->namespace('Councils')->group(function() {
         Route::get('{item}/{slug}/item/interpellation', 'InterpellationController@store')->name('store');
+        Route::delete('{interpellation}/delete', 'InterpellationController@delete');
     });
 
 

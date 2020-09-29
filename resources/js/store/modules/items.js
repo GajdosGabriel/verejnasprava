@@ -91,6 +91,14 @@ const actions = {
             });
     },
 
+    deleteInterpellation({commit, dispatch}, payload) {
+        axios.delete('/inter/' + payload.id + '/delete')
+            .then(response => {
+                // commit('SET_INTERPELLATIONS', response.data )
+                dispatch('meetings/fetchMeeting', payload.meeting, {root:true})
+            });
+    },
+
     storeVote({commit, dispatch}, payload) {
         console.log(payload);
         axios.put('/api/vote/' + payload.id, payload)
@@ -98,7 +106,7 @@ const actions = {
                 dispatch('meetings/fetchMeeting', payload.meetingId, {root:true})
             });
 
-    }
+    },
 
 };
 

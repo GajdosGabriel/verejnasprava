@@ -2967,6 +2967,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('items/saveInterpellation', this.item);
+    },
+    deleteItem: function deleteItem(id) {
+      console.log(id);
+      this.$store.dispatch('items/deleteInterpellation', {
+        id: id,
+        meeting: this.item.meeting_id
+      });
     }
   }
 });
@@ -64780,7 +64787,11 @@ var render = function() {
                     "span",
                     {
                       staticClass: "text-gray-800 text-sm cursor-pointer",
-                      on: { click: _vm.storeInterpellation }
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteItem(interpellation.id)
+                        }
+                      }
                     },
                     [_vm._v("x")]
                   )
@@ -64844,7 +64855,12 @@ var render = function() {
                       "text-sm cursor-pointer mr-4 whitespace-no-wrap",
                     on: { click: _vm.storeInterpellation }
                   },
-                  [_vm._v("\n                Rozprava\n            ")]
+                  [
+                    _vm._v("\n                Rozprava "),
+                    _c("span", { staticClass: "text-gray-500" }, [
+                      _vm._v(_vm._s(_vm.item.interpellations.length))
+                    ])
+                  ]
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -82436,9 +82452,19 @@ var actions = {
       });
     });
   },
-  storeVote: function storeVote(_ref6, payload) {
+  deleteInterpellation: function deleteInterpellation(_ref6, payload) {
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
+    axios["delete"]('/inter/' + payload.id + '/delete').then(function (response) {
+      // commit('SET_INTERPELLATIONS', response.data )
+      dispatch('meetings/fetchMeeting', payload.meeting, {
+        root: true
+      });
+    });
+  },
+  storeVote: function storeVote(_ref7, payload) {
+    var commit = _ref7.commit,
+        dispatch = _ref7.dispatch;
     console.log(payload);
     axios.put('/api/vote/' + payload.id, payload).then(function (response) {
       dispatch('meetings/fetchMeeting', payload.meetingId, {

@@ -18,7 +18,7 @@
             <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
                 class="flex justify-between border-b-2 border-dotted px-2">
                 <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
-                <span @click="storeInterpellation" class="text-gray-800 text-sm cursor-pointer">x</span>
+                <span @click="deleteItem(interpellation.id)" class="text-gray-800 text-sm cursor-pointer">x</span>
             </li>
         </ul>
 
@@ -41,6 +41,11 @@
         methods: {
             storeInterpellation: function () {
                 this.$store.dispatch('items/saveInterpellation', this.item);
+            },
+
+            deleteItem: function (id) {
+                console.log(id);
+                this.$store.dispatch('items/deleteInterpellation', {id:id, meeting: this.item.meeting_id});
             }
         }
     }

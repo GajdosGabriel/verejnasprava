@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Councils;
 
 use App\Http\Controllers\Controller;
+use App\Models\Council\Interpellation;
 use App\Models\Council\Item;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,8 @@ class InterpellationController extends Controller
             'user_id' => auth()->user()->id,
         ]);
         return $item->interpellations()->get();
+    }
+    public function delete(Interpellation $interpellation){
+        $interpellation->delete();
     }
 }

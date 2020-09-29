@@ -12,7 +12,7 @@
 
                 <span @click="storeInterpellation" v-if="item.published"
                       class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
-                    Rozprava
+                    Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
                 </span>
 
 

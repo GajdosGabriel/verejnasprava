@@ -46,7 +46,7 @@ class Item extends Model
     }
 
     public function interpellations() {
-        return $this->morphMany(Interpellation::class, 'fileable');
+        return $this->morphMany(Interpellation::class, 'fileable')->orderBy('id', 'desc');
     }
 
 
