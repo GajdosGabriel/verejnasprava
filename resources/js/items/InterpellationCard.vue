@@ -40,12 +40,12 @@
         },
         methods: {
             storeInterpellation: function () {
-                this.$store.dispatch('items/saveInterpellation',  this.item);
+                this.$store.dispatch('interpellations/saveInterpellation',  this.item);
             },
 
             deleteItem: function (id) {
                 console.log(id);
-                this.$store.dispatch('items/deleteInterpellation', {id:id, meeting: this.item.meeting_id});
+                this.$store.dispatch('interpellations/deleteInterpellation', {id:id, meeting: this.item.meeting_id});
             }
         }
     }

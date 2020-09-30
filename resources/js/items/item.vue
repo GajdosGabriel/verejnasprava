@@ -71,7 +71,7 @@
             },
 
             storeInterpellation: function () {
-                this.$store.dispatch('items/saveInterpellation', this.item);
+                this.$store.dispatch('interpellations/saveInterpellation', this.item);
             },
         }
 
