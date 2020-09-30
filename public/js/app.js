@@ -2961,13 +2961,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    // item: state => state.items.item,
-    openList: function openList(state) {
-      return state.interpellations.openList;
-    }
+  data: function data() {
+    return {
+      openList: false
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({// item: state => state.items.item,
+    // openList: state => state.interpellations.openList
   })),
+  created: function created() {
+    var _this = this;
+
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('imterpellationlist', function (data) {
+      if (data.id === _this.item.id) {
+        _this.listToggle();
+      }
+    });
+  },
   methods: {
+    listToggle: function listToggle() {
+      this.openList = !this.openList;
+    },
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/store', this.item);
     },
@@ -2992,10 +3006,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _votes_votesButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../votes/votesButton */ "./resources/js/votes/votesButton.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
-/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _votes_votesButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../votes/votesButton */ "./resources/js/votes/votesButton.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
+/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3052,18 +3067,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   components: {
-    voteButtons: _votes_votesButton__WEBPACK_IMPORTED_MODULE_0__["default"],
-    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
+    voteButtons: _votes_votesButton__WEBPACK_IMPORTED_MODULE_1__["default"],
+    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__["default"],
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   computed: _objectSpread({
     ddddddd: function ddddddd() {
       return this.$store.getters['meetings/activeItem'];
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     votes: function votes(state) {
       return state.items.votes;
     },
@@ -3084,7 +3100,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('interpellations/store', this.item);
     },
     openInterpellation: function openInterpellation() {
-      this.$store.commit('interpellations/OPEN_LIST');
+      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('imterpellationlist', this.item);
     }
   }
 });
@@ -82368,8 +82384,7 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  loadingStatus: 'notLoading',
-  openList: false
+  loadingStatus: 'notLoading'
 };
 var getters = {};
 var mutations = {

@@ -1,6 +1,5 @@
 const state = {
-    loadingStatus: 'notLoading',
-    openList: false
+    loadingStatus: 'notLoading'
 
 };
 const getters = {};

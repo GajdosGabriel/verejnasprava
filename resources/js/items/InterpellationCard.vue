@@ -32,13 +32,28 @@
 
     export default {
         props: ['item'],
+        data: function(){
+          return {
+              openList: false
+          }
+        },
         computed: {
             ...mapState({
                 // item: state => state.items.item,
-                openList: state => state.interpellations.openList
+                // openList: state => state.interpellations.openList
+            })
+        },
+        created(){
+            bus.$on('imterpellationlist', (data) => {
+                if(data.id === this.item.id){
+                    this.listToggle()
+                }
             })
         },
         methods: {
+            listToggle: function(){
+              this.openList = ! this.openList
+            },
             storeInterpellation: function () {
                 this.$store.dispatch('interpellations/store', this.item);
             },

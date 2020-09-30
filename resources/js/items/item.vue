@@ -44,6 +44,7 @@
 </template>
 
 <script>
+    import {bus} from '../app';
     import voteButtons from '../votes/votesButton';
     import {mapState} from 'vuex';
     import {mapGetters} from 'vuex';
@@ -75,7 +76,7 @@
             },
 
             openInterpellation(){
-                this.$store.commit('interpellations/OPEN_LIST')
+                bus.$emit('imterpellationlist', this.item);
             }
         }
 
