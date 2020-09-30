@@ -64996,10 +64996,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mb-6" }, [
     _c("div", {}, [
-      _c("h1", { staticClass: "page-title" }, [
-        _vm._v(_vm._s(_vm.meeting.name))
-      ]),
-      _vm._v(" "),
       _c("div", {}, [
         _c("span", { staticClass: "text-gray-700" }, [
           _vm._v(

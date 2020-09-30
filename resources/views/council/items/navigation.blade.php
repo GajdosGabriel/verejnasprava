@@ -17,11 +17,22 @@
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div class="text-sm lg:flex-grow">
-                {{--  // --}}
+{{--                <ul class="navbar-nav ml-auto">--}}
+{{--                    <li class="nav-item"><a class="nav-link" href="{{ route('item.create', [ $meeting->id, $meeting->slug ]) }}">Objednávky</a></li>--}}
+{{--                </ul>--}}
             </div>
 
             <div class="">
-                @if(isset($headerMenu))
+
+                <a :class="isOpen ? 'block' : 'hidden'"
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 "
+                   href="{{route('item.create', [ $meeting->id, $meeting->slug ])}}">
+                    Nový bod
+                </a>
+
+
+
+            @if(isset($headerMenu))
                     @foreach($headerMenu as $link)
                         <a :class="isOpen ? 'block' : 'hidden'" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4" href="{{$link['url']}}">{{$link['title']}}</a>
                     @endforeach

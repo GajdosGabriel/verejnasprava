@@ -3,7 +3,7 @@
 
 <li
     class="flex justify-between border-b-2 border-dotted px-2 text-sm">
-    <a href="{{ route('interpellation.store', [ $item->id, $item->slug]) }}"
+    <a href=""
        title="Prihlásený do rozpravy k bodu rokovania">
 
         @forelse($item->interpellations as $interpelation)
