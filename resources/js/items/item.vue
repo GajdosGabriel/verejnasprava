@@ -10,7 +10,7 @@
 
                 <published-button :item="item"></published-button>
 
-                <span @click="storeInterpellation" v-if="item.published"
+                <span @click="openInterpellation" v-if="item.published"
                       class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
                     Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
                 </span>
@@ -71,8 +71,12 @@
             },
 
             storeInterpellation: function () {
-                this.$store.dispatch('interpellations/saveInterpellation', this.item);
+                this.$store.dispatch('interpellations/store', this.item);
             },
+
+            openInterpellation(){
+                this.$store.commit('interpellations/OPEN_LIST')
+            }
         }
 
     }

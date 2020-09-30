@@ -2961,8 +2961,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({// item: state => state.items.item,
-    // interpellations: state => state.items.interpellations
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    // item: state => state.items.item,
+    openList: function openList(state) {
+      return state.interpellations.openList;
+    }
   })),
   methods: {
     storeInterpellation: function storeInterpellation() {
@@ -3044,11 +3047,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -3085,7 +3083,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/store', this.item);
     },
-    listInterpellation: function listInterpellation() {
+    openInterpellation: function openInterpellation() {
       this.$store.commit('interpellations/OPEN_LIST');
     }
   }
@@ -64739,7 +64737,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.item.interpellations.length
+  return _vm.openList
     ? _c(
         "div",
         { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm" },
@@ -64861,10 +64859,10 @@ var render = function() {
                   {
                     staticClass:
                       "text-sm cursor-pointer mr-4 whitespace-no-wrap",
-                    on: { click: _vm.listInterpellation }
+                    on: { click: _vm.openInterpellation }
                   },
                   [
-                    _vm._v("\n                    Rozprava "),
+                    _vm._v("\n                Rozprava "),
                     _c("span", { staticClass: "text-gray-500" }, [
                       _vm._v(_vm._s(_vm.item.interpellations.length))
                     ])

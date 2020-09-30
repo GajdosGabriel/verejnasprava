@@ -1,7 +1,7 @@
 <template>
 
     <div class="border-2 rounded-md border-gray-300 my-5 max-w-sm"
-         v-if="item.interpellations.length"
+         v-if="openList"
     >
 
         <div class="flex justify-between mb-3 bg-gray-300 p-1">
@@ -31,21 +31,21 @@
     import {mapState} from 'vuex';
 
     export default {
-        props:['item'],
+        props: ['item'],
         computed: {
             ...mapState({
                 // item: state => state.items.item,
-                // interpellations: state => state.items.interpellations
+                openList: state => state.interpellations.openList
             })
         },
         methods: {
             storeInterpellation: function () {
-                this.$store.dispatch('interpellations/saveInterpellation',  this.item);
+                this.$store.dispatch('interpellations/store', this.item);
             },
 
             deleteItem: function (id) {
                 console.log(id);
-                this.$store.dispatch('interpellations/deleteInterpellation', {id:id, meeting: this.item.meeting_id});
+                this.$store.dispatch('interpellations/delete', {id: id, meeting: this.item.meeting_id});
             }
         }
     }
