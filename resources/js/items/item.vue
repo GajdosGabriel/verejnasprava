@@ -1,19 +1,22 @@
 <template>
-    <div class="flow-root hover:bg-gray-100 p-2 mb-20 flex ">
+    <div class="hover:bg-gray-100 p-2 mb-20 ">
 
-        <div class="border-2 border-gray-300 max-w-sm">
+
+        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm">
             <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
                 <strong>{{ item.name }}</strong>
             </a>
 
-            <div class="flex justify-between">
+            <div class="flex justify-between w-full">
 
                 <published-button :item="item"></published-button>
 
-                <span @click="openInterpellation" v-if="item.published"
-                      class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
-                    Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
-                </span>
+                <div class="text-center">
+                    <button @click="openInterpellation" v-if="item.published"
+                            class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
+                        Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
+                    </button>
+                </div>
 
 
                 <div class="text-center whitespace-no-wrap" v-if="item.published">
@@ -27,7 +30,7 @@
             </div>
         </div>
 
-        <div v-show="item.vote_status">
+        <div v-show="item.vote_status" class="max-w-sm">
             <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
             <vote-buttons :item="item"></vote-buttons>
         </div>
@@ -64,7 +67,7 @@
             }),
         },
         mounted() {
-            this.$store.commit('items/SET_ITEM', this.item, {root:true})
+            this.$store.commit('items/SET_ITEM', this.item, {root: true})
         },
         methods: {
             voteStatus: function () {
@@ -75,7 +78,7 @@
                 this.$store.dispatch('interpellations/store', this.item);
             },
 
-            openInterpellation(){
+            openInterpellation() {
                 bus.$emit('imterpellationlist', this.item);
             }
         }

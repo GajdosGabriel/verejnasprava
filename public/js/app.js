@@ -3062,6 +3062,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -64850,65 +64853,71 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flow-root hover:bg-gray-100 p-2 mb-20 flex " },
+    { staticClass: "hover:bg-gray-100 p-2 mb-20 " },
     [
-      _c("div", { staticClass: "border-2 border-gray-300 max-w-sm" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-            }
-          },
-          [_c("strong", [_vm._v(_vm._s(_vm.item.name))])]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "flex justify-between" },
-          [
-            _c("published-button", { attrs: { item: _vm.item } }),
-            _vm._v(" "),
-            _vm.item.published
-              ? _c(
-                  "span",
-                  {
-                    staticClass:
-                      "text-sm cursor-pointer mr-4 whitespace-no-wrap",
-                    on: { click: _vm.openInterpellation }
-                  },
-                  [
-                    _vm._v("\n                Rozprava "),
-                    _c("span", { staticClass: "text-gray-500" }, [
-                      _vm._v(_vm._s(_vm.item.interpellations.length))
-                    ])
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.item.published
-              ? _c("div", { staticClass: "text-center whitespace-no-wrap" }, [
-                  _c("button", {
-                    staticClass: "badge badge-primary bg-gray-300  ml-2",
-                    class:
-                      _vm.item.vote_status == 1
-                        ? "bg-blue-700 text-gray-200"
-                        : "text-gray-900",
-                    domProps: {
-                      textContent: _vm._s(
-                        _vm.item.vote_status == 0
-                          ? "Zapnúť hlasovanie"
-                          : "Vypnúť hlasovanie"
-                      )
-                    },
-                    on: { click: _vm.voteStatus }
-                  })
-                ])
-              : _vm._e()
-          ],
-          1
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "flex flex-wrap border-2 border-gray-300 max-w-sm" },
+        [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
+              }
+            },
+            [_c("strong", [_vm._v(_vm._s(_vm.item.name))])]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex justify-between w-full" },
+            [
+              _c("published-button", { attrs: { item: _vm.item } }),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center" }, [
+                _vm.item.published
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "text-sm cursor-pointer mr-4 whitespace-no-wrap",
+                        on: { click: _vm.openInterpellation }
+                      },
+                      [
+                        _vm._v("\n                    Rozprava "),
+                        _c("span", { staticClass: "text-gray-500" }, [
+                          _vm._v(_vm._s(_vm.item.interpellations.length))
+                        ])
+                      ]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm.item.published
+                ? _c("div", { staticClass: "text-center whitespace-no-wrap" }, [
+                    _c("button", {
+                      staticClass: "badge badge-primary bg-gray-300  ml-2",
+                      class:
+                        _vm.item.vote_status == 1
+                          ? "bg-blue-700 text-gray-200"
+                          : "text-gray-900",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.item.vote_status == 0
+                            ? "Zapnúť hlasovanie"
+                            : "Vypnúť hlasovanie"
+                        )
+                      },
+                      on: { click: _vm.voteStatus }
+                    })
+                  ])
+                : _vm._e()
+            ],
+            1
+          )
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -64920,7 +64929,8 @@ var render = function() {
               value: _vm.item.vote_status,
               expression: "item.vote_status"
             }
-          ]
+          ],
+          staticClass: "max-w-sm"
         },
         [
           _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
@@ -66654,7 +66664,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "max-w-sm" }, [
     _c(
       "form",
       {
@@ -82482,12 +82492,12 @@ var actions = {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
 
-    if (state.item.published) {
+    if (!state.item.published) {
       alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
       return;
     }
 
-    if (state.interpellations.length) {
+    if (!state.interpellations.length) {
       alert('Zoznam prihlásených do rozpravy nie je prázdny.');
       return;
     }

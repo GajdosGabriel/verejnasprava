@@ -55,12 +55,12 @@ const actions = {
     },
 
     set_vote_status({commit, dispatch}, item) {
-        if (state.item.published) {
+        if (!state.item.published) {
             alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
             return
         }
 
-        if (state.interpellations.length) {
+        if (!state.interpellations.length) {
             alert('Zoznam prihlásených do rozpravy nie je prázdny.');
             return
         }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-sm">
 
         <form method="POST" @submit.prevent>
             <div>

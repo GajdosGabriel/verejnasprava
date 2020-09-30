@@ -1,4 +1,4 @@
-<div>
+<div class=" max-w-sm">
     <h2 class="font-bold text-2xl text-gray-700 mb-2 text-center">Diskusia</h2>
 
     <form wire:submit.prevent="addComment">
