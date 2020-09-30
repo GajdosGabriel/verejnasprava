@@ -84,15 +84,14 @@ const actions = {
 
 
     saveInterpellation({commit, dispatch}, payload) {
-        axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation')
+        axios.post('/api/interpellation/' + payload.id + '/store', {user: payload.user.id } )
             .then(response => {
-                // commit('SET_INTERPELLATIONS', response.data )
                 dispatch('meetings/fetchMeeting', payload.meeting_id, {root:true})
             });
     },
 
     deleteInterpellation({commit, dispatch}, payload) {
-        axios.delete('/inter/' + payload.id + '/delete')
+        axios.delete('/api/interpellation/' + payload.id)
             .then(response => {
                 // commit('SET_INTERPELLATIONS', response.data )
                 dispatch('meetings/fetchMeeting', payload.meeting, {root:true})
@@ -100,7 +99,6 @@ const actions = {
     },
 
     storeVote({commit, dispatch}, payload) {
-        console.log(payload);
         axios.put('/api/vote/' + payload.id, payload)
             .then(response => {
                 dispatch('meetings/fetchMeeting', payload.meetingId, {root:true})

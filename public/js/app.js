@@ -82108,6 +82108,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_councils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/councils */ "./resources/js/store/modules/councils.js");
 /* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals.js");
+/* harmony import */ var _modules_interpellations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/interpellations */ "./resources/js/store/modules/interpellations.js");
+
 
 
 
@@ -82129,7 +82131,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     items: _modules_items__WEBPACK_IMPORTED_MODULE_6__["default"],
     councils: _modules_councils__WEBPACK_IMPORTED_MODULE_7__["default"],
     meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_8__["default"],
-    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"]
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"],
+    interpellations: _modules_interpellations__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }));
 
@@ -82353,6 +82356,175 @@ var actions = {
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/interpellations.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/modules/interpellations.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var state = {
+  loadingStatus: 'notLoading',
+  contacts: [],
+  showEditForm: false,
+  showCreateForm: false,
+  url: '/api/contacts/',
+  contact: {}
+};
+var getters = {};
+var mutations = {
+  SET_LOADING_STATUS: function SET_LOADING_STATUS(state, payload) {
+    state.loadingStatus = payload;
+  },
+  SET_CONTACTS: function SET_CONTACTS(state, payload) {
+    state.contacts = payload;
+  },
+  INSERT_CONTACT: function INSERT_CONTACT(state, payload) {
+    state.contacts.data.unshift(payload);
+  },
+  SHOW_FORM: function SHOW_FORM(state, payload) {
+    state.showEditForm = !state.showEditForm;
+    state.contact = payload;
+  },
+  SHOW_NEW_FORM: function SHOW_NEW_FORM(state, payload) {
+    state.showCreateForm = !state.showCreateForm;
+    state.contact = payload;
+  },
+  REMOVE_CONTACT: function REMOVE_CONTACT(state, id) {
+    state.contacts = state.contacts.data.filter(function (contact) {
+      return contact.id !== id;
+    });
+  }
+};
+var actions = {
+  openEditForm: function openEditForm(_ref, data) {
+    var commit = _ref.commit;
+    commit('SHOW_FORM', data);
+  },
+  newContactToggle: function newContactToggle(_ref2, data) {
+    var commit = _ref2.commit;
+    commit('SHOW_NEW_FORM', data);
+  },
+  insert_contact: function insert_contact(_ref3, data) {
+    var commit = _ref3.commit;
+    commit('INSERT_CONTACT', data);
+  },
+  deleteContact: function deleteContact(_ref4, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context.next = 3;
+              return axios["delete"]('/api/contacts/' + id);
+
+            case 3:
+              commit('REMOVE_CONTACT', id);
+              commit('SHOW_FORM');
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt zmazaný!'
+              }, {
+                root: true
+              });
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  updateContact: function updateContact(_ref5, contact) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref5.commit;
+              _context2.next = 3;
+              return axios.patch('/contact/update/' + contact.id, contact);
+
+            case 3:
+              commit('SHOW_FORM'); // Notify for add task
+
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt uložený!'
+              }, {
+                root: true
+              });
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  saveContact: function saveContact(_ref6, organizationId, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context3.next = 3;
+              return axios.post('/contact/store/' + organizationId, data);
+
+            case 3:
+              // commit('SHOW_FORM');
+              // Notify for add task
+              commit('notification/NEW_NOTIFICATION', {
+                type: 'bg-green-400',
+                message: 'Kontakt uložený!'
+              }, {
+                root: true
+              });
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  fetchContacts: function fetchContacts(_ref7, url) {
+    var commit = _ref7.commit;
+    commit('SET_LOADING_STATUS', 'loading');
+    axios.get(url).then(function (response) {
+      commit('SET_LOADING_STATUS', 'notLoading');
+      commit('SET_CONTACTS', response.data);
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/items.js":
 /*!*********************************************!*\
   !*** ./resources/js/store/modules/items.js ***!
@@ -82445,8 +82617,9 @@ var actions = {
   saveInterpellation: function saveInterpellation(_ref5, payload) {
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
-    axios.get('/inter/' + payload.id + '/' + payload.slug + '/item/interpellation').then(function (response) {
-      // commit('SET_INTERPELLATIONS', response.data )
+    axios.post('/api/interpellation/' + payload.id + '/store', {
+      user: payload.user.id
+    }).then(function (response) {
       dispatch('meetings/fetchMeeting', payload.meeting_id, {
         root: true
       });
@@ -82455,7 +82628,7 @@ var actions = {
   deleteInterpellation: function deleteInterpellation(_ref6, payload) {
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
-    axios["delete"]('/inter/' + payload.id + '/delete').then(function (response) {
+    axios["delete"]('/api/interpellation/' + payload.id).then(function (response) {
       // commit('SET_INTERPELLATIONS', response.data )
       dispatch('meetings/fetchMeeting', payload.meeting, {
         root: true
@@ -82465,7 +82638,6 @@ var actions = {
   storeVote: function storeVote(_ref7, payload) {
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    console.log(payload);
     axios.put('/api/vote/' + payload.id, payload).then(function (response) {
       dispatch('meetings/fetchMeeting', payload.meetingId, {
         root: true

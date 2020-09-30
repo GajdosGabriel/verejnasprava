@@ -82,11 +82,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
     });
 
-    Route::prefix('inter')->name('interpellation.')->namespace('Councils')->group(function() {
-        Route::get('{item}/{slug}/item/interpellation', 'InterpellationController@store')->name('store');
-        Route::delete('{interpellation}/delete', 'InterpellationController@delete');
-    });
-
 
     Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
         Route::get('{organization}/{slug}/index', 'OrganizationController@index')->name('index');

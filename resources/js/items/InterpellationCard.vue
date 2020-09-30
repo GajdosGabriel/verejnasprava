@@ -40,7 +40,7 @@
         },
         methods: {
             storeInterpellation: function () {
-                this.$store.dispatch('items/saveInterpellation', this.item);
+                this.$store.dispatch('items/saveInterpellation',  this.item);
             },
 
             deleteItem: function (id) {
