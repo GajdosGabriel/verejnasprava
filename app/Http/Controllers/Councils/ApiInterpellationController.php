@@ -15,6 +15,7 @@ class ApiInterpellationController extends Controller
 
     public function store(Item $item, Request $request)
     {
+
         if ($interpellation = $item->interpellations()->withTrashed()->whereUserId($request->user)->first()) {
 
             if ( $interpellation->deleted_at == null) {
@@ -28,10 +29,12 @@ class ApiInterpellationController extends Controller
         $item->interpellations()->create([
             'name' => 'Prihlásený do rozpravy',
             'body' => $item->name,
-            'user_id' => auth()->user()->id,
+            'user_id' => $request->user,
         ]);
         return $item->interpellations()->get();
     }
+
+
     public function delete(Interpellation $interpellation){
         $interpellation->delete();
     }
