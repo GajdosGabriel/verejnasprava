@@ -1,11 +1,46 @@
 <template>
-    <div class="hover:bg-gray-100 p-2 mb-20 ">
+    <div class="hover:bg-gray-100 p-2 mb-16">
 
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm">
-            <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
-                <strong>{{ item.name }}</strong>
-            </a>
+            <div class="flex justify-between w-full mb-4 px-2">
+                <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
+                    <span class="font-semibold text-gray-700">{{ item.name }}</span>
+                </a>
+
+                <nav-drop-down>
+                    <slot>
+                        <!-- Item Edit button-->
+                        <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap"
+                           :href="'/item/'+ item.id + '/' +item.slug + '/edit'"
+                           title="Upraviť bod programu">
+                            Upraviť položku
+                        </a>
+
+                        <!-- Item Up button-->
+                        <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap"
+                           :href="'/item/'+ item.id + '/' +item.slug + '/item/up'"
+                           title="Presunúť položku smerom hore">
+                            Presúnúť hore
+                        </a>
+
+                        <!-- Item Down button-->
+                        <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap"
+                           :href="'/item/'+ item.id + '/' +item.slug + '/item/down'"
+                           title="Presunúť položku smerom dole">
+                            Presunúť dole
+                        </a>
+
+                        <!-- Item Delete button-->
+                        <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap"
+                           :href="'/item/'+ item.id + '/' +item.slug + '/item/delete'"
+                           title="Zmazať položku">
+                            Zmazať
+                        </a>
+                    </slot>
+                </nav-drop-down>
+            </div>
+
 
             <div class="flex justify-between w-full">
 
@@ -53,10 +88,11 @@
     import {mapGetters} from 'vuex';
     import publishedButton from "./publishedButton";
     import interpellation from './InterpellationCard';
+    import navDropDown from '../modules/navigation/navDropDown';
 
     export default {
         props: ['item'],
-        components: {voteButtons, publishedButton, interpellation},
+        components: {voteButtons, publishedButton, interpellation, navDropDown},
         computed: {
             ddddddd: function () {
                 return this.$store.getters['meetings/activeItem']

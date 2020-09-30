@@ -3011,6 +3011,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3065,6 +3066,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3076,7 +3113,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     voteButtons: _votes_votesButton__WEBPACK_IMPORTED_MODULE_1__["default"],
     publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"]
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"],
+    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   computed: _objectSpread({
     ddddddd: function ddddddd() {
@@ -3161,8 +3199,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _items_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../items/item */ "./resources/js/items/item.vue");
+/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _items_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/item */ "./resources/js/items/item.vue");
 //
 //
 //
@@ -3186,20 +3225,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['meeting'],
   components: {
-    item: _items_item__WEBPACK_IMPORTED_MODULE_2__["default"]
+    item: _items_item__WEBPACK_IMPORTED_MODULE_3__["default"],
+    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     items: function items(state) {
       return state.meetings.items;
     }
@@ -64853,20 +64904,127 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "hover:bg-gray-100 p-2 mb-20 " },
+    { staticClass: "hover:bg-gray-100 p-2 mb-16" },
     [
       _c(
         "div",
         { staticClass: "flex flex-wrap border-2 border-gray-300 max-w-sm" },
         [
           _c(
-            "a",
-            {
-              attrs: {
-                href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-              }
-            },
-            [_c("strong", [_vm._v(_vm._s(_vm.item.name))])]
+            "div",
+            { staticClass: "flex justify-between w-full mb-4 px-2" },
+            [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
+                  }
+                },
+                [
+                  _c("span", { staticClass: "font-semibold text-gray-700" }, [
+                    _vm._v(_vm._s(_vm.item.name))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "nav-drop-down",
+                [
+                  _vm._t("default", [
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                        attrs: {
+                          href:
+                            "/item/" +
+                            _vm.item.id +
+                            "/" +
+                            _vm.item.slug +
+                            "/edit",
+                          title: "Upraviť bod programu"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Upraviť položku\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                        attrs: {
+                          href:
+                            "/item/" +
+                            _vm.item.id +
+                            "/" +
+                            _vm.item.slug +
+                            "/item/up",
+                          title: "Presunúť položku smerom hore"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Presúnúť hore\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                        attrs: {
+                          href:
+                            "/item/" +
+                            _vm.item.id +
+                            "/" +
+                            _vm.item.slug +
+                            "/item/down",
+                          title: "Presunúť položku smerom dole"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Presunúť dole\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                        attrs: {
+                          href:
+                            "/item/" +
+                            _vm.item.id +
+                            "/" +
+                            _vm.item.slug +
+                            "/item/delete",
+                          title: "Zmazať položku"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Zmazať\n                    "
+                        )
+                      ]
+                    )
+                  ])
+                ],
+                2
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -65021,22 +65179,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mb-6" }, [
-    _c("div", {}, [
-      _c("div", {}, [
-        _c("span", { staticClass: "text-gray-700" }, [
-          _vm._v(
-            "Začiatok: " +
-              _vm._s(_vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY"))
-          )
+    _c(
+      "div",
+      { staticClass: "flex justify-between" },
+      [
+        _c("div", {}, [
+          _c("span", { staticClass: "text-gray-700" }, [
+            _vm._v(
+              "Začiatok: " +
+                _vm._s(_vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY"))
+            )
+          ]),
+          _vm._v(" "),
+          _c("strong", [
+            _vm._v(
+              _vm._s(_vm.moment(_vm.meeting.start_at).format("h:mm")) + " hod."
+            )
+          ])
         ]),
         _vm._v(" "),
-        _c("strong", [
-          _vm._v(
-            _vm._s(_vm.moment(_vm.meeting.start_at).format("h:mm")) + " hod."
-          )
-        ])
-      ])
-    ]),
+        _c(
+          "nav-drop-down",
+          [
+            _vm._t("default", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
+                  attrs: {
+                    href:
+                      "/item/" +
+                      _vm.meeting.id +
+                      "/" +
+                      _vm.meeting.slug +
+                      "/create",
+                    title: "Vytvoriť nové zasadnutie"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Nový bod\n                    "
+                  )
+                ]
+              )
+            ])
+          ],
+          2
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -65075,48 +65268,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "relative" }, [
-    _c(
-      "button",
-      {
-        staticClass: "focus:outline-none",
-        on: {
-          click: function($event) {
-            _vm.isOpen = !_vm.isOpen
+  return _c(
+    "div",
+    {
+      staticClass:
+        "relative w-8 h-8 hover:bg-gray-200 flex justify-center content-center rounded-full transition duration-500 ease-in-out"
+    },
+    [
+      _c(
+        "button",
+        {
+          staticClass: "focus:outline-none",
+          on: {
+            click: function($event) {
+              _vm.isOpen = !_vm.isOpen
+            }
           }
-        }
-      },
-      [
-        _c(
-          "svg",
-          {
-            staticClass: "w-4 h-4 ml-2",
-            attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" }
-          },
-          [
-            _c("path", {
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticClass: "w-4 h-4",
               attrs: {
-                d:
-                  "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 20 20"
               }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _vm.isOpen
-          ? _c(
-              "div",
-              {
-                staticClass:
-                  "absolute right-0 z-10 flex flex-col w-auto py-1 text-sm bg-white border-2 border-gray-300 rounded shadow-md"
-              },
-              [_vm._t("default")],
-              2
-            )
-          : _vm._e()
-      ]
-    )
-  ])
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _vm.isOpen
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "absolute right-0 z-10 flex flex-col w-auto py-1 text-sm bg-white border-2 border-gray-300 rounded shadow-md"
+                },
+                [_vm._t("default")],
+                2
+              )
+            : _vm._e()
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
