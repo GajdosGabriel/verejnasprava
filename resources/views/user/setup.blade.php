@@ -64,22 +64,39 @@
                 </div>
             </user-edit>
 
+            <council-edit inline-template>
+                <div>
+
+                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2" @click="toggle">
+
+                        <h3 class="fill-current text-lg">Zastupiteľstvá</h3>
+
+                        <svg v-if="show" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20">
+                            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
+                        </svg>
+
+                        <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20">
+                            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
+                        </svg>
+
+                    </div>
+                    <div v-if="show">
+                        <form  method="POST" action="{{ route('zast.admin.store', [$organization->id, $organization->slug]) }}">
+                            @csrf @method('POST')
+                            @include('modul.errorsAndFlash')
+                            @include('council._form')
+                        </form>
+                    </div>
+                </div>
+            </council-edit>
+
+
             <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2">
 
                 <h3 class="fill-current text-lg">Zamestnanci</h3>
                 <span>Pripravujeme</span>
-
-            </div>
-
-
-            <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2">
-
-                <h3 class="fill-current text-lg">Zastupiteľstvá</h3>
-                @can('delete')
-                    <a class=""
-                       href="{{ route('zast.admin.create', [auth()->user()->active_organization, auth()->user()->slug ]) }}">Nové
-                        zastupiteľvo</a>
-                @endcan
 
             </div>
 

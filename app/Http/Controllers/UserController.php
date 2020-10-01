@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\User;
 use App\Notifications\User\InviteUser;
@@ -80,7 +81,8 @@ class UserController extends Controller
     public function setup() {
         $organization = auth()->user()->organization;
         $user = auth()->user();
-        return view('user.setup', compact(['organization', 'user']));
+        $council = new Council();
+        return view('user.setup', compact(['organization', 'user', 'council']));
     }
 
 

@@ -60,7 +60,7 @@
     import {createNamespacedHelpers} from 'vuex';
     const {mapActions} = createNamespacedHelpers('modals');
     import navDropDown from '../modules/navigation/navDropDown';
-    import editForm from './edit';
+    import editForm from './modalEdit';
 
     export default {
         components: {navDropDown, editForm},
