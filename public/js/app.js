@@ -3130,6 +3130,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3262,6 +3266,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3299,6 +3305,32 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -64991,33 +65023,35 @@ var render = function() {
                 "nav-drop-down",
                 [
                   _vm._t("default", [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
-                        attrs: {
-                          href:
-                            "/item/" +
-                            _vm.item.id +
-                            "/" +
-                            _vm.item.slug +
-                            "/edit",
-                          title: "Upraviť bod programu"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Upraviť položku\n                    "
-                        )
-                      ]
-                    ),
+                    _c("div", { staticClass: "py-1" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href:
+                              "/item/" +
+                              _vm.item.id +
+                              "/" +
+                              _vm.item.slug +
+                              "/edit",
+                            title: "Upraviť bod programu"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Upraviť položku\n                        "
+                          )
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c(
                       "a",
                       {
                         staticClass:
-                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                         attrs: {
                           href:
                             "/item/" +
@@ -65039,7 +65073,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                         attrs: {
                           href:
                             "/item/" +
@@ -65061,7 +65095,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left whitespace-no-wrap",
+                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                         attrs: {
                           href:
                             "/item/" +
@@ -65241,23 +65275,25 @@ var render = function() {
             "nav-drop-down",
             [
               _vm._t("default", [
-                _c(
-                  "a",
-                  {
-                    staticClass:
-                      "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
-                    attrs: {
-                      href:
-                        "/item/" +
-                        _vm.meeting.id +
-                        "/" +
-                        _vm.meeting.slug +
-                        "/create",
-                      title: "Vytvoriť nové zasadnutie"
-                    }
-                  },
-                  [_vm._v("\n                    Nový bod\n                ")]
-                )
+                _c("div", { staticClass: "py-1" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                      attrs: {
+                        href:
+                          "/item/" +
+                          _vm.meeting.id +
+                          "/" +
+                          _vm.meeting.slug +
+                          "/create",
+                        title: "Vytvoriť nové zasadnutie"
+                      }
+                    },
+                    [_vm._v("\n                    Nový bod\n                ")]
+                  )
+                ])
               ])
             ],
             2
@@ -65300,58 +65336,67 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "relative w-8 h-8 hover:bg-gray-200 flex justify-center content-center rounded-full transition duration-500 ease-in-out"
-    },
-    [
-      _c(
-        "button",
-        {
-          staticClass: "focus:outline-none",
-          on: {
-            click: function($event) {
-              _vm.isOpen = !_vm.isOpen
-            }
-          }
-        },
-        [
-          _c(
-            "svg",
-            {
-              staticClass: "w-4 h-4",
-              attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                viewBox: "0 0 20 20"
+  return _c("div", { staticClass: "relative inline-block text-left" }, [
+    _c("div", [
+      _c("span", { staticClass: "rounded-md shadow-sm" }, [
+        _c(
+          "button",
+          {
+            staticClass: "focus:outline-none",
+            on: {
+              click: function($event) {
+                _vm.isOpen = !_vm.isOpen
               }
-            },
-            [
-              _c("path", {
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "-mr-1 ml-2 h-5 w-5",
+                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.isOpen
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "rounded-md bg-white shadow-xs",
                 attrs: {
-                  d:
-                    "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                  role: "menu",
+                  "aria-orientation": "vertical",
+                  "aria-labelledby": "options-menu"
                 }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _vm.isOpen
-            ? _c(
-                "div",
-                {
-                  staticClass:
-                    "absolute right-0 z-10 flex flex-col w-auto py-1 text-sm bg-white border-2 border-gray-300 rounded shadow-md"
-                },
-                [_vm._t("default")],
-                2
-              )
-            : _vm._e()
-        ]
-      )
-    ]
-  )
+              },
+              [_vm._t("default")],
+              2
+            )
+          ]
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

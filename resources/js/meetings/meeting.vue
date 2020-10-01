@@ -10,11 +10,13 @@
 
             <nav-drop-down>
                 <slot>
-                    <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
+                    <div class="py-1">
+                        <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                        :href="'/item/'+ meeting.id + '/' + meeting.slug + '/create'"
                        title="Vytvoriť nové zasadnutie">
                         Nový bod
                     </a>
+                    </div>
                 </slot>
             </nav-drop-down>
         </div>
