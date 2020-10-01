@@ -90,8 +90,8 @@
         props: ['item'],
         components: {voteButtons, publishedButton, interpellation, navDropDown},
         computed: {
-            ddddddd: function () {
-                return this.$store.getters['meetings/activeItem']
+            curentlyItem: function () {
+                return this.$store.getters['meetings/activeItem'](this.item.id);
             },
             ...mapState({
                 votes: state => state.items.votes,

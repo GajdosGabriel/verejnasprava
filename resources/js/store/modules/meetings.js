@@ -4,8 +4,8 @@ const state = {
     items: [],
 };
 const getters = {
-    activeItem:  state => {
-        return state.items.find(todo => todo.id === 1)
+    activeItem: (state) => (id) => {
+        return state.items.find(todo => todo.id === id)
     }
 };
 

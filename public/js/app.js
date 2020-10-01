@@ -3146,8 +3146,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   computed: _objectSpread({
-    ddddddd: function ddddddd() {
-      return this.$store.getters['meetings/activeItem'];
+    curentlyItem: function curentlyItem() {
+      return this.$store.getters['meetings/activeItem'](this.item.id);
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     votes: function votes(state) {
@@ -82886,9 +82886,11 @@ var state = {
 };
 var getters = {
   activeItem: function activeItem(state) {
-    return state.items.find(function (todo) {
-      return todo.id === 1;
-    });
+    return function (id) {
+      return state.items.find(function (todo) {
+        return todo.id === id;
+      });
+    };
   }
 };
 var mutations = {
