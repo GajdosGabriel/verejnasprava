@@ -2739,6 +2739,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3129,10 +3130,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -3206,6 +3203,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
@@ -3234,9 +3232,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _items_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/item */ "./resources/js/items/item.vue");
-//
-//
-//
 //
 //
 //
@@ -64396,14 +64391,14 @@ var render = function() {
     [
       _vm._l(_vm.councils, function(council) {
         return _c("div", { staticClass: "mb-4" }, [
-          _c("div", { staticClass: "flex justify-between" }, [
+          _c("div", { staticClass: "flex justify-between flex-wrap" }, [
             _c("h1", { staticClass: "page-title" }, [
               _vm._v(_vm._s(council.name))
             ]),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "flex" },
+              { staticClass: "flex whitespace-no-wrap" },
               [
                 _vm._v(
                   "\n                Zasadaní (" +
@@ -64487,11 +64482,13 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex flex-col" },
+            { staticClass: "flex flex-col " },
             _vm._l(council.meetings, function(meeting) {
               return _c(
                 "div",
-                { staticClass: "flex justify-between hover:underline" },
+                {
+                  staticClass: "flex justify-between hover:underline flex-wrap"
+                },
                 [
                   _c(
                     "a",
@@ -64866,7 +64863,10 @@ var render = function() {
   return _vm.openList
     ? _c(
         "div",
-        { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm" },
+        {
+          staticClass:
+            "flex-1 border-2 rounded-md border-gray-300 max-w-sm w-full"
+        },
         [
           _c(
             "div",
@@ -64960,11 +64960,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "hover:bg-gray-100 p-2 mb-16" },
+    { staticClass: "hover:bg-gray-100 p-2 mb-16 flex flex-col" },
     [
       _c(
         "div",
-        { staticClass: "flex flex-wrap border-2 border-gray-300 max-w-sm" },
+        {
+          staticClass:
+            "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2"
+        },
         [
           _c(
             "div",
@@ -65089,43 +65092,40 @@ var render = function() {
             [
               _c("published-button", { attrs: { item: _vm.item } }),
               _vm._v(" "),
-              _c("div", { staticClass: "text-center" }, [
-                _vm.item.published
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "text-sm cursor-pointer mr-4 whitespace-no-wrap",
-                        on: { click: _vm.openInterpellation }
-                      },
-                      [
-                        _vm._v("\n                    Rozprava "),
-                        _c("span", { staticClass: "text-gray-500" }, [
-                          _vm._v(_vm._s(_vm.item.interpellations.length))
-                        ])
-                      ]
-                    )
-                  : _vm._e()
-              ]),
+              _vm.item.published
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-center text-sm whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                      on: { click: _vm.openInterpellation }
+                    },
+                    [
+                      _vm._v("\n                Rozprava "),
+                      _c("span", { staticClass: "text-gray-500" }, [
+                        _vm._v(_vm._s(_vm.item.interpellations.length))
+                      ])
+                    ]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _vm.item.published
-                ? _c("div", { staticClass: "text-center whitespace-no-wrap" }, [
-                    _c("button", {
-                      staticClass: "badge badge-primary bg-gray-300  ml-2",
-                      class:
-                        _vm.item.vote_status == 1
-                          ? "bg-blue-700 text-gray-200"
-                          : "text-gray-900",
-                      domProps: {
-                        textContent: _vm._s(
-                          _vm.item.vote_status == 0
-                            ? "Zapnúť hlasovanie"
-                            : "Vypnúť hlasovanie"
-                        )
-                      },
-                      on: { click: _vm.voteStatus }
-                    })
-                  ])
+                ? _c("div", {
+                    staticClass:
+                      "text-center text-sm whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
+                    class:
+                      _vm.item.vote_status == 1
+                        ? "bg-blue-700 text-gray-200"
+                        : "text-gray-900",
+                    domProps: {
+                      textContent: _vm._s(
+                        _vm.item.vote_status == 0
+                          ? "Zapnúť hlasovanie"
+                          : "Vypnúť hlasovanie"
+                      )
+                    },
+                    on: { click: _vm.voteStatus }
+                  })
                 : _vm._e()
             ],
             1
@@ -65133,35 +65133,14 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.item.vote_status,
-              expression: "item.vote_status"
-            }
-          ],
-          staticClass: "max-w-sm"
-        },
-        [
-          _c("h2", { staticClass: "text-center text-3xl text-gray-600 mt-5" }, [
-            _vm._v("Hlasujte")
-          ]),
-          _vm._v(" "),
-          _c("vote-buttons", { attrs: { item: _vm.item } })
-        ],
-        1
-      ),
+      _c("vote-buttons", { attrs: { item: _vm.item } }),
       _vm._v(" "),
       _c("interpellation", { attrs: { item: _vm.item } }),
       _vm._v(" "),
       _vm._l(_vm.item.votes, function(vote) {
         return _c(
           "div",
-          { staticClass: "max-w-sm" },
+          { staticClass: "max-w-sm w-full" },
           [_c("vote-list", { attrs: { vote: vote } })],
           1
         )
@@ -65195,6 +65174,8 @@ var render = function() {
   return _c(
     "div",
     {
+      staticClass:
+        "text-sm text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
       on: {
         click: function($event) {
           return _vm.publishedToggle(_vm.item)
@@ -65203,12 +65184,8 @@ var render = function() {
     },
     [
       _vm.item.published
-        ? _c("span", { staticClass: "badge badge-primary" }, [
-            _vm._v("Publikované")
-          ])
-        : _c("span", { staticClass: "badge badge-secondary" }, [
-            _vm._v("Publikovať")
-          ])
+        ? _c("span", [_vm._v("Publikované")])
+        : _c("span", [_vm._v("Publikovať")])
     ]
   )
 }
@@ -65234,73 +65211,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-6" }, [
-    _c(
-      "div",
-      { staticClass: "flex justify-between" },
-      [
-        _c("div", {}, [
-          _c("span", { staticClass: "text-gray-700" }, [
-            _vm._v(
-              "Začiatok: " +
-                _vm._s(_vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY"))
-            )
-          ]),
-          _vm._v(" "),
-          _c("strong", [
-            _vm._v(
-              _vm._s(_vm.moment(_vm.meeting.start_at).format("h:mm")) + " hod."
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "nav-drop-down",
-          [
-            _vm._t("default", [
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
-                  attrs: {
-                    href:
-                      "/item/" +
-                      _vm.meeting.id +
-                      "/" +
-                      _vm.meeting.slug +
-                      "/create",
-                    title: "Vytvoriť nové zasadnutie"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                        Nový bod\n                    "
+  return _c(
+    "div",
+    { staticClass: "mb-6" },
+    [
+      _c(
+        "div",
+        { staticClass: "flex justify-between max-w-sm" },
+        [
+          _c("div", {}, [
+            _c("span", { staticClass: "text-gray-700" }, [
+              _vm._v(
+                "Začiatok: " +
+                  _vm._s(
+                    _vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY")
                   )
-                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("strong", [
+              _vm._v(
+                _vm._s(_vm.moment(_vm.meeting.start_at).format("h:mm")) +
+                  " hod."
               )
             ])
-          ],
-          2
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mt-4 bg-white" },
+          ]),
+          _vm._v(" "),
+          _c(
+            "nav-drop-down",
+            [
+              _vm._t("default", [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
+                    attrs: {
+                      href:
+                        "/item/" +
+                        _vm.meeting.id +
+                        "/" +
+                        _vm.meeting.slug +
+                        "/create",
+                      title: "Vytvoriť nové zasadnutie"
+                    }
+                  },
+                  [_vm._v("\n                    Nový bod\n                ")]
+                )
+              ])
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _vm._l(_vm.items, function(item) {
         return _c(
           "div",
-          { key: item.id, staticClass: "odd:bg-gray-500" },
+          { key: item.id, staticClass: "odd:bg-gray-500 mt-4 bg-white" },
           [_c("item", { attrs: { item: item } })],
           1
         )
-      }),
-      0
-    )
-  ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -66819,7 +66795,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm" },
+    { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full" },
     [
       _vm._m(0),
       _vm._v(" "),
@@ -66923,148 +66899,170 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "max-w-sm" }, [
-    _c(
-      "form",
-      {
-        attrs: { method: "POST" },
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-          }
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.item.vote_status,
+          expression: "item.vote_status"
         }
-      },
-      [
-        _c("div", [
-          _c(
-            "div",
-            { staticClass: "md:flex justify-between my-5 bg-gray-100" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function($event) {
-                      return _vm.storeVote(1)
+      ],
+      staticClass: "max-w-sm w-full"
+    },
+    [
+      _c("h3", { staticClass: "text-center text-2xl text-gray-600" }, [
+        _vm._v("Hlasujte")
+      ]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          attrs: { method: "POST" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [
+          _c("div", [
+            _c(
+              "div",
+              { staticClass: "md:flex justify-between my-5 bg-gray-100" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(1)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    Súhlasim\n                    "
-                  ),
-                  _vm.meVote.vote == 1
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Súhlasim\n                    "
+                    ),
+                    _vm.meVote.vote == 1
+                      ? _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "w-5 h-5 ml-2 text-white fill-current",
                               attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
                               }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                  on: {
-                    click: function($event) {
-                      return _vm.storeVote(2)
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                }
+                              })
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(2)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v("\n                    Zdržal\n                    "),
-                  _vm.meVote.vote == 2
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "w-5 h-5 ml-2 text-blue-600 fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Zdržal\n                    "
+                    ),
+                    _vm.meVote.vote == 2
+                      ? _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "w-5 h-5 ml-2 text-blue-600 fill-current",
                               attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
                               }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
-                  on: {
-                    click: function($event) {
-                      return _vm.storeVote(0)
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                }
+                              })
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                    on: {
+                      click: function($event) {
+                        return _vm.storeVote(0)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    Nesúhlasim\n                    "
-                  ),
-                  _vm.meVote.vote == 0
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-5 h-5 ml-2 text-white fill-current",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Nesúhlasim\n                    "
+                    ),
+                    _vm.meVote.vote == 0
+                      ? _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "w-5 h-5 ml-2 text-white fill-current",
                               attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
                               }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              )
-            ]
-          )
-        ])
-      ]
-    )
-  ])
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                }
+                              })
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

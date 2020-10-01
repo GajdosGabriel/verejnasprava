@@ -1,8 +1,8 @@
 <template>
     <div class="mb-6">
 
-        <div class="flex justify-between">
-<!--            <h1 class="page-title">{{ meeting.name }}</h1>-->
+        <div class="flex justify-between max-w-sm">
+            <!--            <h1 class="page-title">{{ meeting.name }}</h1>-->
             <div class="">
                 <span class="text-gray-700">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
                 <strong>{{ moment(meeting.start_at).format('h:mm') }} hod.</strong>
@@ -19,13 +19,10 @@
             </nav-drop-down>
         </div>
 
-        <div class="mt-4 bg-white">
-            <div v-for="item in items" :key="item.id" class="odd:bg-gray-500">
-
-                <item :item="item"></item>
-
-            </div>
+        <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
+            <item :item="item"></item>
         </div>
+
 
     </div>
 

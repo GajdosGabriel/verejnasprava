@@ -1,6 +1,6 @@
 <template>
 
-    <div class="border-2 rounded-md border-gray-300 my-5 max-w-sm">
+    <div class="border-2 rounded-md border-gray-300 my-5 max-w-sm w-full">
         <div class="flex justify-between mb-3 bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Výsledky hlasovania</h4>
         </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-sm">
-
+    <div class="max-w-sm w-full" v-show="item.vote_status">
+        <h3 class="text-center text-2xl text-gray-600">Hlasujte</h3>
         <form method="POST" @submit.prevent>
             <div>
                 <div class="md:flex justify-between my-5 bg-gray-100">

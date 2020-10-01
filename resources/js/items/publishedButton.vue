@@ -1,9 +1,10 @@
 <template>
-    <div @click="publishedToggle(item)">
+    <div @click="publishedToggle(item)"
+         class="text-sm text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer">
 
-        <span v-if="item.published"  class="badge badge-primary">Publikované</span>
+        <span v-if="item.published">Publikované</span>
 
-        <span  v-else class="badge badge-secondary">Publikovať</span>
+        <span  v-else >Publikovať</span>
 
     </div>
 </template>

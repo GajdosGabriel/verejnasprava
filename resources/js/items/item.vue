@@ -1,8 +1,8 @@
 <template>
-    <div class="hover:bg-gray-100 p-2 mb-16">
+    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col">
 
 
-        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm">
+        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2">
             <div class="flex justify-between w-full mb-4 px-2">
                 <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
                     <span class="font-semibold text-gray-700">{{ item.name }}</span>
@@ -46,33 +46,29 @@
 
                 <published-button :item="item"></published-button>
 
-                <div class="text-center">
-                    <button @click="openInterpellation" v-if="item.published"
-                            class="text-sm cursor-pointer mr-4 whitespace-no-wrap">
-                        Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
-                    </button>
+                <div class="text-center text-sm whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
+                     @click="openInterpellation" v-if="item.published"
+                >
+                    Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
                 </div>
 
 
-                <div class="text-center whitespace-no-wrap" v-if="item.published">
-                    <button class="badge badge-primary bg-gray-300  ml-2"
-                            :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : 'text-gray-900'"
-                            @click="voteStatus"
-                            v-text="item.vote_status == 0 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie'"
-                    >
-                    </button>
+                <div class="text-center text-sm whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer" v-if="item.published"
+                     :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : 'text-gray-900'"
+                     @click="voteStatus"
+                     v-text="item.vote_status == 0 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie'"
+                >
+
                 </div>
             </div>
         </div>
 
-        <div v-show="item.vote_status" class="max-w-sm">
-            <h2 class="text-center text-3xl text-gray-600 mt-5">Hlasujte</h2>
-            <vote-buttons :item="item"></vote-buttons>
-        </div>
+
+        <vote-buttons :item="item"></vote-buttons>
 
         <interpellation :item="item"></interpellation>
 
-        <div v-for="vote in item.votes" class="max-w-sm">
+        <div v-for="vote in item.votes" class="max-w-sm w-full">
             <vote-list :vote="vote"></vote-list>
         </div>
 
