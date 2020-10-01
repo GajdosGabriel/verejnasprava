@@ -3154,6 +3154,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$store.getters['meetings/activeItem'](this.item.id);
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+    itemmm: function itemmm(state) {
+      return state.meetings.item;
+    },
     votes: function votes(state) {
       return state.items.votes;
     },
@@ -3286,10 +3289,16 @@ __webpack_require__.r(__webpack_exports__);
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     items: function items(state) {
       return state.meetings.items;
+    },
+    authUser: function authUser(state) {
+      return state.meetings.authUser;
     }
   }),
   created: function created() {
     this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
+    this.$store.commit('meetings/SET_AUTHUSER', this.user, {
+      root: true
+    });
   },
   methods: {}
 });
@@ -3305,6 +3314,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -4144,6 +4156,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -65122,7 +65145,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex justify-between w-full" },
+            { staticClass: "flex justify-between w-full text-sm" },
             [
               _c("published-button", { attrs: { item: _vm.item } }),
               _vm._v(" "),
@@ -65131,7 +65154,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "text-center text-sm whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
                       on: { click: _vm.openInterpellation }
                     },
                     [
@@ -65146,7 +65169,7 @@ var render = function() {
               _vm.item.published
                 ? _c("div", {
                     staticClass:
-                      "text-center text-sm whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
+                      "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
                     class:
                       _vm.item.vote_status == 1
                         ? "bg-blue-700 text-gray-200"
@@ -65209,7 +65232,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "text-sm text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
       on: {
         click: function($event) {
           return _vm.publishedToggle(_vm.item)
@@ -66357,39 +66380,51 @@ var render = function() {
                     }
                   },
                   [
-                    _vm.adminPanel == post.id
-                      ? _c(
-                          "ul",
-                          {
-                            staticClass:
-                              "dropdown-menu absolute text-gray-700 p-2\n                border-gray-400 bg-white border-2 rounded-sm"
-                          },
-                          [
-                            _c("li", { staticClass: "mb-2" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "hover:underline",
-                                  attrs: { href: "post/edit/" + post.id }
-                                },
-                                [_vm._v("Upraviť")]
-                              )
-                            ]),
+                    _c(
+                      "nav-drop-down",
+                      [
+                        _vm._t("default", [
+                          _c("div", { staticClass: "py-1" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                attrs: {
+                                  href: "post/edit/" + post.id,
+                                  title: "Upraviť položku"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Upraviť\n                            "
+                                )
+                              ]
+                            ),
                             _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "hover:underline",
-                                  attrs: { href: "post/delete/" + post.id }
-                                },
-                                [_vm._v("Zmazať")]
-                              )
-                            ])
-                          ]
-                        )
-                      : _c("div", { staticClass: "mx-auto" }, [_vm._v("...")])
-                  ]
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                attrs: {
+                                  href: "post/delete/" + post.id,
+                                  title: "Zmazať položku"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Zmazať\n                            "
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ],
+                      2
+                    )
+                  ],
+                  1
                 )
               ]
             )
@@ -82927,7 +82962,9 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   loadingStatus: 'notLoading',
   meeting: '',
-  items: []
+  items: [],
+  item: '',
+  authUser: ''
 };
 var getters = {
   activeItem: function activeItem(state) {
@@ -82944,6 +82981,9 @@ var mutations = {
   },
   SET_ITEMS: function SET_ITEMS(state, payload) {
     state.items = payload;
+  },
+  SET_AUTHUSER: function SET_AUTHUSER(state, payload) {
+    state.authUser = payload;
   }
 };
 var actions = {

@@ -2,6 +2,8 @@ const state = {
     loadingStatus: 'notLoading',
     meeting: '',
     items: [],
+    item: '',
+    authUser: ''
 };
 const getters = {
     activeItem: (state) => (id) => {
@@ -15,9 +17,10 @@ const mutations = {
     },
     SET_ITEMS: function (state, payload) {
         state.items = payload;
-    }
-
-
+    },
+    SET_AUTHUSER: function (state, payload) {
+        state.authUser = payload;
+    },
 };
 const actions = {
 

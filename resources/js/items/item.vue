@@ -44,19 +44,19 @@
             </div>
 
 
-            <div class="flex justify-between w-full">
+            <div class="flex justify-between w-full text-sm">
 
                 <published-button :item="item"></published-button>
 
                 <div
-                    class="text-center text-sm whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
+                    class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
                     @click="openInterpellation" v-if="item.published"
                 >
                     Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
                 </div>
 
 
-                <div class="text-center text-sm whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer"
+                <div class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer"
                      v-if="item.published"
                      :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : 'text-gray-900'"
                      @click="voteStatus"
@@ -98,6 +98,7 @@
                 return this.$store.getters['meetings/activeItem'](this.item.id);
             },
             ...mapState({
+                itemmm: state => state.meetings.item,
                 votes: state => state.items.votes,
                 interpellations: state => state.items.interpellations,
             }),

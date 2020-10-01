@@ -45,10 +45,12 @@
             }
         },
         computed: mapState({
-            items: state => state.meetings.items
+            items: state => state.meetings.items,
+            authUser: state => state.meetings.authUser
         }),
         created() {
             this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
+            this.$store.commit('meetings/SET_AUTHUSER', this.user, {root: true})
         },
         methods: {}
 

@@ -36,12 +36,23 @@
                 <td class="border px-4 py-2" v-text="post.int_number"></td>
 
                 <td class="border px-4 py-2 cursor-pointer flex flex-col" @click="adminPanel = post.id">
-                    <ul v-if="adminPanel == post.id"  class="dropdown-menu absolute text-gray-700 p-2
-                    border-gray-400 bg-white border-2 rounded-sm">
-                        <li class="mb-2"><a :href="'post/edit/' + post.id"  class="hover:underline">Upraviť</a></li>
-                        <li><a :href="'post/delete/' + post.id"  class="hover:underline">Zmazať</a></li>
-                        </ul>
-                    <div v-else class="mx-auto">...</div>
+                    <nav-drop-down>
+                        <slot>
+                            <div class="py-1">
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                   :href="'post/edit/' + post.id"
+                                   title="Upraviť položku">
+                                    Upraviť
+                                </a>
+
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                   :href="'post/delete/' + post.id"
+                                   title="Zmazať položku">
+                                    Zmazať
+                                </a>
+                            </div>
+                        </slot>
+                    </nav-drop-down>
                 </td>
 
             </tr>
