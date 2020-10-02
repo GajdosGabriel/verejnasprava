@@ -1,13 +1,16 @@
 const state = {
     items: [],
     votes: [],
+    userVote: null,
     interpellations: [],
     item: '',
-    userVote: null,
     authUser: ''
-
 };
+
 const getters = {
+    get_votes: (state) => {
+        return state.item.votes.filter(todo => todo.item_id == 1)
+    }
 
 };
 
@@ -17,16 +20,11 @@ const mutations = {
         state.authUser = user;
     },
 
-
-    SET_ITEMS: function (state, meeting) {
-        state.items = meeting.items;
-    },
-
     SET_ITEM: function (state, item) {
         state.item = item;
-        state.votes = item.votes;
-        state.interpellations = item.interpellations;
-        state.userVote = state.votes.find(vote => vote.user_id === state.authUser.id);
+        // state.votes = item.user;
+        // state.interpellations = item.interpellations;
+        // state.votes = item.votes;
     },
 
     SET_VOTES: function (state, item) {
@@ -42,8 +40,9 @@ const mutations = {
 
 };
 const actions = {
-    set_items({commit}, meeting) {
-        commit('SET_ITEMS', meeting)
+    set_item({commit}, meeting) {
+        console.log(meeting);
+        commit('SET_ITEM', meeting)
     },
 
     get_item({commit}, itemId) {
@@ -55,12 +54,12 @@ const actions = {
     },
 
     set_vote_status({commit, dispatch}, item) {
-        if (!state.item.published) {
+        if (!item.published) {
             alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
             return
         }
 
-        if (!state.interpellations.length) {
+        if (item.interpellations.length) {
             alert('Zoznam prihlásených do rozpravy nie je prázdny.');
             return
         }

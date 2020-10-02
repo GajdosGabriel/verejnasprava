@@ -3045,12 +3045,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -3149,23 +3143,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"],
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  computed: _objectSpread({
+  computed: {
     curentlyItem: function curentlyItem() {
       return this.$store.getters['meetings/activeItem'](this.item.id);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
-    itemmm: function itemmm(state) {
-      return state.meetings.item;
-    },
-    votes: function votes(state) {
-      return state.items.votes;
-    },
-    interpellations: function interpellations(state) {
-      return state.items.interpellations;
-    }
-  })),
+  },
   mounted: function mounted() {
-    this.$store.commit('items/SET_ITEM', this.item, {
+    this.$store.dispatch('items/get_item', this.item.id, {
       root: true
     });
   },
@@ -82853,26 +82837,26 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   items: [],
   votes: [],
+  userVote: null,
   interpellations: [],
   item: '',
-  userVote: null,
   authUser: ''
 };
-var getters = {};
+var getters = {
+  get_votes: function get_votes(state) {
+    return state.item.votes.filter(function (todo) {
+      return todo.item_id == 1;
+    });
+  }
+};
 var mutations = {
   SET_AUTH_USER: function SET_AUTH_USER(state, user) {
     state.authUser = user;
   },
-  SET_ITEMS: function SET_ITEMS(state, meeting) {
-    state.items = meeting.items;
-  },
   SET_ITEM: function SET_ITEM(state, item) {
-    state.item = item;
-    state.votes = item.votes;
-    state.interpellations = item.interpellations;
-    state.userVote = state.votes.find(function (vote) {
-      return vote.user_id === state.authUser.id;
-    });
+    state.item = item; // state.votes = item.user;
+    // state.interpellations = item.interpellations;
+    // state.votes = item.votes;
   },
   SET_VOTES: function SET_VOTES(state, item) {
     state.votes = item;
@@ -82885,9 +82869,10 @@ var mutations = {
   }
 };
 var actions = {
-  set_items: function set_items(_ref, meeting) {
+  set_item: function set_item(_ref, meeting) {
     var commit = _ref.commit;
-    commit('SET_ITEMS', meeting);
+    console.log(meeting);
+    commit('SET_ITEM', meeting);
   },
   get_item: function get_item(_ref2, itemId) {
     var commit = _ref2.commit;
@@ -82899,12 +82884,12 @@ var actions = {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
 
-    if (!state.item.published) {
+    if (!item.published) {
       alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
       return;
     }
 
-    if (!state.interpellations.length) {
+    if (item.interpellations.length) {
       alert('Zoznam prihlásených do rozpravy nie je prázdny.');
       return;
     }
@@ -82961,9 +82946,7 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   loadingStatus: 'notLoading',
-  meeting: '',
   items: [],
-  item: '',
   authUser: ''
 };
 var getters = {

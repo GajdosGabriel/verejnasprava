@@ -1,8 +1,6 @@
 const state = {
     loadingStatus: 'notLoading',
-    meeting: '',
     items: [],
-    item: '',
     authUser: ''
 };
 const getters = {

@@ -96,15 +96,10 @@
         computed: {
             curentlyItem: function () {
                 return this.$store.getters['meetings/activeItem'](this.item.id);
-            },
-            ...mapState({
-                itemmm: state => state.meetings.item,
-                votes: state => state.items.votes,
-                interpellations: state => state.items.interpellations,
-            }),
+            }
         },
         mounted() {
-            this.$store.commit('items/SET_ITEM', this.item, {root: true})
+            this.$store.dispatch('items/get_item', this.item.id, {root: true})
         },
         methods: {
             voteStatus: function () {
