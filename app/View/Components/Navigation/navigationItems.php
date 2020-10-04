@@ -31,11 +31,11 @@ class navigationItems extends Component
     }
 
     public function logoUrl(){
-        return route('org.index', [$this->object->id, $this->object->slug])  ;
+        return route('org.index', [$this->meeting->id, $this->meeting->slug])  ;
     }
 
     public function logoTitle(){
-        return $this->object->name;
+        return $this->meeting->name;
     }
 
     public function isActive($routeName) {

@@ -15,29 +15,66 @@
                             <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                :href="'/item/'+ item.id + '/' +item.slug + '/edit'"
                                title="Upraviť bod programu">
-                                Upraviť položku
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                    </svg>
+                                    Upraviť položku
+                                </div>
                             </a>
 
                         </div>
+
+                        <!--  Poslať všetkým notifikáciu -->
+                        <a class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                           href="#"
+                           title="Notifikácia pre voliteľov">
+                            <div class="flex">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
+                                </svg>
+                                Nofifikácia
+                            </div>
+
+                        </a>
+
+
                         <!-- Item Up button-->
                         <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                            :href="'/item/'+ item.id + '/' +item.slug + '/item/up'"
                            title="Presunúť položku smerom hore">
-                            Presúnúť hore
+                            <div class="flex">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
+                                </svg>
+                                Presúnúť hore
+                            </div>
                         </a>
 
                         <!-- Item Down button-->
                         <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                            :href="'/item/'+ item.id + '/' +item.slug + '/item/down'"
                            title="Presunúť položku smerom dole">
-                            Presunúť dole
+                            <div class="flex">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
+                                </svg>
+                                Presunúť dole
+                            </div>
                         </a>
 
                         <!-- Item Delete button-->
                         <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                            :href="'/item/'+ item.id + '/' +item.slug + '/item/delete'"
                            title="Zmazať položku">
-                            Zmazať
+                            <div class="flex">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                </svg>
+                                Zmazať
+                            </div>
                         </a>
                     </slot>
                 </nav-drop-down>
