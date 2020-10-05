@@ -109,8 +109,8 @@
 
         <interpellation :item="item"></interpellation>
 
-        <div v-for="vote in item.votes" class="max-w-sm w-full">
-            <vote-list :vote="vote"></vote-list>
+        <div class="max-w-sm w-full">
+            <vote-list :votes="item.votes"></vote-list>
         </div>
 
 

@@ -4608,19 +4608,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['vote'],
+  props: ['votes'],
   computed: {
-    voteType: function voteType() {
-      if (this.vote.vote == 2) {
+    countYes: function countYes() {
+      return this.votes.filter(function (value) {
+        return value.vote === 1;
+      }).length;
+    },
+    countUndecided: function countUndecided() {
+      return this.votes.filter(function (value) {
+        return value.vote === 2;
+      }).length;
+    },
+    countNo: function countNo() {
+      return this.votes.filter(function (value) {
+        return value.vote === 0;
+      }).length;
+    }
+  },
+  methods: {
+    voteType: function voteType(vote) {
+      if (vote == 2) {
         return 'Zdržal';
       }
 
-      if (this.vote.vote == 1) {
-        return 'ANO';
+      if (vote == 1) {
+        return 'ÁNO';
       }
 
-      if (this.vote.vote == 0) {
+      if (vote == 0) {
         return 'NIE';
       }
     }
@@ -65323,16 +65345,14 @@ var render = function() {
       _vm._v(" "),
       _c("interpellation", { attrs: { item: _vm.item } }),
       _vm._v(" "),
-      _vm._l(_vm.item.votes, function(vote) {
-        return _c(
-          "div",
-          { staticClass: "max-w-sm w-full" },
-          [_c("vote-list", { attrs: { vote: vote } })],
-          1
-        )
-      })
+      _c(
+        "div",
+        { staticClass: "max-w-sm w-full" },
+        [_c("vote-list", { attrs: { votes: _vm.item.votes } })],
+        1
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -67006,45 +67026,50 @@ var render = function() {
     "div",
     { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full" },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" }, [
+        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+          _vm._v("Výsledky hlasovania (" + _vm._s(_vm.votes.length) + ")")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex cursor-pointer" }, [
+          _c("div", { attrs: { title: "Áno" } }, [
+            _vm._v(_vm._s(_vm.countYes))
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { title: "Zdržal sa" } }, [
+            _vm._v("-" + _vm._s(_vm.countUndecided))
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { title: "Nie" } }, [
+            _vm._v("-" + _vm._s(_vm.countNo))
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("ul", [
-        _c(
-          "li",
-          { staticClass: "flex justify-between border-b-2 border-dotted" },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(
-                  _vm.vote.user.first_name + " " + _vm.vote.user.last_name
-                ) +
-                "\n            "
-            ),
-            _c("span", { staticClass: "font-medium" }, [
-              _vm._v(_vm._s(_vm.voteType))
-            ])
-          ]
-        )
-      ])
+      _c(
+        "ul",
+        _vm._l(_vm.votes, function(vote) {
+          return _c(
+            "li",
+            { staticClass: "flex justify-between border-b-2 border-dotted" },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(vote.user.first_name + " " + vote.user.last_name) +
+                  "\n            "
+              ),
+              _c("span", { staticClass: "font-medium" }, [
+                _vm._v(_vm._s(_vm.voteType(vote.vote)))
+              ])
+            ]
+          )
+        }),
+        0
+      )
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" },
-      [
-        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-          _vm._v("Výsledky hlasovania")
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
