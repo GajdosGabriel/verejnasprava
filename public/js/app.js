@@ -82967,6 +82967,12 @@ var actions = {
   store: function store(_ref, payload) {
     var commit = _ref.commit,
         dispatch = _ref.dispatch;
+
+    if (payload.vote_status) {
+      alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
+      return;
+    }
+
     axios.post('/api/interpellation/' + payload.id + '/store', {
       user: payload.user.id
     }).then(function (response) {
@@ -83074,8 +83080,8 @@ var actions = {
     var commit = _ref4.commit,
         dispatch = _ref4.dispatch;
 
-    if (state.votes.length > 0) {
-      alert('Hlasovanie sa už začalo, nie je možné zrušiť publikovanie!');
+    if (item.vote_status) {
+      alert('Hlasovanie sa už začalo, prihlasovanie je zrušené!');
       return;
     }
 

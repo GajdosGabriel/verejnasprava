@@ -71,8 +71,8 @@ const actions = {
     },
 
     publishedToggle({commit, dispatch}, item) {
-        if (state.votes.length > 0){
-            alert('Hlasovanie sa už začalo, nie je možné zrušiť publikovanie!');
+        if (item.vote_status){
+            alert('Hlasovanie sa už začalo, prihlasovanie je zrušené!');
            return
         }
       axios.get('/api/item/' + item.id + '/published')

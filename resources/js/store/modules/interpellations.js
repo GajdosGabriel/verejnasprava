@@ -14,6 +14,10 @@ const mutations = {
 const actions = {
 
     store({commit, dispatch}, payload) {
+        if (payload.vote_status){
+            alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
+            return
+        }
         axios.post('/api/interpellation/' + payload.id + '/store', {user: payload.user.id } )
             .then(response => {
                 dispatch('meetings/fetchMeeting', payload.meeting_id, {root:true})
