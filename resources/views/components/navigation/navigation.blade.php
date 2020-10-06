@@ -52,7 +52,7 @@
 
 
                     {{-- Dropdown component  --}}
-                    <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2">
+                    <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2" style="z-index: 99">
                         @if(isset($dropDownItems))
                             @foreach($dropDownItems as $item)
                                 <li>
