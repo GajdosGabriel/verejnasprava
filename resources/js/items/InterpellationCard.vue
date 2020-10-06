@@ -4,7 +4,7 @@
          v-if="openList"
     >
 
-        <div class="flex justify-between mb-3 bg-gray-300 p-1">
+        <div class="flex justify-between bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Prihlásený do rozpravy <small class="text-sm">
 
                 ({{ item.interpellations.length }})

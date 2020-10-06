@@ -3192,7 +3192,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     voteStatus: function voteStatus() {
-      this.$store.dispatch('items/set_vote_status', this.item);
+      if (!this.item.published) {
+        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+        return;
+      }
+
+      if (this.item.interpellations.length) {
+        alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+        return;
+      }
+
+      this.$store.dispatch('items/update', {
+        id: this.item.id,
+        vote_status: !this.item.vote_status,
+        meeting_id: this.item.meeting_id
+      });
     },
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/store', this.item);
@@ -3238,8 +3252,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({// item: state => state.items.item,
   })),
   methods: {
-    publishedToggle: function publishedToggle(item) {
-      this.$store.dispatch('items/publishedToggle', item);
+    update: function update(item) {
+      // if (!item.vote_status){
+      //     alert('O bode sa hlasuje. Publikáciu nemožno zrušiť!');
+      //     return
+      // }
+      this.$store.dispatch('items/update', {
+        id: item.id,
+        published: !item.published,
+        meeting_id: item.meeting_id
+      });
     }
   }
 });
@@ -4613,21 +4635,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['votes'],
+  props: ['item'],
   computed: {
     countYes: function countYes() {
-      return this.votes.filter(function (value) {
+      return this.item.votes.filter(function (value) {
         return value.vote === 1;
       }).length;
     },
     countUndecided: function countUndecided() {
-      return this.votes.filter(function (value) {
+      return this.item.votes.filter(function (value) {
         return value.vote === 2;
       }).length;
     },
     countNo: function countNo() {
-      return this.votes.filter(function (value) {
+      return this.item.votes.filter(function (value) {
         return value.vote === 0;
       }).length;
     }
@@ -4645,6 +4675,13 @@ __webpack_require__.r(__webpack_exports__);
       if (vote == 0) {
         return 'NIE';
       }
+    },
+    itemShowList: function itemShowList() {
+      this.$store.dispatch('items/update', {
+        id: this.item.id,
+        vote_list: !this.item.vote_list,
+        meeting_id: this.item.meeting_id
+      });
     }
   }
 });
@@ -64966,31 +65003,27 @@ var render = function() {
             "flex-1 border-2 rounded-md border-gray-300 max-w-sm w-full"
         },
         [
-          _c(
-            "div",
-            { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" },
-            [
-              _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-                _vm._v("Prihlásený do rozpravy "),
-                _c("small", { staticClass: "text-sm" }, [
-                  _vm._v(
-                    "\n\n            (" +
-                      _vm._s(_vm.item.interpellations.length) +
-                      ")\n        "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "text-sm cursor-pointer",
-                  on: { click: _vm.storeInterpellation }
-                },
-                [_vm._v("\n            Prihlásiť sa\n        ")]
-              )
-            ]
-          ),
+          _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
+            _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+              _vm._v("Prihlásený do rozpravy "),
+              _c("small", { staticClass: "text-sm" }, [
+                _vm._v(
+                  "\n\n            (" +
+                    _vm._s(_vm.item.interpellations.length) +
+                    ")\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-sm cursor-pointer",
+                on: { click: _vm.storeInterpellation }
+              },
+              [_vm._v("\n            Prihlásiť sa\n        ")]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "ul",
@@ -65348,7 +65381,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "max-w-sm w-full" },
-        [_c("vote-list", { attrs: { votes: _vm.item.votes } })],
+        [_c("vote-list", { attrs: { item: _vm.item } })],
         1
       )
     ],
@@ -65384,7 +65417,7 @@ var render = function() {
         "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
       on: {
         click: function($event) {
-          return _vm.publishedToggle(_vm.item)
+          return _vm.update(_vm.item)
         }
       }
     },
@@ -65525,16 +65558,17 @@ var render = function() {
             _c(
               "svg",
               {
-                staticClass: "-mr-1 ml-2 h-5 w-5",
-                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                staticClass: "w-4 h-4",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20"
+                }
               },
               [
                 _c("path", {
                   attrs: {
-                    "fill-rule": "evenodd",
                     d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
+                      "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
                   }
                 })
               ]
@@ -67026,9 +67060,9 @@ var render = function() {
     "div",
     { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full" },
     [
-      _c("div", { staticClass: "flex justify-between mb-3 bg-gray-300 p-1" }, [
+      _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
         _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-          _vm._v("Výsledky hlasovania (" + _vm._s(_vm.votes.length) + ")")
+          _vm._v("Hlasovania (" + _vm._s(_vm.item.votes.length) + ")")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex cursor-pointer" }, [
@@ -67043,29 +67077,60 @@ var render = function() {
           _c("div", { attrs: { title: "Nie" } }, [
             _vm._v("-" + _vm._s(_vm.countNo))
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flex cursor-pointer",
+            on: { click: _vm.itemShowList }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "-mr-1 ml-2 h-5 w-5",
+                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
+          ]
+        )
       ]),
       _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.votes, function(vote) {
-          return _c(
-            "li",
-            { staticClass: "flex justify-between border-b-2 border-dotted" },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(vote.user.first_name + " " + vote.user.last_name) +
-                  "\n            "
-              ),
-              _c("span", { staticClass: "font-medium" }, [
-                _vm._v(_vm._s(_vm.voteType(vote.vote)))
-              ])
-            ]
+      _vm.item.vote_list
+        ? _c(
+            "ul",
+            _vm._l(_vm.item.votes, function(vote) {
+              return _c(
+                "li",
+                {
+                  staticClass: "flex justify-between border-b-2 border-dotted"
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(vote.user.first_name + " " + vote.user.last_name) +
+                      "\n            "
+                  ),
+                  _c("span", { staticClass: "font-medium" }, [
+                    _vm._v(_vm._s(_vm.voteType(vote.vote)))
+                  ])
+                ]
+              )
+            }),
+            0
           )
-        }),
-        0
-      )
+        : _vm._e()
     ]
   )
 }
@@ -83056,46 +83121,20 @@ var actions = {
       commit('SET_ITEM', response.data);
     });
   },
-  set_vote_status: function set_vote_status(_ref3, item) {
+  storeVote: function storeVote(_ref3, payload) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-
-    if (!item.published) {
-      alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
-      return;
-    }
-
-    if (item.interpellations.length) {
-      alert('Zoznam prihlásených do rozpravy nie je prázdny.');
-      return;
-    }
-
-    axios.get('/api/item/' + item.id + '/voteStatus').then(function (response) {
-      dispatch('meetings/fetchMeeting', item.meeting_id, {
-        root: true
-      });
-    });
-  },
-  publishedToggle: function publishedToggle(_ref4, item) {
-    var commit = _ref4.commit,
-        dispatch = _ref4.dispatch;
-
-    if (item.vote_status) {
-      alert('Hlasovanie sa už začalo, prihlasovanie je zrušené!');
-      return;
-    }
-
-    axios.get('/api/item/' + item.id + '/published').then(function (response) {
-      dispatch('meetings/fetchMeeting', item.meeting_id, {
-        root: true
-      });
-    });
-  },
-  storeVote: function storeVote(_ref5, payload) {
-    var commit = _ref5.commit,
-        dispatch = _ref5.dispatch;
     axios.put('/api/vote/' + payload.id, payload).then(function (response) {
       dispatch('meetings/fetchMeeting', payload.meetingId, {
+        root: true
+      });
+    });
+  },
+  update: function update(_ref4, item) {
+    var commit = _ref4.commit,
+        dispatch = _ref4.dispatch;
+    axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
+      dispatch('meetings/fetchMeeting', item.meeting_id, {
         root: true
       });
     });

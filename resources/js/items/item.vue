@@ -110,7 +110,7 @@
         <interpellation :item="item"></interpellation>
 
         <div class="max-w-sm w-full">
-            <vote-list :votes="item.votes"></vote-list>
+            <vote-list :item="item"></vote-list>
         </div>
 
 
@@ -140,7 +140,16 @@
         },
         methods: {
             voteStatus: function () {
-                this.$store.dispatch('items/set_vote_status', this.item);
+                if (!this.item.published) {
+                    alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+                    return
+                }
+
+                if (this.item.interpellations.length) {
+                    alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+                    return
+                }
+                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status, meeting_id: this.item.meeting_id})
             },
 
             storeInterpellation: function () {

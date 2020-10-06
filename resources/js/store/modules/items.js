@@ -53,41 +53,19 @@ const actions = {
             });
     },
 
-    set_vote_status({commit, dispatch}, item) {
-        if (!item.published) {
-            alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
-            return
-        }
-
-        if (item.interpellations.length) {
-            alert('Zoznam prihlásených do rozpravy nie je prázdny.');
-            return
-        }
-
-        axios.get('/api/item/' + item.id + '/voteStatus')
-            .then(response => {
-                dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
-            });
-    },
-
-    publishedToggle({commit, dispatch}, item) {
-        if (item.vote_status){
-            alert('Hlasovanie sa už začalo, prihlasovanie je zrušené!');
-           return
-        }
-      axios.get('/api/item/' + item.id + '/published')
-          .then(response => {
-              dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
-          });
-    },
-
-
     storeVote({commit, dispatch}, payload) {
         axios.put('/api/vote/' + payload.id, payload)
             .then(response => {
                 dispatch('meetings/fetchMeeting', payload.meetingId, {root:true})
             });
 
+    },
+
+    update({commit, dispatch}, item) {
+        axios.put('/api/item/' + item.id + '/update', item)
+            .then(response => {
+                dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
+            });
     },
 
 };

@@ -44,12 +44,11 @@ class ItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  object  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Item $item)
-    {
-       //
+    public function update(Request $request, Item $item) {
+        $item->update($request->all());
     }
 
     /**
@@ -63,13 +62,4 @@ class ItemController extends Controller
         //
     }
 
-    public function published(Item $item) {
-        $item->published();
-        return $item;
-    }
-
-    public function voteStatus(Item $item) {
-        $item->voteStatus();
-        return $item;
-    }
 }
