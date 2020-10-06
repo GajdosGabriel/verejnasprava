@@ -20,10 +20,10 @@
         },
         methods: {
             update: function(item){
-                // if (!item.vote_status){
-                //     alert('O bode sa hlasuje. Publikáciu nemožno zrušiť!');
-                //     return
-                // }
+                if (item.votes.length){
+                    alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
+                    return
+                }
                 this.$store.dispatch('items/update', {id: item.id, published: ! item.published, meeting_id: item.meeting_id})
 
             }

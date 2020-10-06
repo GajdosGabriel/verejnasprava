@@ -3253,10 +3253,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     update: function update(item) {
-      // if (!item.vote_status){
-      //     alert('O bode sa hlasuje. Publikáciu nemožno zrušiť!');
-      //     return
-      // }
+      if (item.votes.length) {
+        alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
+        return;
+      }
+
       this.$store.dispatch('items/update', {
         id: item.id,
         published: !item.published,
@@ -67056,83 +67057,91 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full" },
-    [
-      _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
-        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-          _vm._v("Hlasovania (" + _vm._s(_vm.item.votes.length) + ")")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex cursor-pointer" }, [
-          _c("div", { attrs: { title: "Áno" } }, [
-            _vm._v(_vm._s(_vm.countYes))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { title: "Zdržal sa" } }, [
-            _vm._v("-" + _vm._s(_vm.countUndecided))
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { title: "Nie" } }, [
-            _vm._v("-" + _vm._s(_vm.countNo))
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flex cursor-pointer",
-            on: { click: _vm.itemShowList }
-          },
-          [
+  return _vm.item.votes.length
+    ? _c(
+        "div",
+        {
+          staticClass:
+            "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full"
+        },
+        [
+          _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
+            _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+              _vm._v("Hlasovania (" + _vm._s(_vm.item.votes.length) + ")")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex cursor-pointer" }, [
+              _c("div", { attrs: { title: "Áno" } }, [
+                _vm._v(_vm._s(_vm.countYes))
+              ]),
+              _vm._v(" "),
+              _c("div", { attrs: { title: "Zdržal sa" } }, [
+                _vm._v("-" + _vm._s(_vm.countUndecided))
+              ]),
+              _vm._v(" "),
+              _c("div", { attrs: { title: "Nie" } }, [
+                _vm._v("-" + _vm._s(_vm.countNo))
+              ])
+            ]),
+            _vm._v(" "),
             _c(
-              "svg",
+              "div",
               {
-                staticClass: "-mr-1 ml-2 h-5 w-5",
-                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                staticClass: "flex cursor-pointer",
+                on: { click: _vm.itemShowList }
               },
               [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
-                  }
-                })
+                _c(
+                  "svg",
+                  {
+                    staticClass: "-mr-1 ml-2 h-5 w-5",
+                    attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
               ]
             )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.item.vote_list
-        ? _c(
-            "ul",
-            _vm._l(_vm.item.votes, function(vote) {
-              return _c(
-                "li",
-                {
-                  staticClass: "flex justify-between border-b-2 border-dotted"
-                },
-                [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(vote.user.first_name + " " + vote.user.last_name) +
-                      "\n            "
-                  ),
-                  _c("span", { staticClass: "font-medium" }, [
-                    _vm._v(_vm._s(_vm.voteType(vote.vote)))
-                  ])
-                ]
+          ]),
+          _vm._v(" "),
+          _vm.item.vote_list
+            ? _c(
+                "ul",
+                _vm._l(_vm.item.votes, function(vote) {
+                  return _c(
+                    "li",
+                    {
+                      staticClass:
+                        "flex justify-between border-b-2 border-dotted"
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(
+                            vote.user.first_name + " " + vote.user.last_name
+                          ) +
+                          "\n            "
+                      ),
+                      _c("span", { staticClass: "font-medium" }, [
+                        _vm._v(_vm._s(_vm.voteType(vote.vote)))
+                      ])
+                    ]
+                  )
+                }),
+                0
               )
-            }),
-            0
-          )
-        : _vm._e()
-    ]
-  )
+            : _vm._e()
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
