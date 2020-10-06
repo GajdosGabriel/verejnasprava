@@ -3,11 +3,12 @@
         <div class="mb-4" v-for="council in councils">
 
             <div class="flex justify-between flex-wrap">
-                <h1 class="page-title">{{ council.name }}</h1>
+                <div class="flex whitespace-no-wrap items-center">
+                    <h1 class="page-title">{{ council.name }}</h1>
+                     <div class="ml-2" > ({{ council.meetings.length }})</div>
+                </div>
 
                 <div class="flex whitespace-no-wrap">
-                    Zasadaní ({{ council.meetings.length }})
-
                     <nav-drop-down>
                         <slot>
                             <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
@@ -30,7 +31,6 @@
                             </a>
                         </slot>
                     </nav-drop-down>
-
                 </div>
 
             </div>

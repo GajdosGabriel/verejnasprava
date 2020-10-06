@@ -64528,19 +64528,20 @@ var render = function() {
       _vm._l(_vm.councils, function(council) {
         return _c("div", { staticClass: "mb-4" }, [
           _c("div", { staticClass: "flex justify-between flex-wrap" }, [
-            _c("h1", { staticClass: "page-title" }, [
-              _vm._v(_vm._s(council.name))
+            _c("div", { staticClass: "flex whitespace-no-wrap items-center" }, [
+              _c("h1", { staticClass: "page-title" }, [
+                _vm._v(_vm._s(council.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ml-2" }, [
+                _vm._v(" (" + _vm._s(council.meetings.length) + ")")
+              ])
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "flex whitespace-no-wrap" },
               [
-                _vm._v(
-                  "\n                Zasadaní (" +
-                    _vm._s(council.meetings.length) +
-                    ")\n\n                "
-                ),
                 _c(
                   "nav-drop-down",
                   [
@@ -65584,7 +65585,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg"
+              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
           },
           [
             _c(
