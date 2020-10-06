@@ -49,10 +49,27 @@ class navigationItems extends Component
     public function headerMenu(){
         return [
             [
-                'title' => 'Nový návrh',
-                'url' => route('item.create', [ $this->meeting->id, $this->meeting->slug ]),
-                'active' => $this->isActive('item.create')
+                'title' => 'Späť',
+                'url' => route('org.index', [$this->object->id, $this->object->slug]),
+                'active' => $this->isActive('org.index')
             ],
+        ];
+    }
+
+
+    public function dropDownItems()
+    {
+        return [
+            [
+                'title' => 'Nastavenia',
+                'url' => route('user.setup')
+            ],
+            [
+                'title' => 'Ľudia',
+                'url' => route('user.index', [$this->object->id, $this->object->slug])
+            ],
+//            $this->navigation->orders($this->object->id, $this->object->slug),
+//            $this->navigation->councils($this->object->id, $this->object->slug),
         ];
     }
 }
