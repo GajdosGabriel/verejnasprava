@@ -65543,68 +65543,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "relative inline-block text-left" }, [
-    _c("div", [
-      _c("span", { staticClass: "rounded-md shadow-sm" }, [
-        _c(
-          "button",
-          {
-            staticClass: "focus:outline-none",
-            on: {
-              click: function($event) {
-                _vm.isOpen = !_vm.isOpen
-              }
-            }
-          },
-          [
+  return _vm.$auth.isAdmin()
+    ? _c("div", { staticClass: "relative inline-block text-left" }, [
+        _c("div", [
+          _c("span", { staticClass: "rounded-md shadow-sm" }, [
             _c(
-              "svg",
+              "button",
               {
-                staticClass: "w-4 h-4",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
+                staticClass: "focus:outline-none",
+                on: {
+                  click: function($event) {
+                    _vm.isOpen = !_vm.isOpen
+                  }
                 }
               },
               [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-                  }
-                })
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4 h-4",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                      }
+                    })
+                  ]
+                )
               ]
             )
-          ]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.isOpen
-      ? _c(
-          "div",
-          {
-            staticClass:
-              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
-          },
-          [
-            _c(
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.isOpen
+          ? _c(
               "div",
               {
-                staticClass: "rounded-md bg-white shadow-xs",
-                attrs: {
-                  role: "menu",
-                  "aria-orientation": "vertical",
-                  "aria-labelledby": "options-menu"
-                }
+                staticClass:
+                  "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
               },
-              [_vm._t("default")],
-              2
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "rounded-md bg-white shadow-xs",
+                    attrs: {
+                      role: "menu",
+                      "aria-orientation": "vertical",
+                      "aria-labelledby": "options-menu"
+                    }
+                  },
+                  [_vm._t("default")],
+                  2
+                )
+              ]
             )
-          ]
-        )
-      : _vm._e()
-  ])
+          : _vm._e()
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -80844,6 +80846,62 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/Auth.js":
+/*!******************************!*\
+  !*** ./resources/js/Auth.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Auth; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Auth = /*#__PURE__*/function () {
+  function Auth(user) {
+    _classCallCheck(this, Auth);
+
+    this.user = user;
+  }
+
+  _createClass(Auth, [{
+    key: "roles",
+    value: function roles() {
+      return this.user.roles.map(function (role) {
+        return role.name;
+      });
+    }
+  }, {
+    key: "permissions",
+    value: function permissions() {
+      return this.user.permissions.map(function (permission) {
+        return permission.name;
+      });
+    }
+  }, {
+    key: "isAdmin",
+    value: function isAdmin() {
+      return this.roles().includes('super-admin');
+    }
+  }, {
+    key: "can",
+    value: function can($permissionName) {
+      return this.permissions().includes($permissionName);
+    }
+  }]);
+
+  return Auth;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -80855,6 +80913,7 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Auth */ "./resources/js/Auth.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -80867,7 +80926,12 @@ __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
  // get user Organization
 
-Vue.prototype.user = window.App.user;
+Vue.prototype.user = window.App.user; ////////////  ACL   /////////////////
+// console.log(window.App.user);
+
+
+Vue.prototype.$auth = new _Auth__WEBPACK_IMPORTED_MODULE_1__["default"](window.App.user); ///////////////////////////////
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

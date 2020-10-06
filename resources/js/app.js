@@ -14,6 +14,12 @@ import store from './store';
 Vue.prototype.user =  window.App.user;
 
 
+////////////  ACL   /////////////////
+// console.log(window.App.user);
+
+import Auth from './Auth'
+Vue.prototype.$auth = new Auth(window.App.user);
+///////////////////////////////
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
