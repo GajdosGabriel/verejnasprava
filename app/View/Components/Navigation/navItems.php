@@ -17,6 +17,7 @@ class navItems
 //    Organization
     public function zverejnovanie()
     {
+        if(auth()->user()->hasPermissionTo('posts'))
         return [
             'title' => 'Zverejňovanie',
             'url' => route('post.index'),
@@ -26,6 +27,7 @@ class navItems
 
     public function contacts()
     {
+        if(auth()->user()->hasPermissionTo('contacts'))
         return [
             'title' => 'Kontakty',
             'url' => route('contact.index'),
@@ -65,6 +67,7 @@ class navItems
 
     public function navody()
     {
+        if(auth()->user()->hasPermissionTo('helps'))
         return [
             'title' => 'Návody',
             'url' => route('question.index'),

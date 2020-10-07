@@ -13,6 +13,6 @@ class OrganizationObserver
 
     public function created(Organization $organization) {
         auth()->user()->update([ 'active_organization' => $organization->id]);
-        auth()->user()->givePermissionTo('posts', 'contacts', 'councils', 'helps');
+        auth()->user()->givePermissionTo('posts', 'contacts', 'helps');
     }
 }
