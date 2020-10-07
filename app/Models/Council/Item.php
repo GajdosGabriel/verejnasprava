@@ -60,14 +60,4 @@ class Item extends Model
         return Str::limit($this->description, $value, ' (...)');
     }
 
-
-    public function scopePublished($query){
-        // For admin
-        if (auth()->user()->hasRole('admin')) return $query;
-
-        // For common user
-        return $query->wherePublished(1);
-    }
-
-
 }

@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class MeetingController extends Controller
 {
     public function show(Meeting $meeting){
-        return $meeting->items()->published()->get();
+        return $meeting->items()->get();
     }
 }
