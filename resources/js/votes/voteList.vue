@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <ul v-if="item.vote_list">
+        <ul v-if="vote_list">
             <!-- Hlas Za-->
             <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
                 {{ vote.user.first_name + ' ' +vote.user.last_name}}
@@ -32,6 +32,11 @@
 <script>
     export default {
         props: ['item'],
+        data(){
+            return {
+                vote_list: false
+            }
+        },
         computed: {
             countYes() {
                 return this.item.votes.filter(value => value.vote === 1).length
@@ -58,7 +63,8 @@
                 }
             },
             itemShowList: function(){
-                this.$store.dispatch('items/update', {id: this.item.id, vote_list: ! this.item.vote_list, meeting_id: this.item.meeting_id})
+                this.vote_list = ! this.vote_list;
+                this.$store.dispatch('meetings/fetchMeeting', this.item.id)
             }
         }
 

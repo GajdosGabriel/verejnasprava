@@ -24,7 +24,6 @@ class CreateItemsTable extends Migration
             $table->boolean('vote_status')->default(0);
             $table->boolean('published')->default(0);
             $table->boolean('vote_type')->default(0);
-            $table->boolean('vote_list')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

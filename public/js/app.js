@@ -4646,6 +4646,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
+  data: function data() {
+    return {
+      vote_list: false
+    };
+  },
   computed: {
     countYes: function countYes() {
       return this.item.votes.filter(function (value) {
@@ -4678,11 +4683,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     itemShowList: function itemShowList() {
-      this.$store.dispatch('items/update', {
-        id: this.item.id,
-        vote_list: !this.item.vote_list,
-        meeting_id: this.item.meeting_id
-      });
+      this.vote_list = !this.vote_list;
+      this.$store.dispatch('meetings/fetchMeeting', this.item.id);
     }
   }
 });
@@ -67115,7 +67117,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm.item.vote_list
+          _vm.vote_list
             ? _c(
                 "ul",
                 _vm._l(_vm.item.votes, function(vote) {
@@ -80887,7 +80889,8 @@ var Auth = /*#__PURE__*/function () {
     key: "isAdmin",
     value: function isAdmin() {
       return this.roles().includes('super-admin');
-    }
+    } // can('permisionName')
+
   }, {
     key: "can",
     value: function can($permissionName) {
@@ -83792,14 +83795,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./resources/js/votes/voteList.vue ***!
   \*****************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _voteList_vue_vue_type_template_id_aa6e6ba8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./voteList.vue?vue&type=template&id=aa6e6ba8& */ "./resources/js/votes/voteList.vue?vue&type=template&id=aa6e6ba8&");
 /* harmony import */ var _voteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./voteList.vue?vue&type=script&lang=js& */ "./resources/js/votes/voteList.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _voteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _voteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -83829,7 +83833,7 @@ component.options.__file = "resources/js/votes/voteList.vue"
 /*!******************************************************************!*\
   !*** ./resources/js/votes/voteList.vue?vue&type=script&lang=js& ***!
   \******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
