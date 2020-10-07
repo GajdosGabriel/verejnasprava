@@ -17,4 +17,9 @@ class TestController extends Controller
 //           $user->givePermissionTo('posts', 'contacts', 'helps');
 //       }
    }
+
+   public function artisan(){
+       \Artisan::call('optimize:clear');
+       return 'Ok';
+   }
 }
