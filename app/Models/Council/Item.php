@@ -60,19 +60,13 @@ class Item extends Model
         return Str::limit($this->description, $value, ' (...)');
     }
 
-    public function published(){
-        if($this->published == 1) return $this->update(['published' => 0]);
-        $this->update(['published' => 1]);
-
-    }
 
     public function scopePublished($query){
         // For admin
-//        if (auth()->user()->hasPermissionTo('delete')) return $query;
+        if (auth()->user()->hasRole('admin')) return $query;
 
         // For common user
-        return $query; // Dočasné kým nevyriešim Permission
-//        return $query->wherePublished(1);
+        return $query->wherePublished(1);
     }
 
 
