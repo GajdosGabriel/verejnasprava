@@ -6,7 +6,7 @@
     <form action="{{ route('org.update', [ $organization->id, $organization->slug ]) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('PUT')
 
-        @include('modul.errorsAndFlash')
+        @include('modul.errors')
 
         @include('organizations._form')
 

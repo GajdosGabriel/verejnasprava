@@ -18,7 +18,7 @@
               action="{{ route('post.store') }}"
               method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
-            @include('modul.errorsAndFlash')
+            @include('modul.errors')
             @include('post.postform')
         </form>
 

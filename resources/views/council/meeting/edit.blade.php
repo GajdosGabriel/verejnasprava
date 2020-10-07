@@ -17,7 +17,7 @@
                     <div class="col-md-8">
                         <form method="POST" action="{{ route('meet.update', [$meeting->id, $meeting->slug]) }}">
                             @csrf @method('PUT')
-                            @include('modul.errorsAndFlash')
+                            @include('modul.errors')
                             @include('council.meeting._form')
 
                         </form>

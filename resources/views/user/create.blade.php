@@ -14,7 +14,7 @@
 
         <form action="{{ route('user.store', [ auth()->user()->id, auth()->user()->slug ]) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
-            @include('modul.errorsAndFlash')
+            @include('modul.errors')
             @include('user._userForm')
         </form>
         </div>

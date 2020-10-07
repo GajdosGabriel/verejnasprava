@@ -20,7 +20,7 @@
                     <div class="col-md-8">
                         <form method="POST" action="{{ route('zast.admin.update', [$council->id, $council->slug]) }}">
                             @csrf @method('PUT')
-                            @include('modul.errorsAndFlash')
+                            @include('modul.errors')
                             @include('council._form')
 
                         </form>

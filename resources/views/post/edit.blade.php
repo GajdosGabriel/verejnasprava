@@ -15,7 +15,7 @@
         <form action="{{ route('post.update', $post->id) }}" method="POST"
               enctype="multipart/form-data">
             @csrf @method('PUT')
-            @include('modul.errorsAndFlash')
+            @include('modul.errors')
             @include('post.postform')
         </form>
     </div>

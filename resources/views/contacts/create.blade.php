@@ -10,7 +10,7 @@
         <h1 class="page-title">Nový kontakt</h1>
         <form class="md:w-full text-sm" action="{{ route('contact.store', $org->id) }}" method="POST">
             @csrf @method('POST')
-            @include('modul.errorsAndFlash')
+            @include('modul.errors')
             @include('organizations._form')
         </form>
 

@@ -13,7 +13,7 @@
 
         <form method="POST" action="{{ route('item.update', [$item->id, $item->slug]) }}" enctype="multipart/form-data">
             @csrf @method('PUT')
-            @include('modul.errorsAndFlash')
+            @include('modul.errors')
             <div class="">
                 <div class="">
 

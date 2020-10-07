@@ -23,7 +23,7 @@
                                 <button class="btn btn-primary">Poslať</button>
                             </div>
                         </form>
-                        @include('modul.errorsAndFlash')
+                        @include('modul.errors')
 
                         @forelse($questions as $question)
 
