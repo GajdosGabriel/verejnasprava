@@ -121,6 +121,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('question/store',  'QuestionsController@store')->name('store');
     });
 
+    Route::get('test/test/test', 'TestController@test');
+
 });
 
 
