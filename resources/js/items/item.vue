@@ -87,7 +87,7 @@
 
                 <div
                     class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
-                    @click="openInterpellation" v-if="item.published"
+                    @click="openInterpellation"
                 >
                     Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
                 </div>

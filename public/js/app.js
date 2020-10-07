@@ -3246,6 +3246,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
@@ -65337,22 +65338,20 @@ var render = function() {
             [
               _c("published-button", { attrs: { item: _vm.item } }),
               _vm._v(" "),
-              _vm.item.published
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-                      on: { click: _vm.openInterpellation }
-                    },
-                    [
-                      _vm._v("\n                Rozprava "),
-                      _c("span", { staticClass: "text-gray-500" }, [
-                        _vm._v(_vm._s(_vm.item.interpellations.length))
-                      ])
-                    ]
-                  )
-                : _vm._e(),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                  on: { click: _vm.openInterpellation }
+                },
+                [
+                  _vm._v("\n                Rozprava "),
+                  _c("span", { staticClass: "text-gray-500" }, [
+                    _vm._v(_vm._s(_vm.item.interpellations.length))
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _vm.item.published && _vm.$auth.isAdmin()
                 ? _c("div", {
@@ -65414,23 +65413,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-      on: {
-        click: function($event) {
-          return _vm.update(_vm.item)
-        }
-      }
-    },
-    [
-      _vm.item.published
-        ? _c("span", [_vm._v("Publikované")])
-        : _c("span", [_vm._v("Publikovať")])
-    ]
-  )
+  return _vm.$auth.isAdmin()
+    ? _c(
+        "div",
+        {
+          staticClass:
+            "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+          on: {
+            click: function($event) {
+              return _vm.update(_vm.item)
+            }
+          }
+        },
+        [
+          _vm.item.published
+            ? _c("span", [_vm._v("Publikované")])
+            : _c("span", [_vm._v("Publikovať")])
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -80891,7 +80892,7 @@ var Auth = /*#__PURE__*/function () {
   }, {
     key: "isAdmin",
     value: function isAdmin() {
-      return this.roles().includes('super-admin');
+      return this.roles().includes('admin');
     } // can('permisionName')
 
   }, {

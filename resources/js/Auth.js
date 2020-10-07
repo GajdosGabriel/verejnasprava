@@ -12,7 +12,7 @@ export default class Auth {
     }
 
     isAdmin(){
-       return this.roles().includes('super-admin')
+       return this.roles().includes('admin')
     }
 
     // can('permisionName')
