@@ -50,7 +50,7 @@
             @yield('content')
 
             {{--Errors--}}
-            @include('modul.errorsAndFlash')
+            @include('modul.flash')
         </div>
 
             <flash-message message="{{ session('flash') }}"></flash-message>

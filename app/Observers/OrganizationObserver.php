@@ -13,6 +13,6 @@ class OrganizationObserver
 
     public function created(Organization $organization) {
         auth()->user()->update([ 'active_organization' => $organization->id]);
-        $organization->user->givePermissionTo('delete');
+        $organization->user->assignRole('admin');
     }
 }
