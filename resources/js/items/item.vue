@@ -94,7 +94,7 @@
 
 
                 <div class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer"
-                     v-if="item.published"
+                     v-if="item.published && $auth.isAdmin()"
                      :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : 'text-gray-900'"
                      @click="voteStatus"
                      v-text="item.vote_status == 0 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie'"

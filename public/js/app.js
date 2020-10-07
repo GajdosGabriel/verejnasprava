@@ -65352,7 +65352,7 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.item.published
+              _vm.item.published && _vm.$auth.isAdmin()
                 ? _c("div", {
                     staticClass:
                       "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
