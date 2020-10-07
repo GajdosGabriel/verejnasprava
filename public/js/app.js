@@ -4654,17 +4654,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     countYes: function countYes() {
       return this.item.votes.filter(function (value) {
-        return value.vote === 1;
+        return value.vote == 1;
       }).length;
     },
     countUndecided: function countUndecided() {
       return this.item.votes.filter(function (value) {
-        return value.vote === 2;
+        return value.vote == 2;
       }).length;
     },
     countNo: function countNo() {
       return this.item.votes.filter(function (value) {
-        return value.vote === 0;
+        return value.vote == 0;
       }).length;
     }
   },
@@ -4684,7 +4684,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     itemShowList: function itemShowList() {
       this.vote_list = !this.vote_list;
-      this.$store.dispatch('meetings/fetchMeeting', this.item.id);
+      this.$store.dispatch('meetings/fetchMeeting', this.item.meeting_id);
     }
   }
 });
@@ -67076,17 +67076,20 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex cursor-pointer" }, [
-              _c("div", { attrs: { title: "Áno" } }, [
-                _vm._v(_vm._s(_vm.countYes))
-              ]),
-              _vm._v(" "),
-              _c("div", { attrs: { title: "Zdržal sa" } }, [
-                _vm._v("-" + _vm._s(_vm.countUndecided))
-              ]),
-              _vm._v(" "),
-              _c("div", { attrs: { title: "Nie" } }, [
-                _vm._v("-" + _vm._s(_vm.countNo))
-              ])
+              _c("div", {
+                attrs: { title: "Áno" },
+                domProps: { textContent: _vm._s(_vm.countYes) }
+              }),
+              _vm._v("-\n            "),
+              _c("div", {
+                attrs: { title: "Zdržal sa" },
+                domProps: { textContent: _vm._s(_vm.countUndecided) }
+              }),
+              _vm._v("-\n            "),
+              _c("div", {
+                attrs: { title: "Nie" },
+                domProps: { textContent: _vm._s(_vm.countNo) }
+              })
             ]),
             _vm._v(" "),
             _c(
@@ -83198,11 +83201,11 @@ var actions = {
       commit('SET_ITEM', response.data);
     });
   },
-  storeVote: function storeVote(_ref3, payload) {
+  storeVote: function storeVote(_ref3, item) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios.put('/api/vote/' + payload.id, payload).then(function (response) {
-      dispatch('meetings/fetchMeeting', payload.meetingId, {
+    axios.put('/api/vote/' + item.id, item).then(function (response) {
+      dispatch('meetings/fetchMeeting', item.meetingId, {
         root: true
       });
     });

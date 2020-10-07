@@ -53,10 +53,10 @@ const actions = {
             });
     },
 
-    storeVote({commit, dispatch}, payload) {
-        axios.put('/api/vote/' + payload.id, payload)
+    storeVote({commit, dispatch}, item) {
+        axios.put('/api/vote/' + item.id, item)
             .then(response => {
-                dispatch('meetings/fetchMeeting', payload.meetingId, {root:true})
+                dispatch('meetings/fetchMeeting', item.meetingId, {root:true})
             });
 
     },

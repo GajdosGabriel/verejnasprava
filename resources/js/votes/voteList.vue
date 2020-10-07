@@ -4,9 +4,9 @@
         <div class="flex justify-between bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Hlasovania ({{ item.votes.length}})</h4>
             <div class="flex cursor-pointer">
-                <div title="Áno">{{ countYes }}</div>
-                <div title="Zdržal sa">-{{ countUndecided }}</div>
-                <div title="Nie">-{{ countNo }}</div>
+                <div title="Áno" v-text="countYes"></div>-
+                <div title="Zdržal sa" v-text="countUndecided"></div>-
+                <div title="Nie" v-text="countNo"></div>
             </div>
 
             <div class="flex cursor-pointer" @click="itemShowList">
@@ -39,13 +39,13 @@
         },
         computed: {
             countYes() {
-                return this.item.votes.filter(value => value.vote === 1).length
+                return this.item.votes.filter(value => value.vote == 1).length
             },
             countUndecided() {
-                return this.item.votes.filter(value => value.vote === 2).length
+                return this.item.votes.filter(value => value.vote == 2).length
             },
             countNo() {
-                return this.item.votes.filter(value => value.vote === 0).length
+                return this.item.votes.filter(value => value.vote == 0).length
             },
         },
         methods: {
@@ -64,7 +64,7 @@
             },
             itemShowList: function(){
                 this.vote_list = ! this.vote_list;
-                this.$store.dispatch('meetings/fetchMeeting', this.item.id)
+                this.$store.dispatch('meetings/fetchMeeting', this.item.meeting_id)
             }
         }
 
