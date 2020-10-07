@@ -15,6 +15,7 @@ export default class Auth {
        return this.roles().includes('super-admin')
     }
 
+    // can('permisionName')
     can($permissionName){
         return this.permissions().includes($permissionName)
     }
