@@ -14,8 +14,8 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Meeting $meeting){
-        return $meeting->items()->published()->get();
+    public function index(){
+        //
     }
 
     /**

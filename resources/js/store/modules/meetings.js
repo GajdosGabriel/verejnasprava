@@ -24,7 +24,7 @@ const actions = {
 
     fetchMeeting({commit}, meetingId) {
         commit('SET_LOADING_STATUS', 'loading');
-        axios.get('/api/item/' + meetingId + '/dfsad/index' )
+        axios.get('/api/meeting/' + meetingId + '/show' )
             .then(response => {
                     commit('SET_LOADING_STATUS', 'notLoading');
                     commit('SET_ITEMS', response.data);

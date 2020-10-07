@@ -27,7 +27,7 @@ Route::get('item/{item}/show', 'Api\ItemController@show');
 Route::put('item/{item}/update', 'Api\ItemController@update');
 Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
-Route::get('item/{meeting}/{slug}/index', 'Api\ItemController@index');
+Route::get('meeting/{meeting}/show', 'Api\MeetingController@show');
 
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
 Route::post('interpellation/{item}/store', 'Councils\ApiInterpellationController@store');
