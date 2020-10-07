@@ -35,7 +35,7 @@ class navItems
 
     public function orders($id, $slug)
     {
-        if(auth()->user()->hasPermissionTo('delete'))
+        if(auth()->user()->hasPermissionTo('orders'))
         return [
             'title' => 'Objednávky',
             'url' => route('order.index'),
@@ -45,7 +45,7 @@ class navItems
 
     public function councils($id, $slug)
     {
-        if(auth()->user()->hasPermissionTo('delete'))
+        if(auth()->user()->hasPermissionTo('councils'))
         return [
             'title' => 'Zastupiteľstva',
             'url' => route('zast.index'),
@@ -55,7 +55,7 @@ class navItems
 
     public function tasks()
     {
-        if(auth()->user()->hasPermissionTo('delete'))
+        if(auth()->user()->hasPermissionTo('tasks'))
         return [
             'title' => 'Úlohy',
             'url' => route('task.index'),

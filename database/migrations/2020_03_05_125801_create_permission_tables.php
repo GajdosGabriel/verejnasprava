@@ -93,10 +93,12 @@ class CreatePermissionTables extends Migration
 
 
         $permissions = [
-            'view'   => 'role',
-            'create' => 'role',
-            'edit'   => 'role',
-            'delete' => 'role',
+            'posts'   => 'modul',
+            'contacts' => 'modul',
+            'orders'   => 'modul',
+            'tasks' => 'modul',
+            'councils' => 'modul',
+            'helps' => 'modul',
 
             'customer edit'    => 'customer',
             'customer view'    => 'customer',
