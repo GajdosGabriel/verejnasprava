@@ -21,10 +21,10 @@
             @include('modul.errors')
             <div class="">
                 <div class="">
-                    <div class="flex w-full">
+                    <div class="md:flex w-full items-center">
 
-                        {{--  title--}}
-                        <div class="form-group">
+                        {{--  title --}}
+                        <div class="form-group md:px-4">
                             <label for="name" class="font-semibold">Bod programu</label>
                             <div class="">
                                 <input id="name" type="text"
@@ -32,8 +32,8 @@
                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             </div>
                         </div>
-
-                        <div class="form-group px-10">
+                        {{--  type vote --}}
+                        <div class="form-group md:px-10 flex">
                             <label for="vote_type" class="font-semibold">Hlasovanie</label>
 
                             <div class="">
