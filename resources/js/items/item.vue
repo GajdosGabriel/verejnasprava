@@ -1,5 +1,5 @@
 <template>
-    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col">
+    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col" v-if="isPublished">
 
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2">
@@ -131,6 +131,12 @@
         props: ['item'],
         components: {voteButtons, publishedButton, interpellation, navDropDown},
         computed: {
+            isPublished(){
+                if (this.$auth.isAdmin()){
+                    return true
+                }
+                return this.item.published
+            },
             curentlyItem: function () {
                 return this.$store.getters['meetings/activeItem'](this.item.id);
             }
