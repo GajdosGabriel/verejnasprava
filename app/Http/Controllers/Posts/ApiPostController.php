@@ -19,16 +19,10 @@ class ApiPostController extends Controller
     }
 
     public function frontPosts() {
-//                $posts = Cache::rememberForever('posts', function()
-//        {
-//            return Post::orderBy('date_in', 'desc')->get()->groupBy(function($item){
-//                return Carbon::parse($item->date_in)->format('F-Y');
-//            });
+//        $posts =  Post::orderBy('date_in', 'desc')->paginate()->groupBy(function($item){
+//            return Carbon::parse($item->date_in)->format('F-Y');
 //        });
-
-        $posts =  Post::orderBy('date_in', 'desc')->paginate()->groupBy(function($item){
-            return Carbon::parse($item->date_in)->format('F-Y');
-        });
+        $posts = Post::latest()->paginate(20);
 
         return $posts;
     }

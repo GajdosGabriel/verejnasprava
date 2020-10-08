@@ -25,6 +25,14 @@ const actions = {
                 commit('SET_LOADING_STATUS', 'notLoading');
                 commit('SET_POSTS', response.data)
             })
+    },
+
+    frontedPosts: function({commit}) {
+        axios.get('/api/posts/frontPosts')
+            .then(response => {
+                commit('SET_LOADING_STATUS', 'notLoading');
+                commit('SET_POSTS', response.data)
+            })
     }
 };
 

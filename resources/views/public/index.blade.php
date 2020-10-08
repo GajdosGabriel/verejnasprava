@@ -82,10 +82,11 @@
 
     <div class="container mx-auto ">
 
-        <h3 class="text-center mt-5 text-3xl text-gray-500">Publikované doklady</h3>
+        <h3 class="text-center mt-5 text-3xl text-gray-500">Posledné doklady</h3>
 
 {{--        @include('modul.categoryList')--}}
-        <accordion-table></accordion-table>
+        <table-front-post></table-front-post>
+{{--        <accordion-table></accordion-table>--}}
 {{--        @include('post.post-table-predna')--}}
         </div>
 

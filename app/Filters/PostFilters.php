@@ -5,6 +5,7 @@ namespace App\Filters;
 
 
 use App\Models\Contact;
+use App\Models\Organization;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostFilters extends Filters
@@ -33,6 +34,14 @@ class PostFilters extends Filters
         $supplier_id = Contact::where('name', $contactName)->first()->id;
         return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
             $query->where('contact_id', $supplier_id);
+        });
+    }
+
+    public function organization($organizationId)
+    {
+        $supplier_id = Organization::whereId($organizationId)->first()->id;
+        return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
+            $query->where('organization_id', $supplier_id);
         });
     }
 

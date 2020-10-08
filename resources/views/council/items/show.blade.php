@@ -81,7 +81,7 @@
         {{--Aside part--}}
         <div class="p-3 md:w-1/4 xs:w-full">
 
-            <vote-start-button :itemid="{{ $item->id }}"></vote-start-button>
+            <vote-start-button :pitem="{{ $item }}"></vote-start-button>
 
             @if($item->votes()->count() > 0)
                 {{-- Vote results Variant I. --}}

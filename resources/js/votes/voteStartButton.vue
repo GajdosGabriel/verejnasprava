@@ -1,7 +1,7 @@
 <template>
 
     <div class="text-center">
-        <button class="text-xs btn mb-3 " :class="buttonClass" @click="startVote" v-text=" buttonTitle">
+        <button class="text-xs btn mb-3 " :class="buttonClass" @click="voteStatus" v-text=" buttonTitle">
             Zapnúť hlasovanie
         </button>
 
@@ -15,27 +15,28 @@
 <script>
     import {bus} from '../app';
     import interpellationTable from '../items/InterpellationCard.vue';
+    import {mapState} from 'vuex';
+    import {mapGetters} from 'vuex';
 
     export default {
-        props: ['itemid'],
+        props: ['pitem'],
         components: {interpellationTable},
-        data: function () {
-            return {
-                item: ''
-            }
-        },
         created() {
-            this.getItem();
+
+            this.$store.dispatch('items/get_item', this.pitem.id, {root: true});
+
             bus.$on('interpelationChange', (data) => {
-                this.getItem();
             });
         },
         computed: {
+            ...mapState({
+                item: state => state.items.item,
+            }),
             buttonClass: function () {
-                return this.item.vote_status == 0 ? 'btn-primary' : 'btn-secondary';
+                return this.item.vote_status == 1 ? 'btn-primary' : 'btn-secondary';
             },
             buttonTitle: function () {
-                return this.item.vote_status == 0 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
+                return this.item.vote_status == 1 ? 'Vypnúť hlasovanie' : 'Zapnúť hlasovanie';
             },
             canStartVote: function () {
                 if(this.item.interpellations.length > 0) {
@@ -46,28 +47,18 @@
             }
         },
         methods: {
-            getItem: function () {
-                axios.get('/api/item/' + this.itemid)
-                    .then(response => {
-                        this.item = response.data
-                    })
-            },
-            startVote: function () {
-                if(! this.canStartVote) {
-                    alert('Zoznam prihlásených do rozpravy nie je prázdny.');
-                    return
-                }
-
-                if(! this.item.published) {
+            voteStatus: function () {
+                if (!this.item.published) {
                     alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
                     return
                 }
-                axios.put('/api/item/' + this.item.id)
-                    .then(response => {
-                        bus.$emit('startVote', false);
-                        this.getItem();
-                    });
-            }
+
+                if (this.item.interpellations.length) {
+                    alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+                    return
+                }
+                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status, meeting_id: this.item.meeting_id})
+            },
         }
     }
 </script>
