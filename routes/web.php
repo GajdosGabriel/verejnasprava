@@ -7,6 +7,8 @@ Route::get('/contact', 'HomeController@contact')->name('home.contact');
 Route::get('/zverejnovanie', 'HomeController@zverejnovanie')->name('home.zverejnovanie');
 Route::get('/gdpr', 'HomeController@gdpr')->name('home.gdpr');
 
+Route::get('/posts/frontPostsTable', 'HomeController@frontPosts');
+
 Route::get('{organization}/{slug}/index', 'HomeController@publishedPosts')->name('publishedPosts');
 Route::get('pdf/{file}/{filename?}/download/pdf', 'FilesController@show')->name('file.show');
 

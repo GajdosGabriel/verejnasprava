@@ -15,7 +15,8 @@ class PostFilters extends Filters
         'name',
         'contact',
         'categories',
-        'supplierFilter'
+        'supplierFilter',
+        'organization'
     ];
 
     public function id($id)
@@ -37,12 +38,10 @@ class PostFilters extends Filters
         });
     }
 
-    public function organization($organizationId)
+    public function organization($organizationName)
     {
-        $supplier_id = Organization::whereId($organizationId)->first()->id;
-        return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
-            $query->where('organization_id', $supplier_id);
-        });
+        $org_id = Organization::where('name', $organizationName)->first()->id;
+        return $this->builder->where('organization_id', $org_id);
     }
 
 

@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div v-text="" class="p-1 border-2 rounded-lg bg-red-500 cursor-pointer text-sm text-gray-200 w-auto inline-block " v-if="search !== ''" @click="search = ''">
+            {{ search }}
+            <span class="ml-3 mr-2">X</span>
+        </div>
 <!--        <input type="text" v-model="search" placeholder="hľadať v popise" class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm">-->
 <!--        <span @click="search = ''" class="cursor-pointer text-gray-500" v-if="search !== ''" >X</span>-->
 
@@ -20,7 +24,7 @@
 
             <tr class="hover:bg-gray-100" v-for="post in posts.data" :key="post.id">
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('DD. MM. YYYY')"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.organization.name"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.organization.name" @click="pushOrganization(post)"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.name)"></td>
@@ -63,21 +67,21 @@
 
         computed: mapState ({
             posts: state => state.posts.posts,
-            url: state => state.posts.url
+            url: state => state.posts.urlPostFront
         }),
 
         created() {
-          this.$store.dispatch('posts/frontedPosts');
+          this.$store.dispatch('posts/frontedPosts', this.url);
         },
 
         watch: {
           search: function (val) {
-              this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?name=' + this.search);
+              this.$store.dispatch('posts/frontedPosts', this.url + '?organization=' + this.search);
           }
         },
         methods: {
-            searchByContact: function(contact){
-                this.search = contact;
+            pushOrganization(post){
+                this.search = post.organization.name
             }
         },
 

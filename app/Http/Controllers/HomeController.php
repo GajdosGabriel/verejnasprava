@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\PostFilters;
 use App\Models\Organization;
 use App\Models\Post;
 use App\Models\User;
@@ -61,6 +62,17 @@ class HomeController extends Controller
 
     public function gdpr(){
         return view('public.ochrana-osobnych-udajov');
+    }
+
+    public function frontPosts(PostFilters $postFilters) {
+//        $posts =  Post::orderBy('date_in', 'desc')->paginate()->groupBy(function($item){
+//            return Carbon::parse($item->date_in)->format('F-Y');
+//        });
+
+        $posts = Post::filter($postFilters)
+            ->latest()->paginate(20);
+
+        return $posts;
     }
 
 

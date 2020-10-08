@@ -18,12 +18,5 @@ class ApiPostController extends Controller
            ->latest()->paginate();
     }
 
-    public function frontPosts() {
-//        $posts =  Post::orderBy('date_in', 'desc')->paginate()->groupBy(function($item){
-//            return Carbon::parse($item->date_in)->format('F-Y');
-//        });
-        $posts = Post::latest()->paginate(20);
 
-        return $posts;
-    }
 }
