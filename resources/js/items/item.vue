@@ -105,7 +105,7 @@
         </div>
 
 
-        <vote-buttons :item="item"></vote-buttons>
+        <vote-form-button :item="item"></vote-form-button>
 
         <interpellation :item="item"></interpellation>
 
@@ -120,7 +120,7 @@
 
 <script>
     import {bus} from '../app';
-    import voteButtons from '../votes/votesButton';
+    // import voteButtons from '../votes/voteButtons';
     import {mapState} from 'vuex';
     import {mapGetters} from 'vuex';
     import publishedButton from "./publishedButton";
@@ -129,7 +129,7 @@
 
     export default {
         props: ['item'],
-        components: {voteButtons, publishedButton, interpellation, navDropDown},
+        components: { publishedButton, interpellation, navDropDown},
         computed: {
             isPublished(){
                 if (this.$auth.isAdmin()){

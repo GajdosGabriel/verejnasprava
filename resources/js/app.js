@@ -40,7 +40,7 @@ Vue.component('nav-items', require('./modules/navigation/navItems.vue').default)
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);
 Vue.component('table-front-post', require('./posts/tableFrontPost.vue').default);
 Vue.component('post-table', require('./posts/postTable.vue').default);
-Vue.component('vote-form-button', require('./votes/votesButton.vue').default);
+Vue.component('vote-form-button', require('./votes/voteButtons.vue').default);
 Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 Vue.component('organization-edit', require('./organizations/edit.vue').default);
 Vue.component('user-edit', require('./user/edit.vue').default);
