@@ -1,5 +1,5 @@
 const state = {
-    loadingStatus: 'notLoading',
+    loadingStatus: false,
     posts: [],
     url: '/api/posts/',
     urlPostFront: 'posts/frontPostsTable'
@@ -23,16 +23,18 @@ const actions = {
         commit('SET_LOADING_STATUS', 'loading');
         axios.get(url)
             .then(response => {
-                commit('SET_LOADING_STATUS', 'notLoading');
-                commit('SET_POSTS', response.data)
+                commit('SET_LOADING_STATUS', true);
+                commit('SET_POSTS', response.data);
+                commit('SET_LOADING_STATUS', false);
             })
     },
 
     frontedPosts: function({commit}, url) {
         axios.get(url)
             .then(response => {
-                commit('SET_LOADING_STATUS', 'notLoading');
-                commit('SET_POSTS', response.data)
+                commit('SET_LOADING_STATUS', true);
+                commit('SET_POSTS', response.data);
+                commit('SET_LOADING_STATUS', false);
             })
     }
 };

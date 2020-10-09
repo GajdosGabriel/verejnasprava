@@ -10,7 +10,6 @@
 
     <div class="container mx-auto md:flex">
 
-
         {{-- Image--}}
 {{--        <div class="w-64 h-64 bg-cover" style="background-image: url({{ asset('image/dievca-left.png') }})" title="Woman holding a mug">--}}
         <div>
@@ -82,7 +81,7 @@
 
     <div class="container mx-auto ">
 
-        <h3 class="text-center mt-5 text-3xl text-gray-500">Posledné doklady</h3>
+        <h3 class="text-center mt-5 text-3xl text-gray-500" >Posledné doklady</h3>
 
 {{--        @include('modul.categoryList')--}}
         <table-front-post></table-front-post>

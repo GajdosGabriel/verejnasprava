@@ -4,6 +4,8 @@ module.exports = {
     //     './src/**/*.vue',
     //     './src/**/*.jsx',
     // ],
+
+
     theme: {
         aspectRatio: {
             none: 0,

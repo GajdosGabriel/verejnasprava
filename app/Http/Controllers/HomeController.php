@@ -69,9 +69,14 @@ class HomeController extends Controller
 //            return Carbon::parse($item->date_in)->format('F-Y');
 //        });
 
+//        $posts = Post::select(\DB::raw('max(id) as id'))
+//            ->groupBy('organization_id')
+//            ->paginate(20)
+//        ;
+
         $posts = Post::filter($postFilters)
             ->latest()->paginate(20);
-
+//        dd($posts);
         return $posts;
     }
 

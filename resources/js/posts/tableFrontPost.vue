@@ -44,6 +44,14 @@
             </tbody>
         </table>
 
+        <div v-if="loadingStatus" class="w-ful flex mt-8 justify-center">
+            <svg class="animate-spin h-5 w-5 mr-3 text-gray-500 fill-current" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 20 20">
+                <path d="M14.66 15.66A8 8 0 1 1 17 10h-2a6 6 0 1 0-1.76 4.24l1.42 1.42zM12 10h8l-4 4-4-4z"/>
+            </svg>
+        </div>
+
+
         <paginator :data="posts" :url="url"/>
 
     </div>
@@ -66,6 +74,7 @@
         },
 
         computed: mapState ({
+            loadingStatus: state => state.posts.loadingStatus,
             posts: state => state.posts.posts,
             url: state => state.posts.urlPostFront
         }),
@@ -92,3 +101,15 @@
         }
     }
 </script>
+
+<style>
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
