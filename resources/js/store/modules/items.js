@@ -40,9 +40,9 @@ const mutations = {
 
 };
 const actions = {
-    set_item({commit}, meeting) {
-        console.log(meeting);
-        commit('SET_ITEM', meeting)
+    set_item({commit}, item) {
+        console.log(item);
+        commit('SET_ITEM', item)
     },
 
     get_item({commit}, itemId) {
@@ -64,6 +64,7 @@ const actions = {
     update({commit, dispatch}, item) {
         axios.put('/api/item/' + item.id + '/update', item)
             .then(response => {
+                commit('SET_ITEM', response.data);
                 dispatch('meetings/fetchMeeting', item.meeting_id, {root:true});
             });
     },

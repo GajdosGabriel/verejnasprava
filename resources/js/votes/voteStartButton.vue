@@ -22,11 +22,7 @@
         props: ['pitem'],
         components: {interpellationTable},
         created() {
-
             this.$store.dispatch('items/get_item', this.pitem.id, {root: true});
-
-            bus.$on('interpelationChange', (data) => {
-            });
         },
         computed: {
             ...mapState({

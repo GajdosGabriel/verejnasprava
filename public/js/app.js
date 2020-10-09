@@ -4781,7 +4781,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('items/get_item', this.pitem.id, {
       root: true
     });
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('interpelationChange', function (data) {});
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     item: function item(state) {
@@ -4902,13 +4901,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
+  props: ['pitem'],
   data: function data() {
     return {
       meVote: ''
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
+    },
     votes: function votes(state) {
       return state.items.votes;
     },
@@ -84149,10 +84151,10 @@ var mutations = {
   }
 };
 var actions = {
-  set_item: function set_item(_ref, meeting) {
+  set_item: function set_item(_ref, item) {
     var commit = _ref.commit;
-    console.log(meeting);
-    commit('SET_ITEM', meeting);
+    console.log(item);
+    commit('SET_ITEM', item);
   },
   get_item: function get_item(_ref2, itemId) {
     var commit = _ref2.commit;
@@ -84173,6 +84175,7 @@ var actions = {
     var commit = _ref4.commit,
         dispatch = _ref4.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
+      commit('SET_ITEM', response.data);
       dispatch('meetings/fetchMeeting', item.meeting_id, {
         root: true
       });
