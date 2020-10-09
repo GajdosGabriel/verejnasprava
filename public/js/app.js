@@ -4915,16 +4915,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['pitem'],
+  props: ['item'],
   data: function data() {
     return {
       meVote: ''
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    item: function item(state) {
-      return state.items.item;
-    },
+    // item: state => state.items.item,
     votes: function votes(state) {
       return state.items.votes;
     },

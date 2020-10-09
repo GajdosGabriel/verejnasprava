@@ -61,7 +61,7 @@
     import {mapState} from "vuex";
 
     export default {
-        props:['pitem'],
+        props:['item'],
         data: function() {
           return {
               meVote: ''
@@ -78,7 +78,7 @@
             //
             // },
             ...mapState({
-                item: state => state.items.item,
+                // item: state => state.items.item,
                 votes: state => state.items.votes,
                 userVote: state => state.items.userVote,
                 authUser: state => state.items.authUser,

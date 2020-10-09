@@ -56,7 +56,7 @@
                 </div>
 
                 {{-- Votes Buttons--}}
-                <vote-form-button :pitem="{{ $item }}"></vote-form-button>
+                <vote-form-button :item="{{ $item }}"></vote-form-button>
 
                 {{-- Body text--}}
                 <div class="py-3">
