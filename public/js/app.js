@@ -3323,6 +3323,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66146,7 +66160,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(
-                                "\n                            Nofifikácia\n                        "
+                                "\n                            Nofifikácia hlasovať\n                        "
                               )
                             ])
                           ]
@@ -66185,7 +66199,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(
-                                "\n                            Presúnúť hore\n                        "
+                                "\n                            Presunúť hore\n                        "
                               )
                             ])
                           ]
@@ -66451,7 +66465,41 @@ var render = function() {
                     },
                     [_vm._v("\n                    Nový bod\n                ")]
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                    attrs: { href: "#", title: "Notifikácia pre voliteľov" }
+                  },
+                  [
+                    _c("div", { staticClass: "flex" }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 mr-2",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                        Pozvánka učastníkom\n                    "
+                      )
+                    ])
+                  ]
+                )
               ])
             ],
             2
