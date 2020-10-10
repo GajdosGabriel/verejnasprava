@@ -48,7 +48,7 @@
     import moment from 'moment';
     import navDropDown from '../modules/navigation/navDropDown';
     import {mapState} from 'vuex';
-    import item from '../items/item';
+    import item from '../items/itemList';
 
     export default {
         props: ['meeting'],
@@ -60,11 +60,9 @@
         },
         computed: mapState({
             items: state => state.meetings.items,
-            authUser: state => state.meetings.authUser
         }),
         created() {
             this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
-            this.$store.commit('meetings/SET_AUTHUSER', this.user, {root: true})
         },
         methods: {}
 
