@@ -5,6 +5,11 @@ module.exports = {
     //     './src/**/*.jsx',
     // ],
 
+    future: {
+        removeDeprecatedGapUtilities: true,
+        purgeLayersByDefault: true,
+    },
+
 
     theme: {
         aspectRatio: {

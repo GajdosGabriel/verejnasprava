@@ -59,7 +59,7 @@
 </template>
 <script>
     import {mapState} from "vuex";
-
+    import {mapGetters} from 'vuex';
     export default {
         props:['item'],
         data: function() {
@@ -68,15 +68,9 @@
           }
         },
         computed: {
-            // meVote() {
-            //    return  this.$store.getters['items/getItemById'];
-            //     // if (typeof vote.vote != 'undefined') return 4;
-            //     // return  vote.vote;
-            //
-            //
-            //     // return this.item.votes.find(item => item.user_id == this.user.id)
-            //
-            // },
+            curentlyItem: function () {
+                return this.$store.getters['meetings/activeItem'](this.item.id);
+            },
             ...mapState({
                 // item: state => state.items.item,
                 votes: state => state.items.votes,
@@ -84,12 +78,9 @@
                 authUser: state => state.items.authUser,
             }),
         },
-        mounted() {
-            this.$store.commit('items/SET_AUTH_USER', this.user)
-        },
         methods: {
             storeVote: function (val) {
-                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.user.id, vote:val, meetingId: this.item.meeting_id }, {root:true})
+                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.$auth.user.id, vote:val, meetingId: this.item.meeting_id }, {root:true})
             }
         }
     }
