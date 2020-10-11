@@ -13,6 +13,8 @@
 
     <div class="container min-h-screen p-3 mx-auto sm:flex">
         <div class="md:w-3/4 xs:w-full">
+
+            <item-show :item="{{ $item }}"></item-show>
             <div class="">
                 {{-- Title --}}
                 <h1 class="text-lg page-title">Rokovací bod: {{ $item->name }} zastupiteľstvo</h1>
@@ -78,78 +80,78 @@
             </div>
         </div>
 
-        {{--Aside part--}}
-        <div class="p-3 md:w-1/4 xs:w-full">
+{{--        --}}{{--Aside part--}}
+{{--        <div class="p-3 md:w-1/4 xs:w-full">--}}
 
-            <vote-start-button :pitem="{{ $item }}"></vote-start-button>
+{{--            <vote-start-button :pitem="{{ $item }}"></vote-start-button>--}}
 
-            @if($item->votes()->count() > 0)
-                {{-- Vote results Variant I. --}}
-                <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md">
-                    <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>
-                        <span>{{ $item->votes()->count() }}</span></li>
-                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>
-                        <span>{{ $item->votes()->where('vote', 1)->count() }}</span></li>
-                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Proti:</span>
-                        <span>{{ $item->votes()->where('vote', 0)->count() }}</span></li>
-                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Zdržal:</span>
-                        <span>{{ $item->votes()->where('vote', 2)->count() }}</span></li>
-                </ul>
-
-
+{{--            @if($item->votes()->count() > 0)--}}
+{{--                --}}{{-- Vote results Variant I. --}}
+{{--                <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md">--}}
+{{--                    <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>--}}
+{{--                        <span>{{ $item->votes()->count() }}</span></li>--}}
+{{--                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>--}}
+{{--                        <span>{{ $item->votes()->where('vote', 1)->count() }}</span></li>--}}
+{{--                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Proti:</span>--}}
+{{--                        <span>{{ $item->votes()->where('vote', 0)->count() }}</span></li>--}}
+{{--                    <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted "><span>Zdržal:</span>--}}
+{{--                        <span>{{ $item->votes()->where('vote', 2)->count() }}</span></li>--}}
+{{--                </ul>--}}
 
 
-                {{-- Výsledky hlasovania--}}
-                <div class="">
-                    <h2 class="my-5 text-lg font-semibold">Výsledky hlasovania</h2>
-                    <ul class="">
-                        @forelse($item->votes as $vote)
-
-                            {{-- Hlas Za --}}
-                            @if($vote->vote == 1 )
-                                <li class="flex justify-between border-b-2 border-dotted">
-                                    @if($vote->item->vote_type == 1)
-                                        Hlas
-                                        <span class="font-semibold">Za</span>
-                                    @else
-                                        {{ $vote->user->full_name() }}
-                                        <span class="font-semibold">Áno</span>
-                                    @endif
-                                </li>
-                            @endif
-                            {{-- Hlas Proti --}}
-                            @if($vote->vote == 0 )
-                                <li class="flex justify-between border-b-2 border-dotted">
-                                    @if($vote->item->vote_type == 1)
-                                        Hlas
-                                        <span class="font-semibold">Nie</span>
-                                    @else
-                                        {{ $vote->user->full_name() }}
-                                        <span class="font-semibold">Nie</span>
-                                    @endif
-                                </li>
-                            @endif
-
-                            {{-- Zdržal sa --}}
-                            @if($vote->vote == 2 )
-                                <li class="flex justify-between border-b-2 border-dotted">
-                                    @if($vote->item->vote_type == 1)
-                                        Hlas
-                                        <span class="font-semibold">Zdržal</span>
-                                    @else
-                                        {{ $vote->user->full_name() }}
-                                        <span class="font-semibold">Zdržal</span>
-                                    @endif
-                                </li>
-                            @endif
-                        @empty
-                        @endforelse
-                    </ul>
-                </div>
-            @endif
 
 
-        </div>
+{{--                --}}{{-- Výsledky hlasovania--}}
+{{--                <div class="">--}}
+{{--                    <h2 class="my-5 text-lg font-semibold">Výsledky hlasovania</h2>--}}
+{{--                    <ul class="">--}}
+{{--                        @forelse($item->votes as $vote)--}}
+
+{{--                            --}}{{-- Hlas Za --}}
+{{--                            @if($vote->vote == 1 )--}}
+{{--                                <li class="flex justify-between border-b-2 border-dotted">--}}
+{{--                                    @if($vote->item->vote_type == 1)--}}
+{{--                                        Hlas--}}
+{{--                                        <span class="font-semibold">Za</span>--}}
+{{--                                    @else--}}
+{{--                                        {{ $vote->user->full_name() }}--}}
+{{--                                        <span class="font-semibold">Áno</span>--}}
+{{--                                    @endif--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
+{{--                            --}}{{-- Hlas Proti --}}
+{{--                            @if($vote->vote == 0 )--}}
+{{--                                <li class="flex justify-between border-b-2 border-dotted">--}}
+{{--                                    @if($vote->item->vote_type == 1)--}}
+{{--                                        Hlas--}}
+{{--                                        <span class="font-semibold">Nie</span>--}}
+{{--                                    @else--}}
+{{--                                        {{ $vote->user->full_name() }}--}}
+{{--                                        <span class="font-semibold">Nie</span>--}}
+{{--                                    @endif--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
+
+{{--                            --}}{{-- Zdržal sa --}}
+{{--                            @if($vote->vote == 2 )--}}
+{{--                                <li class="flex justify-between border-b-2 border-dotted">--}}
+{{--                                    @if($vote->item->vote_type == 1)--}}
+{{--                                        Hlas--}}
+{{--                                        <span class="font-semibold">Zdržal</span>--}}
+{{--                                    @else--}}
+{{--                                        {{ $vote->user->full_name() }}--}}
+{{--                                        <span class="font-semibold">Zdržal</span>--}}
+{{--                                    @endif--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
+{{--                        @empty--}}
+{{--                        @endforelse--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+
+
+{{--        </div>--}}
     </div>
 
 

@@ -1,0 +1,193 @@
+<template>
+    <div class="container min-h-screen p-3 mx-auto sm:flex">
+        <div class="md:w-3/4 xs:w-full">
+            <div class="">
+
+                <h1 class="text-lg page-title">Rokovací bod: {{ item.name }} zastupiteľstvo</h1>
+
+                <!--        Badge line-->
+                <div class="flex justify-between mt-3">
+                    <div class="flex flex-wrap items-center space-x-3">
+
+                        <!--                Users Interpellations-->
+                        <!--                @include('council.items.interpellation.button')-->
+
+                        <div class="badge badge-primary">Hlasovanie verejné</div>
+
+                    </div>
+
+
+                    <nav-drop-down>
+                        <slot>
+                            <!-- Item Edit button-->
+                            <div class="py-1">
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                   :href="'/item/'+ item.id + '/' +item.slug + '/edit'"
+                                   title="Upraviť bod programu">
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20">
+                                            <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                        </svg>
+                                        Upraviť položku
+                                    </div>
+                                </a>
+
+                            </div>
+
+                            <!--  Poslať všetkým notifikáciu -->
+                            <a class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                               href="#"
+                               title="Notifikácia pre voliteľov">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path
+                                            d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
+                                    </svg>
+                                    Nofifikácia hlasovať
+                                </div>
+
+                            </a>
+
+
+                            <!-- Item Delete button-->
+                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                               :href="'/item/'+ item.id + '/' +item.slug + '/item/delete'"
+                               title="Zmazať položku">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path
+                                            d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                    </svg>
+                                    Zmazať
+                                </div>
+                            </a>
+                        </slot>
+                    </nav-drop-down>
+
+                </div>
+
+                <!--        Votes Buttons-->
+                <vote-form-button :item="item"></vote-form-button>
+
+                <!--        Body text-->
+                <div class="py-3">
+
+                    <p v-html="item.description"></p>
+
+                    <!--  File-->
+                    <!--            @if( $item->files->count())-->
+                    <!--            <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>-->
+                    <!--            @forelse($item->files as $file)-->
+                    <!--            <a class="mr-2" target="_blank"-->
+                    <!--               href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}-->
+                    <!--                .Príloha</a>-->
+                    <!--            @empty-->
+                    <!--            Bez prílohy-->
+                    <!--            @endforelse-->
+                    <!--            @endif-->
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--            Aside part-->
+        <div class="p-3 md:w-1/4 xs:w-full">
+
+            <vote-start-button :item="item"></vote-start-button>
+
+            {{ item.votes.length }}
+            <!--Vote results Variant I.-->
+            <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">
+                <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>
+                    <span>{{ item.votes.length }}</span>
+                </li>
+                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>
+                    <span>{{ resultYes }}</span>
+                </li>
+
+                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Proti:</span>
+                    <span>{{ resultNo }}</span>
+                </li>
+
+                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Zdržal:</span>
+                    <span>{{ resultDisition }}</span>
+                </li>
+            </ul>
+
+            <!--                Výsledky hlasovania-->
+            <div class="">
+                <h2 class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                <ul class="">
+
+                    <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
+                        <!--  Hlas-->
+                        <span v-if="item.vote_type == 1" class="font-semibold">Za</span>
+
+                        {{ vote.user.first_name }}
+                        <span class="font-semibold">Áno</span>
+
+                    </li>
+
+                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
+                    <!--                            @if($vote->item->vote_type == 1)-->
+                    <!--                            Hlas-->
+                    <!--                            <span class="font-semibold">Za</span>-->
+                    <!--                            @else-->
+                    <!--                            {{ $vote->user->full_name() }}-->
+                    <!--                            <span class="font-semibold">Áno</span>-->
+                    <!--                            @endif-->
+                    <!--                        </li>-->
+                    <!--                        @endif-->
+                    <!--&lt;!&ndash;                         Hlas Proti-->
+                    <!--                        @if($vote->vote == 0 )-->
+                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
+                    <!--                            @if($vote->item->vote_type == 1)-->
+                    <!--                            Hlas-->
+                    <!--                            <span class="font-semibold">Nie</span>-->
+                    <!--                            @else-->
+                    <!--                            {{ $vote->user->full_name() }}-->
+                    <!--                            <span class="font-semibold">Nie</span>-->
+                    <!--                            @endif-->
+                    <!--                        </li>-->
+                    <!--                        @endif-->
+
+                    <!--&lt;!&ndash;                        Zdržal sa-->
+                    <!--                        @if($vote->vote == 2 )-->
+                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
+                    <!--                            @if($vote->item->vote_type == 1)-->
+                    <!--                            Hlas-->
+                    <!--                            <span class="font-semibold">Zdržal</span>-->
+                    <!--                            @else-->
+                    <!--                            {{ $vote->user->full_name() }}-->
+                    <!--                            <span class="font-semibold">Zdržal</span>-->
+                    <!--                            @endif-->
+                    <!--                        </li>-->
+                    <!--                        @endif-->
+                    <!--                        @empty-->
+                    <!--                        @endforelse-->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['item'],
+        computed: {
+            resultYes() {
+                return this.item.votes.filter(i => i.vote == 1).length
+            },
+            resultNo() {
+                return this.item.votes.filter(i => i.vote == 0).length
+            },
+            resultDisition() {
+                return this.item.votes.filter(i => i.vote == 2).length
+            }
+        }
+
+    }
+</script>

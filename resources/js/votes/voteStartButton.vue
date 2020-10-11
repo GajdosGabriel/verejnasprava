@@ -19,14 +19,14 @@
     import {mapGetters} from 'vuex';
 
     export default {
-        props: ['pitem'],
+        props: ['item'],
         components: {interpellationTable},
         created() {
-            this.$store.dispatch('items/get_item', this.pitem.id, {root: true});
+            this.$store.dispatch('items/get_item', this.item.id, {root: true});
         },
         computed: {
             ...mapState({
-                item: state => state.items.item,
+                // item: state => state.items.item,
             }),
             buttonClass: function () {
                 return this.item.vote_status == 1 ? 'btn-primary' : 'btn-secondary';

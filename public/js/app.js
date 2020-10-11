@@ -3224,6 +3224,214 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/itemShow.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/items/itemShow.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['item'],
+  computed: {
+    resultYes: function resultYes() {
+      return this.item.votes.filter(function (i) {
+        return i.vote == 1;
+      }).length;
+    },
+    resultNo: function resultNo() {
+      return this.item.votes.filter(function (i) {
+        return i.vote == 0;
+      }).length;
+    },
+    resultDisition: function resultDisition() {
+      return this.item.votes.filter(function (i) {
+        return i.vote == 2;
+      }).length;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/publishedButton.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/items/publishedButton.vue?vue&type=script&lang=js& ***!
@@ -4895,19 +5103,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['pitem'],
+  props: ['item'],
   components: {
     interpellationTable: _items_InterpellationCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   created: function created() {
-    this.$store.dispatch('items/get_item', this.pitem.id, {
+    this.$store.dispatch('items/get_item', this.item.id, {
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
-    item: function item(state) {
-      return state.items.item;
-    }
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({// item: state => state.items.item,
   })), {}, {
     buttonClass: function buttonClass() {
       return this.item.vote_status == 1 ? 'btn-primary' : 'btn-secondary';
@@ -66352,6 +66557,314 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container min-h-screen p-3 mx-auto sm:flex" },
+    [
+      _c("div", { staticClass: "md:w-3/4 xs:w-full" }, [
+        _c(
+          "div",
+          {},
+          [
+            _c("h1", { staticClass: "text-lg page-title" }, [
+              _vm._v(
+                "Rokovací bod: " + _vm._s(_vm.item.name) + " zastupiteľstvo"
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-between mt-3" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "nav-drop-down",
+                  [
+                    _vm._t("default", [
+                      _c("div", { staticClass: "py-1" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                            attrs: {
+                              href:
+                                "/item/" +
+                                _vm.item.id +
+                                "/" +
+                                _vm.item.slug +
+                                "/edit",
+                              title: "Upraviť bod programu"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "flex" }, [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "w-4 h-4 mr-2",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(
+                                "\n                                    Upraviť položku\n                                "
+                              )
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href: "#",
+                            title: "Notifikácia pre voliteľov"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                                Nofifikácia hlasovať\n                            "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href:
+                              "/item/" +
+                              _vm.item.id +
+                              "/" +
+                              _vm.item.slug +
+                              "/item/delete",
+                            title: "Zmazať položku"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                                Zmazať\n                            "
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("vote-form-button", { attrs: { item: _vm.item } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "py-3" }, [
+              _c("p", { domProps: { innerHTML: _vm._s(_vm.item.description) } })
+            ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "p-3 md:w-1/4 xs:w-full" },
+        [
+          _c("vote-start-button", { attrs: { item: _vm.item } }),
+          _vm._v("\n\n        " + _vm._s(_vm.item.votes.length) + "\n        "),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass:
+                "mb-10 border-2 border-gray-500 rounded-md shadow-md w-full"
+            },
+            [
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"
+                },
+                [
+                  _c("span", [_vm._v("Hlasovalo:")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.item.votes.length))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
+                },
+                [
+                  _c("span", [_vm._v("Za:")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.resultYes))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
+                },
+                [
+                  _c("span", [_vm._v("Proti:")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.resultNo))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
+                },
+                [
+                  _c("span", [_vm._v("Zdržal:")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.resultDisition))])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", {}, [
+            _c(
+              "h2",
+              { staticClass: "my-5 text-lg font-semibold whitespace-no-wrap" },
+              [_vm._v("Výsledky hlasovania")]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              {},
+              _vm._l(_vm.item.votes, function(vote) {
+                return _c(
+                  "li",
+                  {
+                    staticClass: "flex justify-between border-b-2 border-dotted"
+                  },
+                  [
+                    _vm.item.vote_type == 1
+                      ? _c("span", { staticClass: "font-semibold" }, [
+                          _vm._v("Za")
+                        ])
+                      : _vm._e(),
+                    _vm._v(
+                      "\n\n                    " +
+                        _vm._s(vote.user.first_name) +
+                        "\n                    "
+                    ),
+                    _c("span", { staticClass: "font-semibold" }, [
+                      _vm._v("Áno")
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        ],
+        1
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-wrap items-center space-x-3" }, [
+      _c("div", { staticClass: "badge badge-primary" }, [
+        _vm._v("Hlasovanie verejné")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/publishedButton.vue?vue&type=template&id=22f2833a&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/items/publishedButton.vue?vue&type=template&id=22f2833a& ***!
@@ -81949,6 +82462,7 @@ Vue.component('contact-create', __webpack_require__(/*! ./contacts/newContact.vu
 Vue.component('meeting', __webpack_require__(/*! ./meetings/meeting.vue */ "./resources/js/meetings/meeting.vue")["default"]);
 Vue.component('council-table', __webpack_require__(/*! ./councils/councilTable.vue */ "./resources/js/councils/councilTable.vue")["default"]);
 Vue.component('vote-list', __webpack_require__(/*! ./votes/voteList.vue */ "./resources/js/votes/voteList.vue")["default"]);
+Vue.component('item-show', __webpack_require__(/*! ./items/itemShow.vue */ "./resources/js/items/itemShow.vue")["default"]);
 Vue.component('todo-component', __webpack_require__(/*! ./tasks/Todos.vue */ "./resources/js/tasks/Todos.vue")["default"]);
 Vue.component('notification-list', __webpack_require__(/*! ./notifications/NotificationList.vue */ "./resources/js/notifications/NotificationList.vue")["default"]);
 var bus = new Vue();
@@ -82780,6 +83294,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_itemList_vue_vue_type_template_id_9f6e3484___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_itemList_vue_vue_type_template_id_9f6e3484___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/items/itemShow.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/items/itemShow.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./itemShow.vue?vue&type=template&id=4be1c89d& */ "./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d&");
+/* harmony import */ var _itemShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./itemShow.vue?vue&type=script&lang=js& */ "./resources/js/items/itemShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _itemShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/items/itemShow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/items/itemShow.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/items/itemShow.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_itemShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./itemShow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/itemShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_itemShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d&":
+/*!************************************************************************!*\
+  !*** ./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d& ***!
+  \************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./itemShow.vue?vue&type=template&id=4be1c89d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/items/itemShow.vue?vue&type=template&id=4be1c89d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_itemShow_vue_vue_type_template_id_4be1c89d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
