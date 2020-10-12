@@ -21,7 +21,7 @@ const mutations = {
         state.item = item;
         // state.votes = item.user;
         // state.interpellations = item.interpellations;
-        // state.votes = item.votes;
+        state.votes = item.votes;
     },
 
     SET_VOTES: function (state, item) {
@@ -47,7 +47,8 @@ const actions = {
     storeVote({commit, dispatch}, item) {
         axios.put('/api/vote/' + item.id, item)
             .then(response => {
-                dispatch('meetings/fetchMeeting', item.meetingId, {root:true})
+                dispatch('meetings/fetchMeeting', item.meetingId, {root:true});
+                commit('SET_ITEM', response.data );
             });
 
     },

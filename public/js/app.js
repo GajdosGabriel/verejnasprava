@@ -4949,20 +4949,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       meVote: ''
     };
   },
-  computed: _objectSpread({
-    curentlyItem: function curentlyItem() {
-      return this.$store.getters['meetings/activeItem'](this.item.id);
-    }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    // item: state => state.items.item,
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     votes: function votes(state) {
       return state.items.votes;
-    },
-    userVote: function userVote(state) {
-      return state.items.userVote;
-    },
-    authUser: function authUser(state) {
-      return state.items.authUser;
     }
   })),
   methods: {
@@ -66777,7 +66766,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "p-3 md:w-1/4 xs:w-full" },
+        { staticClass: "p-3 flex flex-col w-auto" },
         [
           _c("vote-start-button", { attrs: { item: _vm.item } }),
           _vm._v(" "),
@@ -68848,7 +68837,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "text-xs btn mb-3 ",
+          staticClass: "text-xs btn mb-3 whitespace-no-wrap",
           class: _vm.buttonClass,
           domProps: { textContent: _vm._s(_vm.buttonTitle) },
           on: { click: _vm.voteStatus }
@@ -84741,7 +84730,8 @@ var mutations = {
   SET_ITEM: function SET_ITEM(state, item) {
     state.item = item; // state.votes = item.user;
     // state.interpellations = item.interpellations;
-    // state.votes = item.votes;
+
+    state.votes = item.votes;
   },
   SET_VOTES: function SET_VOTES(state, item) {
     state.votes = item;
@@ -84767,6 +84757,7 @@ var actions = {
       dispatch('meetings/fetchMeeting', item.meetingId, {
         root: true
       });
+      commit('SET_ITEM', response.data);
     });
   },
   update: function update(_ref3, item) {

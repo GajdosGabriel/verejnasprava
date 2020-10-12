@@ -68,14 +68,11 @@
           }
         },
         computed: {
-            curentlyItem: function () {
-                return this.$store.getters['meetings/activeItem'](this.item.id);
-            },
+            // curentlyItem: function () {
+            //     return this.$store.getters['meetings/activeItem'](this.item.id);
+            // },
             ...mapState({
-                // item: state => state.items.item,
                 votes: state => state.items.votes,
-                userVote: state => state.items.userVote,
-                authUser: state => state.items.authUser,
             }),
         },
         methods: {

@@ -87,7 +87,7 @@
         </div>
 
         <!--  Aside part-->
-        <div class="p-3 md:w-1/4 xs:w-full">
+        <div class="p-3 flex flex-col w-auto">
 
             <vote-start-button :item="item"></vote-start-button>
 

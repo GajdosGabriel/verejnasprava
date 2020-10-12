@@ -55,7 +55,8 @@ class VoteController extends Controller
             'vote' => $request->vote
         ]);
 
-        return $myVote;
+        return $myVote->item;
+
     }
 
     /**
