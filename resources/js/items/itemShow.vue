@@ -97,7 +97,6 @@
 
             <vote-start-button :item="item"></vote-start-button>
 
-            {{ item.votes.length }}
             <!--Vote results Variant I.-->
             <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">
                 <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>
@@ -116,17 +115,19 @@
                 </li>
             </ul>
 
-            <!--                Výsledky hlasovania-->
+            <!-- Výsledky hlasovania-->
             <div class="">
                 <h2 class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
                 <ul class="">
 
                     <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
                         <!--  Hlas-->
-                        <span v-if="item.vote_type == 1" class="font-semibold">Za</span>
+                        <!--                        <span v-if="item.vote_type == 1" class="font-semibold">Za</span>-->
 
                         {{ vote.user.first_name }}
-                        <span class="font-semibold">Áno</span>
+                        <span v-if="vote.vote == 1" class="font-semibold">Áno</span>
+                        <span v-if="vote.vote == 0" class="font-semibold">Nie</span>
+                        <span v-if="vote.vote == 2" class="font-semibold">Zdržal</span>
 
                     </li>
 
