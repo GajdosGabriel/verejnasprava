@@ -46,7 +46,6 @@
                                     </svg>
                                     Nofifikácia hlasovať
                                 </div>
-
                             </a>
 
 
@@ -67,25 +66,20 @@
 
                 </div>
 
-                <!--        Votes Buttons-->
+                <!--  Votes Buttons-->
                 <vote-form-button :item="item"></vote-form-button>
 
                 <!--        Body text-->
                 <div class="py-3">
-
                     <p v-html="item.description"></p>
-
                     <!--  File-->
-                    <!--            @if( $item->files->count())-->
-                    <!--            <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>-->
-                    <!--            @forelse($item->files as $file)-->
-                    <!--            <a class="mr-2" target="_blank"-->
-                    <!--               href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}-->
-                    <!--                .Príloha</a>-->
-                    <!--            @empty-->
-                    <!--            Bez prílohy-->
-                    <!--            @endforelse-->
-                    <!--            @endif-->
+                    <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
+                    <div v-for="file in item.files">
+                        <a class="mr-2" target="_blank"
+                           :href="'/pdf/'+ file.id + '/' + file.filename +'/download/pdf'">
+                            .Príloha
+                        </a>
+                    </div>
                 </div>
             </div>
 

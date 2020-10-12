@@ -3404,11 +3404,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   computed: {
@@ -66729,9 +66724,50 @@ var render = function() {
             _vm._v(" "),
             _c("vote-form-button", { attrs: { item: _vm.item } }),
             _vm._v(" "),
-            _c("div", { staticClass: "py-3" }, [
-              _c("p", { domProps: { innerHTML: _vm._s(_vm.item.description) } })
-            ])
+            _c(
+              "div",
+              { staticClass: "py-3" },
+              [
+                _c("p", {
+                  domProps: { innerHTML: _vm._s(_vm.item.description) }
+                }),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    staticClass: "mt-4",
+                    staticStyle: { "border-bottom": "2px solid silver" }
+                  },
+                  [_vm._v("Príloha")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.item.files, function(file) {
+                  return _c("div", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "mr-2",
+                        attrs: {
+                          target: "_blank",
+                          href:
+                            "/pdf/" +
+                            file.id +
+                            "/" +
+                            file.filename +
+                            "/download/pdf"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        .Príloha\n                    "
+                        )
+                      ]
+                    )
+                  ])
+                })
+              ],
+              2
+            )
           ],
           1
         )
@@ -66742,7 +66778,6 @@ var render = function() {
         { staticClass: "p-3 md:w-1/4 xs:w-full" },
         [
           _c("vote-start-button", { attrs: { item: _vm.item } }),
-          _vm._v("\n\n        " + _vm._s(_vm.item.votes.length) + "\n        "),
           _vm._v(" "),
           _c(
             "ul",
@@ -66822,19 +66857,28 @@ var render = function() {
                     staticClass: "flex justify-between border-b-2 border-dotted"
                   },
                   [
-                    _vm.item.vote_type == 1
-                      ? _c("span", { staticClass: "font-semibold" }, [
-                          _vm._v("Za")
-                        ])
-                      : _vm._e(),
                     _vm._v(
                       "\n\n                    " +
                         _vm._s(vote.user.first_name) +
                         "\n                    "
                     ),
-                    _c("span", { staticClass: "font-semibold" }, [
-                      _vm._v("Áno")
-                    ])
+                    vote.vote == 1
+                      ? _c("span", { staticClass: "font-semibold" }, [
+                          _vm._v("Áno")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    vote.vote == 0
+                      ? _c("span", { staticClass: "font-semibold" }, [
+                          _vm._v("Nie")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    vote.vote == 2
+                      ? _c("span", { staticClass: "font-semibold" }, [
+                          _vm._v("Zdržal")
+                        ])
+                      : _vm._e()
                   ]
                 )
               }),
