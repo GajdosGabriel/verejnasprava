@@ -1,25 +1,22 @@
 const state = {
-    items: [],
-    votes: [],
-    userVote: null,
     interpellations: [],
     item: '',
     authUser: ''
 };
 
 const getters = {
-    get_votes: (state) => {
-        return state.item.votes.filter(todo => todo.item_id == 1)
-    }
+
+    resultYes:(state) => {
+        return state.item.votes
+    },
+
+    // get_votes: (state) => {
+    //     return state.item.votes.filter(todo => todo.item_id == 1)
+    // }
 
 };
 
 const mutations = {
-
-    SET_AUTH_USER: function (state, user) {
-        state.authUser = user;
-    },
-
     SET_ITEM: function (state, item) {
         state.item = item;
         // state.votes = item.user;
@@ -40,14 +37,8 @@ const mutations = {
 
 };
 const actions = {
-    set_item({commit}, item) {
-        console.log(item);
-        commit('SET_ITEM', item)
-    },
-
-    get_item({commit}, itemId) {
-
-        axios.get('/api/item/' + itemId + '/show')
+    getItem({commit}, itemId) {
+        axios.get('/api/item/' + itemId +'/show')
             .then(response => {
                 commit('SET_ITEM', response.data );
             });

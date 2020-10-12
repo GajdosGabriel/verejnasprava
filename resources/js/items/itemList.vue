@@ -142,7 +142,7 @@
             }
         },
         mounted() {
-            this.$store.dispatch('items/get_item', this.item.id, {root: true})
+            this.$store.dispatch('items/getItem', this.item.id, {root: true})
         },
         methods: {
             voteStatus: function () {

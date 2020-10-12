@@ -86,28 +86,28 @@
 
         </div>
 
-        <!--            Aside part-->
+        <!--  Aside part-->
         <div class="p-3 md:w-1/4 xs:w-full">
 
             <vote-start-button :item="item"></vote-start-button>
 
-            <!--Vote results Variant I.-->
-            <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">
-                <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>
-                    <span>{{ item.votes.length }}</span>
-                </li>
-                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>
-                    <span>{{ resultYes }}</span>
-                </li>
+<!--            &lt;!&ndash;Vote results Variant I.&ndash;&gt;-->
+<!--            <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">-->
+<!--                <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>-->
+<!--&lt;!&ndash;                    <span>{{ item.votes.length }}</span>&ndash;&gt;-->
+<!--                </li>-->
+<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>-->
+<!--                    <span>{{ resultYes }}</span>-->
+<!--                </li>-->
 
-                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Proti:</span>
-                    <span>{{ resultNo }}</span>
-                </li>
+<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Proti:</span>-->
+<!--                    <span>{{ resultNo }}</span>-->
+<!--                </li>-->
 
-                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Zdržal:</span>
-                    <span>{{ resultDisition }}</span>
-                </li>
-            </ul>
+<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Zdržal:</span>-->
+<!--                    <span>{{ resultDisition }}</span>-->
+<!--                </li>-->
+<!--            </ul>-->
 
             <!-- Výsledky hlasovania-->
             <div class="">
@@ -170,18 +170,27 @@
 </template>
 
 <script>
+    import {mapState} from "vuex";
+
     export default {
-        props: ['item'],
+        props: ['pitem'],
         computed: {
             resultYes() {
-                return this.item.votes.filter(i => i.vote == 1).length
+                return this.$store.getters['items/resultYes'];
             },
             resultNo() {
-                return this.item.votes.filter(i => i.vote == 0).length
+                // return this.item.votes.filter(i => i.vote == 0).length
             },
             resultDisition() {
-                return this.item.votes.filter(i => i.vote == 2).length
-            }
+                // return this.item.votes.filter(i => i.vote == 2).length
+            },
+
+            ...mapState({
+                item: state => state.items.item,
+            }),
+        },
+        created: function() {
+            this.$store.dispatch('items/getItem', this.pitem.id )
         }
 
     }

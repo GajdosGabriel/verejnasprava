@@ -13,7 +13,7 @@
     <div class="container min-h-screen p-3 mx-auto sm:flex">
 
         <div class="md:w-3/4 xs:w-full">
-            <item-show :item="{{ $item }}"></item-show>
+            <item-show :pitem="{{ $item }}"></item-show>
         </div>
 
     </div>

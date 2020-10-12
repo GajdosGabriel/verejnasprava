@@ -21,9 +21,6 @@
     export default {
         props: ['item'],
         components: {interpellationTable},
-        created() {
-            this.$store.dispatch('items/get_item', this.item.id, {root: true});
-        },
         computed: {
             ...mapState({
                 // item: state => state.items.item,

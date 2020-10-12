@@ -3191,7 +3191,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.$store.dispatch('items/get_item', this.item.id, {
+    this.$store.dispatch('items/getItem', this.item.id, {
       root: true
     });
   },
@@ -3233,6 +3233,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3404,24 +3411,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['item'],
-  computed: {
+  props: ['pitem'],
+  computed: _objectSpread({
     resultYes: function resultYes() {
-      return this.item.votes.filter(function (i) {
-        return i.vote == 1;
-      }).length;
+      return this.$store.getters['items/resultYes'];
     },
-    resultNo: function resultNo() {
-      return this.item.votes.filter(function (i) {
-        return i.vote == 0;
-      }).length;
+    resultNo: function resultNo() {// return this.item.votes.filter(i => i.vote == 0).length
     },
-    resultDisition: function resultDisition() {
-      return this.item.votes.filter(function (i) {
-        return i.vote == 2;
-      }).length;
+    resultDisition: function resultDisition() {// return this.item.votes.filter(i => i.vote == 2).length
     }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    item: function item(state) {
+      return state.items.item;
+    }
+  })),
+  created: function created() {
+    this.$store.dispatch('items/getItem', this.pitem.id);
   }
 });
 
@@ -5101,11 +5108,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ['item'],
   components: {
     interpellationTable: _items_InterpellationCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  created: function created() {
-    this.$store.dispatch('items/get_item', this.item.id, {
-      root: true
-    });
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({// item: state => state.items.item,
   })), {}, {
@@ -66629,7 +66631,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(
-                                "\n                                    Upraviť položku\n                                "
+                                "\n                                        Upraviť položku\n                                    "
                               )
                             ])
                           ]
@@ -66667,7 +66669,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                                Nofifikácia hlasovať\n                            "
+                              "\n                                    Nofifikácia hlasovať\n                                "
                             )
                           ])
                         ]
@@ -66709,7 +66711,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                                Zmazať\n                            "
+                              "\n                                    Zmazať\n                                "
                             )
                           ])
                         ]
@@ -66759,7 +66761,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                        .Príloha\n                    "
+                          "\n                            .Príloha\n                        "
                         )
                       ]
                     )
@@ -66779,67 +66781,6 @@ var render = function() {
         [
           _c("vote-start-button", { attrs: { item: _vm.item } }),
           _vm._v(" "),
-          _c(
-            "ul",
-            {
-              staticClass:
-                "mb-10 border-2 border-gray-500 rounded-md shadow-md w-full"
-            },
-            [
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"
-                },
-                [
-                  _c("span", [_vm._v("Hlasovalo:")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.item.votes.length))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
-                },
-                [
-                  _c("span", [_vm._v("Za:")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.resultYes))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
-                },
-                [
-                  _c("span", [_vm._v("Proti:")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.resultNo))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "flex justify-between px-3 font-semibold border-b-2 border-dotted"
-                },
-                [
-                  _c("span", [_vm._v("Zdržal:")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.resultDisition))])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
           _c("div", {}, [
             _c(
               "h2",
@@ -66858,9 +66799,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n\n                    " +
+                      "\n\n                        " +
                         _vm._s(vote.user.first_name) +
-                        "\n                    "
+                        "\n                        "
                     ),
                     vote.vote == 1
                       ? _c("span", { staticClass: "font-semibold" }, [
@@ -84784,24 +84725,19 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  items: [],
-  votes: [],
-  userVote: null,
   interpellations: [],
   item: '',
   authUser: ''
 };
 var getters = {
-  get_votes: function get_votes(state) {
-    return state.item.votes.filter(function (todo) {
-      return todo.item_id == 1;
-    });
-  }
+  resultYes: function resultYes(state) {
+    return state.item.votes;
+  } // get_votes: (state) => {
+  //     return state.item.votes.filter(todo => todo.item_id == 1)
+  // }
+
 };
 var mutations = {
-  SET_AUTH_USER: function SET_AUTH_USER(state, user) {
-    state.authUser = user;
-  },
   SET_ITEM: function SET_ITEM(state, item) {
     state.item = item; // state.votes = item.user;
     // state.interpellations = item.interpellations;
@@ -84818,29 +84754,24 @@ var mutations = {
   }
 };
 var actions = {
-  set_item: function set_item(_ref, item) {
+  getItem: function getItem(_ref, itemId) {
     var commit = _ref.commit;
-    console.log(item);
-    commit('SET_ITEM', item);
-  },
-  get_item: function get_item(_ref2, itemId) {
-    var commit = _ref2.commit;
     axios.get('/api/item/' + itemId + '/show').then(function (response) {
       commit('SET_ITEM', response.data);
     });
   },
-  storeVote: function storeVote(_ref3, item) {
-    var commit = _ref3.commit,
-        dispatch = _ref3.dispatch;
+  storeVote: function storeVote(_ref2, item) {
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
     axios.put('/api/vote/' + item.id, item).then(function (response) {
       dispatch('meetings/fetchMeeting', item.meetingId, {
         root: true
       });
     });
   },
-  update: function update(_ref4, item) {
-    var commit = _ref4.commit,
-        dispatch = _ref4.dispatch;
+  update: function update(_ref3, item) {
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
       commit('SET_ITEM', response.data);
       dispatch('meetings/fetchMeeting', item.meeting_id, {
