@@ -138,7 +138,7 @@
                 return this.item.published
             },
             notificationStatus(){
-                return this.item.notification == null ? 'Notifikácia hlasovať' : moment(this.item.notification).format('DD. MM. YYYY, h:mm');
+                return this.item.notification == null ? 'Notifikácia hlasovať' : moment(this.item.notification).format('DD. MM. YYYY, k:mm');
             },
             curentlyItem: function () {
                 return this.$store.getters['meetings/activeItem'](this.item.id);
