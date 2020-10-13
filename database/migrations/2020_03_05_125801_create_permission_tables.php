@@ -207,8 +207,15 @@ foreach ($permissions as $permission => $category) {
         ]);
 
         \DB::table('model_has_roles')->insert([
+            //  Super admin
             [
                 'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 1
+            ],
+            // Admin
+            [
+                'role_id' => 2,
                 'model_type' => 'App\Models\User',
                 'model_id' => 1
             ],
