@@ -38,6 +38,10 @@ class Meeting extends Model
         return $this->hasMany(Item::class)->orderBy('order', 'asc');
     }
 
+    public function council() {
+        return $this->belongsTo(Council::class);
+    }
+
 
     public function setNameAttribute($value)
     {

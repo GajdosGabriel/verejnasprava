@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\PostFilters;
+use App\Models\Council\Meeting;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +13,8 @@ class TestController extends Controller
 {
    public function test()
    {
+      $meeting = Meeting::first();
+       dd($meeting->council->organization);
 //       $users = User::all();
 //       foreach ($users as $user){
 //           $user->givePermissionTo('posts', 'contacts', 'helps');
