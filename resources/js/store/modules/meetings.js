@@ -28,6 +28,18 @@ const actions = {
             );
     },
 
+    update({commit}, meeting){
+        commit('SET_LOADING_STATUS', true);
+
+        axios.put('/api/meeting/' + meeting.id, meeting)
+            .then(response => {
+                    // commit('SET_ITEMS', response.data);
+                    commit('SET_LOADING_STATUS', false);
+                }
+            );
+
+    }
+
 };
 
 export default {

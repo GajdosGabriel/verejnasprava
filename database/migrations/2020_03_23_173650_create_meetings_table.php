@@ -22,6 +22,7 @@ class CreateMeetingsTable extends Migration
             $table->string('description')->nullable();
             $table->dateTime('start_at')->nullable();
             $table->boolean('published')->default(0);
+            $table->timestamp('notification')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('council_id')->references('id')->on('councils')->onDelete('cascade');

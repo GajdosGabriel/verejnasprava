@@ -39,7 +39,6 @@ class Meeting extends Model
     }
 
 
-
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucfirst($value);

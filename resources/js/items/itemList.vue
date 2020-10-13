@@ -34,9 +34,8 @@
                                     <path
                                         d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
                                 </svg>
-                                Nofifikácia hlasovať
+                                <span v-text="notificationStatus"></span>
                             </div>
-
                         </a>
 
 
@@ -120,6 +119,7 @@
 
 <script>
     import {bus} from '../app';
+    import moment from 'moment';
     // import voteButtons from '../votes/voteButtons';
     import {mapState} from 'vuex';
     import {mapGetters} from 'vuex';
@@ -137,6 +137,9 @@
                 }
                 return this.item.published
             },
+            notificationStatus(){
+                return this.item.notification == null ? 'Notifikácia hlasovať' : moment(this.item.notification).format('DD. MM. YYYY, h:mm');
+            },
             curentlyItem: function () {
                 return this.$store.getters['meetings/activeItem'](this.item.id);
             }
@@ -146,7 +149,10 @@
         },
         methods: {
             saveNotification(){
-                axios.post('/api/item', { notification: Date.now(), id: this.item.id })
+                this.$store.dispatch('items/update',  {
+                    notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    meeting_id: this.item.meeting_id,
+                    id: this.item.id })
             },
             voteStatus: function () {
                 if (!this.item.published) {

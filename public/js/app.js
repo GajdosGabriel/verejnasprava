@@ -3040,10 +3040,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
-/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
-/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
+/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 //
 //
 //
@@ -3163,7 +3165,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
  // import voteButtons from '../votes/voteButtons';
 
 
@@ -3174,9 +3176,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   components: {
-    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"],
-    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__["default"]
+    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__["default"],
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"],
+    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   computed: {
     isPublished: function isPublished() {
@@ -3185,6 +3187,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.item.published;
+    },
+    notificationStatus: function notificationStatus() {
+      return this.item.notification == null ? 'Notifikácia hlasovať' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format('DD. MM. YYYY, h:mm');
     },
     curentlyItem: function curentlyItem() {
       return this.$store.getters['meetings/activeItem'](this.item.id);
@@ -3197,8 +3202,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveNotification: function saveNotification() {
-      axios.post('/api/item', {
-        notification: Date.now(),
+      this.$store.dispatch('items/update', {
+        notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        meeting_id: this.item.meeting_id,
         id: this.item.id
       });
     },
@@ -3505,6 +3511,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _items_itemList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/itemList */ "./resources/js/items/itemList.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3566,15 +3578,26 @@ __webpack_require__.r(__webpack_exports__);
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+  computed: _objectSpread({
+    notificationStatus: function notificationStatus() {
+      return this.meeting.notification == null ? 'Notifikácia pre užívateľov' : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.meeting.notification).format('DD. MM. YYYY, h:mm');
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     items: function items(state) {
       return state.meetings.items;
     }
-  }),
+  })),
   created: function created() {
     this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
   },
-  methods: {}
+  methods: {
+    saveNotification: function saveNotification() {
+      this.$store.dispatch('meetings/update', {
+        notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        id: this.meeting.id
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -66354,9 +66377,12 @@ var render = function() {
                                     })
                                   ]
                                 ),
-                                _vm._v(
-                                  "\n                            Nofifikácia hlasovať\n                        "
-                                )
+                                _vm._v(" "),
+                                _c("span", {
+                                  domProps: {
+                                    textContent: _vm._s(_vm.notificationStatus)
+                                  }
+                                })
                               ]
                             )
                           ]
@@ -66955,7 +66981,11 @@ var render = function() {
                         title: "Vytvoriť nové zasadnutie"
                       }
                     },
-                    [_vm._v("\n                    Nový bod\n                ")]
+                    [
+                      _vm._v(
+                        "\n                        Nový bod\n                    "
+                      )
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -66967,29 +66997,39 @@ var render = function() {
                     attrs: { href: "#", title: "Notifikácia pre voliteľov" }
                   },
                   [
-                    _c("div", { staticClass: "flex" }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-4 h-4 mr-2",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
+                    _c(
+                      "div",
+                      {
+                        staticClass: "flex",
+                        on: { click: _vm.saveNotification }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-4 h-4 mr-2",
                             attrs: {
-                              d:
-                                "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
                             }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                        Pozvánka učastníkom\n                    "
-                      )
-                    ])
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", {
+                          domProps: {
+                            textContent: _vm._s(_vm.notificationStatus)
+                          }
+                        })
+                      ]
+                    )
                   ]
                 )
               ])
@@ -84830,6 +84870,14 @@ var actions = {
     commit('SET_LOADING_STATUS', true);
     axios.get('/api/meeting/' + meetingId + '/show').then(function (response) {
       commit('SET_ITEMS', response.data);
+      commit('SET_LOADING_STATUS', false);
+    });
+  },
+  update: function update(_ref2, meeting) {
+    var commit = _ref2.commit;
+    commit('SET_LOADING_STATUS', true);
+    axios.put('/api/meeting/' + meeting.id, meeting).then(function (response) {
+      // commit('SET_ITEMS', response.data);
       commit('SET_LOADING_STATUS', false);
     });
   }
