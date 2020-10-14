@@ -2,7 +2,7 @@
 @section('page-title', 'Zoznam zasadnutí')
 
 @section('navigation')
-    <x-navigation.navigationMeeting/> @endsection
+    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
 {{--@section('navigation') @include('council.meeting.navigation') @endsection--}}
 
 @section('content')

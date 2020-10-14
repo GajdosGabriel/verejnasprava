@@ -17,7 +17,6 @@ class navItems
 //    Organization
     public function zverejnovanie()
     {
-        if(auth()->user()->hasPermissionTo('posts'))
         return [
             'title' => 'Zverejňovanie',
             'url' => route('post.index'),
@@ -27,7 +26,6 @@ class navItems
 
     public function contacts()
     {
-        if(auth()->user()->hasPermissionTo('contacts'))
         return [
             'title' => 'Kontakty',
             'url' => route('contact.index'),
@@ -37,7 +35,7 @@ class navItems
 
     public function orders($id, $slug)
     {
-        if(auth()->user()->hasPermissionTo('orders'))
+        if(auth()->user()->hasRole('super-admin'))
         return [
             'title' => 'Objednávky',
             'url' => route('order.index'),
@@ -47,7 +45,7 @@ class navItems
 
     public function councils($id, $slug)
     {
-        if(auth()->user()->hasPermissionTo('councils'))
+        if(auth()->user()->hasRole('super-admin'))
         return [
             'title' => 'Zastupiteľstva',
             'url' => route('zast.index'),
@@ -57,7 +55,7 @@ class navItems
 
     public function tasks()
     {
-        if(auth()->user()->hasPermissionTo('tasks'))
+        if(auth()->user()->hasRole('super-admin'))
         return [
             'title' => 'Úlohy',
             'url' => route('task.index'),
@@ -67,7 +65,6 @@ class navItems
 
     public function navody()
     {
-        if(auth()->user()->hasPermissionTo('helps'))
         return [
             'title' => 'Návody',
             'url' => route('question.index'),

@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
-@section('navigation') <x-navigation.navigationUser /> @endsection
-{{--@section('navigation')--}}
-{{--    @include('organizations.navigation')--}}
-{{--@endsection--}}
+@section('navigation')
+    <x-navigation.navigationOrganization/> @endsection
 
 @section('content')
 

@@ -93,12 +93,10 @@ class CreatePermissionTables extends Migration
 
 
         $permissions = [
-            'posts'   => 'modul',
-            'contacts' => 'modul',
-            'orders'   => 'modul',
-            'tasks' => 'modul',
-            'councils' => 'modul',
-            'helps' => 'modul',
+            'post view'    => 'post',
+            'post edit'    => 'post',
+            'post create'  => 'post',
+            'post delete'  => 'post',
 
             'contact view'    => 'contact',
             'contact edit'    => 'contact',
@@ -110,21 +108,22 @@ class CreatePermissionTables extends Migration
             'organization create'  => 'organization',
             'organization delete'  => 'organization',
 
+            'council view'    => 'council',
+            'council edit'    => 'council',
+            'council create'  => 'council',
+            'council delete'  => 'council',
+
+            'task view'    => 'task',
+            'task edit'    => 'task',
+            'task create'  => 'task',
+            'task delete'  => 'task',
+
             'order view'    => 'order',
             'order edit'    => 'order',
             'order create'  => 'order',
             'order delete'  => 'order',
 
-            'post view'    => 'post',
-            'post edit'    => 'post',
-            'post create'  => 'post',
-            'post delete'  => 'post',
-
-            'council view'    => 'council',
-            'council edit'    => 'council',
-            'council create'  => 'council',
-            'council delete'  => 'council',
-            ];
+        ];
 
 foreach ($permissions as $permission => $category) {
     Permission::create([
