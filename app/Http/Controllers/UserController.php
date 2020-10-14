@@ -23,8 +23,7 @@ class UserController extends Controller
     }
 
     public function index(Organization $organization, $slug) {
-        $users = User::whereActive_organization(auth()->user()->active_organization)->latest()->get();
-
+        $users = $organization->users;
         return view('user.index', compact(['users', 'organization']));
     }
 
