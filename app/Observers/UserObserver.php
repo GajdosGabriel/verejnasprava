@@ -15,9 +15,6 @@ class UserObserver
 
     public function created(User $user)
     {
-        // Create super admin access
-        if($user->id == 1)
-            // $user->givePermissionTo('role-list');
-            $user->assignRole('super-admin');
+       $user->organizations()->attach(auth()->user()->active_organization);
     }
 }
