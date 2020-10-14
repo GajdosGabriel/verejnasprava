@@ -100,23 +100,23 @@ class CreatePermissionTables extends Migration
             'councils' => 'modul',
             'helps' => 'modul',
 
-            'customer edit'    => 'customer',
-            'customer view'    => 'customer',
-            'customer create'  => 'customer',
-            'customer delete'  => 'customer',
+            'contact view'    => 'contact',
+            'contact edit'    => 'contact',
+            'contact create'  => 'contact',
+            'contact delete'  => 'contact',
 
-            'organization edit'    => 'organization',
             'organization view'    => 'organization',
+            'organization edit'    => 'organization',
             'organization create'  => 'organization',
             'organization delete'  => 'organization',
 
-            'order edit'    => 'order',
             'order view'    => 'order',
+            'order edit'    => 'order',
             'order create'  => 'order',
             'order delete'  => 'order',
 
-            'post edit'    => 'post',
             'post view'    => 'post',
+            'post edit'    => 'post',
             'post create'  => 'post',
             'post delete'  => 'post',
 
