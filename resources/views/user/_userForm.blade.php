@@ -50,7 +50,7 @@
 
                     {{-- Form Role and permission --}}
                     <div class="">
-                        @can('delete')
+                        @can('council delete')
                         <div class="flex">
 
 
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 @empty
-                                    Nemáte založené žiadne zastupiteľstvo.
+                                    Nie je založené žiadne zastupiteľstvo.
                                 @endforelse
                             </div>
 

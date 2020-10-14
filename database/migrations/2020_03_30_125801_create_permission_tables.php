@@ -220,6 +220,23 @@ foreach ($permissions as $permission => $category) {
                 'model_id' => 1
             ],
         ]);
+
+        \DB::table('organization_user')->insert([
+
+            [
+                'organization_id' => 1,
+                'user_id' => 1,
+            ],
+            [
+                'organization_id' => 1,
+                'user_id' => 2,
+            ],
+            [
+                'organization_id' => 1,
+                'user_id' => 3,
+            ],
+        ]);
+
     }
 
     /**
