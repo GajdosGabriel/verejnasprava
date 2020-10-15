@@ -22,7 +22,14 @@ class TestController extends Controller
 //       dd($meeting->council->organization);
 
 //       Assing role for all users
-//       $users = User::all();
+//       $users = User::find(70);
+//       dd( $users->hasPermissionTo('council edit') );
+
+     dd( User::whereHas("permissions", function($q){ $q->where("name", "council create"); })->get() );
+
+//    Neodskúšané
+//       User::role('writer')->get()
+
 ////       foreach ($users as $user){
 ////          $user->organizations()->attach( $user->active_organization);
 ////       }

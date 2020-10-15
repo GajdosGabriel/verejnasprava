@@ -62,8 +62,11 @@ class UserController extends Controller
 
     // For update ane store User
     private function userRoles($user, $userRequest) {
+        // For table user_council
         $user->councils()->sync($userRequest->input('council'));
         $user->roles()->sync($userRequest->input('role'));
+        $user->syncPermissions($userRequest->input('council'));
+
     }
 
     public function delete(User $user) {

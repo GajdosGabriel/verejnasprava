@@ -48,7 +48,9 @@ class NewMeeting extends Notification
         return (new MailMessage)
             ->subject( 'Pozvanie na zasadnutie')
             ->greeting('Dobrý deň ' . $this->user->full_name())
-            ->line('Administrátor zverejnil nové stretnutie.')
+            ->line('Administrátor zverejnil nové stretnutie, dňa '
+                . $this->meeting->start_at->format('m. d. Y') . ' o '
+                .$this->meeting->start_at->format('H:i') .' hod.' )
             ->action( $this->meeting->name , url( route('item.index', [ $this->meeting->id, $this->meeting->slug])))
             ->line('Ďakujeme, že používate aplikáciu!');
     }
