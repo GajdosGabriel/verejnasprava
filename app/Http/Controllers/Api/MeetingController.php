@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Council\Meeting;
+use App\Models\User;
+use App\Notifications\Meeting\NewMeeting;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
@@ -15,7 +17,9 @@ class MeetingController extends Controller
     public function update(Request $request, Meeting $meeting){
         $meeting->update($request->all());
         if ($request->has('notification')){
-//            $meeting->council->organization->users()
+            $user = User::first();
+            $user
+              ->notify(new NewMeeting($user, $meeting));
         }
         return $meeting;
     }

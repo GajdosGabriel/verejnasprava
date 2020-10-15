@@ -9,12 +9,13 @@ use App\Models\User;
 use App\Services\FileUpload;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Item extends Model
 {
-    use SoftDeletes, FileUpload;
+    use SoftDeletes, FileUpload, Notifiable;
     protected $guarded = [];
     protected $with = ['interpellations', 'files', 'user', 'votes'];
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Item;
+namespace App\Notifications\Meeting;
 
 use App\Models\Council\Meeting;
 use App\Models\User;
@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RequireItemvote extends Notification
+class NewMeeting extends Notification
 {
     use Queueable;
 
@@ -19,9 +19,11 @@ class RequireItemvote extends Notification
      * @return void
      */
     protected $user;
-    public function __construct(User $user)
+    protected $meeting;
+    public function __construct(User $user, Meeting $meeting)
     {
         $this->user = $user;
+        $this->meeting = $meeting;
     }
 
     /**
@@ -44,10 +46,10 @@ class RequireItemvote extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject( '[Reakcia], vyžaduje sa vaša aktivita')
+            ->subject( 'Pozvanie na zasadnutie')
             ->greeting('Dobrý deň ' . $this->user->full_name())
-            ->line('Administrátor žiada o reakciu na položku.')
-            ->action('Zobraziť rokovací bod ' . $this->user->name , url( route('item.index', [ $this->user->id, $this->user->slug])))
+            ->line('Administrátor zverejnil nové stretnutie.')
+            ->action( $this->meeting->name , url( route('item.index', [ $this->meeting->id, $this->meeting->slug])))
             ->line('Ďakujeme, že používate aplikáciu!');
     }
 

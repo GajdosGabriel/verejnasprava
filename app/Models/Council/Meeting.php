@@ -7,13 +7,14 @@ use App\Services\FileUpload;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use App\Models\File;
 use App\Models\User;
 
 class Meeting extends Model
 {
-    use SoftDeletes, FileUpload;
+    use SoftDeletes, FileUpload , Notifiable;
 
     protected $guarded = [];
 
