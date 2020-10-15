@@ -1,4 +1,4 @@
-<table class="table-auto table-bordered text-sm">
+<table class="table-auto table-bordered text-sm w-full">
     <thead>
     <tr class="bg-gray-300">
         <th class="px-4 py-2">Dátum</th>

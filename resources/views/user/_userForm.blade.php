@@ -50,19 +50,19 @@
 
                     {{-- Form Role and permission --}}
                     <div class="">
-                        @can('council delete')
+                        @role('admin')
                         <div class="flex">
 
 
                             {{-- Section Roles --}}
-                            <div class="p-4">
+                            <div class="py-4">
                                 <strong>Role</strong>
 
                                 {{-- Role --}}
                                 @forelse($user->roles as $role)
                                     <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role{{ $role->id }}" class="col-form-label"></label>
-                                        <div class="form-check form-check-inline">
+                                        <div class="form-check form-check-inline whitespace-no-wrap">
                                             <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}" value="{{ $role->id }}"
                                                    @if($user->id == $user->roles->contains($role->id))  checked @endif
                                             >
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 @empty
-                                    Nie je založené žiadne zastupiteľstvo.
+                                  <br>  Nie je založené žiadne zastupiteľstvo.
                                 @endforelse
                             </div>
 
@@ -108,12 +108,12 @@
                                         </div>
                                     </div>
                                 @empty
-                                    Nemáte založené žiadne zastupiteľstvo.
+                                  <br>  Nemáte založené žiadne zastupiteľstvo.
                                 @endforelse
                             </div>
 
                         </div>
-                        @endcan
+                        @endrole
 
                     {{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
 {{--                        <label class="col-md-4 col-form-label text-md-right">Funkcia</label>--}}
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                             <div class="flex justify-between my-3">
-                                <a href="{{ redirect()->back() }}" class="btn btn-secondary">Späť</a>
+                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
                                 <button type="submit" class="btn btn-primary">Uložiť</button>
                             </div>
                         </div>

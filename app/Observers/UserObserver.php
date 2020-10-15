@@ -13,8 +13,4 @@ class UserObserver
         $user->slug = Str::slug($user->first_name .' '.$user->last_name, '-');
     }
 
-    public function created(User $user)
-    {
-       $user->organizations()->attach(auth()->user()->active_organization);
-    }
 }

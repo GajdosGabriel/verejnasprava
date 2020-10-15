@@ -14,16 +14,18 @@ class TestController extends Controller
 {
    public function test()
    {
-      $meeting = Meeting::first();
+//      $meeting = Meeting::first();
+//
+//      $org = Organization::first()->users;
+//     dd($org);
+//
+//       dd($meeting->council->organization);
 
-      $org = Organization::first()->users;
-     dd($org);
-
-       dd($meeting->council->organization);
+//       Assing role for all users
 //       $users = User::all();
-//       foreach ($users as $user){
-//           $user->givePermissionTo('posts', 'contacts', 'helps');
-//       }
+////       foreach ($users as $user){
+////          $user->organizations()->attach( $user->active_organization);
+////       }
    }
 
    public function artisan(){

@@ -108,7 +108,7 @@
 <div class="mb-8">
     {{-- Add post Field --}}
     <div class="flex justify-between">
-        <button class="btn bg-gray-200"><a href="{{ URL::previous() }}"></a>Späť</button>
+        <a class="btn bg-gray-200" href="{{ URL::previous() }}">Späť</a>
         <button type="submit" class="btn btn-primary mx-2 md:w-1/6 shadow-md">Uložiť</button>
     </div>
 
