@@ -146,6 +146,6 @@ return [
     */
 
     'attributes' => [
-        'iamHuman' => 'Číslo Som človek,'
+        'iamHuman' => 'Som človek,'
     ],
 ];
