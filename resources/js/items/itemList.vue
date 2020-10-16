@@ -1,5 +1,5 @@
 <template>
-    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col" v-if="isPublished">
+    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col  cursor-pointer" v-if="isPublished">
 
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2">
@@ -103,15 +103,11 @@
             </div>
         </div>
 
-
-        <vote-form-button :item="item"></vote-form-button>
-
-        <interpellation :item="item"></interpellation>
-
         <div class="max-w-sm w-full">
+            <vote-form-button :item="item"></vote-form-button>
+            <interpellation :item="item"></interpellation>
             <vote-list :item="item"></vote-list>
         </div>
-
 
     </div>
 

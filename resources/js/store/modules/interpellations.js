@@ -20,6 +20,7 @@ const actions = {
         }
         axios.post('/api/interpellation/' + payload.id + '/store', {user: payload.user.id } )
             .then(response => {
+                dispatch('items/getItem', payload.id, {root:true});
                 dispatch('meetings/fetchMeeting', payload.meeting_id, {root:true})
             });
     },
@@ -27,6 +28,7 @@ const actions = {
     delete({commit, dispatch}, payload) {
         axios.delete('/api/interpellation/' + payload.id)
             .then(response => {
+                dispatch('items/getItem', payload.id, {root:true});
                 dispatch('meetings/fetchMeeting', payload.meeting, {root:true})
             });
     },

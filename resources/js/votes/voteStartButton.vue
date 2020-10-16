@@ -4,8 +4,6 @@
         <button class="text-xs btn mb-3 whitespace-no-wrap" :class="buttonClass" @click="voteStatus" v-text=" buttonTitle">
             Zapnúť hlasovanie
         </button>
-
-        <interpellation-table :item="item"/>
     </div>
 
 
@@ -20,7 +18,6 @@
 
     export default {
         props: ['item'],
-        components: {interpellationTable},
         computed: {
             ...mapState({
                 // item: state => state.items.item,

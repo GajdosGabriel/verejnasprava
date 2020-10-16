@@ -6,13 +6,19 @@
                 <h1 class="text-lg page-title">Rokovací bod: {{ item.name }} zastupiteľstvo</h1>
 
                 <!--        Badge line-->
-                <div class="flex justify-between mt-3">
+                <div class="flex justify-between mt-3 mb-5">
                     <div class="flex flex-wrap items-center space-x-3">
 
-                        <!--                Users Interpellations-->
-                        <!--                @include('council.items.interpellation.button')-->
-
                         <div class="badge badge-primary">Hlasovanie verejné</div>
+                        <published-button :item="item"></published-button>
+
+                        <div
+                            class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
+                            @click="openInterpellation"
+                        >
+                            Rozprava <span class="text-gray-500"></span>
+<!--                            Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>-->
+                        </div>
 
                     </div>
 
@@ -65,6 +71,8 @@
                     </nav-drop-down>
 
                 </div>
+
+                <interpellation :item="item"></interpellation>
 
                 <!--  Votes Buttons-->
                 <vote-form-button :item="item"></vote-form-button>
@@ -172,9 +180,14 @@
 <script>
     import {mapState} from "vuex";
     import moment from "moment";
+    import publishedButton from "./publishedButton";
+    import interpellation from "./InterpellationCard";
+    import navDropDown from "../modules/navigation/navDropDown";
+    import {bus} from "../app";
 
     export default {
         props: ['pitem'],
+        components: { publishedButton, interpellation },
         computed: {
             resultYes() {
                 return this.$store.getters['items/resultYes'];
@@ -204,6 +217,10 @@
                     meeting_id: this.item.meeting_id,
                     id: this.item.id })
             },
+
+            openInterpellation() {
+                bus.$emit('imterpellationlist', this.item);
+            }
         }
 
     }

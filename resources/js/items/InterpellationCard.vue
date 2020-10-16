@@ -1,6 +1,6 @@
 <template>
 
-    <div class="flex-1 border-2 rounded-md border-gray-300 max-w-sm w-full"
+    <div class="flex-1 border-2 rounded-md border-gray-300 w-full"
          v-if="openList"
     >
 

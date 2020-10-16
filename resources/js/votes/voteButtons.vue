@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-sm w-full" v-show="item.vote_status">
+    <div class="w-full" v-show="item.vote_status">
         <h3 class="text-center text-2xl text-gray-600">Hlasujte</h3>
         <form method="POST" @submit.prevent>
             <div>

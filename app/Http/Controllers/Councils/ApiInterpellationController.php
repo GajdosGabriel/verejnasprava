@@ -31,7 +31,8 @@ class ApiInterpellationController extends Controller
             'body' => $item->name,
             'user_id' => $request->user,
         ]);
-        return $item->interpellations()->get();
+        return $item;
+//        return $item->interpellations()->get();
     }
 
 
