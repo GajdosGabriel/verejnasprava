@@ -65,7 +65,7 @@ class UserController extends Controller
         // For table user_council
         $user->councils()->sync($userRequest->input('council'));
         $user->roles()->sync($userRequest->input('role'));
-        $user->syncPermissions($userRequest->input('council'));
+        $user->syncPermissions($userRequest->input('permission'));
     }
 
     public function delete(User $user) {
