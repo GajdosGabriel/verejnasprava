@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Item;
 
+use App\Models\Council\Item;
 use App\Models\Council\Meeting;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -19,9 +20,11 @@ class RequireItemvote extends Notification
      * @return void
      */
     protected $user;
-    public function __construct(User $user)
+    protected $item;
+    public function __construct(User $user, Item $item)
     {
         $this->user = $user;
+        $this->item = $item;
     }
 
     /**
@@ -46,9 +49,9 @@ class RequireItemvote extends Notification
         return (new MailMessage)
             ->subject( '[Reakcia], vyžaduje sa vaša aktivita')
             ->greeting('Dobrý deň ' . $this->user->full_name())
-            ->line('Administrátor žiada o reakciu na položku.')
-            ->action('Zobraziť rokovací bod ' . $this->user->name , url( route('item.index', [ $this->user->id, $this->user->slug])))
-            ->line('Ďakujeme, že používate aplikáciu!');
+            ->line('Administrátor žiada o hlasovanie k bodu ' . $this->item->name)
+            ->action( $this->item->name , url( route('item.show', [ $this->item->id, $this->item->slug])))
+            ->line('Veríme že sa rozhodnete správne a múdro.');
     }
 
     /**

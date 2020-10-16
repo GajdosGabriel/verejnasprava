@@ -66,7 +66,6 @@ class UserController extends Controller
         $user->councils()->sync($userRequest->input('council'));
         $user->roles()->sync($userRequest->input('role'));
         $user->syncPermissions($userRequest->input('council'));
-
     }
 
     public function delete(User $user) {
