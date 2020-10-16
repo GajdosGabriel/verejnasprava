@@ -96,7 +96,7 @@
                                     <div class="form-group {{ $errors->has('council') ? ' has-error' : '' }}">
                                         <label class="col-form-label"></label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="council[]" type="checkbox" id="council" value="{{ $permission->id }}"
+                                            <input class="form-check-input" name="permission[]" type="checkbox" id="council" value="{{ $permission->id }}"
                                                    @if($permission->users->contains($user->id) ) checked @endif
                                             >
                                             <label class="input-label" for="council">{{ $permission->name }}</label>
