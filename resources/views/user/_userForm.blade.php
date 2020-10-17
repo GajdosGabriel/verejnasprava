@@ -112,7 +112,7 @@
                                 <strong>Role</strong>
 
                                 {{-- Role --}}
-                                @forelse($user->roles as $role)
+                                @forelse(Spatie\Permission\Models\Role::all() as  $role)
                                     <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role{{ $role->id }}" class="col-form-label"></label>
                                         <div class="form-check form-check-inline whitespace-no-wrap">
@@ -125,23 +125,11 @@
                                 @empty
                                     Nemáte založené žiadne role.
                                 @endforelse
+
                             </div>
 
                         </div>
                         @endrole
-
-                    {{--                    <div class="form-group row {{ $errors->has('role') ? ' has-error' : '' }}">--}}
-{{--                        <label class="col-md-4 col-form-label text-md-right">Funkcia</label>--}}
-{{--                        <div class="col-md-8">--}}
-{{--                            <select name="role" class="form-control" required id="exampleSelect1">--}}
-{{--                                <option value="" selected >Vybrať funkciu</option>--}}
-{{--                                <option value="show">Člen zastupiteľstva</option>--}}
-{{--                                <option value="edit">Zapisovateľ zastupiteľstva</option>--}}
-{{--                                <option value="admin">Predseda zastupiteľstva</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
                         <div class="form-group">
                             <div class="flex justify-between my-3">
                                 <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
