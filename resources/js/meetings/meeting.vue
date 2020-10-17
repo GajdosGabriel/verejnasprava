@@ -31,6 +31,19 @@
                         </div>
                     </a>
 
+                    <!-- Meeting Delete button-->
+                    <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                       :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/delete'"
+                       title="Zmazať položku">
+                        <div class="flex">
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path
+                                    d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                            </svg>
+                            Zmazať
+                        </div>
+                    </a>
+
                 </slot>
             </nav-drop-down>
         </div>
