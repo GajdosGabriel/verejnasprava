@@ -3013,13 +3013,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     listToggle: function listToggle() {
+      if (this.item.vote_status == true) {
+        return alert('Počas hlasovania sú interpelácie vypnuté!');
+      }
+
       this.openList = !this.openList;
     },
     storeInterpellation: function storeInterpellation() {
       this.$store.dispatch('interpellations/store', this.item);
     },
     deleteItem: function deleteItem(id) {
-      console.log(id);
       this.$store.dispatch('interpellations/delete', {
         id: id,
         meeting: this.item.meeting_id

@@ -40,7 +40,7 @@
                                 </div>
                                 <div>
                                     <label class="inline-flex items-center cursor-pointer">
-                                        <input id="customCheckLogin" type="checkbox" class="form-checkbox text-gray-800 ml-1 w-5 h-5" style="transition: all 0.15s ease 0s;"><span class="ml-2 text-sm font-semibold text-gray-700">Zapamätať ma</span></label>
+                                        <input id="customCheckLogin" type="checkbox" checked class="form-checkbox text-gray-800 ml-1 w-5 h-5" style="transition: all 0.15s ease 0s;"><span class="ml-2 text-sm font-semibold text-gray-700">Zapamätať ma</span></label>
                                 </div>
                                 <div class="text-center mt-6">
                                     <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full" type="submit" style="transition: all 0.15s ease 0s;">Prihlásiť sa</button>

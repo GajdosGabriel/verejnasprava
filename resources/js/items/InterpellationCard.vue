@@ -52,6 +52,9 @@
         },
         methods: {
             listToggle: function(){
+                if(this.item.vote_status == true){
+                  return alert('Počas hlasovania sú interpelácie vypnuté!')
+                }
               this.openList = ! this.openList
             },
             storeInterpellation: function () {
@@ -59,7 +62,6 @@
             },
 
             deleteItem: function (id) {
-                console.log(id);
                 this.$store.dispatch('interpellations/delete', {id: id, meeting: this.item.meeting_id});
             }
         }

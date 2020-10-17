@@ -14,9 +14,9 @@ class TestController extends Controller
 {
    public function test()
    {
-      $meeting = Meeting::find(2);
-
-     dd($meeting->usersOfCouncil());
+//      $meeting = Meeting::find(2);
+//
+//     dd($meeting->usersOfCouncil());
 //     dd($meeting->council->users->count());
 //
 //      $org = Organization::first()->users;
@@ -31,11 +31,15 @@ class TestController extends Controller
 //     dd( User::whereHas("permissions", function($q){ $q->where("name", "council create"); })->get() );
 
 //    Neodskúšané
-//       User::role('writer')->get()
+//      $users = User::all();
+//
+//       foreach ($users as $user){
+//           $user->assignRole('admin');
+//       }
 
-////       foreach ($users as $user){
-////          $user->organizations()->attach( $user->active_organization);
-////       }
+//       foreach ($users as $user){
+//          $user->organizations()->attach( $user->active_organization);
+//       }
    }
 
    public function artisan(){
