@@ -113,6 +113,7 @@
 
                                 {{-- Role --}}
                                 @forelse(Spatie\Permission\Models\Role::all() as  $role)
+                                    @continue($role->name == 'super-admin')
                                     <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role{{ $role->id }}" class="col-form-label"></label>
                                         <div class="form-check form-check-inline whitespace-no-wrap">
@@ -130,6 +131,7 @@
 
                         </div>
                         @endrole
+
                         <div class="form-group">
                             <div class="flex justify-between my-3">
                                 <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
