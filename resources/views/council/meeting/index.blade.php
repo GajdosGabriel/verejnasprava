@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam zasadnutí')
 
-@section('navigation')
-    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
+@section('navigation') <x-navigation.navigationOrganization /> @endsection
 {{--@section('navigation') @include('council.meeting.navigation') @endsection--}}
 
 @section('content')
