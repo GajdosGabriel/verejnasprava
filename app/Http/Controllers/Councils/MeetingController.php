@@ -27,7 +27,7 @@ class MeetingController extends Controller
     public function update(Request $request, Meeting $meeting) {
         $meeting->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
-        return redirect()->route('meet.index', [$meeting->id, $meeting->slug]);
+        return redirect()->route('meet.index', [$meeting->council->id, $meeting->council->slug]);
     }
 
     public function store(Request $request, Council $council) {

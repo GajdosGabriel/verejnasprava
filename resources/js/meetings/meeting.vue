@@ -2,7 +2,7 @@
     <div class="mb-6">
 
         <div class="flex justify-between max-w-sm">
-            <!--            <h1 class="page-title">{{ meeting.name }}</h1>-->
+<!--                        <h1 class="page-title">{{ meeting.name }}</h1>-->
             <div class="">
                 <span class="text-gray-700">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
                 <strong>{{ moment(meeting.start_at).format('h:mm') }} hod.</strong>
@@ -14,9 +14,26 @@
                         <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                            :href="'/item/'+ meeting.id + '/' + meeting.slug + '/create'"
                            title="Vytvoriť nové zasadnutie">
-                            Nový bod
+                            <div class="flex">
+                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z"/>
+                                </svg>
+                                Nový bod
+                            </div>
                         </a>
                     </div>
+
+                    <!-- Meeting Edit button-->
+                    <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                       :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/edit'"
+                       title="Zmazať položku">
+                        <div class="flex">
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                            </svg>
+                            Upraviť položku
+                        </div>
+                    </a>
 
                     <!--  Poslať všetkým notifikáciu -->
                     <a class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"

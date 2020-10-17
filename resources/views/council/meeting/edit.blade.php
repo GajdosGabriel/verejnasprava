@@ -9,7 +9,7 @@
 
 
 
-        <h1 class="page-title">Nové zastupiteľstvo</h1>
+        <h1 class="page-title">Upraviť zastupiteľstvo</h1>
 
         <div class="row">
             <div class="col-md-12">

@@ -5,30 +5,46 @@
             <div class="flex justify-between flex-wrap">
                 <div class="flex whitespace-no-wrap items-center">
                     <h1 class="page-title">{{ council.name }}</h1>
-                     <div class="ml-2" > ({{ council.meetings.length }})</div>
+                    <div class="ml-2"> ({{ council.meetings.length }})</div>
                 </div>
 
                 <div class="flex whitespace-no-wrap">
                     <nav-drop-down>
                         <slot>
-                            <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
-                               :href="'meet/'+ council.id + '/' + council.slug + '/meeting/create'"
-                               title="Vytvoriť nové zasadnutie">
-                                Nové zasadnutie
-                            </a>
-
-                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
-                               title="Upraviť položku"
-                                 @click="openForm(council)"
-                            >
-                                Upraviť položku
+                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                                 :href="'meet/'+ council.id + '/' + council.slug + '/meeting/create'"
+                                 title="Vytvoriť nové zasadnutie">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z"/>
+                                    </svg>
+                                    Nové zasadnutie
+                                </div>
                             </div>
 
-                            <a class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left"
-                               :href="'admin/'+ council.id + '/' + council.slug + '/council/delete'"
-                               title="Zmazať zastupiteľstvo">
-                                Zmazať
-                            </a>
+
+                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                                 title="Upraviť položku"
+                                 @click="openForm(council)">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                    </svg>
+                                    Upraviť položku
+                                </div>
+                            </div>
+
+                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                                 :href="'admin/'+ council.id + '/' + council.slug + '/council/delete'"
+                                 title="Zmazať zastupiteľstvo">
+                                <div class="flex">
+                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path
+                                            d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                    </svg>
+                                    Zmazať
+                                </div>
+                            </div>
                         </slot>
                     </nav-drop-down>
                 </div>
@@ -59,6 +75,7 @@
 <script>
     import {mapState} from 'vuex';
     import {createNamespacedHelpers} from 'vuex';
+
     const {mapActions} = createNamespacedHelpers('modals');
     import navDropDown from '../modules/navigation/navDropDown';
     import editForm from './modalEdit';
@@ -74,9 +91,9 @@
             councils: state => state.councils.councils
         }),
 
-        methods:{
+        methods: {
             openForm: function (item) {
-                this.$store.dispatch('modals/open_form',item)
+                this.$store.dispatch('modals/open_form', item)
             }
         },
 

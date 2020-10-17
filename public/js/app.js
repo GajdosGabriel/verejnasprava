@@ -2740,6 +2740,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3554,6 +3570,23 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -65761,10 +65794,10 @@ var render = function() {
                   [
                     _vm._t("default", [
                       _c(
-                        "a",
+                        "div",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
+                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
                           attrs: {
                             href:
                               "meet/" +
@@ -65776,9 +65809,29 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v(
-                            "\n                            Nové zasadnutie\n                        "
-                          )
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                                Nové zasadnutie\n                            "
+                            )
+                          ])
                         ]
                       ),
                       _vm._v(" "),
@@ -65786,7 +65839,7 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
+                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
                           attrs: { title: "Upraviť položku" },
                           on: {
                             click: function($event) {
@@ -65795,17 +65848,37 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v(
-                            "\n                            Upraviť položku\n                        "
-                          )
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                                Upraviť položku\n                            "
+                            )
+                          ])
                         ]
                       ),
                       _vm._v(" "),
                       _c(
-                        "a",
+                        "div",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left",
+                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
                           attrs: {
                             href:
                               "admin/" +
@@ -65817,9 +65890,29 @@ var render = function() {
                           }
                         },
                         [
-                          _vm._v(
-                            "\n                            Zmazať\n                        "
-                          )
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                                Zmazať\n                            "
+                            )
+                          ])
                         ]
                       )
                     ])
@@ -67055,12 +67148,74 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                        Nový bod\n                    "
-                      )
+                      _c("div", { staticClass: "flex" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-4 h-4 mr-2",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                Nový bod\n                            "
+                        )
+                      ])
                     ]
                   )
                 ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                    attrs: {
+                      href:
+                        "/meet/" +
+                        _vm.meeting.id +
+                        "/" +
+                        _vm.meeting.slug +
+                        "/meeting/edit",
+                      title: "Zmazať položku"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "flex" }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 mr-2",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                            Upraviť položku\n                        "
+                      )
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -67142,7 +67297,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(
-                        "\n                        Zmazať\n                    "
+                        "\n                            Zmazať\n                        "
                       )
                     ])
                   ]
