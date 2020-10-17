@@ -20,6 +20,7 @@
                 @csrf @method('PATCH')
                 @include('modul.errors')
                 @include('user._userForm')
+                @include('user._userRoleForm')
             </form>
 
         </div>
