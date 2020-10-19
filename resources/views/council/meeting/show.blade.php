@@ -14,7 +14,7 @@
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
 
             {{-- Vuex component--}}
-            <meeting :pMeeting="{{ $meeting }}"></meeting>
+            <meeting :pmeeting="{{ $meeting }}"></meeting>
 
         </div>
 

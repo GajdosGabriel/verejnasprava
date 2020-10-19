@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class MeetingController extends Controller
 {
     public function show(Meeting $meeting){
-        return $meeting->items()->get();
+        return $meeting;
     }
 
     public function update(MeetingRequest $request, Meeting $meeting){

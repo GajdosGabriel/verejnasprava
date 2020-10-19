@@ -3651,7 +3651,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['meeting'],
+  props: ['pmeeting'],
   components: {
     item: _items_itemList__WEBPACK_IMPORTED_MODULE_3__["default"],
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -3666,12 +3666,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.meeting.notification == null ? 'Pozvánka pre členov' : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
-    items: function items(state) {
-      return state.meetings.items;
+    meeting: function meeting(state) {
+      return state.meetings.meeting;
     }
   })),
   created: function created() {
-    this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
+    this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
   },
   methods: {
     saveNotification: function saveNotification() {
@@ -65939,7 +65939,7 @@ var render = function() {
                     {
                       attrs: {
                         href:
-                          "item/" + meeting.id + "/" + meeting.slug + "/index"
+                          "meet/" + meeting.id + "/" + meeting.slug + "/show"
                       }
                     },
                     [
@@ -65965,7 +65965,7 @@ var render = function() {
                       {
                         attrs: {
                           href:
-                            "item/" + meeting.id + "/" + meeting.slug + "/index"
+                            "meet/" + meeting.id + "/" + meeting.slug + "/show"
                         }
                       },
                       [
@@ -67310,7 +67310,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.items, function(item) {
+      _vm._l(_vm.meeting.items, function(item) {
         return _c(
           "div",
           { key: item.id, staticClass: "odd:bg-gray-500 mt-4 bg-white" },
@@ -85107,8 +85107,8 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  loadingStatus: false,
-  items: []
+  meeting: '',
+  loadingStatus: false
 };
 var getters = {
   activeItem: function activeItem(state) {
@@ -85123,8 +85123,8 @@ var mutations = {
   SET_LOADING_STATUS: function SET_LOADING_STATUS(state, payload) {
     state.loadingStatus = payload;
   },
-  SET_ITEMS: function SET_ITEMS(state, payload) {
-    state.items = payload;
+  SET_MEETING: function SET_MEETING(state, meeting) {
+    state.meeting = meeting;
   }
 };
 var actions = {
@@ -85132,7 +85132,7 @@ var actions = {
     var commit = _ref.commit;
     commit('SET_LOADING_STATUS', true);
     axios.get('/api/meeting/' + meetingId + '/show').then(function (response) {
-      commit('SET_ITEMS', response.data);
+      commit('SET_MEETING', response.data);
       commit('SET_LOADING_STATUS', false);
     });
   },

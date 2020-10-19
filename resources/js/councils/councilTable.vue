@@ -53,7 +53,7 @@
             <div class="flex flex-col sm:ml-5">
                 <div class="flex justify-between hover:underline flex-wrap" v-for="meeting in council.meetings">
 
-                    <a :href="'item/' + meeting.id +'/' + meeting.slug + '/index'">
+                    <a :href="'meet/' + meeting.id +'/' + meeting.slug + '/show'">
                         <strong v-text="moment( meeting.start_at).format('DD. MM. YYYY')"></strong>,
                         {{ moment(meeting.start_at).format('h:mm') }} hod.
                         <strong>{{ meeting.name }}</strong>
@@ -61,7 +61,7 @@
 
 
                     <div class="cursor-pointer">
-                        <a :href="'item/' + meeting.id +'/' + meeting.slug + '/index'">
+                        <a :href="'meet/' + meeting.id +'/' + meeting.slug + '/show'">
                             Program ({{meeting.items.length }})
                         </a>
                     </div>

@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
         Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
+        Route::get('{meeting}/{slug}/show', 'MeetingController@show');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
         Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
@@ -73,7 +74,6 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
-        Route::get('{meeting}/{slug}/index', 'ItemController@index')->name('index');
         Route::get('{meeting}/{slug}/create', 'ItemController@create')->name('create');
         Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
         Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');

@@ -65,7 +65,7 @@
             </nav-drop-down>
         </div>
 
-        <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
+        <div v-for="item in meeting.items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
             <item :item="item"></item>
         </div>
 
@@ -81,7 +81,7 @@
     import item from '../items/itemList';
 
     export default {
-        props: ['meeting'],
+        props: ['pmeeting'],
         components: {item, navDropDown},
         data: function () {
             return {
@@ -93,12 +93,12 @@
                 return this.meeting.notification == null ? 'Pozvánka pre členov' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
             },
             ...mapState({
-                items: state => state.meetings.items,
+                meeting: state => state.meetings.meeting,
             })
         },
 
         created() {
-            this.$store.dispatch('meetings/fetchMeeting', this.meeting.id);
+            this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
         },
         methods: {
             saveNotification(){

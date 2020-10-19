@@ -1,6 +1,6 @@
 const state = {
-    loadingStatus: false,
-    items: []
+    meeting:'',
+    loadingStatus: false
 };
 const getters = {
     activeItem: (state) => (id) => {
@@ -12,8 +12,8 @@ const mutations = {
     SET_LOADING_STATUS: function (state, payload) {
         state.loadingStatus = payload
     },
-    SET_ITEMS: function (state, payload) {
-        state.items = payload;
+    SET_MEETING: function (state, meeting) {
+        state.meeting = meeting;
     }
 };
 const actions = {
@@ -22,7 +22,7 @@ const actions = {
         commit('SET_LOADING_STATUS', true);
         axios.get('/api/meeting/' + meetingId + '/show' )
             .then(response => {
-                    commit('SET_ITEMS', response.data);
+                    commit('SET_MEETING', response.data);
                     commit('SET_LOADING_STATUS', false);
                 }
             );
