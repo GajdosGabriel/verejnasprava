@@ -135,13 +135,7 @@
             },
             notificationStatus(){
                 return this.item.notification == null ? 'Výzva k hlasovaniu' : moment(this.item.notification).format('DD. MM. YYYY, k:mm');
-            },
-            curentlyItem: function () {
-                return this.$store.getters['meetings/activeItem'](this.item.id);
             }
-        },
-        mounted() {
-            this.$store.dispatch('items/getItem', this.item.id, {root: true})
         },
         methods: {
             saveNotification(){

@@ -3205,15 +3205,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     notificationStatus: function notificationStatus() {
       return this.item.notification == null ? 'Výzva k hlasovaniu' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format('DD. MM. YYYY, k:mm');
-    },
-    curentlyItem: function curentlyItem() {
-      return this.$store.getters['meetings/activeItem'](this.item.id);
     }
-  },
-  mounted: function mounted() {
-    this.$store.dispatch('items/getItem', this.item.id, {
-      root: true
-    });
   },
   methods: {
     saveNotification: function saveNotification() {

@@ -14,8 +14,7 @@ class MeetingController extends Controller
         return view('council.meeting.index', compact('council'));
     }
     public function show(Meeting $meeting){
-        $items = $meeting->items()->get();
-        return view('council.meeting.show', compact(['items', 'meeting']) );
+        return view('council.meeting.show', compact('meeting') );
     }
 
     public function create(Council $council){

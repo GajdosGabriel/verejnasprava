@@ -31,7 +31,7 @@ class navigationItems extends Component
     }
 
     public function logoUrl(){
-        return route('item.index', [$this->meeting->id, $this->meeting->slug])  ;
+        return route('meet.show', [$this->meeting->id, $this->meeting->slug])  ;
     }
 
     public function logoTitle(){
