@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -34,7 +35,8 @@ trait FileUpload
         // Delete files in edit form
         if ($request->has('fileDelete')){
             foreach($request->fileDelete as $file) {
-                $this->files()->delete();
+                $file = File::find($file);
+                    $file->delete();
             }
         }
     }
