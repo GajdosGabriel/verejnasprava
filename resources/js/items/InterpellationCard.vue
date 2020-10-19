@@ -37,12 +37,6 @@
               openList: false
           }
         },
-        computed: {
-            ...mapState({
-                // item: state => state.items.item,
-                // openList: state => state.interpellations.openList
-            })
-        },
         created(){
             bus.$on('imterpellationlist', (data) => {
                 if(data.id === this.item.id){
@@ -57,6 +51,7 @@
                 }
               this.openList = ! this.openList
             },
+
             storeInterpellation: function () {
                 this.$store.dispatch('interpellations/store', this.item);
             },

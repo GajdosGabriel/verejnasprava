@@ -2972,12 +2972,6 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -3015,9 +3009,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       openList: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({// item: state => state.items.item,
-    // openList: state => state.interpellations.openList
-  })),
   created: function created() {
     var _this = this;
 
@@ -3065,6 +3056,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+//
 //
 //
 //
@@ -66450,7 +66442,7 @@ var render = function() {
                                 _c(
                                   "svg",
                                   {
-                                    staticClass: "w-4 h-4 mr-2",
+                                    staticClass: "w-4 h-4 mr-2 fill-current",
                                     attrs: {
                                       xmlns: "http://www.w3.org/2000/svg",
                                       viewBox: "0 0 20 20"
@@ -66494,7 +66486,7 @@ var render = function() {
                                 _c(
                                   "svg",
                                   {
-                                    staticClass: "w-4 h-4 mr-2",
+                                    staticClass: "w-4 h-4 mr-2 fill-current",
                                     attrs: {
                                       xmlns: "http://www.w3.org/2000/svg",
                                       viewBox: "0 0 20 20"
@@ -66540,7 +66532,7 @@ var render = function() {
                               _c(
                                 "svg",
                                 {
-                                  staticClass: "w-4 h-4 mr-2",
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
                                   attrs: {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     viewBox: "0 0 20 20"
@@ -66579,7 +66571,7 @@ var render = function() {
                               _c(
                                 "svg",
                                 {
-                                  staticClass: "w-4 h-4 mr-2",
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
                                   attrs: {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     viewBox: "0 0 20 20"
@@ -66618,7 +66610,7 @@ var render = function() {
                               _c(
                                 "svg",
                                 {
-                                  staticClass: "w-4 h-4 mr-2",
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
                                   attrs: {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     viewBox: "0 0 20 20"
@@ -66653,20 +66645,22 @@ var render = function() {
                 [
                   _c("published-button", { attrs: { item: _vm.item } }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-                      on: { click: _vm.openInterpellation }
-                    },
-                    [
-                      _vm._v("\n                Rozprava "),
-                      _c("span", { staticClass: "text-gray-500" }, [
-                        _vm._v(_vm._s(_vm.item.interpellations.length))
-                      ])
-                    ]
-                  ),
+                  _vm.item.published
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                          on: { click: _vm.openInterpellation }
+                        },
+                        [
+                          _vm._v("\n                Rozprava "),
+                          _c("span", { staticClass: "text-gray-500" }, [
+                            _vm._v(_vm._s(_vm.item.interpellations.length))
+                          ])
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.item.published && _vm.$auth.isAdmin()
                     ? _c("div", {
@@ -66800,7 +66794,7 @@ var render = function() {
                               _c(
                                 "svg",
                                 {
-                                  staticClass: "w-4 h-4 mr-2",
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
                                   attrs: {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     viewBox: "0 0 20 20"
@@ -66844,7 +66838,7 @@ var render = function() {
                               _c(
                                 "svg",
                                 {
-                                  staticClass: "w-4 h-4 mr-2",
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
                                   attrs: {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     viewBox: "0 0 20 20"
@@ -66890,7 +66884,7 @@ var render = function() {
                             _c(
                               "svg",
                               {
-                                staticClass: "w-4 h-4 mr-2",
+                                staticClass: "w-4 h-4 mr-2 fill-current",
                                 attrs: {
                                   xmlns: "http://www.w3.org/2000/svg",
                                   viewBox: "0 0 20 20"
@@ -67147,7 +67141,7 @@ var render = function() {
                         _c(
                           "svg",
                           {
-                            staticClass: "w-4 h-4 mr-2",
+                            staticClass: "w-4 h-4 mr-2 fill-current",
                             attrs: {
                               xmlns: "http://www.w3.org/2000/svg",
                               viewBox: "0 0 20 20"
@@ -67190,7 +67184,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "w-4 h-4 mr-2",
+                          staticClass: "w-4 h-4 mr-2 fill-current",
                           attrs: {
                             xmlns: "http://www.w3.org/2000/svg",
                             viewBox: "0 0 20 20"
@@ -67230,7 +67224,7 @@ var render = function() {
                         _c(
                           "svg",
                           {
-                            staticClass: "w-4 h-4 mr-2",
+                            staticClass: "w-4 h-4 mr-2 fill-current",
                             attrs: {
                               xmlns: "http://www.w3.org/2000/svg",
                               viewBox: "0 0 20 20"
@@ -67276,7 +67270,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "w-4 h-4 mr-2",
+                          staticClass: "w-4 h-4 mr-2 fill-current",
                           attrs: {
                             xmlns: "http://www.w3.org/2000/svg",
                             viewBox: "0 0 20 20"
