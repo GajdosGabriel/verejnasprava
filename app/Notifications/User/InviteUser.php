@@ -45,9 +45,9 @@ class InviteUser extends Notification
     {
         return (new MailMessage)
             ->subject( 'Pozvánka pre, '. $this->user->full_name())
-            ->greeting('Dobrý deň ' . $this->user->full_name())
-            ->line('Administrátor ' . auth()->user()->full_name() . ' Vás pozýva portál ' . env('APP_NAME') . ' aby ste si aktivovali prístup.')
-            ->line('Kliknutím na tlačidlo a vložením emailu '  . $this->user->email . ' si aktivujte prístup.')
+            ->greeting('Dobrý deň, ' . $this->user->full_name())
+            ->line('Administrátor webu ' . auth()->user()->full_name() . ' Vám vytvoril účet na ' . env('APP_NAME'). '.')
+            ->line('Žiada Vás, aby ste si aktivovali svoj prístup vložením emailu '  . $this->user->email. ' a zadaním nového hesla.')
             ->action('Získať prístup k účtu', url( route('password.update')))
 //            ->line('Prečo som dostal tento email?')
 //            ->greeting('Prečo som dostal tento email?')
