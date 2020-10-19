@@ -14,6 +14,7 @@
             @csrf @method('POST')
             @include('modul.errors')
             @include('user._userForm')
+            @include('user._userRoleForm')
         </form>
         </div>
 
