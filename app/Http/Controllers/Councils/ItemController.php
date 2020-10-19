@@ -25,7 +25,7 @@ class ItemController extends Controller
     public function update(Request $request, Item $item) {
         $item->update(array_merge($request->except('filename', 'fileDelete'), ['user_id' => auth()->user()->id]));
         $item->saveFile($request);
-        return redirect()->route('item.index',[$item->meeting->id, $item->meeting->slug]);
+        return redirect()->route('item.show',[$item->id, $item->slug]);
     }
 
     public function store(Request $request, Meeting $meeting) {
@@ -34,7 +34,7 @@ class ItemController extends Controller
         $item->update(['order' => $meeting->items()->count() +1] );
 
         $item->saveFile($request);
-        return redirect()->route('item.index',[$meeting->id, $meeting->slug]);
+        return redirect()->route('item.show',[$item->id, $item->slug]);
     }
 
     public function delete(Item $item) {

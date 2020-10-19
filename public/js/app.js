@@ -66940,14 +66940,15 @@ var render = function() {
                   [_vm._v("Príloha")]
                 ),
                 _vm._v(" "),
-                _vm._l(_vm.item.files, function(file) {
-                  return _c("div", [
+                _vm._l(_vm.item.files, function(file, index) {
+                  return _c("div", { key: file.id }, [
                     _c(
                       "a",
                       {
-                        staticClass: "mr-2",
+                        staticClass: "mr-2 hover:text-blue-500 ",
                         attrs: {
                           target: "_blank",
+                          title: file.org_name,
                           href:
                             "/pdf/" +
                             file.id +
@@ -66958,7 +66959,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                            .Príloha\n                        "
+                          "\n                          " +
+                            _vm._s(index + 1) +
+                            ". Príloha\n                        "
                         )
                       ]
                     )
