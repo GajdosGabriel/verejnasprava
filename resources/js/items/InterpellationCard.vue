@@ -52,7 +52,7 @@
         },
         methods: {
             listToggle: function(){
-                if(this.item.vote_status == true){
+                if(this.item.vote_status || this.item.votes.length > 0){
                   return alert('Počas hlasovania sú interpelácie vypnuté!')
                 }
               this.openList = ! this.openList

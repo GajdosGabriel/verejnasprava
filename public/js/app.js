@@ -3028,7 +3028,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     listToggle: function listToggle() {
-      if (this.item.vote_status == true) {
+      if (this.item.vote_status || this.item.votes.length > 0) {
         return alert('Počas hlasovania sú interpelácie vypnuté!');
       }
 
