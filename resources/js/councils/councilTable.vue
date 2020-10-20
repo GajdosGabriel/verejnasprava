@@ -11,7 +11,7 @@
                 <div class="flex whitespace-no-wrap">
                     <nav-drop-down>
                         <slot>
-                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                  :href="'meet/'+ council.id + '/' + council.slug + '/meeting/create'"
                                  title="Vytvoriť nové zasadnutie">
                                 <div class="flex">
@@ -20,10 +20,10 @@
                                     </svg>
                                     Nové zasadnutie
                                 </div>
-                            </div>
+                            </a>
 
 
-                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                  title="Upraviť položku"
                                  @click="openForm(council)">
                                 <div class="flex">
@@ -32,9 +32,9 @@
                                     </svg>
                                     Upraviť položku
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer"
+                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                  :href="'admin/'+ council.id + '/' + council.slug + '/council/delete'"
                                  title="Zmazať zastupiteľstvo">
                                 <div class="flex">
@@ -44,7 +44,7 @@
                                     </svg>
                                     Zmazať
                                 </div>
-                            </div>
+                            </a>
                         </slot>
                     </nav-drop-down>
                 </div>

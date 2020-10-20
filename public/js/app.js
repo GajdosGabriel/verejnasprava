@@ -65786,10 +65786,10 @@ var render = function() {
                   [
                     _vm._t("default", [
                       _c(
-                        "div",
+                        "a",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                           attrs: {
                             href:
                               "meet/" +
@@ -65828,10 +65828,10 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "div",
+                        "a",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                           attrs: { title: "Upraviť položku" },
                           on: {
                             click: function($event) {
@@ -65867,10 +65867,10 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "div",
+                        "a",
                         {
                           staticClass:
-                            "px-4 py-1 whitespace-no-wrap hover:bg-gray-200 text-left cursor-pointer",
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                           attrs: {
                             href:
                               "admin/" +
