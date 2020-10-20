@@ -9,12 +9,12 @@
 @section('content')
 
     <div class="container mx-auto min-h-screen p-6">
-        <div class="w-2/3">
+        <div class="sm:w-2/3">
 
             @role('admin')
             <organization-edit inline-template :organization="{{ $organization }}">
-                <div>
-                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2" @click="toggle">
+                <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
+                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200" @click="toggle">
 
                         <h3 class="fill-current text-lg">Firemnné údaje</h3>
 
@@ -36,9 +36,9 @@
             </organization-edit>
 
             <council-edit inline-template>
-                <div>
+                <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
 
-                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2" @click="toggle">
+                    <div class="flex justify-between items-center cursor-pointer" @click="toggle">
 
                         <h3 class="fill-current text-lg">Zastupiteľstvá</h3>
 
@@ -64,9 +64,9 @@
             </council-edit>
             @endrole
             <user-edit inline-template>
-                <div>
+                <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
 
-                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2" @click="toggle">
+                    <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200" @click="toggle">
 
                         <h3 class="fill-current text-lg">Osobné údaje</h3>
 
@@ -86,6 +86,12 @@
                             @csrf @method('PATCH')
                             @include('modul.errors')
                             @include('user._userForm')
+
+                            {{-- Save button --}}
+                            <div class="flex justify-between my-4">
+                                <a href="{{ URL::previous() }}" class="btn bg-gray-300 text-center text-gray-700 font-semibold border-2 border-gray-500">Späť</a>
+                                <button type="submit"  class="btn btn-primary text-center">Uložiť</button>
+                            </div>
                         </form>
 
 {{--                        @include('user.edit')--}}
@@ -93,7 +99,7 @@
                 </div>
             </user-edit>
 
-            <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-2">
+            <div class="flex justify-between items-center p-2">
 
                 <h3 class="fill-current text-lg">Zamestnanci</h3>
                 <span>Pripravujeme</span>
