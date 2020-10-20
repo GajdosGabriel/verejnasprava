@@ -51,7 +51,7 @@ class NewMeeting extends Notification
             ->line('Administrátor zverejnil nové stretnutie, dňa '
                 . $this->meeting->start_at->format('m. d. Y') . ' o '
                 .$this->meeting->start_at->format('H:i') .' hod.' )
-            ->action( $this->meeting->name , url( route('item.index', [ $this->meeting->id, $this->meeting->slug])))
+            ->action( $this->meeting->name , url( route('meet.show', [ $this->meeting->id, $this->meeting->slug])))
             ->line('Ďakujeme, že používate aplikáciu!');
     }
 

@@ -2,9 +2,11 @@
 @section('page-title', 'Zobraziť návrh')
 
 
-@section('navigation')
-    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
+{{--@section('navigation')--}}
+{{--    <x-navigation.navigationItems :meeting="$meeting"/> @endsection--}}
 
+@section('navigation')
+    <x-navigation.navigationMeeting/> @endsection
 
 @section('content')
 
