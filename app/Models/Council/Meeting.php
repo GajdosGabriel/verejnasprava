@@ -18,7 +18,7 @@ class Meeting extends Model
 
     protected $guarded = [];
 
-    protected $with = ['items'];
+//    protected $with = ['items'];
 
     protected $casts = [
         'start_at' => 'datetime',
@@ -36,7 +36,7 @@ class Meeting extends Model
     }
 
     public function items() {
-        return $this->hasMany(Item::class)->orderBy('order', 'asc');
+        return $this->belongsToMany(Item::class);
     }
 
     public function council() {

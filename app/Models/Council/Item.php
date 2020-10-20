@@ -21,7 +21,6 @@ class Item extends Model
 
     protected $casts = [
         'vote_status' => 'boolean',
-        'published' => 'boolean',
         'vote_type' => 'boolean',
     ];
 
@@ -38,10 +37,11 @@ class Item extends Model
         return $this->hasMany(Vote::class);
     }
 
-    public function meeting()
+    public function meetings()
     {
-        return $this->belongsTo(Meeting::class);
+        return $this->belongsToMany(Meeting::class);
     }
+
     public function comments() {
         return $this->morphMany(Comment::class, 'fileable');
     }
