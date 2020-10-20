@@ -3,10 +3,12 @@
         <tr>
             <th class="px-4 py-2">Meno</th>
             <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Status</th>
             <th class="px-4 py-2">Člen</th>
+            @role('admin')
+            <th class="px-4 py-2">Status</th>
             <th class="px-4 py-2">Role</th>
             <th class="px-4 py-2">Panel</th>
+            @endrole
         </tr>
     </thead>
     <tbody>
@@ -15,6 +17,12 @@
             <td class="border px-4 py-2">{{ $user->full_name() }}</td>
 
             <td class="border px-4 py-2">{{ $user->email }}</td>
+            <td class="border px-4 py-2">
+                @foreach($user->councils as $role)
+                    <span class="badge badge-secondary">{{ $role->name }}</span>
+                @endforeach
+            </td>
+            @role('admin')
             <td class="border px-4 py-2">
                 @if($user->email_verified_at)
                     <span class="badge badge-primary">Aktívny</span>
@@ -28,22 +36,13 @@
                         @endif
                     </a>
                 @endif
-
             </td>
-            <td class="border px-4 py-2">
-                @foreach($user->councils as $role)
-                    <span class="badge badge-secondary">{{ $role->name }}</span>
-                @endforeach
-            </td>
-
             <td class="border px-4 py-2">
                 @foreach($user->roles as $role)
                     <span class="badge badge-secondary">{{ $role->name }}</span>
                 @endforeach
             </td>
 
-
-            {{--@can( 'update', $post)--}}
             <td class="border px-4 py-2">
                 <nav-drop-down inline-template>
                     <div class="relative flex items-start">
@@ -73,7 +72,7 @@
                     </div>
                 </nav-drop-down>
             </td>
-            {{--@endcan--}}
+            @endrole
         </tr>
     @empty
         {{--<tbody><tr><td>Žiadne doklady</td></tr></tbody>--}}
