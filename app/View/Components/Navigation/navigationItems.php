@@ -49,6 +49,11 @@ class navigationItems extends Component
     public function headerMenu(){
         return [
             [
+                'title' => 'Me Items',
+                'url' => route('item.index'),
+                'active' => $this->isActive('item.index')
+            ],
+            [
                 'title' => 'Home',
                 'url' => route('org.index', [$this->object->id, $this->object->slug]),
                 'active' => $this->isActive('org.index')

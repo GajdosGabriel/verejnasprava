@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    public function index(){
+        $items = Item::whereUserId(auth()->user()->id)->get();
+        return view('council.items.meItems', compact('items'));
+    }
 
     public function create(Meeting $meeting) {
         return view('council.items.create', compact('meeting'));
