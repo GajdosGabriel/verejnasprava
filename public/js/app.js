@@ -3009,6 +3009,14 @@ __webpack_require__.r(__webpack_exports__);
       openList: false
     };
   },
+  computed: {
+    hasUserInterpellation: function hasUserInterpellation() {
+      var intUsers = this.item.interpellations.map(function (role) {
+        return role.user.id;
+      });
+      return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
+    }
+  },
   created: function created() {
     var _this = this;
 
@@ -66313,7 +66321,13 @@ var render = function() {
                 staticClass: "text-sm cursor-pointer",
                 on: { click: _vm.storeInterpellation }
               },
-              [_vm._v("\n            Prihlásiť sa\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.hasUserInterpellation) +
+                    "\n        "
+                )
+              ]
             )
           ]),
           _vm._v(" "),

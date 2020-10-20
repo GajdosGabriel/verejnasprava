@@ -10,7 +10,7 @@
                 ({{ item.interpellations.length }})
             </small></h4>
             <span @click="storeInterpellation" class="text-sm cursor-pointer">
-                Prihlásiť sa
+                {{ hasUserInterpellation }}
             </span>
         </div>
 
@@ -36,6 +36,12 @@
           return {
               openList: false
           }
+        },
+        computed:{
+            hasUserInterpellation: function () {
+                var intUsers = this.item.interpellations.map(role => role.user.id);
+               return  intUsers.includes( this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
+            }
         },
         created(){
             bus.$on('imterpellationlist', (data) => {
