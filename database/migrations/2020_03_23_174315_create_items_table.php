@@ -15,22 +15,18 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->integer('meeting_id')->unsigned()->index();
             $table->integer('user_id')->unsigned();
             $table->integer('order')->unsigned()->default(0);
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
             $table->boolean('vote_status')->default(0);
-            $table->boolean('published')->default(0);
             $table->boolean('vote_type')->default(0);
             $table->timestamp('notification')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('meeting_id')->references('id')->on('meetings')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 
