@@ -49,14 +49,14 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::name('zast.')->namespace('Councils')->group(function() {
 
-        Route::get('zastupitestva', 'CouncilController@index')->name('index');
-        Route::get('zastupitestvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+        Route::get('zastupitelstva', 'CouncilController@index')->name('index');
+        Route::get('zastupitelstvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+        Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 
         Route::prefix('admin')->name('admin.')->group(function() {
             Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
             Route::get('{organization}/{slug}/create', 'AdminCouncilController@create')->name('create');
             Route::get('{council}/{slug}/edit/zast', 'AdminCouncilController@edit')->name('edit');
-            Route::post('{organization}/{slug}/council/store', 'AdminCouncilController@store')->name('store');
             Route::get('{council}/{slug}/council/delete', 'AdminCouncilController@delete')->name('delete');
         });
     });

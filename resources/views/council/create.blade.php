@@ -11,11 +11,10 @@
             <h1 class="page-title">Založiť zastupiteľstvo</h1>
             <div class="col-md-12">
                 <div class="md:w-1/2 ">
-                    <form  method="POST" action="{{ route('zast.admin.store', [$organization->id, $organization->slug]) }}">
+                    <form  method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
                         @csrf @method('POST')
                         @include('modul.errors')
                         @include('council._form')
-
                     </form>
 
                  </div>

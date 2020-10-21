@@ -54,7 +54,7 @@
 
                     </div>
                     <div v-if="show">
-                        <form  method="POST" action="{{ route('zast.admin.store', [$organization->id, $organization->slug]) }}">
+                        <form  method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
                             @csrf @method('POST')
                             @include('modul.errors')
                             @include('council._form')

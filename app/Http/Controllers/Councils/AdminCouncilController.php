@@ -23,10 +23,7 @@ class AdminCouncilController extends Controller
         return view('council.edit', compact('council') );
     }
 
-    public function store(Request $request, Organization $organization) {
-        $organization->councils()->create(array_merge($request->all()));
-        return redirect()->route('zast.index', [$organization->id, $organization->slug]);
-    }
+
 
     public function delete(Council $council) {
         $council->delete();

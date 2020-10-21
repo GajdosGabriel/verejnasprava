@@ -21,6 +21,11 @@ class CouncilController extends Controller
         return view('council.index', compact('councils'));
     }
 
+    public function store(Request $request, Organization $organization) {
+        $organization->councils()->create(array_merge($request->all()));
+        return redirect()->route('zast.index');
+    }
+
 
     public function userList(Council $council, $slug)
     {
