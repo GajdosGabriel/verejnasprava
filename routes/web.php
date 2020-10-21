@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
         Route::get('{meeting}/{slug}/show', 'MeetingController@show')->name('show');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
+        Route::get('{meeting}/{slug}/createItem', 'MeetingController@createItem')->name('createItem');
         Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
         Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
@@ -75,12 +76,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
         Route::get('items/meitems/index', 'ItemController@index')->name('index');
-        Route::get('{meeting}/{slug}/create', 'ItemController@create')->name('create');
+        Route::get('item/meitem/create', 'ItemController@create')->name('create');
         Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
         Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');
         Route::get('{item}/{slug}/item/up', 'ItemOrderController@itemUp')->name('up');
         Route::get('{item}/{slug}/item/down', 'ItemOrderController@itemDown')->name('down');
-        Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
+        Route::post('item/item/store', 'ItemController@store')->name('store');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
     });

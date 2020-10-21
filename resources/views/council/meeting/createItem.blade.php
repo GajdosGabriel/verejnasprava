@@ -3,7 +3,7 @@
 @section('page-title', 'Vytvoriť návrh')
 
 @section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
 
 {{--@section('navigation')--}}
 {{--    @include('council.items.navigation')--}}
@@ -15,7 +15,7 @@
 
         <h1 class="page-title">Nový bod programu</h1>
 
-        <form method="POST" action="{{ route('item.store') }}"
+        <form method="POST" action="{{ route('item.store', [$meeting->id, $meeting->slug]) }}"
               enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')
