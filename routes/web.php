@@ -81,7 +81,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');
         Route::get('{item}/{slug}/item/up', 'ItemOrderController@itemUp')->name('up');
         Route::get('{item}/{slug}/item/down', 'ItemOrderController@itemDown')->name('down');
-        Route::post('item/item/store', 'ItemController@store')->name('store');
+        Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
+        Route::post('item/slug/item/store', 'ItemController@storeItem')->name('storeItem');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
     });

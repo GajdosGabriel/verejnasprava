@@ -32,13 +32,24 @@ class ItemController extends Controller
         return redirect()->route('item.show',[$item->id, $item->slug]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request, Meeting $meeting) {
+
+        $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+
+        $item->update(['order' => $meeting->items()->count() +1] );
+
+        $item->saveFile($request);
+        return redirect()->route('item.show',[$item->id, $item->slug]);
+    }
+
+    public function storeItem(Request $request) {
+
         $item = Item::create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
 
 //        $item->update(['order' => $meeting->items()->count() +1] );
 
-        $item->saveFile($request);
-        return redirect()->route('item.index', [$item->id, $item->slug]);
+//        $item->saveFile($request);
+        return redirect()->route('item.show',[$item->id, $item->slug]);
     }
 
     public function delete(Item $item) {
