@@ -15,7 +15,7 @@
 
         <h1 class="page-title">Nový bod programu</h1>
 
-        <form method="POST" action="{{ route('item.store', [$meeting->id, $meeting->slug]) }}"
+        <form method="POST" action="{{ route('itemMeeting.store', $meeting->id) }}"
               enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')

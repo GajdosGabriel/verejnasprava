@@ -21,9 +21,6 @@ class MeetingController extends Controller
         $meeting = new Meeting();
         return view('council.meeting.create', compact(['council', 'meeting']) );
     }
-    public function createItem(Meeting $meeting) {
-        return view('council.meeting.createItem', compact('meeting'));
-    }
 
     public function edit(Meeting $meeting){
         return view('council.meeting.edit', compact('meeting') );

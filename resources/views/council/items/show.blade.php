@@ -6,7 +6,7 @@
 {{--    <x-navigation.navigationItems :meeting="$meeting"/> @endsection--}}
 
 @section('navigation')
-    <x-navigation.navigationMeeting/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 @section('content')
 

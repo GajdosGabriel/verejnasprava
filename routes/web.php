@@ -65,7 +65,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
         Route::get('{meeting}/{slug}/show', 'MeetingController@show')->name('show');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
-        Route::get('{meeting}/{slug}/createItem', 'MeetingController@createItem')->name('createItem');
         Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
         Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
@@ -82,9 +81,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/{slug}/item/up', 'ItemOrderController@itemUp')->name('up');
         Route::get('{item}/{slug}/item/down', 'ItemOrderController@itemDown')->name('down');
         Route::post('{meeting}/{slug}/meeting/store', 'ItemController@store')->name('store');
-        Route::post('item/slug/item/store', 'ItemController@storeItem')->name('storeItem');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');
+    });
+
+    Route::prefix('itemMeeting')->name('itemMeeting.')->namespace('Councils')->group(function() {
+        Route::get('{meeting}/create', 'ItemMeetingController@create')->name('create');
+        Route::post('{meeting}/store', 'ItemMeetingController@store')->name('store');
+        Route::get('{item}/delete', 'ItemMeetingController@delete')->name('delete');
     });
 
 

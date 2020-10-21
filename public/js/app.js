@@ -66610,12 +66610,7 @@ var render = function() {
                             staticClass:
                               "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                             attrs: {
-                              href:
-                                "/item/" +
-                                _vm.item.id +
-                                "/" +
-                                _vm.item.slug +
-                                "/item/delete",
+                              href: "/itemMeeting/" + _vm.item.id + "/delete",
                               title: "Zmazať položku"
                             }
                           },
@@ -67141,12 +67136,7 @@ var render = function() {
                       staticClass:
                         "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                       attrs: {
-                        href:
-                          "/meet/" +
-                          _vm.meeting.id +
-                          "/" +
-                          _vm.meeting.slug +
-                          "/createItem",
+                        href: "/itemMeeting/" + _vm.meeting.id + "/create",
                         title: "Vytvoriť nové zasadnutie"
                       }
                     },
