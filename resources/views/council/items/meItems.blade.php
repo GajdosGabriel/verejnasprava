@@ -18,7 +18,10 @@
                 <a class="btn btn-primary"
                    href="{{ route('item.create') }}">Nový návrh</a>
             </div>
-
+            @forelse($items as $item)
+                <items-list :item="{{ $item }}"/>
+            @empty
+            @endforelse
         </div>
 
         {{-- ASIDE --}}
