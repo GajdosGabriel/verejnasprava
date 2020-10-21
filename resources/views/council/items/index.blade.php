@@ -3,7 +3,7 @@
 
 
 @section('navigation')
-    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 {{--@section('navigation') @include('council.items.navigation') @endsection--}}
 
@@ -13,14 +13,28 @@
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
 
-            {{-- Vuex component--}}
-            <meeting :pMeeting="{{ $meeting }}"></meeting>
+            <div class="flex justify-between items-center pb-8">
 
+                <h1 class="page-title">Moje návrhy</h1>
+                <a class="btn btn-primary"
+                   href="{{ route('item.create') }}">Nový návrh</a>
+            </div>
+            <ul>
+
+                @forelse($items as $item)
+                    <li>
+                        <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
+                            {{ $item->name }}
+                        </a>
+                    </li>
+                @empty
+                @endforelse
+            </ul>
         </div>
 
         {{-- ASIDE --}}
         <div class="lg:w-1/4 md:px-6 px-4">
-            <livewire:comments :meeting="$meeting"/>
+
         </div>
 
     </div>
