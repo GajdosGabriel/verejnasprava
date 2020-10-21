@@ -3,7 +3,7 @@
 @section('page-title', 'Upraviť návrh')
 
 @section('navigation')
-    <x-navigation.navigationItems :meeting="$meeting"/> @endsection
+    <x-navigation.navigationOrganization/> @endsection
 
 @section('content')
 

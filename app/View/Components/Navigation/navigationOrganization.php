@@ -45,8 +45,8 @@ class navigationOrganization extends Component
             $this->navigation->contacts(),
             $this->navigation->tasks(),
             $this->navigation->items(),
-            $this->navigation->orders($this->object->id, $this->object->slug),
             $this->navigation->councils($this->object->id, $this->object->slug),
+            $this->navigation->orders($this->object->id, $this->object->slug),
             $this->navigation->navody(),
         ];
     }

@@ -36,7 +36,7 @@ class Meeting extends Model
     }
 
     public function items() {
-        return $this->belongsToMany(Item::class)->withPivot('item_id', 'meeting_id');
+        return $this->belongsToMany(Item::class)->withPivot('order')->withTimestamps();
     }
 
     public function council() {
