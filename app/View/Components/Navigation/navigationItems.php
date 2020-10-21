@@ -8,15 +8,17 @@ use Illuminate\View\Component;
 class navigationItems extends Component
 {
     public $meeting;
+    public $navigation;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($meeting)
+    public function __construct($meeting, navItems $navigation)
     {
         $this->meeting = $meeting;
+        $this->navigation = $navigation;
         $this->object = Organization::whereId(auth()->user()->active_organization)->first();
     }
 
@@ -48,11 +50,7 @@ class navigationItems extends Component
 
     public function headerMenu(){
         return [
-            [
-                'title' => 'Me Items',
-                'url' => route('item.index'),
-                'active' => $this->isActive('item.index')
-            ],
+            $this->navigation->items(),
             [
                 'title' => 'Home',
                 'url' => route('org.index', [$this->object->id, $this->object->slug]),

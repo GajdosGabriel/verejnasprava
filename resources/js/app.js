@@ -51,7 +51,7 @@ Vue.component('meeting', require('./meetings/meeting.vue').default);
 Vue.component('council-table', require('./councils/councilTable.vue').default);
 Vue.component('vote-list', require('./votes/voteList.vue').default);
 Vue.component('item-show', require('./items/itemShow.vue').default);
-Vue.component('items-list', require('./items/itemList.vue').default);
+
 
 
 

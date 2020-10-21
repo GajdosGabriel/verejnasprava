@@ -63,6 +63,16 @@ class navItems
         ];
     }
 
+    public function items()
+    {
+        if(auth()->user()->hasRole('super-admin'))
+            return [
+                'title' => 'Moje návrhy',
+                'url' => route('item.index'),
+                'active' => $this->isActive('item.index')
+            ];
+    }
+
     public function navody()
     {
         return [
