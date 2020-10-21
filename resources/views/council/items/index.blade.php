@@ -22,10 +22,19 @@
             <ul>
 
                 @forelse($items as $item)
-                    <li>
+                    <li class="flex justify-between">
                         <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
-                            {{ $item->name }}
+                            {{ $item->id }}/{{ $item->name }}
                         </a>
+
+                        @forelse($item->meetings as $meeting)
+                            <a href="{{ route('meet.show', [$meeting->id, $meeting->slug]) }}">
+                                <span class="p-1 bg-yellow-500 rounded-2xl px-2">
+                                {{ $meeting->name }}
+                                </span>
+                            </a>
+                            @empty
+                        @endforelse
                     </li>
                 @empty
                 @endforelse
