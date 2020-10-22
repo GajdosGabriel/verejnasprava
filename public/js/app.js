@@ -3641,6 +3641,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pmeeting'],
   components: {
@@ -3652,7 +3653,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
     };
   },
-  computed: _objectSpread({
+  computed: _objectSpread(_objectSpread({
     notificationStatus: function notificationStatus() {
       return this.meeting.notification == null ? 'Pozvánka pre členov' : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
     }
@@ -3660,7 +3661,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
-  })),
+  })), {}, {
+    items: function items() {
+      if (this.$auth.isAdmin()) {
+        return this.$store.getters['meetings/allItem'];
+      }
+
+      return this.$store.getters['meetings/publishedItem'];
+    }
+  }),
   created: function created() {
     this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
   },
@@ -67296,7 +67305,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.meeting.items, function(item) {
+      _vm._l(_vm.items, function(item) {
         return _c(
           "div",
           { key: item.id, staticClass: "odd:bg-gray-500 mt-4 bg-white" },
@@ -85090,6 +85099,7 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   meeting: '',
+  items: [],
   loadingStatus: false
 };
 var getters = {
@@ -85099,6 +85109,14 @@ var getters = {
         return todo.id === id;
       });
     };
+  },
+  allItem: function allItem(state) {
+    return state.items;
+  },
+  publishedItem: function publishedItem(state) {
+    return state.items.filter(function (todo) {
+      return todo.published == 1;
+    });
   }
 };
 var mutations = {
@@ -85107,6 +85125,7 @@ var mutations = {
   },
   SET_MEETING: function SET_MEETING(state, meeting) {
     state.meeting = meeting;
+    state.items = meeting.items;
   }
 };
 var actions = {

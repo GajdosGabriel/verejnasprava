@@ -65,7 +65,7 @@
             </nav-drop-down>
         </div>
 
-        <div v-for="item in meeting.items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
+        <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
             <item :item="item"></item>
         </div>
 
@@ -78,6 +78,7 @@
     import moment from 'moment';
     import navDropDown from '../modules/navigation/navDropDown';
     import {mapState} from 'vuex';
+    import {mapGetters} from 'vuex';
     import item from '../items/itemList';
 
     export default {
@@ -94,7 +95,13 @@
             },
             ...mapState({
                 meeting: state => state.meetings.meeting,
-            })
+            }),
+            items() {
+                if(this.$auth.isAdmin()) {
+                    return this.$store.getters['meetings/allItem']
+                }
+               return this.$store.getters['meetings/publishedItem']
+            }
         },
 
         created() {

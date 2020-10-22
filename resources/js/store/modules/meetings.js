@@ -1,10 +1,17 @@
 const state = {
     meeting:'',
+    items:[],
     loadingStatus: false
 };
 const getters = {
     activeItem: (state) => (id) => {
         return state.items.find(todo => todo.id === id)
+    },
+    allItem: (state) => {
+        return state.items
+    },
+    publishedItem: (state) => {
+        return state.items.filter(todo => todo.published == 1)
     }
 };
 
@@ -14,6 +21,7 @@ const mutations = {
     },
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
+        state.items = meeting.items;
     }
 };
 const actions = {
