@@ -26,6 +26,7 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('title')->nullable();
             $table->string('category');
             $table->string('guard_name');
             $table->timestamps();
@@ -34,6 +35,7 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('title')->nullable();
             $table->string('guard_name');
             $table->timestamps();
         });
@@ -51,7 +53,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_permissions_permission_model_type_primary');
+                'model_has_permissions_permission_model_type_primary');
         });
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
@@ -67,7 +69,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary');
+                'model_has_roles_role_model_type_primary');
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
@@ -93,44 +95,221 @@ class CreatePermissionTables extends Migration
 
 
         $permissions = [
-            'post view'    => 'post',
-            'post edit'    => 'post',
-            'post create'  => 'post',
-            'post delete'  => 'post',
+//            'post view' => 'post',
+//            'post edit' => 'post',
+//            'post create' => 'post',
+//            'post delete' => 'post',
 
-            'contact view'    => 'contact',
-            'contact edit'    => 'contact',
-            'contact create'  => 'contact',
-            'contact delete'  => 'contact',
+//            'contact view' => 'contact',
+//            'contact edit' => 'contact',
+//            'contact create' => 'contact',
+//            'contact delete' => 'contact',
 
-            'organization view'    => 'organization',
-            'organization edit'    => 'organization',
-            'organization create'  => 'organization',
-            'organization delete'  => 'organization',
+//            'organization view' => 'organization',
+//            'organization edit' => 'organization',
+//            'organization create' => 'organization',
+//            'organization delete' => 'organization',
 
-            'council view'    => 'council',
-            'council edit'    => 'council',
-            'council create'  => 'council',
-            'council delete'  => 'council',
+//            'council view' => 'council',
+//            'council edit' => 'council',
+//            'council create' => 'council',
+//            'council delete' => 'council',
 
-            'task view'    => 'task',
-            'task edit'    => 'task',
-            'task create'  => 'task',
-            'task delete'  => 'task',
-
-            'order view'    => 'order',
-            'order edit'    => 'order',
-            'order create'  => 'order',
-            'order delete'  => 'order',
+//            'task view' => 'task',
+//            'task edit' => 'task',
+//            'task create' => 'task',
+//            'task delete' => 'task',
+//
+//            'order view' => 'order',
+//            'order edit' => 'order',
+//            'order create' => 'order',
+//            'order delete' => 'order',
 
         ];
 
-foreach ($permissions as $permission => $category) {
-    Permission::create([
-        'name'     => $permission,
-        'category' => $category,
-    ]);
-}
+        foreach ($permissions as $permission => $category) {
+            Permission::create([
+                'name' => $permission,
+                'category' => $category,
+            ]);
+        }
+        \DB::table('permissions')->insert([
+            [
+                'id' => 1,
+                'name' => 'post view',
+                'title' => 'clen',
+                'category' => 'post',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 2,
+                'name' => 'post edit',
+                'title' => 'upraviť',
+                'category' => 'post',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 3,
+                'name' => 'post create',
+                'title' => 'vytvoriť',
+                'category' => 'post',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 4,
+                'name' => 'post delete',
+                'title' => 'zmazať',
+                'category' => 'post',
+                'guard_name' => 'web',
+            ],
+
+            [
+                'id' => 5,
+                'name' => 'council view',
+                'title' => 'clen',
+                'category' => 'council',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 6,
+                'name' => 'council edit',
+                'title' => 'upraviť',
+                'category' => 'council',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 7,
+                'name' => 'council create',
+                'title' => 'vytvoriť',
+                'category' => 'council',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 8,
+                'name' => 'council delete',
+                'title' => 'zmazať',
+                'category' => 'council',
+                'guard_name' => 'web',
+            ],
+
+            [
+                'id' => 9,
+                'name' => 'contact view',
+                'title' => 'contact clen',
+                'category' => 'contact',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 10,
+                'name' => 'contact edit',
+                'title' => 'contact upraviť',
+                'category' => 'contact',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 11,
+                'name' => 'contact create',
+                'title' => 'contact vytvoriť',
+                'category' => 'contact',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 12,
+                'name' => 'contact delete',
+                'title' => 'contact zmazať',
+                'category' => 'contact',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 13,
+                'name' => 'organization view',
+                'title' => 'contact clen',
+                'category' => 'organization',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 14,
+                'name' => 'organization edit',
+                'title' => 'organization upraviť',
+                'category' => 'organization',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 15,
+                'name' => 'organization create',
+                'title' => 'organization vytvoriť',
+                'category' => 'organization',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 16,
+                'name' => 'organization delete',
+                'title' => 'organization zmazať',
+                'category' => 'organization',
+                'guard_name' => 'web',
+            ],
+
+            [
+                'id' => 17,
+                'name' => 'task view',
+                'title' => 'task clen',
+                'category' => 'task',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 18,
+                'name' => 'task edit',
+                'title' => 'task upraviť',
+                'category' => 'task',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 19,
+                'name' => 'task create',
+                'title' => 'task vytvoriť',
+                'category' => 'task',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 20,
+                'name' => 'task delete',
+                'title' => 'task zmazať',
+                'category' => 'task',
+                'guard_name' => 'web',
+            ],
+
+            [
+                'id' => 21,
+                'name' => 'order view',
+                'title' => 'order clen',
+                'category' => 'order',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 22,
+                'name' => 'order edit',
+                'title' => 'order upraviť',
+                'category' => 'order',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 23,
+                'name' => 'order create',
+                'title' => 'order vytvoriť',
+                'category' => 'order',
+                'guard_name' => 'web',
+            ],
+            [
+                'id' => 24,
+                'name' => 'order delete',
+                'title' => 'order zmazať',
+                'category' => 'order',
+                'guard_name' => 'web',
+            ],
+
+
+        ]);
+
 
         $roles = [
             'super-admin',
