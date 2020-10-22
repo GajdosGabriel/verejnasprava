@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Councils;
 use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
 use App\Models\Council\Meeting;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
     public function index(){
         $items = Item::whereUserId(auth()->user()->id)->get();
-        return view('council.items.index', compact('items'));
+
+        $meetings = Meeting::whereHas('council', function (Builder $query) {
+            $query->whereOrganizationId(auth()->user()->id);
+        })->get();
+        return view('council.items.index', compact(['items', 'meetings']));
     }
 
     public function create() {
