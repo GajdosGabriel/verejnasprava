@@ -39,7 +39,7 @@ class Item extends Model
 
     public function meetings()
     {
-        return $this->belongsToMany(Meeting::class)->withPivot('order')->withTimestamps();
+        return $this->belongsToMany(Meeting::class)->withTimestamps()->orderBy('created_at', 'desc');
     }
 
     public function comments() {

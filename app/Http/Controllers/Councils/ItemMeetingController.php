@@ -22,12 +22,9 @@ class ItemMeetingController extends Controller
 
     public function store(Request $request, Meeting $meeting) {
 
-        $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+        $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
 
-//        $item->update(['order' => $meeting->items()->count() +1] );
-
-//        $item->saveFile($request);
-        return redirect()->route('item.show',[$item->id, $item->slug]);
+        return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
     }
 
     public function delete(Item $item) {

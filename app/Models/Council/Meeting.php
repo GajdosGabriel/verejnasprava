@@ -36,7 +36,7 @@ class Meeting extends Model
     }
 
     public function items() {
-        return $this->belongsToMany(Item::class)->withPivot('order')->withTimestamps();
+        return $this->belongsToMany(Item::class)->withTimestamps()->orderBy('created_at', 'asc');
     }
 
     public function council() {
