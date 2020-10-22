@@ -214,7 +214,7 @@
             saveNotification(){
                 this.$store.dispatch('items/update',  {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    meeting_id: this.item.meeting_id,
+                    meeting_id: this.item.pivot.meeting_id,
                     id: this.item.id })
             },
 

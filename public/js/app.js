@@ -3479,7 +3479,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveNotification: function saveNotification() {
       this.$store.dispatch('items/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        meeting_id: this.item.meeting_id,
+        meeting_id: this.item.pivot.meeting_id,
         id: this.item.id
       });
     },
@@ -3533,8 +3533,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.$store.dispatch('items/update', {
         id: item.id,
-        published: !item.published,
-        meeting_id: item.meeting_id
+        published: !item.published
       });
     }
   }
@@ -85024,8 +85023,7 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   interpellations: [],
-  item: '',
-  authUser: ''
+  item: ''
 };
 var getters = {
   resultYes: function resultYes(state) {
@@ -85037,10 +85035,8 @@ var getters = {
 };
 var mutations = {
   SET_ITEM: function SET_ITEM(state, item) {
-    state.item = item; // state.votes = item.user;
+    state.item = item; // state.meetingId = item.pivot.meeting_id;
     // state.interpellations = item.interpellations;
-
-    state.votes = item.votes;
   },
   SET_VOTES: function SET_VOTES(state, item) {
     state.votes = item;
@@ -85073,10 +85069,7 @@ var actions = {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
-      commit('SET_ITEM', response.data);
-      dispatch('meetings/fetchMeeting', item.meeting_id, {
-        root: true
-      });
+      commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', item.pivot.meeting_id, {root:true});
     });
   }
 };
