@@ -27,13 +27,27 @@
                             {{ $item->id }}/{{ $item->name }}
                         </a>
 
+
                         @forelse($item->meetings as $meeting)
-                            <a  href="{{ route('meet.show', [$meeting->id, $meeting->slug]) }}">
+                            <a href="{{ route('meet.show', [$meeting->id, $meeting->slug]) }}">
                                 <span class="p-1 bg-yellow-400 text-sm rounded-2xl px-2 hover:bg-yellow-500 ">
                                 {{ $meeting->name }}
                                 </span>
                             </a>
-                            @empty
+                        @empty
+
+                            <form method="POST" action="{{ route('itemMeeting.update', $item->id) }}">
+                                @csrf @method('PUT')
+                                <label for="meetings">Zaradiť do programu:</label>
+                                <select name="meeting" id="meetings" required>
+                                    <option value="">---Vybrať---</option>
+                                    @forelse($meetings as $meeting)
+                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}</option>
+                                    @empty
+                                    @endforelse
+                                </select>
+                                <button>Uložiť</button>
+                            </form>
                         @endforelse
                     </li>
                 @empty

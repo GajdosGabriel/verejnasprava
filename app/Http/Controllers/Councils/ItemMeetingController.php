@@ -13,6 +13,13 @@ class ItemMeetingController extends Controller
         return view('council.meeting.createItem', compact('meeting'));
     }
 
+    public function update(Request $request, Item $item) {
+
+        $item->meetings()->attach($request->meeting);
+
+        return  back();
+    }
+
     public function store(Request $request, Meeting $meeting) {
 
         $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
