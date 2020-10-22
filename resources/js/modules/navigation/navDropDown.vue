@@ -2,8 +2,8 @@
     <div class="relative inline-block text-left" v-if="$auth.isAdmin()">
         <div>
             <span class="rounded-md shadow-sm">
-                <button @click="isOpen =! isOpen" class="focus:outline-none">
-               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
+                <button @click="isOpen =! isOpen" :class="addBackground" class="focus:outline-none  hover:bg-gray-400 p-1 rounded-full transition duration-400 ease-in-out">
+               <svg class="w-4 h-4p-2" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20">
                                     <path
                                         d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
@@ -64,6 +64,10 @@
 
             fullName: function () {
                 return window.App.user.first_name + ' ' + window.App.user.last_name;
+            },
+            addBackground: function () {
+                return this.isOpen ? 'bg-gray-400' : ''
+
             }
         },
         created: function () {

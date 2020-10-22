@@ -1,5 +1,5 @@
 <template>
-    <div class="hover:bg-gray-100 p-2 mb-16 flex flex-col  cursor-pointer" v-if="isPublished">
+    <div class="p-2 mb-16" v-if="isPublished">
 
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2">

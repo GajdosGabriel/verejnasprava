@@ -3749,6 +3749,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     fullName: function fullName() {
       return window.App.user.first_name + ' ' + window.App.user.last_name;
+    },
+    addBackground: function addBackground() {
+      return this.isOpen ? 'bg-gray-400' : '';
     }
   },
   created: function created() {
@@ -66395,136 +66398,38 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.isPublished
-    ? _c(
-        "div",
-        {
-          staticClass:
-            "hover:bg-gray-100 p-2 mb-16 flex flex-col  cursor-pointer"
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2"
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "flex justify-between w-full mb-4 px-2" },
-                [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-                      }
-                    },
-                    [
-                      _c(
-                        "span",
-                        { staticClass: "font-semibold text-gray-700" },
-                        [_vm._v(_vm._s(_vm.item.name))]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "nav-drop-down",
-                    [
-                      _vm._t("default", [
-                        _c("div", { staticClass: "py-1" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                              attrs: {
-                                href:
-                                  "/item/" +
-                                  _vm.item.id +
-                                  "/" +
-                                  _vm.item.slug +
-                                  "/edit",
-                                title: "Upraviť bod programu"
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "flex" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "w-4 h-4 mr-2 fill-current",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(
-                                  "\n                                Upraviť položku\n                            "
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                            attrs: {
-                              href: "#",
-                              title: "Notifikácia pre voliteľov"
-                            }
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "flex",
-                                on: { click: _vm.saveNotification }
-                              },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "w-4 h-4 mr-2 fill-current",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("span", {
-                                  domProps: {
-                                    textContent: _vm._s(_vm.notificationStatus)
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
+    ? _c("div", { staticClass: "p-2 mb-16" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "flex justify-between w-full mb-4 px-2" },
+              [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href:
+                        "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "font-semibold text-gray-700" }, [
+                      _vm._v(_vm._s(_vm.item.name))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "nav-drop-down",
+                  [
+                    _vm._t("default", [
+                      _c("div", { staticClass: "py-1" }, [
                         _c(
                           "a",
                           {
@@ -66536,81 +66441,8 @@ var render = function() {
                                 _vm.item.id +
                                 "/" +
                                 _vm.item.slug +
-                                "/item/up",
-                              title: "Presunúť položku smerom hore"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "flex" }, [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "w-4 h-4 mr-2 fill-current",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 20 20"
-                                  }
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                            Presunúť hore\n                        "
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                            attrs: {
-                              href:
-                                "/item/" +
-                                _vm.item.id +
-                                "/" +
-                                _vm.item.slug +
-                                "/item/down",
-                              title: "Presunúť položku smerom dole"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "flex" }, [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "w-4 h-4 mr-2 fill-current",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 20 20"
-                                  }
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                            Presunúť dole\n                        "
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                            attrs: {
-                              href: "/itemMeeting/" + _vm.item.id + "/delete",
-                              title: "Zmazať položku"
+                                "/edit",
+                              title: "Upraviť bod programu"
                             }
                           },
                           [
@@ -66628,86 +66460,248 @@ var render = function() {
                                   _c("path", {
                                     attrs: {
                                       d:
-                                        "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                                        "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"
                                     }
                                   })
                                 ]
                               ),
                               _vm._v(
-                                "\n                            Zmazať\n                        "
+                                "\n                                Upraviť položku\n                            "
                               )
                             ])
                           ]
                         )
-                      ])
-                    ],
-                    2
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex justify-between w-full text-sm" },
-                [
-                  _c("published-button", { attrs: { item: _vm.item } }),
-                  _vm._v(" "),
-                  _vm.item.published
-                    ? _c(
-                        "div",
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
                         {
                           staticClass:
-                            "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-                          on: { click: _vm.openInterpellation }
+                            "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href: "#",
+                            title: "Notifikácia pre voliteľov"
+                          }
                         },
                         [
-                          _vm._v("\n                Rozprava "),
-                          _c("span", { staticClass: "text-gray-500" }, [
-                            _vm._v(_vm._s(_vm.item.interpellations.length))
+                          _c(
+                            "div",
+                            {
+                              staticClass: "flex",
+                              on: { click: _vm.saveNotification }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "w-4 h-4 mr-2 fill-current",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(_vm.notificationStatus)
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href:
+                              "/item/" +
+                              _vm.item.id +
+                              "/" +
+                              _vm.item.slug +
+                              "/item/up",
+                            title: "Presunúť položku smerom hore"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2 fill-current",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                            Presunúť hore\n                        "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href:
+                              "/item/" +
+                              _vm.item.id +
+                              "/" +
+                              _vm.item.slug +
+                              "/item/down",
+                            title: "Presunúť položku smerom dole"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2 fill-current",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                            Presunúť dole\n                        "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          attrs: {
+                            href: "/itemMeeting/" + _vm.item.id + "/delete",
+                            title: "Zmazať položku"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex" }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2 fill-current",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                            Zmazať\n                        "
+                            )
                           ])
                         ]
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.item.published && _vm.$auth.isAdmin()
-                    ? _c("div", {
+                    ])
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-between w-full text-sm" },
+              [
+                _c("published-button", { attrs: { item: _vm.item } }),
+                _vm._v(" "),
+                _vm.item.published
+                  ? _c(
+                      "div",
+                      {
                         staticClass:
-                          "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
-                        class:
-                          _vm.item.vote_status == 1
-                            ? "bg-blue-700 text-gray-200"
-                            : "text-gray-900",
-                        domProps: {
-                          textContent: _vm._s(
-                            _vm.item.vote_status == 0
-                              ? "Zapnúť hlasovanie"
-                              : "Vypnúť hlasovanie"
-                          )
-                        },
-                        on: { click: _vm.voteStatus }
-                      })
-                    : _vm._e()
-                ],
-                1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "max-w-sm w-full" },
-            [
-              _c("vote-form-button", { attrs: { item: _vm.item } }),
-              _vm._v(" "),
-              _c("interpellation", { attrs: { item: _vm.item } }),
-              _vm._v(" "),
-              _c("vote-list", { attrs: { item: _vm.item } })
-            ],
-            1
-          )
-        ]
-      )
+                          "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                        on: { click: _vm.openInterpellation }
+                      },
+                      [
+                        _vm._v("\n                Rozprava "),
+                        _c("span", { staticClass: "text-gray-500" }, [
+                          _vm._v(_vm._s(_vm.item.interpellations.length))
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.item.published && _vm.$auth.isAdmin()
+                  ? _c("div", {
+                      staticClass:
+                        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
+                      class:
+                        _vm.item.vote_status == 1
+                          ? "bg-blue-700 text-gray-200"
+                          : "text-gray-900",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.item.vote_status == 0
+                            ? "Zapnúť hlasovanie"
+                            : "Vypnúť hlasovanie"
+                        )
+                      },
+                      on: { click: _vm.voteStatus }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "max-w-sm w-full" },
+          [
+            _c("vote-form-button", { attrs: { item: _vm.item } }),
+            _vm._v(" "),
+            _c("interpellation", { attrs: { item: _vm.item } }),
+            _vm._v(" "),
+            _c("vote-list", { attrs: { item: _vm.item } })
+          ],
+          1
+        )
+      ])
     : _vm._e()
 }
 var staticRenderFns = []
@@ -67343,7 +67337,9 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "focus:outline-none",
+                staticClass:
+                  "focus:outline-none  hover:bg-gray-400 p-1 rounded-full transition duration-400 ease-in-out",
+                class: _vm.addBackground,
                 on: {
                   click: function($event) {
                     _vm.isOpen = !_vm.isOpen
@@ -67354,7 +67350,7 @@ var render = function() {
                 _c(
                   "svg",
                   {
-                    staticClass: "w-4 h-4",
+                    staticClass: "w-4 h-4p-2",
                     attrs: {
                       xmlns: "http://www.w3.org/2000/svg",
                       viewBox: "0 0 20 20"
