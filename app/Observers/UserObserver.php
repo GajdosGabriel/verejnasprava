@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Council\Item;
 use App\Models\User;
+use App\Notifications\User\NewUserCreated;
 use Illuminate\Support\Str;
 
 class UserObserver
@@ -16,7 +17,8 @@ class UserObserver
 
     public function created(User $user)
     {
-        $user->organizations()->attach(auth()->user()->active_organization);
+//        $user->organizations()->attach(auth()->user()->active_organization);
+        User::first()->notify(new NewUserCreated($user));
     }
 
 
