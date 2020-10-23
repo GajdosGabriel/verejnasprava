@@ -69,10 +69,9 @@
                            title="Zmazať položku">
                             <div class="flex">
                                 <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path
-                                        d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                    <path d="M10 7H2v6h8v5l8-8-8-8v5z"/>
                                 </svg>
-                                Zmazať
+                                Späť do návrhoch
                             </div>
                         </a>
                     </slot>
@@ -118,8 +117,6 @@
     import {bus} from '../app';
     import moment from 'moment';
     // import voteButtons from '../votes/voteButtons';
-    import {mapState} from 'vuex';
-    import {mapGetters} from 'vuex';
     import publishedButton from "./publishedButton";
     import interpellation from './InterpellationCard';
     import navDropDown from '../modules/navigation/navDropDown';

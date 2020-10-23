@@ -3060,11 +3060,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
-/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
-/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
-//
+/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
+/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 //
 //
 //
@@ -3186,14 +3184,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   components: {
-    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"],
-    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
+    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"],
+    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   computed: {
     isPublished: function isPublished() {
@@ -66630,15 +66626,12 @@ var render = function() {
                               },
                               [
                                 _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
-                                  }
+                                  attrs: { d: "M10 7H2v6h8v5l8-8-8-8v5z" }
                                 })
                               ]
                             ),
                             _vm._v(
-                              "\n                            Zmazať\n                        "
+                              "\n                            Späť do návrhoch\n                        "
                             )
                           ])
                         ]
