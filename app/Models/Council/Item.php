@@ -2,7 +2,6 @@
 
 namespace App\Models\Council;
 
-use App\Models\Council\Interpellation;
 use App\Models\Comment;
 use App\Models\File;
 use App\Models\User;
@@ -10,7 +9,6 @@ use App\Services\FileUpload;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Item extends Model
@@ -39,7 +37,7 @@ class Item extends Model
 
     public function meetings()
     {
-        return $this->belongsToMany(Meeting::class)->orderBy('order', 'asc');
+        return $this->belongsToMany(Meeting::class);
     }
 
     public function comments() {

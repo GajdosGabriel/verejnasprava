@@ -3063,6 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -3184,6 +3185,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   components: {
@@ -3207,25 +3209,24 @@ __webpack_require__.r(__webpack_exports__);
     saveNotification: function saveNotification() {
       this.$store.dispatch('items/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        meeting_id: this.item.meeting_id,
+        meeting_id: this.item.pivot.meeting_id,
         id: this.item.id
       });
     },
     voteStatus: function voteStatus() {
       if (!this.item.published) {
-        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+        alert('Bod nie je publikovaný. Zapnite publikovanie!');
         return;
       }
 
       if (this.item.interpellations.length) {
-        alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+        alert('Zoznam prihlásených do rozpravy nie je prázdny!');
         return;
       }
 
       this.$store.dispatch('items/update', {
         id: this.item.id,
-        vote_status: !this.item.vote_status,
-        meeting_id: this.item.meeting_id
+        vote_status: !this.item.vote_status
       });
     },
     storeInterpellation: function storeInterpellation() {
@@ -3637,11 +3638,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pmeeting'],
   components: {
-    item: _items_itemList__WEBPACK_IMPORTED_MODULE_3__["default"],
+    itemList: _items_itemList__WEBPACK_IMPORTED_MODULE_3__["default"],
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
@@ -67302,7 +67302,7 @@ var render = function() {
         return _c(
           "div",
           { key: item.id, staticClass: "odd:bg-gray-500 mt-4 bg-white" },
-          [_c("item", { attrs: { item: item } })],
+          [_c("item-list", { attrs: { item: item } })],
           1
         )
       })
@@ -85067,7 +85067,10 @@ var actions = {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
-      commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', item.pivot.meeting_id, {root:true});
+      commit('SET_ITEM', response.data);
+      dispatch('meetings/fetchMeeting', state.item.pivot.meeting_id, {
+        root: true
+      });
     });
   }
 };

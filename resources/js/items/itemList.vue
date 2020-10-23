@@ -120,6 +120,7 @@
     import publishedButton from "./publishedButton";
     import interpellation from './InterpellationCard';
     import navDropDown from '../modules/navigation/navDropDown';
+    import {mapState} from "vuex";
 
     export default {
         props: ['item'],
@@ -139,20 +140,20 @@
             saveNotification(){
                 this.$store.dispatch('items/update',  {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    meeting_id: this.item.meeting_id,
+                    meeting_id: this.item.pivot.meeting_id,
                     id: this.item.id })
             },
             voteStatus: function () {
                 if (!this.item.published) {
-                    alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+                    alert('Bod nie je publikovaný. Zapnite publikovanie!');
                     return
                 }
 
                 if (this.item.interpellations.length) {
-                    alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+                    alert('Zoznam prihlásených do rozpravy nie je prázdny!');
                     return
                 }
-                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status, meeting_id: this.item.meeting_id})
+                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status});
             },
 
             storeInterpellation: function () {

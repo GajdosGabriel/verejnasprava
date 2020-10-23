@@ -66,7 +66,7 @@
         </div>
 
         <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
-            <item :item="item"></item>
+            <item-list :item="item"></item-list>
         </div>
 
 
@@ -78,12 +78,11 @@
     import moment from 'moment';
     import navDropDown from '../modules/navigation/navDropDown';
     import {mapState} from 'vuex';
-    import {mapGetters} from 'vuex';
-    import item from '../items/itemList';
+    import itemList from '../items/itemList';
 
     export default {
         props: ['pmeeting'],
-        components: {item, navDropDown},
+        components: {itemList, navDropDown},
         data: function () {
             return {
                 moment: require('moment'),

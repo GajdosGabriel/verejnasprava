@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\PostFilters;
-use App\Models\Council\Meeting;
-use App\Models\Organization;
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-
 class TestController extends Controller
 {
    public function test()
    {
 
-       $meeting = Meeting::first();
-       dd($meeting->items->pluck('order'));
+//       $meeting = Meeting::first();
+//       dd($meeting->items()
+//           ->orderBy('created_at', 'asc')
+//           ->get());
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {
 //           $query->whereOrganizationId(1);

@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MeetingRequest;
 use App\Models\Council\Meeting;
-use App\Models\User;
 use App\Notifications\Meeting\NewMeeting;
-use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {

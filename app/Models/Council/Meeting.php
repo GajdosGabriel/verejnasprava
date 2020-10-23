@@ -3,14 +3,13 @@
 namespace App\Models\Council;
 
 use App\Models\Comment;
+use App\Models\File;
+use App\Models\User;
 use App\Services\FileUpload;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use App\Models\File;
-use App\Models\User;
 
 class Meeting extends Model
 {
@@ -36,7 +35,7 @@ class Meeting extends Model
     }
 
     public function items() {
-        return $this->belongsToMany(Item::class)->orderBy('order', 'asc');
+        return $this->belongsToMany(Item::class);
     }
 
     public function council() {
