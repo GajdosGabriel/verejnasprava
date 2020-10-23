@@ -22,8 +22,9 @@ class ItemMeetingController extends Controller
 
     public function store(Request $request, Meeting $meeting) {
 
-        $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+       $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
 
+        $item->saveFile($request);
         return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
     }
 

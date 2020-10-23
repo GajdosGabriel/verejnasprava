@@ -16,12 +16,9 @@ class CreateItemMeetingTable extends Migration
         Schema::create('item_meeting', function (Blueprint $table) {
             $table->integer('item_id')->unsigned()->index();
             $table->integer('meeting_id')->unsigned()->index();
-            $table->integer('order')->unsigned()->default(0);
-            $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('meeting_id')->references('id')->on('meetings');
-
             $table->unique(['item_id', 'meeting_id']);
         });
     }
