@@ -15,11 +15,14 @@ class TestController extends Controller
    public function test()
    {
 
-       $users = Meeting::whereHas('council', function (Builder $query) {
-           $query->whereOrganizationId(1);
-       })->get();
+       $meeting = Meeting::first();
+       dd($meeting->items->pluck('order'));
 
-       dd($users);
+//       $users = Meeting::whereHas('council', function (Builder $query) {
+//           $query->whereOrganizationId(1);
+//       })->get();
+//
+//       dd($users);
 
 
 

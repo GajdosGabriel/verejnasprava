@@ -67347,7 +67347,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none  hover:bg-gray-400 p-1 rounded-full transition duration-400 ease-in-out",
+                  "focus:outline-none  hover:bg-gray-300 p-1 rounded-full transition duration-400 ease-in-out",
                 class: _vm.addBackground,
                 on: {
                   click: function($event) {
