@@ -1,8 +1,8 @@
 <div class="mb-4">
-    <label for="name" class="text-gray-700 text-sm">Zvolanie zastupiteľstva</label>
+    <label for="name" class="text-gray-700 text-sm">Vytvoriť novú schôdzu</label>
     <input id="name" type="text"
            class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
-           name="name" value="{{ old('name') ?? $meeting->name }}" required autocomplete="name" autofocus>
+           name="name" value="{{ old('name') ?? $meeting->name }}" placeholder="Názov schôdze" required autocomplete="name" autofocus>
 
     @error('name')
     <span class="invalid-feedback" role="alert">
@@ -15,7 +15,7 @@
     <label for="first_name" class="text-gray-700 text-sm mb-2">Popis schôdze</label>
     <input id="description" type="text"
            class="input-control focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror"
-           name="description" value="{{ old('description') ?? $meeting->description }}" autocomplete="name" autofocus>
+           name="description" value="{{ old('description') ?? $meeting->description }}" placeholder="nepovinné" autocomplete="name" autofocus>
     @error('description')
     <span class="text-red-500 text-xs italic" role="alert">
         <strong>{{ $message }}</strong>
