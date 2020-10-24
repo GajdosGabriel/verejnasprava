@@ -44,8 +44,7 @@ class ItemController extends Controller
 //        $item->update(['order' => $meeting->items()->count() +1] );
 //
         $item->saveFile($request);
-        return redirect()->route('item.index');
-//        return redirect()->route('item.show',[$item->id, $item->slug]);
+        return redirect()->route('item.show',[$item->id, $item->slug]);
     }
 
 

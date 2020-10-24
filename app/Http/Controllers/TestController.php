@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Council\Meeting;
+
 class TestController extends Controller
 {
    public function test()
    {
 
-//       $meeting = Meeting::first();
-//       dd($meeting->items()
-//           ->orderBy('created_at', 'asc')
-//           ->get());
+       $meeting = Meeting::first();
+       dd($meeting->items->pluck('order'));
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {
 //           $query->whereOrganizationId(1);

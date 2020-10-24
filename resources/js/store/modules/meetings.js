@@ -21,7 +21,7 @@ const mutations = {
     },
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
-        state.items = meeting.items;
+        state.items = meeting.items.sort((a, b) => a.position > b.position ? 1: -1);
     }
 };
 const actions = {

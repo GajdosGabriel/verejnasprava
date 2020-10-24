@@ -38,7 +38,7 @@
 
                             <form method="POST" action="{{ route('itemMeeting.update', $item->id) }}">
                                 @csrf @method('PUT')
-                                <label for="meetings">Do schôdze:</label>
+                                <label for="meetings">Zaradiť do programu:</label>
                                 <select name="meeting" id="meetings" required>
                                     <option value="">---Vybrať---</option>
                                     @forelse($meetings as $meeting)

@@ -55,7 +55,7 @@ const actions = {
         axios.put('/api/item/' + item.id + '/update', item)
             .then(response => {
                 commit('SET_ITEM', response.data);
-                dispatch('meetings/fetchMeeting', state.item.pivot.meeting_id, {root:true});
+                // dispatch('meetings/fetchMeeting', state.item.pivot.meeting_id, {root:true});
             });
     },
 
