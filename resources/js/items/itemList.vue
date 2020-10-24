@@ -38,31 +38,6 @@
                             </div>
                         </a>
 
-
-                        <!-- Item Up button-->
-                        <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                           :href="'/item/'+ item.id + '/' +item.slug + '/item/up'"
-                           title="Presunúť položku smerom hore">
-                            <div class="flex">
-                                <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
-                                </svg>
-                                Presunúť hore
-                            </div>
-                        </a>
-
-                        <!-- Item Down button-->
-                        <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                           :href="'/item/'+ item.id + '/' +item.slug + '/item/down'"
-                           title="Presunúť položku smerom dole">
-                            <div class="flex">
-                                <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
-                                </svg>
-                                Presunúť dole
-                            </div>
-                        </a>
-
                         <!-- Item Delete button-->
                         <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                            :href="'/itemMeeting/'+ item.id + '/delete'"
