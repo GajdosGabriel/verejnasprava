@@ -78,8 +78,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('item/meitem/create', 'ItemController@create')->name('create');
         Route::get('{item}/{slug}/show', 'ItemController@show')->name('show');
         Route::get('{item}/{slug}/edit', 'ItemController@edit')->name('edit');
-        Route::get('{item}/{slug}/item/up', 'ItemOrderController@itemUp')->name('up');
-        Route::get('{item}/{slug}/item/down', 'ItemOrderController@itemDown')->name('down');
+        Route::put('position/slug/item/position', 'ItemOrderController@position')->name('position');
         Route::post('store', 'ItemController@store')->name('store');
         Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
         Route::get('{item}/{slug}/item/delete', 'ItemController@delete')->name('delete');

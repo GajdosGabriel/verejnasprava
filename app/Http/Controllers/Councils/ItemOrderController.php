@@ -2,42 +2,26 @@
 
 namespace App\Http\Controllers\Councils;
 
-use App\Models\Council\Item;
 use App\Http\Controllers\Controller;
+use App\Models\Council\Item;
 use Illuminate\Http\Request;
 
 class ItemOrderController extends Controller
 {
-    public function ItemUp(Item $item){
 
-        $itemUp = Item::whereMeetingId($item->meeting_id)->orderBy('order', 'asc')->where('order', '<', $item->order)->first();
+    public function position(Request $request)
+    {
+        $postData = $this->validate($request,
+            [
+                'items' => 'required|array'
+            ]);
 
-        session()->put('itemUp',  $itemUp->order);
-        session()->put('itemDown',  $item->order);
-
-
-        $item->update(['order' =>  session('itemUp')]);
-        $itemUp->update(['order' =>  session('itemDown')]);
-
-
-
-        return back();
+        foreach($postData['items'] as $key => $item){
+           $item = Item::find($item['id']);
+           $item->update([
+               'position' => $key + 1,
+           ]);
+        }
     }
-
-    public function ItemDown(Item $item){
-
-        $itemUp = Item::whereMeetingId($item->meeting_id)->orderBy('order', 'asc')->where('order', '>', $item->order)->first();
-
-        session()->put('itemUp',  $itemUp->order);
-        session()->put('itemDown',  $item->order);
-
-
-        $item->update(['order' =>  session('itemUp')]);
-        $itemUp->update(['order' =>  session('itemDown')]);
-
-
-        return back();
-    }
-
 
 }
