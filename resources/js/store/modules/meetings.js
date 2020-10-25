@@ -2,6 +2,7 @@ const state = {
     meeting:'',
     items:[],
     loadingStatus: false,
+    positionActive: false
 };
 const getters = {
     activeItem: (state) => (id) => {
@@ -25,6 +26,9 @@ const mutations = {
     },
     UPDATE_LIST: function (state, payload) {
         state.items = payload
+    },
+    POSITION_ACTIVE: (state, payload) => {
+        state.positionActive = payload
     }
 };
 const actions = {

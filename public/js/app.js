@@ -87601,7 +87601,8 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   meeting: '',
   items: [],
-  loadingStatus: false
+  loadingStatus: false,
+  positionActive: false
 };
 var getters = {
   activeItem: function activeItem(state) {
@@ -87632,6 +87633,9 @@ var mutations = {
   },
   UPDATE_LIST: function UPDATE_LIST(state, payload) {
     state.items = payload;
+  },
+  POSITION_ACTIVE: function POSITION_ACTIVE(state, payload) {
+    state.positionActive = payload;
   }
 };
 var actions = {

@@ -84,7 +84,7 @@
             </nav-drop-down>
         </div>
 
-        <button class="bg-blue-700 text-white px-2 rounded-lg py-1" v-if="positionSaveButton" @click="savePosition">
+        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg py-1" v-if="positionSaveButton" @click="savePosition">
             Uložiť zmeny
         </button>
 
@@ -124,7 +124,7 @@
         },
         computed: {
             notificationStatus() {
-                return this.meeting.notification == null ? 'Pozvánka pre členov' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
+                return this.meeting.notification == null ? 'Pozvánka členom' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
             },
             ...mapState({
                 meeting: state => state.meetings.meeting,
