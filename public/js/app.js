@@ -3152,32 +3152,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
  // import voteButtons from '../votes/voteButtons';
 
@@ -66476,7 +66450,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.isPublished
-    ? _c("div", { staticClass: "p-2 mb-16" }, [
+    ? _c("div", { staticClass: "p-2" }, [
         _c(
           "div",
           {
@@ -66595,84 +66569,6 @@ var render = function() {
                               })
                             ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                          attrs: {
-                            href:
-                              "/item/" +
-                              _vm.item.id +
-                              "/" +
-                              _vm.item.slug +
-                              "/item/up",
-                            title: "Presunúť položku smerom hore"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "flex" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" }
-                                })
-                              ]
-                            ),
-                            _vm._v(
-                              "\n                            Presunúť hore\n                        "
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                          attrs: {
-                            href:
-                              "/item/" +
-                              _vm.item.id +
-                              "/" +
-                              _vm.item.slug +
-                              "/item/down",
-                            title: "Presunúť položku smerom dole"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "flex" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" }
-                                })
-                              ]
-                            ),
-                            _vm._v(
-                              "\n                            Presunúť dole\n                        "
-                            )
-                          ])
                         ]
                       ),
                       _vm._v(" "),
@@ -67169,7 +67065,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mb-6" },
+    {},
     [
       _c(
         "div",
@@ -67443,7 +67339,7 @@ var render = function() {
             _vm._l(_vm.items, function(item) {
               return _c(
                 "div",
-                { key: item.id, staticClass: "odd:bg-gray-500 mt-4 bg-white" },
+                { key: item.id, staticClass: "odd:bg-gray-500 bg-white" },
                 [_c("item", { attrs: { item: item } })],
                 1
               )
@@ -87676,10 +87572,15 @@ var actions = {
     });
   },
   update: function update(_ref3, item) {
+    var _this = this;
+
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
-      commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', state.item.pivot.meeting_id, {root:true});
+      commit('SET_ITEM', response.data);
+      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
+        root: true
+      });
     });
   }
 };

@@ -1,6 +1,5 @@
 <template>
-    <div class="p-2 mb-16" v-if="isPublished">
-
+    <div class="p-2" v-if="isPublished">
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2">
             <div class="flex justify-between w-full mb-4 px-2">

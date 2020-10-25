@@ -37,7 +37,7 @@ class Item extends Model
 
     public function meetings()
     {
-        return $this->belongsToMany(Meeting::class)->orderBy('position', 'asc');
+        return $this->belongsToMany(Meeting::class);
     }
 
     public function comments() {

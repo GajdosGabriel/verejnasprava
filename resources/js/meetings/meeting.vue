@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-6">
+    <div class="">
 
         <div class="flex justify-between max-w-sm">
             <!--                        <h1 class="page-title">{{ meeting.name }}</h1>-->
@@ -90,7 +90,7 @@
 
         <draggable v-model="items">
             <transition-group>
-                <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">
+                <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 bg-white">
                     <item :item="item"></item>
                 </div>
             </transition-group>
