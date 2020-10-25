@@ -92,6 +92,7 @@
             <transition-group>
                 <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 bg-white">
                     <item :item="item"></item>
+
                 </div>
             </transition-group>
         </draggable>
@@ -137,12 +138,6 @@
                     this.$store.commit('meetings/UPDATE_LIST', value)
                 }
             }
-            // items() {
-            //     if(this.$auth.isAdmin()) {
-            //         return this.$store.getters['meetings/allItem']
-            //     }
-            //    return this.$store.getters['meetings/publishedItem']
-            // }
         },
 
         created() {

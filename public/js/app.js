@@ -3640,6 +3640,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3674,13 +3675,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       set: function set(value) {
         this.$store.commit('meetings/UPDATE_LIST', value);
       }
-    } // items() {
-    //     if(this.$auth.isAdmin()) {
-    //         return this.$store.getters['meetings/allItem']
-    //     }
-    //    return this.$store.getters['meetings/publishedItem']
-    // }
-
+    }
   }),
   created: function created() {
     this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);

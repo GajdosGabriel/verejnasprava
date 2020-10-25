@@ -1,7 +1,7 @@
 const state = {
     meeting:'',
     items:[],
-    loadingStatus: false
+    loadingStatus: false,
 };
 const getters = {
     activeItem: (state) => (id) => {
