@@ -4,9 +4,7 @@ namespace App\Filters;
 
 
 
-use App\Models\Contact;
 use App\Models\Organization;
-use Illuminate\Database\Eloquent\Builder;
 
 class PostFilters extends Filters
 {
@@ -29,14 +27,19 @@ class PostFilters extends Filters
         return $this->builder->where('name', 'like', "%$search%");
     }
 
-
-    public function contact($contactName)
+    public function contact($contactId)
     {
-        $supplier_id = Contact::where('name', $contactName)->first()->id;
-        return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
-            $query->where('contact_id', $supplier_id);
-        });
+        return $this->builder->where('contact_id', 'like', $contactId );
     }
+
+
+//    public function contact($contactName)
+//    {
+//        $supplier_id = Contact::where('name', $contactName)->first()->id;
+//        return $this->builder->whereHas('contact', function (Builder $query) use ($supplier_id) {
+//            $query->where('contact_id', $supplier_id);
+//        });
+//    }
 
     public function organization($organizationName)
     {

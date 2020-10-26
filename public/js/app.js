@@ -3661,7 +3661,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({
     notificationStatus: function notificationStatus() {
-      return this.meeting.notification == null ? 'Pozvánka pre členov' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
+      return this.meeting.notification == null ? 'Pozvánka členom' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
     meeting: function meeting(state) {
@@ -4561,11 +4561,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/pagination */ "./resources/js/modules/pagination.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
-/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -4633,8 +4629,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4645,10 +4639,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       adminPanel: false,
-      search: ''
+      search: '',
+      prefix: 'name'
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     posts: function posts(state) {
       return state.posts.posts;
     },
@@ -4661,12 +4656,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     search: function search(val) {
-      this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?name=' + this.search);
+      this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?' + this.prefix + '=' + this.search);
     }
   },
   methods: {
-    searchByContact: function searchByContact(contact) {
-      this.search = contact;
+    searchByContact: function searchByContact(contactId) {
+      this.prefix = 'contact';
+      this.search = contactId;
     }
   },
   filters: {
@@ -67310,7 +67306,8 @@ var render = function() {
         ? _c(
             "button",
             {
-              staticClass: "bg-blue-700 text-white px-2 rounded-lg py-1",
+              staticClass:
+                "bg-blue-700 text-white text-sm px-2 rounded-lg py-1",
               on: { click: _vm.savePosition }
             },
             [_vm._v("\n        Uložiť zmeny\n    ")]
@@ -68340,7 +68337,7 @@ var render = function() {
                   domProps: { textContent: _vm._s(post.contact.name) },
                   on: {
                     click: function($event) {
-                      return _vm.searchByContact(post.contact.name)
+                      return _vm.searchByContact(post.contact.id)
                     }
                   }
                 }),

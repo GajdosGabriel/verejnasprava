@@ -22,7 +22,7 @@
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('DD. MM. YYYY')"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.name)"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.id)"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
@@ -67,9 +67,7 @@
 </template>
 <script>
     import paginator from '../modules/pagination';
-    import moment from 'moment';
-    import numeral from 'numeral';
-    import { mapState } from 'vuex';
+    import {mapState} from 'vuex';
 
     export default {
         components: { paginator },
@@ -77,7 +75,8 @@
             return {
                 moment: require('moment'),
                 adminPanel: false,
-                search: ''
+                search: '',
+                prefix: 'name'
             }
         },
 
@@ -92,12 +91,13 @@
 
         watch: {
           search: function (val) {
-              this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?name=' + this.search);
+              this.$store.dispatch('posts/fetchPosts', this.url + this.user.active_organization + '?'+ this.prefix +'=' + this.search);
           }
         },
         methods: {
-            searchByContact: function(contact){
-                this.search = contact;
+            searchByContact: function(contactId){
+                this.prefix = 'contact';
+                this.search = contactId;
             }
         },
 
