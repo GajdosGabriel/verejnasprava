@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Council\Meeting;
+use App\Models\Council\Council;
 
 class TestController extends Controller
 {
    public function test()
    {
 
-       $meeting = Meeting::first();
-       dd($meeting->items->pluck('order'));
+       $council = Council::find(1);
+//       dd($council->users);
+
+       foreach ($council->users as $user){
+           print_r($user->first_name);
+//           $user->notify(new RequireItemvote($user, '$item'));
+       }
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {
 //           $query->whereOrganizationId(1);

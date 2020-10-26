@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
-use App\Models\Council\Meeting;
 use App\Notifications\Item\RequireItemvote;
-use App\Notifications\Meeting\NewMeeting;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -53,8 +51,10 @@ class ItemController extends Controller
         $item->update($request->all());
 
         if ($request->has('notification')){
-            foreach ($item->meeting->council->users as $user){
+            foreach ($item->meetings as $meeting){
+                foreach ($meeting->council->users as $user){
                 $user->notify(new RequireItemvote($user, $item));
+                }
             }
         }
         return $item;
