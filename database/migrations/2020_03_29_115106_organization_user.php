@@ -14,7 +14,6 @@ class OrganizationUser extends Migration
     public function up()
     {
         Schema::create('organization_user', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
             $table->integer('organization_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('organization_id')->references('id')->on('organizations');
@@ -22,6 +21,23 @@ class OrganizationUser extends Migration
 
             $table->unique(['user_id', 'organization_id']);
         });
+
+
+        \DB::table('organization_user')->insert([
+
+            [
+                'organization_id' => 1,
+                'user_id' => 1,
+            ],
+            [
+                'organization_id' => 1,
+                'user_id' => 2,
+            ],
+            [
+                'organization_id' => 1,
+                'user_id' => 3,
+            ],
+        ]);
     }
 
     /**

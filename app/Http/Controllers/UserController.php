@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 
 
-use App\Http\Requests;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\User;
 use App\Notifications\User\InviteUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -47,6 +45,7 @@ class UserController extends Controller
 
     public function store(Organization $organization, UserCreateRequest $userRequest) {
 
+
         $user = User::create([
             'first_name' => $userRequest['first_name'],
             'last_name' => $userRequest['last_name'],
@@ -55,7 +54,9 @@ class UserController extends Controller
             'active_organization' => auth()->user()->active_organization
         ]);
 
+        $user->organizations()->attach(auth()->user()->active_organization);
         $this->userRoles($user, $userRequest);
+        $this->sendInvitation($user);
 
         return redirect()->route('user.index', [$user->active_organization, 'slug']);
     }
