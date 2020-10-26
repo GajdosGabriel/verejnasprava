@@ -66441,17 +66441,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.isPublished
-    ? _c("div", { staticClass: "p-2" }, [
+    ? _c("div", {}, [
         _c(
           "div",
           {
-            staticClass:
-              "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4 mr-2"
+            staticClass: "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4"
           },
           [
             _c(
               "div",
-              { staticClass: "flex justify-between w-full mb-4 px-2" },
+              {
+                staticClass:
+                  " border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1"
+              },
               [
                 _c(
                   "a",
@@ -67056,11 +67058,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
     [
       _c(
         "div",
-        { staticClass: "flex justify-between max-w-sm" },
+        {
+          staticClass:
+            "flex justify-between max-w-sm border-b-2 border-gray-400 mb-6"
+        },
         [
           _c("div", {}, [
             _c("span", { staticClass: "text-gray-700" }, [
@@ -67307,7 +67311,7 @@ var render = function() {
             "button",
             {
               staticClass:
-                "bg-blue-700 text-white text-sm px-2 rounded-lg py-1",
+                "bg-blue-700 text-white text-sm px-2 rounded-lg mb-2",
               on: { click: _vm.savePosition }
             },
             [_vm._v("\n        Uložiť zmeny\n    ")]

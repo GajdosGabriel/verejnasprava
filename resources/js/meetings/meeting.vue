@@ -1,7 +1,7 @@
 <template>
-    <div class="">
+    <div>
 
-        <div class="flex justify-between max-w-sm">
+        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-6">
             <!--                        <h1 class="page-title">{{ meeting.name }}</h1>-->
             <div class="">
                 <span class="text-gray-700">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
@@ -84,7 +84,7 @@
             </nav-drop-down>
         </div>
 
-        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg py-1" v-if="positionSaveButton" @click="savePosition">
+        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg mb-2" v-if="positionSaveButton" @click="savePosition">
             Uložiť zmeny
         </button>
 
