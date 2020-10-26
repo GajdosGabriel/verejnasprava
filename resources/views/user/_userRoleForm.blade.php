@@ -51,7 +51,7 @@
                                value="{{ $permission->id }}"
                                @if($permission->users->contains($user->id) ) checked @endif
                         >
-                        <label class="input-label" for="council">{{ $permission->name }}</label>
+                        <label class="input-label" for="council">{{ $permission->title }}</label>
                     </div>
                 </div>
             @empty
