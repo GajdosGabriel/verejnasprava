@@ -1,9 +1,11 @@
 module.exports = {
-    // purge: [
-    //     './src/**/*.html',
-    //     './src/**/*.vue',
-    //     './src/**/*.jsx',
-    // ],
+    purge: [
+        "./pages/**/*.vue",
+        "./components/**/*.vue",
+        "./plugins/**/*.vue",
+        "./static/**/*.vue",
+        "./store/**/*.vue"
+    ],
 
     future: {
         removeDeprecatedGapUtilities: true,
