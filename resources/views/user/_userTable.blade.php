@@ -1,28 +1,27 @@
 <table class="table-auto w-full">
     <thead class="bg-gray-300">
-        <tr>
-            <th class="px-4 py-2">Meno</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Člen</th>
-            @role('admin')
-            <th class="px-4 py-2">Status</th>
-            <th class="px-4 py-2">Role</th>
-            <th class="px-4 py-2">Panel</th>
-            @endrole
-        </tr>
+    <tr>
+        <th class="px-4 py-2">Meno</th>
+        <th class="px-4 py-2">Člen</th>
+        @role('admin')
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2">Status</th>
+        <th class="px-4 py-2">Role</th>
+        <th class="px-4 py-2">Panel</th>
+        @endrole
+    </tr>
     </thead>
     <tbody>
     @forelse($users as $user)
         <tr>
             <td class="border px-4 py-2">{{ $user->full_name() }}</td>
-
-            <td class="border px-4 py-2">{{ $user->email }}</td>
             <td class="border px-4 py-2">
                 @foreach($user->councils as $role)
                     <span class="badge badge-secondary">{{ $role->name }}</span>
                 @endforeach
             </td>
             @role('admin')
+            <td class="border px-4 py-2">{{ $user->email }}</td>
             <td class="border px-4 py-2">
                 @if($user->email_verified_at)
                     <span class="badge badge-primary">Aktívny</span>
