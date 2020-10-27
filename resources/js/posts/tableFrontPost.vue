@@ -27,7 +27,7 @@
                 <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.organization.name" @click="pushOrganization(post)"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
                 <td class="border px-4 py-2" v-text="post.category.name"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.contact.name" @click="searchByContact(post.contact.name)"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.contact.name"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
@@ -59,9 +59,7 @@
 </template>
 <script>
     import paginator from '../modules/pagination';
-    import moment from 'moment';
-    import numeral from 'numeral';
-    import { mapState } from 'vuex';
+    import {mapState} from 'vuex';
 
     export default {
         components: { paginator },
