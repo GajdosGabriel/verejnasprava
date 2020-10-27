@@ -23,7 +23,7 @@
 
                 @forelse($items as $item)
                     <li class="flex justify-between my-2 border-b-2 hover:border-gray-500">
-                        <a href="{{ route('item.show', [$item->id, $item->slug]) }}">
+                        <a href="{{ route('item.show', $item->id) }}">
                             {{ $item->id }}/{{ $item->name }}
                         </a>
 

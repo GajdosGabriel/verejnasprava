@@ -34,7 +34,7 @@ class ItemController extends Controller
     public function update(Request $request, Item $item) {
         $item->update(array_merge($request->except('filename', 'fileDelete'), ['user_id' => auth()->user()->id]));
         $item->saveFile($request);
-        return redirect()->route('item.show',[$item->id, $item->slug]);
+        return redirect()->route('item.show',$item->id);
     }
 
     public function store(Request $request) {
