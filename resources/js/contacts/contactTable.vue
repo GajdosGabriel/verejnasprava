@@ -2,7 +2,7 @@
     <div>
 
         <div class="flex justify-between py-5">
-            <h1 class="page-title">Zoznam dodávateľov</h1>
+            <h1 class="page-title">Kontakty</h1>
 
             <button @click="newContactToggle" class="btn btn-primary">
                 Nový kontakt

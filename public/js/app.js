@@ -67809,7 +67809,7 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "flex justify-between py-5" }, [
-        _c("h1", { staticClass: "page-title" }, [_vm._v("Zoznam dodávateľov")]),
+        _c("h1", { staticClass: "page-title" }, [_vm._v("Kontakty")]),
         _vm._v(" "),
         _c(
           "button",

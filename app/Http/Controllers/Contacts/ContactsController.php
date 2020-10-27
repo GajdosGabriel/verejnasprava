@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Contacts;
 
 
 
+use App\Http\Requests\ContactCreateRequest;
 use App\Http\Requests\OrganizationUpdateRequest;
 use App\Models\Contact;
 use App\Http\Requests\OrganizationFormRequest;
@@ -46,8 +47,8 @@ class ContactsController extends Controller
     }
 
 
-    public function store(Organization $organization, OrganizationFormRequest $request) {
-        $organization->contacts()->create($request->all());
+    public function store(Organization $organization, ContactCreateRequest $contactRequest) {
+        $organization->contacts()->create($contactRequest->all());
 //        flash()->success('Dodávateľ bol vytvorený');
 //        return redirect()->route('contact.index');
     }

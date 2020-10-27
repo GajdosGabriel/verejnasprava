@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrganizationUpdateRequest extends OrganizationFormRequest
+class ContactCreateRequest extends OrganizationFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class OrganizationUpdateRequest extends OrganizationFormRequest
      */
     public function authorize()
     {
-        return \Auth::user()->active_organization == $this->organization->id;
+        return \Auth::check();
     }
 
     /**
@@ -24,7 +24,7 @@ class OrganizationUpdateRequest extends OrganizationFormRequest
     public function rules()
     {
         return [
-            'ico' => 'required|max:8|unique:organizations,ico,'  . $this->organization->id,
+            'ico' => 'max:8' ,
         ];
     }
 }
