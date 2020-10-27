@@ -39,7 +39,7 @@ class ContactsController extends Controller
 
 
 
-    public function update(Contact $contact, Request $request) {
+    public function update(Contact $contact, ContactCreateRequest $request) {
 //        $this->authorize('update', $company);
         $contact->update($request->all());
 //        flash()->success('Dodávateľ aktualizovaný!');
