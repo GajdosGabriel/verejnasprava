@@ -77,7 +77,7 @@
         },
         methods: {
             storeVote: function (val) {
-                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.$auth.user.id, vote:val, meetingId: this.item.meeting_id }, {root:true})
+                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.$auth.user.id, vote:val}, {root:true})
             }
         }
     }

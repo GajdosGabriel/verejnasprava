@@ -45,7 +45,7 @@ const actions = {
     storeVote({commit, dispatch}, item) {
         axios.put('/api/vote/' + item.id, item)
             .then(response => {
-                dispatch('meetings/fetchMeeting', item.meetingId, {root:true});
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true});
                 commit('SET_ITEM', response.data );
             });
 
@@ -55,7 +55,7 @@ const actions = {
         axios.put('/api/item/' + item.id + '/update', item)
             .then(response => {
                 commit('SET_ITEM', response.data);
-                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true});
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 

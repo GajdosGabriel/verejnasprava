@@ -1,4 +1,4 @@
-<table class="table-auto">
+<table class="table-auto w-full">
     <thead class="bg-gray-300">
         <tr>
             <th class="px-4 py-2">Meno</th>

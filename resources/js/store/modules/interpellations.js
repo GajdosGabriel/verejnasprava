@@ -13,23 +13,23 @@ const mutations = {
 };
 const actions = {
 
-    store({commit, dispatch}, payload) {
-        if (payload.vote_status){
+    store({commit, dispatch}, item) {
+        if (item.vote_status){
             alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
             return
         }
-        axios.post('/api/interpellation/' + payload.id + '/store', {user: payload.user.id } )
+        axios.post('/api/interpellation/' + item.id + '/store', {user: item.user.id } )
             .then(response => {
-                dispatch('items/getItem', payload.id, {root:true});
-                dispatch('meetings/fetchMeeting', payload.meeting_id, {root:true})
+                dispatch('items/getItem', item.id, {root:true});
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },
 
-    delete({commit, dispatch}, payload) {
-        axios.delete('/api/interpellation/' + payload.id)
+    delete({commit, dispatch}, id) {
+        axios.delete('/api/interpellation/' + id)
             .then(response => {
-                dispatch('items/getItem', payload.id, {root:true});
-                dispatch('meetings/fetchMeeting', payload.meeting, {root:true})
+                dispatch('items/getItem', id, {root:true});
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },
 

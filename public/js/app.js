@@ -3038,10 +3038,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('interpellations/store', this.item);
     },
     deleteItem: function deleteItem(id) {
-      this.$store.dispatch('interpellations/delete', {
-        id: id,
-        meeting: this.item.meeting_id
-      });
+      this.$store.dispatch('interpellations/delete', id);
     }
   }
 });
@@ -4684,11 +4681,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/pagination */ "./resources/js/modules/pagination.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
-/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -4748,8 +4741,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4763,7 +4754,7 @@ __webpack_require__.r(__webpack_exports__);
       search: ''
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     loadingStatus: function loadingStatus(state) {
       return state.posts.loadingStatus;
     },
@@ -5092,8 +5083,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('items/storeVote', {
         id: this.item.id,
         userId: this.$auth.user.id,
-        vote: val,
-        meetingId: this.item.meeting_id
+        vote: val
       }, {
         root: true
       });
@@ -91164,34 +91154,38 @@ var mutations = {
   }
 };
 var actions = {
-  store: function store(_ref, payload) {
+  store: function store(_ref, item) {
+    var _this = this;
+
     var commit = _ref.commit,
         dispatch = _ref.dispatch;
 
-    if (payload.vote_status) {
+    if (item.vote_status) {
       alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
       return;
     }
 
-    axios.post('/api/interpellation/' + payload.id + '/store', {
-      user: payload.user.id
+    axios.post('/api/interpellation/' + item.id + '/store', {
+      user: item.user.id
     }).then(function (response) {
-      dispatch('items/getItem', payload.id, {
+      dispatch('items/getItem', item.id, {
         root: true
       });
-      dispatch('meetings/fetchMeeting', payload.meeting_id, {
+      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  "delete": function _delete(_ref2, payload) {
+  "delete": function _delete(_ref2, id) {
+    var _this2 = this;
+
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    axios["delete"]('/api/interpellation/' + payload.id).then(function (response) {
-      dispatch('items/getItem', payload.id, {
+    axios["delete"]('/api/interpellation/' + id).then(function (response) {
+      dispatch('items/getItem', id, {
         root: true
       });
-      dispatch('meetings/fetchMeeting', payload.meeting, {
+      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
       });
     });
@@ -91251,23 +91245,25 @@ var actions = {
     });
   },
   storeVote: function storeVote(_ref2, item) {
+    var _this = this;
+
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
     axios.put('/api/vote/' + item.id, item).then(function (response) {
-      dispatch('meetings/fetchMeeting', item.meetingId, {
+      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
         root: true
       });
       commit('SET_ITEM', response.data);
     });
   },
   update: function update(_ref3, item) {
-    var _this = this;
+    var _this2 = this;
 
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
       commit('SET_ITEM', response.data);
-      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
+      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
       });
     });

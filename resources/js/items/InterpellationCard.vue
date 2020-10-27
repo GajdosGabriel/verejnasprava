@@ -63,7 +63,7 @@
             },
 
             deleteItem: function (id) {
-                this.$store.dispatch('interpellations/delete', {id: id, meeting: this.item.meeting_id});
+                this.$store.dispatch('interpellations/delete', id);
             }
         }
     }

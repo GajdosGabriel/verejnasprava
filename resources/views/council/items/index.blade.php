@@ -15,7 +15,7 @@
 
             <div class="flex justify-between items-center pb-8">
 
-                <h1 class="page-title">Moje návrhy</h1>
+                <h1 class="page-title">Návrhy</h1>
                 <a class="btn btn-primary"
                    href="{{ route('item.create') }}">Nový návrh</a>
             </div>
