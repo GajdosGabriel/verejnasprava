@@ -1,7 +1,7 @@
 <template>
     <div @click="update(item)"
          v-if="$auth.can('council delete')"
-         class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer">
+         class="p-1 text-center text-sm rounded-md whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer">
 
         <span v-if="item.published">Publikované</span>
 

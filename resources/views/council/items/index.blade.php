@@ -22,9 +22,9 @@
             <ul>
 
                 @forelse($items as $item)
-                    <li class="flex justify-between my-2 border-b-2 hover:border-gray-500">
+                    <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
                         <a href="{{ route('item.show', $item->id) }}">
-                            {{ $item->id }}/{{ $item->name }}
+                            {{ $item->id }}. {{ $item->name }}
                         </a>
 
 
@@ -46,7 +46,7 @@
                                     @empty
                                     @endforelse
                                 </select>
-                                <button>Uložiť</button>
+                                <button class="px-2 hover:bg-gray-300 rounded-md">Uložiť</button>
                             </form>
                         @endforelse
                     </li>

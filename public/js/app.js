@@ -70443,8 +70443,11 @@ var render = function() {
                         on: { click: _vm.openInterpellation }
                       },
                       [
-                        _vm._v("\n                            Rozprava "),
-                        _c("span", { staticClass: "text-gray-500" })
+                        _c(
+                          "span",
+                          { staticClass: "text-gray-700 text-sm rounded-md" },
+                          [_vm._v("Rozprava")]
+                        )
                       ]
                     )
                   ],
@@ -70734,7 +70737,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+            "p-1 text-center text-sm rounded-md whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
           on: {
             click: function($event) {
               return _vm.update(_vm.item)
