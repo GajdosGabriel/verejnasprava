@@ -7,7 +7,7 @@
                     <span class="font-semibold text-gray-700">{{ item.name }}</span>
                 </a>
 
-                <nav-drop-down>
+                <nav-drop-down v-if="$auth.can('council delete')">
                     <slot>
                         <!-- Item Edit button-->
                         <div class="py-1">
@@ -67,7 +67,7 @@
 
 
                 <div class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer"
-                     v-if="item.published && $auth.isAdmin()"
+                     v-if="item.published && $auth.can('council delete')"
                      :class="item.vote_status == 1 ? 'bg-blue-700 text-gray-200' : 'text-gray-900'"
                      @click="voteStatus"
                      v-text="item.vote_status == 0 ? 'Zapnúť hlasovanie' : 'Vypnúť hlasovanie'"

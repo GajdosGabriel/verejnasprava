@@ -23,7 +23,7 @@
                     </div>
 
 
-                    <nav-drop-down>
+                    <nav-drop-down v-if="$auth.can('council delete')">
                         <slot>
                             <!-- Item Edit button-->
                             <div class="py-1">

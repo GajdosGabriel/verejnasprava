@@ -1,7 +1,7 @@
 <template>
 
     <div class="text-center">
-        <button class="text-xs btn mb-3 whitespace-no-wrap" :class="buttonClass" @click="voteStatus" v-text=" buttonTitle">
+        <button v-if="$auth.can('council delete')" class="text-xs btn mb-3 whitespace-no-wrap" :class="buttonClass" @click="voteStatus" v-text=" buttonTitle">
             Zapnúť hlasovanie
         </button>
     </div>
