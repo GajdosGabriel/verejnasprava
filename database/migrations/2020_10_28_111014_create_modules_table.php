@@ -45,6 +45,11 @@ class CreateModulesTable extends Migration
                 'id' => 5,
                 'name' => 'support',
                 'type' => '',
+            ],
+            [
+                'id' => 6,
+                'name' => 'council',
+                'type' => '',
             ]
 
         ]);

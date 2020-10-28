@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Council\Council;
+use App\Models\Council\Meeting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,6 +44,11 @@ class Organization extends Model
     public function contacts()
     {
         return $this->hasMany(Contact::class)->orderBy('name', 'asc');
+    }
+
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class)->withTimestamps();
     }
 
 
