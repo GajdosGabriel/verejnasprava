@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function() {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
-        Route::get('{organization}/{slug}/index', 'UserController@index')->name('index');
+        Route::get('dasdion/slug/index', 'UserController@index')->name('index');
         Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
         Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
     });
 
-    Route::name('zast.')->namespace('Councils')->group(function() {
+    Route::name('council.')->namespace('Councils')->group(function() {
 
         Route::get('zastupitelstva', 'CouncilController@index')->name('index');
         Route::get('zastupitelstvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
@@ -125,7 +125,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-    Route::name('question.')->group(function() {
+    Route::name('support.')->group(function() {
         Route::get('question/index',  'QuestionsController@index')->name('index');
         Route::post('question/store',  'QuestionsController@store')->name('store');
     });

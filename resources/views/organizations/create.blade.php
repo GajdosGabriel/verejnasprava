@@ -2,9 +2,9 @@
 
 @section('page-title', 'Vytvoriť organizáciu')
 
-@section('navigation')
-    <x-navigation.navigationUser/> @endsection
-
+{{--@section('navigation')--}}
+{{--    <x-navigation.navigationUser/> @endsection--}}
+@section('navigation') @include('organizations.navigation') @endsection
 @section('content')
     <div class="container mx-auto p-6 min-h-screen">
 

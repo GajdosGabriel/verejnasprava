@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('navigation') <x-navigation.navigationOrganization /> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 
 @section('content')
@@ -15,7 +15,7 @@
 
                     <div class="max-w-xl">
 
-                        <form  action="{{ route('question.store', [  auth()->user()->id,  auth()->user()->slug ]) }}" method="POST">
+                        <form  action="{{ route('support.store', [  auth()->user()->id,  auth()->user()->slug ]) }}" method="POST">
                             @csrf
 
                             <div class="flex justify-between my-4">

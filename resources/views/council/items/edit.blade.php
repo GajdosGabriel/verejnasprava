@@ -2,8 +2,7 @@
 
 @section('page-title', 'Upraviť návrh')
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 

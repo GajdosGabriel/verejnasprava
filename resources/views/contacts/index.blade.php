@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam kontaktov')
 
-@section('navigation') <x-navigation.navigationOrganization /> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 {{--@section('navigation')--}}
 {{--    @include('organizations.navigation')--}}
 {{--@endsection--}}

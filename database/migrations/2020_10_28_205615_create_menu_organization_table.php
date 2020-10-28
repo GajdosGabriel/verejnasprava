@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModuleOrganizationTable extends Migration
+class CreateMenuOrganizationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateModuleOrganizationTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_organization', function (Blueprint $table) {
+        Schema::create('menu_organization', function (Blueprint $table) {
             $table->integer('organization_id')->unsigned()->index();
-            $table->integer('module_id')->unsigned()->index();
+            $table->integer('menu_id')->unsigned()->index();
 
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('menu_id')->references('id')->on('menus');
             $table->foreign('organization_id')->references('id')->on('organizations');
-            $table->unique(['module_id', 'organization_id']);
+            $table->unique(['menu_id', 'organization_id']);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateModuleOrganizationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_organization');
+        Schema::dropIfExists('menu_organization');
     }
 }

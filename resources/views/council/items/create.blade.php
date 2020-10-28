@@ -2,12 +2,8 @@
 
 @section('page-title', 'Vytvoriť návrh')
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
-{{--@section('navigation')--}}
-{{--    @include('council.items.navigation')--}}
-{{--@endsection--}}
 
 @section('content')
 

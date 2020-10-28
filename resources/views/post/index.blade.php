@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam dokumentov')
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
-
+{{--@section('navigation')--}}
+{{--    <x-navigation.navigationOrganization/> @endsection--}}
+@section('navigation') @include('organizations.navigation') @endsection
 @section('content')
 
     <div class="container mx-auto p-6 min-h-screen">

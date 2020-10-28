@@ -29,14 +29,14 @@
             <div class="">
 
                 {{-- Header Menu Horizontal --}}
-                @forelse($organization->modules as $module)
-                    @continue($module->type == 'vertical')
+                @forelse($organization->menus as $menu)
+                    @continue($menu->type == 'vertical')
                     <a :class="isOpen ? 'block' : 'hidden'"
                        class="text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
-                       @if(\Route::currentRouteName() == $module['route'])
+                       @if(\Route::currentRouteName() == $menu['route'])
                         class="font-semibold text-white underline"
                         @endif
-                       href="{{$module['route']}}">{{$module['name']}}</a>
+                       href="{{ route($menu['route']) }}">{{$menu['name']}}</a>
                 @empty
                 @endforelse
 
@@ -58,11 +58,11 @@
                     {{-- Dropdown component  --}}
                     <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2" style="z-index: 99">
                         {{-- Header Menu Vertical --}}
-                        @forelse($organization->modules as $module)
-                            @continue($module->type == 'horizontal')
+                        @forelse($organization->menus as $menu)
+                            @continue($menu->type == 'horizontal')
                             <li>
                                 <a class="rounded bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left"
-                                   href="{{$module['route']}}">{{$module['name']}}</a>
+                                   href="{{ route($menu['route']) }}">{{$menu['name']}}</a>
                             </li>
                         @empty
                         @endforelse

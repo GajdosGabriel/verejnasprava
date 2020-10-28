@@ -21,8 +21,8 @@
 
             @role('super-admin')
             <li class="nav-item"><a class="nav-link" href="{{ route('order.index', [$object->id, $object->slug]) }}">Objednávky</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('question.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{  route('zast.index', [$object->id, $object->slug ]) }}">Zastupiteľstva</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('support.index', [auth()->user()->id, auth()->user()->slug ]) }}">Návody</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{  route('council.index', [$object->id, $object->slug ]) }}">Zastupiteľstva</a></li>
             @endrole
 
             <li class="nav-item dropdown">

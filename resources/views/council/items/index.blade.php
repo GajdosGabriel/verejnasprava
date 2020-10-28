@@ -2,8 +2,7 @@
 @section('page-title', 'Program zasadnutia')
 
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 {{--@section('navigation') @include('council.items.navigation') @endsection--}}
 

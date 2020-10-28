@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Module extends Model
+class Menu extends Model
 {
     protected $guarded = [];
 
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class)->withTimestamps();
+        return $this->belongsToMany(Organization::class);
     }
 }

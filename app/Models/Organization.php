@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Council\Council;
-use App\Models\Council\Meeting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +13,7 @@ class Organization extends Model
 
     protected $guarded = [];
 
-    protected $with = ['contacts', 'modules'];
+    protected $with = ['contacts'];
 
     protected $withCount = [
         'orders',
@@ -46,9 +45,9 @@ class Organization extends Model
         return $this->hasMany(Contact::class)->orderBy('name', 'asc');
     }
 
-    public function modules()
+    public function menus()
     {
-        return $this->belongsToMany(Module::class)->withTimestamps();
+        return $this->belongsToMany(Menu::class);
     }
 
 

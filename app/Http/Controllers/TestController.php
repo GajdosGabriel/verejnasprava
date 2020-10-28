@@ -11,10 +11,10 @@ class TestController extends Controller
    {
 
        $orgs = Organization::get();
-       dd($orgs);
+//       dd($orgs);
 
-       foreach ($orgs->modules as $org){
-//           $org->modules()->attach([1,2,3,7]);
+       foreach($orgs as $org){
+           $org->menus()->attach([1,2,7]);
 //           print_r(isset($org->name));
        }
 

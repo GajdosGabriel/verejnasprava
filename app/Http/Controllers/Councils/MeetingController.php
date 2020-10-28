@@ -41,7 +41,7 @@ class MeetingController extends Controller
 
     public function delete(Meeting $meeting) {
         $meeting->delete();
-        return redirect()->route('zast.index');
+        return redirect()->route('council.index');
     }
 
     public function published(Meeting $meeting) {

@@ -2,8 +2,7 @@
 
 @section('page-title', 'Nastavenia')
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 
 @section('content')
@@ -54,7 +53,7 @@
 
                     </div>
                     <div v-if="show">
-                        <form  method="POST" action="{{ route('zast.store', [$organization->id, $organization->slug]) }}">
+                        <form  method="POST" action="{{ route('council.store', [$organization->id, $organization->slug]) }}">
                             @csrf @method('POST')
                             @include('modul.errors')
                             @include('council._form')

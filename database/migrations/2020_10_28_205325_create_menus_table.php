@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModulesTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 25);
             $table->string('route', 15);
@@ -21,7 +21,7 @@ class CreateModulesTable extends Migration
             $table->timestamps();
         });
 
-        \DB::table('modules')->insert([
+        \DB::table('menus')->insert([
             [
                 'id' => 1,
                 'name' => 'Zverejňovanie',
@@ -95,6 +95,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('menus');
     }
 }

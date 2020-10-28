@@ -20,9 +20,9 @@ class UserController extends Controller
 
     }
 
-    public function index(Organization $organization, $slug) {
-        $users = $organization->users;
-        return view('user.index', compact(['users', 'organization']));
+    public function index() {
+        $users =  Organization::whereId(auth()->user()->active_organization)->first()->users;;
+        return view('user.index', compact('users'));
     }
 
 

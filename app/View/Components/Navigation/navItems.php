@@ -48,8 +48,8 @@ class navItems
         if(auth()->user()->hasRole('super-admin'))
         return [
             'title' => 'Zastupiteľstva',
-            'url' => route('zast.index'),
-            'active' => $this->isActive('zast.index')
+            'url' => route('council.index'),
+            'active' => $this->isActive('council.index')
         ];
     }
 
@@ -77,8 +77,8 @@ class navItems
     {
         return [
             'title' => 'Návody',
-            'url' => route('question.index'),
-            'active' => $this->isActive('question.index')
+            'url' => route('support.index'),
+            'active' => $this->isActive('support.index')
         ];
     }
 

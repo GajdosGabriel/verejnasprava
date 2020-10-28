@@ -23,7 +23,7 @@ class CouncilController extends Controller
 
     public function store(Request $request, Organization $organization) {
         $organization->councils()->create(array_merge($request->all()));
-        return redirect()->route('zast.index');
+        return redirect()->route('council.index');
     }
 
 
