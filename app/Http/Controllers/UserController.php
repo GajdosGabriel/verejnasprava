@@ -46,10 +46,12 @@ class UserController extends Controller
     public function store(Organization $organization, UserCreateRequest $userRequest) {
 
 
+
         $user = User::create([
             'first_name' => $userRequest['first_name'],
             'last_name' => $userRequest['last_name'],
             'email' => $userRequest['email'],
+            'employment' => $userRequest['employment'],
             'password' => Hash::make('randompassword'),
             'active_organization' => auth()->user()->active_organization
         ]);

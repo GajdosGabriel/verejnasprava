@@ -14,7 +14,10 @@
     <tbody>
     @forelse($users as $user)
         <tr>
-            <td class="border px-4 py-2">{{ $user->full_name() }}</td>
+            <td class="border px-4 py-2 flex justify-between">
+                <strong>{{ $user->full_name() }}</strong>
+                <span class="text-gray-600">{{ $user->employment }}</span>
+            </td>
             <td class="border px-4 py-2">
                 @foreach($user->councils as $role)
                     <span class="badge badge-secondary">{{ $role->name }}</span>

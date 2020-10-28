@@ -3,8 +3,9 @@
         <div class="md:w-3/4 xs:w-full">
             <div class="">
 
-                <h1 class="text-lg page-title">Rokovací bod: {{ item.name }} zastupiteľstvo</h1>
+                <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }} zastupiteľstvo</h1>
 
+               <span class="text-sm text-gray-500">Predkladá: {{ item.user.first_name }} {{ item.user.last_name }}, {{ item.user.employment }}</span>
                 <!--        Badge line-->
                 <div class="flex justify-between mt-3 mb-5">
                     <div class="flex flex-wrap items-center space-x-3">

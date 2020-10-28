@@ -46,7 +46,22 @@
                                     </span>
                                 @enderror
                             </div>
+                    </div>
+
+                    {{-- Form employment --}}
+                    <div class="form-group">
+                        <label for="employment" class="input-label">Funkcia</label>
+
+                        <div class="col-md-8">
+                            <input id="employment" type="text" class="input-control @error('employment') is-invalid @enderror" name="employment" value="{{ old('employment') ?? $user->employment }}" autocomplete="employment">
+
+                            @error('employment')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
                 </div>
             </div>

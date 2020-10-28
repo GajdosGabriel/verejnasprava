@@ -3375,6 +3375,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -70372,7 +70373,18 @@ var render = function() {
           [
             _c("h1", { staticClass: "text-lg page-title" }, [
               _vm._v(
-                "Rokovací bod: " + _vm._s(_vm.item.name) + " zastupiteľstvo"
+                "Návrh uznesenia: " + _vm._s(_vm.item.name) + " zastupiteľstvo"
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-sm text-gray-500" }, [
+              _vm._v(
+                "Predkladá: " +
+                  _vm._s(_vm.item.user.first_name) +
+                  " " +
+                  _vm._s(_vm.item.user.last_name) +
+                  ", " +
+                  _vm._s(_vm.item.user.employment)
               )
             ]),
             _vm._v(" "),
