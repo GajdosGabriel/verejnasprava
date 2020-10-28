@@ -3,7 +3,7 @@
 
         <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4">
             <div class=" border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1">
-                <a :href="'/item/' + item.id + '/' + item.slug + '/show'">
+                <a :href="'/item/' + item.id + '/show'">
                     <span class="font-semibold text-gray-700">{{ item.name }}</span>
                 </a>
 

@@ -3375,42 +3375,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -70172,20 +70136,11 @@ var render = function() {
                   " border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1"
               },
               [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "/item/" + _vm.item.id + "/" + _vm.item.slug + "/show"
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "font-semibold text-gray-700" }, [
-                      _vm._v(_vm._s(_vm.item.name))
-                    ])
-                  ]
-                ),
+                _c("a", { attrs: { href: "/item/" + _vm.item.id + "/show" } }, [
+                  _c("span", { staticClass: "font-semibold text-gray-700" }, [
+                    _vm._v(_vm._s(_vm.item.name))
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm.$auth.can("council delete")
                   ? _c(
@@ -70429,9 +70384,16 @@ var render = function() {
                   "div",
                   { staticClass: "flex flex-wrap items-center space-x-3" },
                   [
-                    _c("div", { staticClass: "badge badge-primary" }, [
-                      _vm._v("Hlasovanie verejné")
-                    ]),
+                    _c("div", {
+                      staticClass: "badge badge-primary",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.item.vote_type == 0
+                            ? "Hlasovanie verejné"
+                            : "Hlasovanie tajné"
+                        )
+                      }
+                    }),
                     _vm._v(" "),
                     _c("published-button", { attrs: { item: _vm.item } }),
                     _vm._v(" "),
@@ -70491,7 +70453,7 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(
-                                    "\n                                        Upraviť položku\n                                    "
+                                    "\n                                    Upraviť položku\n                                "
                                   )
                                 ])
                               ]
@@ -70583,7 +70545,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                                    Zmazať\n                                "
+                                  "\n                                Zmazať\n                            "
                                 )
                               ])
                             ]
@@ -70637,9 +70599,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                          " +
+                          "\n                        " +
                             _vm._s(index + 1) +
-                            ". Príloha\n                        "
+                            ". Príloha\n                    "
                         )
                       ]
                     )
@@ -70677,27 +70639,33 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n\n                        " +
+                      "\n                    " +
                         _vm._s(vote.user.first_name) +
-                        "\n                        "
+                        "\n                    "
                     ),
-                    vote.vote == 1
-                      ? _c("span", { staticClass: "font-semibold" }, [
-                          _vm._v("Áno")
+                    _vm.item.vote_type == 0
+                      ? _c("div", [
+                          vote.vote == 1
+                            ? _c("span", { staticClass: "font-semibold" }, [
+                                _vm._v("Áno")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          vote.vote == 0
+                            ? _c("span", { staticClass: "font-semibold" }, [
+                                _vm._v("Nie")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          vote.vote == 2
+                            ? _c("span", { staticClass: "font-semibold" }, [
+                                _vm._v("Zdržal")
+                              ])
+                            : _vm._e()
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    vote.vote == 0
-                      ? _c("span", { staticClass: "font-semibold" }, [
-                          _vm._v("Nie")
+                      : _c("span", { staticClass: "font-semibold" }, [
+                          _vm._v("Hlasoval")
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    vote.vote == 2
-                      ? _c("span", { staticClass: "font-semibold" }, [
-                          _vm._v("Zdržal")
-                        ])
-                      : _vm._e()
                   ]
                 )
               }),

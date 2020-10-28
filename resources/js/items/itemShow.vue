@@ -9,7 +9,8 @@
                 <div class="flex justify-between mt-3 mb-5">
                     <div class="flex flex-wrap items-center space-x-3">
 
-                        <div class="badge badge-primary">Hlasovanie verejné</div>
+                        <div v-text="item.vote_type == 0 ? 'Hlasovanie verejné' :'Hlasovanie tajné' " class="badge badge-primary"></div>
+
                         <published-button :item="item"></published-button>
 
                         <div
@@ -17,7 +18,7 @@
                             @click="openInterpellation"
                         >
                             <span class="text-gray-700 text-sm rounded-md">Rozprava</span>
-<!--                            Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>-->
+                            <!--                            Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>-->
                         </div>
 
                     </div>
@@ -46,7 +47,8 @@
                                href="#"
                                title="Notifikácia pre voliteľov">
                                 <div class="flex" @click="saveNotification">
-                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
                                         <path
                                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
                                     </svg>
@@ -60,7 +62,8 @@
                                :href="'/item/'+ item.id + '/' +item.slug + '/item/delete'"
                                title="Zmazať položku">
                                 <div class="flex">
-                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
                                         <path
                                             d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
                                     </svg>
@@ -77,7 +80,7 @@
                 <!--  Votes Buttons-->
                 <vote-form-button :item="item"></vote-form-button>
 
-                <!--        Body text-->
+                <!--  Body text-->
                 <div class="py-3">
                     <p v-html="item.description"></p>
                     <!--  File-->
@@ -85,7 +88,7 @@
                     <div v-for="(file, index) in item.files" :key="file.id">
                         <a class="mr-2 hover:text-blue-500 " target="_blank" :title="file.org_name"
                            :href="'/pdf/'+ file.id + '/' + file.filename +'/download/pdf'">
-                          {{ index +1 }}. Príloha
+                            {{ index +1 }}. Príloha
                         </a>
                     </div>
                 </div>
@@ -99,23 +102,23 @@
 
             <vote-start-button :item="item"></vote-start-button>
 
-<!--            &lt;!&ndash;Vote results Variant I.&ndash;&gt;-->
-<!--            <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">-->
-<!--                <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>-->
-<!--&lt;!&ndash;                    <span>{{ item.votes.length }}</span>&ndash;&gt;-->
-<!--                </li>-->
-<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>-->
-<!--                    <span>{{ resultYes }}</span>-->
-<!--                </li>-->
+            <!--            &lt;!&ndash;Vote results Variant I.&ndash;&gt;-->
+            <!--            <ul class="mb-10 border-2 border-gray-500 rounded-md shadow-md w-full">-->
+            <!--                <li class="flex justify-between px-3 font-semibold text-gray-200 bg-gray-800 border-b-2"><span>Hlasovalo:</span>-->
+            <!--&lt;!&ndash;                    <span>{{ item.votes.length }}</span>&ndash;&gt;-->
+            <!--                </li>-->
+            <!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Za:</span>-->
+            <!--                    <span>{{ resultYes }}</span>-->
+            <!--                </li>-->
 
-<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Proti:</span>-->
-<!--                    <span>{{ resultNo }}</span>-->
-<!--                </li>-->
+            <!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Proti:</span>-->
+            <!--                    <span>{{ resultNo }}</span>-->
+            <!--                </li>-->
 
-<!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Zdržal:</span>-->
-<!--                    <span>{{ resultDisition }}</span>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <!--                <li class="flex justify-between px-3 font-semibold border-b-2 border-dotted"><span>Zdržal:</span>-->
+            <!--                    <span>{{ resultDisition }}</span>-->
+            <!--                </li>-->
+            <!--            </ul>-->
 
             <!-- Výsledky hlasovania-->
             <div class="">
@@ -123,53 +126,14 @@
                 <ul class="">
 
                     <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
-                        <!--  Hlas-->
-                        <!--                        <span v-if="item.vote_type == 1" class="font-semibold">Za</span>-->
-
                         {{ vote.user.first_name }}
-                        <span v-if="vote.vote == 1" class="font-semibold">Áno</span>
-                        <span v-if="vote.vote == 0" class="font-semibold">Nie</span>
-                        <span v-if="vote.vote == 2" class="font-semibold">Zdržal</span>
-
+                        <div v-if="item.vote_type == 0">
+                            <span v-if="vote.vote == 1" class="font-semibold">Áno</span>
+                            <span v-if="vote.vote == 0" class="font-semibold">Nie</span>
+                            <span v-if="vote.vote == 2" class="font-semibold">Zdržal</span>
+                        </div>
+                        <span v-else class="font-semibold">Hlasoval</span>
                     </li>
-
-                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
-                    <!--                            @if($vote->item->vote_type == 1)-->
-                    <!--                            Hlas-->
-                    <!--                            <span class="font-semibold">Za</span>-->
-                    <!--                            @else-->
-                    <!--                            {{ $vote->user->full_name() }}-->
-                    <!--                            <span class="font-semibold">Áno</span>-->
-                    <!--                            @endif-->
-                    <!--                        </li>-->
-                    <!--                        @endif-->
-                    <!--&lt;!&ndash;                         Hlas Proti-->
-                    <!--                        @if($vote->vote == 0 )-->
-                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
-                    <!--                            @if($vote->item->vote_type == 1)-->
-                    <!--                            Hlas-->
-                    <!--                            <span class="font-semibold">Nie</span>-->
-                    <!--                            @else-->
-                    <!--                            {{ $vote->user->full_name() }}-->
-                    <!--                            <span class="font-semibold">Nie</span>-->
-                    <!--                            @endif-->
-                    <!--                        </li>-->
-                    <!--                        @endif-->
-
-                    <!--&lt;!&ndash;                        Zdržal sa-->
-                    <!--                        @if($vote->vote == 2 )-->
-                    <!--                        <li class="flex justify-between border-b-2 border-dotted">-->
-                    <!--                            @if($vote->item->vote_type == 1)-->
-                    <!--                            Hlas-->
-                    <!--                            <span class="font-semibold">Zdržal</span>-->
-                    <!--                            @else-->
-                    <!--                            {{ $vote->user->full_name() }}-->
-                    <!--                            <span class="font-semibold">Zdržal</span>-->
-                    <!--                            @endif-->
-                    <!--                        </li>-->
-                    <!--                        @endif-->
-                    <!--                        @empty-->
-                    <!--                        @endforelse-->
                 </ul>
             </div>
 
@@ -187,7 +151,7 @@
 
     export default {
         props: ['pitem'],
-        components: { publishedButton, interpellation },
+        components: {publishedButton, interpellation},
         computed: {
             resultYes() {
                 return this.$store.getters['items/resultYes'];
@@ -199,7 +163,7 @@
                 // return this.item.votes.filter(i => i.vote == 2).length
             },
 
-            notificationStatus(){
+            notificationStatus() {
                 return this.item.notification == null ? 'Notifikácia hlasovať' : moment(this.item.notification).format('DD. MM. YYYY, k:mm');
             },
 
@@ -207,15 +171,16 @@
                 item: state => state.items.item,
             }),
         },
-        created: function() {
-            this.$store.dispatch('items/getItem', this.pitem.id )
+        created: function () {
+            this.$store.dispatch('items/getItem', this.pitem.id)
         },
         methods: {
-            saveNotification(){
-                this.$store.dispatch('items/update',  {
+            saveNotification() {
+                this.$store.dispatch('items/update', {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
                     meeting_id: this.item.pivot.meeting_id,
-                    id: this.item.id })
+                    id: this.item.id
+                })
             },
 
             openInterpellation() {
