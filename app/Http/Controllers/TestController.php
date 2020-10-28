@@ -10,12 +10,12 @@ class TestController extends Controller
    public function test()
    {
 
-       $orgs = Organization::first();
-//       dd($council->users);
+       $orgs = Organization::get();
+       dd($orgs);
 
        foreach ($orgs->modules as $org){
-//           $org->modules()->attach([1,2,5]);
-           print_r(isset($org->name));
+//           $org->modules()->attach([1,2,3,7]);
+//           print_r(isset($org->name));
        }
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {

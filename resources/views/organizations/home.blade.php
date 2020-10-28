@@ -2,9 +2,9 @@
 
 @section('page-title', 'Úvodná stránka')
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
-{{--@section('navigation') @include('organizations.navigation') @endsection--}}
+{{--@section('navigation')--}}
+{{--    <x-navigation.navigationOrganization/> @endsection--}}
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 
