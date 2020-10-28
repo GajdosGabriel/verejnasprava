@@ -1,11 +1,11 @@
 @role('admin')
 <div class="">
     @role('admin')
-    <div class="flex">
+    <div class="flex w-full">
 
 
         {{-- Section Counsils --}}
-        <div class="p-4">
+        <div class="p-4 w-1/3">
             <strong>Člen zastupiteľstva</strong>
 
             @forelse($organization->councils as $council)
@@ -25,7 +25,7 @@
         </div>
 
         {{-- Section Permissions --}}
-        <div class="p-4">
+        <div class="p-4 w-1/3">
             <strong>Prístup</strong>
 
             {{--                                @forelse($user->permissions as $council)--}}
@@ -60,12 +60,13 @@
         </div>
 
         {{-- Section Roles --}}
-        <div class="py-4">
+        <div class="py-4 w-1/3">
             <strong>Role</strong>
 
             {{-- Role --}}
             @forelse(Spatie\Permission\Models\Role::all() as  $role)
                 @continue($role->name == 'super-admin')
+                @continue($role->category == 'modul')
                 <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                     <label for="role{{ $role->id }}" class="col-form-label"></label>
                     <div class="form-check form-check-inline whitespace-no-wrap">
