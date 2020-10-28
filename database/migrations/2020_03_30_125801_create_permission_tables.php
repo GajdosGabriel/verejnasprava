@@ -313,7 +313,16 @@ class CreatePermissionTables extends Migration
 
         $roles = [
             'super-admin',
-            'admin'
+            'admin',
+            'publisher',
+            'editor',
+            'user',
+            'visitor',
+            'modul post',
+            'modul contact',
+            'modul order',
+            'modul task',
+            'modul support',
         ];
 
         foreach ($roles as $role) {
