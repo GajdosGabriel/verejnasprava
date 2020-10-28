@@ -1,11 +1,11 @@
 @role('admin')
 <div class="">
     @role('admin')
-    <div class="flex w-full">
+    <div class="md:flex w-full">
 
 
         {{-- Section Counsils --}}
-        <div class="p-4 w-1/3">
+        <div class="p-4 sm:w-1/3">
             <strong>Člen zastupiteľstva</strong>
 
             @forelse($organization->councils as $council)
@@ -25,7 +25,7 @@
         </div>
 
         {{-- Section Permissions --}}
-        <div class="p-4 w-1/3">
+        <div class="p-4 sm:w-1/3">
             <strong>Prístup</strong>
 
             {{--                                @forelse($user->permissions as $council)--}}
@@ -59,8 +59,9 @@
             @endforelse
         </div>
 
+        @role('super-admin')
         {{-- Section Roles --}}
-        <div class="py-4 w-1/3">
+        <div class="py-4 sm:w-1/3">
             <strong>Role</strong>
 
             {{-- Role --}}
@@ -82,7 +83,7 @@
             @endforelse
 
         </div>
-
+        @endrole
     </div>
     @endrole
 
