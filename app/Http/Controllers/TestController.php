@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Council\Council;
+use App\Models\Organization;
 
 class TestController extends Controller
 {
    public function test()
    {
 
-       $council = Council::find(1);
+       $orgs = Organization::all();
 //       dd($council->users);
 
-       foreach ($council->users as $user){
-           print_r($user->first_name);
-//           $user->notify(new RequireItemvote($user, '$item'));
+       foreach ($orgs as $org){
+           $org->modules()->attach([1,2,5]);
        }
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {
