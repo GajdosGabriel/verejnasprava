@@ -16,41 +16,74 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 25);
-            $table->string('type', 10);
+            $table->string('route', 15);
+            $table->string('type', 15);
             $table->timestamps();
         });
 
         \DB::table('modules')->insert([
             [
                 'id' => 1,
-                'name' => 'post',
-                'type' => '',
+                'name' => 'Zverejňovanie',
+                'route' => 'post.index',
+                'type' => 'horizontal',
             ],
             [
                 'id' => 2,
-                'name' => 'contact',
-                'type' => '',
+                'name' => 'Kontakty',
+                'route' => 'contact.index',
+                'type' => 'horizontal',
             ],
             [
                 'id' => 3,
-                'name' => 'order',
-                'type' => '',
+                'name' => 'Zasadnutia',
+                'route' => 'council.index',
+                'type' => 'horizontal',
             ],
             [
                 'id' => 4,
-                'name' => 'task',
-                'type' => '',
+                'name' => 'Návrhy',
+                'route' => 'item.index',
+                'type' => 'horizontal',
             ],
             [
                 'id' => 5,
-                'name' => 'support',
-                'type' => '',
+                'name' => 'Objednávky',
+                'route' => 'order.index',
+                'type' => 'horizontal',
             ],
             [
                 'id' => 6,
-                'name' => 'council',
-                'type' => '',
-            ]
+                'name' => 'Úlohy',
+                'route' => 'task.index',
+                'type' => 'horizontal',
+            ],
+            [
+                'id' => 7,
+                'name' => 'Podpora',
+                'route' => 'support.index',
+                'type' => 'horizontal',
+            ],
+
+            [
+                'id' => 8,
+                'name' => 'User',
+                'route' => 'user.edit',
+                'type' => 'vertical',
+            ],
+            [
+                'id' => 9,
+                'name' => 'Nastavenia',
+                'route' => 'user.setup',
+                'type' => 'vertical',
+            ],
+            [
+                'id' => 10,
+                'name' => 'Ľudia',
+                'route' => 'user.index',
+                'type' => 'vertical',
+            ],
+
 
         ]);
     }

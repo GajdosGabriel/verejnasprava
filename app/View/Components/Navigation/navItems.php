@@ -43,7 +43,7 @@ class navItems
         ];
     }
 
-    public function councils($id, $slug)
+    public function councils()
     {
         if(auth()->user()->hasRole('super-admin'))
         return [
