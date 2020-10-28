@@ -140,7 +140,7 @@
         },
         computed: {
             notificationStatus() {
-                return this.meeting.notification == null ? 'Pozvánka členom' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
+                return this.meeting.notification == null ? 'Pozvánka na zasadnutie' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
             },
             ...mapState({
                 meeting: state => state.meetings.meeting,

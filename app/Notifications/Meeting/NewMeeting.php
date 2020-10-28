@@ -47,12 +47,17 @@ class NewMeeting extends Notification
     {
         return (new MailMessage)
             ->subject( 'Pozvanie na zasadnutie')
-            ->greeting('Dobrý deň ' . $this->user->full_name())
-            ->line('Administrátor zverejnil nové stretnutie, dňa '
-                . $this->meeting->start_at->format('m. d. Y') . ' o '
+            ->greeting('P O Z V Á N K A')
+            ->line('Dobrý deň ' . $this->user->full_name())
+            ->line('Pozývame Vás na zasadnutie, '. $this->meeting->council->name )
+
+            ->line('dňa: ' . $this->meeting->start_at->format('m. d. Y') . ' o '
                 .$this->meeting->start_at->format('H:i') .' hod.' )
+
+
+
             ->action( $this->meeting->name , url( route('meet.show', [ $this->meeting->id, $this->meeting->slug])))
-            ->line('Ďakujeme, že používate aplikáciu!');
+            ->line('Vystavené v aplikácií ' . env('APP_NAME'). '.');
     }
 
     /**
