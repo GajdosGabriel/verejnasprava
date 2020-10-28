@@ -67,7 +67,6 @@
             {{-- Role --}}
             @forelse(Spatie\Permission\Models\Role::all() as  $role)
                 @continue($role->name == 'super-admin')
-                @continue($role->category == 'modul')
                 <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
                     <label for="role{{ $role->id }}" class="col-form-label"></label>
                     <div class="form-check form-check-inline whitespace-no-wrap">

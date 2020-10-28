@@ -35,7 +35,6 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('category');
             $table->string('title')->nullable();
             $table->string('guard_name');
             $table->timestamps();
@@ -311,103 +310,15 @@ class CreatePermissionTables extends Migration
 
         ]);
 
-        \DB::table('roles')->insert([
-            [
-                'id' => 1,
-                'name' => 'super-admin',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 2,
-                'name' => 'admin',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 3,
-                'name' => 'publisher',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 4,
-                'name' => 'editor',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 5,
-                'name' => 'user',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 6,
-                'name' => 'visitor',
-                'title' => '',
-                'category' => 'role',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 7,
-                'name' => 'post',
-                'title' => '',
-                'category' => 'modul',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 8,
-                'name' => 'contact',
-                'title' => '',
-                'category' => 'modul',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 9,
-                'name' => 'order',
-                'title' => '',
-                'category' => 'modul',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 10,
-                'name' => 'task',
-                'title' => '',
-                'category' => 'modul',
-                'guard_name' => 'web',
-            ],
-            [
-                'id' => 11,
-                'name' => 'support',
-                'title' => '',
-                'category' => 'modul',
-                'guard_name' => 'web',
-            ]
 
-        ]);
-//        $roles = [
-//            'super-admin',
-//            'admin',
-//            'publisher',
-//            'editor',
-//            'user',
-//            'visitor',
-//            'modul post',
-//            'modul contact',
-//            'modul order',
-//            'modul task',
-//            'modul support',
-//        ];
-//
-//        foreach ($roles as $role) {
-//            Role::create(['name' => $role]);
-//        }
+        $roles = [
+            'super-admin',
+            'admin',
+        ];
+
+        foreach ($roles as $role) {
+            Role::create(['name' => $role]);
+        }
 
 
 //        $permissions = [
