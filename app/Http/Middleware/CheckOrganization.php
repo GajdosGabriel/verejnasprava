@@ -16,10 +16,8 @@ class CheckOrganization
     public function handle($request, Closure $next)
     {
 
-//        $path = (string) 'org/'.auth()->user()->id.'/'. auth()->user()->slug.'/create';
-
 //        if(auth()->user()->active_organization == null )
-//            return redirect($path);
+//            return redirect('org/create');
 
         return $next($request);
     }

@@ -20,7 +20,7 @@ class HomeController extends Controller
             if (auth()->user()->active_organization == null) {
 
                 // Verificed auth user
-                return redirect()->route('org.create', [auth()->user()->id, auth()->user()->slug]);
+                return redirect()->route('org.create');
             }
             return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug]);
         }
