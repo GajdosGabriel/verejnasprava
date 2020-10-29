@@ -35,6 +35,7 @@
                             </a>
                         @empty
 
+                            @can('council delete')
                             <form method="POST" action="{{ route('itemMeeting.update', $item->id) }}">
                                 @csrf @method('PUT')
                                 <label for="meetings">Zaradiť do programu:</label>
@@ -47,6 +48,7 @@
                                 </select>
                                 <button class="px-2 hover:bg-gray-300 rounded-md">Uložiť</button>
                             </form>
+                            @endcan
                         @endforelse
                     </li>
                 @empty
