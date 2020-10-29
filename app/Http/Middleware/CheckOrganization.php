@@ -15,9 +15,11 @@ class CheckOrganization
      */
     public function handle($request, Closure $next)
     {
-//        dd('dddddddddd');
-        $path = (string) 'user/'.auth()->user()->id.'/'. auth()->user()->slug.'/index';
+
+        $path = (string) 'user/'.auth()->user()->id.'/'. auth()->user()->slug.'/home';
+
         if(isset(auth()->user()->active_organization)) return redirect($path);
+
         return $next($request);
     }
 }

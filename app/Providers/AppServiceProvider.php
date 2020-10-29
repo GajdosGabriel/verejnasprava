@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Council\Council;
+use App\Observers\CouncilObserver;
 use App\Observers\UserObserver;
 use App\Observers\ContactObserver;
 use App\Observers\ItemOrderObserver;
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         Organization::observe(OrganizationObserver::class);
         OrderItem::observe(OrderItemObserver::class);
         Item::observe(ItemOrderObserver::class);
+        Council::observe(CouncilObserver::class);
         Paginator::useTailwind();
 
 
