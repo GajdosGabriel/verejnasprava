@@ -16,6 +16,12 @@ class UserController extends Controller
 {
     public function home(User $user){
 
+        if (auth()->user()->active_organization == null) {
+
+            // Verificed auth user
+            return redirect()->route('org.create', [auth()->user()->id, auth()->user()->slug]);
+        }
+
         return view('user.home', compact(['user']));
 
     }
@@ -27,7 +33,7 @@ class UserController extends Controller
 
 
     public function create(Organization $organization, $slug) {
-        $user= new User();
+        $user = new User();
         return view('user.create', compact('organization', 'user'));
     }
 
