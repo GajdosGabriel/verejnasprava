@@ -5,7 +5,7 @@
 
                 <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }} zastupiteľstvo</h1>
 
-               <span class="text-sm text-gray-500">Predkladá: {{ item.user.first_name }} {{ item.user.last_name }}, {{ item.user.employment }}</span>
+               <span class="text-sm text-gray-500">Vypracoval: {{ item.user.first_name }} {{ item.user.last_name }}, {{ item.user.employment }}</span>
                 <!--        Badge line-->
                 <div class="flex justify-between mt-3 mb-5">
                     <div class="flex flex-wrap items-center space-x-3">
@@ -25,7 +25,7 @@
                     </div>
 
 
-                    <nav-drop-down v-if="$auth.can('council delete')">
+                    <nav-drop-down v-if="item.user_id == user.id  || $auth.can('council delete')">
                         <slot>
                             <!-- Item Edit button-->
                             <div class="py-1">

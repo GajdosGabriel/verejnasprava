@@ -3639,7 +3639,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({
     notificationStatus: function notificationStatus() {
-      return this.meeting.notification == null ? 'Pozvánka členom' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
+      return this.meeting.notification == null ? 'Pozvánka na zasadnutie' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
     meeting: function meeting(state) {
@@ -70379,7 +70379,7 @@ var render = function() {
             _vm._v(" "),
             _c("span", { staticClass: "text-sm text-gray-500" }, [
               _vm._v(
-                "Predkladá: " +
+                "Vypracoval: " +
                   _vm._s(_vm.item.user.first_name) +
                   " " +
                   _vm._s(_vm.item.user.last_name) +
@@ -70428,6 +70428,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
+                _vm.item.user_id == _vm.user.id ||
                 _vm.$auth.can("council delete")
                   ? _c(
                       "nav-drop-down",

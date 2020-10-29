@@ -5,12 +5,9 @@
 {{--@section('navigation')--}}
 {{--    <x-navigation.navigationItems :meeting="$meeting"/> @endsection--}}
 
-@section('navigation')
-    <x-navigation.navigationOrganization/> @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
-
-
 
     <div class="container min-h-screen p-3 mx-auto sm:flex">
 
@@ -19,8 +16,6 @@
         </div>
 
     </div>
-
-
 
 
 @endsection
