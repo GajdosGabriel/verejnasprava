@@ -59,7 +59,7 @@
             @endforelse
         </div>
 
-        @role('super-admin')
+        @role('admin')
         {{-- Section Roles --}}
         <div class="py-4 sm:w-1/3">
             <strong>Role</strong>

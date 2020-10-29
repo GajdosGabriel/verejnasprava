@@ -22,7 +22,7 @@ class HomeController extends Controller
                 // Verificed auth user
                 return redirect()->route('org.create');
             }
-            return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug]);
+            return redirect()->route('org.index');
         }
 
         return view('public.index');
