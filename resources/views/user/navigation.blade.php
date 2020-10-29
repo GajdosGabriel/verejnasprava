@@ -58,11 +58,12 @@
                     {{-- Dropdown component  --}}
                     <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2" style="z-index: 99">
                         {{-- Header Menu Vertical --}}
+                        @if(! auth()->user()->active_organization == null)
                             <li>
                                 <a class="rounded bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left"
                                    href="{{ route('user.edit', [auth()->user()->id, auth()->user()->slug]) }}">Profil</a>
                             </li>
-
+                        @endif
                         <li>@include('user._logout')</li>
                     </ul>
                     {{-- End Dropdown component  --}}

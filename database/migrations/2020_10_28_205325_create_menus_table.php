@@ -64,21 +64,14 @@ class CreateMenusTable extends Migration
                 'route' => 'support.index',
                 'type' => 'horizontal',
             ],
-
             [
                 'id' => 8,
-                'name' => 'User',
-                'route' => 'user.edit',
-                'type' => 'vertical',
-            ],
-            [
-                'id' => 9,
                 'name' => 'Nastavenia',
                 'route' => 'user.setup',
                 'type' => 'vertical',
             ],
             [
-                'id' => 10,
+                'id' => 9,
                 'name' => 'Ľudia',
                 'route' => 'user.index',
                 'type' => 'vertical',

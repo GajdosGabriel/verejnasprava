@@ -2,9 +2,8 @@
 
 @section('page-title', 'Home profil')
 
-@section('navigation') @include('organizations.navigation') @endsection
+@section('navigation') @include('user.navigation') @endsection
 
-{{--@section('navigation') @include('user.navigation') @endsection--}}
 
 @section('content')
 
