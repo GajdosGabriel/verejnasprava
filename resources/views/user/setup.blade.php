@@ -100,7 +100,7 @@
 
             <div class="flex justify-between items-center p-2">
 
-                <h3 class="fill-current text-lg">Zamestnanci</h3>
+                <h3 class="fill-current text-lg">Aktívne moduly</h3>
                 <span>Pripravujeme</span>
 
             </div>

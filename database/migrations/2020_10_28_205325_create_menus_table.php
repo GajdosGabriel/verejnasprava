@@ -18,7 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('name', 25);
             $table->string('route', 15);
             $table->string('type', 15);
-            $table->timestamps();
+            $table->softDeletes();
         });
 
         \DB::table('menus')->insert([
