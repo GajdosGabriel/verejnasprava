@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $this->userRoles($user, $userRequest);
 
-        return redirect()->route('user.index', [$user->active_organization, 'slug']);
+        return redirect()->route('user.setup');
     }
 
     public function store(Organization $organization, UserCreateRequest $userRequest) {

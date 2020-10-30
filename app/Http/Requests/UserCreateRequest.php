@@ -27,7 +27,7 @@ class UserCreateRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'employment' => ['string', 'max:50'],
+            'employment' => ['max:50'],
             'email' => 'required|unique:users,email,'
         ];
     }

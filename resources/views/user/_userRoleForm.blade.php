@@ -63,7 +63,6 @@
         {{-- Section Roles --}}
         <div class="py-4 sm:w-1/3">
             <strong>Role</strong>
-
             {{-- Role --}}
             @forelse(Spatie\Permission\Models\Role::all() as  $role)
                 @continue($role->name == 'super-admin')
