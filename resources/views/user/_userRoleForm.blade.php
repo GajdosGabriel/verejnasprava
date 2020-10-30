@@ -84,12 +84,5 @@
         @endrole
     </div>
     @endrole
-
-    <div class="form-group">
-        <div class="flex justify-between my-3">
-            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
-            <button type="submit" class="btn btn-primary">Uložiť</button>
-        </div>
-    </div>
 </div>
 @endrole

@@ -85,6 +85,7 @@
                             @csrf @method('PATCH')
                             @include('modul.errors')
                             @include('user._userForm')
+                            @include('user._userRoleForm')
 
                             {{-- Save button --}}
                             <div class="flex justify-between my-4">
