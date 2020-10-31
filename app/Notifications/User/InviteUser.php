@@ -44,13 +44,11 @@ class InviteUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject( 'Pozvánka pre, '. $this->user->full_name())
+            ->subject( 'Pozvánka pre, '. $this->user->first_name)
             ->greeting('Dobrý deň, ' . $this->user->full_name())
-            ->line('Administrátor webu ' . auth()->user()->full_name() . ' Vám vytvoril účet na ' . env('APP_NAME'). '.')
-            ->line('Žiada Vás, aby ste si aktivovali svoj prístup vložením emailu '  . $this->user->email. ' a zadaním nového hesla.')
+            ->line('Administrátor ' . auth()->user()->full_name() . ' Vám vytvoril účet v aplikácii' . env('APP_NAME'). '.')
+            ->line('Aktivujte si prístup vložením emailu '  . $this->user->email. ' a zadaním nového hesla.')
             ->action('Získať prístup k účtu', url( route('password.update')))
-//            ->line('Prečo som dostal tento email?')
-//            ->greeting('Prečo som dostal tento email?')
             ->line('Ďakujeme že používate aplikáciu ' . env('APP_NAME'));
     }
 
