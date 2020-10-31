@@ -14,7 +14,7 @@
 
             {{-- Vuex component--}}
             <meeting :pmeeting="{{ $meeting }}"></meeting>
-
+            <notification-list></notification-list>
         </div>
 
         {{-- ASIDE --}}

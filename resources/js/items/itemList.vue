@@ -113,7 +113,14 @@
             saveNotification(){
                 this.$store.dispatch('items/update',  {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    id: this.item.id })
+                    id: this.item.id });
+
+
+                // Notify for add task
+                this.$store.dispatch('notification/addNewNotification', {
+                    type: 'bg-green-400',
+                    message: 'Žiadosť o hlasovanie je rozoslané!'
+                })
             },
             voteStatus: function () {
                 if (!this.item.published) {
