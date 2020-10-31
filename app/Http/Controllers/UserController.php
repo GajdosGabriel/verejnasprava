@@ -42,6 +42,7 @@ class UserController extends Controller
     }
 
     public function update(User $user, UserUpdateRequest $userRequest) {
+
         $userRequest->save($user);
 
         $this->userRoles($user, $userRequest);
@@ -50,8 +51,6 @@ class UserController extends Controller
     }
 
     public function store(Organization $organization, UserCreateRequest $userRequest) {
-
-
 
         $user = User::create([
             'first_name' => $userRequest['first_name'],
@@ -69,8 +68,12 @@ class UserController extends Controller
         return redirect()->route('user.index', [$user->active_organization, 'slug']);
     }
 
-    // For update ane store User
+    // For update and store User
     private function userRoles($user, $userRequest) {
+
+        // Only admin giving roles and permissions
+        if (! auth()->user()->hasAnyRole(['super-admin','admin'])) return;
+
         // For table user_council
         $user->councils()->sync($userRequest->input('council'));
         $user->roles()->sync($userRequest->input('role'));
