@@ -92,6 +92,6 @@
     'normal' => $fontDir . '\52b2f0a2d4cd66840c0d21203dce18a2',
   ),
   'glyphicons halflings' => array(
-    'normal' => $fontDir . '\c47afe5539ba1b2094563d54dce2def7',
+    'normal' => $fontDir . '/glyphicons-halflings-normal_4ced20531a4f462a8c5c535d4debd2eb',
   ),
 ) ?>
