@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
 use App\Notifications\Item\RequireItemvote;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -56,6 +57,7 @@ class ItemController extends Controller
                 $user->notify(new RequireItemvote($user, $item));
                 }
             }
+          return Response( 'Žiadosť o hlasovanie bola odoslovaná.');
         }
         return $item;
     }
