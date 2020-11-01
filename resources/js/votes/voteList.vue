@@ -64,7 +64,7 @@
             },
             itemShowList: function(){
                 this.vote_list = ! this.vote_list;
-                this.$store.dispatch('meetings/fetchMeeting', this.item.meeting_id)
+                this.$store.dispatch('meetings/fetchMeeting', this.item.pivot.meeting_id)
             }
         }
 

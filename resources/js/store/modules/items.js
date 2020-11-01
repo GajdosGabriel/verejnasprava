@@ -1,6 +1,7 @@
 const state = {
     interpellations: [],
-    item: ''
+    item: '',
+    user: ''
 };
 
 const getters = {
@@ -18,6 +19,7 @@ const getters = {
 const mutations = {
     SET_ITEM: function (state, item) {
         state.item = item;
+        state.user = item.user;
         // state.meetingId = item.pivot.meeting_id;
         // state.interpellations = item.interpellations;
     },
@@ -54,6 +56,7 @@ const actions = {
     update({commit, dispatch}, item) {
         axios.put('/api/item/' + item.id + '/update', item)
             .then(response => {
+                console.log(response.data);
                 commit('SET_ITEM', response.data);
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
 

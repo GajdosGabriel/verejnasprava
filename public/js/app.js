@@ -3401,6 +3401,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     item: function item(state) {
       return state.items.item;
+    },
+    user: function user(state) {
+      return state.items.user;
     }
   })),
   created: function created() {
@@ -3410,7 +3413,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveNotification: function saveNotification() {
       this.$store.dispatch('items/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        meeting_id: this.item.pivot.meeting_id,
         id: this.item.id
       });
     },
@@ -5177,7 +5179,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     itemShowList: function itemShowList() {
       this.vote_list = !this.vote_list;
-      this.$store.dispatch('meetings/fetchMeeting', this.item.meeting_id);
+      this.$store.dispatch('meetings/fetchMeeting', this.item.pivot.meeting_id);
     }
   }
 });
@@ -5250,8 +5252,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.$store.dispatch('items/update', {
         id: this.item.id,
-        vote_status: !this.item.vote_status,
-        meeting_id: this.item.meeting_id
+        vote_status: !this.item.vote_status
       });
     }
   }
@@ -70393,11 +70394,11 @@ var render = function() {
             _c("span", { staticClass: "text-sm text-gray-500" }, [
               _vm._v(
                 "Vypracoval: " +
-                  _vm._s(_vm.item.user.first_name) +
+                  _vm._s(_vm.user.first_name) +
                   " " +
-                  _vm._s(_vm.item.user.last_name) +
+                  _vm._s(_vm.user.last_name) +
                   ", " +
-                  _vm._s(_vm.item.user.employment)
+                  _vm._s(_vm.user.employment)
               )
             ]),
             _vm._v(" "),
@@ -91345,7 +91346,8 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   interpellations: [],
-  item: ''
+  item: '',
+  user: ''
 };
 var getters = {
   resultYes: function resultYes(state) {
@@ -91357,7 +91359,8 @@ var getters = {
 };
 var mutations = {
   SET_ITEM: function SET_ITEM(state, item) {
-    state.item = item; // state.meetingId = item.pivot.meeting_id;
+    state.item = item;
+    state.user = item.user; // state.meetingId = item.pivot.meeting_id;
     // state.interpellations = item.interpellations;
   },
   SET_VOTES: function SET_VOTES(state, item) {
@@ -91395,6 +91398,7 @@ var actions = {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
+      console.log(response.data);
       commit('SET_ITEM', response.data);
       dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
