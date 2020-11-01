@@ -3618,6 +3618,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -71089,6 +71103,27 @@ var render = function() {
             : _vm._e()
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "mb-8 my-4",
+          staticStyle: { "margin-top": "-20px", "font-size": "11px" }
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "bg-blue-600 text-gray-200 p-1 rounded-sm",
+              attrs: {
+                href: "/meet/" + _vm.meeting.id + "/hoci/print",
+                target: "_blank"
+              }
+            },
+            [_vm._v("\n            Pozvánka\n        ")]
+          )
+        ]
       ),
       _vm._v(" "),
       _vm.positionSaveButton

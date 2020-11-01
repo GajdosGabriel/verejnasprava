@@ -29,7 +29,7 @@ Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
 Route::get('meeting/{meeting}/show', 'Api\MeetingController@show');
 Route::put('meeting/{meeting}', 'Api\MeetingController@update');
-Route::get('meeting/{meeting}/print', 'Api\MeetingController@pozvankaPdf');
+
 
 Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
 Route::post('interpellation/{item}/store', 'Councils\ApiInterpellationController@store');

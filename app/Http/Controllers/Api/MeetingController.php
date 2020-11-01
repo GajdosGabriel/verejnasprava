@@ -24,9 +24,4 @@ class MeetingController extends Controller
         }
         return $meeting;
     }
-
-    public function pozvankaPdf(Meeting $meeting) {
-        $pdf = \PDF::loadView('council.meeting.print', compact('meeting'));
-        return $pdf->stream();
-    }
 }

@@ -71,6 +71,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
         Route::get('{meeting}/{slug}/meeting/delete', 'MeetingController@delete')->name('delete');
 
+        Route::get('{meeting}/{slug}/print', 'MeetingController@pozvankaPdf');
+
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {

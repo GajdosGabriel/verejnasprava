@@ -33,7 +33,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['organizations.navigation', 'council.meeting.navigation', 'council.items.navigation'], function ($view) {
+        view()->composer(['organizations.navigation', 'council.meeting.navigation', 'council.items.navigation', 'council.meeting.print'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
             $view->with('organization', $organization);
         });

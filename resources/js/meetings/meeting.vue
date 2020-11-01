@@ -30,13 +30,19 @@
                        href="#"
                        title="Zmazať položku">
                         <div v-if="meeting.published" @click="publishedMeeting(0)" class="flex">
-                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M12.81 4.36l-1.77 1.78a4 4 0 0 0-4.9 4.9l-2.76 2.75C2.06 12.79.96 11.49.2 10a11 11 0 0 1 12.6-5.64zm3.8 1.85c1.33 1 2.43 2.3 3.2 3.79a11 11 0 0 1-12.62 5.64l1.77-1.78a4 4 0 0 0 4.9-4.9l2.76-2.75zm-.25-3.99l1.42 1.42L3.64 17.78l-1.42-1.42L16.36 2.22z"/></svg>
+                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 20 20">
+                                <path
+                                    d="M12.81 4.36l-1.77 1.78a4 4 0 0 0-4.9 4.9l-2.76 2.75C2.06 12.79.96 11.49.2 10a11 11 0 0 1 12.6-5.64zm3.8 1.85c1.33 1 2.43 2.3 3.2 3.79a11 11 0 0 1-12.62 5.64l1.77-1.78a4 4 0 0 0 4.9-4.9l2.76-2.75zm-.25-3.99l1.42 1.42L3.64 17.78l-1.42-1.42L16.36 2.22z"/>
+                            </svg>
                             Zastaviť publikovanie
                         </div>
                         <div v-else class="flex" @click="publishedMeeting(1)">
-                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 20 20">
+                                <path
+                                    d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                            </svg>
                             Publikovať zasadnutie
                         </div>
                     </a>
@@ -55,7 +61,8 @@
                     </a>
 
                     <!--  Poslať všetkým notifikáciu -->
-                    <a v-if="meeting.published" class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                    <a v-if="meeting.published"
+                       class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                        href="#"
                        title="Notifikácia pre voliteľov">
                         <div class="flex" @click="saveNotification">
@@ -100,7 +107,14 @@
             </nav-drop-down>
         </div>
 
-        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg mb-2" v-if="positionSaveButton" @click="savePosition">
+        <div style="margin-top: -20px; font-size: 11px" class="mb-8 my-4">
+            <a :href="'/meet/' + meeting.id + '/hoci/print'" class="bg-blue-600 text-gray-200 p-1 rounded-sm" target="_blank">
+                Pozvánka
+            </a>
+        </div>
+
+        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg mb-2" v-if="positionSaveButton"
+                @click="savePosition">
             Uložiť zmeny
         </button>
 
@@ -160,15 +174,15 @@
             this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
         },
         methods: {
-            publishedMeeting: function(published){
+            publishedMeeting: function (published) {
                 this.$store.dispatch('meetings/update', {
-                   published: published,
+                    published: published,
                     id: this.meeting.id
                 })
             },
 
             saveNotification() {
-                if(! this.meeting.published){
+                if (!this.meeting.published) {
                     alert('Zasadnutie nie je publikované. Najprv zapnite publikovanie!')
                 }
                 this.$store.dispatch('meetings/update', {
