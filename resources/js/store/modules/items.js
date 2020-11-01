@@ -57,7 +57,6 @@ const actions = {
                 commit('SET_ITEM', response.data);
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
 
-                console.log(response.data);
                 // Notify for add task
                 dispatch('notification/addNewNotification', { message: response.data, type: 'bg-green-400' }, { root: true}
                 )

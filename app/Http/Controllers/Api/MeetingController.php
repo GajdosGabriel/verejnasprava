@@ -20,6 +20,7 @@ class MeetingController extends Controller
             foreach ($meeting->council->users as $user){
                 $user->notify(new NewMeeting($user, $meeting));
             }
+            return Response( 'Pozvánka na rokovanie bola odoslovaná.');
         }
         return $meeting;
     }

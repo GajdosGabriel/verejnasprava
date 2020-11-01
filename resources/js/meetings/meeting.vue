@@ -176,11 +176,6 @@
                     id: this.meeting.id
                 });
 
-                // Notify for add task
-                this.$store.dispatch('notification/addNewNotification', {
-                    type: 'bg-green-400',
-                    message: 'Pozvánka na zasadnutie je rozoslaná!'
-                })
             },
             savePosition() {
                 this.items.forEach((item, key) => {

@@ -3672,11 +3672,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('meetings/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
         id: this.meeting.id
-      }); // Notify for add task
-
-      this.$store.dispatch('notification/addNewNotification', {
-        type: 'bg-green-400',
-        message: 'Pozvánka na zasadnutie je rozoslaná!'
       });
     },
     savePosition: function savePosition() {
@@ -91368,8 +91363,7 @@ var actions = {
       commit('SET_ITEM', response.data);
       dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
-      });
-      console.log(response.data); // Notify for add task
+      }); // Notify for add task
 
       dispatch('notification/addNewNotification', {
         message: response.data,
@@ -91449,11 +91443,18 @@ var actions = {
     });
   },
   update: function update(_ref2, meeting) {
-    var commit = _ref2.commit;
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
     commit('SET_LOADING_STATUS', true);
     axios.put('/api/meeting/' + meeting.id, meeting).then(function (response) {
       // commit('SET_ITEMS', response.data);
       commit('SET_LOADING_STATUS', false);
+      dispatch('notification/addNewNotification', {
+        message: response.data,
+        type: 'bg-green-400'
+      }, {
+        root: true
+      });
     });
   }
 };
