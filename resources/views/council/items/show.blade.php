@@ -8,10 +8,8 @@
 
     <div class="container min-h-screen p-3 mx-auto sm:flex">
 
-        <div class="md:w-3/4 xs:w-full">
-            <item-show :pitem="{{ $item }}"></item-show>
-            <notification-list></notification-list>
-        </div>
+        <item-show :pitem="{{ $item }}"></item-show>
+        <notification-list></notification-list>
 
     </div>
 

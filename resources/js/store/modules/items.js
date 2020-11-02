@@ -1,6 +1,7 @@
 const state = {
     interpellations: [],
     item: '',
+    votes: [],
     user: ''
 };
 
@@ -20,6 +21,7 @@ const mutations = {
     SET_ITEM: function (state, item) {
         state.item = item;
         state.user = item.user;
+        state.votes = item.votes;
         // state.meetingId = item.pivot.meeting_id;
         // state.interpellations = item.interpellations;
     },

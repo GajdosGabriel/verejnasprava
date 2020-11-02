@@ -1,7 +1,7 @@
 <template>
-    <div class="container min-h-screen p-3 mx-auto sm:flex">
-        <div class="md:w-3/4 xs:w-full">
-            <div class="">
+    <div class="p-3 w-full sm:flex">
+        <div class="border-gray-300 border-2 p-4 md:w-8/12 xs:w-full">
+            <div class="w-full">
 
                 <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }} zastupiteľstvo</h1>
 
@@ -76,8 +76,6 @@
 
                 </div>
 
-                <interpellation :item="item"></interpellation>
-
                 <!--  Votes Buttons-->
                 <vote-form-button :item="item"></vote-form-button>
 
@@ -99,7 +97,7 @@
         </div>
 
         <!--  Aside part-->
-        <div class="p-3 flex flex-col w-auto">
+        <div class="border-gray-300 border-2 mx-6 p-4 flex flex-col md:w-4/12">
 
             <vote-start-button :item="item"></vote-start-button>
 
@@ -122,8 +120,11 @@
             <!--            </ul>-->
 
             <!-- Výsledky hlasovania-->
+
+            <interpellation :item="item"></interpellation>
+
             <div class="">
-                <h2 class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                <h2 v-if="votes.length > 0" class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
                 <ul class="">
                     <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
                         {{ vote.user.first_name }}
@@ -170,6 +171,7 @@
             ...mapState({
                 item: state => state.items.item,
                 user: state => state.items.user,
+                votes: state => state.items.votes,
             }),
         },
         created: function () {
@@ -184,6 +186,7 @@
             },
 
             openInterpellation() {
+                console.log(this.item.votes.length);
                 bus.$emit('imterpellationlist', this.item);
             }
         }

@@ -3374,6 +3374,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3403,6 +3404,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     user: function user(state) {
       return state.items.user;
+    },
+    votes: function votes(state) {
+      return state.items.votes;
     }
   })),
   created: function created() {
@@ -3416,6 +3420,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     openInterpellation: function openInterpellation() {
+      console.log(this.item.votes.length);
       _app__WEBPACK_IMPORTED_MODULE_5__["bus"].$emit('imterpellationlist', this.item);
     }
   }
@@ -70041,7 +70046,7 @@ var render = function() {
   return _vm.openList
     ? _c(
         "div",
-        { staticClass: "flex-1 border-2 rounded-md border-gray-300 w-full" },
+        { staticClass: " border-2 rounded-md border-gray-300 w-full" },
         [
           _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
             _c("h4", { staticClass: "font-semibold text-gray-800" }, [
@@ -70375,14 +70380,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container min-h-screen p-3 mx-auto sm:flex" },
-    [
-      _c("div", { staticClass: "md:w-3/4 xs:w-full" }, [
+  return _c("div", { staticClass: "p-3 w-full sm:flex" }, [
+    _c(
+      "div",
+      { staticClass: "border-gray-300 border-2 p-4 md:w-8/12 xs:w-full" },
+      [
         _c(
           "div",
-          {},
+          { staticClass: "w-full" },
           [
             _c("h1", { staticClass: "text-lg page-title" }, [
               _vm._v(
@@ -70585,8 +70590,6 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("interpellation", { attrs: { item: _vm.item } }),
-            _vm._v(" "),
             _c("vote-form-button", { attrs: { item: _vm.item } }),
             _vm._v(" "),
             _c(
@@ -70639,70 +70642,78 @@ var render = function() {
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "p-3 flex flex-col w-auto" },
-        [
-          _c("vote-start-button", { attrs: { item: _vm.item } }),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "border-gray-300 border-2 mx-6 p-4 flex flex-col md:w-4/12"
+      },
+      [
+        _c("vote-start-button", { attrs: { item: _vm.item } }),
+        _vm._v(" "),
+        _c("interpellation", { attrs: { item: _vm.item } }),
+        _vm._v(" "),
+        _c("div", {}, [
+          _vm.votes.length > 0
+            ? _c(
+                "h2",
+                {
+                  staticClass: "my-5 text-lg font-semibold whitespace-no-wrap"
+                },
+                [_vm._v("Výsledky hlasovania")]
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c("div", {}, [
-            _c(
-              "h2",
-              { staticClass: "my-5 text-lg font-semibold whitespace-no-wrap" },
-              [_vm._v("Výsledky hlasovania")]
-            ),
-            _vm._v(" "),
-            _c(
-              "ul",
-              {},
-              _vm._l(_vm.item.votes, function(vote) {
-                return _c(
-                  "li",
-                  {
-                    staticClass: "flex justify-between border-b-2 border-dotted"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(vote.user.first_name) +
-                        "\n                    "
-                    ),
-                    _vm.item.vote_type == 0
-                      ? _c("div", [
-                          vote.vote == 1
-                            ? _c("span", { staticClass: "font-semibold" }, [
-                                _vm._v("Áno")
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          vote.vote == 0
-                            ? _c("span", { staticClass: "font-semibold" }, [
-                                _vm._v("Nie")
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          vote.vote == 2
-                            ? _c("span", { staticClass: "font-semibold" }, [
-                                _vm._v("Zdržal")
-                              ])
-                            : _vm._e()
-                        ])
-                      : _c("span", { staticClass: "font-semibold" }, [
-                          _vm._v("Hlasoval")
-                        ])
-                  ]
-                )
-              }),
-              0
-            )
-          ])
-        ],
-        1
-      )
-    ]
-  )
+          _c(
+            "ul",
+            {},
+            _vm._l(_vm.item.votes, function(vote) {
+              return _c(
+                "li",
+                {
+                  staticClass: "flex justify-between border-b-2 border-dotted"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(vote.user.first_name) +
+                      "\n                    "
+                  ),
+                  _vm.item.vote_type == 0
+                    ? _c("div", [
+                        vote.vote == 1
+                          ? _c("span", { staticClass: "font-semibold" }, [
+                              _vm._v("Áno")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        vote.vote == 0
+                          ? _c("span", { staticClass: "font-semibold" }, [
+                              _vm._v("Nie")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        vote.vote == 2
+                          ? _c("span", { staticClass: "font-semibold" }, [
+                              _vm._v("Zdržal")
+                            ])
+                          : _vm._e()
+                      ])
+                    : _c("span", { staticClass: "font-semibold" }, [
+                        _vm._v("Hlasoval")
+                      ])
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91346,6 +91357,7 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   interpellations: [],
   item: '',
+  votes: [],
   user: ''
 };
 var getters = {
@@ -91359,7 +91371,8 @@ var getters = {
 var mutations = {
   SET_ITEM: function SET_ITEM(state, item) {
     state.item = item;
-    state.user = item.user; // state.meetingId = item.pivot.meeting_id;
+    state.user = item.user;
+    state.votes = item.votes; // state.meetingId = item.pivot.meeting_id;
     // state.interpellations = item.interpellations;
   },
   SET_VOTES: function SET_VOTES(state, item) {
