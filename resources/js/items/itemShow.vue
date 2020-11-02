@@ -1,13 +1,13 @@
 <template>
     <div class="p-3 w-full sm:flex">
-        <div class="border-gray-300 border-2 p-4 md:w-8/12 xs:w-full">
+        <div class="sm:mx-3 border-gray-300 border-2 p-4 md:w-8/12 xs:w-full">
             <div class="w-full">
 
                 <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }} zastupiteľstvo</h1>
 
                <span class="text-sm text-gray-500">Vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
                 <!--   Badge line-->
-                <div class="flex justify-between mt-3 mb-5">
+                <div class="flex justify-between mt-3 mb-5 py-1 border-gray-200 border-t-2 border-b-2 items-center">
                     <div class="flex flex-wrap items-center space-x-3">
 
                         <div v-text="item.vote_type == 0 ? 'Hlasovanie verejné' :'Hlasovanie tajné' " class="badge badge-primary"></div>
@@ -23,7 +23,6 @@
                         </div>
 
                     </div>
-
 
                     <nav-drop-down v-if="item.user_id == user.id  || $auth.can('council delete')">
                         <slot>
@@ -97,7 +96,7 @@
         </div>
 
         <!--  Aside part-->
-        <div class="border-gray-300 border-2 mx-6 p-4 flex flex-col md:w-4/12">
+        <div class="border-gray-300 border-2 sm:mx-3 p-4 flex flex-col md:w-4/12">
 
             <vote-start-button :item="item"></vote-start-button>
 

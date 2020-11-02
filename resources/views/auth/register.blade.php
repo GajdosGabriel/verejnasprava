@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('page-title', 'Registrácie')
-@section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection
+
+{{--Google reCaptcha--}}
+@section('recaptcha')  {!! htmlScriptTagJsApi([
+            'action' => 'homepage',
+            'callback_then' => 'callbackThen',
+            'callback_catch' => 'callbackCatch'
+        ]) !!} @endsection
+
 @section('navigation')
     <x-navigation.navPublic/> @endsection
 
