@@ -91578,7 +91578,10 @@ var mutations = {
 var actions = {
   addNewNotification: function addNewNotification(_ref, notification) {
     var commit = _ref.commit;
-    commit('NEW_NOTIFICATION', notification);
+
+    if (!notification.message == "") {
+      commit('NEW_NOTIFICATION', notification);
+    }
   },
   removeNotification: function removeNotification(_ref2, notification) {
     var commit = _ref2.commit;

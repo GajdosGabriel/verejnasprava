@@ -59,7 +59,7 @@ class ItemController extends Controller
             }
           return Response( 'Žiadosť o hlasovanie bola odoslovaná.');
         }
-        return $item;
+//        return $item;
     }
 
     /**
