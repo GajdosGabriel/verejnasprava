@@ -3374,7 +3374,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -91393,19 +91392,15 @@ var actions = {
     });
   },
   update: function update(_ref3, item) {
-    var _this2 = this;
-
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
-      console.log(response.data);
-      commit('SET_ITEM', response.data);
-      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
-        root: true
-      }); // Notify for add task
+      // console.log(response.headers.notification);
+      commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+      // Notify for add task
 
       dispatch('notification/addNewNotification', {
-        message: response.data,
+        message: response.headers.notification,
         type: 'bg-green-400'
       }, {
         root: true
@@ -91579,6 +91574,7 @@ var actions = {
   addNewNotification: function addNewNotification(_ref, notification) {
     var commit = _ref.commit;
 
+    // console.log(notification);
     if (!notification.message == "") {
       commit('NEW_NOTIFICATION', notification);
     }

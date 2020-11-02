@@ -10,6 +10,7 @@
 
         <div class="md:w-3/4 xs:w-full">
             <item-show :pitem="{{ $item }}"></item-show>
+            <notification-list></notification-list>
         </div>
 
     </div>

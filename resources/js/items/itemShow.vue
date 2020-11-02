@@ -6,7 +6,7 @@
                 <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }} zastupiteľstvo</h1>
 
                <span class="text-sm text-gray-500">Vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
-                <!--        Badge line-->
+                <!--   Badge line-->
                 <div class="flex justify-between mt-3 mb-5">
                     <div class="flex flex-wrap items-center space-x-3">
 
@@ -125,7 +125,6 @@
             <div class="">
                 <h2 class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
                 <ul class="">
-
                     <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
                         {{ vote.user.first_name }}
                         <div v-if="item.vote_type == 0">

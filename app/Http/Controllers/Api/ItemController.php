@@ -57,9 +57,9 @@ class ItemController extends Controller
                 $user->notify(new RequireItemvote($user, $item));
                 }
             }
-          return Response( 'Žiadosť o hlasovanie bola odoslovaná.');
+            return response($item)->header('notification', 'Žiadosť o hlasovanie bola odoslovaná.');
         }
-//        return $item;
+        return response($item);
     }
 
     /**

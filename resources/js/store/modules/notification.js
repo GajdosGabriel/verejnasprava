@@ -21,6 +21,7 @@ const mutations = {
 };
 const actions = {
     addNewNotification: function ({commit}, notification) {
+        // console.log(notification);
         if (! notification.message == ""){
             commit('NEW_NOTIFICATION', notification)
         }
