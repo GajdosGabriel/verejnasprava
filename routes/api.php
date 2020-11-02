@@ -40,3 +40,15 @@ Route::apiResources([
     'vote' => 'Api\VoteController',
     'item' => 'Api\ItemController',
 ]);
+
+
+Route::get('artisan/run', function () {
+
+    \Artisan::call('cache:clear');
+    \Artisan::call('view:clear');
+    \Artisan::call('config:clear');
+    \Artisan::call('optimize:clear');
+
+    dd("All is cleared");
+
+});
