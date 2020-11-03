@@ -69,9 +69,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Item::class);
     }
 
-    public function questions()
+    public function supports()
     {
-        return $this->hasMany(Question::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Support::class)->orderBy('created_at', 'desc');
     }
 
     public function comments()

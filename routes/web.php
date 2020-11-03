@@ -128,8 +128,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::name('support.')->group(function() {
-        Route::get('question/index',  'QuestionsController@index')->name('index');
-        Route::post('question/store',  'QuestionsController@store')->name('store');
+        Route::get('index',  'SupportController@index')->name('index');
+        Route::post('store',  'SupportController@store')->name('store');
     });
 
     Route::get('test/test/test', 'TestController@test');
