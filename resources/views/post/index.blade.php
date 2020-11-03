@@ -12,17 +12,20 @@
 
             <div class="flex justify-between items-center pb-8">
                 <h1 class="page-title">Zverejnené doklady</h1>
+                @role('admin')
                 <a class="btn btn-primary"
-                   href="{{ route('post.create') }}">Nový doklad</a>
+                   href="{{ route('post.create') }}">Nový doklad
+                </a>
+                @endrole
             </div>
 
             <post-table/>
 
 
-{{--            @include('post.table_index')--}}
-{{--            <div class="my-6">--}}
-{{--                {{ $posts->links() }}--}}
-{{--            </div>--}}
+            {{--            @include('post.table_index')--}}
+            {{--            <div class="my-6">--}}
+            {{--                {{ $posts->links() }}--}}
+            {{--            </div>--}}
 
         </div>
     </div>

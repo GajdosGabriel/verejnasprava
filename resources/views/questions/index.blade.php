@@ -31,7 +31,7 @@
                             <div class="bg-gray-100 p-3 mb-4 rounded shadow-lg">
                                 <div class="flex justify-between mb-3 items-center">
                                     <img class="rounded-full w-12" src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" alt="..." alt="...">
-                                    <span class="text-sm text-gray-800">Administrátor</span>
+                                    <span class="text-sm text-gray-800">{{ $question->user->full_name() }}</span>
                                 </div>
                                 <p>{{ $question->question }}</p>
                             </div>

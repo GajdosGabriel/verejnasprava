@@ -4,7 +4,7 @@
         <div class="flex justify-between py-5">
             <h1 class="page-title">Kontakty</h1>
 
-            <button @click="newContactToggle" class="btn btn-primary">
+            <button v-if="$auth.isAdmin()" @click="newContactToggle" class="btn btn-primary">
                 Nový kontakt
             </button>
         </div>
@@ -22,9 +22,9 @@
                 <th class="px-4 py-2">Psč</th>
                 <th class="px-4 py-2">Ičo</th>
                 <th class="px-4 py-2">Dič</th>
-                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2"  v-if="$auth.isAdmin()">Email</th>
                 <th class="px-4 py-2">Tel.</th>
-                <th class="px-4 py-2">Panel</th>
+                <th class="px-4 py-2"  v-if="$auth.isAdmin()">Panel</th>
             </tr>
             </thead>
             <tbody>
@@ -35,13 +35,10 @@
                 <td class="px-4 py-2 border whitespace-no-wrap">{{ contact.psc | pscFormat }}</td>
                 <td class="px-4 py-2 border" v-text="contact.ico"></td>
                 <td class="px-4 py-2 border" v-text="contact.dic"></td>
-                <td class="px-4 py-2 border"><a href="mailto: contact.email">{{ contact.email }}</a></td>
+                <td class="px-4 py-2 border"   v-if="$auth.isAdmin()"><a href="mailto: contact.email">{{ contact.email }}</a></td>
                 <td class="px-4 py-2 border whitespace-no-wrap"><a href="tel: contact.phone">{{ contact.phone }}</a></td>
-                <td class="px-4 py-2 border">
-                    <!--                    :href="'/contact/edit/' + contact.id"-->
-                    <a
-
-                        class="hover:underline cursor-pointer" @click="openEditForm(contact)">Edit</a>
+                <td class="px-4 py-2 border"  v-if="$auth.isAdmin()">
+                    <a class="hover:underline cursor-pointer" @click="openEditForm(contact)">Edit</a>
                 </td>
             </tr>
             </tbody>

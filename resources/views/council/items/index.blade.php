@@ -23,7 +23,7 @@
                 @forelse($items as $item)
                     <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
                         <a href="{{ route('item.show', $item->id) }}">
-                            {{ $item->id }}. {{ $item->name }}
+                            {{ $item->name }}
                         </a>
 
 

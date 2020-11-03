@@ -2119,9 +2119,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -67821,14 +67818,16 @@ var render = function() {
       _c("div", { staticClass: "flex justify-between py-5" }, [
         _c("h1", { staticClass: "page-title" }, [_vm._v("Kontakty")]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            on: { click: _vm.newContactToggle }
-          },
-          [_vm._v("\n            Nový kontakt\n        ")]
-        )
+        _vm.$auth.isAdmin()
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: { click: _vm.newContactToggle }
+              },
+              [_vm._v("\n            Nový kontakt\n        ")]
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("input", {
@@ -67869,7 +67868,33 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("table", { staticClass: "table-auto w-full" }, [
-        _vm._m(0),
+        _c("thead", [
+          _c("tr", { staticClass: "bg-gray-300" }, [
+            _c("th", { staticClass: "px-4 py-2 whitespace-no-wrap" }, [
+              _vm._v("Názov firmy")
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ulica")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Mesto")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Psč")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ičo")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dič")]),
+            _vm._v(" "),
+            _vm.$auth.isAdmin()
+              ? _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Tel.")]),
+            _vm._v(" "),
+            _vm.$auth.isAdmin()
+              ? _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Panel")])
+              : _vm._e()
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -67904,11 +67929,13 @@ var render = function() {
                 domProps: { textContent: _vm._s(contact.dic) }
               }),
               _vm._v(" "),
-              _c("td", { staticClass: "px-4 py-2 border" }, [
-                _c("a", { attrs: { href: "mailto: contact.email" } }, [
-                  _vm._v(_vm._s(contact.email))
-                ])
-              ]),
+              _vm.$auth.isAdmin()
+                ? _c("td", { staticClass: "px-4 py-2 border" }, [
+                    _c("a", { attrs: { href: "mailto: contact.email" } }, [
+                      _vm._v(_vm._s(contact.email))
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("td", { staticClass: "px-4 py-2 border whitespace-no-wrap" }, [
                 _c("a", { attrs: { href: "tel: contact.phone" } }, [
@@ -67916,20 +67943,22 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("td", { staticClass: "px-4 py-2 border" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "hover:underline cursor-pointer",
-                    on: {
-                      click: function($event) {
-                        return _vm.openEditForm(contact)
-                      }
-                    }
-                  },
-                  [_vm._v("Edit")]
-                )
-              ])
+              _vm.$auth.isAdmin()
+                ? _c("td", { staticClass: "px-4 py-2 border" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "hover:underline cursor-pointer",
+                        on: {
+                          click: function($event) {
+                            return _vm.openEditForm(contact)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
+                  ])
+                : _vm._e()
             ])
           }),
           0
@@ -67941,36 +67970,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { staticClass: "bg-gray-300" }, [
-        _c("th", { staticClass: "px-4 py-2 whitespace-no-wrap" }, [
-          _vm._v("Názov firmy")
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ulica")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Mesto")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Psč")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ičo")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dič")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Tel.")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Panel")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
