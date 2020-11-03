@@ -4,7 +4,6 @@
 
 @section('navigation') @include('organizations.navigation') @endsection
 
-{{--@section('navigation') @include('council.items.navigation') @endsection--}}
 
 @section('content')
 

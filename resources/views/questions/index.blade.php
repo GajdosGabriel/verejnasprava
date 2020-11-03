@@ -34,17 +34,21 @@
                                     <span class="text-sm text-gray-800">{{ $question->user->full_name() }}</span>
                                 </div>
                                 <p>{{ $question->question }}</p>
+
+
+                                <livewire:questions :question="$question"/>
                             </div>
 
 
-                            {{-- Administrátor --}}
-                            <div class="bg-blue-100 p-3 mb-4 rounded shadow-lg">
-                                <div class="flex justify-between mb-3 items-center">
-                                    <img class="rounded-full w-12" src="{{asset('image/administrator.jpg')}}" alt="...">
-                                    <span class="text-sm text-gray-800">Administrátor</span>
-                                </div>
-                                <p>{{ $question->question }}</p>
-                            </div>
+
+{{--                             Administrátor --}}
+{{--                            <div class="bg-blue-100 p-3 mb-4 rounded shadow-lg">--}}
+{{--                                <div class="flex justify-between mb-3 items-center">--}}
+{{--                                    <img class="rounded-full w-12" src="{{asset('image/administrator.jpg')}}" alt="...">--}}
+{{--                                    <span class="text-sm text-gray-800">Administrátor</span>--}}
+{{--                                </div>--}}
+{{--                                <p>{{ $question->question }}</p>--}}
+{{--                            </div>--}}
                         @empty
                             Zatiaľ ste sa nepoložili žiadnu otázku.
                         @endforelse
