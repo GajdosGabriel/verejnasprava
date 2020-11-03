@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+
+use Illuminate\Support\Facades\Validator;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
@@ -15,28 +16,25 @@ class SupportController extends Controller
         return view('support.index')->with('questions', $questions);
 
     }
-    public function store(Request $request) {
 
-//        return $request->all();
-
-        $validator = Validator::make ($request->all(),[
-            'question' => 'required|min:3'
+    public function update(Support $support, Request $request){
+        $support->comments()->create([
+            'body' => $request->body,
+            'user_id' => auth()->user()->id,
         ]);
 
-        if ($validator->fails()){
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+        return back();
+    }
+    public function store(Request $request) {
 
-        $question =  \Auth::user()->questions()->create($request->all());
+      auth()->user()->supports()->create($request->all());
 
 //        $question->user->notify(new Questions($question));
 //        $question->user->find(1)->notify(new Questions($question));
 
 //        flash()->success('Správa bola odoslaná');
 
-//        return $validator;
+
         return redirect()->back();
 
     }

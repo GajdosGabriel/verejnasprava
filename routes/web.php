@@ -127,8 +127,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-    Route::name('support.')->group(function() {
+    Route::prefix('support')->name('support.')->group(function() {
         Route::get('index',  'SupportController@index')->name('index');
+        Route::patch('{support}/update',  'SupportController@update')->name('update');
         Route::post('store',  'SupportController@store')->name('store');
     });
 

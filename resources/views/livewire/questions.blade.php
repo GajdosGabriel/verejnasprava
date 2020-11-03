@@ -1,4 +1,4 @@
-<div class=" w-full">
+<div class="w-full">
     <h2 class="font-bold text-lg text-gray-700 mb-2 text-center">Odpoveď</h2>
 
     <form wire:submit.prevent="addComment">

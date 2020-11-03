@@ -20,7 +20,6 @@ class CreateCommentsTable extends Migration
             $table->string('fileable_type');
             $table->string('name')->nullable();
             $table->text('body');
-            $table->boolean('interpellation')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
