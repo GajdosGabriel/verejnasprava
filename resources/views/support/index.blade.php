@@ -8,16 +8,15 @@
     <div class="container mx-auto p-6 min-h-screen">
         <div class="row">
             <div class="col-8">
-                <h2 class="font-bold text-3xl">Máte otázku</h2>
+                <h2 class="font-bold text-3xl">Vaše otázky</h2>
 
                 <div class="card">
-                    <div class="text-gray-700">Napíšte otázku alebo podnet</div>
+                    <div class="text-gray-700">Napíšte otázku alebo podnet.</div>
 
                     <div class="max-w-xl">
 
                         <form action="{{ route('support.store') }}" method="POST">
                             @csrf
-
                             <div class="flex justify-between my-4">
                                 <input type="text" name="question" placeholder="Napíšte správu ..."
                                        class="flex-1 mr-3 pl-3 rounded-lg border-2 border-gray-400" required>
@@ -28,8 +27,11 @@
 
                         @forelse($questions as $question)
 
+
+
                             {{-- User --}}
                             <div class="bg-gray-100 p-3 mb-4 rounded shadow-lg">
+{{--                                <h2 class="font-bold text-lg text-gray-700 mb-2 text-center">Otázka</h2>--}}
                                 <div class="flex justify-between mb-3 items-center">
                                     <img class="rounded-full w-12"
                                          src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
@@ -39,12 +41,11 @@
                                 <p>{{ $question->question }}</p>
 
 
-                                <h2 class="font-bold text-lg text-gray-700 mb-2 text-center">Odpoveď</h2>
+                                <h2 class="font-bold text-lg text-gray-700 mt-5 text-center">Odpoveď</h2>
 
 
                                 @forelse($question->comments as $comment)
-
-                                    {{--  Administrátor--}}
+                                    {{--  Answers --}}
                                     <div class="bg-blue-100 p-3 mb-4 rounded shadow-lg">
                                         <div class="flex justify-between items-center">
                                             <div class="flex">
@@ -52,7 +53,12 @@
                                                 <span class="self-center text-sm text-gray-800">Administrátor</span>
                                             </div>
 
-                                            {{--                                        <span wire:click="delete({{ $comment->id }})" class="cursor-pointer text-gray-600">x</span>--}}
+                                            {{--  Delete form --}}
+                                            <form  action="{{ route('comment.destroy', $comment->id ) }}" method="POST"  class="p-2 cursor-pointer text-gray-600">
+                                                @csrf @method('DELETE')
+                                               <button type="submit">x</button>
+                                            </form>
+
                                         </div>
                                         <p>{{ $comment->body }}</p>
 

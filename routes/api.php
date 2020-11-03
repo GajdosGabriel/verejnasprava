@@ -39,6 +39,7 @@ Route::delete('interpellation/{interpellation}', 'Councils\ApiInterpellationCont
 Route::apiResources([
     'vote' => 'Api\VoteController',
     'item' => 'Api\ItemController',
+    'comment' => 'Api\CommentController',
 ]);
 
 
