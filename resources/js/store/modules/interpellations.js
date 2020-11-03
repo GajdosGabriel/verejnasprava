@@ -18,9 +18,9 @@ const actions = {
             alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
             return
         }
-        axios.post('/api/interpellation/' + item.id + '/store', {user: item.user.id } )
+        axios.post('/api/interpellation/' + item.item.id + '/store', {user: item.user } )
             .then(response => {
-                dispatch('items/getItem', item.id, {root:true});
+                dispatch('items/getItem', item.item.id, {root:true});
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },

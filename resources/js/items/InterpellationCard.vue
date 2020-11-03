@@ -3,7 +3,6 @@
     <div class=" border-2 rounded-md border-gray-300 w-full"
          v-if="openList"
     >
-
         <div class="flex justify-between bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Prihlásený do rozpravy <small class="text-sm">
 
@@ -18,7 +17,7 @@
             <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
                 class="flex justify-between border-b-2 border-dotted px-2">
                 <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
-                <span @click="deleteItem(interpellation.id)" class="text-gray-800 text-sm cursor-pointer">x</span>
+                <span v-if="$auth.can('council delete')" @click="deleteItem(interpellation.id)" class="text-gray-800 text-sm cursor-pointer">x</span>
             </li>
         </ul>
 
@@ -59,7 +58,7 @@
             },
 
             storeInterpellation: function () {
-                this.$store.dispatch('interpellations/store', this.item);
+                this.$store.dispatch('interpellations/store', {item: this.item, user: this.user.id} );
             },
 
             deleteItem: function (id) {
