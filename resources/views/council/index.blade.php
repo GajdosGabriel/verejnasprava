@@ -7,7 +7,10 @@
 
 
     <div class="container min-h-screen p-6 mx-auto">
-        <council-table></council-table>
+        <div class="w-2/3">
+            <council-table></council-table>
+        </div>
+
     </div>
 
 
