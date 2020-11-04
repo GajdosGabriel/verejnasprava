@@ -126,13 +126,10 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
 
+    Route::resources([
+        'support' => SupportController::class,
+    ]);
 
-    Route::prefix('support')->name('support.')->group(function() {
-        Route::get('index',  'SupportController@index')->name('index');
-        Route::patch('{support}/update',  'SupportController@update')->name('update');
-        Route::post('store',  'SupportController@store')->name('store');
-        Route::delete('{support}',  'SupportController@destroy')->name('destroy');
-    });
 
     Route::get('test/test/test', 'TestController@test');
     Route::get('test/test/artisan', 'TestController@artisan');

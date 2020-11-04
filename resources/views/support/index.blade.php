@@ -16,7 +16,7 @@
                     <div class="max-w-xl">
 
                         <form action="{{ route('support.store') }}" method="POST">
-                            @csrf
+                            @csrf @method('POST')
                             <div class="flex justify-between my-4">
                                 <input type="text" name="question" placeholder="Napíšte správu ..."
                                        class="flex-1 mr-3 pl-3 rounded-lg border-2 border-gray-400" required>
