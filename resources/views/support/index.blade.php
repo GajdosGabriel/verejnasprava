@@ -27,16 +27,26 @@
 
                         @forelse($questions as $question)
 
-
-
                             {{-- User --}}
                             <div class="bg-gray-100 p-3 mb-4 rounded shadow-lg">
-{{--                                <h2 class="font-bold text-lg text-gray-700 mb-2 text-center">Otázka</h2>--}}
+                                {{--                                <h2 class="font-bold text-lg text-gray-700 mb-2 text-center">Otázka</h2>--}}
                                 <div class="flex justify-between mb-3 items-center">
-                                    <img class="rounded-full w-12"
-                                         src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-                                         alt="..." alt="...">
-                                    <span class="text-sm text-gray-800">{{ $question->user->full_name() }}</span>
+                                    <div class="flex">
+                                        <img class="mr-5 rounded-full w-12"
+                                             src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg"
+                                             alt="..." alt="...">
+                                        <span class="self-center text-sm text-gray-800">{{ $question->user->full_name() }}</span>
+                                    </div>
+
+                                    {{--  Delete form question --}}
+                                    @can('delete', $question)
+                                        <form action="{{ route('support.destroy', $question->id ) }}"
+                                              method="POST" class="p-2 cursor-pointer text-gray-600">
+                                            @csrf @method('DELETE')
+                                            <button type="submit">x</button>
+                                        </form>
+                                    @endcan
+
                                 </div>
                                 <p>{{ $question->question }}</p>
 
@@ -49,16 +59,19 @@
                                     <div class="bg-blue-100 p-3 mb-4 rounded shadow-lg">
                                         <div class="flex justify-between items-center">
                                             <div class="flex">
-                                                <img class="mr-5 rounded-full w-12" src="{{asset('image/administrator.jpg')}}" alt="...">
-                                                <span class="self-center text-sm text-gray-800">Administrátor</span>
+                                                <img class="mr-5 rounded-full w-12"
+                                                     src="{{asset('image/administrator.jpg')}}" alt="...">
+                                                <span
+                                                    class="self-center text-sm text-gray-800">{{ auth()->user()->full_name() }}</span>
                                             </div>
 
                                             {{--  Delete form --}}
                                             @can('delete', $comment)
-                                            <form  action="{{ route('comment.destroy', $comment->id ) }}" method="POST"  class="p-2 cursor-pointer text-gray-600">
-                                                @csrf @method('DELETE')
-                                               <button type="submit">x</button>
-                                            </form>
+                                                <form action="{{ route('comment.destroy', $comment->id ) }}"
+                                                      method="POST" class="p-2 cursor-pointer text-gray-600">
+                                                    @csrf @method('DELETE')
+                                                    <button type="submit">x</button>
+                                                </form>
                                             @endcan
                                         </div>
                                         <p>{{ $comment->body }}</p>
@@ -70,20 +83,23 @@
                                 @endforelse
 
 
-
                                 <div class="bg-blue-100 p-2 mb-4 rounded shadow-lg">
                                     <div class="flex justify-between items-center">
                                         <div class="flex w-full items-center">
-                                            <img class="mr-5 rounded-full w-12" src="{{asset('image/administrator.jpg')}}" alt="...">
+                                            <img class="mr-5 rounded-full w-12"
+                                                 src="{{asset('image/administrator.jpg')}}" alt="...">
 
-                                            <form action="{{ route('support.update', $question->id) }}" method="POST" class="w-full">
+                                            <form action="{{ route('support.update', $question->id) }}" method="POST"
+                                                  class="w-full">
                                                 @csrf @method('PATCH')
                                                 <div class="flex">
                                                     <input name="body" type="text" required
                                                            class="w-full border-2 border-gray-400 rounded-l-g text-sm focus:outline-none"
                                                            placeholder="Odpoveď" aria-label="Recipient's username"
                                                            aria-describedby="button-addon2">
-                                                    <button class="btn btn-primary rounded-r-lg text-sm" type="submit">Poslať</button>
+                                                    <button class="btn btn-primary rounded-r-lg text-sm" type="submit">
+                                                        Poslať
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -96,7 +112,7 @@
                             Nie je tu žiadna otázky.
                         @endforelse
                     </div>
-{{--                    {{ $questions->links() }}--}}
+                    {{--                    {{ $questions->links() }}--}}
                 </div>
             </div>
         </div>

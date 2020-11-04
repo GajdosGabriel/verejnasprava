@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Question;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Support;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class SupportController extends Controller
 {
     public function index() {
 
-        $questions = Support::whereUserId(auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
+//        $questions = Support::whereUserId(auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        $questions = Support::orderBy('created_at', 'desc')->paginate(10);
 
         return view('support.index')->with('questions', $questions);
 
@@ -37,5 +39,12 @@ class SupportController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function destroy(Support $support){
+        $this->authorize('delete', $support);
+
+        $support->delete();
+        return back();
     }
 }

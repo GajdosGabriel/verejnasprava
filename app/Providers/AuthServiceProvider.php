@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Comment;
+use App\Models\Support;
 use App\Policies\CommentPolicy;
+use App\Policies\SupportPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Organization' => 'App\Policies\OrganizationPolicy',
          'App\Models\Comment' => 'App\Policies\CommentPolicy',
         Comment::class => CommentPolicy::class,
+        Support::class => SupportPolicy::class,
     ];
 
     /**
