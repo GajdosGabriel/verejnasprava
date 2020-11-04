@@ -36,7 +36,7 @@
                     <div class="form-check form-check-inline whitespace-no-wrap">
                         <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}"
                                value="{{ $role->id }}"
-                               @if($user->id == $user->roles->contains($role->id))  checked @endif
+                               @if($user->roles->contains($role->id))  checked @endif
                         >
                         <label class="input-label" for="role">{{ $role->name }}</label>
                     </div>
