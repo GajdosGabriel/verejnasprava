@@ -67,7 +67,7 @@
 
                                             {{--  Delete form --}}
                                             @can('delete', $comment)
-                                                <form action="{{ route('comment.destroy', $comment->id ) }}"
+                                                <form action="{{ route('comments.destroy', $comment->id ) }}"
                                                       method="POST" class="p-2 cursor-pointer text-gray-600">
                                                     @csrf @method('DELETE')
                                                     <button type="submit">x</button>

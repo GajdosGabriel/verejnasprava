@@ -128,6 +128,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resources([
         'support' => SupportController::class,
+        'comments' => CommentController::class,
     ]);
 
 
