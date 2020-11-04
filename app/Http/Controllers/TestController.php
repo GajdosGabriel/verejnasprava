@@ -10,13 +10,15 @@ class TestController extends Controller
    public function test()
    {
 
-       $orgs = Organization::get();
-//       dd($orgs);
+       $orgs = Organization::first(1);
+       dd($orgs->menus);
 
-       foreach($orgs as $org){
-           $org->menus()->attach([1,2,7]);
-//           print_r(isset($org->name));
-       }
+
+
+//       foreach($orgs as $org){
+//           $org->menus()->attach([1,2,7]);
+////           print_r(isset($org->name));
+//       }
 
 //       $users = Meeting::whereHas('council', function (Builder $query) {
 //           $query->whereOrganizationId(1);

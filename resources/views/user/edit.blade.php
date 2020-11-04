@@ -14,11 +14,12 @@
 
             <h1 class="font-bold text-2xl">Upraviť užívateľa</h1>
 
-            <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
+            <form class="p-3" action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('PATCH')
                 @include('modul.errors')
                 @include('user._userForm')
                 @include('user._userRoleForm')
+                @include('user._permissionsForm')
                 <div class="form-group">
                     <div class="flex justify-between my-3">
                         <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
