@@ -1,11 +1,11 @@
 @role('admin')
-<div class="bg-gray-200 mb-4 rounded-md">
-    <h1 class="font-medium text-lg">{{ $user->full_name() }} je:</h1>
+<div class="px-4 bg-gray-200 mb-4 rounded-md">
+    <h1 class="font-medium text-lg mb-3">{{ $user->full_name() }} je:</h1>
 
-    <div class="md:flex w-full bg-yellow-600">
+    <div class="md:flex w-full">
 
         {{-- Section Counsils --}}
-        <div class="p-4 sm:w-1/2">
+        <div class="sm:w-1/2">
             <strong>Člen zastupiteľstva</strong>
 
             @forelse($organization->councils as $council)

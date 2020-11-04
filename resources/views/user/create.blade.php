@@ -14,6 +14,7 @@
             @include('modul.errors')
             @include('user._userForm')
             @include('user._userRoleForm')
+            @include('user._permissionsForm')
             <div class="form-group">
                 <div class="flex justify-between my-3">
                     <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
