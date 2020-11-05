@@ -45,7 +45,7 @@
 
                             {{-- Item Up button--}}
                             <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap"
-                               href="{{ route('post.edit', $post->id) }}" title="Upraviť položku">
+                               href="{{ route('posts.edit', $post->id) }}" title="Upraviť položku">
                                 Upraviť položku
                             </a>
 
@@ -57,7 +57,7 @@
 
                             <div class="dropdown-divider"></div>
                             {{-- Item Delete button--}}
-                            <a class="hover:bg-gray-200 px-4 py-1 flex-1" href="{{ route('post.delete', $post->id) }}"
+                            <a class="hover:bg-gray-200 px-4 py-1 flex-1" href="{{ route('posts.destroy', $post->id) }}"
                                onclick="get_form(this).submit(); return false"
                                title="Vymazať položku">
                                 Zmazať

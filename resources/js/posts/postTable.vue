@@ -40,16 +40,15 @@
                         <slot>
                             <div class="py-1">
                                 <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                   :href="'post/edit/' + post.id"
+                                   :href="'posts/' + post.id + '/edit'"
                                    title="Upraviť položku">
                                     Upraviť
                                 </a>
 
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                   :href="'post/delete/' + post.id"
+                                <div @click="deletePost(post)" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                    title="Zmazať položku">
-                                    Zmazať
-                                </a>
+                                        Zmazať
+                                    </div>
                             </div>
                         </slot>
                     </nav-drop-down>
@@ -98,6 +97,11 @@
             searchByContact: function(contactId){
                 this.prefix = 'contact';
                 this.search = contactId;
+            },
+
+            deletePost: function (post) {
+                axios.delete('/posts/' + post.id)
+                .then(window.location.reload())
             }
         },
 

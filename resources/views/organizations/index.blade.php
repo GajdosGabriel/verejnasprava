@@ -57,7 +57,7 @@
                             {{--                            Upraviť položku--}}
                             {{--                        </a>--}}
                             <div class="dropdown-divider"></div>
-                            {{--                                <form action="{{ route('org.post.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
+                            {{--                                <form action="{{ route('org.posts.delete', [$post->id, $post->slug]) }}" class="d-flex justify-content-between" id="delete-form" method="post">--}}
                             {{--                                    @csrf @method('DELETE')--}}
                             {{--                                    <a class="dropdown-item" href="#" onclick="get_form(this).submit(); return false">--}}
                             {{--                                        <i @if(Auth::id() === $post->user_id) @else style="font-size: 118%; color: grey" @endif style="font-size: 118%; color: #b40000" class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Vymazať položku"></i>--}}

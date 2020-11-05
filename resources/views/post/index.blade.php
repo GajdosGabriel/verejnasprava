@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam dokumentov')
-{{--@section('navigation')--}}
-{{--    <x-navigation.navigationOrganization/> @endsection--}}
+
 @section('navigation') @include('organizations.navigation') @endsection
 @section('content')
 
@@ -14,7 +13,7 @@
                 <h1 class="page-title">Zverejnené doklady</h1>
                 @role('admin')
                 <a class="btn btn-primary"
-                   href="{{ route('post.create') }}">Nový doklad
+                   href="{{ route('posts.create') }}">Nový doklad
                 </a>
                 @endrole
             </div>

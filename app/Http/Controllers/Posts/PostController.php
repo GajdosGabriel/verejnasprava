@@ -88,11 +88,11 @@ class PostController extends Controller
         $post->saveImage($request, $post);
 
 //        flash()->success('Doklad opravený! ');
-        return redirect()->route('post.index', [ $post->organization->id, $post->organization->slug ]);
+        return redirect()->route('posts.index', [ $post->organization->id, $post->organization->slug ]);
     }
 
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
         $this->authorize('update', $post);
 //        Cache::forget('posts');
@@ -103,7 +103,7 @@ class PostController extends Controller
 
         $post->delete();
 //        flash()->success('Doklad bol zmazaný! ');
-        return back();
+//        return redirect('posts.index');
     }
 
 

@@ -25,7 +25,7 @@ class CreateMenusTable extends Migration
             [
                 'id' => 1,
                 'name' => 'Zverejňovanie',
-                'route' => 'post.index',
+                'route' => 'posts.index',
                 'type' => 'horizontal',
             ],
             [

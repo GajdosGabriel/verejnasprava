@@ -14,7 +14,7 @@
         <h1 class="page-title">Vytvoriť doklad</h1>
 
         <form class="md:w-2/3"
-              action="{{ route('post.store') }}"
+              action="{{ route('posts.store') }}"
               method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')
