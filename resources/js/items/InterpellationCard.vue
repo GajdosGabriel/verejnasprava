@@ -47,7 +47,9 @@
                 if(data.id === this.item.id){
                     this.listToggle()
                 }
-            })
+            });
+
+            this.$store.commit('interpellations/SET_ITEM', this.item)
         },
         methods: {
             listToggle: function(){

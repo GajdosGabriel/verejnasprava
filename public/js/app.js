@@ -3021,6 +3021,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.listToggle();
       }
     });
+    this.$store.commit('interpellations/SET_ITEM', this.item);
   },
   methods: {
     listToggle: function listToggle() {
@@ -91295,12 +91296,16 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  loadingStatus: 'notLoading'
+  loadingStatus: 'notLoading',
+  item: ''
 };
 var getters = {};
 var mutations = {
   OPEN_LIST: function OPEN_LIST(state) {
     state.openList = !state.openList;
+  },
+  SET_ITEM: function SET_ITEM(state, item) {
+    state.item = item;
   }
 };
 var actions = {
@@ -91330,6 +91335,9 @@ var actions = {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
     axios["delete"]('/interpellations/' + id).then(function (response) {
+      dispatch('items/getItem', _this2.state.interpellations.item.id, {
+        root: true
+      });
       dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
       });
