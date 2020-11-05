@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <form method="POST" action="{{ route('meet.update', [$meeting->id, $meeting->slug]) }}">
+                        <form method="POST" action="{{ route('meetings.update', $meeting->id) }}">
                             @csrf @method('PUT')
                             @include('modul.errors')
                             @include('council.meeting._form')

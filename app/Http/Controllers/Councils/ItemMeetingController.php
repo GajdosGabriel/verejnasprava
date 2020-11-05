@@ -25,7 +25,7 @@ class ItemMeetingController extends Controller
        $item = $meeting->items()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
 
         $item->saveFile($request);
-        return redirect()->route('meet.show',[$meeting->id, $meeting->slug]);
+        return redirect()->route('meetings.show', $meeting->id);
     }
 
     public function delete(Item $item) {

@@ -49,7 +49,7 @@
 
                     <!-- Meeting Edit button-->
                     <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                       :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/edit'"
+                       :href="'/meetings/'+ meeting.id + '/edit'"
                        title="Zmazať položku">
                         <div class="flex">
                             <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@
                     </a>
 
                     <!-- Meeting Delete button-->
-                    <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                    <div @click="deleteMeeting(meeting)" class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                        :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/delete'"
                        title="Zmazať položku">
                         <div class="flex">
@@ -101,7 +101,7 @@
                             </svg>
                             Odstrániť
                         </div>
-                    </a>
+                    </div>
 
                 </slot>
             </nav-drop-down>
@@ -174,6 +174,10 @@
             this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
         },
         methods: {
+            deleteMeeting(meeting){
+                axios.delete('/meetings/' + meeting.id)
+                .then(window.location.reload())
+            },
             publishedMeeting: function (published) {
                 this.$store.dispatch('meetings/update', {
                     published: published,

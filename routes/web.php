@@ -63,13 +63,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
         Route::get('{council}/{slug}/index', 'MeetingController@index')->name('index');
-        Route::get('{meeting}/{slug}/show', 'MeetingController@show')->name('show');
         Route::get('{council}/{slug}/meeting/create', 'MeetingController@create')->name('create');
-        Route::get('{meeting}/{slug}/meeting/edit', 'MeetingController@edit')->name('edit');
         Route::get('{meeting}/{slug}/meeting/published', 'MeetingController@published')->name('published');
-        Route::put('{meeting}/{slug}/meeting/update', 'MeetingController@update')->name('update');
         Route::post('{council}/{slug}/meeting/store', 'MeetingController@store')->name('store');
-        Route::get('{meeting}/{slug}/meeting/delete', 'MeetingController@delete')->name('delete');
 
         Route::get('{meeting}/{slug}/print', 'MeetingController@pozvankaPdf');
 
@@ -114,6 +110,7 @@ Route::group(['middleware' => 'auth'], function() {
         'comments' => CommentController::class,
         'interpellations' => Councils\InterpellationController::class,
         'items' => Councils\ItemController::class,
+        'meetings' => Councils\MeetingController::class,
         'tasks' => TaskController::class,
         'posts' => Posts\PostController::class,
     ]);

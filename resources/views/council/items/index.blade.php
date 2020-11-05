@@ -27,7 +27,7 @@
 
 
                         @forelse($item->meetings as $meeting)
-                            <a href="{{ route('meet.show', [$meeting->id, $meeting->slug]) }}">
+                            <a href="{{ route('meetings.show', $meeting->id) }}">
                                 <span class="p-1 bg-yellow-400 text-sm rounded-2xl px-2 hover:bg-yellow-500 ">
                                 {{ $meeting->name }} {{ $meeting->start_at->format('d. m. Y') }}
                                 </span>

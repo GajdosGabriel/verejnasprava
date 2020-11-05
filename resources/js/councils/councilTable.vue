@@ -23,7 +23,7 @@
                             </a>
 
 
-                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                            <a class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                  title="Upraviť položku"
                                  @click="openForm(council)">
                                 <div class="flex">
@@ -53,7 +53,7 @@
             <div class="flex flex-col sm:ml-5">
                 <div class="flex justify-between hover:underline flex-wrap" v-for="meeting in council.meetings">
 
-                    <a :href="'meet/' + meeting.id +'/' + meeting.slug + '/show'">
+                    <a :href="'meetings/' + meeting.id">
                         <strong v-text="moment( meeting.start_at).format('DD. MM. YYYY')"></strong>,
                         {{ moment(meeting.start_at).format('h:mm') }} hod.
                         <strong>{{ meeting.name }}</strong>
@@ -61,7 +61,7 @@
 
 
                     <div class="cursor-pointer">
-                        <a :href="'meet/' + meeting.id +'/' + meeting.slug + '/show'">
+                        <a :href="'meetings/' + meeting.id">
                             Program ({{meeting.items.length }})
                         </a>
                     </div>

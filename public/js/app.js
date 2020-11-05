@@ -3676,6 +3676,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
   },
   methods: {
+    deleteMeeting: function deleteMeeting(meeting) {
+      axios["delete"]('/meetings/' + meeting.id).then(window.location.reload());
+    },
     publishedMeeting: function publishedMeeting(published) {
       this.$store.dispatch('meetings/update', {
         published: published,
@@ -69578,7 +69581,7 @@ var render = function() {
                             "a",
                             {
                               staticClass:
-                                "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                "cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                               attrs: { title: "Upraviť položku" },
                               on: {
                                 click: function($event) {
@@ -69674,48 +69677,30 @@ var render = function() {
                   staticClass: "flex justify-between hover:underline flex-wrap"
                 },
                 [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          "meet/" + meeting.id + "/" + meeting.slug + "/show"
+                  _c("a", { attrs: { href: "meetings/" + meeting.id } }, [
+                    _c("strong", {
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.moment(meeting.start_at).format("DD. MM. YYYY")
+                        )
                       }
-                    },
-                    [
-                      _c("strong", {
-                        domProps: {
-                          textContent: _vm._s(
-                            _vm.moment(meeting.start_at).format("DD. MM. YYYY")
-                          )
-                        }
-                      }),
-                      _vm._v(
-                        ",\n                    " +
-                          _vm._s(_vm.moment(meeting.start_at).format("h:mm")) +
-                          " hod.\n                    "
-                      ),
-                      _c("strong", [_vm._v(_vm._s(meeting.name))])
-                    ]
-                  ),
+                    }),
+                    _vm._v(
+                      ",\n                    " +
+                        _vm._s(_vm.moment(meeting.start_at).format("h:mm")) +
+                        " hod.\n                    "
+                    ),
+                    _c("strong", [_vm._v(_vm._s(meeting.name))])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "cursor-pointer" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href:
-                            "meet/" + meeting.id + "/" + meeting.slug + "/show"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Program (" +
-                            _vm._s(meeting.items.length) +
-                            ")\n                    "
-                        )
-                      ]
-                    )
+                    _c("a", { attrs: { href: "meetings/" + meeting.id } }, [
+                      _vm._v(
+                        "\n                        Program (" +
+                          _vm._s(meeting.items.length) +
+                          ")\n                    "
+                      )
+                    ])
                   ])
                 ]
               )
@@ -70945,12 +70930,7 @@ var render = function() {
                         staticClass:
                           "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                         attrs: {
-                          href:
-                            "/meet/" +
-                            _vm.meeting.id +
-                            "/" +
-                            _vm.meeting.slug +
-                            "/meeting/edit",
+                          href: "/meetings/" + _vm.meeting.id + "/edit",
                           title: "Zmazať položku"
                         }
                       },
@@ -71075,10 +71055,10 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "a",
+                      "div",
                       {
                         staticClass:
-                          "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                          "cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                         attrs: {
                           href:
                             "/meet/" +
@@ -71087,6 +71067,11 @@ var render = function() {
                             _vm.meeting.slug +
                             "/meeting/delete",
                           title: "Zmazať položku"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteMeeting(_vm.meeting)
+                          }
                         }
                       },
                       [

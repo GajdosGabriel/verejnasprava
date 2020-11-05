@@ -39,9 +39,9 @@ class MeetingController extends Controller
         return redirect()->route('meet.index', [$council->id, $council->slug]);
     }
 
-    public function delete(Meeting $meeting) {
+    public function destroy(Meeting $meeting) {
         $meeting->delete();
-        return redirect()->route('council.index');
+//        return redirect()->route('council.index');
     }
 
     public function published(Meeting $meeting) {

@@ -8,7 +8,7 @@
             </svg>
             <span class="font-semibold text-xl tracking-tight">
                 @forelse($item->meetings as $meeting)
-                    <a href="{{ route('meet.show', [$meeting->id, $meeting->slug]) }}">
+                    <a href="{{ route('meetings.show', $meeting->id) }}">
             {{ $meeting->name }}
             </a>
                 @empty
