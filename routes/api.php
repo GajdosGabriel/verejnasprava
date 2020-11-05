@@ -31,11 +31,6 @@ Route::get('meeting/{meeting}/show', 'Api\MeetingController@show');
 Route::put('meeting/{meeting}', 'Api\MeetingController@update');
 
 
-Route::get('interpellation/{itemId}/index', 'Councils\ApiInterpellationController@getIndex');
-Route::post('interpellation/{item}/store', 'Councils\ApiInterpellationController@store');
-Route::delete('interpellation/{interpellation}', 'Councils\ApiInterpellationController@delete');
-
-
 Route::apiResources([
     'vote' => 'Api\VoteController',
     'item' => 'Api\ItemController',

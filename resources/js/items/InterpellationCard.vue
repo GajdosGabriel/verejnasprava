@@ -8,7 +8,7 @@
 
                 ({{ item.interpellations.length }})
             </small></h4>
-            <span @click="storeInterpellation" class="text-sm cursor-pointer">
+            <span @click="updateInterpellation" class="text-sm cursor-pointer">
                 {{ hasUserInterpellation }}
             </span>
         </div>
@@ -57,8 +57,8 @@
               this.openList = ! this.openList
             },
 
-            storeInterpellation: function () {
-                this.$store.dispatch('interpellations/store', {item: this.item, user: this.user.id} );
+            updateInterpellation: function () {
+                this.$store.dispatch('interpellations/update', this.item );
             },
 
             deleteItem: function (id) {

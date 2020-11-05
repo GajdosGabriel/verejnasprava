@@ -13,22 +13,21 @@ const mutations = {
 };
 const actions = {
 
-    store({commit, dispatch}, item) {
+    update({commit, dispatch}, item) {
         if (item.vote_status){
             alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
             return
         }
-        axios.post('/api/interpellation/' + item.item.id + '/store', {user: item.user } )
+        axios.put('/interpellations/' + item.id )
             .then(response => {
-                dispatch('items/getItem', item.item.id, {root:true});
+                dispatch('items/getItem', item.id, {root:true});
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },
 
     delete({commit, dispatch}, id) {
-        axios.delete('/api/interpellation/' + id)
+        axios.delete('/interpellations/' + id)
             .then(response => {
-                dispatch('items/getItem', id, {root:true});
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },

@@ -129,6 +129,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resources([
         'support' => SupportController::class,
         'comments' => CommentController::class,
+        'interpellations' => Councils\InterpellationController::class,
     ]);
 
 

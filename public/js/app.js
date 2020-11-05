@@ -3030,11 +3030,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.openList = !this.openList;
     },
-    storeInterpellation: function storeInterpellation() {
-      this.$store.dispatch('interpellations/store', {
-        item: this.item,
-        user: this.user.id
-      });
+    updateInterpellation: function updateInterpellation() {
+      this.$store.dispatch('interpellations/update', this.item);
     },
     deleteItem: function deleteItem(id) {
       this.$store.dispatch('interpellations/delete', id);
@@ -70065,7 +70062,7 @@ var render = function() {
               "span",
               {
                 staticClass: "text-sm cursor-pointer",
-                on: { click: _vm.storeInterpellation }
+                on: { click: _vm.updateInterpellation }
               },
               [
                 _vm._v(
@@ -91307,7 +91304,7 @@ var mutations = {
   }
 };
 var actions = {
-  store: function store(_ref, item) {
+  update: function update(_ref, item) {
     var _this = this;
 
     var commit = _ref.commit,
@@ -91318,10 +91315,8 @@ var actions = {
       return;
     }
 
-    axios.post('/api/interpellation/' + item.item.id + '/store', {
-      user: item.user
-    }).then(function (response) {
-      dispatch('items/getItem', item.item.id, {
+    axios.put('/interpellations/' + item.id).then(function (response) {
+      dispatch('items/getItem', item.id, {
         root: true
       });
       dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
@@ -91334,10 +91329,7 @@ var actions = {
 
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    axios["delete"]('/api/interpellation/' + id).then(function (response) {
-      dispatch('items/getItem', id, {
-        root: true
-      });
+    axios["delete"]('/interpellations/' + id).then(function (response) {
       dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
         root: true
       });
