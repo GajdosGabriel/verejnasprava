@@ -29,7 +29,7 @@
                             <!-- Item Edit button-->
                             <div class="py-1">
                                 <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                   :href="'/item/'+ item.id + '/edit'"
+                                   :href="'/items/'+ item.id + '/edit'"
                                    title="Upraviť bod programu">
                                     <div class="flex">
                                         <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +58,7 @@
 
 
                             <!-- Item Delete button-->
-                            <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                               :href="'/item/'+ item.id + '/' +item.slug + '/item/delete'"
+                            <div @click="itemDelete(item)" class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                title="Zmazať položku">
                                 <div class="flex">
                                     <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +68,7 @@
                                     </svg>
                                     Zmazať
                                 </div>
-                            </a>
+                            </div>
                         </slot>
                     </nav-drop-down>
 
@@ -177,6 +176,10 @@
             this.$store.dispatch('items/getItem', this.pitem.id)
         },
         methods: {
+            itemDelete(item){
+                axios.delete('/items/' + item.id)
+                .then(window.location.reload())
+            },
             saveNotification() {
                 this.$store.dispatch('items/update', {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),

@@ -76,14 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
-        Route::get('index', 'ItemController@index')->name('index');
-        Route::get('create', 'ItemController@create')->name('create');
-        Route::get('{item}/show', 'ItemController@show')->name('show');
-        Route::get('{item}/edit', 'ItemController@edit')->name('edit');
         Route::put('position/slug/item/position', 'ItemOrderController@position')->name('position');
-        Route::post('store', 'ItemController@store')->name('store');
-        Route::put('{item}/{slug}/meeting/update', 'ItemController@update')->name('update');
-        Route::get('{item}/item/delete', 'ItemController@delete')->name('delete');
     });
 
     Route::prefix('itemMeeting')->name('itemMeeting.')->namespace('Councils')->group(function() {
@@ -120,6 +113,7 @@ Route::group(['middleware' => 'auth'], function() {
         'supports' => SupportController::class,
         'comments' => CommentController::class,
         'interpellations' => Councils\InterpellationController::class,
+        'items' => Councils\ItemController::class,
         'tasks' => TaskController::class,
         'posts' => Posts\PostController::class,
     ]);

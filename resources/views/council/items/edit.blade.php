@@ -9,7 +9,7 @@
     <div class="container mx-auto p-6 min-h-screen">
         <h1 class="page-title">Úprava návrhu na uznesenie</h1>
 
-        <form method="POST" action="{{ route('item.update', [$item->id, $item->slug]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data">
             @csrf @method('PUT')
             @include('modul.errors')
             <div class="">

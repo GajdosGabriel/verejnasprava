@@ -3370,7 +3370,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -3409,6 +3408,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('items/getItem', this.pitem.id);
   },
   methods: {
+    itemDelete: function itemDelete(item) {
+      axios["delete"]('/items/' + item.id).then(window.location.reload());
+    },
     saveNotification: function saveNotification() {
       this.$store.dispatch('items/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
@@ -70176,7 +70178,7 @@ var render = function() {
                                 staticClass:
                                   "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                                 attrs: {
-                                  href: "/item/" + _vm.item.id + "/edit",
+                                  href: "/items/" + _vm.item.id + "/edit",
                                   title: "Upraviť bod programu"
                                 }
                               },
@@ -70467,7 +70469,7 @@ var render = function() {
                                 staticClass:
                                   "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                                 attrs: {
-                                  href: "/item/" + _vm.item.id + "/edit",
+                                  href: "/items/" + _vm.item.id + "/edit",
                                   title: "Upraviť bod programu"
                                 }
                               },
@@ -70549,18 +70551,15 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c(
-                            "a",
+                            "div",
                             {
                               staticClass:
-                                "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                              attrs: {
-                                href:
-                                  "/item/" +
-                                  _vm.item.id +
-                                  "/" +
-                                  _vm.item.slug +
-                                  "/item/delete",
-                                title: "Zmazať položku"
+                                "cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                              attrs: { title: "Zmazať položku" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.itemDelete(_vm.item)
+                                }
                               }
                             },
                             [

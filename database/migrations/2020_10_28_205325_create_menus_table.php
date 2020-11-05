@@ -43,7 +43,7 @@ class CreateMenusTable extends Migration
             [
                 'id' => 4,
                 'name' => 'Návrhy',
-                'route' => 'item.index',
+                'route' => 'items.index',
                 'type' => 'horizontal',
             ],
             [

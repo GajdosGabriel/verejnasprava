@@ -15,13 +15,13 @@
 
                 <h1 class="page-title">Návrhy</h1>
                 <a class="btn btn-primary"
-                   href="{{ route('item.create') }}">Nový návrh</a>
+                   href="{{ route('items.create') }}">Nový návrh</a>
             </div>
             <ul>
 
                 @forelse($items as $item)
                     <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
-                        <a href="{{ route('item.show', $item->id) }}">
+                        <a href="{{ route('items.show', $item->id) }}">
                             {{ $item->name }}
                         </a>
 
