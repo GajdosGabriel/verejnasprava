@@ -41,7 +41,6 @@ class MeetingController extends Controller
 
     public function destroy(Meeting $meeting) {
         $meeting->delete();
-//        return redirect()->route('council.index');
     }
 
 

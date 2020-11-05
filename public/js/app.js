@@ -3677,7 +3677,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     deleteMeeting: function deleteMeeting(meeting) {
-      axios["delete"]('/meetings/' + meeting.id).then(window.location.reload());
+      axios["delete"]('/meetings/' + meeting.id).then( // window.location.reload();
+      window.location.href = '/zastupitelstva');
     },
     publishedMeeting: function publishedMeeting(published) {
       this.$store.dispatch('meetings/update', {

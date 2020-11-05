@@ -176,7 +176,10 @@
         methods: {
             deleteMeeting(meeting){
                 axios.delete('/meetings/' + meeting.id)
-                .then(window.location.reload())
+                .then(
+                    // window.location.reload();
+                window.location.href = '/zastupitelstva'
+                    )
             },
             publishedMeeting: function (published) {
                 this.$store.dispatch('meetings/update', {
