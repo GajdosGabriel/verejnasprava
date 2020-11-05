@@ -55,13 +55,13 @@ class CreateMenusTable extends Migration
             [
                 'id' => 6,
                 'name' => 'Úlohy',
-                'route' => 'task.index',
+                'route' => 'tasks.index',
                 'type' => 'horizontal',
             ],
             [
                 'id' => 7,
                 'name' => 'Podpora',
-                'route' => 'support.index',
+                'route' => 'supports.index',
                 'type' => 'horizontal',
             ],
             [

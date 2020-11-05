@@ -121,15 +121,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
     });
 
-    Route::name('task.')->group(function() {
-        Route::get('tasks', 'TaskController@index')->name('index');
-    });
-
 
     Route::resources([
-        'support' => SupportController::class,
+        'supports' => SupportController::class,
         'comments' => CommentController::class,
         'interpellations' => Councils\InterpellationController::class,
+        'tasks' => TaskController::class,
     ]);
 
 

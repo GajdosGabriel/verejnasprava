@@ -15,7 +15,7 @@
 
                     <div class="max-w-xl">
 
-                        <form action="{{ route('support.store') }}" method="POST">
+                        <form action="{{ route('supports.store') }}" method="POST">
                             @csrf @method('POST')
                             <div class="flex justify-between my-4">
                                 <input type="text" name="question" placeholder="Napíšte správu ..."
@@ -40,7 +40,7 @@
 
                                     {{--  Delete form question --}}
                                     @can('delete', $question)
-                                        <form action="{{ route('support.destroy', $question->id ) }}"
+                                        <form action="{{ route('supports.destroy', $question->id ) }}"
                                               method="POST" class="p-2 cursor-pointer text-gray-600">
                                             @csrf @method('DELETE')
                                             <button type="submit">x</button>
@@ -89,7 +89,7 @@
                                             <img class="mr-5 rounded-full w-12"
                                                  src="{{asset('image/administrator.jpg')}}" alt="...">
 
-                                            <form action="{{ route('support.update', $question->id) }}" method="POST"
+                                            <form action="{{ route('supports.update', $question->id) }}" method="POST"
                                                   class="w-full">
                                                 @csrf @method('PATCH')
                                                 <div class="flex">
