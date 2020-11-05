@@ -32,7 +32,7 @@
                 <tr class="hover:bg-gray-100">
                     <td class="px-4 py-2 border">{{ $user->full_name() }}</td>
                     <td class="px-4 py-2 border">
-                        <a href="{{ route('meet.index', [$user->id, $user->slug]) }}">
+                        <a href="{{ route('meet.index', $user->id) }}">
                             {{ $user->email }}
                         </a>
                     </td>

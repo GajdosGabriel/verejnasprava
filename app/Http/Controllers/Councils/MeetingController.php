@@ -30,13 +30,13 @@ class MeetingController extends Controller
     public function update(Request $request, Meeting $meeting) {
         $meeting->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
-        return redirect()->route('meet.index', [$meeting->council->id, $meeting->council->slug]);
+        return redirect()->route('meet.index', $meeting->council->id);
     }
 
     public function store(Request $request, Council $council) {
         $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
-        return redirect()->route('meet.index', [$council->id, $council->slug]);
+        return redirect()->route('meet.index', $council->id);
     }
 
     public function destroy(Meeting $meeting) {
@@ -44,11 +44,6 @@ class MeetingController extends Controller
 //        return redirect()->route('council.index');
     }
 
-    public function published(Meeting $meeting) {
-
-        $meeting->published();
-        return back();
-    }
 
     public function pozvankaPdf(Meeting $meeting, $slug) {
         $pdf = \PDF::loadView('council.meeting.print', compact('meeting'));

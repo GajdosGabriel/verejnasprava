@@ -13,7 +13,7 @@
             <h1 class="page-title">Zasadnutia: {{ $council->name }}</h1>
             @can('delete')
                 <a class="btn btn-primary"
-                   href="{{ route('meet.create', [auth()->user()->id, auth()->user()->slug ]) }}">Nové zasadnutie</a>
+                   href="{{ route('meet.create', auth()->user()->id) }}">Nové zasadnutie</a>
             @endcan
         </div>
 
@@ -59,7 +59,7 @@
                     </td>
                     <td class="border px-4 py-2">
                         @can('delete')
-                            <a href="{{ route('meet.published', [ $council->id, $council->slug]) }}">
+                            <a href="{{ route('meet.published', $council->id) }}">
                                 @if($council->published)
                                     <span class="badge badge-secondary">Nezverejnené</span>
                                 @else

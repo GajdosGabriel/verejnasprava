@@ -69541,12 +69541,7 @@ var render = function() {
                               staticClass:
                                 "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                               attrs: {
-                                href:
-                                  "meet/" +
-                                  council.id +
-                                  "/" +
-                                  council.slug +
-                                  "/meeting/create",
+                                href: "meet/" + council.id + "/meeting/create",
                                 title: "Vytvoriť nové zasadnutie"
                               }
                             },

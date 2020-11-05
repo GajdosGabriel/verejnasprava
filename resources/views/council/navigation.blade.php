@@ -2,7 +2,7 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('meet.index', [$meeting->id, $meeting->slug])  }}">
+            <a class="navbar-brand" href="{{ route('meet.index', $meeting->id)  }}">
                 {{ $organizationNav->name }} - {{ $meeting->name }}
             </a>
         </div>
