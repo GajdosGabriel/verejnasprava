@@ -23,7 +23,7 @@ Route::get('posts/{userId}', 'Posts\ApiPostController@index');
 Route::get('contacts/{organizationId}', 'Organizations\Contacts\ApiContactsController@getContacts');
 Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsController@delete');
 
-//Route::get('item/{item}/show', 'Api\ItemController@show');
+
 Route::put('item/{item}/update', 'Api\ItemController@update');
 Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');

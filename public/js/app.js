@@ -91379,9 +91379,9 @@ var mutations = {
   }
 };
 var actions = {
-  getItem: function getItem(_ref, itemId) {
+  getItem: function getItem(_ref, item) {
     var commit = _ref.commit;
-    axios.get('/api/items/' + itemId).then(function (response) {
+    axios.get('/api/items/' + item).then(function (response) {
       commit('SET_ITEM', response.data);
     });
   },
