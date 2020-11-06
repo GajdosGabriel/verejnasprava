@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class TestController extends Controller
 {
    public function test()
    {
 
+      $users = Role::with('users')->where('name', 'super-admin')->get();
+
+      dd($admin);
 //       $orgs = Organization::first(1);
 //       dd($orgs->menus);
 

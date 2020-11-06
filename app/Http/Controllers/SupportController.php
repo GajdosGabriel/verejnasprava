@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Question;
+use App\Models\User;
 use App\Notifications\Questions;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Support;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class SupportController extends Controller
 {
@@ -26,6 +28,7 @@ class SupportController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
+        // Answer for question
         $support->user->notify(new Questions($support));
 
         return back();
@@ -33,12 +36,21 @@ class SupportController extends Controller
 
     public function store(Request $request) {
 
-      auth()->user()->supports()->create($request->all());
+     $question = auth()->user()->supports()->create($request->all());
 
 //        $question->user->notify(new Questions($question));
 //        $question->user->find(1)->notify(new Questions($question));
 
 //        flash()->success('Správa bola odoslaná');
+
+        // New question
+        $users = User::whereHas('roles', function ($q){
+            $q->whereName('super-admin');
+        })->get();
+
+        foreach($users as $user){
+            $user->notify(new Questions($question));
+        }
 
 
         return redirect()->back();
