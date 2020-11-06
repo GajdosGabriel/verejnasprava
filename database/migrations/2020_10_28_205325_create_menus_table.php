@@ -73,7 +73,7 @@ class CreateMenusTable extends Migration
             [
                 'id' => 9,
                 'name' => 'Ľudia',
-                'route' => 'user.index',
+                'route' => 'users.index',
                 'type' => 'vertical',
             ],
 
