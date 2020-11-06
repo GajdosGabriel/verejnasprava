@@ -40,7 +40,7 @@ const mutations = {
 };
 const actions = {
     getItem({commit}, itemId) {
-        axios.get('/api/item/' + itemId +'/show')
+        axios.get('/api/items/' + itemId )
             .then(response => {
                 commit('SET_ITEM', response.data );
             });

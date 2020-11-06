@@ -24,11 +24,11 @@ class ItemController extends Controller
     }
 
     public function show(Item $item) {
-        return view('council.items.show', compact('item'))->with(['meeting' => $item->meeting]);
+        return view('council.items.show', compact('item'));
     }
 
     public function edit(Item $item) {
-        return view('council.items.edit', compact('item'))->with(['meeting' => $item->meeting]);
+        return view('council.items.edit', compact('item'));
     }
 
     public function update(Request $request, Item $item) {

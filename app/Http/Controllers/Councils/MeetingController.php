@@ -30,13 +30,13 @@ class MeetingController extends Controller
     public function update(Request $request, Meeting $meeting) {
         $meeting->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
-        return redirect()->route('meet.index', $meeting->council->id);
+        return redirect()->route('meetings.show', $meeting->id);
     }
 
     public function store(Request $request, Council $council) {
         $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
-        return redirect()->route('meet.index', $council->id);
+        return redirect()->route('meetings.show', $meeting->id);
     }
 
     public function destroy(Meeting $meeting) {
