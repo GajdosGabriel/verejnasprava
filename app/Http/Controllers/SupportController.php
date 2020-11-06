@@ -29,6 +29,7 @@ class SupportController extends Controller
         ]);
 
         // Answer for question
+        if ($support->user_id != auth()->user()->id) // not yourself notification
         $support->user->notify(new Questions($support));
 
         return back();
