@@ -38,9 +38,6 @@ class SupportController extends Controller
 
      $question = auth()->user()->supports()->create($request->all());
 
-//        $question->user->notify(new Questions($question));
-//        $question->user->find(1)->notify(new Questions($question));
-
 //        flash()->success('Správa bola odoslaná');
 
         // New question
@@ -52,9 +49,7 @@ class SupportController extends Controller
             $user->notify(new Questions($question));
         }
 
-
         return redirect()->back();
-
     }
 
     public function destroy(Support $support){
