@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Council\Council;
 use App\Models\Organization;
+use App\Models\User;
 
 class TestController extends Controller
 {
    public function test()
    {
 
-       $orgs = Organization::first(1);
-       dd($orgs->menus);
+//       $orgs = Organization::first(1);
+//       dd($orgs->menus);
 
 
 
@@ -46,7 +47,7 @@ class TestController extends Controller
 
 //     dd( User::whereHas("permissions", function($q){ $q->where("name", "council create"); })->get() );
 
-//    Neodskúšané
+
 //      $users = User::all();
 //
 //       foreach ($users as $user){

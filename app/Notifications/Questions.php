@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\Question;
+use App\Models\Support;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -18,7 +19,7 @@ class Questions extends Notification
      * @return void
      */
     protected $question;
-    public function __construct(Question $question)
+    public function __construct(Support $question)
     {
         $this->question = $question;
     }
@@ -44,12 +45,13 @@ class Questions extends Notification
     {
         return (new MailMessage)
             ->success()
-            ->subject('Otázka -- Verejný Portál-- ' . $this->question->user->company)
-            ->line('<strong>' . $this->question->user->company . '</strong> zadal novú otázku.')
-            ->line('<h2>Text otázky:</h2>')
-            ->line('<strong>' . $this->question->question . '</strong>')
-            ->action('Prístup k otázke', url($this->question->user->slug, 'navody'))
-            ->line('V prípade nutnosti ma kontaktujte telefonicky, Mgr. Gajdoš 0905 320 616')
+            ->subject( 'Odpoveď na dotaz ' . env('APP_NAME'))
+            ->greeting('Dobrý deň, ' . $this->question->user->full_name())
+            ->line( 'Dostali ste novú odoveď na vašu otázku.')
+            ->line( 'Vaša otázka:')
+            ->line( '" ' . $this->question->question .' "' )
+            ->action('Zobraziť odpoveď', url('supports'))
+            ->line('V prípade ďalších technických otázok vám zodpovie, Mgr. Gajdoš 0905 320 616')
             ;
     }
 

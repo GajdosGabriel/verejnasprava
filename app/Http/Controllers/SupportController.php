@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Question;
+use App\Notifications\Questions;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Support;
 use Illuminate\Http\Request;
@@ -25,8 +26,11 @@ class SupportController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
+        $support->user->notify(new Questions($support));
+
         return back();
     }
+
     public function store(Request $request) {
 
       auth()->user()->supports()->create($request->all());
