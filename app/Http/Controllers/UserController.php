@@ -32,12 +32,12 @@ class UserController extends Controller
     }
 
 
-    public function create(Organization $organization, $slug) {
+    public function create() {
         $user = new User();
-        return view('user.create', compact('organization', 'user'));
+        return view('user.create', compact('user'));
     }
 
-    public function edit(User $user, $slug) {
+    public function edit(User $user) {
         return view('user.edit', compact('user'));
     }
 
@@ -47,7 +47,7 @@ class UserController extends Controller
 
         $this->userRoles($user, $userRequest);
 
-        return redirect()->route('user.setup');
+        return redirect()->route('users.index');
     }
 
     public function store(Organization $organization, UserCreateRequest $userRequest) {
@@ -65,7 +65,7 @@ class UserController extends Controller
         $this->userRoles($user, $userRequest);
         $this->sendInvitation($user);
 
-        return redirect()->route('user.index', [$user->active_organization, 'slug']);
+        return redirect()->route('users.index');
     }
 
     // For update and store User
@@ -80,7 +80,7 @@ class UserController extends Controller
         $user->syncPermissions($userRequest->input('permission'));
     }
 
-    public function delete(User $user) {
+    public function destroy(User $user) {
         $user->delete();
         return back();
     }

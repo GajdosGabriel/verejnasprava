@@ -60,15 +60,16 @@
 
                             {{-- Item Up button--}}
                             <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap"
-                               href="{{ route('user.edit', [$user->id, $user->slug]) }}" title="Upraviť užívateľa">
+                               href="{{ route('users.edit', $user->id) }}" title="Upraviť užívateľa">
                                 Upraviť
                             </a>
 
                             {{-- Item Down button--}}
-                            <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap"
-                               href="{{ route('user.delete', [$user->id, $user->slug]) }}" title="Vymazať položku">
-                                Zmazať
-                            </a>
+                            <form method="post" action="{{ route('users.destroy', $user->id) }}"
+                                  class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap">
+                                @csrf @method('DELETE')
+                               <button title="Vymazať položku">Zmazať</button>
+                            </form>
                         </div>
 
                     </div>

@@ -14,7 +14,7 @@
 
             <h1 class="font-bold text-2xl">Upraviť užívateľa</h1>
 
-            <form class="p-3" action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
+            <form class="p-3" action="{{ route('users.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('PATCH')
                 @include('modul.errors')
                 @include('user._userForm')

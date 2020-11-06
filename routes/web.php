@@ -24,13 +24,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function() {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
-        Route::get('dasdion/slug/index', 'UserController@index')->name('index');
-        Route::get('{organization}/{slug}/create', 'UserController@create')->name('create');
-        Route::get('{user}/{slug}/edit', 'UserController@edit')->name('edit');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
-        Route::post('{organization}/store', 'UserController@store')->name('store');
-        Route::patch('{user}/update', 'UserController@update')->name('update');
-        Route::get('{user}/{slug}/delete', 'UserController@delete')->name('delete');
 
         Route::get('user/setup/', 'UserController@setup')->name('setup');
     });
@@ -105,6 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::resources([
+        'users'             => UserController::class,
         'tasks'             => TaskController::class,
         'supports'          => SupportController::class,
         'comments'          => CommentController::class,

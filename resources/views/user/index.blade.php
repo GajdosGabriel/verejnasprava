@@ -14,7 +14,7 @@
         <div class="flex justify-between my-8">
             <h2 class="text-2xl font-semibold">Všetci užívatelia</h2>
             <a class="float-right btn btn-primary"
-               href="{{ route('user.create', [ auth()->user()->active_organization, auth()->user()->slug]) }}">Nový člen</a>
+               href="{{ route('users.create') }}">Nový člen</a>
         </div>
 
         @include('user._userTable')
