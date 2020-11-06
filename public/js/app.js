@@ -70378,9 +70378,7 @@ var render = function() {
           { staticClass: "w-full" },
           [
             _c("h1", { staticClass: "text-lg page-title" }, [
-              _vm._v(
-                "Návrh uznesenia: " + _vm._s(_vm.item.name) + " zastupiteľstvo"
-              )
+              _vm._v("Návrh uznesenia: " + _vm._s(_vm.item.name))
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "text-sm text-gray-500" }, [
@@ -91400,7 +91398,7 @@ var actions = {
   update: function update(_ref3, item) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios.put('/api/item/' + item.id + '/update', item).then(function (response) {
+    axios.put('/api/items/' + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
       commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
       // Notify for add task

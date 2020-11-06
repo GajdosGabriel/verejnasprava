@@ -56,7 +56,7 @@ const actions = {
     },
 
     update({commit, dispatch}, item) {
-        axios.put('/api/item/' + item.id + '/update', item)
+        axios.put('/api/items/' + item.id, item)
             .then(response => {
                 // console.log(response.headers.notification);
                 commit('SET_ITEM', response.data);

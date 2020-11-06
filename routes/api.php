@@ -24,7 +24,6 @@ Route::get('contacts/{organizationId}', 'Organizations\Contacts\ApiContactsContr
 Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsController@delete');
 
 
-Route::put('item/{item}/update', 'Api\ItemController@update');
 Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
 Route::get('meeting/{meeting}/show', 'Api\MeetingController@show');
