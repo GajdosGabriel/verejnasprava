@@ -47,7 +47,7 @@ const actions = {
     },
 
     storeVote({commit, dispatch}, item) {
-        axios.put('/api/vote/' + item.id, item)
+        axios.put('/api/votes/' + item.id, item)
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true});
                 commit('SET_ITEM', response.data );

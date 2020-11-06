@@ -26,13 +26,12 @@ Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsControlle
 
 Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
-Route::get('meeting/{meeting}/show', 'Api\MeetingController@show');
-Route::put('meeting/{meeting}', 'Api\MeetingController@update');
 
 
 Route::apiResources([
-    'vote' => 'Api\VoteController',
+    'votes' => 'Api\VoteController',
     'items' => 'Api\ItemController',
+    'meetings' => 'Api\MeetingController',
 ]);
 
 

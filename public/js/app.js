@@ -91388,7 +91388,7 @@ var actions = {
 
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    axios.put('/api/vote/' + item.id, item).then(function (response) {
+    axios.put('/api/votes/' + item.id, item).then(function (response) {
       dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
         root: true
       });
@@ -91472,10 +91472,10 @@ var mutations = {
   }
 };
 var actions = {
-  fetchMeeting: function fetchMeeting(_ref, meetingId) {
+  fetchMeeting: function fetchMeeting(_ref, meeting) {
     var commit = _ref.commit;
     commit('SET_LOADING_STATUS', true);
-    axios.get('/api/meeting/' + meetingId + '/show').then(function (response) {
+    axios.get('/api/meetings/' + meeting).then(function (response) {
       commit('SET_MEETING', response.data);
       commit('SET_LOADING_STATUS', false);
     });
@@ -91484,7 +91484,7 @@ var actions = {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
     commit('SET_LOADING_STATUS', true);
-    axios.put('/api/meeting/' + meeting.id, meeting).then(function (response) {
+    axios.put('/api/meetings/' + meeting.id, meeting).then(function (response) {
       // commit('SET_ITEMS', response.data);
       commit('SET_LOADING_STATUS', false);
       dispatch('notification/addNewNotification', {

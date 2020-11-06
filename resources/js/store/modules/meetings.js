@@ -33,9 +33,9 @@ const mutations = {
 };
 const actions = {
 
-    fetchMeeting({commit}, meetingId) {
+    fetchMeeting({commit}, meeting) {
         commit('SET_LOADING_STATUS', true);
-        axios.get('/api/meeting/' + meetingId + '/show' )
+        axios.get('/api/meetings/' + meeting )
             .then(response => {
                     commit('SET_MEETING', response.data);
                     commit('SET_LOADING_STATUS', false);
@@ -45,7 +45,7 @@ const actions = {
 
     update({commit, dispatch}, meeting){
         commit('SET_LOADING_STATUS', true);
-        axios.put('/api/meeting/' + meeting.id, meeting)
+        axios.put('/api/meetings/' + meeting.id, meeting)
             .then(response => {
                     // commit('SET_ITEMS', response.data);
                     commit('SET_LOADING_STATUS', false);
