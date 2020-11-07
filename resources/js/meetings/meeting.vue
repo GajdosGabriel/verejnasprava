@@ -108,7 +108,7 @@
         </div>
 
         <div style="margin-top: -20px; font-size: 11px" class="mb-8 my-4">
-            <a :href="'/meet/' + meeting.id + '/hoci/print'" class="bg-blue-600 text-gray-200 p-1 rounded-sm" target="_blank">
+            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-600 text-gray-200 p-1 rounded-sm" target="_blank">
                 Pozvánka
             </a>
         </div>

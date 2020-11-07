@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{council}/meeting/create', 'MeetingController@create')->name('create');
         Route::post('{council}/meeting/store', 'MeetingController@store')->name('store');
 
-        Route::get('{meeting}/{slug}/print', 'MeetingController@pozvankaPdf');
+        Route::get('{meeting}/pdf/show', 'MeetingController@pozvankaPdf');
 
     });
 

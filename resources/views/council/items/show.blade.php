@@ -2,7 +2,7 @@
 @section('page-title', 'Zobraziť návrh')
 
 
-@section('navigation') @include('council.items.navigation') @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 
