@@ -25,10 +25,10 @@ class InterpellationController extends Controller
         }
         $interpellation->interpellations()->create([
             'name' => 'Prihlásený do rozpravy',
-            'body' => $int->name,
+            'body' => $interpellation->name,
             'user_id' => auth()->user()->id,
         ]);
-        return $int;
+//        return $int;
 //        return $item->interpellations()->get();
     }
 

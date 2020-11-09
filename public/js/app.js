@@ -91292,8 +91292,6 @@ var mutations = {
 };
 var actions = {
   update: function update(_ref, item) {
-    var _this = this;
-
     var commit = _ref.commit,
         dispatch = _ref.dispatch;
 
@@ -91305,24 +91303,18 @@ var actions = {
     axios.put('/interpellations/' + item.id).then(function (response) {
       dispatch('items/getItem', item.id, {
         root: true
-      });
-      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
-        root: true
-      });
+      }); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
     });
   },
   "delete": function _delete(_ref2, id) {
-    var _this2 = this;
+    var _this = this;
 
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
     axios["delete"]('/interpellations/' + id).then(function (response) {
-      dispatch('items/getItem', _this2.state.interpellations.item.id, {
+      dispatch('items/getItem', _this.state.interpellations.item.id, {
         root: true
-      });
-      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
-        root: true
-      });
+      }); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
     });
   }
 };

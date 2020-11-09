@@ -26,7 +26,7 @@ const actions = {
         axios.put('/interpellations/' + item.id )
             .then(response => {
                 dispatch('items/getItem', item.id, {root:true});
-                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
+                // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },
 
@@ -34,7 +34,7 @@ const actions = {
         axios.delete('/interpellations/' + id)
             .then(response => {
                 dispatch('items/getItem', this.state.interpellations.item.id, {root:true});
-                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
+                // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
             });
     },
 

@@ -3,9 +3,9 @@
         <div class="sm:mx-3 border-gray-300 border-2 p-4 md:w-8/12 xs:w-full">
             <div class="w-full">
 
-                <h1 class="text-lg page-title">Návrh uznesenia: {{ item.name }}</h1>
+                <h1 class="text-lg page-title"> {{ item.name }}</h1>
 
-               <span class="text-sm text-gray-500">Vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
+               <span class="text-sm text-gray-500">Návrh uznesenia vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
                 <!--   Badge line-->
                 <div class="flex justify-between mt-3 mb-5 py-1 border-gray-200 border-t-2 border-b-2 items-center">
                     <div class="flex flex-wrap items-center space-x-3">
