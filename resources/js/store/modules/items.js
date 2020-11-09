@@ -68,6 +68,24 @@ const actions = {
             });
     },
 
+    updateInterpellation({commit, dispatch}, item) {
+        if (item.vote_status){
+            alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
+            return
+        }
+        axios.put('/interpellations/' + item.id )
+            .then(response => {
+                dispatch('items/getItem', item.id, {root:true});
+            });
+    },
+
+    deleteInterpellation({commit, dispatch}, id) {
+        axios.delete('/interpellations/' + id)
+            .then(response => {
+                dispatch('items/getItem', this.state.items.item.id, {root:true});
+            });
+    },
+
 };
 
 export default {

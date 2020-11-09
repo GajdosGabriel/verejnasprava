@@ -11,7 +11,6 @@ class InterpellationController extends Controller
 {
     public function update(Item $interpellation)
     {
-//        dd($interpellation);
 
         if ($int = $interpellation->interpellations()->withTrashed()->whereUserId(auth()->user()->id)->first()) {
 

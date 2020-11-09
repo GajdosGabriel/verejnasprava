@@ -4,7 +4,7 @@
          v-if="openList"
     >
         <div class="flex justify-between bg-gray-300 p-1">
-            <h4 class="font-semibold text-gray-800">Prihlásený do rozpravy <small class="text-sm">
+            <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
 
                 ({{ item.interpellations.length }})
             </small></h4>
@@ -48,8 +48,6 @@
                     this.listToggle()
                 }
             });
-
-            this.$store.commit('interpellations/SET_ITEM', this.item)
         },
         methods: {
             listToggle: function(){
@@ -60,11 +58,11 @@
             },
 
             updateInterpellation: function () {
-                this.$store.dispatch('interpellations/update', this.item );
+                this.$store.dispatch('items/updateInterpellation', this.item );
             },
 
             deleteItem: function (id) {
-                this.$store.dispatch('interpellations/delete', id);
+                this.$store.dispatch('items/deleteInterpellation', id);
             }
         }
     }

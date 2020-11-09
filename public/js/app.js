@@ -3021,7 +3021,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.listToggle();
       }
     });
-    this.$store.commit('interpellations/SET_ITEM', this.item);
   },
   methods: {
     listToggle: function listToggle() {
@@ -3032,10 +3031,10 @@ __webpack_require__.r(__webpack_exports__);
       this.openList = !this.openList;
     },
     updateInterpellation: function updateInterpellation() {
-      this.$store.dispatch('interpellations/update', this.item);
+      this.$store.dispatch('items/updateInterpellation', this.item);
     },
     deleteItem: function deleteItem(id) {
-      this.$store.dispatch('interpellations/delete', id);
+      this.$store.dispatch('items/deleteInterpellation', id);
     }
   }
 });
@@ -70034,7 +70033,7 @@ var render = function() {
         [
           _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
             _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-              _vm._v("Prihlásený do rozpravy "),
+              _vm._v("Do rozpravy "),
               _c("small", { staticClass: "text-sm" }, [
                 _vm._v(
                   "\n\n            (" +
@@ -70378,12 +70377,12 @@ var render = function() {
           { staticClass: "w-full" },
           [
             _c("h1", { staticClass: "text-lg page-title" }, [
-              _vm._v("Návrh uznesenia: " + _vm._s(_vm.item.name))
+              _vm._v(" " + _vm._s(_vm.item.name))
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "text-sm text-gray-500" }, [
               _vm._v(
-                "Vypracoval: " +
+                "Návrh uznesenia vypracoval: " +
                   _vm._s(_vm.user.first_name) +
                   " " +
                   _vm._s(_vm.user.last_name) +
@@ -91020,8 +91019,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_councils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/councils */ "./resources/js/store/modules/councils.js");
 /* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals.js");
-/* harmony import */ var _modules_interpellations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/interpellations */ "./resources/js/store/modules/interpellations.js");
-
 
 
 
@@ -91043,8 +91040,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     items: _modules_items__WEBPACK_IMPORTED_MODULE_6__["default"],
     councils: _modules_councils__WEBPACK_IMPORTED_MODULE_7__["default"],
     meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_8__["default"],
-    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"],
-    interpellations: _modules_interpellations__WEBPACK_IMPORTED_MODULE_10__["default"]
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"]
   }
 }));
 
@@ -91268,66 +91264,6 @@ var actions = {
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/interpellations.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/store/modules/interpellations.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var state = {
-  loadingStatus: 'notLoading',
-  item: ''
-};
-var getters = {};
-var mutations = {
-  OPEN_LIST: function OPEN_LIST(state) {
-    state.openList = !state.openList;
-  },
-  SET_ITEM: function SET_ITEM(state, item) {
-    state.item = item;
-  }
-};
-var actions = {
-  update: function update(_ref, item) {
-    var commit = _ref.commit,
-        dispatch = _ref.dispatch;
-
-    if (item.vote_status) {
-      alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
-      return;
-    }
-
-    axios.put('/interpellations/' + item.id).then(function (response) {
-      dispatch('items/getItem', item.id, {
-        root: true
-      }); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
-    });
-  },
-  "delete": function _delete(_ref2, id) {
-    var _this = this;
-
-    var commit = _ref2.commit,
-        dispatch = _ref2.dispatch;
-    axios["delete"]('/interpellations/' + id).then(function (response) {
-      dispatch('items/getItem', _this.state.interpellations.item.id, {
-        root: true
-      }); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true})
-    });
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: state,
-  getters: getters,
-  actions: actions,
-  mutations: mutations
-});
-
-/***/ }),
-
 /***/ "./resources/js/store/modules/items.js":
 /*!*********************************************!*\
   !*** ./resources/js/store/modules/items.js ***!
@@ -91399,6 +91335,32 @@ var actions = {
         message: response.headers.notification,
         type: 'bg-green-400'
       }, {
+        root: true
+      });
+    });
+  },
+  updateInterpellation: function updateInterpellation(_ref4, item) {
+    var commit = _ref4.commit,
+        dispatch = _ref4.dispatch;
+
+    if (item.vote_status) {
+      alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
+      return;
+    }
+
+    axios.put('/interpellations/' + item.id).then(function (response) {
+      dispatch('items/getItem', item.id, {
+        root: true
+      });
+    });
+  },
+  deleteInterpellation: function deleteInterpellation(_ref5, id) {
+    var _this2 = this;
+
+    var commit = _ref5.commit,
+        dispatch = _ref5.dispatch;
+    axios["delete"]('/interpellations/' + id).then(function (response) {
+      dispatch('items/getItem', _this2.state.items.item.id, {
         root: true
       });
     });

@@ -8,7 +8,6 @@ import items from "./modules/items";
 import councils from "./modules/councils";
 import meetings from "./modules/meetings";
 import modals from "./modules/modals";
-import interpellations from "./modules/interpellations";
 
 
 
@@ -25,7 +24,6 @@ export default new Vuex.Store({
         items,
         councils,
         meetings,
-        modals,
-        interpellations
+        modals
     }
 })
