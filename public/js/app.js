@@ -70426,7 +70426,12 @@ var render = function() {
                         _c(
                           "span",
                           { staticClass: "text-gray-700 text-sm rounded-md" },
-                          [_vm._v("Rozprava")]
+                          [
+                            _vm._v(
+                              "Rozprava " +
+                                _vm._s(_vm.item.interpellations.length)
+                            )
+                          ]
                         )
                       ]
                     )

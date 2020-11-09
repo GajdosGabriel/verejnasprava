@@ -18,7 +18,7 @@
                             class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
                             @click="openInterpellation"
                         >
-                            <span class="text-gray-700 text-sm rounded-md">Rozprava</span>
+                            <span class="text-gray-700 text-sm rounded-md">Rozprava {{ item.interpellations.length }}</span>
                             <!--                            Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>-->
                         </div>
 
