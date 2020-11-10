@@ -85,13 +85,16 @@
                 <div class="py-3">
                     <p v-html="item.description"></p>
                     <!--  File-->
-                    <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
-                    <div v-for="(file, index) in item.files" :key="file.id">
-                        <a class="mr-2 hover:text-blue-500 " target="_blank" :title="file.org_name"
-                           :href="'/pdf/'+ file.id + '/' + file.filename +'/download/pdf'">
-                            {{ index +1 }}. Príloha
-                        </a>
+                    <div v-if="files.length">
+                        <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
+                        <div v-for="(file, index) in files" :key="file.id">
+                            <a class="mr-2 hover:text-blue-500 " target="_blank" :title="file.org_name"
+                               :href="'/pdf/'+ file.id + '/' + file.filename +'/download/pdf'">
+                                {{ index +1 }}. Príloha
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -127,7 +130,7 @@
 
             <div class="">
                 <div class="flex my-5 items-center justify-between">
-                <h2 class=" text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                    <h2 class=" text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
                     <div class="text-sm cursor-pointer">
                         <span title="Áno" v-text="countYes"></span>
                         -
@@ -186,6 +189,7 @@
                 user: state => state.items.user,
                 votes: state => state.items.votes,
                 interpellations: state => state.items.interpellations,
+                files: state => state.items.files,
             }),
         },
         created: function () {

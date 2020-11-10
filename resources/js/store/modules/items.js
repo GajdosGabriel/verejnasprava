@@ -1,6 +1,7 @@
 const state = {
     interpellations: [],
     votes: [],
+    files: [],
     item: '',
     user: ''
 };
@@ -22,6 +23,7 @@ const mutations = {
         state.item = item;
         state.user = item.user;
         state.votes = item.votes;
+        state.files = item.files;
         state.interpellations = item.interpellations;
         // state.meetingId = item.pivot.meeting_id;
         // state.interpellations = item.interpellations;

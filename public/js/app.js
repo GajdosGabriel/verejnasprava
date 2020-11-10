@@ -3384,6 +3384,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3427,6 +3430,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     interpellations: function interpellations(state) {
       return state.items.interpellations;
+    },
+    files: function files(state) {
+      return state.items.files;
     }
   })),
   created: function created() {
@@ -70606,53 +70612,56 @@ var render = function() {
             _vm._v(" "),
             _c("vote-form-button", { attrs: { item: _vm.item } }),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "py-3" },
-              [
-                _c("p", {
-                  domProps: { innerHTML: _vm._s(_vm.item.description) }
-                }),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    staticClass: "mt-4",
-                    staticStyle: { "border-bottom": "2px solid silver" }
-                  },
-                  [_vm._v("Príloha")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.item.files, function(file, index) {
-                  return _c("div", { key: file.id }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "mr-2 hover:text-blue-500 ",
-                        attrs: {
-                          target: "_blank",
-                          title: file.org_name,
-                          href:
-                            "/pdf/" +
-                            file.id +
-                            "/" +
-                            file.filename +
-                            "/download/pdf"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(index + 1) +
-                            ". Príloha\n                    "
-                        )
-                      ]
-                    )
-                  ])
-                })
-              ],
-              2
-            )
+            _c("div", { staticClass: "py-3" }, [
+              _c("p", {
+                domProps: { innerHTML: _vm._s(_vm.item.description) }
+              }),
+              _vm._v(" "),
+              _vm.files.length
+                ? _c(
+                    "div",
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticClass: "mt-4",
+                          staticStyle: { "border-bottom": "2px solid silver" }
+                        },
+                        [_vm._v("Príloha")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.files, function(file, index) {
+                        return _c("div", { key: file.id }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "mr-2 hover:text-blue-500 ",
+                              attrs: {
+                                target: "_blank",
+                                title: file.org_name,
+                                href:
+                                  "/pdf/" +
+                                  file.id +
+                                  "/" +
+                                  file.filename +
+                                  "/download/pdf"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(index + 1) +
+                                  ". Príloha\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ])
           ],
           1
         )
@@ -91314,6 +91323,7 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   interpellations: [],
   votes: [],
+  files: [],
   item: '',
   user: ''
 };
@@ -91330,6 +91340,7 @@ var mutations = {
     state.item = item;
     state.user = item.user;
     state.votes = item.votes;
+    state.files = item.files;
     state.interpellations = item.interpellations; // state.meetingId = item.pivot.meeting_id;
     // state.interpellations = item.interpellations;
   },
