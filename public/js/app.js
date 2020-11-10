@@ -3369,6 +3369,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3382,12 +3397,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   computed: _objectSpread({
-    resultYes: function resultYes() {
-      return this.$store.getters['items/resultYes'];
+    countYes: function countYes() {
+      return this.votes.filter(function (value) {
+        return value.vote == 1;
+      }).length;
     },
-    resultNo: function resultNo() {// return this.item.votes.filter(i => i.vote == 0).length
+    countUndecided: function countUndecided() {
+      return this.votes.filter(function (value) {
+        return value.vote == 2;
+      }).length;
     },
-    resultDisition: function resultDisition() {// return this.item.votes.filter(i => i.vote == 2).length
+    countNo: function countNo() {
+      return this.votes.filter(function (value) {
+        return value.vote == 0;
+      }).length;
     },
     notificationStatus: function notificationStatus() {
       return this.item.notification == null ? 'Notifikácia hlasovať' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format('DD. MM. YYYY, k:mm');
@@ -3401,6 +3424,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     votes: function votes(state) {
       return state.items.votes;
+    },
+    interpellations: function interpellations(state) {
+      return state.items.interpellations;
     }
   })),
   created: function created() {
@@ -3417,7 +3443,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     openInterpellation: function openInterpellation() {
-      console.log(this.item.votes.length);
       _app__WEBPACK_IMPORTED_MODULE_5__["bus"].$emit('imterpellationlist', this.item);
     }
   }
@@ -70428,8 +70453,7 @@ var render = function() {
                           { staticClass: "text-gray-700 text-sm rounded-md" },
                           [
                             _vm._v(
-                              "Rozprava " +
-                                _vm._s(_vm.item.interpellations.length)
+                              "Rozprava " + _vm._s(_vm.interpellations.length)
                             )
                           ]
                         )
@@ -70647,15 +70671,30 @@ var render = function() {
         _c("interpellation", { attrs: { item: _vm.item } }),
         _vm._v(" "),
         _c("div", {}, [
-          _vm.votes.length > 0
-            ? _c(
-                "h2",
-                {
-                  staticClass: "my-5 text-lg font-semibold whitespace-no-wrap"
-                },
-                [_vm._v("Výsledky hlasovania")]
-              )
-            : _vm._e(),
+          _c("div", { staticClass: "flex my-5 items-center justify-between" }, [
+            _c(
+              "h2",
+              { staticClass: " text-lg font-semibold whitespace-no-wrap" },
+              [_vm._v("Výsledky hlasovania")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-sm cursor-pointer" }, [
+              _c("span", {
+                attrs: { title: "Áno" },
+                domProps: { textContent: _vm._s(_vm.countYes) }
+              }),
+              _vm._v("\n                    -\n                    "),
+              _c("span", {
+                attrs: { title: "Zdržal sa" },
+                domProps: { textContent: _vm._s(_vm.countUndecided) }
+              }),
+              _vm._v("\n                    -\n                    "),
+              _c("span", {
+                attrs: { title: "Nie" },
+                domProps: { textContent: _vm._s(_vm.countNo) }
+              })
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "ul",
@@ -72889,88 +72928,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.item.votes.length
-    ? _c(
-        "div",
-        {
-          staticClass:
-            "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full",
-          on: { click: _vm.itemShowList }
-        },
-        [
-          _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
-            _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-              _vm._v("Hlasovania (" + _vm._s(_vm.item.votes.length) + ")")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex cursor-pointer" }, [
-              _c("div", {
-                attrs: { title: "Áno" },
-                domProps: { textContent: _vm._s(_vm.countYes) }
-              }),
-              _vm._v("-\n            "),
-              _c("div", {
-                attrs: { title: "Zdržal sa" },
-                domProps: { textContent: _vm._s(_vm.countUndecided) }
-              }),
-              _vm._v("-\n            "),
-              _c("div", {
-                attrs: { title: "Nie" },
-                domProps: { textContent: _vm._s(_vm.countNo) }
+  return _c(
+    "div",
+    {
+      staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full",
+      on: { click: _vm.itemShowList }
+    },
+    [
+      _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
+        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+          _vm._v("Hlasovania ()")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex cursor-pointer" }, [
+          _c("div", {
+            attrs: { title: "Áno" },
+            domProps: { textContent: _vm._s(_vm.countYes) }
+          }),
+          _vm._v("-\n            "),
+          _c("div", {
+            attrs: { title: "Zdržal sa" },
+            domProps: { textContent: _vm._s(_vm.countUndecided) }
+          }),
+          _vm._v("-\n            "),
+          _c("div", {
+            attrs: { title: "Nie" },
+            domProps: { textContent: _vm._s(_vm.countNo) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex cursor-pointer" }, [
+          _c(
+            "svg",
+            {
+              staticClass: "-mr-1 ml-2 h-5 w-5",
+              attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                  "clip-rule": "evenodd"
+                }
               })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex cursor-pointer" }, [
-              _c(
-                "svg",
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.vote_list
+        ? _c(
+            "ul",
+            _vm._l(_vm.item.votes, function(vote) {
+              return _c(
+                "li",
                 {
-                  staticClass: "-mr-1 ml-2 h-5 w-5",
-                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                  staticClass: "flex justify-between border-b-2 border-dotted"
                 },
                 [
-                  _c("path", {
-                    attrs: {
-                      "fill-rule": "evenodd",
-                      d:
-                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                      "clip-rule": "evenodd"
-                    }
-                  })
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(vote.user.first_name + " " + vote.user.last_name) +
+                      "\n            "
+                  ),
+                  _c("span", { staticClass: "font-medium" }, [
+                    _vm._v(_vm._s(_vm.voteType(vote.vote)))
+                  ])
                 ]
               )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm.vote_list
-            ? _c(
-                "ul",
-                _vm._l(_vm.item.votes, function(vote) {
-                  return _c(
-                    "li",
-                    {
-                      staticClass:
-                        "flex justify-between border-b-2 border-dotted"
-                    },
-                    [
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(
-                            vote.user.first_name + " " + vote.user.last_name
-                          ) +
-                          "\n            "
-                      ),
-                      _c("span", { staticClass: "font-medium" }, [
-                        _vm._v(_vm._s(_vm.voteType(vote.vote)))
-                      ])
-                    ]
-                  )
-                }),
-                0
-              )
-            : _vm._e()
-        ]
-      )
-    : _vm._e()
+            }),
+            0
+          )
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91280,8 +91313,8 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   interpellations: [],
-  item: '',
   votes: [],
+  item: '',
   user: ''
 };
 var getters = {
@@ -91296,7 +91329,8 @@ var mutations = {
   SET_ITEM: function SET_ITEM(state, item) {
     state.item = item;
     state.user = item.user;
-    state.votes = item.votes; // state.meetingId = item.pivot.meeting_id;
+    state.votes = item.votes;
+    state.interpellations = item.interpellations; // state.meetingId = item.pivot.meeting_id;
     // state.interpellations = item.interpellations;
   },
   SET_VOTES: function SET_VOTES(state, item) {

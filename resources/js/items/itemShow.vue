@@ -5,12 +5,13 @@
 
                 <h1 class="text-lg page-title"> {{ item.name }}</h1>
 
-               <span class="text-sm text-gray-500">Návrh uznesenia vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
+                <span class="text-sm text-gray-500">Návrh uznesenia vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
                 <!--   Badge line-->
                 <div class="flex justify-between mt-3 mb-5 py-1 border-gray-200 border-t-2 border-b-2 items-center">
                     <div class="flex flex-wrap items-center space-x-3">
 
-                        <div v-text="item.vote_type == 0 ? 'Hlasovanie verejné' :'Hlasovanie tajné' " class="badge badge-primary"></div>
+                        <div v-text="item.vote_type == 0 ? 'Hlasovanie verejné' :'Hlasovanie tajné' "
+                             class="badge badge-primary"></div>
 
                         <published-button :item="item"></published-button>
 
@@ -18,7 +19,7 @@
                             class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
                             @click="openInterpellation"
                         >
-                            <span class="text-gray-700 text-sm rounded-md">Rozprava {{ item.interpellations.length }}</span>
+                            <span class="text-gray-700 text-sm rounded-md">Rozprava {{ interpellations.length }}</span>
                             <!--                            Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>-->
                         </div>
 
@@ -58,8 +59,9 @@
 
 
                             <!-- Item Delete button-->
-                            <div @click="itemDelete(item)" class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                               title="Zmazať položku">
+                            <div @click="itemDelete(item)"
+                                 class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                 title="Zmazať položku">
                                 <div class="flex">
                                     <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 20 20">
@@ -76,6 +78,8 @@
 
                 <!--  Votes Buttons-->
                 <vote-form-button :item="item"></vote-form-button>
+
+                <!--                <vote-list :item="item"></vote-list>-->
 
                 <!--  Body text-->
                 <div class="py-3">
@@ -122,7 +126,18 @@
             <interpellation :item="item"></interpellation>
 
             <div class="">
-                <h2 v-if="votes.length > 0" class="my-5 text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                <div class="flex my-5 items-center justify-between">
+                <h2 class=" text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                    <div class="text-sm cursor-pointer">
+                        <span title="Áno" v-text="countYes"></span>
+                        -
+                        <span title="Zdržal sa" v-text="countUndecided"></span>
+                        -
+                        <span title="Nie" v-text="countNo"></span>
+                    </div>
+                </div>
+
+
                 <ul class="">
                     <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
                         {{ vote.user.first_name }}
@@ -152,14 +167,14 @@
         props: ['pitem'],
         components: {publishedButton, interpellation},
         computed: {
-            resultYes() {
-                return this.$store.getters['items/resultYes'];
+            countYes() {
+                return this.votes.filter(value => value.vote == 1).length
             },
-            resultNo() {
-                // return this.item.votes.filter(i => i.vote == 0).length
+            countUndecided() {
+                return this.votes.filter(value => value.vote == 2).length
             },
-            resultDisition() {
-                // return this.item.votes.filter(i => i.vote == 2).length
+            countNo() {
+                return this.votes.filter(value => value.vote == 0).length
             },
 
             notificationStatus() {
@@ -170,15 +185,16 @@
                 item: state => state.items.item,
                 user: state => state.items.user,
                 votes: state => state.items.votes,
+                interpellations: state => state.items.interpellations,
             }),
         },
         created: function () {
             this.$store.dispatch('items/getItem', this.pitem.id)
         },
         methods: {
-            itemDelete(item){
+            itemDelete(item) {
                 axios.delete('/items/' + item.id)
-                .then(window.location.reload())
+                    .then(window.location.reload())
             },
             saveNotification() {
                 this.$store.dispatch('items/update', {
@@ -188,7 +204,6 @@
             },
 
             openInterpellation() {
-                console.log(this.item.votes.length);
                 bus.$emit('imterpellationlist', this.item);
             }
         }
