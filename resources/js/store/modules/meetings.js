@@ -54,7 +54,32 @@ const actions = {
                 }
             );
 
-    }
+    },
+
+    updateItem({commit, dispatch}, item) {
+        axios.put('/api/items/' + item.id, item)
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+
+                // Notify for add task
+                dispatch('notification/addNewNotification', { message: response.headers.notification, type: 'bg-green-400' }, { root: true}
+                )
+            });
+    },
+
+    updateInterpellation({commit, dispatch}, item) {
+        axios.put('/interpellations/' + item.id )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
+
+    deleteInterpellation({commit, dispatch}, item) {
+        axios.delete('/interpellations/' + item.id )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
 
 };
 

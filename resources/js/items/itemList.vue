@@ -59,7 +59,7 @@
 
                 <div
                     class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
-                    @click="openInterpellation"
+                    @click="listToggle"
                     v-if="item.published"
                 >
                     Rozprava <span class="text-gray-500">{{ item.interpellations.length }}</span>
@@ -79,7 +79,31 @@
 
         <div class="max-w-sm w-full">
             <vote-form-button :item="item"></vote-form-button>
-            <interpellation :item="item"></interpellation>
+
+            <div class=" border-2 rounded-md border-gray-300 w-full"
+                 v-if="openList"
+            >
+                <div class="flex justify-between bg-gray-300 p-1">
+                    <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
+
+                        ({{ item.interpellations.length }})
+                    </small></h4>
+                    <span @click="updateInterpellation" class="text-sm cursor-pointer">
+                {{ hasUserInterpellation }}
+            </span>
+                </div>
+
+                <ul>
+                    <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
+                        class="flex justify-between border-b-2 border-dotted px-2">
+                        <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
+                        <span v-if="$auth.can('council delete')" @click="deleteInterpellation(interpellation)" class="text-gray-800 text-sm cursor-pointer">x</span>
+                    </li>
+                </ul>
+
+            </div>
+
+<!--            <interpellation :item="item"></interpellation>-->
             <vote-list :item="item"></vote-list>
         </div>
 
@@ -98,6 +122,11 @@
     export default {
         props: ['item'],
         components: { publishedButton, interpellation, navDropDown},
+        data: function(){
+            return {
+                openList: false
+            }
+        },
         computed: {
             isPublished(){
                 if (this.$auth.isAdmin()){
@@ -107,6 +136,11 @@
             },
             notificationStatus(){
                 return this.item.notification == null ? 'Výzva k hlasovaniu' : moment(this.item.notification).format('DD. MM. YYYY, k:mm');
+            },
+
+            hasUserInterpellation: function () {
+                var intUsers = this.item.interpellations.map(role => role.user.id);
+                return  intUsers.includes( this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
             }
         },
         methods: {
@@ -125,12 +159,22 @@
                     alert('Zoznam prihlásených do rozpravy nie je prázdny.');
                     return
                 }
-                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status, meeting_id: this.item.meeting_id})
-                // this.$store.dispatch('meetings/fetchMeeting', this.item.pivot.meeting_id);
+                this.$store.dispatch('meetings/updateItem', {id: this.item.id, vote_status: ! this.item.vote_status})
             },
 
-            storeInterpellation: function () {
-                this.$store.dispatch('interpellations/store', this.item);
+            listToggle: function(){
+                if(this.item.vote_status || this.item.votes.length > 0){
+                    return alert('Počas hlasovania sú interpelácie vypnuté!')
+                }
+                this.openList = ! this.openList
+            },
+
+            updateInterpellation: function () {
+                this.$store.dispatch('meetings/updateInterpellation', this.item);
+            },
+
+            deleteInterpellation: function (item) {
+                this.$store.dispatch('meetings/deleteInterpellation', item);
             },
 
             openInterpellation() {

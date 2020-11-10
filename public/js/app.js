@@ -3145,6 +3145,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import voteButtons from '../votes/voteButtons';
 
@@ -3158,6 +3182,11 @@ __webpack_require__.r(__webpack_exports__);
     interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"],
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
+  data: function data() {
+    return {
+      openList: false
+    };
+  },
   computed: {
     isPublished: function isPublished() {
       if (this.$auth.isAdmin()) {
@@ -3168,6 +3197,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     notificationStatus: function notificationStatus() {
       return this.item.notification == null ? 'Výzva k hlasovaniu' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format('DD. MM. YYYY, k:mm');
+    },
+    hasUserInterpellation: function hasUserInterpellation() {
+      var intUsers = this.item.interpellations.map(function (role) {
+        return role.user.id;
+      });
+      return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
     }
   },
   methods: {
@@ -3188,14 +3223,23 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      this.$store.dispatch('items/update', {
+      this.$store.dispatch('meetings/updateItem', {
         id: this.item.id,
-        vote_status: !this.item.vote_status,
-        meeting_id: this.item.meeting_id
-      }); // this.$store.dispatch('meetings/fetchMeeting', this.item.pivot.meeting_id);
+        vote_status: !this.item.vote_status
+      });
     },
-    storeInterpellation: function storeInterpellation() {
-      this.$store.dispatch('interpellations/store', this.item);
+    listToggle: function listToggle() {
+      if (this.item.vote_status || this.item.votes.length > 0) {
+        return alert('Počas hlasovania sú interpelácie vypnuté!');
+      }
+
+      this.openList = !this.openList;
+    },
+    updateInterpellation: function updateInterpellation() {
+      this.$store.dispatch('meetings/updateInterpellation', this.item);
+    },
+    deleteInterpellation: function deleteInterpellation(item) {
+      this.$store.dispatch('meetings/deleteInterpellation', item);
     },
     openInterpellation: function openInterpellation() {
       _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('imterpellationlist', this.item);
@@ -70214,7 +70258,7 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(
-                                    "\n                                Upraviť položku\n                            "
+                                    "\n                                    Upraviť položku\n                                "
                                   )
                                 ])
                               ]
@@ -70298,7 +70342,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                            Späť do návrhoch\n                        "
+                                  "\n                                Späť do návrhoch\n                            "
                                 )
                               ])
                             ]
@@ -70324,10 +70368,10 @@ var render = function() {
                       {
                         staticClass:
                           "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-                        on: { click: _vm.openInterpellation }
+                        on: { click: _vm.listToggle }
                       },
                       [
-                        _vm._v("\n                Rozprava "),
+                        _vm._v("\n                    Rozprava "),
                         _c("span", { staticClass: "text-gray-500" }, [
                           _vm._v(_vm._s(_vm.item.interpellations.length))
                         ])
@@ -70365,7 +70409,97 @@ var render = function() {
           [
             _c("vote-form-button", { attrs: { item: _vm.item } }),
             _vm._v(" "),
-            _c("interpellation", { attrs: { item: _vm.item } }),
+            _vm.openList
+              ? _c(
+                  "div",
+                  {
+                    staticClass: " border-2 rounded-md border-gray-300 w-full"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "flex justify-between bg-gray-300 p-1" },
+                      [
+                        _c(
+                          "h4",
+                          { staticClass: "font-semibold text-gray-800" },
+                          [
+                            _vm._v("Do rozpravy "),
+                            _c("small", { staticClass: "text-sm" }, [
+                              _vm._v(
+                                "\n\n                        (" +
+                                  _vm._s(_vm.item.interpellations.length) +
+                                  ")\n                    "
+                              )
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "text-sm cursor-pointer",
+                            on: { click: _vm.updateInterpellation }
+                          },
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.hasUserInterpellation) +
+                                "\n            "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.item.interpellations, function(
+                        interpellation
+                      ) {
+                        return _c(
+                          "li",
+                          {
+                            key: interpellation.user_id,
+                            staticClass:
+                              "flex justify-between border-b-2 border-dotted px-2"
+                          },
+                          [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  interpellation.user.first_name +
+                                    " " +
+                                    interpellation.user.last_name
+                                )
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.$auth.can("council delete")
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-gray-800 text-sm cursor-pointer",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteInterpellation(
+                                          interpellation
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("x")]
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("vote-list", { attrs: { item: _vm.item } })
           ],
@@ -72937,82 +73071,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full",
-      on: { click: _vm.itemShowList }
-    },
-    [
-      _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
-        _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-          _vm._v("Hlasovania ()")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex cursor-pointer" }, [
-          _c("div", {
-            attrs: { title: "Áno" },
-            domProps: { textContent: _vm._s(_vm.countYes) }
-          }),
-          _vm._v("-\n            "),
-          _c("div", {
-            attrs: { title: "Zdržal sa" },
-            domProps: { textContent: _vm._s(_vm.countUndecided) }
-          }),
-          _vm._v("-\n            "),
-          _c("div", {
-            attrs: { title: "Nie" },
-            domProps: { textContent: _vm._s(_vm.countNo) }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex cursor-pointer" }, [
-          _c(
-            "svg",
-            {
-              staticClass: "-mr-1 ml-2 h-5 w-5",
-              attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-            },
-            [
-              _c("path", {
-                attrs: {
-                  "fill-rule": "evenodd",
-                  d:
-                    "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                  "clip-rule": "evenodd"
-                }
+  return _vm.item.vote_status
+    ? _c(
+        "div",
+        {
+          staticClass:
+            "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full",
+          on: { click: _vm.itemShowList }
+        },
+        [
+          _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
+            _c("h4", { staticClass: "font-semibold text-gray-800" }, [
+              _vm._v("Hlasovanie ()")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex cursor-pointer" }, [
+              _c("div", {
+                attrs: { title: "Áno" },
+                domProps: { textContent: _vm._s(_vm.countYes) }
+              }),
+              _vm._v("-\n            "),
+              _c("div", {
+                attrs: { title: "Zdržal sa" },
+                domProps: { textContent: _vm._s(_vm.countUndecided) }
+              }),
+              _vm._v("-\n            "),
+              _c("div", {
+                attrs: { title: "Nie" },
+                domProps: { textContent: _vm._s(_vm.countNo) }
               })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.vote_list
-        ? _c(
-            "ul",
-            _vm._l(_vm.item.votes, function(vote) {
-              return _c(
-                "li",
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex cursor-pointer" }, [
+              _c(
+                "svg",
                 {
-                  staticClass: "flex justify-between border-b-2 border-dotted"
+                  staticClass: "-mr-1 ml-2 h-5 w-5",
+                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
                 },
                 [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(vote.user.first_name + " " + vote.user.last_name) +
-                      "\n            "
-                  ),
-                  _c("span", { staticClass: "font-medium" }, [
-                    _vm._v(_vm._s(_vm.voteType(vote.vote)))
-                  ])
+                  _c("path", {
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
                 ]
               )
-            }),
-            0
-          )
-        : _vm._e()
-    ]
-  )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm.vote_list
+            ? _c(
+                "ul",
+                _vm._l(_vm.item.votes, function(vote) {
+                  return _c(
+                    "li",
+                    {
+                      staticClass:
+                        "flex justify-between border-b-2 border-dotted"
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(
+                            vote.user.first_name + " " + vote.user.last_name
+                          ) +
+                          "\n            "
+                      ),
+                      _c("span", { staticClass: "font-medium" }, [
+                        _vm._v(_vm._s(_vm.voteType(vote.vote)))
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            : _vm._e()
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91495,6 +91635,46 @@ var actions = {
         message: response.data,
         type: 'bg-green-400'
       }, {
+        root: true
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var _this = this;
+
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
+    axios.put('/api/items/' + item.id, item).then(function (response) {
+      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
+        root: true
+      }); // Notify for add task
+
+      dispatch('notification/addNewNotification', {
+        message: response.headers.notification,
+        type: 'bg-green-400'
+      }, {
+        root: true
+      });
+    });
+  },
+  updateInterpellation: function updateInterpellation(_ref4, item) {
+    var _this2 = this;
+
+    var commit = _ref4.commit,
+        dispatch = _ref4.dispatch;
+    axios.put('/interpellations/' + item.id).then(function (response) {
+      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteInterpellation: function deleteInterpellation(_ref5, item) {
+    var _this3 = this;
+
+    var commit = _ref5.commit,
+        dispatch = _ref5.dispatch;
+    axios["delete"]('/interpellations/' + item.id).then(function (response) {
+      dispatch('meetings/fetchMeeting', _this3.state.meetings.meeting.id, {
         root: true
       });
     });
