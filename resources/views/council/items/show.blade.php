@@ -2,7 +2,12 @@
 @section('page-title', 'Zobraziť návrh')
 
 
+{{-- Návrhy bez meetingu vs návrh v meetings --}}
+@if(isset($item->meetings[0]))
+@section('navigation') @include('council.meeting.navigation', ['meeting' => $item->meetings[0]]) @endsection
+@else
 @section('navigation') @include('organizations.navigation') @endsection
+@endif
 
 @section('content')
 
