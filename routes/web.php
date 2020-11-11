@@ -76,14 +76,6 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
 
-    Route::prefix('org')->name('org.')->middleware(['checkOrganization'])->namespace('Organizations')->group(function() {
-        Route::get('index', 'OrganizationController@index')->name('index');
-        Route::get('create', 'OrganizationController@create')->name('create');
-        Route::get('{organization}/{slug}/edit', 'OrganizationController@edit')->name('edit');
-        Route::post('{user}/{name}/store', 'OrganizationController@store')->name('store');
-        Route::put('{organization}/{slug}/update', 'OrganizationController@update')->name('update');
-    });
-
     Route::name('post.')->namespace('Posts')->group(function() {
         Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
     });
@@ -107,6 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
         'items'             => Councils\ItemController::class,
         'meetings'          => Councils\MeetingController::class,
         'interpellations'   => Councils\InterpellationController::class,
+        'organizations'     => Organizations\OrganizationController::class,
     ]);
 
 

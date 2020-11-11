@@ -20,9 +20,9 @@ class HomeController extends Controller
             if (auth()->user()->active_organization == null) {
 
                 // Verificed auth user
-                return redirect()->route('org.create');
+                return redirect()->route('organizations.create');
             }
-            return redirect()->route('org.index');
+            return redirect()->route('organizations.index');
         }
 
         return view('public.index');
@@ -40,11 +40,11 @@ class HomeController extends Controller
     {
         if (auth()->user()) {
             if (auth()->user()->active_organization != null)
-                return redirect()->route('org.index', [auth()->user()->active_organization, auth()->user()->slug]);
+                return redirect()->route('organizations.index', [auth()->user()->active_organization, auth()->user()->slug]);
         }
 
         //        Po registrácií presmeruje na create org formulár
-        return redirect()->route('org.create', [auth()->user()->id, auth()->user()->slug]);
+        return redirect()->route('organizations.create', [auth()->user()->id, auth()->user()->slug]);
 
     }
 

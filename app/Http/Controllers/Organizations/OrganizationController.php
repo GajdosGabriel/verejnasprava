@@ -24,12 +24,12 @@ class OrganizationController extends Controller
     }
 
 
-    public function store(User $user, $name, OrganizationFormRequest $request) {
-        $user->organizations()->create($request->all());
-        return redirect()->route('org.index', [ auth()->user()->active_organization, auth()->user()->slug]);
+    public function store( OrganizationFormRequest $request) {
+        auth()->user()->organizations()->create($request->all());
+        return redirect()->route('organizations.index', auth()->user()->active_organization);
     }
 
-    public function update(Organization $organization, $slug, OrganizationUpdateRequest $request) {
+    public function update(Organization $organization, OrganizationUpdateRequest $request) {
         $organization->update($request->all());
         return back();
     }

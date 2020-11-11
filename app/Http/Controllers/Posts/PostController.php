@@ -88,7 +88,7 @@ class PostController extends Controller
         $post->saveImage($request, $post);
 
 //        flash()->success('Doklad opravený! ');
-        return redirect()->route('posts.index', [ $post->organization->id, $post->organization->slug ]);
+        return redirect()->route('posts.index');
     }
 
 

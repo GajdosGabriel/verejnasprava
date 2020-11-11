@@ -81,7 +81,7 @@
 
                     </div>
                     <div v-if="show">
-                        <form action="{{ route('user.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('users.update', [ $user->id, $user->slug ]) }}" method="POST" enctype="multipart/form-data">
                             @csrf @method('PATCH')
                             @include('modul.errors')
                             @include('user._userForm')

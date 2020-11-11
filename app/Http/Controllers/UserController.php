@@ -19,7 +19,7 @@ class UserController extends Controller
         if (auth()->user()->active_organization == null) {
 
             // Verificed auth user
-            return redirect()->route('org.create');
+            return redirect()->route('organizations.create');
         }
 
         return view('user.home', compact(['user']));

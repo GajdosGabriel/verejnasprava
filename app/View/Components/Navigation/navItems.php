@@ -96,7 +96,7 @@ class navItems
     {
         return [
             'title' => 'Späť',
-            'url' => route('org.index', [auth()->user()->id, auth()->user()->slug]),
+            'url' => route('organizations.index'),
             'active' => $this->isActive('')
         ];
     }
