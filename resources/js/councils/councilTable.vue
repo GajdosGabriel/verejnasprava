@@ -4,7 +4,7 @@
 
             <div class="flex justify-between flex-wrap">
                 <div class="flex whitespace-no-wrap items-center">
-                    <h1 class="page-title">{{ council.name }}</h1>
+                    <h1 class="page-title" :title="council.description">{{ council.name }}</h1>
                     <div class="ml-2"> ({{ council.meetings.length }})</div>
                 </div>
 

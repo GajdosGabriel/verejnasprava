@@ -55,7 +55,13 @@
 
             <div class="flex justify-between w-full text-sm">
 
-                <published-button :item="item"></published-button>
+                <div @click="updateItem(item)"
+                     v-if="$auth.can('council delete')"
+                     class="p-1 text-center text-sm rounded-md whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer">
+                    <span v-if="item.published">Publikované</span>
+                    <span  v-else >Publikovať</span>
+                </div>
+
 
                 <div
                     class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
@@ -93,6 +99,7 @@
             </span>
                 </div>
 
+                <!--    interpellation-->
                 <ul>
                     <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
                         class="flex justify-between border-b-2 border-dotted px-2">
@@ -103,7 +110,6 @@
 
             </div>
 
-<!--            <interpellation :item="item"></interpellation>-->
             <vote-list :item="item"></vote-list>
         </div>
 
@@ -179,6 +185,14 @@
 
             openInterpellation() {
                 bus.$emit('imterpellationlist', this.item);
+            },
+
+            updateItem: function(item){
+                if (item.votes.length){
+                    alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
+                    return
+                }
+                this.$store.dispatch('meetings/updateItem', {id: item.id, published: ! item.published})
             }
         }
 

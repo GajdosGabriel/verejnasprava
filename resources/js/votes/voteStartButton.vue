@@ -1,6 +1,6 @@
 <template>
 
-    <div class="text-center">
+    <div class="text-center" v-if="item.published">
         <button v-if="$auth.can('council delete')" class="text-xs btn mb-3 whitespace-no-wrap" :class="buttonClass" @click="voteStatus" v-text=" buttonTitle">
             Zapnúť hlasovanie
         </button>

@@ -3,7 +3,7 @@
     <div class=" border-2 rounded-md border-gray-300 w-full"
          v-if="openList"
     >
-        <div class="flex justify-between bg-gray-300 p-1">
+        <div class="lg:flex lg:justify-between bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
 
                 ({{ item.interpellations.length }})
