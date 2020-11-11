@@ -20,7 +20,7 @@ class CreateInterpellationsTable extends Migration
             $table->string('fileable_type');
             $table->string('name')->nullable();
             $table->text('body')->nullable();
-            $table->boolean('interpellation')->default(1);
+            $table->unsignedInteger('hand_up')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

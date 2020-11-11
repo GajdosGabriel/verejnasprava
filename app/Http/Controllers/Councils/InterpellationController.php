@@ -18,7 +18,7 @@ class InterpellationController extends Controller
                 $int->delete();
 
             } else {
-                $int->restore() ;
+                $int->restore();
             }
             return $interpellation->interpellations()->get();
         }
@@ -32,6 +32,7 @@ class InterpellationController extends Controller
     }
 
     public function destroy(Interpellation $interpellation){
+        $interpellation->update(['hand_up' => $interpellation->hand_up +1]);
         $interpellation->delete();
     }
 }
