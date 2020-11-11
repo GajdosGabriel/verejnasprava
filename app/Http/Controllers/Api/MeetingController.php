@@ -22,7 +22,7 @@ class MeetingController extends Controller
             }
             return Response( 'Pozvánka na rokovanie bola odoslovaná.');
         }
-//        return $meeting;
+        return $meeting;
     }
 
 }

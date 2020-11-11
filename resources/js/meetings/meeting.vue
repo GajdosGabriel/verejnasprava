@@ -1,11 +1,11 @@
 <template>
     <div>
 
-        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-6">
+        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-6" :class="{ 'border-red-300' : ! meeting.published }">
             <!--                        <h1 class="page-title">{{ meeting.name }}</h1>-->
             <div class="">
-                <span class="text-gray-700">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
-                <strong>{{ moment(meeting.start_at).format('h:mm') }} hod.</strong>
+                <span class="text-gray-700 font-semibold" :class="{ 'text-red-700' : ! meeting.published }">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
+                <span :class="{ 'text-red-700' : ! meeting.published }">{{ moment(meeting.start_at).format('h:mm') }} hod.</span>
             </div>
 
             <nav-drop-down v-if="$auth.can('council delete')">
@@ -37,7 +37,7 @@
                             </svg>
                             Zastaviť publikovanie
                         </div>
-                        <div v-else class="flex" @click="publishedMeeting(1)">
+                        <div v-else class="flex" @click="publishedMeeting(1)" :class="{ 'text-red-700' : ! meeting.published }">
                             <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path
@@ -126,11 +126,6 @@
                 </div>
             </transition-group>
         </draggable>
-
-        <!--        <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 mt-4 bg-white">-->
-        <!--            <item :item="item"></item>-->
-        <!--        </div>-->
-
 
     </div>
 

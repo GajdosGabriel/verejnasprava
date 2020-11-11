@@ -1,7 +1,7 @@
 <template>
     <div class="" v-if="isPublished">
 
-        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4">
+        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4" :class="{ 'border-red-300' : ! item.published }" >
             <div class=" border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1">
                 <a :href="'/items/' + item.id">
                     <span class="font-semibold text-gray-700">{{ item.name }}</span>
@@ -59,7 +59,7 @@
                      v-if="$auth.can('council delete')"
                      class="p-1 text-center text-sm rounded-md whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer">
                     <span v-if="item.published">Publikované</span>
-                    <span  v-else >Publikovať</span>
+                    <span  v-else :class="{ 'text-red-700' : ! item.published }" >Publikovať</span>
                 </div>
 
 

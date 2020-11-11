@@ -3722,11 +3722,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -70231,7 +70226,9 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4"
+            staticClass:
+              "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4",
+            class: { "border-red-300": !_vm.item.published }
           },
           [
             _c(
@@ -70398,7 +70395,11 @@ var render = function() {
                     [
                       _vm.item.published
                         ? _c("span", [_vm._v("Publikované")])
-                        : _c("span", [_vm._v("Publikovať")])
+                        : _c(
+                            "span",
+                            { class: { "text-red-700": !_vm.item.published } },
+                            [_vm._v("Publikovať")]
+                          )
                     ]
                   )
                 : _vm._e(),
@@ -71006,20 +71007,28 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex justify-between max-w-sm border-b-2 border-gray-400 mb-6"
+            "flex justify-between max-w-sm border-b-2 border-gray-400 mb-6",
+          class: { "border-red-300": !_vm.meeting.published }
         },
         [
           _c("div", {}, [
-            _c("span", { staticClass: "text-gray-700" }, [
-              _vm._v(
-                "Začiatok: " +
-                  _vm._s(
-                    _vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY")
-                  )
-              )
-            ]),
+            _c(
+              "span",
+              {
+                staticClass: "text-gray-700 font-semibold",
+                class: { "text-red-700": !_vm.meeting.published }
+              },
+              [
+                _vm._v(
+                  "Začiatok: " +
+                    _vm._s(
+                      _vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY")
+                    )
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("strong", [
+            _c("span", { class: { "text-red-700": !_vm.meeting.published } }, [
               _vm._v(
                 _vm._s(_vm.moment(_vm.meeting.start_at).format("h:mm")) +
                   " hod."
@@ -71118,6 +71127,9 @@ var render = function() {
                               "div",
                               {
                                 staticClass: "flex",
+                                class: {
+                                  "text-red-700": !_vm.meeting.published
+                                },
                                 on: {
                                   click: function($event) {
                                     return _vm.publishedMeeting(1)
@@ -91678,14 +91690,8 @@ var actions = {
         dispatch = _ref2.dispatch;
     commit('SET_LOADING_STATUS', true);
     axios.put('/api/meetings/' + meeting.id, meeting).then(function (response) {
-      // commit('SET_ITEMS', response.data);
-      commit('SET_LOADING_STATUS', false);
-      dispatch('notification/addNewNotification', {
-        message: response.data,
-        type: 'bg-green-400'
-      }, {
-        root: true
-      });
+      commit('SET_MEETING', response.data);
+      commit('SET_LOADING_STATUS', false); // dispatch('notification/addNewNotification', { message: response.data, type: 'bg-green-400' }, { root: true})
     });
   },
   updateItem: function updateItem(_ref3, item) {

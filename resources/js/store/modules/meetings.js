@@ -47,10 +47,10 @@ const actions = {
         commit('SET_LOADING_STATUS', true);
         axios.put('/api/meetings/' + meeting.id, meeting)
             .then(response => {
-                    // commit('SET_ITEMS', response.data);
+                    commit('SET_MEETING', response.data);
                     commit('SET_LOADING_STATUS', false);
 
-                    dispatch('notification/addNewNotification', { message: response.data, type: 'bg-green-400' }, { root: true})
+                    // dispatch('notification/addNewNotification', { message: response.data, type: 'bg-green-400' }, { root: true})
                 }
             );
 
