@@ -73118,7 +73118,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.item.vote_status
+  return _vm.item.vote_status || _vm.item.votes.length > 0
     ? _c(
         "div",
         {
