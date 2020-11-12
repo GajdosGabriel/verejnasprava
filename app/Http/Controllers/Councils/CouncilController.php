@@ -16,8 +16,7 @@ class CouncilController extends Controller
 {
     public function index()
     {
-        $organization = Organization::whereId(auth()->user()->active_organization)->first();
-        $councils = $organization->councils()->orderBy('id', 'asc')->get();
+        $councils = Council::whereOrganizationId(auth()->user()->active_organization)->orderBy('id', 'asc')->get();
         return view('council.index', compact('councils'));
     }
 

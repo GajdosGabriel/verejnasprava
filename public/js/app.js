@@ -73141,7 +73141,7 @@ var render = function() {
         [
           _c("div", { staticClass: "flex justify-between bg-gray-300 p-1" }, [
             _c("h4", { staticClass: "font-semibold text-gray-800" }, [
-              _vm._v("Hlasovanie ()")
+              _vm._v("Hlasovanie (" + _vm._s(_vm.item.votes.length) + ")")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex cursor-pointer" }, [
