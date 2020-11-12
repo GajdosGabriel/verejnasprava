@@ -1,11 +1,10 @@
 <template>
-    <div>
+    <div v-cloak>
 
         <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-6" :class="{ 'border-red-300' : ! meeting.published }">
-            <!--                        <h1 class="page-title">{{ meeting.name }}</h1>-->
             <div class="">
                 <span class="text-gray-700 font-semibold" :class="{ 'text-red-700' : ! meeting.published }">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
-                <span :class="{ 'text-red-700' : ! meeting.published }">{{ moment(meeting.start_at).format('h:mm') }} hod.</span>
+                <span :class="{ 'text-red-700' : ! meeting.published }">{{ moment(meeting.start_at).format('H:mm') }} hod.</span>
             </div>
 
             <nav-drop-down v-if="$auth.can('council delete')">
@@ -29,7 +28,7 @@
                     <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                        href="#"
                        title="Zmazať položku">
-                        <div v-if="meeting.published" @click="publishedMeeting(0)" class="flex">
+                        <div v-if="meeting.published" @click="publishedMeeting(! meeting.published)" class="flex">
                             <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path
@@ -215,3 +214,6 @@
 
     }
 </script>
+<style>
+    [v-cloak] { display:none; }
+</style>

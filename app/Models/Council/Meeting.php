@@ -21,6 +21,7 @@ class Meeting extends Model
 
     protected $casts = [
         'start_at' => 'datetime',
+        'published' => 'boolean',
     ];
 
     public function user() {

@@ -20,6 +20,8 @@ class Item extends Model
     protected $casts = [
         'vote_status' => 'boolean',
         'vote_type' => 'boolean',
+        'published' => 'boolean',
+        'result' => 'boolean',
     ];
 
     public function files() {

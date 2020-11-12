@@ -1,10 +1,10 @@
 <template>
     <div class="" v-if="isPublished">
 
-        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4" :class="{ 'border-red-300' : ! item.published }" >
+        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4" :class="{ 'border-red-300' : ! item.published , 'border-green-500' : item.result }" >
             <div class=" border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1">
                 <a :href="'/items/' + item.id">
-                    <span class="font-semibold text-gray-700">{{ item.name }}</span>
+                    <span class="font-semibold text-gray-700" :class="{'text-green-700' : item.result }">{{ item.name }}</span>
                 </a>
 
                 <nav-drop-down v-if="$auth.can('council delete')">
