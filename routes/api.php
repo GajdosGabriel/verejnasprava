@@ -28,6 +28,8 @@ Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index
 Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
 
 
+
+
 Route::apiResources([
     'votes' => 'Api\VoteController',
     'items' => 'Api\ItemController',

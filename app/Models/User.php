@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Council\Council;
 use App\Models\Council\Item;
+use App\Models\Council\Meeting;
 use App\Models\Council\Vote;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
@@ -77,6 +78,11 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function meetings()
+    {
+        return $this->belongsToMany(Meeting::class);
     }
 
     public function full_name()

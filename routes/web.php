@@ -75,6 +75,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/delete', 'ItemMeetingController@delete')->name('delete');
     });
 
+    Route::prefix('meetingUser')->namespace('Councils')->group(function() {
+        Route::post('store/{meeting}', 'MeetingUserController@store');
+        Route::delete('delete/{meeting}', 'MeetingUserController@destroy');
+    });
+
 
     Route::name('post.')->namespace('Posts')->group(function() {
         Route::get('post/copy/{post}', 'PostController@copy')->name('copy');

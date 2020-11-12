@@ -1,6 +1,7 @@
 const state = {
     meeting:'',
     items:[],
+    meetingUsers:[],
     loadingStatus: false,
     positionActive: false
 };
@@ -22,6 +23,7 @@ const mutations = {
     },
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
+        state.meetingUsers = meeting.users;
         state.items = meeting.items.sort((a, b) => a.position > b.position ? 1: -1);
     },
     UPDATE_LIST: function (state, payload) {
@@ -76,6 +78,20 @@ const actions = {
 
     deleteInterpellation({commit, dispatch}, item) {
         axios.delete('/interpellations/' + item.id )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
+
+    storeMeetingUser({commit, dispatch}, meeting) {
+        axios.post('/meetingUser/store/' + meeting.id, meeting )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
+
+    destroyMeetingUser({commit, dispatch}, meeting) {
+        axios.delete('/meetingUser/delete/' + meeting.id, meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });

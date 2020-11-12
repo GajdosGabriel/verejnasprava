@@ -1,7 +1,8 @@
 <template>
     <div v-cloak>
 
-        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-6" :class="{ 'border-red-300' : ! meeting.published }">
+        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-2"
+             :class="{ 'border-red-300' : ! meeting.published }">
             <div class="">
                 <span class="text-gray-700 font-semibold" :class="{ 'text-red-700' : ! meeting.published }">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>
                 <span :class="{ 'text-red-700' : ! meeting.published }">{{ moment(meeting.start_at).format('H:mm') }} hod.</span>
@@ -36,7 +37,8 @@
                             </svg>
                             Zastaviť publikovanie
                         </div>
-                        <div v-else class="flex" @click="publishedMeeting(1)" :class="{ 'text-red-700' : ! meeting.published }">
+                        <div v-else class="flex" @click="publishedMeeting(1)"
+                             :class="{ 'text-red-700' : ! meeting.published }">
                             <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path
@@ -89,9 +91,10 @@
                     </a>
 
                     <!-- Meeting Delete button-->
-                    <div @click="deleteMeeting(meeting)" class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                       :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/delete'"
-                       title="Zmazať položku">
+                    <div @click="deleteMeeting(meeting)"
+                         class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                         :href="'/meet/'+ meeting.id + '/' + meeting.slug + '/meeting/delete'"
+                         title="Zmazať položku">
                         <div class="flex">
                             <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
@@ -106,22 +109,36 @@
             </nav-drop-down>
         </div>
 
-        <div style="margin-top: -20px; font-size: 11px" class="mb-8 my-4">
-            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-600 text-gray-200 p-1 rounded-sm" target="_blank">
+        <div class="flex justify-between max-w-sm mb- text-sm mb-6">
+
+            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-600 text-gray-200 px-2 py-1 rounded-sm"
+               target="_blank">
                 Pozvánka
             </a>
+
+
+            <button class="bg-blue-600 text-gray-200 px-2 rounded-sm" v-if="positionSaveButton"
+                    @click="savePosition">
+                Uložiť zmeny
+            </button>
+
+            <!--  User-Meeting Presenter -->
+            <button v-if="isUserPresent" @click="destroyMeetingUser"
+                    class="bg-blue-600 text-gray-200 p-1 rounded-sm">
+                Odhlásiť sa ({{ meetingUsers.length}})
+            </button>
+
+            <button v-else @click="storeMeetingUser" class="bg-green-600 text-gray-100 p-1 rounded-sm text-sm">
+                Prezentovať sa ({{ meetingUsers.length}})
+            </button>
+            <!-- End of User-Meeting Presenter -->
         </div>
 
-        <button class="bg-blue-700 text-white text-sm px-2 rounded-lg mb-2" v-if="positionSaveButton"
-                @click="savePosition">
-            Uložiť zmeny
-        </button>
 
         <draggable v-model="items">
             <transition-group>
                 <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 bg-white">
                     <item :item="item"></item>
-
                 </div>
             </transition-group>
         </draggable>
@@ -147,11 +164,15 @@
             }
         },
         computed: {
+            isUserPresent() {
+                return this.meetingUsers.filter(value => value.id == this.user.id).length
+            },
             notificationStatus() {
                 return this.meeting.notification == null ? 'Pozvánka na zasadnutie' : moment(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
             },
             ...mapState({
                 meeting: state => state.meetings.meeting,
+                meetingUsers: state => state.meetings.meetingUsers,
             }),
 
             items: {
@@ -168,11 +189,25 @@
             this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
         },
         methods: {
-            deleteMeeting(meeting){
+            destroyMeetingUser() {
+                this.$store.dispatch('meetings/destroyMeetingUser', {
+                    user: this.user.id,
+                    id: this.meeting.id
+                })
+            },
+
+            storeMeetingUser() {
+                this.$store.dispatch('meetings/storeMeetingUser', {
+                    user: this.user.id,
+                    id: this.meeting.id
+                })
+            },
+
+            deleteMeeting(meeting) {
                 axios.delete('/meetings/' + meeting.id)
-                .then(
-                    // window.location.reload();
-                window.location.href = '/zastupitelstva'
+                    .then(
+                        // window.location.reload();
+                        window.location.href = '/zastupitelstva'
                     )
             },
             publishedMeeting: function (published) {
@@ -215,5 +250,7 @@
     }
 </script>
 <style>
-    [v-cloak] { display:none; }
+    [v-cloak] {
+        display: none;
+    }
 </style>
