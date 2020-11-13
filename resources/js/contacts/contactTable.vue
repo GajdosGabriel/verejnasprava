@@ -46,20 +46,25 @@
 
         <paginator :data="contacts" :url="url"/>
 
+        <form-edit></form-edit>
+        <form-create></form-create>
     </div>
 </template>
 
 <script>
+    import formCreate from './formCreate.vue';
+    import formEdit from './formEdit.vue';
     import paginator from './pagination.vue';
     import numeral from 'numeral';
     import {mapState} from 'vuex';
 
-
     import { createNamespacedHelpers } from 'vuex';
+
+
     const { mapActions } = createNamespacedHelpers('contacts');
 
     export default {
-        components: { paginator },
+        components: {formCreate, paginator, formEdit },
         data: function () {
             return {
                 numeral: numeral,
