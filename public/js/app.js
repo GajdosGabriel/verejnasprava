@@ -2390,16 +2390,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
       return state.contacts.showCreateForm;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, mapActions(['newContactToggle' // 'saveContact'
-  ])), {}, {
-    saveContact: function saveContact() {
-      axios.post('/contacts', this.contact).then(this.$store.state.contacts.showCreateForm = false, this.$store.dispatch('contacts/insert_contact', this.contact), // Notify for add task
-      this.$store.dispatch('notification/addNewNotification', {
-        type: 'bg-green-400',
-        message: 'Kontakt uložený!'
-      }));
-    }
-  })
+  methods: _objectSpread({}, mapActions(['newContactToggle', 'saveContact']))
 });
 
 /***/ }),
@@ -68800,7 +68791,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.saveContact(1, _vm.contact)
+                                return _vm.saveContact(_vm.contact)
                               }
                             }
                           },
@@ -91384,7 +91375,7 @@ var state = {
   showEditForm: false,
   showCreateForm: false,
   url: '/api/contacts/',
-  contact: {}
+  contact: ''
 };
 var getters = {};
 var mutations = {
@@ -91399,6 +91390,10 @@ var mutations = {
   },
   SHOW_FORM: function SHOW_FORM(state, payload) {
     state.showEditForm = !state.showEditForm;
+    state.contact = payload;
+  },
+  SHOW_CREATE_FORM: function SHOW_CREATE_FORM(state, payload) {
+    state.showCreateForm = !state.showCreateForm;
     state.contact = payload;
   },
   SHOW_NEW_FORM: function SHOW_NEW_FORM(state, payload) {
@@ -91482,7 +91477,7 @@ var actions = {
       }, _callee2);
     }))();
   },
-  saveContact: function saveContact(_ref6, organizationId, data) {
+  saveContact: function saveContact(_ref6, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -91491,11 +91486,12 @@ var actions = {
             case 0:
               commit = _ref6.commit;
               _context3.next = 3;
-              return axios.post('/contact/store/' + organizationId, data);
+              return axios.post('/contacts', data);
 
             case 3:
-              // commit('SHOW_FORM');
-              // Notify for add task
+              commit('SHOW_CREATE_FORM');
+              commit('INSERT_CONTACT', data); // Notify for add task
+
               commit('notification/NEW_NOTIFICATION', {
                 type: 'bg-green-400',
                 message: 'Kontakt uložený!'
@@ -91503,7 +91499,7 @@ var actions = {
                 root: true
               });
 
-            case 4:
+            case 6:
             case "end":
               return _context3.stop();
           }

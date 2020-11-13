@@ -4,7 +4,7 @@ const state = {
     showEditForm: false,
     showCreateForm: false,
     url: '/api/contacts/',
-    contact: {}
+    contact: ''
 };
 const getters = {};
 
@@ -21,6 +21,10 @@ const mutations = {
     },
     SHOW_FORM: function (state, payload) {
         state.showEditForm = !state.showEditForm;
+        state.contact = payload
+    },
+    SHOW_CREATE_FORM: function (state, payload) {
+        state.showCreateForm = !state.showCreateForm;
         state.contact = payload
     },
 
@@ -73,10 +77,11 @@ const actions = {
 
     },
 
-    async saveContact({commit}, organizationId, data) {
-        await axios.post('/contact/store/' + organizationId, data);
+    async saveContact({commit}, data) {
+        await axios.post('/contacts', data);
 
-        // commit('SHOW_FORM');
+        commit('SHOW_CREATE_FORM');
+        commit('INSERT_CONTACT', data);
 
         // Notify for add task
         commit('notification/NEW_NOTIFICATION', {
