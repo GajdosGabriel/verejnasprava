@@ -3745,6 +3745,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -71491,41 +71493,45 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.isUserPresent
-            ? _c(
-                "button",
-                {
-                  staticClass:
-                    "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm",
-                  on: { click: _vm.updateMeetingUser }
-                },
-                [
-                  _vm._v(
-                    "\n            Prihlásený " +
-                      _vm._s(_vm.user.last_name) +
-                      " (" +
-                      _vm._s(_vm.meetingUsers.length) +
-                      ")\n        "
-                  )
-                ]
-              )
-            : _c(
-                "button",
-                {
-                  staticClass:
-                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm",
-                  on: { click: _vm.storeMeetingUser }
-                },
-                [
-                  _vm._v(
-                    "\n            Prezentovať sa (" +
-                      _vm._s(_vm.meetingUsers.length) +
-                      ")\n        "
-                  )
-                ]
-              ),
+          _vm.meeting.published
+            ? _c("div", [
+                _vm.isUserPresent
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm",
+                        on: { click: _vm.updateMeetingUser }
+                      },
+                      [
+                        _vm._v(
+                          "\n                Prihlásený " +
+                            _vm._s(_vm.user.last_name) +
+                            " (" +
+                            _vm._s(_vm.meetingUsers.length) +
+                            ")\n            "
+                        )
+                      ]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass:
+                          "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm",
+                        on: { click: _vm.storeMeetingUser }
+                      },
+                      [
+                        _vm._v(
+                          "\n                Prezentovať sa (" +
+                            _vm._s(_vm.meetingUsers.length) +
+                            ")\n            "
+                        )
+                      ]
+                    )
+              ])
+            : _vm._e(),
           _vm._v(" "),
-          _vm.$auth.can("council delete")
+          _vm.$auth.can("council delete") && _vm.meeting.published
             ? _c(
                 "button",
                 {

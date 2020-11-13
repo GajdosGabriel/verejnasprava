@@ -53,6 +53,7 @@ class NewMeeting extends Notification
 
             ->line('dňa: ' . $this->meeting->start_at->format('m. d. Y') . ' o '
                 .$this->meeting->start_at->format('H:i') .' hod.' )
+            ->line('Miesto: '. $this->meeting->locality )
 
             ->action( $this->meeting->name , url( route('meetings.show', $this->meeting->id)))
             ->line('Vystavené v aplikácií ' . env('APP_NAME'). '.');

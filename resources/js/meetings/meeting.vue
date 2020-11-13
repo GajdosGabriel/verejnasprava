@@ -124,17 +124,19 @@
             </button>
 
             <!--  User-Meeting Presenter -->
-            <button v-if="isUserPresent" @click="updateMeetingUser"
-                    class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm">
-                Prihlásený {{ user.last_name }} ({{ meetingUsers.length}})
-            </button>
+            <div v-if="meeting.published">
+                <button v-if="isUserPresent" @click="updateMeetingUser"
+                        class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm">
+                    Prihlásený {{ user.last_name }} ({{ meetingUsers.length}})
+                </button>
 
-            <button v-else @click="storeMeetingUser"
-                    class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm">
-                Prezentovať sa ({{ meetingUsers.length}})
-            </button>
+                <button v-else @click="storeMeetingUser"
+                        class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm">
+                    Prezentovať sa ({{ meetingUsers.length}})
+                </button>
+            </div>
 
-            <button v-if="$auth.can('council delete')" @click="resetMeetingUser"
+            <button v-if="$auth.can('council delete') && meeting.published" @click="resetMeetingUser"
                     class="border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm">
                 Nová prezentácia
             </button>
