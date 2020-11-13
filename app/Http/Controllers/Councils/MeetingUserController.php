@@ -13,8 +13,9 @@ class MeetingUserController extends Controller
         $meeting->users()->detach($request->input('user'));
     }
 
-    public function store(Request $request, Meeting $meeting)
+    public function store(Request $request)
     {
+        $meeting = Meeting::findOrFail($request->input('id'));
         $meeting->users()->attach($request->input('user'));
     }
 

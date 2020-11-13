@@ -75,17 +75,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{item}/delete', 'ItemMeetingController@delete')->name('delete');
     });
 
-    Route::prefix('meetingUser')->namespace('Councils')->group(function() {
-        Route::post('store/{meeting}', 'MeetingUserController@store');
-        Route::put('update/{meeting}', 'MeetingUserController@update');
-        Route::delete('delete/{meeting}', 'MeetingUserController@destroy');
-    });
-
 
     Route::name('post.')->namespace('Posts')->group(function() {
         Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
     });
-
 
     Route::name('contact.')->namespace('Contacts')->group(function() {
         Route::get('contacts', 'ContactsController@index')->name('index');
@@ -95,6 +88,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
     });
 
+    Route::resource('meetingUsers', Councils\MeetingUserController::class)->parameters([
+        'meetingUsers' => 'meeting'
+    ]);
 
     Route::resources([
         'users'             => UserController::class,

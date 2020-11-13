@@ -84,14 +84,14 @@ const actions = {
     },
 
     storeMeetingUser({commit, dispatch}, meeting) {
-        axios.post('/meetingUser/store/' + meeting.id, meeting )
+        axios.post('/meetingUsers', meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
     updateMeetingUser({commit, dispatch}, meeting) {
-        axios.put('/meetingUser/update/' + meeting.id, meeting )
+        axios.put('/meetingUsers/' + meeting.id, meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
@@ -99,7 +99,7 @@ const actions = {
 
     deleteMeetingUser({commit, dispatch}, meeting) {
         console.log(meeting);
-        axios.delete('/meetingUser/delete/' + meeting.id )
+        axios.delete('/meetingUsers/' + meeting.id )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
