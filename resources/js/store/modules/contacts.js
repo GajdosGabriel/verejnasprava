@@ -61,7 +61,7 @@ const actions = {
     },
 
     async updateContact({commit}, contact) {
-        await axios.patch('/contact/update/' + contact.id, contact);
+        await axios.put('/contacts/' + contact.id, contact);
 
         commit('SHOW_FORM');
 

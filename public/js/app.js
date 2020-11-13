@@ -2617,7 +2617,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
   methods: _objectSpread(_objectSpread({}, mapActions(['newContactToggle' // 'saveContact'
   ])), {}, {
     saveContact: function saveContact() {
-      axios.post('/contact/store/' + this.user.active_organization, this.contact).then(this.$store.state.contacts.showCreateForm = false, this.$store.dispatch('contacts/insert_contact', this.contact), // Notify for add task
+      axios.post('/contacts', this.contact).then(this.$store.state.contacts.showCreateForm = false, this.$store.dispatch('contacts/insert_contact', this.contact), // Notify for add task
       this.$store.dispatch('notification/addNewNotification', {
         type: 'bg-green-400',
         message: 'Kontakt uložený!'
@@ -91577,7 +91577,7 @@ var actions = {
             case 0:
               commit = _ref5.commit;
               _context2.next = 3;
-              return axios.patch('/contact/update/' + contact.id, contact);
+              return axios.put('/contacts/' + contact.id, contact);
 
             case 3:
               commit('SHOW_FORM'); // Notify for add task

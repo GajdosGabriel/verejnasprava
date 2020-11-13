@@ -204,7 +204,7 @@
             ]),
 
             saveContact: function () {
-                axios.post('/contact/store/' + this.user.active_organization , this.contact)
+                axios.post('/contacts', this.contact)
                     .then(
                         this.$store.state.contacts.showCreateForm = false,
                         this.$store.dispatch('contacts/insert_contact', this.contact),

@@ -80,13 +80,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
     });
 
-    Route::name('contact.')->namespace('Contacts')->group(function() {
-        Route::get('contacts', 'ContactsController@index')->name('index');
-        Route::get('contact/create/{organization}', 'ContactsController@create')->name('create');
-        Route::get('contact/edit/{organization}', 'ContactsController@edit')->name('edit');
-        Route::patch('contact/update/{contact}', 'ContactsController@update')->name('update');
-        Route::post('contact/store/{organization}', 'ContactsController@store')->name('store');
-    });
+
+    Route::resource('contacts', Contacts\ContactsController::class);
 
     Route::resource('meetingUsers', Councils\MeetingUserController::class)->parameters([
         'meetingUsers' => 'meeting'

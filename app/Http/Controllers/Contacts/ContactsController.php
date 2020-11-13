@@ -33,8 +33,8 @@ class ContactsController extends Controller
 
 
 
-    public function edit(Contact $organization) {
-        return view('contacts.edit', compact('organization'));
+    public function edit(Contact $contact) {
+        return view('contacts.edit', compact('contact'));
     }
 
 
@@ -47,7 +47,9 @@ class ContactsController extends Controller
     }
 
 
-    public function store(Organization $organization, ContactCreateRequest $contactRequest) {
+    public function store(ContactCreateRequest $contactRequest)
+    {
+        $organization = Organization::findOrFail(auth()->user()->active_organization);
         $organization->contacts()->create($contactRequest->all());
 //        flash()->success('Dodávateľ bol vytvorený');
 //        return redirect()->route('contact.index');
