@@ -109,9 +109,10 @@
             </nav-drop-down>
         </div>
 
-        <div class="flex justify-between max-w-sm mb- text-sm mb-6">
+        <div class="flex justify-between max-w-sm mb- text-xs mb-6">
 
-            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-200 text-gray-800 px-2 py-1 rounded-sm"
+            <a :href="'/meet/' + meeting.id + '/pdf/show'"
+               class="border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm"
                target="_blank">
                 Pozvánka
             </a>
@@ -124,16 +125,17 @@
 
             <!--  User-Meeting Presenter -->
             <button v-if="isUserPresent" @click="updateMeetingUser"
-                    class="bg-blue-600 text-gray-200 p-1 rounded-sm">
-                Prihlásený ({{ meetingUsers.length}})
+                    class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm">
+                Prihlásený {{ user.last_name }} ({{ meetingUsers.length}})
             </button>
 
-            <button v-else @click="storeMeetingUser" class="bg-green-200 text-gray-800 p-1 rounded-sm text-sm">
+            <button v-else @click="storeMeetingUser"
+                    class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm">
                 Prezentovať sa ({{ meetingUsers.length}})
             </button>
 
             <button v-if="$auth.can('council delete')" @click="resetMeetingUser"
-                    class="bg-red-200 text-gray-800 p-1 rounded-sm">
+                    class="border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm">
                 Nová prezentácia
             </button>
             <!-- End of User-Meeting Presenter -->

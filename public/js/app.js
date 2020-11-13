@@ -3743,6 +3743,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -71463,12 +71465,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex justify-between max-w-sm mb- text-sm mb-6" },
+        { staticClass: "flex justify-between max-w-sm mb- text-xs mb-6" },
         [
           _c(
             "a",
             {
-              staticClass: "bg-blue-200 text-gray-800 px-2 py-1 rounded-sm",
+              staticClass:
+                "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm",
               attrs: {
                 href: "/meet/" + _vm.meeting.id + "/pdf/show",
                 target: "_blank"
@@ -71492,12 +71495,15 @@ var render = function() {
             ? _c(
                 "button",
                 {
-                  staticClass: "bg-blue-600 text-gray-200 p-1 rounded-sm",
+                  staticClass:
+                    "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm",
                   on: { click: _vm.updateMeetingUser }
                 },
                 [
                   _vm._v(
-                    "\n            Prihlásený (" +
+                    "\n            Prihlásený " +
+                      _vm._s(_vm.user.last_name) +
+                      " (" +
                       _vm._s(_vm.meetingUsers.length) +
                       ")\n        "
                   )
@@ -71507,7 +71513,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-green-200 text-gray-800 p-1 rounded-sm text-sm",
+                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm",
                   on: { click: _vm.storeMeetingUser }
                 },
                 [
@@ -71523,7 +71529,8 @@ var render = function() {
             ? _c(
                 "button",
                 {
-                  staticClass: "bg-red-200 text-gray-800 p-1 rounded-sm",
+                  staticClass:
+                    "border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm",
                   on: { click: _vm.resetMeetingUser }
                 },
                 [_vm._v("\n            Nová prezentácia\n        ")]

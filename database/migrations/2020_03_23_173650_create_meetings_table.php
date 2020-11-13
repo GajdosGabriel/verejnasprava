@@ -20,6 +20,7 @@ class CreateMeetingsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
+            $table->char('locality', 200);
             $table->dateTime('start_at')->nullable();
             $table->boolean('published')->default(0);
             $table->timestamp('notification')->nullable();

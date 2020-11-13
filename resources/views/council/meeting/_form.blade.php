@@ -12,11 +12,11 @@
 </div>
 
 <div class="mb-4">
-    <label for="first_name" class="text-gray-700 text-sm mb-2">Popis schôdze</label>
-    <input id="description" type="text"
-           class="input-control focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror"
-           name="description" value="{{ old('description') ?? $meeting->description }}" placeholder="nepovinné" autocomplete="name" autofocus>
-    @error('description')
+    <label for="locality" class="text-gray-700 text-sm mb-2">Miesto schôdze</label>
+    <input id="locality" type="text"
+           class="input-control focus:outline-none focus:shadow-outline @error('locality') is-invalid @enderror"
+           name="locality" value="{{ old('locality') ?? $meeting->locality }}" placeholder="nepovinné" autocomplete="name" autofocus>
+    @error('locality')
     <span class="text-red-500 text-xs italic" role="alert">
         <strong>{{ $message }}</strong>
     </span>
@@ -26,7 +26,7 @@
 <div class="sm:flex justify-between">
 
     <div class="mb-4  sm:w-1/2 mr-4">
-        <label for="first_name" class="block text-gray-700 text-sm mb-2">Dátum schôdze</label>
+        <label for="start_at" class="block text-gray-700 text-sm mb-2">Dátum schôdze</label>
 
         {{--    Neviem vyriešiť podmienku ak datum chýba--}}
         @if($meeting->start_at == null)
