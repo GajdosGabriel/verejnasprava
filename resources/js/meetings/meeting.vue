@@ -111,7 +111,7 @@
 
         <div class="flex justify-between max-w-sm mb- text-sm mb-6">
 
-            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-600 text-gray-200 px-2 py-1 rounded-sm"
+            <a :href="'/meet/' + meeting.id + '/pdf/show'" class="bg-blue-200 text-gray-800 px-2 py-1 rounded-sm"
                target="_blank">
                 Pozvánka
             </a>
@@ -123,13 +123,18 @@
             </button>
 
             <!--  User-Meeting Presenter -->
-            <button v-if="isUserPresent" @click="destroyMeetingUser"
+            <button v-if="isUserPresent" @click="updateMeetingUser"
                     class="bg-blue-600 text-gray-200 p-1 rounded-sm">
-                Odhlásiť sa ({{ meetingUsers.length}})
+                Prihlásený ({{ meetingUsers.length}})
             </button>
 
-            <button v-else @click="storeMeetingUser" class="bg-green-600 text-gray-100 p-1 rounded-sm text-sm">
+            <button v-else @click="storeMeetingUser" class="bg-green-200 text-gray-800 p-1 rounded-sm text-sm">
                 Prezentovať sa ({{ meetingUsers.length}})
+            </button>
+
+            <button v-if="$auth.can('council delete')" @click="resetMeetingUser"
+                    class="bg-red-200 text-gray-800 p-1 rounded-sm">
+                Nová prezentácia
             </button>
             <!-- End of User-Meeting Presenter -->
         </div>
@@ -189,8 +194,13 @@
             this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
         },
         methods: {
-            destroyMeetingUser() {
-                this.$store.dispatch('meetings/destroyMeetingUser', {
+            resetMeetingUser() {
+                this.$store.dispatch('meetings/deleteMeetingUser', {
+                    id: this.meeting.id,
+                })
+            },
+            updateMeetingUser() {
+                this.$store.dispatch('meetings/updateMeetingUser', {
                     user: this.user.id,
                     id: this.meeting.id
                 })

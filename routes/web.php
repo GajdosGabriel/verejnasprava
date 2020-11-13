@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('meetingUser')->namespace('Councils')->group(function() {
         Route::post('store/{meeting}', 'MeetingUserController@store');
+        Route::put('update/{meeting}', 'MeetingUserController@update');
         Route::delete('delete/{meeting}', 'MeetingUserController@destroy');
     });
 

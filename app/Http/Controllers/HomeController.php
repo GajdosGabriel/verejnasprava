@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         if (auth()->user()) {
             if (auth()->user()->active_organization != null)
-                return redirect()->route('organizations.index', [auth()->user()->active_organization, auth()->user()->slug]);
+                return redirect()->route('organizations.index');
         }
 
         //        Po registrácií presmeruje na create org formulár

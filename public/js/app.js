@@ -3738,6 +3738,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3788,8 +3793,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
   },
   methods: {
-    destroyMeetingUser: function destroyMeetingUser() {
-      this.$store.dispatch('meetings/destroyMeetingUser', {
+    resetMeetingUser: function resetMeetingUser() {
+      this.$store.dispatch('meetings/deleteMeetingUser', {
+        id: this.meeting.id
+      });
+    },
+    updateMeetingUser: function updateMeetingUser() {
+      this.$store.dispatch('meetings/updateMeetingUser', {
         user: this.user.id,
         id: this.meeting.id
       });
@@ -71458,7 +71468,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "bg-blue-600 text-gray-200 px-2 py-1 rounded-sm",
+              staticClass: "bg-blue-200 text-gray-800 px-2 py-1 rounded-sm",
               attrs: {
                 href: "/meet/" + _vm.meeting.id + "/pdf/show",
                 target: "_blank"
@@ -71483,11 +71493,11 @@ var render = function() {
                 "button",
                 {
                   staticClass: "bg-blue-600 text-gray-200 p-1 rounded-sm",
-                  on: { click: _vm.destroyMeetingUser }
+                  on: { click: _vm.updateMeetingUser }
                 },
                 [
                   _vm._v(
-                    "\n            Odhlásiť sa (" +
+                    "\n            Prihlásený (" +
                       _vm._s(_vm.meetingUsers.length) +
                       ")\n        "
                   )
@@ -71497,7 +71507,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-green-600 text-gray-100 p-1 rounded-sm text-sm",
+                    "bg-green-200 text-gray-800 p-1 rounded-sm text-sm",
                   on: { click: _vm.storeMeetingUser }
                 },
                 [
@@ -71507,7 +71517,18 @@ var render = function() {
                       ")\n        "
                   )
                 ]
+              ),
+          _vm._v(" "),
+          _vm.$auth.can("council delete")
+            ? _c(
+                "button",
+                {
+                  staticClass: "bg-red-200 text-gray-800 p-1 rounded-sm",
+                  on: { click: _vm.resetMeetingUser }
+                },
+                [_vm._v("\n            Nová prezentácia\n        ")]
               )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
@@ -91895,13 +91916,25 @@ var actions = {
       });
     });
   },
-  destroyMeetingUser: function destroyMeetingUser(_ref7, meeting) {
+  updateMeetingUser: function updateMeetingUser(_ref7, meeting) {
     var _this5 = this;
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios["delete"]('/meetingUser/delete/' + meeting.id, meeting).then(function (response) {
+    axios.put('/meetingUser/update/' + meeting.id, meeting).then(function (response) {
       dispatch('meetings/fetchMeeting', _this5.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteMeetingUser: function deleteMeetingUser(_ref8, meeting) {
+    var _this6 = this;
+
+    var commit = _ref8.commit,
+        dispatch = _ref8.dispatch;
+    console.log(meeting);
+    axios["delete"]('/meetingUser/delete/' + meeting.id).then(function (response) {
+      dispatch('meetings/fetchMeeting', _this6.state.meetings.meeting.id, {
         root: true
       });
     });

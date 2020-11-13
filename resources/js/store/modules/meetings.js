@@ -90,8 +90,16 @@ const actions = {
             });
     },
 
-    destroyMeetingUser({commit, dispatch}, meeting) {
-        axios.delete('/meetingUser/delete/' + meeting.id, meeting )
+    updateMeetingUser({commit, dispatch}, meeting) {
+        axios.put('/meetingUser/update/' + meeting.id, meeting )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
+
+    deleteMeetingUser({commit, dispatch}, meeting) {
+        console.log(meeting);
+        axios.delete('/meetingUser/delete/' + meeting.id )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });

@@ -8,13 +8,18 @@ use Illuminate\Http\Request;
 
 class MeetingUserController extends Controller
 {
+    public function update(Request $request, Meeting $meeting)
+    {
+        $meeting->users()->detach($request->input('user'));
+    }
+
     public function store(Request $request, Meeting $meeting)
     {
         $meeting->users()->attach($request->input('user'));
     }
 
-    public function destroy(Request $request, Meeting $meeting)
+    public function destroy(Meeting $meeting)
     {
-        $meeting->users()->detach($request->input('user'));
+        $meeting->users()->detach();
     }
 }
