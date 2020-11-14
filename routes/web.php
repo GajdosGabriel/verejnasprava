@@ -67,12 +67,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('position/slug/item/position', 'ItemOrderController@position')->name('position');
     });
 
-    Route::prefix('itemMeetings')->name('itemMeetings.')->namespace('Councils')->group(function() {
-        Route::get('{meeting}/create', 'ItemMeetingController@create')->name('create');
-        Route::put('{item}/addToMeeting', 'ItemMeetingController@update')->name('update');
-        Route::post('{meeting}/store', 'ItemMeetingController@store')->name('store');
-    });
-
 
     Route::name('post.')->namespace('Posts')->group(function() {
         Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
@@ -85,6 +79,7 @@ Route::group(['middleware' => 'auth'], function() {
         'meetingUsers' => 'meeting'
     ]);
 
+    // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
         'users'             => UserController::class,
         'tasks'             => TaskController::class,
@@ -94,7 +89,7 @@ Route::group(['middleware' => 'auth'], function() {
         'items'             => Councils\ItemController::class,
         'meetings'          => Councils\MeetingController::class,
         'interpellations'   => Councils\InterpellationController::class,
-        'itemMeetings'      => Councils\ItemMeetingController::class,
+        'meetings.items'    => Councils\ItemMeetingController::class,
         'organizations'     => Organizations\OrganizationController::class,
     ]);
 

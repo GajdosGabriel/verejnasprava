@@ -35,7 +35,7 @@
                         @empty
 
                             @can('council delete')
-                            <form method="POST" action="{{ route('itemMeetings.update', $item->id) }}">
+                            <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
                                 @csrf @method('PUT')
                                 <label for="meetings">Zaradiť do programu:</label>
                                 <select name="meeting" id="meetings" required>

@@ -71132,7 +71132,8 @@ var render = function() {
                           staticClass:
                             "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                           attrs: {
-                            href: "/itemMeetings/" + _vm.meeting.id + "/create",
+                            href:
+                              "/meetings/" + _vm.meeting.id + "/items/create",
                             title: "Vytvoriť nové zasadnutie"
                           }
                         },
@@ -91856,7 +91857,7 @@ var actions = {
 
     var commit = _ref9.commit,
         dispatch = _ref9.dispatch;
-    axios["delete"]('/itemMeetings/' + item.id).then(function (response) {
+    axios["delete"]('/meetings/' + this.state.meetings.meeting.id + '/items/' + item.id).then(function (response) {
       dispatch('meetings/fetchMeeting', _this7.state.meetings.meeting.id, {
         root: true
       });
