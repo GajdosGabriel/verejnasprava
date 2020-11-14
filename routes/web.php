@@ -56,10 +56,6 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
-        Route::get('{council}/index', 'MeetingController@index')->name('index');
-        Route::get('{council}/meeting/create', 'MeetingController@create')->name('create');
-        Route::post('{council}/meeting/store', 'MeetingController@store')->name('store');
-
         Route::get('{meeting}/pdf/show', 'MeetingController@pozvankaPdf');
     });
 
@@ -74,6 +70,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::resource('contacts', Contacts\ContactsController::class);
+
+    Route::resource('councils.meetings', Councils\CouncilMeetingController::class);
 
     Route::resource('meetingUsers', Councils\MeetingUserController::class)->parameters([
         'meetingUsers' => 'meeting'

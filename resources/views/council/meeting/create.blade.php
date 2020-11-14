@@ -11,7 +11,7 @@
             <h1 class="page-title">Nové zasadnutie</h1>
             <div class="max-w-lg">
 
-                <form method="POST" action="{{ route('meet.store', $council->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('councils.meetings.store', $council->id) }}" enctype="multipart/form-data">
                     @csrf @method('POST')
                     @include('modul.errors')
                     @include('council.meeting._form')
