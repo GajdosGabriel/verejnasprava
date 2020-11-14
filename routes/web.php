@@ -20,16 +20,16 @@ Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallba
     ->where('service', '(github|facebook|google|twitter|linkedin|bitbucket)');
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function() {
+    Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
 
         Route::get('user/setup/', 'UserController@setup')->name('setup');
     });
 
-    Route::prefix('objednavky')->name('order.')->group(function() {
+    Route::prefix('objednavky')->name('order.')->group(function () {
         Route::get('/index', 'OrderController@index')->name('index');
         Route::get('{organization}/{slug}/order/create', 'OrderController@create')->name('create');
         Route::get('{order}/{slug}/order/show', 'OrderController@show')->name('show');
@@ -41,13 +41,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('{order}/{slug}/order/update', 'OrderController@update')->name('update');
     });
 
-    Route::name('council.')->namespace('Councils')->group(function() {
+    Route::name('council.')->namespace('Councils')->group(function () {
 
         Route::get('zastupitelstva', 'CouncilController@index')->name('index');
         Route::get('zastupitelstvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
         Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
 
-        Route::prefix('admin')->name('admin.')->group(function() {
+        Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
             Route::get('{organization}/{slug}/create', 'AdminCouncilController@create')->name('create');
             Route::get('{council}/{slug}/edit/zast', 'AdminCouncilController@edit')->name('edit');
@@ -55,40 +55,30 @@ Route::group(['middleware' => 'auth'], function() {
         });
     });
 
-    Route::prefix('meet')->name('meet.')->namespace('Councils')->group(function() {
-        Route::get('{meeting}/pdf/show', 'MeetingController@pozvankaPdf');
-    });
 
-    Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
-        Route::put('position/slug/item/position', 'ItemOrderController@position')->name('position');
-    });
-
-
-    Route::name('post.')->namespace('Posts')->group(function() {
-        Route::get('post/copy/{post}', 'PostController@copy')->name('copy');
-    });
+    Route::get('meet/{meeting}/pdf/show', 'Councils\MeetingController@pozvankaPdf')->name('meet');
+    Route::put('item/position/slug/item/position', 'Councils\ItemOrderController@position')->name('item.position');
+    Route::get('post/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
 
 
     Route::resource('contacts', Contacts\ContactsController::class);
-
     Route::resource('councils.meetings', Councils\CouncilMeetingController::class);
-
     Route::resource('meetingUsers', Councils\MeetingUserController::class)->parameters([
         'meetingUsers' => 'meeting'
     ]);
 
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
-        'users'             => UserController::class,
-        'tasks'             => TaskController::class,
-        'supports'          => SupportController::class,
-        'comments'          => CommentController::class,
-        'posts'             => Posts\PostController::class,
-        'items'             => Councils\ItemController::class,
-        'meetings'          => Councils\MeetingController::class,
-        'interpellations'   => Councils\InterpellationController::class,
-        'meetings.items'    => Councils\ItemMeetingController::class,
-        'organizations'     => Organizations\OrganizationController::class,
+        'users' => UserController::class,
+        'tasks' => TaskController::class,
+        'supports' => SupportController::class,
+        'comments' => CommentController::class,
+        'posts' => Posts\PostController::class,
+        'items' => Councils\ItemController::class,
+        'meetings' => Councils\MeetingController::class,
+        'interpellations' => Councils\InterpellationController::class,
+        'meetings.items' => Councils\ItemMeetingController::class,
+        'organizations' => Organizations\OrganizationController::class,
     ]);
 
 
