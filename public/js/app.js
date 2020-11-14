@@ -91401,7 +91401,7 @@ var mutations = {
     state.contact = payload;
   },
   REMOVE_CONTACT: function REMOVE_CONTACT(state, id) {
-    state.contacts = state.contacts.data.filter(function (contact) {
+    state.contacts.data = state.contacts.data.filter(function (contact) {
       return contact.id !== id;
     });
   }

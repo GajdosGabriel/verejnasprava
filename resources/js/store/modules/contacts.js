@@ -33,7 +33,7 @@ const mutations = {
         state.contact = payload
     },
     REMOVE_CONTACT: function (state, id) {
-        state.contacts = state.contacts.data.filter(
+        state.contacts.data = state.contacts.data.filter(
             contact => contact.id !== id
         )
     }
