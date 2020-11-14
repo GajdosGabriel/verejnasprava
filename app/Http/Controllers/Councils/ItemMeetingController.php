@@ -28,8 +28,8 @@ class ItemMeetingController extends Controller
         return redirect()->route('meetings.show', $meeting->id);
     }
 
-    public function delete(Item $item) {
-        $item->meetings()->detach();
-        return back();
+    public function destroy(Item $itemMeeting) {
+        $itemMeeting->meetings()->detach();
+//        return back();
     }
 }

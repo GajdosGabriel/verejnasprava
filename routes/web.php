@@ -61,18 +61,16 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{council}/meeting/store', 'MeetingController@store')->name('store');
 
         Route::get('{meeting}/pdf/show', 'MeetingController@pozvankaPdf');
-
     });
 
     Route::prefix('item')->name('item.')->namespace('Councils')->group(function() {
         Route::put('position/slug/item/position', 'ItemOrderController@position')->name('position');
     });
 
-    Route::prefix('itemMeeting')->name('itemMeeting.')->namespace('Councils')->group(function() {
+    Route::prefix('itemMeetings')->name('itemMeetings.')->namespace('Councils')->group(function() {
         Route::get('{meeting}/create', 'ItemMeetingController@create')->name('create');
         Route::put('{item}/addToMeeting', 'ItemMeetingController@update')->name('update');
         Route::post('{meeting}/store', 'ItemMeetingController@store')->name('store');
-        Route::get('{item}/delete', 'ItemMeetingController@delete')->name('delete');
     });
 
 
@@ -96,6 +94,7 @@ Route::group(['middleware' => 'auth'], function() {
         'items'             => Councils\ItemController::class,
         'meetings'          => Councils\MeetingController::class,
         'interpellations'   => Councils\InterpellationController::class,
+        'itemMeetings'      => Councils\ItemMeetingController::class,
         'organizations'     => Organizations\OrganizationController::class,
     ]);
 

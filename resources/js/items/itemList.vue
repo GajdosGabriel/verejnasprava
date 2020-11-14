@@ -38,8 +38,8 @@
                         </a>
 
                         <!-- Item Delete button-->
-                        <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                           :href="'/itemMeeting/'+ item.id + '/delete'"
+                        <button class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                @click="deleteItemMeeting(item)"
                            title="Zmazať položku">
                             <div class="flex">
                                 <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -47,7 +47,7 @@
                                 </svg>
                                 Späť do návrhoch
                             </div>
-                        </a>
+                        </button>
                     </slot>
                 </nav-drop-down>
             </div>
@@ -158,7 +158,8 @@
         methods: {
             ...mapActions([
                 'updateInterpellation',
-                'deleteInterpellation'
+                'deleteInterpellation',
+                'deleteItemMeeting'
             ]),
 
             saveNotification(){

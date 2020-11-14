@@ -3190,7 +3190,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createName
       return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['meeting'])),
-  methods: _objectSpread(_objectSpread({}, mapActions(['updateInterpellation', 'deleteInterpellation'])), {}, {
+  methods: _objectSpread(_objectSpread({}, mapActions(['updateInterpellation', 'deleteInterpellation', 'deleteItemMeeting'])), {}, {
     saveNotification: function saveNotification() {
       if (!this.item.published) {
         alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
@@ -70410,13 +70410,15 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c(
-                            "a",
+                            "button",
                             {
                               staticClass:
                                 "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                              attrs: {
-                                href: "/itemMeeting/" + _vm.item.id + "/delete",
-                                title: "Zmazať položku"
+                              attrs: { title: "Zmazať položku" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteItemMeeting(_vm.item)
+                                }
                               }
                             },
                             [
@@ -71130,7 +71132,7 @@ var render = function() {
                           staticClass:
                             "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                           attrs: {
-                            href: "/itemMeeting/" + _vm.meeting.id + "/create",
+                            href: "/itemMeetings/" + _vm.meeting.id + "/create",
                             title: "Vytvoriť nové zasadnutie"
                           }
                         },
@@ -91845,6 +91847,17 @@ var actions = {
     console.log(meeting);
     axios["delete"]('/meetingUsers/' + meeting.id).then(function (response) {
       dispatch('meetings/fetchMeeting', _this6.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteItemMeeting: function deleteItemMeeting(_ref9, item) {
+    var _this7 = this;
+
+    var commit = _ref9.commit,
+        dispatch = _ref9.dispatch;
+    axios["delete"]('/itemMeetings/' + item.id).then(function (response) {
+      dispatch('meetings/fetchMeeting', _this7.state.meetings.meeting.id, {
         root: true
       });
     });

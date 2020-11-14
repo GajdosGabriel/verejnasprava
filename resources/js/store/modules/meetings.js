@@ -105,6 +105,13 @@ const actions = {
             });
     },
 
+    deleteItemMeeting({commit, dispatch}, item) {
+        axios.delete('/itemMeetings/' + item.id )
+            .then(response => {
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+            });
+    },
+
 };
 
 export default {
