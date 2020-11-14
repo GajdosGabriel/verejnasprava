@@ -120,7 +120,7 @@
 <script>
     import {bus} from '../app';
     import moment from 'moment';
-    // import voteButtons from '../votes/voteButtons';
+    import {mapState} from "vuex";
     import publishedButton from "./publishedButton";
     import interpellation from './InterpellationCard';
     import navDropDown from '../modules/navigation/navDropDown';
@@ -147,10 +147,23 @@
             hasUserInterpellation: function () {
                 var intUsers = this.item.interpellations.map(role => role.user.id);
                 return  intUsers.includes( this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
-            }
+            },
+
+            ...mapState({
+                meeting: state => state.meetings.meeting,
+            }),
         },
         methods: {
             saveNotification(){
+                if (!this.item.published) {
+                    alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+                    return
+                }
+
+                if (!this.meeting.published) {
+                    alert('Zastupiteľstvo nie je publikovaný. Zapnite publikovanie!');
+                    return
+                }
                 this.$store.dispatch('items/update',  {
                     notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
                     id: this.item.id });

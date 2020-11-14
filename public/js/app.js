@@ -3020,9 +3020,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
-/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
-/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
+/* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3143,7 +3150,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
- // import voteButtons from '../votes/voteButtons';
+
 
 
 
@@ -3151,16 +3158,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
   components: {
-    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_3__["default"],
-    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_4__["default"]
+    publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__["default"],
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__["default"],
+    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
       openList: false
     };
   },
-  computed: {
+  computed: _objectSpread({
     isPublished: function isPublished() {
       if (this.$auth.isAdmin()) {
         return true;
@@ -3177,9 +3184,23 @@ __webpack_require__.r(__webpack_exports__);
       });
       return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+    meeting: function meeting(state) {
+      return state.meetings.meeting;
+    }
+  })),
   methods: {
     saveNotification: function saveNotification() {
+      if (!this.item.published) {
+        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+        return;
+      }
+
+      if (!this.meeting.published) {
+        alert('Zastupiteľstvo nie je publikovaný. Zapnite publikovanie!');
+        return;
+      }
+
       this.$store.dispatch('items/update', {
         notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
         id: this.item.id
@@ -91415,18 +91436,14 @@ var actions = {
     var commit = _ref2.commit;
     commit('SHOW_NEW_FORM', data);
   },
-  insert_contact: function insert_contact(_ref3, data) {
-    var commit = _ref3.commit;
-    commit('INSERT_CONTACT', data);
-  },
-  deleteContact: function deleteContact(_ref4, id) {
+  deleteContact: function deleteContact(_ref3, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref3.commit;
               _context.next = 3;
               return axios["delete"]('/api/contacts/' + id);
 
@@ -91448,14 +91465,14 @@ var actions = {
       }, _callee);
     }))();
   },
-  updateContact: function updateContact(_ref5, contact) {
+  updateContact: function updateContact(_ref4, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref5.commit;
+              commit = _ref4.commit;
               _context2.next = 3;
               return axios.put('/contacts/' + contact.id, contact);
 
@@ -91477,14 +91494,14 @@ var actions = {
       }, _callee2);
     }))();
   },
-  saveContact: function saveContact(_ref6, data) {
+  saveContact: function saveContact(_ref5, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref6.commit;
+              commit = _ref5.commit;
               _context3.next = 3;
               return axios.post('/contacts', data);
 
@@ -91507,8 +91524,8 @@ var actions = {
       }, _callee3);
     }))();
   },
-  fetchContacts: function fetchContacts(_ref7, url) {
-    var commit = _ref7.commit;
+  fetchContacts: function fetchContacts(_ref6, url) {
+    var commit = _ref6.commit;
     commit('SET_LOADING_STATUS', 'loading');
     axios.get(url).then(function (response) {
       commit('SET_LOADING_STATUS', 'notLoading');

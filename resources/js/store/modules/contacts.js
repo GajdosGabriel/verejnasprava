@@ -48,10 +48,6 @@ const actions = {
         commit('SHOW_NEW_FORM', data)
     },
 
-    insert_contact({commit}, data) {
-        commit('INSERT_CONTACT', data)
-    },
-
     async deleteContact({commit}, id) {
         await axios.delete('/api/contacts/' + id);
 
