@@ -60,7 +60,6 @@
 
     import { createNamespacedHelpers } from 'vuex';
 
-
     const { mapActions } = createNamespacedHelpers('contacts');
 
     export default {

@@ -3154,6 +3154,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createNamespacedHelpers"])('meetings'),
+    mapActions = _createNamespacedHelp.mapActions;
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
@@ -3184,12 +3189,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
-    meeting: function meeting(state) {
-      return state.meetings.meeting;
-    }
-  })),
-  methods: {
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['meeting'])),
+  methods: _objectSpread(_objectSpread({}, mapActions(['updateInterpellation', 'deleteInterpellation'])), {}, {
     saveNotification: function saveNotification() {
       if (!this.item.published) {
         alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
@@ -3229,12 +3230,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.openList = !this.openList;
     },
-    updateInterpellation: function updateInterpellation() {
-      this.$store.dispatch('meetings/updateInterpellation', this.item);
-    },
-    deleteInterpellation: function deleteInterpellation(item) {
-      this.$store.dispatch('meetings/deleteInterpellation', item);
-    },
     openInterpellation: function openInterpellation() {
       _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('imterpellationlist', this.item);
     },
@@ -3249,7 +3244,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         published: !item.published
       });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -70556,7 +70551,11 @@ var render = function() {
                           "span",
                           {
                             staticClass: "text-sm cursor-pointer",
-                            on: { click: _vm.updateInterpellation }
+                            on: {
+                              click: function($event) {
+                                return _vm.updateInterpellation(_vm.item)
+                              }
+                            }
                           },
                           [
                             _vm._v(

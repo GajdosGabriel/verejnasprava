@@ -50,7 +50,7 @@ class RequireItemvote extends Notification
             ->subject( '[Reakcia], vyžaduje sa vaša aktivita')
             ->greeting('Dobrý deň ' . $this->user->full_name())
             ->line('Administrátor žiada o hlasovanie k bodu ' . $this->item->name)
-            ->action( $this->item->name , url( route('item.show', $this->item->id)))
+            ->action( $this->item->name , url( route('items.show', $this->item->id)))
             ->line('Vystavené v aplikácií ' . env('APP_NAME'). '.');
     }
 

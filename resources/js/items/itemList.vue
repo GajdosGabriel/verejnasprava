@@ -94,7 +94,7 @@
 
                         ({{ item.interpellations.length }})
                     </small></h4>
-                    <span @click="updateInterpellation" class="text-sm cursor-pointer">
+                    <span @click="updateInterpellation(item)" class="text-sm cursor-pointer">
                 {{ hasUserInterpellation }}
             </span>
                 </div>
@@ -121,6 +121,8 @@
     import {bus} from '../app';
     import moment from 'moment';
     import {mapState} from "vuex";
+    import { createNamespacedHelpers } from 'vuex';
+    const { mapActions } = createNamespacedHelpers('meetings');
     import publishedButton from "./publishedButton";
     import interpellation from './InterpellationCard';
     import navDropDown from '../modules/navigation/navDropDown';
@@ -149,11 +151,16 @@
                 return  intUsers.includes( this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
             },
 
-            ...mapState({
-                meeting: state => state.meetings.meeting,
-            }),
+            ...mapState([
+                'meeting'
+            ]),
         },
         methods: {
+            ...mapActions([
+                'updateInterpellation',
+                'deleteInterpellation'
+            ]),
+
             saveNotification(){
                 if (!this.item.published) {
                     alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
@@ -186,14 +193,6 @@
                     return alert('Počas hlasovania sú interpelácie vypnuté!')
                 }
                 this.openList = ! this.openList
-            },
-
-            updateInterpellation: function () {
-                this.$store.dispatch('meetings/updateInterpellation', this.item);
-            },
-
-            deleteInterpellation: function (item) {
-                this.$store.dispatch('meetings/deleteInterpellation', item);
             },
 
             openInterpellation() {
