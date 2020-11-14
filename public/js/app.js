@@ -3516,7 +3516,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     itemDelete: function itemDelete(item) {
-      axios["delete"]('/items/' + item.id).then(window.location.reload());
+      axios["delete"]('/items/' + item.id).then(location.href = '/items' // window.location.reload()
+      );
     },
     saveNotification: function saveNotification() {
       this.$store.dispatch('items/update', {

@@ -198,7 +198,10 @@
         methods: {
             itemDelete(item) {
                 axios.delete('/items/' + item.id)
-                    .then(window.location.reload())
+                    .then(
+                        location.href = '/items',
+                        // window.location.reload()
+                    )
             },
             saveNotification() {
                 this.$store.dispatch('items/update', {
