@@ -18,7 +18,7 @@ class Meeting extends Model
 
     protected $guarded = [];
 
-    protected $with = ['items', 'users'];
+    protected $with = ['items', 'users', 'files'];
 
     protected $casts = [
         'start_at' => 'datetime',

@@ -152,6 +152,16 @@
             </transition-group>
         </draggable>
 
+        <!--   Files-->
+        <div class="max-w-sm" v-if="files.length">
+            <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
+            <div v-for="(file, index) in files" :key="file.id">
+                <a class="mr-2 hover:text-blue-500 " target="_blank" :title="file.org_name"
+                   :href="'/pdf/'+ file.id + '/' + file.filename +'/download/pdf'">
+                    {{ index +1 }}. Príloha
+                </a>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -182,6 +192,7 @@
             ...mapState({
                 meeting: state => state.meetings.meeting,
                 meetingUsers: state => state.meetings.meetingUsers,
+                files: state => state.meetings.files,
             }),
 
             items: {

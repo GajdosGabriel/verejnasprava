@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 trait FileUpload
 {
     public function saveFile($request) {
+
         if ($request->hasFile('filename')){
 
             foreach($request->filename as $file) {

@@ -2,6 +2,7 @@ const state = {
     meeting:'',
     items:[],
     meetingUsers:[],
+    files:[],
     loadingStatus: false,
     positionActive: false
 };
@@ -24,6 +25,7 @@ const mutations = {
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
         state.meetingUsers = meeting.users;
+        state.files = meeting.files;
         state.items = meeting.items.sort((a, b) => a.position > b.position ? 1: -1);
     },
     UPDATE_LIST: function (state, payload) {

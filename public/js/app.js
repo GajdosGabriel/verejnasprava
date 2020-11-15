@@ -3763,6 +3763,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3798,6 +3808,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     meetingUsers: function meetingUsers(state) {
       return state.meetings.meetingUsers;
+    },
+    files: function files(state) {
+      return state.meetings.files;
     }
   })), {}, {
     items: {
@@ -71599,7 +71612,53 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.files.length
+        ? _c(
+            "div",
+            { staticClass: "max-w-sm" },
+            [
+              _c(
+                "h5",
+                {
+                  staticClass: "mt-4",
+                  staticStyle: { "border-bottom": "2px solid silver" }
+                },
+                [_vm._v("Príloha")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.files, function(file, index) {
+                return _c("div", { key: file.id }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "mr-2 hover:text-blue-500 ",
+                      attrs: {
+                        target: "_blank",
+                        title: file.org_name,
+                        href:
+                          "/pdf/" +
+                          file.id +
+                          "/" +
+                          file.filename +
+                          "/download/pdf"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(index + 1) +
+                          ". Príloha\n            "
+                      )
+                    ]
+                  )
+                ])
+              })
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )
@@ -91850,6 +91909,7 @@ var state = {
   meeting: '',
   items: [],
   meetingUsers: [],
+  files: [],
   loadingStatus: false,
   positionActive: false
 };
@@ -91877,6 +91937,7 @@ var mutations = {
   SET_MEETING: function SET_MEETING(state, meeting) {
     state.meeting = meeting;
     state.meetingUsers = meeting.users;
+    state.files = meeting.files;
     state.items = meeting.items.sort(function (a, b) {
       return a.position > b.position ? 1 : -1;
     });

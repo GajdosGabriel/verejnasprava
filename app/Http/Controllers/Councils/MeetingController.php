@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers\Councils;
 
-use App\Models\Council\Council;
+
 use App\Http\Controllers\Controller;
 use App\Models\Council\Meeting;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {
-//    asi netreba
-//    public function index(Council $council) {
-//        return view('council.meeting.index', compact('council'));
-//    }
     public function show(Meeting $meeting){
         return view('council.meeting.show', compact('meeting') );
     }
