@@ -4,6 +4,7 @@ namespace App\Models\Council;
 
 use App\Models\Comment;
 use App\Models\File;
+use App\Models\RecordsActivity;
 use App\Models\User;
 use App\Services\FileUpload;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Meeting extends Model
 {
-    use SoftDeletes, FileUpload , Notifiable;
+    use SoftDeletes, RecordsActivity, FileUpload , Notifiable;
 
     protected $guarded = [];
 

@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Models\Council\Council;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\RecordsActivity;
 
 class Organization extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,  RecordsActivity;
 
     protected $guarded = [];
 

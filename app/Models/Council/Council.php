@@ -5,6 +5,7 @@ namespace App\Models\Council;
 
 
 use App\Models\Organization;
+use App\Models\RecordsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ use App\Models\File;
 
 class Council extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,  RecordsActivity;
     protected $guarded = [];
     protected $with = ['meetings', 'users'];
 

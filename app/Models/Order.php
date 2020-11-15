@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use RecordsActivity, SoftDeletes;
+    use RecordsActivity,  RecordsActivity, SoftDeletes;
 
     protected $guarded = ['id'];
     protected $with = ['contact', 'orderItems', 'organization', 'user'];

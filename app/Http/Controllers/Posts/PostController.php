@@ -72,10 +72,9 @@ class PostController extends Controller
         $organization = Organization::whereId(auth()->user()->active_organization)->first();
         $this->authorize('update', $organization);
         $post = $organization->posts()->create($request->except('filename'));
-//        Cache::forget('posts');
 
         $post->saveFile($request);
-//        flash()->success('Doklad bol pridaný. ');
+
         return back();
     }
 
