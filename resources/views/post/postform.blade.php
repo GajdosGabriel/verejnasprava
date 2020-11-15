@@ -58,7 +58,7 @@
 </div>
 
 
-<div class="md:flex">
+<div class="md:flex mb-5">
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="price">Faktúrovaná cena</label>
         <input type="number" name="price" value="{{ old('price') ?? $post->price }}" placeholder="Suma faktúry (Euro)"
@@ -82,26 +82,34 @@
 </div>
 
 
-<div class="flex text-sm">
-    <div class="w-1/2">
-        <label class="input-label block" for="filename">Príloha</label>
+<div class="md:flex sm:flex-col text-sm mb-8 ">
+
+    <div class="flex flex-col w-2/3">
+        <label class="input-label mb-2" for="filename">Príloha</label>
         <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
     </div>
 
 
     {{--Zobrazenie prílohy--}}
-    @if(isset($post))
-        <div class="form-group col-sm-3">
-            <span class="font-semibold">Príloha</span>
+    <div class="md:w-3/6">
+        @if(isset($post))
+            <span class="font-semibold mb-2">Príloha</span>
             <ul>
                 @forelse($post->files as $file)
-                    <li>{{ $file->org_name }}</li>
+                    <li class="flex justify-between">
+                        {{ $file->org_name }}
+                        <div style="margin-left: 20px">
+                            <input type="checkbox" id="file{{ $file->id }}" name="fileDelete[]" value="{{ $file->id }}">
+                            <label class="" for="file{{ $file->id }}"> Zmazať</label><br>
+                        </div>
+                    </li>
                 @empty
                     <li class="text-gray-600">Bez prílohy</li>
                 @endforelse
             </ul>
-        </div>
-    @endif
+        @endif
+    </div>
+
 </div>
 
 

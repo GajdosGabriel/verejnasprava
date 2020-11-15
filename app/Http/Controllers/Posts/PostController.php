@@ -82,8 +82,7 @@ class PostController extends Controller
     public function update(Post $post, SavePostRequest $request)
     {
         $this->authorize('update', $post);
-        $post->update($request->except('filename') );
-//        Cache::forget('posts');
+        $post->update($request->except('filename', 'fileDelete') );
         $post->saveFile($request);
 //        $post->saveImage($request, $post);
 
