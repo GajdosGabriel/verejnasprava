@@ -61,24 +61,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('post/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
 
 
-    Route::resource('contacts', Contacts\ContactsController::class);
-    Route::resource('councils.meetings', Councils\CouncilMeetingController::class);
-    Route::resource('meetingUsers', Councils\MeetingUserController::class)->parameters([
-        'meetingUsers' => 'meeting'
-    ]);
-
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
-        'users' => UserController::class,
-        'tasks' => TaskController::class,
-        'supports' => SupportController::class,
-        'comments' => CommentController::class,
-        'posts' => Posts\PostController::class,
-        'items' => Councils\ItemController::class,
-        'meetings' => Councils\MeetingController::class,
-        'interpellations' => Councils\InterpellationController::class,
-        'meetings.items' => Councils\ItemMeetingController::class,
-        'organizations' => Organizations\OrganizationController::class,
+        'comments'          => 'CommentController',
+        'contacts'          => 'Contacts\ContactsController',
+        'councils.meetings' => 'Councils\CouncilMeetingController',
+        'interpellations'   => 'Councils\InterpellationController',
+        'items'             => 'Councils\ItemController',
+        'users'             => 'UserController',
+        'tasks'             => 'TaskController',
+        'posts'             => 'Posts\PostController',
+        'supports'          => 'SupportController',
+        'meetings'          => 'Councils\MeetingController',
+        'meetings.items'    => 'Councils\ItemMeetingController',
+        'meetings.users'    => 'Councils\MeetingUserController',
+        'organizations'     => 'Organizations\OrganizationController',
     ]);
 
 

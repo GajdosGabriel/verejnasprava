@@ -84,22 +84,21 @@ const actions = {
     },
 
     storeMeetingUser({commit, dispatch}, meeting) {
-        axios.post('/meetingUsers', meeting )
+        axios.post('/meetings/' +  meeting.id + '/users', meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
     updateMeetingUser({commit, dispatch}, meeting) {
-        axios.put('/meetingUsers/' + meeting.id, meeting )
+        axios.put('/meetings/' + meeting.id +'/users/1', meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
     deleteMeetingUser({commit, dispatch}, meeting) {
-        console.log(meeting);
-        axios.delete('/meetingUsers/' + meeting.id )
+        axios.delete('/meetings/' + meeting.id +'/users/1')
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });

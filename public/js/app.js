@@ -91951,7 +91951,7 @@ var actions = {
 
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
-    axios.post('/meetingUsers', meeting).then(function (response) {
+    axios.post('/meetings/' + meeting.id + '/users', meeting).then(function (response) {
       dispatch('meetings/fetchMeeting', _this4.state.meetings.meeting.id, {
         root: true
       });
@@ -91962,7 +91962,7 @@ var actions = {
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios.put('/meetingUsers/' + meeting.id, meeting).then(function (response) {
+    axios.put('/meetings/' + meeting.id + '/users/1', meeting).then(function (response) {
       dispatch('meetings/fetchMeeting', _this5.state.meetings.meeting.id, {
         root: true
       });
@@ -91973,8 +91973,7 @@ var actions = {
 
     var commit = _ref8.commit,
         dispatch = _ref8.dispatch;
-    console.log(meeting);
-    axios["delete"]('/meetingUsers/' + meeting.id).then(function (response) {
+    axios["delete"]('/meetings/' + meeting.id + '/users/1').then(function (response) {
       dispatch('meetings/fetchMeeting', _this6.state.meetings.meeting.id, {
         root: true
       });
