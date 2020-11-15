@@ -84,7 +84,8 @@ class PostController extends Controller
         $this->authorize('update', $post);
         $post->update($request->except('filename') );
 //        Cache::forget('posts');
-        $post->saveImage($request, $post);
+        $post->saveFile($request);
+//        $post->saveImage($request, $post);
 
 //        flash()->success('Doklad opravený! ');
         return redirect()->route('posts.index');

@@ -19,7 +19,8 @@ trait FileUpload
                     'filename' => $this->slug,
                     'path' => $url,
                     'org_name' => $file->getClientOriginalName(),
-                    'mime' => $file->getClientOriginalExtension()
+                    'mime' => $file->getClientOriginalExtension(),
+                    'user_id' => auth()->user()->id
                 ]);
 
                 //            if (getimagesize($path)) {
