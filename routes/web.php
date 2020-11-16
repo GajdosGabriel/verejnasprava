@@ -42,16 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::name('council.')->namespace('Councils')->group(function () {
-
         Route::get('zastupitelstva', 'CouncilController@index')->name('index');
         Route::get('zastupitelstvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
-        Route::post('{organization}/{slug}/council/store', 'CouncilController@store')->name('store');
-
-        Route::prefix('admin')->name('admin.')->group(function () {
-            Route::get('{organization}/{slug}/index', 'AdminCouncilController@index')->name('index');
-            Route::get('{organization}/{slug}/create', 'AdminCouncilController@create')->name('create');
-            Route::get('{council}/{slug}/edit/zast', 'AdminCouncilController@edit')->name('edit');
-        });
     });
 
 
@@ -75,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         'posts'             => 'Posts\PostController',
         'tasks'             => 'TaskController',
         'users'             => 'UserController',
+        'organizations.councils' => 'Councils\CouncilOrganizationController',
     ]);
 
 

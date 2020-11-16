@@ -10,11 +10,6 @@ use phpDocumentor\Reflection\DocBlock\Description;
 
 class ApiCouncilController extends Controller
 {
-    public function index(Organization $organization)
-    {
-      $councils =  $organization->councils()->orderBy('id', 'asc')->get();
-      return $councils;
-    }
 
     public function show(Council $council){
         return $council->users;

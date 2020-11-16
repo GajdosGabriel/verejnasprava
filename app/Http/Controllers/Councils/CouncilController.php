@@ -20,9 +20,8 @@ class CouncilController extends Controller
         return view('council.index', compact('councils'));
     }
 
-    public function store(Request $request, Organization $organization) {
-        $organization->councils()->create(array_merge($request->all()));
-        return redirect()->route('council.index');
+    public function edit(Council $council){
+        return view('council.edit', compact('council') );
     }
 
 

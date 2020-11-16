@@ -11,7 +11,7 @@ class CouncilObserver
        $organization = Organization::whereId(auth()->user()->active_organization)->first();
 
        // 3 Zasadnutia, 4 Nárhy
-       $organization->menus()->attach([3,4]);
+       $organization->menus()->syncWithoutDetaching([3,4]);
 
         // add permission user who created council
         auth()->user()->givePermissionTo('council delete');

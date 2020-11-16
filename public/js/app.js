@@ -92036,7 +92036,7 @@ var mutations = {
 var actions = {
   fetchConcils: function fetchConcils(_ref, payload) {
     var commit = _ref.commit;
-    axios.get('/api/council/' + payload + '/index').then(function (response) {
+    axios.get('/organizations/' + payload + '/councils').then(function (response) {
       commit('SET_COUNCILS', response.data);
     });
   },

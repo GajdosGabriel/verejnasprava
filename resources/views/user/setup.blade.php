@@ -53,7 +53,7 @@
 
                     </div>
                     <div v-if="show">
-                        <form  method="POST" action="{{ route('council.store', [$organization->id, $organization->slug]) }}">
+                        <form  method="POST" action="{{ route('organizations.councils.store', $organization->id) }}">
                             @csrf @method('POST')
                             @include('modul.errors')
                             @include('council._form')

@@ -17,7 +17,7 @@ const mutations = {
 };
 const actions = {
     fetchConcils({commit}, payload) {
-        axios.get('/api/council/' + payload + '/index')
+        axios.get('/organizations/' + payload + '/councils')
             .then(response => {
                     commit('SET_COUNCILS', response.data);
                 }
