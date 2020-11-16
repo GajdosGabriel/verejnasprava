@@ -3,7 +3,8 @@ const state = {
     votes: [],
     files: [],
     item: '',
-    user: ''
+    user: '',
+    userVote: ''
 };
 
 const getters = {
@@ -13,7 +14,7 @@ const getters = {
     },
 
     // get_votes: (state) => {
-    //     return state.item.votes.filter(todo => todo.item_id == 1)
+    //     return state.votes.find(todo => todo.user_id == 1)
     // }
 
 };
@@ -25,8 +26,11 @@ const mutations = {
         state.votes = item.votes;
         state.files = item.files;
         state.interpellations = item.interpellations;
-        // state.meetingId = item.pivot.meeting_id;
-        // state.interpellations = item.interpellations;
+        state.userVote = item.votes.find(vote => vote.user_id == 1);
+    },
+
+    SET_USER_VOTE: function (state, user) {
+        state.userVote = state.votes.find(vote => vote.user_id == user);
     },
 
     SET_VOTES: function (state, item) {
@@ -52,8 +56,8 @@ const actions = {
     storeVote({commit, dispatch}, item) {
         axios.put('/api/votes/' + item.id, item)
             .then(response => {
-                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id, {root:true});
                 commit('SET_ITEM', response.data );
+                commit('SET_USER_VOTE', item.userId );
             });
 
     },

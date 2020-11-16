@@ -13,7 +13,7 @@
 </div>
 
 <div class="my-3">
-    <label for="description" class="input-label">Popis komisie</label>
+    <label for="description" class="input-label">Popis zastupiteľstva</label>
 
     <div class="col-md-8">
         <input id="description" type="text" class="input-control focus:outline-none focus:shadow-outline @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">

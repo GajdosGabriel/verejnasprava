@@ -1,5 +1,6 @@
 <template>
     <div class="w-full" v-show="item.vote_status">
+
         <h3 class="text-center text-2xl text-gray-600">Hlasujte</h3>
         <form method="POST" @submit.prevent>
             <div>
@@ -60,24 +61,22 @@
 <script>
     import {mapState} from "vuex";
     import {mapGetters} from 'vuex';
+
     export default {
-        props:['item'],
-        data: function() {
-          return {
-              meVote: ''
-          }
-        },
+        props: ['item'],
         computed: {
-            // curentlyItem: function () {
-            //     return this.$store.getters['meetings/activeItem'](this.item.id);
-            // },
             ...mapState({
                 votes: state => state.items.votes,
+                meVote: state => state.items.userVote
             }),
         },
         methods: {
             storeVote: function (val) {
-                this.$store.dispatch('items/storeVote', { id: this.item.id, userId: this.$auth.user.id, vote:val}, {root:true})
+                this.$store.dispatch('items/storeVote', {
+                    id: this.item.id,
+                    userId: this.$auth.user.id,
+                    vote: val
+                }, {root: true})
             }
         }
     }

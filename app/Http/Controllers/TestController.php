@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Council\Council;
+use App\Models\File;
 use App\Models\Organization;
+use App\Models\Post;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,16 +14,23 @@ class TestController extends Controller
 {
    public function test()
    {
-//       $org = Organization::find(1);
-//       dd($org);
+       $files = File::all();
+
+       foreach ($files as $file){
+          $post = Post::withTrashed()->find($file->fileable_id);
+
+          $file->update(['user_id' => $post->organization_id]);
+
+       }
+       dd('OK');
 
 
 // Retrieve posts with at least one comment containing words like foo%...
-       $users = User::whereHas('organizations', function (Builder $query) {
-           $query->where('id', '=', 1);
-       })->get();
-
-       dd($users);
+//       $users = User::whereHas('organizations', function (Builder $query) {
+//           $query->where('id', '=', 1);
+//       })->get();
+//
+//       dd($users);
 //      $users = Role::with('users')->where('name', 'super-admin')->get();
 
 //      dd($admin);

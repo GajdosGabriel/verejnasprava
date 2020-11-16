@@ -41,7 +41,7 @@
                                             </div>
 
                                             <div class="my-3">
-                                                <label for="description" class="input-label">Popis komisie</label>
+                                                <label for="description" class="input-label">Popis zastupiteľstva</label>
 
                                                 <div class="col-md-8">
                                                     <input id="description" type="text"
