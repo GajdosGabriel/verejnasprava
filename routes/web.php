@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('test/test/test', 'TestController@test');
-    Route::get('test/test/artisan', 'TestController@artisan');
+
 
 });
 

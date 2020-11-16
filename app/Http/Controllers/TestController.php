@@ -82,8 +82,5 @@ class TestController extends Controller
 //       }
    }
 
-   public function artisan(){
-       \Artisan::call('optimize:clear');
-       return 'Ok';
-   }
+
 }
