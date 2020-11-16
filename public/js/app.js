@@ -3221,7 +3221,11 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createName
       });
       return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['meeting'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+    meeting: function meeting(state) {
+      return state.meetings.meeting;
+    }
+  })),
   methods: _objectSpread(_objectSpread({}, mapActions(['updateInterpellation', 'deleteInterpellation', 'deleteItemMeeting'])), {}, {
     saveNotification: function saveNotification() {
       if (!this.item.published) {
@@ -3247,6 +3251,11 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createName
 
       if (this.item.interpellations.length) {
         alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+        return;
+      }
+
+      if (!this.meeting.published) {
+        alert('Zasadnutie nie je publikované.');
         return;
       }
 

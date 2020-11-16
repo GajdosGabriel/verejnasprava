@@ -151,9 +151,9 @@
                 return  intUsers.includes( this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
             },
 
-            ...mapState([
-                'meeting'
-            ]),
+            ...mapState({
+                meeting: state => state.meetings.meeting
+            })
         },
         methods: {
             ...mapActions([
@@ -184,6 +184,11 @@
 
                 if (this.item.interpellations.length) {
                     alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+                    return
+                }
+
+                if (! this.meeting.published) {
+                    alert('Zasadnutie nie je publikované.');
                     return
                 }
                 this.$store.dispatch('meetings/updateItem', {id: this.item.id, vote_status: ! this.item.vote_status})

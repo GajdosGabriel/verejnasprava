@@ -68,14 +68,14 @@ Route::group(['middleware' => 'auth'], function () {
         'councils.meetings' => 'Councils\CouncilMeetingController',
         'interpellations'   => 'Councils\InterpellationController',
         'items'             => 'Councils\ItemController',
-        'users'             => 'UserController',
-        'tasks'             => 'TaskController',
-        'posts'             => 'Posts\PostController',
         'supports'          => 'SupportController',
         'meetings'          => 'Councils\MeetingController',
         'meetings.items'    => 'Councils\ItemMeetingController',
         'meetings.users'    => 'Councils\MeetingUserController',
         'organizations'     => 'Organizations\OrganizationController',
+        'posts'             => 'Posts\PostController',
+        'tasks'             => 'TaskController',
+        'users'             => 'UserController',
     ]);
 
 
