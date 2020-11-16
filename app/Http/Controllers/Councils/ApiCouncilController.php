@@ -16,6 +16,10 @@ class ApiCouncilController extends Controller
       return $councils;
     }
 
+    public function show(Council $council){
+        return $council->users;
+    }
+
     public function update(Request $request, Council $council) {
         $council->update($request->only(['name', 'description']));
         return $council;

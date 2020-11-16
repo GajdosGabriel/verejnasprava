@@ -19,6 +19,9 @@ class CreateCouncilsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
+            $table->unsignedInteger('min_user')->nullable();
+            $table->unsignedInteger('approved')->nullable();
+            $table->unsignedInteger('quorate')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
