@@ -25,9 +25,4 @@ class AdminCouncilController extends Controller
 
 
 
-    public function delete(Council $council) {
-        $council->delete();
-        return back();
-    }
-
 }

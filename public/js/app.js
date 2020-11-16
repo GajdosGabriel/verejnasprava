@@ -2752,6 +2752,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2778,6 +2779,9 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
   methods: {
     openForm: function openForm(item) {
       this.$store.dispatch('modals/open_form', item);
+    },
+    deleteCouncil: function deleteCouncil(council) {
+      this.$store.dispatch('councils/deleteCouncil', council);
     }
   },
   created: function created() {
@@ -3957,7 +3961,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    axios.get('/api/councils/' + 1 + '/show').then(function (response) {
+    axios.get('/api/councils/' + 1).then(function (response) {
       console.log(response.data);
     });
   },
@@ -69925,7 +69929,7 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c(
-                            "a",
+                            "div",
                             {
                               staticClass:
                                 "block px-4 py-2 cursor-pointer text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
@@ -69937,6 +69941,11 @@ var render = function() {
                                   council.slug +
                                   "/council/delete",
                                 title: "Zmazať zastupiteľstvo"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteCouncil(council)
+                                }
                               }
                             },
                             [
@@ -92027,17 +92036,23 @@ var mutations = {
 var actions = {
   fetchConcils: function fetchConcils(_ref, payload) {
     var commit = _ref.commit;
-    axios.get('/api/councils/' + payload + '/index').then(function (response) {
+    axios.get('/api/council/' + payload + '/index').then(function (response) {
       commit('SET_COUNCILS', response.data);
     });
   },
   update: function update(_ref2, payload) {
     var commit = _ref2.commit;
     console.log(payload);
-    axios.put('/api/councils/' + payload.id + '/update', payload).then(function (response) {
+    axios.put('/api/councils/' + payload.id, payload).then(function (response) {
       commit('modals/OPEN_FORM', null, {
         root: true
       });
+    });
+  },
+  deleteCouncil: function deleteCouncil(_ref3, council) {
+    var commit = _ref3.commit;
+    axios["delete"]('/api/councils/' + council.id).then(function (response) {
+      commit('SET_COUNCILS', response.data);
     });
   }
 };

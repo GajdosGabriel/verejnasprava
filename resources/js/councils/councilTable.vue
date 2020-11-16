@@ -34,7 +34,8 @@
                                 </div>
                             </a>
 
-                            <a class="block px-4 py-2 cursor-pointer text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                            <div class="block px-4 py-2 cursor-pointer text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                 @click="deleteCouncil(council)"
                                  :href="'admin/'+ council.id + '/' + council.slug + '/council/delete'"
                                  title="Zmazať zastupiteľstvo">
                                 <div class="flex">
@@ -44,7 +45,7 @@
                                     </svg>
                                     Zmazať
                                 </div>
-                            </a>
+                            </div>
                         </slot>
                     </nav-drop-down>
                 </div>
@@ -94,7 +95,11 @@
         methods: {
             openForm: function (item) {
                 this.$store.dispatch('modals/open_form', item)
+            },
+            deleteCouncil: function (council) {
+                this.$store.dispatch('councils/deleteCouncil', council)
             }
+
         },
 
         created() {

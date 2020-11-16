@@ -48,7 +48,7 @@
 
         },
         created(){
-          axios.get('/api/councils/' + 1 + '/show')
+          axios.get('/api/councils/' + 1)
           .then(response => {
                   console.log(response.data)
               }

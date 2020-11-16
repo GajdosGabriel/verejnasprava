@@ -24,9 +24,8 @@ Route::get('contacts/{organizationId}', 'Organizations\Contacts\ApiContactsContr
 Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsController@delete');
 
 
-Route::get('councils/{organization}/index', 'Councils\ApiCouncilController@index');
-Route::put('councils/{council}/update', 'Councils\ApiCouncilController@update');
-Route::get('councils/{council}/show', 'Councils\ApiCouncilController@show');
+Route::get('council/{organization}/index', 'Councils\ApiCouncilController@index');
+
 
 
 
@@ -35,6 +34,7 @@ Route::apiResources([
     'votes' => 'Api\VoteController',
     'items' => 'Api\ItemController',
     'meetings' => 'Api\MeetingController',
+    'councils' => 'Councils\ApiCouncilController',
 ]);
 
 

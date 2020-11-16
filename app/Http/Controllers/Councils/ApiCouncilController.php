@@ -25,4 +25,8 @@ class ApiCouncilController extends Controller
         return $council;
     }
 
+    public function destroy(Council $council) {
+        $council->delete();
+    }
+
 }
