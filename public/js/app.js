@@ -92237,6 +92237,12 @@ var mutations = {
   },
   SET_COUNCIL: function SET_COUNCIL(state, payload) {
     state.council = payload;
+  },
+  REMOVE_COUNCIL: function REMOVE_COUNCIL(state, id) {
+    var index = state.councils.findIndex(function (council) {
+      return council.id == id;
+    });
+    state.councils.splice(index, 1);
   }
 };
 var actions = {
@@ -92257,7 +92263,7 @@ var actions = {
   deleteCouncil: function deleteCouncil(_ref3, council) {
     var commit = _ref3.commit;
     axios["delete"]('/api/councils/' + council.id).then(function (response) {
-      commit('SET_COUNCILS', response.data);
+      commit('REMOVE_COUNCIL', council.id);
     });
   }
 };

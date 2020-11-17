@@ -11,6 +11,11 @@ const mutations = {
 
     SET_COUNCIL: function(state, payload) {
         state.council = payload
+    },
+
+    REMOVE_COUNCIL: function(state, id) {
+       var index = state.councils.findIndex(council => council.id == id);
+        state.councils.splice(index, 1)
     }
 
 
@@ -35,7 +40,7 @@ const actions = {
     deleteCouncil({commit}, council) {
         axios.delete('/api/councils/' + council.id)
             .then(response => {
-                    commit('SET_COUNCILS', response.data);
+                    commit('REMOVE_COUNCIL', council.id);
                 }
             );
     },
