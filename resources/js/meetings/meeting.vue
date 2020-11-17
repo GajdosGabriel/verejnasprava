@@ -111,7 +111,7 @@
 
         <div class="flex justify-between max-w-sm mb- text-xs mb-6">
 
-            <a :href="'/meet/' + meeting.id + '/pdf/show'"
+            <a :href="'/meetings/' + meeting.id + '/file/show'"
                class="border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm"
                target="_blank">
                 Pozvánka

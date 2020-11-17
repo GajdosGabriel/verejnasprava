@@ -25,8 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
         Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
-
-        Route::get('user/setup/', 'UserController@setup')->name('setup');
+        Route::get('users/setup/', 'UserController@setup')->name('setup');
     });
 
     Route::prefix('objednavky')->name('order.')->group(function () {
@@ -47,9 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-    Route::get('meet/{meeting}/pdf/show', 'Councils\MeetingController@pozvankaPdf')->name('meet');
+    Route::get('meetings/{meeting}/file/show', 'Meetings\MeetingController@pozvankaPdf')->name('meet');
     Route::put('item/position/slug/item/position', 'Items\ItemOrderController@position')->name('item.position');
-    Route::get('post/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
+    Route::get('posts/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
 
 
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
