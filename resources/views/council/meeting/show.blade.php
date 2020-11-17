@@ -19,7 +19,7 @@
 
         {{-- ASIDE --}}
         <div class="lg:w-1/4 md:px-6 px-4">
-            <meeting-users></meeting-users>
+            <meeting-users :councilid="{{ $meeting->council_id }}"></meeting-users>
             <livewire:comments :meeting="$meeting"/>
         </div>
 

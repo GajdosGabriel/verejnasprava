@@ -3971,6 +3971,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['councilid'],
   data: function data() {
     return {
       openList: false
@@ -4004,7 +4005,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.$store.dispatch('meetings/getCouncil', 1);
+    this.$store.dispatch('meetings/getCouncil', this.councilid);
   },
   methods: {
     openToggle: function openToggle() {
@@ -71840,7 +71841,7 @@ var render = function() {
               staticClass:
                 "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm",
               attrs: {
-                href: "/meet/" + _vm.meeting.id + "/pdf/show",
+                href: "/meetings/" + _vm.meeting.id + "/file/show",
                 target: "_blank"
               }
             },
@@ -72044,7 +72045,7 @@ var render = function() {
                   })
                 ]
               ),
-              _vm._v("\n                Prihlásený\n            ")
+              _vm._v("\n                Prezentácia\n            ")
             ])
           ]),
           _vm._v(" "),
@@ -91063,14 +91064,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/meetings/meetingUsers.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meetingUsers_vue_vue_type_template_id_1dad4a16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./meetingUsers.vue?vue&type=template&id=1dad4a16& */ "./resources/js/meetings/meetingUsers.vue?vue&type=template&id=1dad4a16&");
 /* harmony import */ var _meetingUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meetingUsers.vue?vue&type=script&lang=js& */ "./resources/js/meetings/meetingUsers.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _meetingUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _meetingUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -91100,7 +91102,7 @@ component.options.__file = "resources/js/meetings/meetingUsers.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/meetings/meetingUsers.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
