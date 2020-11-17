@@ -10,7 +10,7 @@ Route::get('/gdpr', 'HomeController@gdpr')->name('home.gdpr');
 Route::get('/posts/frontPostsTable', 'HomeController@frontPosts');
 
 Route::get('{organization}/{slug}/index', 'HomeController@publishedPosts')->name('publishedPosts');
-Route::get('pdf/{file}/{filename?}/download/pdf', 'FilesController@show')->name('file.show');
+Route::get('file/{file}/{filename?}/file/show', 'FilesController@show')->name('file.show');
 
 // oAuth Routes...
 Route::get('/auth/{service}', 'Auth\AuthController@redirectToProvider')

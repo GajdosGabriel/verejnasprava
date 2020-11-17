@@ -37,7 +37,7 @@
                             @can('council delete')
                             <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
                                 @csrf @method('PUT')
-                                <label for="meetings">Zaradiť do programu:</label>
+                                <label for="meetings">Zastupiteľstvo:</label>
                                 <select name="meeting" id="meetings" required>
                                     <option value="">---Vybrať---</option>
                                     @forelse($meetings as $meeting)

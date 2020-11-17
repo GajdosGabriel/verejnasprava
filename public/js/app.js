@@ -71293,11 +71293,11 @@ var render = function() {
                                 target: "_blank",
                                 title: file.org_name,
                                 href:
-                                  "/pdf/" +
+                                  "/file/" +
                                   file.id +
                                   "/" +
                                   file.filename +
-                                  "/download/pdf"
+                                  "/file/show"
                               }
                             },
                             [
@@ -71963,11 +71963,11 @@ var render = function() {
                         target: "_blank",
                         title: file.org_name,
                         href:
-                          "/pdf/" +
+                          "/file/" +
                           file.id +
                           "/" +
                           file.filename +
-                          "/download/pdf"
+                          "/file/show"
                       }
                     },
                     [
@@ -73122,11 +73122,11 @@ var render = function() {
                                 attrs: {
                                   target: "_blank",
                                   href:
-                                    "/pdf/" +
+                                    "/fiel/" +
                                     file.id +
                                     "/" +
                                     file.filename +
-                                    "/download/pdf"
+                                    "/file/show"
                                 }
                               },
                               [_vm._v("Príloha")]
@@ -73349,11 +73349,11 @@ var render = function() {
                                 attrs: {
                                   target: "_blank",
                                   href:
-                                    "/pdf/" +
+                                    "/file/" +
                                     file.id +
                                     "/" +
                                     file.filename +
-                                    "/download/pdf"
+                                    "/file/show"
                                 }
                               },
                               [_vm._v("Príloha")]
