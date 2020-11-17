@@ -41,7 +41,8 @@
                                             </div>
 
                                             <div class="my-3">
-                                                <label for="description" class="input-label">Popis zastupiteľstva</label>
+                                                <label for="description" class="input-label">Popis
+                                                    zastupiteľstva</label>
 
                                                 <div class="col-md-8">
                                                     <input id="description" type="text"
@@ -52,6 +53,25 @@
                                                 </div>
                                             </div>
 
+                                            <div class="my-3">
+                                                <label class="input-label">Účasť na zasadnutí musí byť:</label>
+                                                <div class="max-w-sm">
+                                                    <input type="radio" id="min_user1" name="min_user" value="50" v-model="council.min_user">
+                                                    <label for="min_user1">Polovičná z všetkých členov</label><br>
+                                                    <input type="radio" id="min_user2" name="min_user" value="75"  v-model="council.min_user">
+                                                    <label for="min_user2">Dvojtretinová z všetkých členov</label><br>
+                                                </div>
+                                            </div>
+
+                                            <div class="my-3">
+                                                <label class="input-label">Úspešné hlasovanie je:</label>
+                                                <div class="max-w-sm">
+                                                    <input type="radio" id="quorate1" name="quorate" value="50" v-model="council.quorate">
+                                                    <label for="quorate1">Polovičná z prítomných</label><br>
+                                                    <input type="radio" id="quorate2" name="quorate" value="75" v-model="council.quorate">
+                                                    <label for="quorate2">Dvojtretinová z prítomných</label><br>
+                                                </div>
+                                            </div>
 
                                         </div>
 
@@ -109,7 +129,7 @@
         }),
 
         methods: {
-            update(council){
+            update(council) {
                 this.$store.dispatch('councils/update', council)
             },
             ...mapActions([

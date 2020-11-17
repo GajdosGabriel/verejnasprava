@@ -16,7 +16,7 @@ class ApiCouncilController extends Controller
     }
 
     public function update(Request $request, Council $council) {
-        $council->update($request->only(['name', 'description']));
+        $council->update($request->only(['name', 'description', 'quorate', 'min_user']));
         return $council;
     }
 

@@ -16,8 +16,8 @@ const mutations = {
 
 };
 const actions = {
-    fetchConcils({commit}, payload) {
-        axios.get('/organizations/' + payload + '/councils')
+    fetchCouncils({commit}, organizationId) {
+        axios.get('/organizations/' + organizationId + '/councils')
             .then(response => {
                     commit('SET_COUNCILS', response.data);
                 }
@@ -25,7 +25,6 @@ const actions = {
     },
 
     update({commit}, payload) {
-        console.log(payload);
         axios.put('/api/councils/' + payload.id, payload)
             .then(response => {
                 commit('modals/OPEN_FORM', null, {root: true} );

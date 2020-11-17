@@ -103,7 +103,7 @@
         },
 
         created() {
-            this.$store.dispatch('councils/fetchConcils', this.user.active_organization)
+            this.$store.dispatch('councils/fetchCouncils', this.user.active_organization)
         }
     }
 </script>

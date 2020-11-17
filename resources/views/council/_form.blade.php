@@ -26,9 +26,3 @@
     </div>
 </div>
 
-{{-- Save button --}}
-<div class="flex justify-between my-4">
-    <a href="{{ URL::previous() }}" class="btn bg-gray-300 text-center text-gray-700 font-semibold border-2 border-gray-500">Späť</a>
-    <button type="submit"  class="btn btn-primary text-center">Uložiť</button>
-</div>
-

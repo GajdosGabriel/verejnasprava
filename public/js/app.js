@@ -2785,7 +2785,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
     }
   },
   created: function created() {
-    this.$store.dispatch('councils/fetchConcils', this.user.active_organization);
+    this.$store.dispatch('councils/fetchCouncils', this.user.active_organization);
   }
 });
 
@@ -2839,6 +2839,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3912,7 +3932,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -70209,7 +70228,11 @@ var render = function() {
                                           staticClass: "input-label",
                                           attrs: { for: "description" }
                                         },
-                                        [_vm._v("Popis zastupiteľstva")]
+                                        [
+                                          _vm._v(
+                                            "Popis\n                                                zastupiteľstva"
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c("div", { staticClass: "col-md-8" }, [
@@ -70246,6 +70269,190 @@ var render = function() {
                                             }
                                           }
                                         })
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "my-3" }, [
+                                      _c(
+                                        "label",
+                                        { staticClass: "input-label" },
+                                        [_vm._v("Účasť na zasadnutí musí byť:")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "max-w-sm" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.council.min_user,
+                                              expression: "council.min_user"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            id: "min_user1",
+                                            name: "min_user",
+                                            value: "50"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.council.min_user,
+                                              "50"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.council,
+                                                "min_user",
+                                                "50"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "min_user1" } },
+                                          [
+                                            _vm._v(
+                                              "Polovičná z všetkých členov"
+                                            )
+                                          ]
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.council.min_user,
+                                              expression: "council.min_user"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            id: "min_user2",
+                                            name: "min_user",
+                                            value: "75"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.council.min_user,
+                                              "75"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.council,
+                                                "min_user",
+                                                "75"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "min_user2" } },
+                                          [
+                                            _vm._v(
+                                              "Dvojtretinová z všetkých členov"
+                                            )
+                                          ]
+                                        ),
+                                        _c("br")
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "my-3" }, [
+                                      _c(
+                                        "label",
+                                        { staticClass: "input-label" },
+                                        [_vm._v("Úspešné hlasovanie je:")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "max-w-sm" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.council.quorate,
+                                              expression: "council.quorate"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            id: "quorate1",
+                                            name: "quorate",
+                                            value: "50"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.council.quorate,
+                                              "50"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.council,
+                                                "quorate",
+                                                "50"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "quorate1" } },
+                                          [_vm._v("Polovičná z prítomných")]
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.council.quorate,
+                                              expression: "council.quorate"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            id: "quorate2",
+                                            name: "quorate",
+                                            value: "75"
+                                          },
+                                          domProps: {
+                                            checked: _vm._q(
+                                              _vm.council.quorate,
+                                              "75"
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                _vm.council,
+                                                "quorate",
+                                                "75"
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "quorate2" } },
+                                          [_vm._v("Dvojtretinová z prítomných")]
+                                        ),
+                                        _c("br")
                                       ])
                                     ])
                                   ])
@@ -71795,6 +72002,25 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "font-medium text-gray-800" }, [
+            _c("div", { staticClass: "flex cursor-pointer" }, [
+              _c(
+                "svg",
+                {
+                  staticClass: "-mr-1 ml-2 h-5 w-5",
+                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
+                ]
+              )
+            ]),
             _vm._v("\n            Prihlásený\n        ")
           ]),
           _vm._v(" "),
@@ -71819,26 +72045,6 @@ var render = function() {
             ),
             _vm._v(
               "\n            " + _vm._s(_vm.meetingUsers.length) + "\n        "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex cursor-pointer" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "-mr-1 ml-2 h-5 w-5",
-                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
             )
           ])
         ]
@@ -92034,15 +92240,14 @@ var mutations = {
   }
 };
 var actions = {
-  fetchConcils: function fetchConcils(_ref, payload) {
+  fetchCouncils: function fetchCouncils(_ref, organizationId) {
     var commit = _ref.commit;
-    axios.get('/organizations/' + payload + '/councils').then(function (response) {
+    axios.get('/organizations/' + organizationId + '/councils').then(function (response) {
       commit('SET_COUNCILS', response.data);
     });
   },
   update: function update(_ref2, payload) {
     var commit = _ref2.commit;
-    console.log(payload);
     axios.put('/api/councils/' + payload.id, payload).then(function (response) {
       commit('modals/OPEN_FORM', null, {
         root: true
