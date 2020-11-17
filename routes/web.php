@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('meet/{meeting}/pdf/show', 'Councils\MeetingController@pozvankaPdf')->name('meet');
-    Route::put('item/position/slug/item/position', 'Councils\ItemOrderController@position')->name('item.position');
+    Route::put('item/position/slug/item/position', 'Items\ItemOrderController@position')->name('item.position');
     Route::get('post/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
 
 
@@ -56,13 +56,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'comments'          => 'CommentController',
         'contacts'          => 'Contacts\ContactsController',
-        'councils.meetings' => 'Councils\CouncilMeetingController',
+        'councils.meetings' => 'Meetings\CouncilMeetingController',
         'interpellations'   => 'Councils\InterpellationController',
-        'items'             => 'Councils\ItemController',
+        'items'             => 'Items\ItemController',
         'supports'          => 'SupportController',
-        'meetings'          => 'Councils\MeetingController',
-        'meetings.items'    => 'Councils\ItemMeetingController',
-        'meetings.users'    => 'Councils\MeetingUserController',
+        'meetings'          => 'Meetings\MeetingController',
+        'meetings.items'    => 'Items\ItemMeetingController',
+        'meetings.users'    => 'Meetings\MeetingUserController',
         'organizations'     => 'Organizations\OrganizationController',
         'posts'             => 'Posts\PostController',
         'tasks'             => 'TaskController',

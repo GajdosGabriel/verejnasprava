@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Councils;
+namespace App\Http\Controllers\Meetings;
 
 use App\Http\Controllers\Controller;
 use App\Models\Council\Meeting;
