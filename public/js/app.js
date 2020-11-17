@@ -3964,6 +3964,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3971,18 +3976,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       openList: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+  computed: _objectSpread({
+    // activeUser(){
+    //
+    // },
+    quorateMeeting: function quorateMeeting() {
+      var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
+
+      if (percento > this.council.quorate) {
+        return 'bg-green-200 ';
+      }
+
+      return 'bg-red-200';
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     meetingUsers: function meetingUsers(state) {
       return state.meetings.meetingUsers;
+    },
+    councilUsers: function councilUsers(state) {
+      return state.meetings.councilUsers;
+    },
+    council: function council(state) {
+      return state.meetings.council;
     },
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
   })),
   created: function created() {
-    axios.get('/api/councils/' + 1).then(function (response) {
-      console.log(response.data);
-    });
+    this.$store.dispatch('meetings/getCouncil', 1);
   },
   methods: {
     openToggle: function openToggle() {
@@ -71990,7 +72012,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: " border-2 rounded-md border-gray-300 w-full mb-12",
+      staticClass: "border-2 rounded-md border-gray-300 max-w-sm mb-12",
       on: { click: _vm.openToggle }
     },
     [
@@ -71998,7 +72020,8 @@ var render = function() {
         "div",
         {
           staticClass:
-            "lg:flex lg:justify-between bg-gray-300 p-1 cursor-pointer items-center"
+            "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
+          class: _vm.quorateMeeting
         },
         [
           _c("div", { staticClass: "font-medium text-gray-800" }, [
@@ -72006,54 +72029,59 @@ var render = function() {
               _c(
                 "svg",
                 {
-                  staticClass: "-mr-1 ml-2 h-5 w-5",
-                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                  staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
                 },
                 [
                   _c("path", {
                     attrs: {
-                      "fill-rule": "evenodd",
                       d:
-                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                      "clip-rule": "evenodd"
+                        "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
                     }
                   })
                 ]
-              )
-            ]),
-            _vm._v("\n            Prihlásený\n        ")
+              ),
+              _vm._v("\n                Prihlásený\n            ")
+            ])
           ]),
           _vm._v(" "),
           _c("span", { staticClass: "text-sm flex" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "w-4 h-4 mr-1 fill-current my-1",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
-                  }
-                })
-              ]
-            ),
             _vm._v(
-              "\n            " + _vm._s(_vm.meetingUsers.length) + "\n        "
+              "\n           (" +
+                _vm._s(_vm.meetingUsers.length) +
+                "/ " +
+                _vm._s(_vm.councilUsers.length) +
+                ")\n        "
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "svg",
+            {
+              staticClass: "-mr-1 ml-2 h-5 w-5",
+              attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                  "clip-rule": "evenodd"
+                }
+              })
+            ]
+          )
         ]
       ),
       _vm._v(" "),
       _vm.openList
         ? _c(
             "ul",
-            _vm._l(_vm.meetingUsers, function(user) {
+            _vm._l(_vm.councilUsers, function(user) {
               return _c(
                 "li",
                 {
@@ -92409,6 +92437,8 @@ var state = {
   meeting: '',
   items: [],
   meetingUsers: [],
+  councilUsers: [],
+  council: '',
   files: [],
   loadingStatus: false,
   positionActive: false
@@ -92441,6 +92471,10 @@ var mutations = {
     state.items = meeting.items.sort(function (a, b) {
       return a.position > b.position ? 1 : -1;
     });
+  },
+  SET_COUNCIL: function SET_COUNCIL(state, council) {
+    state.councilUsers = council.users;
+    state.council = council;
   },
   UPDATE_LIST: function UPDATE_LIST(state, payload) {
     state.items = payload;
@@ -92549,6 +92583,14 @@ var actions = {
       dispatch('meetings/fetchMeeting', _this7.state.meetings.meeting.id, {
         root: true
       });
+    });
+  },
+  getCouncil: function getCouncil(_ref10, council) {
+    var commit = _ref10.commit;
+    commit('SET_LOADING_STATUS', true);
+    axios.get('/api/councils/' + council).then(function (response) {
+      commit('SET_COUNCIL', response.data);
+      commit('SET_LOADING_STATUS', false);
     });
   }
 };

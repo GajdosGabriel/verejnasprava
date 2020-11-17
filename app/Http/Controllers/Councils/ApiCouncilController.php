@@ -12,7 +12,7 @@ class ApiCouncilController extends Controller
 {
 
     public function show(Council $council){
-        return $council->users;
+        return $council;
     }
 
     public function update(Request $request, Council $council) {
