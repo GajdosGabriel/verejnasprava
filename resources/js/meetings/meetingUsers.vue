@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 rounded-md border-gray-300 max-w-sm mb-12"  @click="openToggle">
+    <div class="border-2 rounded-md border-gray-300 max-w-sm mb-12" @click="openToggle">
         <div class="flex justify-between bg-gray-300 p-1 cursor-pointer items-center" :class="quorateMeeting">
             <div class="font-medium text-gray-800">
                 <div class="flex cursor-pointer">
@@ -13,7 +13,7 @@
             </div>
 
             <span class="text-sm flex">
-               ({{ meetingUsers.length }}/ {{ councilUsers.length }})
+               ({{ meetingUsers.length }}/{{ councilUsers.length }})
             </span>
 
             <svg class="-mr-1 ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -26,8 +26,18 @@
 
         <ul v-if="openList">
             <li v-for="user in councilUsers" :key="user.id"
-                class="flex justify-between border-b-2 border-dotted px-2">
+                class="flex justify-between border-b-2 border-dotted px-2 text-gray-600"
+                :class="{'text-gray-700 font-semibold': meetingUsers.find(o => o.id == user.id)}">
                 <span v-text="user.first_name + ' ' + user.last_name"></span>
+
+                <div v-if="meetingUsers.find(o => o.id == user.id)">
+                    <svg class="w-4 h-4 mr-1 fill-current my-1 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20">
+                        <path
+                            d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"/>
+                    </svg>
+                </div>
+
             </li>
         </ul>
 
@@ -39,16 +49,18 @@
     import {mapState} from "vuex";
 
     export default {
-       props: ['councilid'],
+        props: {
+            councilid: {
+                type: Number,
+                required: true,
+            },
+        },
         data() {
             return {
                 openList: false
             }
         },
         computed: {
-            // activeUser(){
-            //
-            // },
             quorateMeeting() {
                 var percento = (100 * this.meetingUsers.length) / this.councilUsers.length;
                 // return percento;
