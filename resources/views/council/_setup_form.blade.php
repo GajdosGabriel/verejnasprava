@@ -1,6 +1,6 @@
 
 <div class="my-3">
-    <label for="min_user" class="input-label">Účasť na zasadnutí musí byť:</label>
+    <label for="min_user" class="input-label">Minimálna účasť na zasadnutí je:</label>
 
     <div class="max-w-sm">
 

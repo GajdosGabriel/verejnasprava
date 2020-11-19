@@ -18,7 +18,37 @@
 
             <div class="mb-6 p-6 flex flex-col items-center justify-center">
                 <div class="text-gray-900 font-semibold text-2xl mt-5 md:text-3xl  mb-2 text-center">Správa obecného zastupiteľstva</div>
-                <p class="text-gray-700 text-center">Výtváranie zápisov, elektronické hlasovanie, evidencia, moderné spravovanie obecného zastupiteľstva.</p>
+                <div class="flex flex-col text-gray-700 font-semibold text-lg">
+
+                    <div class="flex items-center mb-1">
+                        <svg class="h-5 w-5 text-red-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Výtváranie zápisov
+                    </div>
+
+                    <div class="flex items-center mb-1">
+                        <svg class="h-5 w-5 text-red-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Evidencia poslancov
+                    </div>
+
+                    <div class="flex items-center mb-1">
+                        <svg class="h-5 w-5 text-red-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Elektronické hlasovanie
+                    </div>
+
+                    <div class="flex items-center mb-1">
+                        <svg class="h-5 w-5 text-red-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Moderné spravovanie
+                    </div>
+
+                </div>
             <a class="btn btn-primary mt-5 cursor-pointer" href="/register">Rýchla registrácia</a>
                 <span class="text-xs text-gray-700 mt-1">Registrácia bez poplatkov</span>
             </div>

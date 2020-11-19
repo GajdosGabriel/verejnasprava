@@ -54,7 +54,7 @@
                                             </div>
 
                                             <div class="my-3">
-                                                <label class="input-label">Účasť na zasadnutí musí byť:</label>
+                                                <label class="input-label">Minimálna účasť na zasadnutí je:</label>
                                                 <div class="max-w-sm">
                                                     <input type="radio" id="min_user1" name="min_user" value="50" v-model="council.min_user">
                                                     <label for="min_user1">Polovičná z všetkých členov</label><br>
