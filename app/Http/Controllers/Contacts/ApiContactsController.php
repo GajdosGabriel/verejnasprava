@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Organizations\Contacts;
+namespace App\Http\Controllers\Contacts;
 
 
 use App\Filters\ContactFilters;

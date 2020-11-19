@@ -5,19 +5,17 @@ namespace App\Models;
 use App\Models\Council\Council;
 use App\Models\Council\Item;
 use App\Models\Council\Meeting;
-use App\Models\Council\Vote;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasRoles;
+    use Notifiable, SoftDeletes, HasRoles, HasFactory;
 
     protected $with = ['roles', 'permissions', 'organization'];
 
