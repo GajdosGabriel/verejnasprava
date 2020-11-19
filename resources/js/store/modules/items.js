@@ -26,7 +26,6 @@ const mutations = {
         state.votes = item.votes;
         state.files = item.files;
         state.interpellations = item.interpellations;
-        state.userVote = item.votes.find(vote => vote.user_id == 1);
     },
 
     SET_USER_VOTE: function (state, user) {
