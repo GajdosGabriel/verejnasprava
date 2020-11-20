@@ -5,6 +5,7 @@ namespace App\Models;
 
 use App\Models\RecordsActivity;
 use App\Services\FileUpload;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ use Intervention\Image\Facades\Image;
 
 class Post extends Model
 {
-    use RecordsActivity, FileUpload, SoftDeletes;
+    use RecordsActivity, FileUpload, SoftDeletes, HasFactory;
 
     protected $guarded = [];
     protected $with = ['category', 'files', 'contact', 'organization'];

@@ -22,10 +22,11 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->name;
         return [
             'organization_id' => $this->faker->numberBetween($min = 1, $max = 2),
-            'name' => $this->name,
-            'slug' => Str::slug($this->name, '-'),
+            'name' => $name,
+            'slug' => Str::slug($name, '-'),
             'email' => $this->faker->email,
             'street' => $this->faker->streetAddress,
             'city' => $this->faker->city,
