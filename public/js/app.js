@@ -5395,12 +5395,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+  computed: _objectSpread({
+    mojaVolba: function mojaVolba() {
+      var _this = this;
+
+      if (this.votes.length > 0) {
+        return this.votes.find(function (u) {
+          return u.user_id == _this.user.id;
+        }).vote;
+      }
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     votes: function votes(state) {
       return state.items.votes;
-    },
-    meVote: function meVote(state) {
-      return state.items.userVote;
     }
   })),
   methods: {
@@ -73737,7 +73744,7 @@ var render = function() {
                     _vm._v(
                       "\n                    Súhlasim\n                    "
                     ),
-                    _vm.meVote.vote == 1
+                    _vm.mojaVolba == 1
                       ? _c("div", [
                           _c(
                             "svg",
@@ -73778,7 +73785,7 @@ var render = function() {
                     _vm._v(
                       "\n                    Zdržal\n                    "
                     ),
-                    _vm.meVote.vote == 2
+                    _vm.mojaVolba == 2
                       ? _c("div", [
                           _c(
                             "svg",
@@ -73819,7 +73826,7 @@ var render = function() {
                     _vm._v(
                       "\n                    Nesúhlasim\n                    "
                     ),
-                    _vm.meVote.vote == 0
+                    _vm.mojaVolba == 0
                       ? _c("div", [
                           _c(
                             "svg",
@@ -92369,8 +92376,7 @@ var state = {
   votes: [],
   files: [],
   item: '',
-  user: '',
-  userVote: ''
+  user: ''
 };
 var getters = {
   resultYes: function resultYes(state) {
@@ -92387,11 +92393,6 @@ var mutations = {
     state.votes = item.votes;
     state.files = item.files;
     state.interpellations = item.interpellations;
-  },
-  SET_USER_VOTE: function SET_USER_VOTE(state, user) {
-    state.userVote = state.votes.find(function (vote) {
-      return vote.user_id == user;
-    });
   },
   SET_VOTES: function SET_VOTES(state, item) {
     state.votes = item;
@@ -92415,7 +92416,6 @@ var actions = {
         dispatch = _ref2.dispatch;
     axios.put('/api/votes/' + item.id, item).then(function (response) {
       commit('SET_ITEM', response.data);
-      commit('SET_USER_VOTE', item.userId);
     });
   },
   update: function update(_ref3, item) {

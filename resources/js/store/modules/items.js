@@ -3,8 +3,7 @@ const state = {
     votes: [],
     files: [],
     item: '',
-    user: '',
-    userVote: ''
+    user: ''
 };
 
 const getters = {
@@ -26,10 +25,6 @@ const mutations = {
         state.votes = item.votes;
         state.files = item.files;
         state.interpellations = item.interpellations;
-    },
-
-    SET_USER_VOTE: function (state, user) {
-        state.userVote = state.votes.find(vote => vote.user_id == user);
     },
 
     SET_VOTES: function (state, item) {
@@ -56,7 +51,6 @@ const actions = {
         axios.put('/api/votes/' + item.id, item)
             .then(response => {
                 commit('SET_ITEM', response.data );
-                commit('SET_USER_VOTE', item.userId );
             });
 
     },
