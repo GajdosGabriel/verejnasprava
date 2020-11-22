@@ -129,8 +129,8 @@
             <interpellation :item="item"></interpellation>
 
             <div class="">
-                <div class="flex my-5 items-center justify-between" v-if="item.vote_status || votes.length > 0">
-                    <h2 class=" text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                <div class="flex my-5 items-center justify-between border-t-2 border-b-2 border-gray-300" v-if="item.vote_status || votes.length > 0">
+                    <h2 class="text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
                     <div class="text-sm cursor-pointer">
                         <span title="Áno" v-text="countYes"></span>
                         -
