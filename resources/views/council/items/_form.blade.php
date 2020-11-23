@@ -3,24 +3,23 @@
         <div class="md:flex w-full items-center">
 
             {{--  title --}}
-            <div class="form-group md:px-4">
+            <div class="form-group">
                 <label for="name" class="font-semibold">Bod programu</label>
-                <div class="">
-                    <input id="name" type="text"
-                           class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
-                           name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                </div>
+
+                <input id="name" type="text"
+                       class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
+                       name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
             </div>
             {{--  type vote --}}
-            <div class="form-group md:px-10 flex">
+            <div class="form-group md:px-10">
                 <label for="vote_type" class="font-semibold">Hlasovanie</label>
 
-                <div class="">
-                    <select name="vote_type" class="custom-select" id="vote_type">
-                        <option value="0">Verejné</option>
-                        <option value="1">Tajné</option>
-                    </select>
-                </div>
+                <select name="vote_type" class="custom-select px-4 bg-gray-200 rounded-md" id="vote_type">
+                    <option value="0">Verejné</option>
+                    <option value="1">Tajné</option>
+                </select>
+
             </div>
 
 
@@ -45,7 +44,6 @@
                                placeholder="Príloha" id="filename">
                     </div>
                 </div>
-
 
 
             </div>

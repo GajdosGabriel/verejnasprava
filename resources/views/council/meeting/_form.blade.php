@@ -12,7 +12,7 @@
 </div>
 
 <div class="mb-4">
-    <label for="locality" class="text-gray-700 text-sm mb-2">Miesto schôdze</label>
+    <label for="locality" class="text-gray-700 text-sm">Miesto schôdze</label>
     <input id="locality" type="text"
            class="input-control focus:outline-none focus:shadow-outline @error('locality') is-invalid @enderror"
            name="locality" value="{{ old('locality') ?? $meeting->locality }}" placeholder="nepovinné" autocomplete="name" autofocus>
@@ -56,8 +56,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="first_name" class="block text-gray-700 text-sm mb-2">Prílohy pre schôdzu</label>
-        <div class="col-md-8">
+        <label for="first_name" class="block text-gray-700 text-sm mb-5">Prílohy pre schôdzu</label>
             <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha"
                    id="filename">
 
@@ -66,7 +65,6 @@
             <strong>{{ $message }}</strong>
             </span>
             @enderror
-        </div>
     </div>
 </div>
 {{-- Save button --}}
