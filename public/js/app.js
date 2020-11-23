@@ -69383,7 +69383,7 @@ var render = function() {
                                 "li",
                                 {
                                   staticClass:
-                                    "bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm"
+                                    "bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm border-2 border-gray-500"
                                 },
                                 [_vm._v(_vm._s(error[0]))]
                               )

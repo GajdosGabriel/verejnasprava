@@ -45,7 +45,7 @@
                                 <span @click="openEditForm" class="cursor-pointer text-gray-500">X</span>
                             </div>
                             <ul>
-                                <li class="bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm" v-for="error in errors">{{ error[0] }}</li>
+                                <li class="bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm border-2 border-gray-500" v-for="error in errors">{{ error[0] }}</li>
                             </ul>
 
                             <form @submit.prevent="saveContact">

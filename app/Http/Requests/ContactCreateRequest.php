@@ -33,7 +33,7 @@ class ContactCreateRequest extends OrganizationFormRequest
     {
         return [
             'name.required' => 'Firma musí obsahovať minimálne 2 znaky.',
-            'ico' => 'IČO nesmie mať viac ako 8 znakov',
+            'ico.max' => 'IČO nesmie mať viac ako 8 znakov',
         ];
     }
 }
