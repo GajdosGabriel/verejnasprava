@@ -2607,6 +2607,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2620,6 +2623,9 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
     },
     contact: function contact(state) {
       return state.contacts.contact;
+    },
+    errors: function errors(state) {
+      return state.contacts.errors;
     }
   }),
   methods: _objectSpread({}, mapActions(['openEditForm', 'deleteContact', 'updateContact']))
@@ -69371,6 +69377,21 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c(
+                            "ul",
+                            _vm._l(_vm.errors, function(error) {
+                              return _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm"
+                                },
+                                [_vm._v(_vm._s(error[0]))]
+                              )
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c(
                             "form",
                             {
                               on: {
@@ -69407,7 +69428,8 @@ var render = function() {
                                         attrs: {
                                           type: "text",
                                           name: "name",
-                                          placeholder: "Názov firmy"
+                                          placeholder: "Názov firmy",
+                                          required: ""
                                         },
                                         domProps: { value: _vm.contact.name },
                                         on: {
@@ -92387,6 +92409,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   loadingStatus: 'notLoading',
   contacts: [],
+  errors: [],
   showEditForm: false,
   showCreateForm: false,
   url: '/api/contacts/',
@@ -92399,6 +92422,9 @@ var mutations = {
   },
   SET_CONTACTS: function SET_CONTACTS(state, payload) {
     state.contacts = payload;
+  },
+  SET_ERRORS: function SET_ERRORS(state, payload) {
+    state.errors = payload;
   },
   INSERT_CONTACT: function INSERT_CONTACT(state, payload) {
     state.contacts.data.unshift(payload);
@@ -92468,19 +92494,27 @@ var actions = {
             case 0:
               commit = _ref4.commit;
               _context2.next = 3;
-              return axios.put('/contacts/' + contact.id, contact);
+              return axios.put('/contacts/' + contact.id, contact).then(function (response) {
+                commit('SHOW_FORM'); // Notify for add task
 
-            case 3:
-              commit('SHOW_FORM'); // Notify for add task
-
-              commit('notification/NEW_NOTIFICATION', {
-                type: 'bg-green-400',
-                message: 'Kontakt uložený!'
-              }, {
-                root: true
+                commit('notification/NEW_NOTIFICATION', {
+                  type: 'bg-green-400',
+                  message: 'Kontakt uložený!'
+                }, {
+                  root: true
+                });
+              })["catch"](function (error) {
+                // Notify for add task
+                commit('notification/NEW_NOTIFICATION', {
+                  type: 'bg-red-400',
+                  message: 'Chyba, kontakt nebol aktualizovaný!'
+                }, {
+                  root: true
+                });
+                commit('SET_ERRORS', error.response.data.errors); // console.log(error.response.data)
               });
 
-            case 5:
+            case 3:
             case "end":
               return _context2.stop();
           }

@@ -24,7 +24,16 @@ class ContactCreateRequest extends OrganizationFormRequest
     public function rules()
     {
         return [
+            'name' => 'required|min:2|max:250',
             'ico' => 'max:8' ,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Firma musí obsahovať minimálne 2 znaky.',
+            'ico' => 'IČO nesmie mať viac ako 8 znakov',
         ];
     }
 }

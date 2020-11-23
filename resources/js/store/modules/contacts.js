@@ -1,6 +1,7 @@
 const state = {
     loadingStatus: 'notLoading',
     contacts: [],
+    errors: [],
     showEditForm: false,
     showCreateForm: false,
     url: '/api/contacts/',
@@ -14,6 +15,9 @@ const mutations = {
     },
     SET_CONTACTS: function (state, payload) {
         state.contacts = payload;
+    },
+    SET_ERRORS: function (state, payload) {
+        state.errors = payload;
     },
 
     INSERT_CONTACT: function (state, payload) {
@@ -61,20 +65,36 @@ const actions = {
     },
 
     async updateContact({commit}, contact) {
-        await axios.put('/contacts/' + contact.id, contact);
+        await axios.put('/contacts/' + contact.id, contact)
+            .then(response => {
 
-        commit('SHOW_FORM');
+                commit('SHOW_FORM');
 
-        // Notify for add task
-        commit('notification/NEW_NOTIFICATION', {
-            type: 'bg-green-400',
-            message: 'Kontakt uložený!'
-        }, {root: true})
+                // Notify for add task
+                commit('notification/NEW_NOTIFICATION', {
+                    type: 'bg-green-400',
+                    message: 'Kontakt uložený!'
+                }, {root: true})
+            })
+            .catch(error => {
+
+                // Notify for add task
+                commit('notification/NEW_NOTIFICATION', {
+                    type: 'bg-red-400',
+                    message: 'Chyba, kontakt nebol aktualizovaný!'
+                }, {root: true});
+
+                commit('SET_ERRORS', error.response.data.errors);
+
+                // console.log(error.response.data)
+            });
+
 
     },
 
     async saveContact({commit}, data) {
         await axios.post('/contacts', data);
+
 
         commit('SHOW_CREATE_FORM');
         commit('INSERT_CONTACT', data);

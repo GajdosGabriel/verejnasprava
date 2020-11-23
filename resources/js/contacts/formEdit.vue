@@ -44,6 +44,9 @@
                                 </h3>
                                 <span @click="openEditForm" class="cursor-pointer text-gray-500">X</span>
                             </div>
+                            <ul>
+                                <li class="bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm" v-for="error in errors">{{ error[0] }}</li>
+                            </ul>
 
                             <form @submit.prevent="saveContact">
                                 <div class="mt-2">
@@ -55,7 +58,7 @@
                                             <div class="mb-4">
                                                 <label class="input-label" id="basic-addon1">Firma</label>
                                                 <input type="text" name="name" class="input-control"
-                                                       placeholder="Názov firmy" v-model="contact.name"/>
+                                                       placeholder="Názov firmy" v-model="contact.name" required/>
                                             </div>
 
                                             <!-- Ulica -->
@@ -203,7 +206,8 @@
     export default {
         computed: mapState({
             showModal: state => state.contacts.showEditForm,
-            contact: state => state.contacts.contact
+            contact: state => state.contacts.contact,
+            errors: state => state.contacts.errors
         }),
 
         methods: {
