@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('posts/{userId}', 'Posts\ApiPostController@index');
-Route::get('contacts/{organizationId}', 'Organizations\Contacts\ApiContactsController@getContacts');
-Route::delete('contacts/{contact}', 'Organizations\Contacts\ApiContactsController@delete');
+Route::get('contacts/{organizationId}', 'Contacts\ApiContactsController@getContacts');
+Route::delete('contacts/{contact}', 'Contacts\ApiContactsController@delete');
 
 
 
