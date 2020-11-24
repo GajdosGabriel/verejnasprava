@@ -70854,7 +70854,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.openList
+  return _vm.openList && !_vm.item.vote_status
     ? _c(
         "div",
         { staticClass: " border-2 rounded-md border-gray-300 w-full" },
@@ -71655,6 +71655,8 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
+                      _vm._s(vote.user.last_name) +
+                      "  " +
                       _vm._s(vote.user.first_name) +
                       "\n                    "
                   ),

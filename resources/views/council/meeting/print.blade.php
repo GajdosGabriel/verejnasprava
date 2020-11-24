@@ -24,10 +24,9 @@
     <p class="m-5 text-gray-700 text-2xl">POZVÁNKA na zasadnutie</p>
     <p class="m-5">dňa: {{ $meeting->start_at->format('m. d. Y') }} o {{ $meeting->start_at->format('H:i') }} hod.</p>
     @if($meeting->locality ==! '')
-    <p class="m-5">Miesto: {{ $meeting->locality }}</p>
+        <p class="m-5">Miesto: {{ $meeting->locality }}</p>
     @endif
 </div>
-
 
 
 <p>Pozývame Vás na zasadanie {{ $meeting->council->name }}.</p>
@@ -43,7 +42,9 @@
     <tbody>
     <ol class="mr-12">
         @forelse($meeting->items as $item)
-            <li>{{ $item->name }}</li>
+            @if($item->published)
+                <li>{{ $item->name }}</li>
+            @endif
         @empty
             <p>Žiadny prgram</p>
         @endforelse

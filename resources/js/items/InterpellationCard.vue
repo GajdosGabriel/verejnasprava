@@ -1,7 +1,7 @@
 <template>
 
     <div class=" border-2 rounded-md border-gray-300 w-full"
-         v-if="openList"
+         v-if="openList && ! item.vote_status"
     >
         <div class="lg:flex lg:justify-between bg-gray-300 p-1 mb-4">
             <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
