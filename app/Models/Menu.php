@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(Organization::class);
     }
+
+    public function scopeHorizontalMenu($query)
+    {
+        return $query->whereType('horizontal')->whereIn('id', [1,2,3,4,7]);
+    }
 }

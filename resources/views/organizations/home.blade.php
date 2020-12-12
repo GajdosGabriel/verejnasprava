@@ -2,23 +2,29 @@
 
 @section('page-title', 'Úvodná stránka')
 
-{{--@section('navigation')--}}
-{{--    <x-navigation.navigationOrganization/> @endsection--}}
+
 @section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 
-    <div class="container mx-auto min-h-screen p-6">
+    <div class="container flex mx-auto min-h-screen p-6 bg-gray-200">
 
-        @role('admin')
-        @include('organizations.modul_activator')
-        @endrole
+        <div class="w-full w-8/12">
+
+        </div>
+        <div class="4/12 bg-gray-100">
+            @role('admin')
+            @include('organizations.modul_activator')
+            @endrole
+        </div>
+
+
 
 
 
 
 {{--        <div class="col-md-4">--}}
-{{--            @can('admin')--}}
+{{--            @role('admin')--}}
 {{--                <h2>História aktivít</h2>--}}
 {{--                <ul class="list-group">--}}
 {{--                    @forelse($activities as $activity)--}}
@@ -27,7 +33,7 @@
 {{--                        <p>Bez záznamu</p>--}}
 {{--                    @endforelse--}}
 {{--                </ul>--}}
-{{--            @endcan--}}
+{{--            @endrole--}}
 {{--        </div>--}}
     </div>
 

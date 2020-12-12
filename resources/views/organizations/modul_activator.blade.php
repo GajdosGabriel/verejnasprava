@@ -4,7 +4,7 @@
     <form method="POST" action="{{ route('moduleActivators.update', auth()->user()->active_organization) }}"
           class="">
         @csrf @method('PUT')
-        @forelse(\App\Models\Menu::whereType('horizontal')->get() as $menu)
+        @forelse(App\Models\Menu::horizontalMenu()->get() as $menu)
             {{--            @continue($menu->type == 'vertical')--}}
             <div class="flex mb-5 max-w-sm  border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md
          @if($menu->organizations->contains($organization->id)) bg-teal-100 @endif

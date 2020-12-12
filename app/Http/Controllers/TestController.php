@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Council\Council;
 use App\Models\File;
 use App\Models\Organization;
@@ -14,15 +15,18 @@ class TestController extends Controller
 {
    public function test()
    {
-       $files = File::all();
+     $activity =  Activity::whereUserId(auth()->user()->id)->latest()->with('subject')->get();
+       dd($activity);
 
-       foreach ($files as $file){
-          $post = Post::withTrashed()->find($file->fileable_id);
-
-          $file->update(['user_id' => $post->organization_id]);
-
-       }
-       dd('OK');
+//       $files = File::all();
+//
+//       foreach ($files as $file){
+//          $post = Post::withTrashed()->find($file->fileable_id);
+//
+//          $file->update(['user_id' => $post->organization_id]);
+//
+//       }
+//       dd('OK');
 
 
 // Retrieve posts with at least one comment containing words like foo%...
