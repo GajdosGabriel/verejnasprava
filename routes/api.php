@@ -31,6 +31,7 @@ Route::apiResources([
     'items' => 'Api\ItemController',
     'meetings' => 'Api\MeetingController',
     'councils' => 'Councils\ApiCouncilController',
+    'moduleActivators' => 'Api\ModuleActivatorsController',
 ]);
 
 

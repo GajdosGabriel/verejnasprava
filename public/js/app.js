@@ -73437,7 +73437,7 @@ var render = function() {
                                 attrs: {
                                   target: "_blank",
                                   href:
-                                    "/fiel/" +
+                                    "/file/" +
                                     file.id +
                                     "/" +
                                     file.filename +
