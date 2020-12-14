@@ -7,12 +7,12 @@
 
 @section('content')
 
-    <div class="container flex mx-auto min-h-screen p-6 bg-gray-200">
+    <div class="container md:grid grid-cols-12 gap-4 mx-auto min-h-screen p-6 bg-gray-200">
 
-        <div class="w-full w-8/12">
+        <div class="w-full col-span-8">
 
         </div>
-        <div class="4/12 bg-gray-100">
+        <div class="col-span-4 bg-gray-100">
             @role('admin')
             @include('organizations.modul_activator')
             @endrole
