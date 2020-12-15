@@ -1,7 +1,7 @@
 <div class="max-w-sm m-5">
     <h2 class="text-lg mb-4">Aktivácia modulov</h2>
 
-    <form method="POST" action="{{ route('moduleActivators.update', auth()->user()->active_organization) }}"
+    <form method="POST" action="{{ route('menus.update', auth()->user()->active_organization) }}"
           class="">
         @csrf @method('PUT')
         @forelse(App\Models\Menu::horizontalMenu()->get() as $menu)

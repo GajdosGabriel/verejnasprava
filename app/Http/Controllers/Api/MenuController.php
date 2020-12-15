@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
-class ModuleActivatorsController extends Controller
+class MenuController extends Controller
 {
     public function update($moduleActivations, Request $request)
     {
