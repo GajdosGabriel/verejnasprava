@@ -1,4 +1,4 @@
-<footer class="bg-gray-200 flex-none border-t border-red h-48">
+<footer class="bg-gray-300 flex-none border-t border-red h-48">
     <div class="container mx-auto py-8 text-center">
         <nav class="mb-8">
             <a class="text-black no-underline mx-3" href="#">O nás</a>
