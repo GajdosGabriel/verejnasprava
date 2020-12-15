@@ -10,6 +10,7 @@ class Menu extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+//    protected $with = ['organizations'];
 
     public function organizations()
     {

@@ -51,6 +51,7 @@ Vue.component('council-edit', require('./councils/edit.vue').default);
 Vue.component('vote-list', require('./votes/voteList.vue').default);
 Vue.component('item-show', require('./items/itemShow.vue').default);
 Vue.component('meeting-users', require('./meetings/meetingUsers.vue').default);
+Vue.component('menu-activators', require('./menu/activationMenu.vue').default);
 
 
 
