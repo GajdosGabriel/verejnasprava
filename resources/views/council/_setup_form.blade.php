@@ -5,7 +5,7 @@
     <div class="max-w-sm">
 
         <input type="radio" id="min_user" name="min_user" value="50">
-        <label for="min_user">Polovičná z všetkých členov</label><br>
+        <label for="min_user">Nadpolovičná z všetkých členov</label><br>
         <input type="radio" id="min_user" name="min_user" value="75">
         <label for="min_user">Dvojtretinová z všetkých členov</label><br>
     </div>
@@ -16,7 +16,7 @@
 
     <div class="max-w-sm">
         <input type="radio" id="quorate1" name="quorate" value="50">
-        <label for="quorate1">Polovičná z prítomných</label><br>
+        <label for="quorate1">Nadpolovičná z prítomných</label><br>
         <input type="radio" id="quorate2" name="quorate" value="75">
         <label for="quorate2">Dvojtretinová z prítomných</label><br>
     </div>
