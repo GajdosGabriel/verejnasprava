@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-sm m-5 border-b-2"  @click="toggle">
-        <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer">
-            <h2 class="text-lg mb-4">Aktivácia modulov</h2>
+        <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
+            <h2 class="text-lg">Aktivácia modulov</h2>
             <span class="cursor-pointer">
                  <div class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center">
                      <div>{{ active.length }}/{{ menus.length }}</div>
@@ -39,20 +39,23 @@
 
         data: function () {
             return {
-                menus: null,
-                active: null,
+                menus: {},
+                active: {},
                 isOpen: true,
             }
         },
 
         created: function () {
-            this.getIndex()
+            this.getIndex();
         },
-        computed: {},
+        computed: {
+
+        },
         methods: {
             getIndex() {
                 axios.get('/api/menus')
                     .then((response) => {
+                        console.log(response);
                         this.menus = response.data[0];
                         this.active = response.data[1].menus
                     })
