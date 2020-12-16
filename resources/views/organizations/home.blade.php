@@ -19,8 +19,9 @@
         <div class="w-full col-span-4 bg-white"></div>
         <div class="col-span-4 bg-white">
             @role('admin')
-            <menu-activators/>
-{{--            @include('organizations.modul_activator')--}}
+{{--            Funkčné vue --}}
+{{--            <menu-activators/>--}}
+            @include('organizations.modul_activator')
             @endrole
         </div>
 

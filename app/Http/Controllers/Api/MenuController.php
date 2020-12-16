@@ -20,5 +20,6 @@ class MenuController extends Controller
     {
         $organization = Organization::find($menus);
         $organization->menus()->toggle($request->input('modul'));
+        return back();
     }
 }

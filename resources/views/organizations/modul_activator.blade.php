@@ -1,5 +1,12 @@
 <div class="max-w-sm m-5">
-    <h2 class="text-lg mb-4">Aktivácia modulov</h2>
+    <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
+        <h2 class="text-lg">Aktivácia modulov</h2>
+        <span class="cursor-pointer">
+                 <div class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center">
+                     <div>{{ App\Models\Menu::horizontalMenu()->get()->count() }}/{{ $organization->menus->count() }}</div>
+                 </div>
+            </span>
+    </div>
 
     <form method="POST" action="{{ route('menus.update', auth()->user()->active_organization) }}"
           class="">
@@ -20,7 +27,7 @@
                     <div class="md:font-bold">Modul: {{ $menu->name }}</div>
 
                         @if($menu->organizations->contains($organization->id))
-                        <button class="px-2 py-1 hover:bg-gray-500 border-gray-600 border-2 rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
+                        <button class="px-2 py-1 hover:bg-gray-500 border-gray-600 border-2 bg-red-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
                         Aktivované
                         </button>
                         @else
