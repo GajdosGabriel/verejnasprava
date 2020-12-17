@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\Council\Council;
 use App\Models\File;
+use App\Models\Menu;
 use App\Models\Organization;
 use App\Models\Post;
 use App\Models\User;
@@ -15,8 +16,12 @@ class TestController extends Controller
 {
    public function test()
    {
-     $activity =  Activity::whereUserId(auth()->user()->id)->latest()->with('subject')->get();
-       dd($activity);
+
+       $menu = Menu::whereHas('organizations', function (Builder $query) {
+           $query->where('organization_id', '=', 1);
+       })->get();
+
+       dd($menu);
 
 //       $files = File::all();
 //
