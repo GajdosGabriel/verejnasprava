@@ -16,7 +16,7 @@ class OrganizationObserver
 //        auth()->user()->givePermissionTo('posts', 'contacts', 'helps');
         auth()->user()->assignRole('admin');
 
-        $organization->menus()->attach([7,8,9]);
+        $organization->menus()->attach([7,8,9,10]);
 
         //        $user->organizations()->attach(auth()->user()->active_organization);
     }
