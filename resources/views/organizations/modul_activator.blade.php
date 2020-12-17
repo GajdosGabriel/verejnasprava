@@ -1,5 +1,5 @@
 <div class="max-w-sm m-5">
-    <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
+    <div class="flex justify-between items-center py-2">
         <h2 class="text-lg">Aktivácia modulov</h2>
         <span class="cursor-pointer">
                  <div class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center">
