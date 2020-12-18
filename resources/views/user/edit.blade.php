@@ -19,6 +19,7 @@
                 @include('modul.errors')
                 @include('user._userForm')
                 @include('user._userRoleForm')
+                @include('tag._userTagsForm')
                 @include('user._permissionsForm')
                 <div class="form-group">
                     <div class="flex justify-between my-3">

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\Council\Council;
+use App\Models\Council\Meeting;
 use App\Models\File;
 use App\Models\Menu;
 use App\Models\Organization;
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\Tags;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,9 +20,9 @@ class TestController extends Controller
    public function test()
    {
 
-       $menu = Menu::whereHas('organizations', function (Builder $query) {
-           $query->where('organization_id', '=', 1);
-       })->get();
+       $tag = Tag::first();
+
+       $menu = $tag->users;
 
        dd($menu);
 
