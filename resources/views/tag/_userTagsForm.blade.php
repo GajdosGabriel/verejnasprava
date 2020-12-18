@@ -5,9 +5,9 @@
     <div class="md:flex w-full">
 
         {{-- Section Tags --}}
-        <div class="sm:w-1/2 flex">
+        <div class="flex flex-wrap">
             @forelse($organization->tags as $tag)
-                <div class="form-group {{ $errors->has('tag') ? ' has-error' : '' }}">
+                <div class="mr-4 mb-2 {{ $errors->has('tag') ? ' has-error' : '' }}">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" name="tag[]" type="checkbox" id="tag"
                                value="{{ $tag->id }}"

@@ -23,6 +23,11 @@ class TagController extends Controller
             'slug' => Str::slug( $saveTagRequest->input('name'), '-')
         ]);
        return $tag;
+    }
 
+    public function destroy($id)
+    {
+       $tag = Tag::whereId($id)->first();
+       $tag->delete();
     }
 }

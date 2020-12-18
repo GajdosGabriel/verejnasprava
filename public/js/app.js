@@ -5235,6 +5235,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5250,6 +5266,12 @@ __webpack_require__.r(__webpack_exports__);
     toggle: function toggle() {
       this.show = !this.show;
     },
+    edit: function edit(tag) {
+      this.form = {
+        name: tag.name,
+        id: tag.id
+      };
+    },
     getTags: function getTags() {
       var _this = this;
 
@@ -5263,6 +5285,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/tags', this.form).then(function (res) {
         _this2.tags.push(res.data);
       }, this.form = {});
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      axios["delete"]('/tags/' + this.form.id).then(this.tags = this.tags.filter(function (e) {
+        return e.id !== _this3.form.id;
+      }), this.form = {});
     }
   }
 });
@@ -74114,80 +74143,137 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
-    {
-      staticClass: "my-3",
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.save($event)
-        }
-      }
-    },
+    "div",
+    { staticClass: "border-gray-400 border-2 p-3 hover:bg-gray-200" },
     [
-      _c("label", { staticClass: "input-label", attrs: { for: "tag" } }, [
-        _vm._v("Nová skupina")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-4" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.name,
-              expression: "form.name"
-            }
-          ],
-          staticClass:
-            "input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror",
-          attrs: {
-            id: "tag",
-            type: "text",
-            required: "",
-            autocomplete: "name",
-            placeholder: "Nová skupina",
-            autofocus: ""
-          },
-          domProps: { value: _vm.form.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "name", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
       _c(
-        "section",
-        { staticClass: "flex flex-wrap mb-4" },
-        _vm._l(_vm.tags, function(tag) {
-          return _c("div", { key: tag.id }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "bg-green-200 hover:bg-green-400 px-2 rounded-md m-1 cursor-pointer mr-2"
-              },
-              [
-                _vm._v(
-                  "\n                " + _vm._s(tag.name) + "\n            "
-                )
-              ]
-            )
-          ])
-        }),
-        0
+        "div",
+        {
+          staticClass:
+            "flex justify-between items-center cursor-pointer hover:bg-gray-200",
+          on: { click: _vm.toggle }
+        },
+        [
+          _c("h3", { staticClass: "fill-current text-lg" }, [
+            _vm._v("Skupiny tagy")
+          ]),
+          _vm._v(" "),
+          _vm.show
+            ? _c(
+                "svg",
+                {
+                  staticClass: "h-3 w-3 text-gray-700",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+              )
+            : _c(
+                "svg",
+                {
+                  staticClass: "h-3 w-3 text-gray-700",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+              )
+        ]
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Uložiť")]
-      )
+      _vm.show
+        ? _c(
+            "form",
+            {
+              staticClass: "my-3",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save($event)
+                }
+              }
+            },
+            [
+              _c(
+                "label",
+                { staticClass: "input-label", attrs: { for: "tag" } },
+                [_vm._v("Nová skupina")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name"
+                    }
+                  ],
+                  staticClass:
+                    "input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror",
+                  attrs: {
+                    id: "tag",
+                    type: "text",
+                    required: "",
+                    autocomplete: "name",
+                    placeholder: "Nová skupina",
+                    autofocus: ""
+                  },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "section",
+                { staticClass: "flex flex-wrap mb-4" },
+                _vm._l(_vm.tags, function(tag) {
+                  return _c("div", { key: tag.id }, [
+                    _c("div", {
+                      staticClass:
+                        "bg-green-200 hover:bg-green-400 px-2 rounded-md m-1 cursor-pointer mr-2",
+                      domProps: { textContent: _vm._s(tag.name) },
+                      on: {
+                        click: function($event) {
+                          return _vm.edit(tag)
+                        }
+                      }
+                    })
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Uložiť")]
+              ),
+              _vm._v(" "),
+              !_vm.form.id == ""
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: { click: _vm.destroy }
+                    },
+                    [_vm._v("Zmazať")]
+                  )
+                : _vm._e()
+            ]
+          )
+        : _vm._e()
     ]
   )
 }
