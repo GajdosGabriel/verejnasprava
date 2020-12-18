@@ -46,6 +46,7 @@ class UserController extends Controller
         $userRequest->save($user);
 
         $this->userRoles($user, $userRequest);
+        $user->tags()->sync($userRequest->input('tag'));
 
         return redirect()->route('users.index');
     }
@@ -79,6 +80,7 @@ class UserController extends Controller
         $user->roles()->sync($userRequest->input('role'));
         $user->syncPermissions($userRequest->input('permission'));
     }
+
 
     public function destroy(User $user) {
         $user->delete();

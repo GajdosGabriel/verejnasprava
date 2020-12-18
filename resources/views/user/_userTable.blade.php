@@ -7,6 +7,7 @@
         <th class="px-4 py-2">Email</th>
         <th class="px-4 py-2">Status</th>
         <th class="px-4 py-2">Role</th>
+        <th class="px-4 py-2">Skupina</th>
         <th class="px-4 py-2">Panel</th>
         @endrole
     </tr>
@@ -42,6 +43,11 @@
             <td class="border px-4 py-2">
                 @foreach($user->roles as $role)
                     <span class="badge badge-secondary">{{ $role->name }}</span>
+                @endforeach
+            </td>
+            <td class="border px-4 py-2">
+                @foreach($user->tags as $tag)
+                    <span class="badge badge-secondary">{{ $tag->name }}</span>
                 @endforeach
             </td>
 

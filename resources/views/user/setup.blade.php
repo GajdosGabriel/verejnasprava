@@ -69,6 +69,7 @@
                     </div>
                 </div>
             </council-edit>
+
             @endrole
             <user-edit inline-template>
                 <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
@@ -106,6 +107,8 @@
                     </div>
                 </div>
             </user-edit>
+
+            <tag-create/>
 
             <div class="flex justify-between items-center p-2">
 
