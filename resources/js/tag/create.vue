@@ -1,7 +1,9 @@
 <template>
-    <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
+    <div class="border-gray-400 border-2">
 
-        <div class="flex justify-between items-center cursor-pointer hover:bg-gray-200" @click="toggle">
+        <header class="flex justify-between items-center cursor-pointer p-3"
+                :class="[show ? 'bg-gray-700 text-white' : 'hover:bg-gray-200']"
+                @click="toggle">
 
             <h3 class="fill-current text-lg">Skupiny tagy</h3>
 
@@ -15,8 +17,8 @@
                 <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
             </svg>
 
-        </div>
-        <form @submit.prevent="save" class="my-3" v-if="show">
+        </header>
+        <form @submit.prevent="save" class="my-3 p-3" v-if="show">
             <label for="tag" class="input-label">Nová skupina</label>
 
             <div class="mb-4">
@@ -26,13 +28,16 @@
 
             <section class="flex flex-wrap mb-4">
                 <div v-for="tag in tags" :key="tag.id">
-                    <div v-text="tag.name" class="bg-green-200 hover:bg-green-400 px-2 rounded-md m-1 cursor-pointer mr-2" @click="edit(tag)">
-                    </div>
+                    <tag :tag="tag" @deletetag="destroyTag"/>
                 </div>
             </section>
 
-            <button type="submit" class="btn btn-primary">Uložiť</button>
-            <button v-if="! form.id == ''" @click="destroy" class="btn btn-danger">Zmazať</button>
+
+            <div v-if="! form.id == ''" class="flex justify-between ">
+                <button @click="updateTag" class="btn btn-primary">Upraviť</button>
+            </div>
+
+            <button v-else type="submit" class="btn btn-primary">Uložiť</button>
 
         </form>
 
@@ -40,7 +45,10 @@
 </template>
 
 <script>
+    import tag from "./tag";
+
     export default {
+        components: {tag},
         data: function () {
             return {
                 tags: {},
@@ -48,7 +56,7 @@
                 form: {}
             }
         },
-
+        computed: {},
         created() {
             this.getTags();
         },
@@ -76,10 +84,24 @@
                     )
             },
 
-            destroy: function () {
-                axios.delete('/tags/' + this.form.id)
+            destroyTag: function (id) {
+                console.log(id);
+                axios.delete('/tags/' + id)
                     .then(
-                        this.tags = this.tags.filter((e) => e.id !== this.form.id),
+                        this.tags = this.tags.filter((e) => e.id !== id),
+                        this.form = {}
+                    )
+            },
+
+            updateTag: function () {
+                axios.put('/tags/' + this.form.id, this.form)
+                    .then(
+                        (res) => {
+                            console.log(res.data)
+                        },
+                        // this.tags.push({name: this.form.name, id: this.form.id}),
+                        // this.tags.splice(this.form.id, 1, this.form.name),
+
                         this.form = {}
                     )
             }
