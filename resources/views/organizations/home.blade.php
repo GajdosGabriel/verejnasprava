@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <div class="container md:grid grid-cols-12 gap-4 mx-auto min-h-screen p-6 bg-gray-100">
+    <x-page.page3_3>
 
         <div class="w-full col-span-4 bg-white">
             @role('admin')
@@ -38,7 +38,6 @@
         {{--                </ul>--}}
         {{--            @endrole--}}
         {{--        </div>--}}
-    </div>
-
+        </x-page.page3_3>
 
 @endsection
