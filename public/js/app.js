@@ -5349,8 +5349,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    toggle: function toggle() {
+      if (this.$auth.isAdmin()) {
+        this.hover = true;
+      }
+    },
     destroyTag: function destroyTag(tag) {
       this.$emit('deletetag', tag.id);
+    },
+    updateTag: function updateTag(tag) {
+      this.$emit('editag', tag);
     }
   }
 });
@@ -74299,7 +74307,7 @@ var render = function() {
                   [
                     _c("tag", {
                       attrs: { tag: tag },
-                      on: { deletetag: _vm.destroyTag }
+                      on: { deletetag: _vm.destroyTag, editag: _vm.edit }
                     })
                   ],
                   1
@@ -74316,7 +74324,7 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       on: { click: _vm.updateTag }
                     },
-                    [_vm._v("Upraviť")]
+                    [_vm._v("Aktualizovať")]
                   )
                 ])
               : _c(
@@ -74356,9 +74364,7 @@ var render = function() {
     {
       staticClass: "flex items-center  mr-2",
       on: {
-        mouseover: function($event) {
-          _vm.hover = true
-        },
+        mouseover: _vm.toggle,
         mouseleave: function($event) {
           _vm.hover = false
         }
@@ -74383,6 +74389,11 @@ var render = function() {
                   fill: "none",
                   viewBox: "0 0 24 24",
                   stroke: "currentColor"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.updateTag(_vm.tag)
+                  }
                 }
               },
               [

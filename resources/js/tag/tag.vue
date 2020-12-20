@@ -1,10 +1,10 @@
 <template>
-    <div class="flex items-center  mr-2" @mouseover="hover = true" @mouseleave="hover = false">
+    <div class="flex items-center  mr-2" @mouseover="toggle" @mouseleave="hover = false">
         <div v-text="tag.name"
              class=" px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400">
         </div>
         <div v-if="hover" class="flex mr-2 space-x-2 text-gray-500">
-                <svg class="h-4 w-4 fill-current cursor-pointer hover:text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg @click="updateTag(tag)" class="h-4 w-4 fill-current cursor-pointer hover:text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
 
@@ -24,8 +24,16 @@
             }
         },
         methods:{
+            toggle(){
+                if (this.$auth.isAdmin()){
+                    this.hover = true
+                }
+            },
             destroyTag(tag){
                 this.$emit('deletetag', tag.id)
+            },
+            updateTag(tag){
+                this.$emit('editag', tag)
             }
         }
 

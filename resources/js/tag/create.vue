@@ -28,13 +28,13 @@
 
             <section class="flex flex-wrap mb-4">
                 <div v-for="tag in tags" :key="tag.id">
-                    <tag :tag="tag" @deletetag="destroyTag"/>
+                    <tag :tag="tag" @deletetag="destroyTag" @editag="edit"/>
                 </div>
             </section>
 
 
             <div v-if="! form.id == ''" class="flex justify-between ">
-                <button @click="updateTag" class="btn btn-primary">Upraviť</button>
+                <button @click="updateTag" class="btn btn-primary">Aktualizovať</button>
             </div>
 
             <button v-else type="submit" class="btn btn-primary">Uložiť</button>
