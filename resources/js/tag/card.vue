@@ -20,26 +20,22 @@
         </header>
         <div v-if="showCard">
             <label for="tag" class="input-label px-3 mt-4 cursor-pointer" @click="showForm =! showForm">Pridať skupinu</label>
-        <form v-if="showForm" @submit.prevent="save" class="p-3" >
+            <form v-if="showForm" @submit.prevent="save" class="p-3">
 
 
-            <div class="mb-4">
-                <input id="tag" type="text" class="input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror" v-model="form.name"
-                       required autocomplete="name" placeholder="Nová skupina" autofocus>
-            </div>
+                <div class="mb-4">
+                    <input id="tag" type="text" class="input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror" v-model="form.name"
+                           required autocomplete="name" placeholder="Nová skupina" autofocus>
+                </div>
 
-            <div v-if="! form.id == ''" class="flex justify-between ">
-                <button @click="updateTag" class="btn btn-primary">Aktualizovať</button>
-            </div>
+                <div v-if="! form.id == ''" class="flex justify-between ">
+                    <button @click="updateTag" class="btn btn-primary">Aktualizovať</button>
+                </div>
 
-            <button v-else type="submit" class="btn btn-primary">Uložiť</button>
+                <button v-else type="submit" class="btn btn-primary">Uložiť</button>
 
-        </form>
-
-            <section class="flex mb-4">
-                <tag-list :tags="tags"></tag-list>
-            </section>
-
+            </form>
+            <tag-list class="flex mb-4"></tag-list>
         </div>
 
     </div>
@@ -59,21 +55,11 @@
             }
         },
         computed: {},
-        created() {
-            this.getTags();
-        },
 
         methods: {
             toggle: function () {
                 this.showCard = !this.showCard
             },
-            getTags() {
-                axios.get('/tags')
-                    .then((response) => {
-                        this.tags = response.data
-                    })
-            },
-
 
             edit(tag) {
                 this.form = {name: tag.name, id: tag.id}

@@ -4125,7 +4125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tag_card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../tag/card */ "./resources/js/tag/card.vue");
+/* harmony import */ var _tag_tag_list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../tag/tag-list */ "./resources/js/tag/tag-list.vue");
 //
 //
 //
@@ -4136,7 +4136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    labels: _tag_card__WEBPACK_IMPORTED_MODULE_0__["default"]
+    labels: _tag_tag_list__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -5280,10 +5280,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5298,19 +5294,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {},
-  created: function created() {
-    this.getTags();
-  },
   methods: {
     toggle: function toggle() {
       this.showCard = !this.showCard;
-    },
-    getTags: function getTags() {
-      var _this = this;
-
-      axios.get('/tags').then(function (response) {
-        _this.tags = response.data;
-      });
     },
     edit: function edit(tag) {
       this.form = {
@@ -5319,10 +5305,10 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     save: function save() {
-      var _this2 = this;
+      var _this = this;
 
       axios.post('/tags', this.form).then(function (res) {
-        _this2.tags.push(res.data);
+        _this.tags.push(res.data);
       }, this.form = {});
     },
     destroyTag: function destroyTag(id) {
@@ -5360,34 +5346,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['tag'],
   data: function data() {
-    return {
-      hover: false
-    };
-  },
-  methods: {
-    toggle: function toggle() {
-      if (this.$auth.isAdmin()) {
-        this.hover = true;
-      }
-    },
-    destroyTag: function destroyTag(tag) {
-      this.$emit('deletetag', tag.id);
-    },
-    updateTag: function updateTag(tag) {
-      this.$emit('editag', tag);
-    }
+    return {};
   }
 });
 
@@ -5413,16 +5375,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tags'],
   components: {
     tagItem: _tag_Item__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      hover: false
+      hover: false,
+      tags: {}
     };
   },
-  methods: {}
+  created: function created() {
+    this.getTags();
+  },
+  methods: {
+    getTags: function getTags() {
+      var _this = this;
+
+      axios.get('/tags').then(function (response) {
+        _this.tags = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -74345,96 +74318,95 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.showCard
-      ? _c("div", [
-          _c(
-            "label",
-            {
-              staticClass: "input-label px-3 mt-4 cursor-pointer",
-              attrs: { for: "tag" },
-              on: {
-                click: function($event) {
-                  _vm.showForm = !_vm.showForm
-                }
-              }
-            },
-            [_vm._v("Pridať skupinu")]
-          ),
-          _vm._v(" "),
-          _vm.showForm
-            ? _c(
-                "form",
-                {
-                  staticClass: "p-3",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.save($event)
-                    }
+      ? _c(
+          "div",
+          [
+            _c(
+              "label",
+              {
+                staticClass: "input-label px-3 mt-4 cursor-pointer",
+                attrs: { for: "tag" },
+                on: {
+                  click: function($event) {
+                    _vm.showForm = !_vm.showForm
                   }
-                },
-                [
-                  _c("div", { staticClass: "mb-4" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.name,
-                          expression: "form.name"
-                        }
-                      ],
-                      staticClass:
-                        "input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror",
-                      attrs: {
-                        id: "tag",
-                        type: "text",
-                        required: "",
-                        autocomplete: "name",
-                        placeholder: "Nová skupina",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.form.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "name", $event.target.value)
-                        }
+                }
+              },
+              [_vm._v("Pridať skupinu")]
+            ),
+            _vm._v(" "),
+            _vm.showForm
+              ? _c(
+                  "form",
+                  {
+                    staticClass: "p-3",
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.save($event)
                       }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  !_vm.form.id == ""
-                    ? _c("div", { staticClass: "flex justify-between " }, [
-                        _c(
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "mb-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
+                          }
+                        ],
+                        staticClass:
+                          "input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror",
+                        attrs: {
+                          id: "tag",
+                          type: "text",
+                          required: "",
+                          autocomplete: "name",
+                          placeholder: "Nová skupina",
+                          autofocus: ""
+                        },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    !_vm.form.id == ""
+                      ? _c("div", { staticClass: "flex justify-between " }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.updateTag }
+                            },
+                            [_vm._v("Aktualizovať")]
+                          )
+                        ])
+                      : _c(
                           "button",
                           {
                             staticClass: "btn btn-primary",
-                            on: { click: _vm.updateTag }
+                            attrs: { type: "submit" }
                           },
-                          [_vm._v("Aktualizovať")]
+                          [_vm._v("Uložiť")]
                         )
-                      ])
-                    : _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Uložiť")]
-                      )
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "flex mb-4" },
-            [_c("tag-list", { attrs: { tags: _vm.tags } })],
-            1
-          )
-        ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("tag-list", { staticClass: "flex mb-4" })
+          ],
+          1
+        )
       : _vm._e()
   ])
 }
@@ -74460,89 +74432,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "flex items-center  mr-2",
-      on: {
-        mouseover: _vm.toggle,
-        mouseleave: function($event) {
-          _vm.hover = false
-        }
-      }
-    },
-    [
-      _c("div", {
-        staticClass:
-          " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400",
-        domProps: { textContent: _vm._s(_vm.tag.name) }
-      }),
-      _vm._v(" "),
-      _vm.hover
-        ? _c("div", { staticClass: "flex mr-2 space-x-2 text-gray-500" }, [
-            _c(
-              "svg",
-              {
-                staticClass:
-                  "h-4 w-4 fill-current cursor-pointer hover:text-gray-800",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.updateTag(_vm.tag)
-                  }
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d:
-                      "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "svg",
-              {
-                staticClass:
-                  "h-4 w-4 fill-current cursor-pointer hover:text-gray-800",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.destroyTag(_vm.tag)
-                  }
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d:
-                      "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                  }
-                })
-              ]
-            )
-          ])
-        : _vm._e()
-    ]
-  )
+  return _c("div", { staticClass: "flex items-center  mr-2" }, [
+    _c("div", {
+      staticClass:
+        " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400",
+      domProps: { textContent: _vm._s(_vm.tag.name) }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

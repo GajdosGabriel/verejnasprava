@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import labels from '../tag/card';
+    import labels from '../tag/tag-list';
     export default {
         components: {labels}
 

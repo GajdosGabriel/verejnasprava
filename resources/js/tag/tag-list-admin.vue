@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-wrap">
         <div v-for="tag in tags" :key="tag.id">
-            <tag-item :tag="tag"></tag-item>
+            <tag-item-admin :tag="tag"></tag-item-admin>
         </div>
     </div>
 </template>
 
 <script>
-    import tagItem from './tag-Item'
+    import tagItemAdmin from './tag-Item-admin'
 
     export default {
-        components: {tagItem},
+        components: {tagItemAdmin},
         data() {
             return {
                 hover: false,
