@@ -82,12 +82,12 @@
 
 <script>
     import moment from 'moment';
-    import swal from 'sweetalert2';
+    // import swal from 'sweetalert2';
     import multiselect from 'vue-multiselect';
 
     export default {
         props: ['subject'],
-        components: { swal, multiselect },
+        components: { multiselect },
         data: function() {
             return {
                 customer: {
@@ -128,40 +128,40 @@
                 },
 
             changeStatus: function(id) {
-                swal({
-                    title: 'Odoslať objednávku?',
-                    text: "Odoslanie na email dodávateľa!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: 'Neodoslať',
-                    confirmButtonText: 'Áno, odoslať!'
-                }).then(function () {
-
-                    this.send = !this.send;
-                    axios.patch('/orderSendStatus/' + id);
-                }.bind(this));
+                // swal({
+                //     title: 'Odoslať objednávku?',
+                //     text: "Odoslanie na email dodávateľa!",
+                //     type: 'warning',
+                //     showCancelButton: true,
+                //     confirmButtonColor: '#3085d6',
+                //     cancelButtonColor: '#d33',
+                //     cancelButtonText: 'Neodoslať',
+                //     confirmButtonText: 'Áno, odoslať!'
+                // }).then(function () {
+                //
+                //     this.send = !this.send;
+                //     axios.patch('/orderSendStatus/' + id);
+                // }.bind(this));
 
 
             },
 
             destroyOrder: function(id) {
 
-                swal({
-                    title: 'Skutočne vymazať?',
-                    text: "Vymazanie bude definitívne a nevratné!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: 'Nemazať',
-                    confirmButtonText: 'Áno, vymazať!'
-                }).then(function () {
-
-                    axios.delete('/deleteOrder/' + id);
-                    $(this.$el).fadeOut(300);
-                }.bind(this));
+                // swal({
+                //     title: 'Skutočne vymazať?',
+                //     text: "Vymazanie bude definitívne a nevratné!",
+                //     type: 'warning',
+                //     showCancelButton: true,
+                //     confirmButtonColor: '#3085d6',
+                //     cancelButtonColor: '#d33',
+                //     cancelButtonText: 'Nemazať',
+                //     confirmButtonText: 'Áno, vymazať!'
+                // }).then(function () {
+                //
+                //     axios.delete('/deleteOrder/' + id);
+                //     $(this.$el).fadeOut(300);
+                // }.bind(this));
 
             }
 
