@@ -106,7 +106,7 @@
                 </div>
             </council-edit>
 
-            <tag-create/>
+            <tag-card/>
 
             @endrole
 

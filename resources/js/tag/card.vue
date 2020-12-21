@@ -2,12 +2,12 @@
     <div class="border-gray-400 border-2">
 
         <header class="flex justify-between items-center cursor-pointer p-3"
-                :class="[show ? 'bg-gray-700 text-white' : 'hover:bg-gray-200']"
+                :class="[showCard ? 'bg-gray-700 text-white' : 'hover:bg-gray-200']"
                 @click="toggle">
 
             <h3 class="fill-current text-lg">Skupiny tagy</h3>
 
-            <svg v-if="show" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
+            <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 20 20">
                 <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
             </svg>
@@ -18,20 +18,15 @@
             </svg>
 
         </header>
-        <form @submit.prevent="save" class="my-3 p-3" v-if="show">
-            <label for="tag" class="input-label">Nová skupina</label>
+        <div v-if="showCard">
+            <label for="tag" class="input-label px-3 mt-4 cursor-pointer" @click="showForm =! showForm">Pridať skupinu</label>
+        <form v-if="showForm" @submit.prevent="save" class="p-3" >
+
 
             <div class="mb-4">
                 <input id="tag" type="text" class="input-control focus:outline-none focus:shadow-outline @error('tag') is-invalid @enderror" v-model="form.name"
                        required autocomplete="name" placeholder="Nová skupina" autofocus>
             </div>
-
-            <section class="flex flex-wrap mb-4">
-                <div v-for="tag in tags" :key="tag.id">
-                    <tag :tag="tag" @deletetag="destroyTag" @editag="edit"/>
-                </div>
-            </section>
-
 
             <div v-if="! form.id == ''" class="flex justify-between ">
                 <button @click="updateTag" class="btn btn-primary">Aktualizovať</button>
@@ -41,32 +36,36 @@
 
         </form>
 
+            <section class="flex mb-4">
+                <tag-list :tags="tags"></tag-list>
+            </section>
+
+        </div>
+
     </div>
 </template>
 
 <script>
-    import tag from "./tag";
+    import tagList from "./tag-list";
 
     export default {
-        components: {tag},
+        components: {tagList},
         data: function () {
             return {
+                showCard: false,
+                showForm: false,
                 tags: {},
-                show: false,
-                form: {}
+                form: {},
             }
         },
         computed: {},
         created() {
             this.getTags();
         },
+
         methods: {
             toggle: function () {
-                this.show = !this.show
-            },
-
-            edit(tag) {
-                this.form = {name: tag.name, id: tag.id}
+                this.showCard = !this.showCard
             },
             getTags() {
                 axios.get('/tags')
@@ -74,6 +73,12 @@
                         this.tags = response.data
                     })
             },
+
+
+            edit(tag) {
+                this.form = {name: tag.name, id: tag.id}
+            },
+
 
             save: function () {
                 axios.post('/tags', this.form)

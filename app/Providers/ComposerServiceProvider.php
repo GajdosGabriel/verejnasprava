@@ -39,7 +39,8 @@ class ComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer('organizations.home', function ($view) {
-            $activities = Activity::whereUserId(auth()->user()->id)->latest()->with('subject')->get();
+//            $activities = Activity::whereUserId(auth()->user()->id)->latest()->with('subject')->get();
+            $activities = Activity::paginate(50);
             $view->with('activities', $activities);
         });
 
