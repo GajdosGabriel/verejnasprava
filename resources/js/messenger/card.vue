@@ -20,7 +20,10 @@
             <div class="my-4 p-2 border">Komu:
                 <div v-for="recipient in recipients">{{ recipient.name }}</div>
             </div>
-            <labels/>
+
+            <span class="px-2 cursor-pointer" @click="showModal = true">Nová nálepka</span>
+
+            <tag-list :tags="tags"/>
 
             <form @submit.prevent="saveMessage">
                 <input type="text" class="w-full px-1 mt-4 mb-2" placeholder="Správa od zamestnávateľa" v-model="name">
@@ -28,24 +31,42 @@
                 <button type="submit" class="btn btn-primary w-full">Poslať</button>
             </form>
         </div>
+
+        <tag-modal :showModal="showModal" @addTag="addTag" @emitShowModal="showModal = false"/>
     </div>
 </template>
 
 <script>
-    import labels from './tag-list';
+    import tagList from './tag-list';
+    import tagModal from './new-modal';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
 
     export default {
-        components: {labels, VueEditor},
+        components: {tagList, VueEditor, tagModal},
         data() {
             return {
                 name: "",
                 body: "",
                 recipients: {},
-                showCard: true
+                showCard: true,
+                showModal: false,
+                tags:{}
             }
         },
+        created() {
+            this.getTags();
+        },
         methods: {
+            addTag(form){
+                this.tags.push(form);
+            },
+            getTags() {
+                axios.get('/tags')
+                    .then((response) => {
+                        this.tags = response.data
+                    })
+            },
+
             saveMessage() {
                 if (this.body.length < 2) {
                     alert('Správa je prázdna.')

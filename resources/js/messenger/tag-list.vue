@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-wrap">
-        <span class="px-2 cursor-pointer">Pridať nálepku</span>
+
         <div v-for="tag in tags" :key="tag.id">
             <div class="flex items-center mr-2" @click="addToList(tag)">
                 <div v-text="tag.name"
@@ -13,24 +13,9 @@
 
 <script>
     export default {
-        data() {
-            return {
-
-            }
-        },
-        created() {
-            this.getTags();
-        },
-        methods: {
-            getTags() {
-                axios.get('/tags')
-                    .then((response) => {
-                        this.tags = response.data
-                    })
-            },
-
+        props:['tags'],
+        methods:{
 
         }
-
     }
 </script>

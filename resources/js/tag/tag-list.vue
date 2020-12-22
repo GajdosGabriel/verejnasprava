@@ -20,8 +20,6 @@
         created() {
             this.getTags();
         },
-
-
         methods: {
             getTags() {
                 axios.get('/tags')
@@ -29,6 +27,7 @@
                         this.tags = response.data
                     })
             },
+
 
 
         }

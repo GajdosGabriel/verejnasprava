@@ -4126,8 +4126,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tag_list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tag-list */ "./resources/js/messenger/tag-list.vue");
-/* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
-/* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _new_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new-modal */ "./resources/js/messenger/new-modal.vue");
+/* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
+/* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -4161,22 +4162,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    labels: _tag_list__WEBPACK_IMPORTED_MODULE_0__["default"],
-    VueEditor: vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_1__["VueEditor"]
+    tagList: _tag_list__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VueEditor: vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_2__["VueEditor"],
+    tagModal: _new_modal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      name: "Správa od zamestnávateľa",
+      name: "",
       body: "",
       recipients: {},
-      showCard: true
+      showCard: true,
+      showModal: false,
+      tags: {}
     };
   },
+  created: function created() {
+    this.getTags();
+  },
   methods: {
+    addTag: function addTag(form) {
+      this.tags.push(form);
+    },
+    getTags: function getTags() {
+      var _this = this;
+
+      axios.get('/tags').then(function (response) {
+        _this.tags = response.data;
+      });
+    },
     saveMessage: function saveMessage() {
       if (this.body.length < 2) {
         alert('Správa je prázdna.');
@@ -4186,6 +4209,95 @@ __webpack_require__.r(__webpack_exports__);
         body: this.body,
         name: this.name
       }).then(this.body = null, this.name = null);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/messenger/new-modal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/messenger/new-modal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['showModal'],
+  data: function data() {
+    return {
+      form: {}
+    };
+  },
+  methods: {
+    closeModal: function closeModal() {
+      this.$emit('emitShowModal', false);
+    },
+    saveTag: function saveTag() {
+      axios.post('tags', this.form).then(this.$emit('addTag', this.form), this.form = {});
+      this.closeModal();
     }
   }
 });
@@ -4215,21 +4327,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
-  created: function created() {
-    this.getTags();
-  },
-  methods: {
-    getTags: function getTags() {
-      var _this = this;
-
-      axios.get('/tags').then(function (response) {
-        _this.tags = response.data;
-      });
-    }
-  }
+  props: ['tags'],
+  methods: {}
 });
 
 /***/ }),
@@ -83288,137 +83387,365 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "border" }, [
-    _c(
-      "header",
-      {
-        staticClass: "flex justify-between items-center px-2 py-2",
-        class: [_vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"],
+  return _c(
+    "div",
+    { staticClass: "border" },
+    [
+      _c(
+        "header",
+        {
+          staticClass: "flex justify-between items-center px-2 py-2",
+          class: [
+            _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+          ],
+          on: {
+            click: function($event) {
+              _vm.showCard = !_vm.showCard
+            }
+          }
+        },
+        [
+          _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
+            _vm._v("Oznámenia od zamestnávateľa")
+          ]),
+          _vm._v(" "),
+          _vm.showCard
+            ? _c(
+                "svg",
+                {
+                  staticClass: "h-3 w-3 text-gray-700",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+              )
+            : _c(
+                "svg",
+                {
+                  staticClass: "h-3 w-3 text-gray-700",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+              )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showCard,
+              expression: "showCard"
+            }
+          ]
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "my-4 p-2 border" },
+            [
+              _vm._v("Komu:\n            "),
+              _vm._l(_vm.recipients, function(recipient) {
+                return _c("div", [_vm._v(_vm._s(recipient.name))])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "px-2 cursor-pointer",
+              on: {
+                click: function($event) {
+                  _vm.showModal = true
+                }
+              }
+            },
+            [_vm._v("Nová nálepka")]
+          ),
+          _vm._v(" "),
+          _c("tag-list", { attrs: { tags: _vm.tags } }),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.saveMessage($event)
+                }
+              }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "w-full px-1 mt-4 mb-2",
+                attrs: {
+                  type: "text",
+                  placeholder: "Správa od zamestnávateľa"
+                },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("vue-editor", {
+                staticClass: "mb-8",
+                model: {
+                  value: _vm.body,
+                  callback: function($$v) {
+                    _vm.body = $$v
+                  },
+                  expression: "body"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary w-full",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Poslať")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("tag-modal", {
+        attrs: { showModal: _vm.showModal },
         on: {
-          click: function($event) {
-            _vm.showCard = !_vm.showCard
+          addTag: _vm.addTag,
+          emitShowModal: function($event) {
+            _vm.showModal = false
           }
         }
-      },
-      [
-        _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-          _vm._v("Oznámenia od zamestnávateľa")
-        ]),
-        _vm._v(" "),
-        _vm.showCard
-          ? _c(
-              "svg",
-              {
-                staticClass: "h-3 w-3 text-gray-700",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
-                }
-              },
-              [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
-            )
-          : _c(
-              "svg",
-              {
-                staticClass: "h-3 w-3 text-gray-700",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
-                }
-              },
-              [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
-            )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showCard,
-            expression: "showCard"
-          }
-        ]
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "my-4 p-2 border" },
-          [
-            _vm._v("Komu:\n            "),
-            _vm._l(_vm.recipients, function(recipient) {
-              return _c("div", [_vm._v(_vm._s(recipient.name))])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c("labels"),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.saveMessage($event)
-              }
-            }
-          },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name"
-                }
-              ],
-              staticClass: "w-full px-1 mt-4 mb-2",
-              attrs: { type: "text" },
-              domProps: { value: _vm.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.name = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("vue-editor", {
-              staticClass: "mb-8",
-              model: {
-                value: _vm.body,
-                callback: function($$v) {
-                  _vm.body = $$v
-                },
-                expression: "body"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary w-full",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Poslať")]
-            )
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.showModal
+    ? _c("div", { staticClass: "fixed z-10 inset-0 overflow-y-auto" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "hidden sm:inline-block sm:align-middle sm:h-screen"
+            }),
+            _vm._v("​\n        "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                attrs: {
+                  role: "dialog",
+                  "aria-modal": "true",
+                  "aria-labelledby": "modal-headline"
+                }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" },
+                  [
+                    _c("div", { staticClass: "sm:flex sm:items-start" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full"
+                        },
+                        [
+                          _c(
+                            "header",
+                            { staticClass: "flex justify-between w-full" },
+                            [
+                              _c(
+                                "h3",
+                                {
+                                  staticClass:
+                                    "text-lg leading-6 font-medium text-gray-900",
+                                  attrs: { id: "modal-headline" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Nový tág\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "cursor-pointer text-gray-500",
+                                  on: { click: _vm.closeModal }
+                                },
+                                [_vm._v("X")]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.saveTag($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "mt-2" }, [
+                                _c("div", { staticClass: "md:flex" }, [
+                                  _c("div", { staticClass: "mb-4  w-full" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.name,
+                                          expression: "form.name"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "name",
+                                        placeholder: "Nový tág",
+                                        required: ""
+                                      },
+                                      domProps: { value: _vm.form.name },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.form,
+                                            "name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse flex justify-between items-center"
+                                },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      attrs: { type: "submit" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Uložiť\n                                "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-default",
+                                      on: { click: _vm.closeModal }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Zrušiť\n                                "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fixed inset-0 transition-opacity" }, [
+      _c("div", { staticClass: "absolute inset-0 bg-gray-500 opacity-75" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -83443,35 +83770,29 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "flex flex-wrap" },
-    [
-      _c("span", { staticClass: "px-2 cursor-pointer" }, [
-        _vm._v("Pridať nálepku")
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.tags, function(tag) {
-        return _c("div", { key: tag.id }, [
-          _c(
-            "div",
-            {
-              staticClass: "flex items-center mr-2",
-              on: {
-                click: function($event) {
-                  return _vm.addToList(tag)
-                }
+    _vm._l(_vm.tags, function(tag) {
+      return _c("div", { key: tag.id }, [
+        _c(
+          "div",
+          {
+            staticClass: "flex items-center mr-2",
+            on: {
+              click: function($event) {
+                return _vm.addToList(tag)
               }
-            },
-            [
-              _c("div", {
-                staticClass:
-                  " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400",
-                domProps: { textContent: _vm._s(tag.name) }
-              })
-            ]
-          )
-        ])
-      })
-    ],
-    2
+            }
+          },
+          [
+            _c("div", {
+              staticClass:
+                " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400",
+              domProps: { textContent: _vm._s(tag.name) }
+            })
+          ]
+        )
+      ])
+    }),
+    0
   )
 }
 var staticRenderFns = []
@@ -103728,6 +104049,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_card_vue_vue_type_template_id_33a9948a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_card_vue_vue_type_template_id_33a9948a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/messenger/new-modal.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/messenger/new-modal.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./new-modal.vue?vue&type=template&id=13622136& */ "./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136&");
+/* harmony import */ var _new_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new-modal.vue?vue&type=script&lang=js& */ "./resources/js/messenger/new-modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _new_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/messenger/new-modal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/messenger/new-modal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/messenger/new-modal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_new_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./new-modal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/messenger/new-modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_new_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136& ***!
+  \*****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./new-modal.vue?vue&type=template&id=13622136& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/messenger/new-modal.vue?vue&type=template&id=13622136&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_modal_vue_vue_type_template_id_13622136___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

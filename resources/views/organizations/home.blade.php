@@ -9,14 +9,14 @@
 
     <x-page.page3_3>
 
-        <div class="w-full col-span-4 bg-white">
+        <div class="col-span-4 bg-white">
             @role('admin')
             <x-oznamenia>
                 <messenger-card/>
             </x-oznamenia>
             @endrole
         </div>
-        <div class="w-full col-span-4 bg-white">
+        <div class="col-span-4 bg-white">
 {{--            @role('admin')--}}
 {{--            <h2>História aktivít</h2>--}}
 {{--            <ul class="list-group">--}}
