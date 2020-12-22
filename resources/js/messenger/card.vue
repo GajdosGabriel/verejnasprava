@@ -1,47 +1,61 @@
 <template>
     <div class="border">
-        <header class="flex justify-between items-center px-2 hover:bg-gray-200 py-2" @click="showCard =! showCard">
-        <h3 class="font-semibold text-gray-700 cursor-pointer">Oznámenia od zamestnávateľa</h3>
+        <header class="flex justify-between items-center px-2 py-2" @click="showCard =! showCard"
+                :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']"
+        >
+            <h3 class="font-semibold cursor-pointer">Oznámenia od zamestnávateľa</h3>
 
-        <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 20 20">
-            <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
-        </svg>
+            <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 20 20">
+                <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
+            </svg>
 
-        <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 20 20">
-            <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
-        </svg>
+            <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 20 20">
+                <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
+            </svg>
         </header>
 
         <div v-show="showCard">
+            <div class="my-4 p-2 border">Komu:
+                <div v-for="recipient in recipients">{{ recipient.name }}</div>
+            </div>
             <labels/>
 
             <form @submit.prevent="saveMessage">
-            <vue-editor v-model="content" class="my-8"/>
-                <button type="submit" class="btn btn-primary w-full mb-4">Poslať</button>
+                <input type="text" class="w-full px-1 mt-4 mb-2" placeholder="Správa od zamestnávateľa" v-model="name">
+                <vue-editor v-model="body" class="mb-8"/>
+                <button type="submit" class="btn btn-primary w-full">Poslať</button>
             </form>
         </div>
     </div>
 </template>
 
 <script>
-    import labels from '../tag/tag-list';
+    import labels from './tag-list';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
 
     export default {
         components: {labels, VueEditor},
         data() {
             return {
-                content: "",
+                name: "",
+                body: "",
+                recipients: {},
                 showCard: true
             }
         },
         methods: {
-            saveMessage(){
-                if(this.content.length < 2){
-                    alert('Správa je prázdna')
+            saveMessage() {
+                if (this.body.length < 2) {
+                    alert('Správa je prázdna.')
                 }
+
+                axios.post('/messengers', {body: this.body, name: this.name})
+                    .then(
+                        this.body = null,
+                        this.name = null
+                    )
             }
         }
 

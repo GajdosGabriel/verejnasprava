@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import tagList from "./tag-list";
+    import tagList from "../messenger/tag-list";
 
     export default {
         components: {tagList},

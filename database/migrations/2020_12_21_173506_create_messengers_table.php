@@ -18,7 +18,7 @@ class CreateMessengersTable extends Migration
             $table->integer('organization_id')->unsigned()->index();
             $table->string('name')->nullable();
             $table->text('body');
-            $table->integer('type')->unsigned();
+            $table->enum('type', ['message', 'free']);
             $table->timestamp('opened')->nullable();
             $table->timestamps();
             $table->softDeletes();
