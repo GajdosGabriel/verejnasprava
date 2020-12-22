@@ -60,11 +60,10 @@
 
 <script>
     export default {
-        props:['showModal'],
+        props:['showModal', 'passEditTag'],
         data() {
             return {
                 form: {},
-
             }
         },
         methods: {

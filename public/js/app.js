@@ -4170,6 +4170,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4188,6 +4209,8 @@ __webpack_require__.r(__webpack_exports__);
       recipients: [],
       showCard: true,
       showModal: false,
+      editAdminPanel: false,
+      editTag: {},
       tags: []
     };
   },
@@ -4195,6 +4218,10 @@ __webpack_require__.r(__webpack_exports__);
     this.getTags();
   },
   methods: {
+    clearRecipientsList: function clearRecipientsList() {
+      this.recipients = [];
+      this.getTags();
+    },
     addRecipient: function addRecipient(form) {
       this.recipients.push(form);
       this.tags.splice(this.tags.indexOf(form), 1);
@@ -4205,6 +4232,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     addNewTag: function addNewTag(form) {
       this.tags.push(form);
+    },
+    getEditTag: function getEditTag(tag) {
+      this.editTag = tag;
+      this.showModal = !this.showModal;
     },
     getTags: function getTags() {
       var _this = this;
@@ -4220,7 +4251,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/messengers', {
         body: this.body,
-        name: this.name
+        name: this.name,
+        tags: this.recipients
       }).then(this.body = null, this.name = null);
     }
   }
@@ -4298,7 +4330,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showModal'],
+  props: ['showModal', 'passEditTag'],
   data: function data() {
     return {
       form: {}
@@ -4337,16 +4369,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['recipient'],
-  data: function data() {
-    return {
-      deleteIcon: false
-    };
-  },
   methods: {
     deleteRecipient: function deleteRecipient(recipient) {
       this.$emit('deleteRecipient', recipient);
@@ -4377,11 +4401,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tags'],
+  props: ['tags', 'editAdminPanel'],
   methods: {
     addToList: function addToList(tag) {
       this.$emit('pushTagToRecipientList', tag);
+    },
+    editTag: function editTag(tag) {
+      this.$emit('editTag', tag);
     }
   }
 });
@@ -83461,8 +83490,36 @@ var render = function() {
           }
         },
         [
-          _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-            _vm._v("Oznámenia od zamestnávateľa")
+          _c("div", { staticClass: "flex items-center justify-center" }, [
+            _c(
+              "svg",
+              {
+                staticClass: "fill-current h-5 w-5 mr-2",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    d:
+                      "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  }
+                }),
+                _vm._v(" "),
+                _c("path", {
+                  attrs: {
+                    d: "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
+              _vm._v("Oznámenia od zamestnávateľa")
+            ])
           ]),
           _vm._v(" "),
           _vm.showCard
@@ -83506,7 +83563,7 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "my-4 p-2 border flex flex-wrap" },
+            { staticClass: "my-4 p-2 border flex flex-wrap relative" },
             [
               _vm._v("Komu:\n            "),
               _vm._l(_vm.recipients, function(recipient) {
@@ -83521,27 +83578,57 @@ var render = function() {
                   ],
                   1
                 )
-              })
+              }),
+              _vm._v(" "),
+              _vm.recipients.length > 1
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "absolute bottom-0 right-0 text-xs cursor-pointer",
+                      on: { click: _vm.clearRecipientsList }
+                    },
+                    [_vm._v("vyčistiť všetko")]
+                  )
+                : _vm._e()
             ],
             2
           ),
           _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "px-2",
-              on: {
-                click: function($event) {
-                  _vm.showModal = true
+          _c("div", { staticClass: "flex justify-between text-xs" }, [
+            _c(
+              "span",
+              {
+                staticClass: "px-2 cursor-pointer",
+                on: {
+                  click: function($event) {
+                    _vm.showModal = true
+                  }
                 }
-              }
-            },
-            [_vm._v("Nová nálepka")]
-          ),
+              },
+              [_vm._v("Nová nálepka")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "px-2 cursor-pointer",
+                on: {
+                  click: function($event) {
+                    _vm.editAdminPanel = !_vm.editAdminPanel
+                  }
+                }
+              },
+              [_vm._v("Upraviť")]
+            )
+          ]),
           _vm._v(" "),
           _c("tag-list", {
-            attrs: { tags: _vm.tags },
-            on: { pushTagToRecipientList: _vm.addRecipient }
+            attrs: { tags: _vm.tags, editAdminPanel: _vm.editAdminPanel },
+            on: {
+              pushTagToRecipientList: _vm.addRecipient,
+              editTag: _vm.getEditTag
+            }
           }),
           _vm._v(" "),
           _c(
@@ -83594,7 +83681,42 @@ var render = function() {
                   staticClass: "btn btn-primary w-full",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Poslať")]
+                [
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center justify-center" },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "fill-current h-5 w-5 text-white mr-2",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20",
+                            fill: "currentColor"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("Poslať")])
+                    ]
+                  )
+                ]
               )
             ],
             1
@@ -83604,7 +83726,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("tag-modal", {
-        attrs: { showModal: _vm.showModal },
+        attrs: { showModal: _vm.showModal, passEditTag: _vm.editTag },
         on: {
           addNewTag: _vm.addNewTag,
           emitShowModal: function($event) {
@@ -83837,38 +83959,14 @@ var render = function() {
     "div",
     {
       staticClass: "ml-2 bg-green-300 rounded-md px-2 mb-2 cursor-pointer flex",
+      attrs: { title: "Kliknutím odstrániť" },
       on: {
-        mouseover: function($event) {
-          _vm.deleteIcon = true
-        },
-        mouseout: function($event) {
-          _vm.deleteIcon = false
+        click: function($event) {
+          return _vm.deleteRecipient(_vm.recipient)
         }
       }
     },
-    [
-      _vm._v("\n    " + _vm._s(_vm.recipient.name) + "\n    "),
-      _c(
-        "span",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.deleteIcon,
-              expression: "deleteIcon"
-            }
-          ],
-          staticClass: "ml-2",
-          on: {
-            click: function($event) {
-              return _vm.deleteRecipient(_vm.recipient)
-            }
-          }
-        },
-        [_vm._v("x")]
-      )
-    ]
+    [_vm._v("\n    " + _vm._s(_vm.recipient.name) + "\n")]
   )
 }
 var staticRenderFns = []
@@ -83898,24 +83996,34 @@ var render = function() {
     { staticClass: "flex flex-wrap" },
     _vm._l(_vm.tags, function(tag) {
       return _c("div", { key: tag.id }, [
-        _c(
-          "div",
-          {
-            staticClass: "flex items-center mr-2",
+        _c("div", { staticClass: "flex items-center mr-2" }, [
+          _c("div", {
+            staticClass:
+              " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-300",
+            attrs: { title: "Kliknutím pridať" },
+            domProps: { textContent: _vm._s(tag.name) },
             on: {
               click: function($event) {
                 return _vm.addToList(tag)
               }
             }
-          },
-          [
-            _c("div", {
-              staticClass:
-                " px-2 rounded-md m-1 cursor-pointer bg-green-200 hover:bg-green-400",
-              domProps: { textContent: _vm._s(tag.name) }
-            })
-          ]
-        )
+          }),
+          _vm._v(" "),
+          _vm.editAdminPanel
+            ? _c(
+                "div",
+                {
+                  staticClass: "cursor-pointer hover:bg-gray-200 text-xs",
+                  on: {
+                    click: function($event) {
+                      return _vm.editTag(tag)
+                    }
+                  }
+                },
+                [_vm._v("Upraviť")]
+              )
+            : _vm._e()
+        ])
       ])
     }),
     0
