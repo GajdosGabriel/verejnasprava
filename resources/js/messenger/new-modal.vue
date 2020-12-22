@@ -74,8 +74,11 @@
             saveTag() {
                 axios.post('tags', this.form)
                 .then(
-                    this.$emit('addTag', this.form),
-                    this.form = {},
+                    (res) => {
+                        this.$emit('addNewTag', res.data)
+                    },
+
+                    this.form = {}
 
                 );
                     this.closeModal()

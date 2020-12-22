@@ -1,6 +1,5 @@
 <template>
     <div class="flex flex-wrap">
-
         <div v-for="tag in tags" :key="tag.id">
             <div class="flex items-center mr-2" @click="addToList(tag)">
                 <div v-text="tag.name"
@@ -12,10 +11,13 @@
 </template>
 
 <script>
+
     export default {
         props:['tags'],
         methods:{
-
+            addToList(tag){
+                this.$emit('pushTagToRecipientList', tag)
+            }
         }
     }
 </script>

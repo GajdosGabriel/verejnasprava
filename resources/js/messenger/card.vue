@@ -1,6 +1,6 @@
 <template>
     <div class="border">
-        <header class="flex justify-between items-center px-2 py-2" @click="showCard =! showCard"
+        <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']"
         >
             <h3 class="font-semibold cursor-pointer">Oznámenia od zamestnávateľa</h3>
@@ -17,47 +17,58 @@
         </header>
 
         <div v-show="showCard">
-            <div class="my-4 p-2 border">Komu:
-                <div v-for="recipient in recipients">{{ recipient.name }}</div>
+            <div class="my-4 p-2 border flex flex-wrap">Komu:
+                <div v-for="recipient in recipients" :key="recipient.id">
+                   <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
+                </div>
             </div>
 
-            <span class="px-2 cursor-pointer" @click="showModal = true">Nová nálepka</span>
+            <span class="px-2" @click="showModal = true">Nová nálepka</span>
 
-            <tag-list :tags="tags"/>
+            <tag-list :tags="tags" @pushTagToRecipientList="addRecipient"/>
 
             <form @submit.prevent="saveMessage">
-                <input type="text" class="w-full px-1 mt-4 mb-2" placeholder="Správa od zamestnávateľa" v-model="name">
+                <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
                 <vue-editor v-model="body" class="mb-8"/>
                 <button type="submit" class="btn btn-primary w-full">Poslať</button>
             </form>
         </div>
 
-        <tag-modal :showModal="showModal" @addTag="addTag" @emitShowModal="showModal = false"/>
+        <tag-modal :showModal="showModal" @addNewTag="addNewTag" @emitShowModal="showModal = false"/>
     </div>
 </template>
 
 <script>
+    import recipientItem from './recipient-item';
     import tagList from './tag-list';
     import tagModal from './new-modal';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
 
     export default {
-        components: {tagList, VueEditor, tagModal},
+        components: {tagList, VueEditor, tagModal, recipientItem},
         data() {
             return {
                 name: "",
                 body: "",
-                recipients: {},
+                recipients: [],
                 showCard: true,
                 showModal: false,
-                tags:{}
+                tags: []
             }
         },
         created() {
             this.getTags();
         },
         methods: {
-            addTag(form){
+            addRecipient(form){
+                this.recipients.push(form);
+                this.tags.splice(this.tags.indexOf(form), 1);
+            },
+            removeRecipient(recipient){
+                this.tags.push(recipient);
+                this.recipients.splice(this.recipients.indexOf(recipient), 1);
+            },
+            addNewTag(form) {
                 this.tags.push(form);
             },
             getTags() {
