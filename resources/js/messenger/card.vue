@@ -27,7 +27,7 @@
                 <div v-for="recipient in recipients" :key="recipient.id">
                    <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
                 </div>
-                <span v-if="recipients.length > 1" class="absolute bottom-0 right-0 text-xs cursor-pointer" @click="clearRecipientsList">vyčistiť všetko</span>
+                <span v-if="recipients && recipients.length > 1" class="absolute bottom-0 right-0 text-xs cursor-pointer" @click="clearRecipientsList">vyčistiť všetko</span>
             </div>
 
 
@@ -126,7 +126,7 @@
                         this.body = null,
                         this.name = null,
                         this.recipients = null,
-                    )
+                    );
             }
         }
 

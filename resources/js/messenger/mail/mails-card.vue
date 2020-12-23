@@ -23,7 +23,9 @@
         </header>
 
         <div class="px-2" v-if="showCard">
-            fasdasdf
+            <ul>
+                <li v-for="messenger in messengers" :key="messenger.id" v-html="messenger.body"></li>
+            </ul>
         </div>
     </div>
 </template>
@@ -36,10 +38,16 @@
         data() {
             return {
                 showCard: true,
+                messengers: []
 
             }
         },
         created() {
+
+            axios.get('/messengers')
+            .then((res) => {
+                this.messengers = res.data
+            })
 
 
         },

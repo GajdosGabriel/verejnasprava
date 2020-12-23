@@ -4320,13 +4320,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      showCard: true
+      showCard: true,
+      messengers: []
     };
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    axios.get('/messengers').then(function (res) {
+      _this.messengers = res.data;
+    });
+  },
   methods: {}
 });
 
@@ -83704,7 +83713,7 @@ var render = function() {
                 )
               }),
               _vm._v(" "),
-              _vm.recipients.length > 1
+              _vm.recipients && _vm.recipients.length > 1
                 ? _c(
                     "span",
                     {
@@ -83957,7 +83966,18 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.showCard
-      ? _c("div", { staticClass: "px-2" }, [_vm._v("\n        fasdasdf\n    ")])
+      ? _c("div", { staticClass: "px-2" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.messengers, function(messenger) {
+              return _c("li", {
+                key: messenger.id,
+                domProps: { innerHTML: _vm._s(messenger.body) }
+              })
+            }),
+            0
+          )
+        ])
       : _vm._e()
   ])
 }
