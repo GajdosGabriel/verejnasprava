@@ -37,7 +37,7 @@
                 <span class="px-2 cursor-pointer" @click="editAdminPanel = ! editAdminPanel">Upraviť</span>
             </div>
 
-            <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="addRecipient" @editTag="getEditTag"/>
+            <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
 
             <form @submit.prevent="saveMessage">
                 <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
@@ -81,8 +81,15 @@
         },
         created() {
             this.getTags();
+
         },
         methods: {
+            getUsersByTag(tag){
+                axios.get('/tags/' + tag.id +'/users')
+                .then((response) => {
+                    this.recipients.push(...response.data)
+                })
+            },
             clearRecipientsList(){
                 this.recipients = [];
                 this.getTags()

@@ -1,7 +1,7 @@
 <template>
     <div class="ml-2 bg-green-300 rounded-md px-2 mb-2 cursor-pointer flex"
-         @click="deleteRecipient(recipient)" title="Kliknutím odstrániť">
-        {{ recipient.name }}
+         @click="deleteRecipient(recipient)" :title="recipient.email">
+        {{ recipient.first_name }} {{ recipient.last_name }}
     </div>
 </template>
 

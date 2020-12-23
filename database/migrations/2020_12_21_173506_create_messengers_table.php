@@ -16,6 +16,8 @@ class CreateMessengersTable extends Migration
         Schema::create('messengers', function (Blueprint $table) {
             $table->id();
             $table->integer('organization_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('requested_user')->unsigned()->index();
             $table->string('name')->nullable();
             $table->text('body');
             $table->enum('type', ['message', 'free']);

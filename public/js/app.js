@@ -4130,6 +4130,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _new_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new-modal */ "./resources/js/messenger/new-modal.vue");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -4218,6 +4230,15 @@ __webpack_require__.r(__webpack_exports__);
     this.getTags();
   },
   methods: {
+    getUsersByTag: function getUsersByTag(tag) {
+      var _this = this;
+
+      axios.get('/tags/' + tag.id + '/users').then(function (response) {
+        var _this$recipients;
+
+        (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data));
+      });
+    },
     clearRecipientsList: function clearRecipientsList() {
       this.recipients = [];
       this.getTags();
@@ -4238,10 +4259,10 @@ __webpack_require__.r(__webpack_exports__);
       this.showModal = !this.showModal;
     },
     getTags: function getTags() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/tags').then(function (response) {
-        _this.tags = response.data;
+        _this2.tags = response.data;
       });
     },
     saveMessage: function saveMessage() {
@@ -83626,7 +83647,7 @@ var render = function() {
           _c("tag-list", {
             attrs: { tags: _vm.tags, editAdminPanel: _vm.editAdminPanel },
             on: {
-              pushTagToRecipientList: _vm.addRecipient,
+              pushTagToRecipientList: _vm.getUsersByTag,
               editTag: _vm.getEditTag
             }
           }),
@@ -83959,14 +83980,22 @@ var render = function() {
     "div",
     {
       staticClass: "ml-2 bg-green-300 rounded-md px-2 mb-2 cursor-pointer flex",
-      attrs: { title: "Kliknutím odstrániť" },
+      attrs: { title: _vm.recipient.email },
       on: {
         click: function($event) {
           return _vm.deleteRecipient(_vm.recipient)
         }
       }
     },
-    [_vm._v("\n    " + _vm._s(_vm.recipient.name) + "\n")]
+    [
+      _vm._v(
+        "\n    " +
+          _vm._s(_vm.recipient.first_name) +
+          " " +
+          _vm._s(_vm.recipient.last_name) +
+          "\n"
+      )
+    ]
   )
 }
 var staticRenderFns = []
