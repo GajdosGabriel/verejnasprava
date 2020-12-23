@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Tag::class);
     }
 
+    public function messengers()
+    {
+        return $this->belongsToMany(Messenger::class);
+    }
+
 
     public function supports()
     {

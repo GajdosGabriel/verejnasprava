@@ -1,5 +1,5 @@
 <template>
-    <div class="border">
+    <div class="border m-2">
         <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">

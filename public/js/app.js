@@ -4273,8 +4273,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.post('/messengers', {
         body: this.body,
         name: this.name,
-        tags: this.recipients
-      }).then(this.body = null, this.name = null);
+        recipients: this.recipients
+      }).then(this.body = null, this.name = null, this.recipients = null);
     }
   }
 });
@@ -83884,7 +83884,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "border" }, [
+  return _c("div", { staticClass: "border m-2" }, [
     _c(
       "header",
       {

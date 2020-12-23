@@ -17,6 +17,7 @@ class CreateMessengerUserTable extends Migration
             $table->engine = 'MyISAM';
             $table->integer('messenger_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->timestamp('opened')->nullable();
             $table->timestamps();
 
             $table->foreign('messenger_id')->references('id')->on('messengers');

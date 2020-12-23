@@ -121,10 +121,11 @@
                     alert('Správa je prázdna.')
                 }
 
-                axios.post('/messengers', {body: this.body, name: this.name, tags: this.recipients})
+                axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients})
                     .then(
                         this.body = null,
-                        this.name = null
+                        this.name = null,
+                        this.recipients = null,
                     )
             }
         }
