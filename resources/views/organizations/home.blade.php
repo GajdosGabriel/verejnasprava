@@ -17,6 +17,8 @@
             @endrole
         </div>
         <div class="col-span-4 bg-white">
+
+            <mails-card/>
 {{--            @role('admin')--}}
 {{--            <h2>História aktivít</h2>--}}
 {{--            <ul class="list-group">--}}

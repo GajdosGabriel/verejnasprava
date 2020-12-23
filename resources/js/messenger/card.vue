@@ -72,7 +72,7 @@
                 name: "",
                 body: "",
                 recipients: [],
-                showCard: true,
+                showCard: false,
                 showModal: false,
                 editAdminPanel: false,
                 editTag: {},
