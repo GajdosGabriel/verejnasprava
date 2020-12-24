@@ -84101,15 +84101,17 @@ var render = function() {
                     [_vm._v(_vm._s(message.name))]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass:
-                        "px-1 my-1 bg-red-500 text-xs text-white rounded-sm",
-                      attrs: { title: "Potvrdiť prijatie správy" }
-                    },
-                    [_vm._v("Nepotvrdená")]
-                  )
+                  message.pivot.opened == null
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "px-1 my-1 bg-red-500 text-xs text-white rounded-sm",
+                          attrs: { title: "Potvrdiť prijatie správy" }
+                        },
+                        [_vm._v("Nepotvrdená")]
+                      )
+                    : _vm._e()
                 ]
               )
             }),
