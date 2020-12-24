@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function messengers()
     {
-        return $this->belongsToMany(Messenger::class);
+        return $this->belongsToMany(Messenger::class)->latest();
     }
 
 

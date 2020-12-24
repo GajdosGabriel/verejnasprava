@@ -19,7 +19,7 @@ class CreateMessengersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('name')->nullable();
             $table->text('body');
-            $table->enum('type', ['message', 'free']);
+            $table->enum('type', ['message', 'official']);
             $table->timestamp('send')->nullable();
             $table->timestamps();
             $table->softDeletes();

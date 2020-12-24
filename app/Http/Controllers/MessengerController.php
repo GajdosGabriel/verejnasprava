@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Messenger;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class MessengerController extends Controller
 {
@@ -14,6 +15,11 @@ class MessengerController extends Controller
         return auth()->user()->messengers;
     }
 
+    public function update(Messenger $messenger, Request $request)
+    {
+        $messenger->users()->updateExistingPivot(auth()->id(), ['opened' => \Carbon\Carbon::now()]);
+    }
+
     public function store(Request $request)
     {
       $message =  Messenger::create([
@@ -21,7 +27,7 @@ class MessengerController extends Controller
             'name' => $request->input('name'),
             'body' => $request->input('body'),
             'user_id' => auth()->user()->id,
-            'type' => 'message',
+            'type' => 'official',
         ]);
 
         foreach($request->input('recipients') as $recipient){

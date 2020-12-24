@@ -4,10 +4,10 @@
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
                 <svg class="fill-current h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                 </svg>
-                <h3 class="font-semibold cursor-pointer">Správy</h3>
+                <h3 class="font-semibold cursor-pointer">Správy - oficiálne </h3>
             </div>
 
 
@@ -22,37 +22,45 @@
             </svg>
         </header>
 
-        <div class="px-2" v-if="showCard">
-            <ul>
-                <li v-for="messenger in messengers" :key="messenger.id" v-html="messenger.body"></li>
-            </ul>
+        <div class="flex flex-col px-2" v-if="showCard">
+            <div class="flex justify-between py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
+                <div class="cursor-pointer" @click="passMessage(message)">{{ message.name }}</div>
+                <span class="px-1 my-1 bg-red-500 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
+            </div>
         </div>
+
+        <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false"></show-modal>
     </div>
 </template>
 
 <script>
 
 
+    import showModal from './show-modal'
     export default {
-
+        components:{showModal},
         data() {
             return {
                 showCard: true,
-                messengers: []
-
+                showModal: false,
+                messengers: [],
+                message:{}
             }
         },
         created() {
 
             axios.get('/messengers')
-            .then((res) => {
-                this.messengers = res.data
-            })
+                .then((res) => {
+                    this.messengers = res.data
+                })
 
 
         },
         methods: {
-
+            passMessage (message){
+                this.showModal = true;
+                this.message = message
+            }
         }
 
     }

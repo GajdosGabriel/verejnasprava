@@ -20,8 +20,8 @@ class CreateMessengerUserTable extends Migration
             $table->timestamp('opened')->nullable();
             $table->timestamps();
 
-            $table->foreign('messenger_id')->references('id')->on('messengers');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('messenger_id')->references('id')->on('messengers')->onDelete('cascade')->change();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->change();
 
             $table->unique(['user_id', 'messenger_id']);
         });
