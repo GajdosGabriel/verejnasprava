@@ -4268,7 +4268,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     saveMessage: function saveMessage() {
       if (this.body.length < 2) {
-        alert('Správa je prázdna.');
+        return alert('Správa je prázdna.');
+      }
+
+      if (this.recipients.length == 0) {
+        return alert('Nezadali ste prijímatteľa.');
       }
 
       axios.post('/messengers', {
@@ -4543,6 +4547,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -83803,7 +83808,13 @@ var render = function() {
             "div",
             { staticClass: "my-4 p-2 border flex flex-wrap relative" },
             [
-              _vm._v("Komu:\n            "),
+              _vm._v("Komu: "),
+              _vm.recipients.length > 0
+                ? _c("span", [
+                    _vm._v(" (" + _vm._s(_vm.recipients.length) + ")")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _vm._l(_vm.recipients, function(recipient) {
                 return _c(
                   "div",
@@ -84258,11 +84269,21 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-primary",
-                                      attrs: { type: "submit" }
+                                      attrs: {
+                                        type: "submit",
+                                        disabled:
+                                          _vm.message.pivot.opened !== null
+                                      }
                                     },
                                     [
                                       _vm._v(
-                                        "\n                                    Potvrdzujem prijatie\n                                "
+                                        "\n                                    " +
+                                          _vm._s(
+                                            _vm.message.pivot.opened == null
+                                              ? "Beriem a vedomie"
+                                              : "Potvrdené"
+                                          ) +
+                                          "\n                                "
                                       )
                                     ]
                                   ),
@@ -84525,12 +84546,7 @@ var render = function() {
     "div",
     {
       staticClass: "ml-2 bg-green-300 rounded-md px-2 mb-2 cursor-pointer flex",
-      attrs: { title: _vm.recipient.email },
-      on: {
-        click: function($event) {
-          return _vm.deleteRecipient(_vm.recipient)
-        }
-      }
+      attrs: { title: _vm.recipient.email }
     },
     [
       _vm._v(
@@ -84538,7 +84554,19 @@ var render = function() {
           _vm._s(_vm.recipient.first_name) +
           " " +
           _vm._s(_vm.recipient.last_name) +
-          "\n"
+          "\n    "
+      ),
+      _c(
+        "span",
+        {
+          staticClass: "ml-1 text-gray-700 hover:text-gray-900",
+          on: {
+            click: function($event) {
+              return _vm.deleteRecipient(_vm.recipient)
+            }
+          }
+        },
+        [_vm._v("x")]
       )
     ]
   )

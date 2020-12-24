@@ -23,7 +23,7 @@
         </header>
 
         <div v-show="showCard">
-            <div class="my-4 p-2 border flex flex-wrap relative">Komu:
+            <div class="my-4 p-2 border flex flex-wrap relative">Komu: <span v-if="recipients.length > 0"> ({{ recipients.length }})</span>
                 <div v-for="recipient in recipients" :key="recipient.id">
                    <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
                 </div>
@@ -119,7 +119,11 @@
 
             saveMessage() {
                 if (this.body.length < 2) {
-                    alert('Správa je prázdna.')
+                   return alert('Správa je prázdna.')
+                }
+
+                if (this.recipients.length == 0) {
+                  return  alert('Nezadali ste prijímatteľa.')
                 }
 
                 axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients})
