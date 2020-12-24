@@ -4345,16 +4345,28 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get('/messengers').then(function (res) {
-      _this.messengers = res.data;
-    });
+    this.getMessengers();
   },
   methods: {
     passMessage: function passMessage(message) {
       this.showModal = true;
       this.message = message;
+    },
+    saveReading: function saveReading() {
+      var _this = this;
+
+      axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
+        console.log(res.data); // this.messengers.push(res.data)
+
+        _this.getMessengers();
+      }, this.showModal = false);
+    },
+    getMessengers: function getMessengers() {
+      var _this2 = this;
+
+      axios.get('/messengers').then(function (res) {
+        _this2.messengers = res.data;
+      });
     }
   }
 });
@@ -4437,8 +4449,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('emitShowModal', false);
     },
     saveReading: function saveReading() {
-      axios.put('/messengers/' + this.message.id, this.form).then(function (res) {// this.$emit('addNewTag', res.data)
-      }, this.closeModal());
+      this.$emit('saveReading');
     }
   }
 });
@@ -83809,7 +83820,7 @@ var render = function() {
             { staticClass: "my-4 p-2 border flex flex-wrap relative" },
             [
               _vm._v("Komu: "),
-              _vm.recipients.length > 0
+              _vm.recipients && _vm.recipients.length > 0
                 ? _c("span", [
                     _vm._v(" (" + _vm._s(_vm.recipients.length) + ")")
                   ])
@@ -84135,7 +84146,8 @@ var render = function() {
         on: {
           emitShowModal: function($event) {
             _vm.showModal = false
-          }
+          },
+          saveReading: _vm.saveReading
         }
       })
     ],

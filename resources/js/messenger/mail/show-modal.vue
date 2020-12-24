@@ -67,13 +67,7 @@
                 this.$emit('emitShowModal', false)
             },
             saveReading() {
-                axios.put('/messengers/' + this.message.id, this.form)
-                .then(
-                    (res) => {
-                        // this.$emit('addNewTag', res.data)
-                    },
-                    this.closeModal()
-                );
+                this.$emit('saveReading');
             }
 
         }

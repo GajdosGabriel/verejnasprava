@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false"></show-modal>
+        <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false" @saveReading="saveReading"></show-modal>
     </div>
 </template>
 
@@ -48,18 +48,31 @@
             }
         },
         created() {
-
-            axios.get('/messengers')
-                .then((res) => {
-                    this.messengers = res.data
-                })
-
-
+            this.getMessengers();
         },
         methods: {
             passMessage (message){
                 this.showModal = true;
                 this.message = message
+            },
+
+            saveReading() {
+                axios.put('/messengers/' + this.message.id, this.message)
+                    .then(
+                        (res) => {
+                            console.log(res.data);
+                            // this.messengers.push(res.data)
+                            this.getMessengers()
+                        },
+
+                        this.showModal = false
+                    );
+            },
+            getMessengers(){
+                axios.get('/messengers')
+                    .then((res) => {
+                        this.messengers = res.data
+                    })
             }
         }
 

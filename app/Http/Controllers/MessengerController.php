@@ -18,6 +18,7 @@ class MessengerController extends Controller
     public function update(Messenger $messenger, Request $request)
     {
         $messenger->users()->updateExistingPivot(auth()->id(), ['opened' => \Carbon\Carbon::now()]);
+
     }
 
     public function store(Request $request)

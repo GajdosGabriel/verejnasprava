@@ -23,7 +23,7 @@
         </header>
 
         <div v-show="showCard">
-            <div class="my-4 p-2 border flex flex-wrap relative">Komu: <span v-if="recipients.length > 0"> ({{ recipients.length }})</span>
+            <div class="my-4 p-2 border flex flex-wrap relative">Komu: <span v-if="recipients && recipients.length > 0"> ({{ recipients.length }})</span>
                 <div v-for="recipient in recipients" :key="recipient.id">
                    <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
                 </div>
