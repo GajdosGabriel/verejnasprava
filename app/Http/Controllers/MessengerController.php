@@ -18,11 +18,12 @@ class MessengerController extends Controller
     public function update(Messenger $messenger, Request $request)
     {
         $messenger->users()->updateExistingPivot(auth()->id(), ['opened' => \Carbon\Carbon::now()]);
-
+        $messenger->saveFile($request);
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
       $message =  Messenger::create([
             'organization_id' => auth()->user()->active_organization,
             'name' => $request->input('name'),
@@ -35,6 +36,8 @@ class MessengerController extends Controller
             $user = User::find($recipient['id']);
             $user->messengers()->attach($message->id);
         }
+
+        $message->saveFile($request);
 
     }
 }

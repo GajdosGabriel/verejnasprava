@@ -4203,6 +4203,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4219,6 +4229,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       title: "Oznámenia od zamestnávateľa",
       name: "Správa od zamestnávateľa",
       body: "",
+      filename: "",
       recipients: [],
       showCard: false,
       showModal: false,
@@ -4231,6 +4242,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.getTags();
   },
   methods: {
+    handleFileUpload: function handleFileUpload() {
+      this.filename = this.$refs.filename.files[0];
+    },
     getUsersByTag: function getUsersByTag(tag) {
       var _this = this;
 
@@ -4278,7 +4292,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.post('/messengers', {
         body: this.body,
         name: this.name,
-        recipients: this.recipients
+        recipients: this.recipients,
+        filename: this.filename
       }).then(this.body = null, this.name = null, this.recipients = null, this.showCard = false, this.title = 'Správa bola rozoslaná');
     }
   }
@@ -83894,6 +83909,7 @@ var render = function() {
           _c(
             "form",
             {
+              attrs: { enctype: "multipart/form-data" },
               on: {
                 submit: function($event) {
                   $event.preventDefault()
@@ -83934,6 +83950,31 @@ var render = function() {
                   expression: "body"
                 }
               }),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "font-semibold", attrs: { for: "filename" } },
+                  [_vm._v("Prílohy k návrhu")]
+                ),
+                _vm._v(" "),
+                _c("div", {}, [
+                  _c("input", {
+                    ref: "filename",
+                    attrs: {
+                      type: "file",
+                      id: "filename",
+                      multiple: "",
+                      placeholder: "Príloha"
+                    },
+                    on: {
+                      change: function($event) {
+                        return _vm.handleFileUpload()
+                      }
+                    }
+                  })
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "button",

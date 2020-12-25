@@ -39,9 +39,19 @@
 
             <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
 
-            <form @submit.prevent="saveMessage">
+            <form @submit.prevent="saveMessage"  enctype="multipart/form-data">
                 <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
                 <vue-editor v-model="body" class="mb-8"/>
+
+                <div class="form-group">
+                    <label for="filename" class="font-semibold">Prílohy k návrhu</label>
+
+                    <div class="">
+                        <input type="file" id="filename" ref="filename" multiple v-on:change="handleFileUpload()"
+                               placeholder="Príloha">
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary w-full">
                     <div class="flex items-center justify-center">
                     <svg class="fill-current h-5 w-5 text-white mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -72,6 +82,7 @@
                 title: "Oznámenia od zamestnávateľa",
                 name: "Správa od zamestnávateľa",
                 body: "",
+                filename: "",
                 recipients: [],
                 showCard: false,
                 showModal: false,
@@ -85,6 +96,9 @@
 
         },
         methods: {
+            handleFileUpload(){
+                this.filename = this.$refs.filename.files[0];
+            },
             getUsersByTag(tag){
                 axios.get('/tags/' + tag.id +'/users')
                 .then((response) => {
@@ -126,7 +140,7 @@
                   return  alert('Nezadali ste prijímatteľa.')
                 }
 
-                axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients})
+                axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients, filename: this.filename})
                     .then(
                         this.body = null,
                         this.name = null,
