@@ -39,16 +39,15 @@
 
             <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
 
-            <form @submit.prevent="saveMessage"  enctype="multipart/form-data">
+            <form @submit.prevent="saveMessage" enctype="multipart/form-data">
                 <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
                 <vue-editor v-model="body" class="mb-8"/>
 
                 <div class="form-group">
-                    <label for="filename" class="font-semibold">Prílohy k návrhu</label>
 
                     <div class="">
-                        <input type="file" id="filename" ref="filename" multiple v-on:change="handleFileUpload()"
-                               placeholder="Príloha">
+                        <label for="filename" class="font-semibold">Prílohy k návrhu</label>
+                        <input type="file" id="filename" multiple @change="onFileChange" />
                     </div>
                 </div>
 
@@ -82,7 +81,7 @@
                 title: "Oznámenia od zamestnávateľa",
                 name: "Správa od zamestnávateľa",
                 body: "",
-                filename: "",
+                postFormData: new FormData(),
                 recipients: [],
                 showCard: false,
                 showModal: false,
@@ -93,16 +92,20 @@
         },
         created() {
             this.getTags();
-
         },
         methods: {
-            handleFileUpload(){
-                this.filename = this.$refs.filename.files[0];
+            onFileChange(event) {
+                for(var key in event.target.files){
+                    this.postFormData.append('filename[]', event.target.files[key]);
+                }
             },
             getUsersByTag(tag){
                 axios.get('/tags/' + tag.id +'/users')
                 .then((response) => {
-                    this.recipients.push(...response.data)
+                    this.recipients.push(...response.data);
+
+                    // Romve double adresse
+                    this.recipients = Object.values(this.recipients.reduce((acc,cur)=>Object.assign(acc,{[cur.id]:cur}),{}))
                 })
             },
             clearRecipientsList(){
@@ -114,7 +117,6 @@
                 this.tags.splice(this.tags.indexOf(form), 1);
             },
             removeRecipient(recipient){
-                this.tags.push(recipient);
                 this.recipients.splice(this.recipients.indexOf(recipient), 1);
             },
             addNewTag(form) {
@@ -140,7 +142,14 @@
                   return  alert('Nezadali ste prijímatteľa.')
                 }
 
-                axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients, filename: this.filename})
+               //  // Form add file
+               // const formData = new FormData();
+               //  this.postFormData.append('body', this.body);
+               //  this.postFormData.append('name', this.name);
+               //  this.postFormData.append('recipients[]', this.recipients);
+
+                // axios.post('/messengers', this.postFormData)
+                axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients} )
                     .then(
                         this.body = null,
                         this.name = null,

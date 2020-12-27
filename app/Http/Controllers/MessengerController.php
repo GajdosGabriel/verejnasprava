@@ -23,7 +23,7 @@ class MessengerController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+//        dd($request->all());
       $message =  Messenger::create([
             'organization_id' => auth()->user()->active_organization,
             'name' => $request->input('name'),

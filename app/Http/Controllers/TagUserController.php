@@ -13,7 +13,7 @@ class TagUserController extends Controller
     {
         $users = User::whereHas('tags',  function (Builder $query) use ($id){
             $query->whereId($id);
-        })->get();
+        })->get(['id', 'first_name', 'last_name']);
 
         return $users;
     }

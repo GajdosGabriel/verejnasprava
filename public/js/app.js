@@ -4130,6 +4130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _new_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new-modal */ "./resources/js/messenger/new-modal.vue");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_3__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4142,7 +4144,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-//
 //
 //
 //
@@ -4229,7 +4230,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       title: "Oznámenia od zamestnávateľa",
       name: "Správa od zamestnávateľa",
       body: "",
-      filename: "",
+      postFormData: new FormData(),
       recipients: [],
       showCard: false,
       showModal: false,
@@ -4242,8 +4243,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.getTags();
   },
   methods: {
-    handleFileUpload: function handleFileUpload() {
-      this.filename = this.$refs.filename.files[0];
+    onFileChange: function onFileChange(event) {
+      for (var key in event.target.files) {
+        this.postFormData.append('filename[]', event.target.files[key]);
+      }
     },
     getUsersByTag: function getUsersByTag(tag) {
       var _this = this;
@@ -4251,7 +4254,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.get('/tags/' + tag.id + '/users').then(function (response) {
         var _this$recipients;
 
-        (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data));
+        (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data)); // Romve double adresse
+
+
+        _this.recipients = Object.values(_this.recipients.reduce(function (acc, cur) {
+          return Object.assign(acc, _defineProperty({}, cur.id, cur));
+        }, {}));
       });
     },
     clearRecipientsList: function clearRecipientsList() {
@@ -4263,7 +4271,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.tags.splice(this.tags.indexOf(form), 1);
     },
     removeRecipient: function removeRecipient(recipient) {
-      this.tags.push(recipient);
       this.recipients.splice(this.recipients.indexOf(recipient), 1);
     },
     addNewTag: function addNewTag(form) {
@@ -4287,13 +4294,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       if (this.recipients.length == 0) {
         return alert('Nezadali ste prijímatteľa.');
-      }
+      } //  // Form add file
+      // const formData = new FormData();
+      //  this.postFormData.append('body', this.body);
+      //  this.postFormData.append('name', this.name);
+      //  this.postFormData.append('recipients[]', this.recipients);
+      // axios.post('/messengers', this.postFormData)
+
 
       axios.post('/messengers', {
         body: this.body,
         name: this.name,
-        recipients: this.recipients,
-        filename: this.filename
+        recipients: this.recipients
       }).then(this.body = null, this.name = null, this.recipients = null, this.showCard = false, this.title = 'Správa bola rozoslaná');
     }
   }
@@ -83952,26 +83964,19 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "label",
-                  { staticClass: "font-semibold", attrs: { for: "filename" } },
-                  [_vm._v("Prílohy k návrhu")]
-                ),
-                _vm._v(" "),
                 _c("div", {}, [
-                  _c("input", {
-                    ref: "filename",
-                    attrs: {
-                      type: "file",
-                      id: "filename",
-                      multiple: "",
-                      placeholder: "Príloha"
+                  _c(
+                    "label",
+                    {
+                      staticClass: "font-semibold",
+                      attrs: { for: "filename" }
                     },
-                    on: {
-                      change: function($event) {
-                        return _vm.handleFileUpload()
-                      }
-                    }
+                    [_vm._v("Prílohy k návrhu")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "file", id: "filename", multiple: "" },
+                    on: { change: _vm.onFileChange }
                   })
                 ])
               ]),
