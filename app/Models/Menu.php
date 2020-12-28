@@ -10,6 +10,7 @@ class Menu extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
 //    protected $with = ['organizations'];
 
     public function organizations()
@@ -19,6 +20,8 @@ class Menu extends Model
 
     public function scopeHorizontalMenu($query)
     {
-        return $query->whereIn('id', [1,2,3,4,7,8,9,10]);
+//        return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9]);
+        return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9, 10]);
+
     }
 }

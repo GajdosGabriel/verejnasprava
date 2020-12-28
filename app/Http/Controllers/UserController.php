@@ -27,7 +27,10 @@ class UserController extends Controller
     }
 
     public function index() {
-        $users =  Organization::whereId(auth()->user()->active_organization)->first()->users;;
+        $users =  Organization::whereId(auth()->user()->active_organization)->first()->users;
+        if(\Request::wantsJson()) {
+           return $users;
+        }
         return view('user.index', compact('users'));
     }
 

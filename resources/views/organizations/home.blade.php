@@ -10,15 +10,16 @@
     <x-page.page3_3>
 
         <div class="col-span-4 bg-white">
-            @role('admin')
+            @role('super-admin')
             <x-oznamenia>
                 <messenger-card/>
             </x-oznamenia>
             @endrole
         </div>
         <div class="col-span-4 bg-white">
-
+            @role('super-admin')
             <mails-card/>
+            @endrole
 {{--            @role('admin')--}}
 {{--            <h2>História aktivít</h2>--}}
 {{--            <ul class="list-group">--}}
@@ -33,8 +34,8 @@
 
         <div class="col-span-4 bg-white">
             @role('admin')
-            {{--            Funkčné vue --}}
-            {{--            <menu-activators/>--}}
+            {{-- Funkčné vue --}}
+{{--                        <menu-activators/>--}}
             @include('organizations.modul_activator')
             @endrole
         </div>
