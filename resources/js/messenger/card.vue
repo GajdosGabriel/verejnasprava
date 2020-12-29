@@ -45,7 +45,7 @@
                 <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
             </div>
 
-            <user-list :showUsers="showUsers" @addRecipient="addRecipient"/>
+            <user-list :showUsers="showUsers" :users="users" :recipients="recipients" @addRecipient="addRecipient"/>
 
             <form @submit.prevent="saveMessage" enctype="multipart/form-data">
                 <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
@@ -98,21 +98,27 @@
                 showUsers: false,
                 editAdminPanel: false,
                 editTag: {},
-                tags: []
+                tags: [],
+                users: []
             }
         },
         created() {
             this.getTags();
         },
         methods: {
-            toggle(component){
-                if(component == 'showTag') {
-                    this.showTag = ! this.showTag
-                } else {  this.showTag = false}
+            toggle(component) {
+                if (component == 'showTag') {
+                    this.showTag = !this.showTag
+                } else {
+                    this.showTag = false
+                }
 
-                if(component == 'showUsers') {
-                    this.showUsers = ! this.showUsers
-                } else {  this.showUsers = false}
+                if (component == 'showUsers') {
+                    this.showUsers = !this.showUsers;
+                    this.getUsers();
+                } else {
+                    this.showUsers = false
+                }
 
             },
             onFileChange(event) {
@@ -129,7 +135,7 @@
                         this.toggle('zavrietVsetko')
                     })
             },
-                getUsersByTag(tag) {
+            getUsersByTag(tag) {
                 axios.get('/tags/' + tag.id + '/users')
                     .then((response) => {
                         this.recipients.push(...response.data);
@@ -149,7 +155,7 @@
             },
             addRecipient(form) {
                 this.recipients.push(form);
-                this.tags.splice(this.tags.indexOf(form), 1);
+                // this.users.splice(this.users.indexOf(form), 1);
                 this.uniqueRecipients();
             },
             removeRecipient(recipient) {
@@ -161,6 +167,13 @@
             getEditTag(tag) {
                 this.editTag = tag;
                 this.showModal = !this.showModal
+            },
+
+            getUsers() {
+                axios.get('/users')
+                    .then(response => {
+                        this.users = response.data
+                    })
             },
             getTags() {
                 axios.get('/tags')

@@ -7,7 +7,9 @@
             <div class="font-semibold">Všetci užívatelia</div>
             <div class="flex">
                 <div v-for="user in users" :key="user.id" class="flex items-center">
-                    <div @click="addRecipient(user)" class="border-2 px-1 hover:bg-gray-200">
+                    <div @click="addRecipient(user)" class="border-2 px-1 hover:bg-gray-200"
+                    :class="greenBackground(user.id)"
+                    >
                     {{ user.first_name }} {{ user.last_name }}
                     </div>
                 </div>
@@ -20,25 +22,16 @@
 
 <script>
     export default {
-        props:['showUsers'],
-        data() {
-            return {
-                users: []
-            }
-        },
-        created() {
-            this.getUsers()
-        },
+        props:['showUsers', 'users', 'recipients'],
         methods: {
-            getUsers() {
-                axios.get('/users')
-                    .then(response => {
-                        this.users = response.data
-                    })
-            },
             addRecipient(user){
                 this.$emit('addRecipient', user)
 
+            },
+            greenBackground(id){
+                if(this.recipients.find(user => user.id == id)) {
+                    return 'bg-green-300'
+                }
             }
 
         }

@@ -23,7 +23,7 @@
         </header>
 
         <div class="flex flex-col px-2" v-if="showCard">
-            <div class="flex justify-between py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
+            <div class="md:flex justify-between py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
                 <div class="cursor-pointer" @click="passMessage(message)">{{ message.name }}</div>
                 <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-500 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
             </div>

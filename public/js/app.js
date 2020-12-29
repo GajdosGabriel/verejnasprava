@@ -4249,7 +4249,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       showUsers: false,
       editAdminPanel: false,
       editTag: {},
-      tags: []
+      tags: [],
+      users: []
     };
   },
   created: function created() {
@@ -4265,6 +4266,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       if (component == 'showUsers') {
         this.showUsers = !this.showUsers;
+        this.getUsers();
       } else {
         this.showUsers = false;
       }
@@ -4309,8 +4311,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.getTags();
     },
     addRecipient: function addRecipient(form) {
-      this.recipients.push(form);
-      this.tags.splice(this.tags.indexOf(form), 1);
+      this.recipients.push(form); // this.users.splice(this.users.indexOf(form), 1);
+
       this.uniqueRecipients();
     },
     removeRecipient: function removeRecipient(recipient) {
@@ -4323,11 +4325,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.editTag = tag;
       this.showModal = !this.showModal;
     },
-    getTags: function getTags() {
+    getUsers: function getUsers() {
       var _this3 = this;
 
+      axios.get('/users').then(function (response) {
+        _this3.users = response.data;
+      });
+    },
+    getTags: function getTags() {
+      var _this4 = this;
+
       axios.get('/tags').then(function (response) {
-        _this3.tags = response.data;
+        _this4.tags = response.data;
       });
     },
     saveMessage: function saveMessage() {
@@ -4713,26 +4722,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showUsers'],
-  data: function data() {
-    return {
-      users: []
-    };
-  },
-  created: function created() {
-    this.getUsers();
-  },
+  props: ['showUsers', 'users', 'recipients'],
   methods: {
-    getUsers: function getUsers() {
-      var _this = this;
-
-      axios.get('/users').then(function (response) {
-        _this.users = response.data;
-      });
-    },
     addRecipient: function addRecipient(user) {
       this.$emit('addRecipient', user);
+    },
+    greenBackground: function greenBackground(id) {
+      if (this.recipients.find(function (user) {
+        return user.id == id;
+      })) {
+        return 'bg-green-300';
+      }
     }
   }
 });
@@ -83959,7 +83962,11 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("user-list", {
-            attrs: { showUsers: _vm.showUsers },
+            attrs: {
+              showUsers: _vm.showUsers,
+              users: _vm.users,
+              recipients: _vm.recipients
+            },
             on: { addRecipient: _vm.addRecipient }
           }),
           _vm._v(" "),
@@ -84182,7 +84189,7 @@ var render = function() {
                 {
                   key: message.id,
                   staticClass:
-                    "flex justify-between py-0 px-1 hover:bg-gray-100"
+                    "md:flex justify-between py-0 px-1 hover:bg-gray-100"
                 },
                 [
                   _c(
@@ -84367,7 +84374,7 @@ var render = function() {
                                         "\n                                    " +
                                           _vm._s(
                                             _vm.message.pivot.opened == null
-                                              ? "Beriem a vedomie"
+                                              ? "Beriem na vedomie"
                                               : "Potvrdené"
                                           ) +
                                           "\n                                "
@@ -84759,6 +84766,7 @@ var render = function() {
                     "div",
                     {
                       staticClass: "border-2 px-1 hover:bg-gray-200",
+                      class: _vm.greenBackground(user.id),
                       on: {
                         click: function($event) {
                           return _vm.addRecipient(user)

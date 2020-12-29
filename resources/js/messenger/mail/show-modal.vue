@@ -37,7 +37,7 @@
                                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse flex justify-between items-center">
                                     <button type="submit" :disabled="message.pivot.opened !== null"
                                             class="btn btn-primary">
-                                        {{ message.pivot.opened == null ? 'Beriem a vedomie' : 'Potvrdené'}}
+                                        {{ message.pivot.opened == null ? 'Beriem na vedomie' : 'Potvrdené'}}
                                     </button>
 
                                     <button
