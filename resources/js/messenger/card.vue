@@ -33,8 +33,8 @@
 
             <div class="flex justify-between text-xs">
                 <span class="px-2 cursor-pointer" @click="pushAllUsers">všetkým</span>
-                <span class="px-2 cursor-pointer" @click="showTag =! showTag">nálepky</span>
-                <span class="px-2 cursor-pointer" @click="showUsers =! showUsers">zamestnanci</span>
+                <span class="px-2 cursor-pointer" @click="toggle('showTag')">nálepky</span>
+                <span class="px-2 cursor-pointer" @click="toggle('showUsers')">zamestnanci</span>
             </div>
 
             <div v-if="showTag">
@@ -105,6 +105,16 @@
             this.getTags();
         },
         methods: {
+            toggle(component){
+                if(component == 'showTag') {
+                    this.showTag = true
+                } else {  this.showTag = false}
+
+                if(component == 'showUsers') {
+                    this.showUsers = true
+                } else {  this.showUsers = false}
+
+            },
             onFileChange(event) {
                 for (var key in event.target.files) {
                     this.postFormData.append('filename[]', event.target.files[key]);
@@ -116,9 +126,10 @@
                     .then((response) => {
                         this.recipients.push(...response.data);
                         this.uniqueRecipients();
+                        this.toggle('zavrietVsetko')
                     })
             },
-            getUsersByTag(tag) {
+                getUsersByTag(tag) {
                 axios.get('/tags/' + tag.id + '/users')
                     .then((response) => {
                         this.recipients.push(...response.data);

@@ -4256,6 +4256,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.getTags();
   },
   methods: {
+    toggle: function toggle(component) {
+      if (component == 'showTag') {
+        this.showTag = true;
+      } else {
+        this.showTag = false;
+      }
+
+      if (component == 'showUsers') {
+        this.showUsers = true;
+      } else {
+        this.showUsers = false;
+      }
+    },
     onFileChange: function onFileChange(event) {
       for (var key in event.target.files) {
         this.postFormData.append('filename[]', event.target.files[key]);
@@ -4270,6 +4283,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data));
 
         _this.uniqueRecipients();
+
+        _this.toggle('zavrietVsetko');
       });
     },
     getUsersByTag: function getUsersByTag(tag) {
@@ -83879,7 +83894,7 @@ var render = function() {
                 staticClass: "px-2 cursor-pointer",
                 on: {
                   click: function($event) {
-                    _vm.showTag = !_vm.showTag
+                    return _vm.toggle("showTag")
                   }
                 }
               },
@@ -83892,7 +83907,7 @@ var render = function() {
                 staticClass: "px-2 cursor-pointer",
                 on: {
                   click: function($event) {
-                    _vm.showUsers = !_vm.showUsers
+                    return _vm.toggle("showUsers")
                   }
                 }
               },
