@@ -27,11 +27,11 @@
                     <div class="md:font-bold">Modul: {{ $menu->name }}</div>
 
                         @if($menu->organizations->contains($organization->id))
-                        <button class="px-2 py-1 hover:bg-gray-500 border-gray-600 border-2 bg-red-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
+                        <button class="px-2 py-1 hover:bg-red-700 border-gray-600 border-2 bg-red-600 text-white rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
                         Aktivované
                         </button>
                         @else
-                        <button class="px-2 py-1 hover:bg-gray-500 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
+                        <button class="px-2 py-1 hover:bg-red-500 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm" name="modul" value="{{ $menu->id }}" type="submit">
                             Aktivovať
                         </button>
                         @endif

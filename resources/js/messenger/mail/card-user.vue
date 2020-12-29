@@ -1,13 +1,13 @@
 <template>
-    <div class="border m-2">
-        <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
+    <div class="border">
+        <header class="flex justify-between items-center px-2 py-2 cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
                 <svg class="fill-current h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                 </svg>
-                <h3 class="font-semibold cursor-pointer">Správy - oficiálne </h3>
+                <h3 class="font-semibold cursor-pointer">Oznámenia zamestnávateľa</h3>
             </div>
 
 
@@ -69,7 +69,7 @@
                     );
             },
             getMessengers(){
-                axios.get('/messengers')
+                axios.get('/messengers/' + this.user.id)
                     .then((res) => {
                         this.messengers = res.data
                     })

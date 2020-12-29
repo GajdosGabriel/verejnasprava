@@ -53,7 +53,7 @@ Vue.component('item-show', require('./items/itemShow.vue').default);
 Vue.component('meeting-users', require('./meetings/meetingUsers.vue').default);
 Vue.component('menu-activators', require('./menu/activationMenu.vue').default);
 Vue.component('messenger-card', require('./messenger/card.vue').default);
-Vue.component('mails-card', require('./messenger/mail/mails-card.vue').default);
+Vue.component('card-mails-user', require('./messenger/mail/card-user.vue').default);
 
 
 

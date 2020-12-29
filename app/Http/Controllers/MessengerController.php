@@ -10,7 +10,12 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class MessengerController extends Controller
 {
 
-    public function index()
+//    public function index()
+//    {
+//        return auth()->user()->messengers;
+//    }
+
+    public function show(Messenger $messenger)
     {
         return auth()->user()->messengers;
     }

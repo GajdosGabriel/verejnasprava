@@ -12,13 +12,20 @@
         <div class="col-span-4 bg-white">
             @role('super-admin')
             <x-oznamenia>
-                <messenger-card/>
+
             </x-oznamenia>
             @endrole
         </div>
         <div class="col-span-4 bg-white">
             @role('super-admin')
-            <mails-card/>
+            <x-oznamenia>
+                <card-mails-user/>
+            </x-oznamenia>
+
+            <x-oznamenia>
+                <messenger-card/>
+            </x-oznamenia>
+
             @endrole
 {{--            @role('admin')--}}
 {{--            <h2>História aktivít</h2>--}}
