@@ -32,7 +32,7 @@
             </div>
 
             <div class="flex justify-between text-xs">
-                <span class="px-2 cursor-pointer" @click="getAllUsers">všetkým</span>
+                <span class="px-2 cursor-pointer" @click="pushAllUsers">všetkým</span>
                 <span class="px-2 cursor-pointer" @click="showTag =! showTag">nálepky</span>
                 <span class="px-2 cursor-pointer" @click="showUsers =! showUsers">zamestnanci</span>
             </div>
@@ -45,7 +45,7 @@
                 <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
             </div>
 
-            <user-list :showUsers="showUsers"/>
+            <user-list :showUsers="showUsers" @addRecipient="addRecipient"/>
 
             <form @submit.prevent="saveMessage" enctype="multipart/form-data">
                 <input type="text" class="w-full p-1 mt-4 mb-2 border" placeholder="Nadpis správy" v-model="name">
@@ -53,10 +53,10 @@
 
                 <div class="form-group">
 
-                    <div class="">
-                        <label for="filename" class="font-semibold">Prílohy k návrhu</label>
-                        <input type="file" id="filename" multiple @change="onFileChange"/>
-                    </div>
+                    <!--                    <div class="">-->
+                    <!--                        <label for="filename" class="font-semibold">Prílohy k návrhu</label>-->
+                    <!--                        <input type="file" id="filename" multiple @change="onFileChange"/>-->
+                    <!--                    </div>-->
                 </div>
 
                 <button type="submit" class="btn btn-primary w-full">
@@ -111,10 +111,11 @@
                 }
             },
 
-            getAllUsers() {
+            pushAllUsers() {
                 axios.get('/users')
                     .then((response) => {
                         this.recipients.push(...response.data);
+                        this.uniqueRecipients();
                     })
             },
             getUsersByTag(tag) {
@@ -122,10 +123,15 @@
                     .then((response) => {
                         this.recipients.push(...response.data);
 
-                        // Romve double adresse
-                        this.recipients = Object.values(this.recipients.reduce((acc, cur) => Object.assign(acc, {[cur.id]: cur}), {}))
+                        this.uniqueRecipients();
                     })
             },
+
+            uniqueRecipients() {
+                // Remove double address
+                this.recipients = Object.values(this.recipients.reduce((acc, cur) => Object.assign(acc, {[cur.id]: cur}), {}))
+            },
+
             clearRecipientsList() {
                 this.recipients = [];
                 this.getTags()
@@ -133,6 +139,7 @@
             addRecipient(form) {
                 this.recipients.push(form);
                 this.tags.splice(this.tags.indexOf(form), 1);
+                this.uniqueRecipients();
             },
             removeRecipient(recipient) {
                 this.recipients.splice(this.recipients.indexOf(recipient), 1);

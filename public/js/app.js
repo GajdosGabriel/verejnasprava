@@ -4261,13 +4261,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.postFormData.append('filename[]', event.target.files[key]);
       }
     },
-    getAllUsers: function getAllUsers() {
+    pushAllUsers: function pushAllUsers() {
       var _this = this;
 
       axios.get('/users').then(function (response) {
         var _this$recipients;
 
         (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data));
+
+        _this.uniqueRecipients();
       });
     },
     getUsersByTag: function getUsersByTag(tag) {
@@ -4276,13 +4278,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.get('/tags/' + tag.id + '/users').then(function (response) {
         var _this2$recipients;
 
-        (_this2$recipients = _this2.recipients).push.apply(_this2$recipients, _toConsumableArray(response.data)); // Romve double adresse
+        (_this2$recipients = _this2.recipients).push.apply(_this2$recipients, _toConsumableArray(response.data));
 
-
-        _this2.recipients = Object.values(_this2.recipients.reduce(function (acc, cur) {
-          return Object.assign(acc, _defineProperty({}, cur.id, cur));
-        }, {}));
+        _this2.uniqueRecipients();
       });
+    },
+    uniqueRecipients: function uniqueRecipients() {
+      // Remove double address
+      this.recipients = Object.values(this.recipients.reduce(function (acc, cur) {
+        return Object.assign(acc, _defineProperty({}, cur.id, cur));
+      }, {}));
     },
     clearRecipientsList: function clearRecipientsList() {
       this.recipients = [];
@@ -4291,6 +4296,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     addRecipient: function addRecipient(form) {
       this.recipients.push(form);
       this.tags.splice(this.tags.indexOf(form), 1);
+      this.uniqueRecipients();
     },
     removeRecipient: function removeRecipient(recipient) {
       this.recipients.splice(this.recipients.indexOf(recipient), 1);
@@ -4709,6 +4715,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/users').then(function (response) {
         _this.users = response.data;
       });
+    },
+    addRecipient: function addRecipient(user) {
+      this.$emit('addRecipient', user);
     }
   }
 });
@@ -83859,7 +83868,7 @@ var render = function() {
               "span",
               {
                 staticClass: "px-2 cursor-pointer",
-                on: { click: _vm.getAllUsers }
+                on: { click: _vm.pushAllUsers }
               },
               [_vm._v("všetkým")]
             ),
@@ -83938,7 +83947,10 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c("user-list", { attrs: { showUsers: _vm.showUsers } }),
+          _c("user-list", {
+            attrs: { showUsers: _vm.showUsers },
+            on: { addRecipient: _vm.addRecipient }
+          }),
           _vm._v(" "),
           _c(
             "form",
@@ -83985,23 +83997,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", {}, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "font-semibold",
-                      attrs: { for: "filename" }
-                    },
-                    [_vm._v("Prílohy k návrhu")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "file", id: "filename", multiple: "" },
-                    on: { change: _vm.onFileChange }
-                  })
-                ])
-              ]),
+              _c("div", { staticClass: "form-group" }),
               _vm._v(" "),
               _c(
                 "button",
@@ -84733,60 +84729,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    {
-      staticClass: "p-2 relative cursor-pointer",
-      on: {
-        click: function($event) {
-          _vm.showUsers = !_vm.showUsers
-        }
-      }
-    },
-    [
-      _vm.showUsers
-        ? _c("div", [
-            _c("div", { staticClass: "font-semibold" }, [
-              _vm._v("Všetci užívatelia")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "flex" },
-              _vm._l(_vm.users, function(user) {
-                return _c(
-                  "div",
-                  { key: user.id, staticClass: "flex items-center" },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(user.first_name) +
-                        " " +
-                        _vm._s(user.last_name) +
-                        "\n\n                    "
-                    ),
-                    _c("input", {
-                      staticClass: "ml-2",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "px-2 py-1 mt-4 bg-blue-500 rounded-sm absolute bottom-0 right-0 text-sm text-white"
-              },
-              [_vm._v("Uložiť výber")]
-            )
-          ])
-        : _vm._e()
-    ]
-  )
+  return _c("section", { staticClass: "p-2 relative cursor-pointer" }, [
+    _vm.showUsers
+      ? _c("div", [
+          _c("div", { staticClass: "font-semibold" }, [
+            _vm._v("Všetci užívatelia")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex" },
+            _vm._l(_vm.users, function(user) {
+              return _c(
+                "div",
+                { key: user.id, staticClass: "flex items-center" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "border-2 px-1 hover:bg-gray-200",
+                      on: {
+                        click: function($event) {
+                          return _vm.addRecipient(user)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(user.first_name) +
+                          " " +
+                          _vm._s(user.last_name) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
