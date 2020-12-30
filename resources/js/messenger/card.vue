@@ -82,6 +82,7 @@
     import tagModal from './new-modal';
     import userList from './users-list';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
+    import {bus} from '../app';
 
     export default {
         components: {tagList, VueEditor, tagModal, recipientItem, userList},
@@ -199,13 +200,16 @@
 
                 // axios.post('/messengers', this.postFormData)
                 axios.post('/messengers', {body: this.body, name: this.name, recipients: this.recipients})
-                    .then(
+                    .then( (response) => {
+                        bus.$emit('addNewMessage', response.data)
+                    },
                         this.body = null,
                         this.name = null,
                         this.recipients = null,
                         this.showCard = false,
-                        this.title = 'Správa bola rozoslaná'
-                    );
+                        this.title = 'Správa bola rozoslaná',
+                    )
+                ;
             }
         }
 

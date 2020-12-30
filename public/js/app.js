@@ -4130,6 +4130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users-list */ "./resources/js/messenger/users-list.vue");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -4222,6 +4223,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+
 
 
 
@@ -4357,7 +4359,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         body: this.body,
         name: this.name,
         recipients: this.recipients
-      }).then(this.body = null, this.name = null, this.recipients = null, this.showCard = false, this.title = 'Správa bola rozoslaná');
+      }).then(function (response) {
+        _app__WEBPACK_IMPORTED_MODULE_5__["bus"].$emit('addNewMessage', response.data);
+      }, this.body = null, this.name = null, this.recipients = null, this.showCard = false, this.title = 'Správa bola rozoslaná');
     }
   }
 });
@@ -4376,6 +4380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _show_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show-modal */ "./resources/js/messenger/mail/show-modal.vue");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 //
 //
 //
@@ -4414,6 +4419,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4429,7 +4435,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     this.getMessengers();
+    _app__WEBPACK_IMPORTED_MODULE_2__["bus"].$on('addNewMessage', function (data) {
+      _this.getMessengers();
+    });
   },
   methods: {
     dateTime: function dateTime(message) {
@@ -4440,19 +4451,19 @@ __webpack_require__.r(__webpack_exports__);
       this.message = message;
     },
     saveReading: function saveReading() {
-      var _this = this;
+      var _this2 = this;
 
       axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
         console.log(res.data); // this.messengers.push(res.data)
 
-        _this.getMessengers();
+        _this2.getMessengers();
       }, this.showModal = false);
     },
     getMessengers: function getMessengers() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/messengers/' + this.user.id).then(function (res) {
-        _this2.messengers = res.data;
+        _this3.messengers = res.data;
       });
     }
   }
@@ -4469,6 +4480,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -4526,12 +4539,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showModal', 'message'],
   data: function data() {
     return {};
   },
   methods: {
+    dateTime: function dateTime(message) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(message.pivot.created_at).format('DD. MM. YYYY, k:mm');
+    },
     closeModal: function closeModal() {
       this.$emit('emitShowModal', false);
     },
@@ -84214,7 +84236,8 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "md:flex justify-between cursor-pointer",
+                      staticClass:
+                        "md:flex justify-between cursor-pointer items-center",
                       on: {
                         click: function($event) {
                           return _vm.passMessage(message)
@@ -84229,13 +84252,13 @@ var render = function() {
                             "span",
                             {
                               staticClass:
-                                "px-1 my-1 bg-red-500 text-xs text-white rounded-sm",
+                                "px-1 my-1 bg-red-600 text-xs text-white rounded-sm",
                               attrs: { title: "Potvrdiť prijatie správy" }
                             },
                             [_vm._v("Nepotvrdená")]
                           )
                         : _c("span", {
-                            staticClass: "text-sm",
+                            staticClass: "text-xs text-gray-500",
                             attrs: { title: "Doručené" },
                             domProps: {
                               textContent: _vm._s(_vm.dateTime(message))
@@ -84324,34 +84347,45 @@ var render = function() {
                             "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full"
                         },
                         [
-                          _c(
-                            "header",
-                            { staticClass: "flex justify-between w-full" },
-                            [
-                              _c(
-                                "h3",
-                                {
-                                  staticClass:
-                                    "text-lg leading-6 font-medium text-gray-900",
-                                  attrs: { id: "modal-headline" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Správa od\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "cursor-pointer text-gray-500",
-                                  on: { click: _vm.closeModal }
-                                },
-                                [_vm._v("X")]
-                              )
-                            ]
-                          ),
+                          _c("header", { staticClass: "w-full" }, [
+                            _c(
+                              "div",
+                              { staticClass: "flex justify-between border-b" },
+                              [
+                                _c(
+                                  "h3",
+                                  {
+                                    staticClass:
+                                      "text-lg leading-6 font-medium text-gray-900",
+                                    attrs: { id: "modal-headline" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(_vm.message.name) +
+                                        "\n                                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "cursor-pointer text-gray-500",
+                                    on: { click: _vm.closeModal }
+                                  },
+                                  [_vm._v("X")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("span", {
+                              staticClass: "text-sm text-gray-600",
+                              domProps: {
+                                textContent: _vm._s(_vm.dateTime(_vm.message))
+                              }
+                            })
+                          ]),
                           _vm._v(" "),
                           _c(
                             "form",
@@ -84366,9 +84400,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "mt-2" }, [
                                 _c("div", { staticClass: "flex flex-col" }, [
-                                  _c("div", { staticClass: "mb-4  w-full" }, [
-                                    _vm._v(_vm._s(_vm.message.name))
-                                  ]),
+                                  _c("div", { staticClass: "mb-4  w-full" }),
                                   _vm._v(" "),
                                   _c("div", {
                                     staticClass: "mb-4  w-full",

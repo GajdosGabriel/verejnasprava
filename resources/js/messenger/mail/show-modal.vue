@@ -19,17 +19,22 @@
                         <!--                            </svg>-->
                         <!--                        </div>-->
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                            <header class="flex justify-between w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                    Správa od
-                                </h3>
-                                <span @click="closeModal" class="cursor-pointer text-gray-500">X</span>
+                            <header class="w-full">
+                                <div class="flex justify-between border-b">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                                        {{ message.name }}
+                                    </h3>
+                                    <span @click="closeModal" class="cursor-pointer text-gray-500">X</span>
+                                </div>
+
+                                <span class="text-sm text-gray-600" v-text="dateTime(message)"></span>
+
                             </header>
 
                             <form @submit.prevent="saveReading">
                                 <div class="mt-2">
                                     <div class="flex flex-col">
-                                        <div class="mb-4  w-full">{{ message.name }}</div>
+                                        <div class="mb-4  w-full"></div>
                                         <div class="mb-4  w-full" v-html="message.body"></div>
                                     </div>
                                 </div>
@@ -56,6 +61,8 @@
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         props:['showModal', 'message'],
         data() {
@@ -63,6 +70,9 @@
             }
         },
         methods: {
+            dateTime(message) {
+                return moment(message.pivot.created_at).format('DD. MM. YYYY, k:mm')
+            },
             closeModal(){
                 this.$emit('emitShowModal', false)
             },

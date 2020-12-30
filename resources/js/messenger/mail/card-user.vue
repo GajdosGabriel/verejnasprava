@@ -24,10 +24,10 @@
 
         <div class="flex flex-col px-2" v-if="showCard">
             <div class="py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
-                <div @click="passMessage(message)" class="md:flex justify-between cursor-pointer">
+                <div @click="passMessage(message)" class="md:flex justify-between cursor-pointer items-center">
                     <div>{{ message.name }}</div>
-                    <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-500 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
-                    <span v-else title="Doručené" class="text-sm" v-text="dateTime(message)"></span>
+                    <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-600 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
+                    <span v-else title="Doručené" class="text-xs text-gray-500" v-text="dateTime(message)"></span>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 
     import showModal from './show-modal';
     import moment from 'moment';
-
+    import {bus} from '../../app';
     export default {
         components: {showModal},
         data() {
@@ -54,6 +54,9 @@
         },
         created() {
             this.getMessengers();
+            bus.$on('addNewMessage', (data) => {
+                this.getMessengers();
+            });
         },
         methods: {
             dateTime(message) {
