@@ -72,7 +72,7 @@
             </form>
         </div>
 
-        <tag-modal :showModal="showModal" :passEditTag="editTag" @addNewTag="addNewTag" @emitShowModal="showModal = false"/>
+        <tag-modal :showModal="showModal" :form="editTag" @addNewTag="addNewTag" @emitShowModal="showModal = false"/>
     </div>
 </template>
 

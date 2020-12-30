@@ -20,9 +20,7 @@
                         <!--                        </div>-->
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                             <header class="flex justify-between w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                    Nový tág
-                                </h3>
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline" v-text="title"></h3>
                                 <span @click="closeModal" class="cursor-pointer text-gray-500">X</span>
                             </header>
 
@@ -44,9 +42,16 @@
                                     </button>
 
                                     <button
+                                        v-if="! Object.keys(this.form).length"
                                         @click="closeModal"
                                         class="btn btn-default">
                                         Zrušiť
+                                    </button>
+
+                                    <button v-else
+                                            @click="deleteTag"
+                                            class="btn btn-default">
+                                        Zmazať
                                     </button>
                                 </div>
                             </form>
@@ -60,29 +65,40 @@
 
 <script>
     export default {
-        props:['showModal', 'passEditTag'],
-        data() {
-            return {
-                form: {},
+        props: ['showModal', 'form'],
+        computed: {
+            title() {
+                return Object.keys(this.form).length ? 'Upraviť tág' : 'Nový tág'
             }
         },
         methods: {
-            closeModal(){
-                this.$emit('emitShowModal', false)
+            closeModal() {
+                this.$emit('emitShowModal', false);
+                this.form.name = '';
+                this.form.id = '';
             },
             saveTag() {
                 axios.post('tags', this.form)
-                .then(
-                    (res) => {
-                        this.$emit('addNewTag', res.data)
-                    },
+                    .then(
+                        (res) => {
+                            this.$emit('addNewTag', res.data)
+                        },
 
-                    this.form = {}
+                        this.form = {}
+                    );
+                this.closeModal()
+            },
+            deleteTag() {
+                axios.delete('tags', this.form)
+                    .then(
+                        (res) => {
+                            this.$emit('addNewTag', res.data)
+                        },
 
-                );
-                    this.closeModal()
+                        this.form = {}
+                    );
+                this.closeModal()
             }
-
         }
     }
 </script>

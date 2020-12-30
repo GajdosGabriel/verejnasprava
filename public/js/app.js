@@ -4604,22 +4604,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showModal', 'passEditTag'],
-  data: function data() {
-    return {
-      form: {}
-    };
+  props: ['showModal', 'form'],
+  computed: {
+    title: function title() {
+      return Object.keys(this.form).length ? 'Upraviť tág' : 'Nový tág';
+    }
   },
   methods: {
     closeModal: function closeModal() {
       this.$emit('emitShowModal', false);
+      this.form.name = '';
+      this.form.id = '';
     },
     saveTag: function saveTag() {
       var _this = this;
 
       axios.post('tags', this.form).then(function (res) {
         _this.$emit('addNewTag', res.data);
+      }, this.form = {});
+      this.closeModal();
+    },
+    deleteTag: function deleteTag() {
+      var _this2 = this;
+
+      axios["delete"]('tags', this.form).then(function (res) {
+        _this2.$emit('addNewTag', res.data);
       }, this.form = {});
       this.closeModal();
     }
@@ -84068,7 +84083,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("tag-modal", {
-        attrs: { showModal: _vm.showModal, passEditTag: _vm.editTag },
+        attrs: { showModal: _vm.showModal, form: _vm.editTag },
         on: {
           addNewTag: _vm.addNewTag,
           emitShowModal: function($event) {
@@ -84484,19 +84499,12 @@ var render = function() {
                             "header",
                             { staticClass: "flex justify-between w-full" },
                             [
-                              _c(
-                                "h3",
-                                {
-                                  staticClass:
-                                    "text-lg leading-6 font-medium text-gray-900",
-                                  attrs: { id: "modal-headline" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Nový tág\n                            "
-                                  )
-                                ]
-                              ),
+                              _c("h3", {
+                                staticClass:
+                                  "text-lg leading-6 font-medium text-gray-900",
+                                attrs: { id: "modal-headline" },
+                                domProps: { textContent: _vm._s(_vm.title) }
+                              }),
                               _vm._v(" "),
                               _c(
                                 "span",
@@ -84577,18 +84585,31 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-default",
-                                      on: { click: _vm.closeModal }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    Zrušiť\n                                "
+                                  !Object.keys(this.form).length
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-default",
+                                          on: { click: _vm.closeModal }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                    Zrušiť\n                                "
+                                          )
+                                        ]
                                       )
-                                    ]
-                                  )
+                                    : _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-default",
+                                          on: { click: _vm.deleteTag }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                    Zmazať\n                                "
+                                          )
+                                        ]
+                                      )
                                 ]
                               )
                             ]
