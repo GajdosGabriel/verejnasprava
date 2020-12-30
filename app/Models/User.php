@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function messengers()
     {
-        return $this->belongsToMany(Messenger::class)->latest()->withPivot('opened');
+        return $this->belongsToMany(Messenger::class)->latest()->withPivot(['opened', 'created_at']);
     }
 
 

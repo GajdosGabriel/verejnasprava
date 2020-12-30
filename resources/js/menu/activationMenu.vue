@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-sm m-5 border-b-2"  @click="toggle">
+    <div class="max-w-sm border-b-2"  @click="toggle">
         <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
             <h2 class="text-lg">Aktivácia modulov</h2>
             <span class="cursor-pointer">
@@ -41,7 +41,7 @@
             return {
                 menus: {},
                 active: {},
-                isOpen: true,
+                isOpen: false,
             }
         },
 
@@ -55,7 +55,6 @@
             getIndex() {
                 axios.get('/api/menus')
                     .then((response) => {
-                        console.log(response);
                         this.menus = response.data[0];
                         this.active = response.data[1].menus
                     })
@@ -77,7 +76,7 @@
 
 <style>
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s;
+        transition: opacity .2s;
     }
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;

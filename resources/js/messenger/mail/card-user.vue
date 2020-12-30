@@ -23,9 +23,12 @@
         </header>
 
         <div class="flex flex-col px-2" v-if="showCard">
-            <div class="md:flex justify-between py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
-                <div class="cursor-pointer" @click="passMessage(message)">{{ message.name }}</div>
-                <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-500 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
+            <div class="py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
+                <div @click="passMessage(message)" class="md:flex justify-between cursor-pointer">
+                    <div>{{ message.name }}</div>
+                    <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-500 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
+                    <span v-else title="Doručené" class="text-sm" v-text="dateTime(message)"></span>
+                </div>
             </div>
         </div>
 
@@ -36,22 +39,27 @@
 <script>
 
 
-    import showModal from './show-modal'
+    import showModal from './show-modal';
+    import moment from 'moment';
+
     export default {
-        components:{showModal},
+        components: {showModal},
         data() {
             return {
                 showCard: true,
                 showModal: false,
                 messengers: [],
-                message:{}
+                message: {}
             }
         },
         created() {
             this.getMessengers();
         },
         methods: {
-            passMessage (message){
+            dateTime(message) {
+                return moment(message.pivot.created_at).format('DD. MM. YYYY, k:mm')
+            },
+            passMessage(message) {
                 this.showModal = true;
                 this.message = message
             },
@@ -68,7 +76,7 @@
                         this.showModal = false
                     );
             },
-            getMessengers(){
+            getMessengers() {
                 axios.get('/messengers/' + this.user.id)
                     .then((res) => {
                         this.messengers = res.data

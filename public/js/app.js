@@ -4084,7 +4084,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       menus: {},
       active: {},
-      isOpen: true
+      isOpen: false
     };
   },
   created: function created() {
@@ -4096,7 +4096,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/menus').then(function (response) {
-        console.log(response);
         _this.menus = response.data[0];
         _this.active = response.data[1].menus;
       });
@@ -4375,6 +4374,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _show_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show-modal */ "./resources/js/messenger/mail/show-modal.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
 //
 //
 //
@@ -4411,6 +4415,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     showModal: _show_modal__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -4427,6 +4432,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getMessengers();
   },
   methods: {
+    dateTime: function dateTime(message) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(message.pivot.created_at).format('DD. MM. YYYY, k:mm');
+    },
     passMessage: function passMessage(message) {
       this.showModal = true;
       this.message = message;
@@ -8345,7 +8353,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n  transition: opacity .3s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n  transition: opacity .2s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -83618,7 +83626,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-sm m-5 border-b-2", on: { click: _vm.toggle } },
+    { staticClass: "max-w-sm border-b-2", on: { click: _vm.toggle } },
     [
       _c(
         "div",
@@ -84201,36 +84209,40 @@ var render = function() {
             _vm._l(_vm.messengers, function(message) {
               return _c(
                 "div",
-                {
-                  key: message.id,
-                  staticClass:
-                    "md:flex justify-between py-0 px-1 hover:bg-gray-100"
-                },
+                { key: message.id, staticClass: "py-0 px-1 hover:bg-gray-100" },
                 [
                   _c(
                     "div",
                     {
-                      staticClass: "cursor-pointer",
+                      staticClass: "md:flex justify-between cursor-pointer",
                       on: {
                         click: function($event) {
                           return _vm.passMessage(message)
                         }
                       }
                     },
-                    [_vm._v(_vm._s(message.name))]
-                  ),
-                  _vm._v(" "),
-                  message.pivot.opened == null
-                    ? _c(
-                        "span",
-                        {
-                          staticClass:
-                            "px-1 my-1 bg-red-500 text-xs text-white rounded-sm",
-                          attrs: { title: "Potvrdiť prijatie správy" }
-                        },
-                        [_vm._v("Nepotvrdená")]
-                      )
-                    : _vm._e()
+                    [
+                      _c("div", [_vm._v(_vm._s(message.name))]),
+                      _vm._v(" "),
+                      message.pivot.opened == null
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "px-1 my-1 bg-red-500 text-xs text-white rounded-sm",
+                              attrs: { title: "Potvrdiť prijatie správy" }
+                            },
+                            [_vm._v("Nepotvrdená")]
+                          )
+                        : _c("span", {
+                            staticClass: "text-sm",
+                            attrs: { title: "Doručené" },
+                            domProps: {
+                              textContent: _vm._s(_vm.dateTime(message))
+                            }
+                          })
+                    ]
+                  )
                 ]
               )
             }),
