@@ -35,6 +35,7 @@ Vue.prototype.$auth = new Auth(window.App.user);
 Vue.component('order-index', require('./components/Order-index.vue').default);
 Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
 Vue.component('contact-table', require('./contacts/contactTable.vue').default);
+Vue.component('new-contact-button', require('./contacts/newContactButton.vue').default);
 Vue.component('nav-drop-down', require('./modules/navigation/navDropDown.vue').default);
 Vue.component('nav-items', require('./modules/navigation/navItems.vue').default);
 Vue.component('flash-message', require('./modules/notification/flashMessage.vue').default);

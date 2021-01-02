@@ -4,9 +4,8 @@
         <div class="flex justify-between py-5">
             <h1 class="page-title">Kontakty</h1>
 
-            <button v-if="$auth.isAdmin()" @click="newContactToggle" class="btn btn-primary">
-                Nový kontakt
-            </button>
+            <new-contact-button/>
+
         </div>
 
         <input type="text" v-model="search" class="p-1 border-2 border-gray-300 rounded-sm"
@@ -47,12 +46,13 @@
         <paginator :data="contacts" :url="url"/>
 
         <form-edit></form-edit>
-        <form-create></form-create>
+
     </div>
 </template>
 
 <script>
-    import formCreate from './formCreate.vue';
+
+    import newContactButton from './newContactButton.vue';
     import formEdit from './formEdit.vue';
     import paginator from './pagination.vue';
     import numeral from 'numeral';
@@ -63,7 +63,7 @@
     const { mapActions } = createNamespacedHelpers('contacts');
 
     export default {
-        components: {formCreate, paginator, formEdit },
+        components: {paginator, formEdit, newContactButton },
         data: function () {
             return {
                 numeral: numeral,

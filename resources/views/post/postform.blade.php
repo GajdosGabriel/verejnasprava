@@ -17,7 +17,6 @@
         </div>
 
     </div>
-
     <div class="md:w-1/3 p-2 {{ $errors->has('company_id') ? ' has-error' : '' }}">
         <label class="input-label">Dodávateľ</label>
         <div class="relative">

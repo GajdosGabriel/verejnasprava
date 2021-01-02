@@ -69,11 +69,19 @@
             return {
             }
         },
+        mounted() {
+            document.addEventListener("keyup", evt => {
+                if (evt.keyCode === 27) {
+                    this.$emit('emitShowModal', false);
+                    // console.log(String.fromCharCode(evt.keyCode));
+                }
+            });
+        },
         methods: {
             dateTime(message) {
                 return moment(message.pivot.created_at).format('DD. MM. YYYY, k:mm')
             },
-            closeModal(){
+            closeModal(event){
                 this.$emit('emitShowModal', false)
             },
             saveReading() {
