@@ -1,9 +1,9 @@
 <template>
     <div>
 
-        <button v-if="$auth.isAdmin()" @click="newContactToggle" class="btn btn-primary">
-            Nový kontakt
-        </button>
+        <span v-if="$auth.isAdmin()" @click="newContactToggle" class="text-xs cursor-pointer">
+            Nový
+        </span>
 
         <form-create></form-create>
     </div>

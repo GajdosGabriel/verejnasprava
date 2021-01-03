@@ -23,7 +23,7 @@
         </header>
 
         <div class="flex flex-col px-2" v-if="showCard">
-            <div class="py-0 px-1 hover:bg-gray-100" v-for="message in messengers" :key="message.id">
+            <div class="py-0 px-1 hover:bg-gray-100" v-for="message in messengers.data" :key="message.id">
                 <div @click="passMessage(message)" class="md:flex justify-between cursor-pointer items-center">
                     <div>{{ message.name }}</div>
                     <span v-if="message.pivot.opened == null" class="px-1 my-1 bg-red-600 text-xs text-white rounded-sm" title="Potvrdiť prijatie správy">Nepotvrdená</span>
@@ -31,6 +31,8 @@
                 </div>
             </div>
         </div>
+
+        <pagination :data="messengers" @urlMessengers="getMessengers" v-if="messengers.data && messengers.data.length"/>
 
         <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false" @saveReading="saveReading"></show-modal>
     </div>
@@ -42,8 +44,9 @@
     import showModal from './show-modal';
     import moment from 'moment';
     import {bus} from '../../app';
+    import pagination from "../pagination";
     export default {
-        components: {showModal},
+        components: {showModal, pagination},
         data() {
             return {
                 showCard: true,
@@ -79,8 +82,14 @@
                         this.showModal = false
                     );
             },
-            getMessengers() {
-                axios.get('/messengers/' + this.user.id)
+            getMessengers(url) {
+                if (url == null){
+                   var activeUrl = '/messengers/' + this.user.id
+                } else {
+                   var activeUrl = url
+                }
+
+                    axios.get(activeUrl)
                     .then((res) => {
                         this.messengers = res.data
                     })

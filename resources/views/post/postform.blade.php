@@ -18,7 +18,11 @@
 
     </div>
     <div class="md:w-1/3 p-2 {{ $errors->has('company_id') ? ' has-error' : '' }}">
-        <label class="input-label">Dodávateľ</label>
+        <div class="flex justify-between">
+            <label class="input-label">Dodávateľ</label>
+            <new-contact-button/>
+        </div>
+
         <div class="relative">
             <select name="contact_id"
                     class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"

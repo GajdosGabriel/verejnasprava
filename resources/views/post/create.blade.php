@@ -10,11 +10,8 @@
 
 @section('content')
     <div class="container min-h-screen p-6 mx-auto ">
-
-        <div class="flex justify-between md:w-2/3">
-            <h1 class="page-title">Vytvoriť doklad</h1>
-            <new-contact-button/>
-        </div>
+        
+        <h1 class="page-title">Vytvoriť doklad</h1>
 
 
         <form class="md:w-2/3"
