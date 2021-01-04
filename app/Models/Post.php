@@ -17,7 +17,7 @@ class Post extends Model
 {
     use RecordsActivity, FileUpload, SoftDeletes, HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
     protected $with = ['category', 'files', 'contact', 'organization'];
     protected $casts = [
         'date_in' => 'date'

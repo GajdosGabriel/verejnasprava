@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ['id'];
     protected $with = ['users'];
 
     public function users()

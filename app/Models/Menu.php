@@ -9,7 +9,7 @@ class Menu extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 //    protected $with = ['organizations'];
 

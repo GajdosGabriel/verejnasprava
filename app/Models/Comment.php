@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public function fileable()
     {

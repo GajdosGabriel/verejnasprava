@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Messenger extends Model
 {
     use HasFactory, FileUpload;
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 //    protected $with = ['users'];
 

@@ -11,7 +11,7 @@ class Organization extends Model
 {
     use SoftDeletes,  RecordsActivity;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     protected $with = ['contacts', 'menus'];
 

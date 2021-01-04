@@ -10,7 +10,7 @@ class Activity extends Model
     use SoftDeletes;
 
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 
     public function subject()

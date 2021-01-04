@@ -13,7 +13,7 @@ class Contact extends Model
 {
     use RecordsActivity, SoftDeletes, Notifiable, HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 
     public function user()
