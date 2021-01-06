@@ -30,9 +30,10 @@
                     <span v-else title="Doručené" class="text-xs text-gray-500" v-text="dateTime(message)"></span>
                 </div>
             </div>
-        </div>
 
-        <pagination :data="messengers" @urlMessengers="getMessengers" v-if="messengers.data && messengers.data.length"/>
+            <pagination :data="messengers" @urlMessengers="getMessengers" v-if="messengers.data && messengers.data.length"/>
+
+        </div>
 
         <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false" @saveReading="saveReading"></show-modal>
     </div>

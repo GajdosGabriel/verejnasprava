@@ -4464,6 +4464,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -84363,56 +84364,61 @@ var render = function() {
         ? _c(
             "div",
             { staticClass: "flex flex-col px-2" },
-            _vm._l(_vm.messengers.data, function(message) {
-              return _c(
-                "div",
-                { key: message.id, staticClass: "py-0 px-1 hover:bg-gray-100" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "md:flex justify-between cursor-pointer items-center",
-                      on: {
-                        click: function($event) {
-                          return _vm.passMessage(message)
+            [
+              _vm._l(_vm.messengers.data, function(message) {
+                return _c(
+                  "div",
+                  {
+                    key: message.id,
+                    staticClass: "py-0 px-1 hover:bg-gray-100"
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "md:flex justify-between cursor-pointer items-center",
+                        on: {
+                          click: function($event) {
+                            return _vm.passMessage(message)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("div", [_vm._v(_vm._s(message.name))]),
-                      _vm._v(" "),
-                      message.pivot.opened == null
-                        ? _c(
-                            "span",
-                            {
-                              staticClass:
-                                "px-1 my-1 bg-red-600 text-xs text-white rounded-sm",
-                              attrs: { title: "Potvrdiť prijatie správy" }
-                            },
-                            [_vm._v("Nepotvrdená")]
-                          )
-                        : _c("span", {
-                            staticClass: "text-xs text-gray-500",
-                            attrs: { title: "Doručené" },
-                            domProps: {
-                              textContent: _vm._s(_vm.dateTime(message))
-                            }
-                          })
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
+                      },
+                      [
+                        _c("div", [_vm._v(_vm._s(message.name))]),
+                        _vm._v(" "),
+                        message.pivot.opened == null
+                          ? _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "px-1 my-1 bg-red-600 text-xs text-white rounded-sm",
+                                attrs: { title: "Potvrdiť prijatie správy" }
+                              },
+                              [_vm._v("Nepotvrdená")]
+                            )
+                          : _c("span", {
+                              staticClass: "text-xs text-gray-500",
+                              attrs: { title: "Doručené" },
+                              domProps: {
+                                textContent: _vm._s(_vm.dateTime(message))
+                              }
+                            })
+                      ]
+                    )
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _vm.messengers.data && _vm.messengers.data.length
+                ? _c("pagination", {
+                    attrs: { data: _vm.messengers },
+                    on: { urlMessengers: _vm.getMessengers }
+                  })
+                : _vm._e()
+            ],
+            2
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.messengers.data && _vm.messengers.data.length
-        ? _c("pagination", {
-            attrs: { data: _vm.messengers },
-            on: { urlMessengers: _vm.getMessengers }
-          })
         : _vm._e(),
       _vm._v(" "),
       _c("show-modal", {
