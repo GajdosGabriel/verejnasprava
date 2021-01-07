@@ -44,6 +44,24 @@
             @empty
                 Nemáte založené žiadne role.
             @endforelse
+
+            @role('super-admin')
+            @forelse(Spatie\Permission\Models\Role::all() as  $role)
+                @continue($role->name == 'admin')
+                <div class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
+                    <label for="role{{ $role->id }}" class="col-form-label"></label>
+                    <div class="form-check form-check-inline whitespace-no-wrap">
+                        <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}"
+                               value="{{ $role->id }}"
+                               @if($user->roles->contains($role->id))  checked @endif
+                        >
+                        <label class="input-label" for="role">{{ $role->name }}</label>
+                    </div>
+                </div>
+            @empty
+                Nemáte založené žiadne role.
+            @endforelse
+            @endrole
         </div>
     </div>
 </div>
