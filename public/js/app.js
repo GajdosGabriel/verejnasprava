@@ -4124,8 +4124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      menus: {},
-      active: {},
+      menus: [],
+      active: [],
       isOpen: false
     };
   },
@@ -4137,7 +4137,7 @@ __webpack_require__.r(__webpack_exports__);
     getIndex: function getIndex() {
       var _this = this;
 
-      axios.get('/api/menus').then(function (response) {
+      axios.get('/api/menus/' + this.user.active_organization).then(function (response) {
         _this.menus = response.data[0];
         _this.active = response.data[1].menus;
       });

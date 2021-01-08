@@ -39,8 +39,8 @@
 
         data: function () {
             return {
-                menus: {},
-                active: {},
+                menus: [],
+                active: [],
                 isOpen: false,
             }
         },
@@ -53,7 +53,7 @@
         },
         methods: {
             getIndex() {
-                axios.get('/api/menus')
+                axios.get('/api/menus/' + this.user.active_organization)
                     .then((response) => {
                         this.menus = response.data[0];
                         this.active = response.data[1].menus

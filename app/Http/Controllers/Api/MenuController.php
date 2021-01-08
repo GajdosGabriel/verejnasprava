@@ -9,17 +9,16 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function index(){
+    public function show($id){
         $menu = Menu::horizontalMenu()->get();
-        $organization = Organization::find(1);
+        $organization = Organization::find($id);
 
         return response([ $menu, $organization]);
     }
 
-    public function update($menus, Request $request)
+    public function update($id, Request $request)
     {
-        $organization = Organization::find($menus);
+        $organization = Organization::find($id);
         $organization->menus()->toggle($request->input('modul'));
-        return back();
     }
 }
