@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-3">
+    <nav v-cloak class="flex items-center justify-between flex-wrap bg-teal-500 p-3">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
             <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
                  xmlns="http://www.w3.org/2000/svg">
@@ -7,7 +7,7 @@
                     d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/>
             </svg>
             <span class="font-semibold text-xl tracking-tight">
-            <a href="#">
+            <a :href="baseUrl + 'organizations'">
                 {{ organization.name }}
             </a>
         </span>
@@ -32,7 +32,7 @@
                 <a v-for="menu in horizontalMenu" :key="menu.id"
                    :class="isOpen ? 'block' : 'hidden'"
                    class="text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
-                   href="#">
+                   :href="baseUrl + menu.url">
                     {{ menu.name }}
                 </a>
 
@@ -55,10 +55,11 @@
 
                         <li v-for="menu in verticalMenu" :key="menu.id">
                             <a class="rounded bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left"
-                               href="#">{{ menu.name }}</a>
+                               :href="baseUrl + menu.url">{{ menu.name }}</a>
                         </li>
 
-                        <!-- <li>@include('user._logout')</li>-->
+                         <li class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left" @click="logout">Odhlásiť sa</li>
+
                     </ul>
 
                 </button>
@@ -69,12 +70,15 @@
 </template>
 
 <script>
+    import {bus} from '../../app';
+
     export default {
         data() {
             return {
                 menus: [],
                 active: [],
                 organization: {},
+                baseUrl: window.App.baseUrl,
                 isOpen: false,
                 dropdown: false,
             }
@@ -97,6 +101,11 @@
                         this.active = response.data[1].menus
                     })
             },
+
+            logout() {
+                axios.post('/logout')
+                    .then(() => location.href = '/')
+            }
         },
         created: function () {
             this.getIndex();
@@ -105,14 +114,23 @@
             window.addEventListener('click', function (e) {
                 // close dropdown when clicked outside
                 if (!self.$el.contains(e.target)) {
-                    self.isOpen = false
+                    self.isOpen = false;
                     self.dropdown = false
                 }
+            });
+
+            bus.$on('reloadMenu', () => {
+                this.getIndex();
             })
         },
 
     }
 </script>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 
 
 

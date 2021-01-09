@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-sm border-b-2"  @click="toggle">
-        <div class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
+    <div class="max-w-sm border-b-2" >
+        <div @click="toggle" class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
             <h2 class="text-lg">Aktivácia modulov</h2>
             <span class="cursor-pointer">
                  <div class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="md:flex w-full justify-between items-center">
                         <div class="md:font-bold">Modul: {{ menu.name }}</div>
-                        <button class="px-2 py-1 hover:bg-gray-500 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm"
+                        <button class="px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm"
                                 :class="{'bg-red-700 font-semibold': active.find(o => o.id == menu.id)}"
                                 @click="saveModul(menu.id)">
                             {{ active.find(o => o.id == menu.id) ? 'Aktivne' : 'Aktivovať' }}
@@ -50,9 +50,6 @@
         created: function () {
             this.getIndex();
         },
-        computed: {
-
-        },
         methods: {
             getIndex() {
                 axios.get('/api/menus/' + this.user.active_organization)
@@ -66,9 +63,11 @@
                 axios.put('/api/menus/' + this.user.active_organization, {modul: id})
                     .then((response) => {
                         // window.location.reload();
-                        bus.$emit('reloadMenu')
+                        bus.$emit('reloadMenu');
+                        this.getIndex();
                     })
             },
+
             toggle() {
                 this.isOpen = !this.isOpen
             }

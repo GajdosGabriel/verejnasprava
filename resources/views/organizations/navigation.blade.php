@@ -26,12 +26,12 @@
 {{--        </div>--}}
 {{--        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">--}}
 {{--            <div class="text-sm lg:flex-grow">--}}
-{{--                --}}{{--  // --}}
+{{--                  //--}}
 {{--            </div>--}}
 
 {{--            <div class="">--}}
 
-{{--                --}}{{-- Header Menu Horizontal --}}
+{{--                 Header Menu Horizontal--}}
 {{--                @forelse($organization->menus as $menu)--}}
 {{--                    @continue($menu->type == 'vertical')--}}
 {{--                    <a :class="isOpen ? 'block' : 'hidden'"--}}
@@ -48,7 +48,7 @@
 {{--                        class=" mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 focus:outline-none">--}}
 {{--                    <div class="flex items-center">--}}
 {{--                        @{{ fullName }}--}}
-{{--                        --}}{{--                            {{ auth()->user()->full_name() }}--}}
+{{--                                                    {{ auth()->user()->full_name() }}--}}
 {{--                        <span class="ml-2"> <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180--}}
 {{--                                                    transition duration-150 ease-in-out"--}}
 {{--                                                 xmlns="http://www.w3.org/2000/svg"--}}
@@ -58,9 +58,9 @@
 {{--                    </div>--}}
 
 
-{{--                    --}}{{-- Dropdown component  --}}
+{{--                     Dropdown component--}}
 {{--                    <ul v-show="dropdown" class="dropdown-menu absolute text-gray-700 pt-1 my-2" style="z-index: 99">--}}
-{{--                        --}}{{-- Header Menu Vertical --}}
+{{--                         Header Menu Vertical--}}
 {{--                        @forelse($organization->menus as $menu)--}}
 {{--                            @continue($menu->type == 'horizontal')--}}
 {{--                            <li>--}}
@@ -72,7 +72,7 @@
 
 {{--                        <li>@include('user._logout')</li>--}}
 {{--                    </ul>--}}
-{{--                    --}}{{-- End Dropdown component  --}}
+{{--                     End Dropdown component--}}
 {{--                </button>--}}
 {{--            </div>--}}
 
