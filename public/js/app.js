@@ -104229,8 +104229,7 @@ Vue.component('order-group', __webpack_require__(/*! ./modules/order/OrderGroup.
 Vue.component('contact-table', __webpack_require__(/*! ./contacts/contactTable.vue */ "./resources/js/contacts/contactTable.vue")["default"]);
 Vue.component('new-contact-button', __webpack_require__(/*! ./contacts/newContactButton.vue */ "./resources/js/contacts/newContactButton.vue")["default"]);
 Vue.component('navigation-horizontal', __webpack_require__(/*! ./modules/navigation/NavigationHorizontal.vue */ "./resources/js/modules/navigation/NavigationHorizontal.vue")["default"]);
-Vue.component('nav-drop-down', __webpack_require__(/*! ./modules/navigation/navDropDown.vue */ "./resources/js/modules/navigation/navDropDown.vue")["default"]); // Vue.component('nav-items', require('./modules/navigation/navItems.vue').default);
-
+Vue.component('nav-drop-down', __webpack_require__(/*! ./modules/navigation/navDropDown.vue */ "./resources/js/modules/navigation/navDropDown.vue")["default"]);
 Vue.component('flash-message', __webpack_require__(/*! ./modules/notification/flashMessage.vue */ "./resources/js/modules/notification/flashMessage.vue")["default"]);
 Vue.component('table-front-post', __webpack_require__(/*! ./posts/tableFrontPost.vue */ "./resources/js/posts/tableFrontPost.vue")["default"]);
 Vue.component('post-table', __webpack_require__(/*! ./posts/postTable.vue */ "./resources/js/posts/postTable.vue")["default"]);

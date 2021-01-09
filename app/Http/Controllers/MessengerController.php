@@ -15,7 +15,7 @@ class MessengerController extends Controller
 //        return auth()->user()->messengers;
 //    }
 
-    public function show(Messenger $messenger)
+    public function show($messenger)
     {
         return auth()->user()->messengers()->paginate(10);
     }

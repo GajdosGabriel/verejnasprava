@@ -16,7 +16,7 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 25);
-            $table->string('route', 15);
+            $table->string('route', 20);
             $table->string('url', 25);
             $table->string('type', 15);
             $table->softDeletes();
@@ -85,6 +85,13 @@ class CreateMenusTable extends Migration
                 'route' => 'users.index',
                 'url' => '/users',
                 'type' => 'vertical',
+            ],
+            [
+                'id' => 10,
+                'name' => 'Správy',
+                'route' => 'messengers.index',
+                'url' => '/messengers',
+                'type' => 'horizontal',
             ],
 
 
