@@ -35,6 +35,8 @@
 </template>
 
 <script>
+    import {bus} from '../app';
+
     export default {
 
         data: function () {
@@ -63,7 +65,8 @@
             saveModul(id) {
                 axios.put('/api/menus/' + this.user.active_organization, {modul: id})
                     .then((response) => {
-                        window.location.reload()
+                        // window.location.reload();
+                        bus.$emit('reloadMenu')
                     })
             },
             toggle() {
