@@ -10,6 +10,8 @@
                 <h3 class="font-semibold cursor-pointer" v-text="title"></h3>
             </div>
 
+            <div class="text-xs text-red-600" v-if="body.length && ! showCard">Neodoslaná</div>
+
 
             <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 20 20">

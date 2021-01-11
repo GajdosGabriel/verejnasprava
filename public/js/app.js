@@ -4271,6 +4271,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 
 
 
@@ -84137,6 +84139,12 @@ var render = function() {
               domProps: { textContent: _vm._s(_vm.title) }
             })
           ]),
+          _vm._v(" "),
+          _vm.body.length && !_vm.showCard
+            ? _c("div", { staticClass: "text-xs text-red-600" }, [
+                _vm._v("Neodoslaná")
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.showCard
             ? _c(
