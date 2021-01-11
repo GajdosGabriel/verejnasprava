@@ -10,15 +10,15 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class MessengerController extends Controller
 {
 
-//    public function index()
-//    {
-//        return auth()->user()->messengers;
-//    }
-
-    public function show($messenger)
+    public function index()
     {
         return auth()->user()->messengers()->paginate(10);
     }
+
+//    public function show($messenger)
+//    {
+//        return auth()->user()->messengers()->paginate(10);
+//    }
 
     public function update(Messenger $messenger, Request $request)
     {

@@ -85,7 +85,7 @@
             },
             getMessengers(url) {
                 if (url == null){
-                   var activeUrl = '/messengers/' + this.user.id
+                   var activeUrl = '/messengers'
                 } else {
                    var activeUrl = url
                 }

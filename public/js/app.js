@@ -4331,11 +4331,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.get('/users').then(function (response) {
         var _this$recipients;
 
-        (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data));
+        (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data)); // this.uniqueRecipients();
 
-        _this.uniqueRecipients();
-
-        _this.toggle('zavrietVsetko');
       });
     },
     getUsersByTag: function getUsersByTag(tag) {
@@ -4409,7 +4406,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         recipients: this.recipients
       }).then(function (response) {
         _app__WEBPACK_IMPORTED_MODULE_5__["bus"].$emit('addNewMessage', response.data);
-      }, this.body = null, this.name = null, this.recipients = null, this.showCard = false, this.title = 'Správa bola rozoslaná');
+      }, this.body = null, this.name = null, this.recipients = [], this.showCard = false, this.title = 'Správa bola rozoslaná');
     }
   }
 });
@@ -4517,7 +4514,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (url == null) {
-        var activeUrl = '/messengers/' + this.user.id;
+        var activeUrl = '/messengers';
       } else {
         var activeUrl = url;
       }
@@ -4886,7 +4883,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.recipients.find(function (user) {
         return user.id == id;
       })) {
-        return 'bg-green-300';
+        return 'bg-green-300 hover:bg-green-300';
       }
     }
   }
@@ -4973,8 +4970,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4984,7 +4979,8 @@ __webpack_require__.r(__webpack_exports__);
       organization: {},
       baseUrl: window.App.baseUrl,
       isOpen: false,
-      dropdown: false
+      dropdown: false,
+      currentUrlSegment: window.location.pathname
     };
   },
   computed: {
@@ -85207,16 +85203,16 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex" },
+            { staticClass: "flex space-x-2 mt-2" },
             _vm._l(_vm.users, function(user) {
               return _c(
                 "div",
-                { key: user.id, staticClass: "flex items-center" },
+                { key: user.id, staticClass: "flex items-center text-sm" },
                 [
                   _c(
                     "div",
                     {
-                      staticClass: "border-2 px-1 hover:bg-gray-200",
+                      staticClass: "border-2 px-1 hover:bg-gray-200 rounded-md",
                       class: _vm.greenBackground(user.id),
                       on: {
                         click: function($event) {
@@ -85360,7 +85356,12 @@ var render = function() {
                     key: menu.id,
                     staticClass:
                       "text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4",
-                    class: _vm.isOpen ? "block" : "hidden",
+                    class: [
+                      _vm.isOpen ? "block" : "hidden",
+                      _vm.currentUrlSegment == "/" + menu.url
+                        ? "text-teal-800"
+                        : ""
+                    ],
                     attrs: { href: _vm.baseUrl + menu.url }
                   },
                   [

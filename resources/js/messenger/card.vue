@@ -132,15 +132,13 @@
                 axios.get('/users')
                     .then((response) => {
                         this.recipients.push(...response.data);
-                        this.uniqueRecipients();
-                        this.toggle('zavrietVsetko')
+                        // this.uniqueRecipients();
                     })
             },
             getUsersByTag(tag) {
                 axios.get('/tags/' + tag.id + '/users')
                     .then((response) => {
                         this.recipients.push(...response.data);
-
                         this.uniqueRecipients();
                     })
             },
@@ -205,7 +203,7 @@
                     },
                         this.body = null,
                         this.name = null,
-                        this.recipients = null,
+                        this.recipients = [],
                         this.showCard = false,
                         this.title = 'Správa bola rozoslaná',
                     )
