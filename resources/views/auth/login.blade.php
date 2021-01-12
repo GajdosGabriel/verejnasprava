@@ -27,6 +27,7 @@
 
                     <form method="POST" action="{{ route('login') }}">
                             @csrf
+                        @include('modul.errors')
                         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                             <div class="text-gray-500 text-center mb-3 font-bold"><small>Prihlásenie cez údaje</small></div>
                             <form>
