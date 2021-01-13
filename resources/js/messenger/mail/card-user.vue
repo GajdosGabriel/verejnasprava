@@ -1,5 +1,5 @@
 <template>
-    <div class="border">
+    <div class="border"  v-if="organization.menus.find(id => id.id == 10)">
         <header class="flex justify-between items-center px-2 py-2 cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
@@ -48,6 +48,7 @@
     import pagination from "../pagination";
     export default {
         components: {showModal, pagination},
+        props:['organization'],
         data() {
             return {
                 showCard: true,

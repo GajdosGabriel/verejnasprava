@@ -4287,6 +4287,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     recipientItem: _recipient_item__WEBPACK_IMPORTED_MODULE_0__["default"],
     userList: _users_list__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  props: ['organization'],
   data: function data() {
     return {
       title: "Nová správa",
@@ -4479,6 +4480,7 @@ __webpack_require__.r(__webpack_exports__);
     showModal: _show_modal__WEBPACK_IMPORTED_MODULE_0__["default"],
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  props: ['organization'],
   data: function data() {
     return {
       showCard: true,
@@ -84088,345 +84090,355 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "border" },
-    [
-      _c(
-        "header",
-        {
-          staticClass:
-            "flex justify-between items-center px-2 py-2  cursor-pointer",
-          class: [
-            _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
-          ],
-          on: {
-            click: function($event) {
-              _vm.showCard = !_vm.showCard
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "flex items-center justify-center" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "fill-current h-5 w-5 mr-2",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20",
-                  fill: "currentColor"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                  }
-                }),
-                _vm._v(" "),
-                _c("path", {
-                  attrs: {
-                    d: "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("h3", {
-              staticClass: "font-semibold cursor-pointer",
-              domProps: { textContent: _vm._s(_vm.title) }
-            })
-          ]),
-          _vm._v(" "),
-          _vm.body.length && !_vm.showCard
-            ? _c("div", { staticClass: "text-xs text-red-600" }, [
-                _vm._v("Neodoslaná")
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showCard
-            ? _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
-              )
-            : _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
-              )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
+  return _vm.organization.menus.find(function(id) {
+    return id.id == 10
+  })
+    ? _c(
         "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.showCard,
-              expression: "showCard"
-            }
-          ]
-        },
+        { staticClass: "border" },
         [
           _c(
-            "div",
-            { staticClass: "my-4 p-2 border flex flex-wrap relative" },
-            [
-              _vm._v("Komu: "),
-              _vm.recipients && _vm.recipients.length > 0
-                ? _c("span", [
-                    _vm._v(" (" + _vm._s(_vm.recipients.length) + ")")
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._l(_vm.recipients, function(recipient) {
-                return _c(
-                  "div",
-                  { key: recipient.id },
-                  [
-                    _c("recipientItem", {
-                      attrs: { recipient: recipient },
-                      on: { deleteRecipient: _vm.removeRecipient }
-                    })
-                  ],
-                  1
-                )
-              }),
-              _vm._v(" "),
-              _vm.recipients && _vm.recipients.length > 1
-                ? _c(
-                    "span",
-                    {
-                      staticClass:
-                        "absolute bottom-0 right-0 text-xs cursor-pointer",
-                      on: { click: _vm.clearRecipientsList }
-                    },
-                    [_vm._v("vyčistiť všetko")]
-                  )
-                : _vm._e()
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between text-xs" }, [
-            _c(
-              "span",
-              {
-                staticClass: "px-2 cursor-pointer",
-                on: { click: _vm.pushAllUsers }
-              },
-              [_vm._v("všetkým")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass: "px-2 cursor-pointer",
-                on: {
-                  click: function($event) {
-                    return _vm.toggle("showTag")
-                  }
-                }
-              },
-              [_vm._v("nálepky")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass: "px-2 cursor-pointer",
-                on: {
-                  click: function($event) {
-                    return _vm.toggle("showUsers")
-                  }
-                }
-              },
-              [_vm._v("zamestnanci")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.showTag
-            ? _c(
-                "div",
-                [
-                  _c("div", { staticClass: "flex justify-between text-xs" }, [
-                    _c(
-                      "span",
-                      {
-                        staticClass: "px-2 cursor-pointer",
-                        on: {
-                          click: function($event) {
-                            _vm.showModal = true
-                          }
-                        }
-                      },
-                      [_vm._v("Nová nálepka")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "px-2 cursor-pointer",
-                        on: {
-                          click: function($event) {
-                            _vm.editAdminPanel = !_vm.editAdminPanel
-                          }
-                        }
-                      },
-                      [_vm._v("Upraviť")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("tag-list", {
-                    attrs: {
-                      tags: _vm.tags,
-                      editAdminPanel: _vm.editAdminPanel
-                    },
-                    on: {
-                      pushTagToRecipientList: _vm.getUsersByTag,
-                      editTag: _vm.getEditTag
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("user-list", {
-            attrs: {
-              showUsers: _vm.showUsers,
-              users: _vm.users,
-              recipients: _vm.recipients
-            },
-            on: { addRecipient: _vm.addRecipient }
-          }),
-          _vm._v(" "),
-          _c(
-            "form",
+            "header",
             {
-              attrs: { enctype: "multipart/form-data" },
+              staticClass:
+                "flex justify-between items-center px-2 py-2  cursor-pointer",
+              class: [
+                _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+              ],
               on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.saveMessage($event)
+                click: function($event) {
+                  _vm.showCard = !_vm.showCard
                 }
               }
             },
             [
-              _c("input", {
-                directives: [
+              _c("div", { staticClass: "flex items-center justify-center" }, [
+                _c(
+                  "svg",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.name,
-                    expression: "name"
-                  }
-                ],
-                staticClass: "w-full p-1 mt-4 mb-2 border",
-                attrs: { type: "text", placeholder: "Nadpis správy" },
-                domProps: { value: _vm.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    staticClass: "fill-current h-5 w-5 mr-2",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
                     }
-                    _vm.name = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("vue-editor", {
-                staticClass: "mb-8",
-                model: {
-                  value: _vm.body,
-                  callback: function($$v) {
-                    _vm.body = $$v
                   },
-                  expression: "body"
-                }
-              }),
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("h3", {
+                  staticClass: "font-semibold cursor-pointer",
+                  domProps: { textContent: _vm._s(_vm.title) }
+                })
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group" }),
+              _vm.body.length && !_vm.showCard
+                ? _c("div", { staticClass: "text-xs text-red-600" }, [
+                    _vm._v("Neodoslaná")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c(
-                "button",
+              _vm.showCard
+                ? _c(
+                    "svg",
+                    {
+                      staticClass: "h-3 w-3 text-gray-700",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+                  )
+                : _c(
+                    "svg",
+                    {
+                      staticClass: "h-3 w-3 text-gray-700",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+                  )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
                 {
-                  staticClass: "btn btn-primary w-full",
-                  attrs: { type: "submit" }
-                },
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showCard,
+                  expression: "showCard"
+                }
+              ]
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "my-4 p-2 border flex flex-wrap relative" },
                 [
-                  _c(
+                  _vm._v("Komu: "),
+                  _vm.recipients && _vm.recipients.length > 0
+                    ? _c("span", [
+                        _vm._v(" (" + _vm._s(_vm.recipients.length) + ")")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.recipients, function(recipient) {
+                    return _c(
+                      "div",
+                      { key: recipient.id },
+                      [
+                        _c("recipientItem", {
+                          attrs: { recipient: recipient },
+                          on: { deleteRecipient: _vm.removeRecipient }
+                        })
+                      ],
+                      1
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.recipients && _vm.recipients.length > 1
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "absolute bottom-0 right-0 text-xs cursor-pointer",
+                          on: { click: _vm.clearRecipientsList }
+                        },
+                        [_vm._v("vyčistiť všetko")]
+                      )
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex justify-between text-xs" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "px-2 cursor-pointer",
+                    on: { click: _vm.pushAllUsers }
+                  },
+                  [_vm._v("všetkým")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "px-2 cursor-pointer",
+                    on: {
+                      click: function($event) {
+                        return _vm.toggle("showTag")
+                      }
+                    }
+                  },
+                  [_vm._v("nálepky")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "px-2 cursor-pointer",
+                    on: {
+                      click: function($event) {
+                        return _vm.toggle("showUsers")
+                      }
+                    }
+                  },
+                  [_vm._v("zamestnanci")]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.showTag
+                ? _c(
                     "div",
-                    { staticClass: "flex items-center justify-center" },
                     [
                       _c(
-                        "svg",
-                        {
-                          staticClass: "fill-current h-5 w-5 text-white mr-2",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20",
-                            fill: "currentColor"
-                          }
-                        },
+                        "div",
+                        { staticClass: "flex justify-between text-xs" },
                         [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                            }
-                          }),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "px-2 cursor-pointer",
+                              on: {
+                                click: function($event) {
+                                  _vm.showModal = true
+                                }
+                              }
+                            },
+                            [_vm._v("Nová nálepka")]
+                          ),
                           _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                            }
-                          })
+                          _c(
+                            "span",
+                            {
+                              staticClass: "px-2 cursor-pointer",
+                              on: {
+                                click: function($event) {
+                                  _vm.editAdminPanel = !_vm.editAdminPanel
+                                }
+                              }
+                            },
+                            [_vm._v("Upraviť")]
+                          )
                         ]
                       ),
                       _vm._v(" "),
-                      _c("span", [_vm._v("Poslať")])
+                      _c("tag-list", {
+                        attrs: {
+                          tags: _vm.tags,
+                          editAdminPanel: _vm.editAdminPanel
+                        },
+                        on: {
+                          pushTagToRecipientList: _vm.getUsersByTag,
+                          editTag: _vm.getEditTag
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("user-list", {
+                attrs: {
+                  showUsers: _vm.showUsers,
+                  users: _vm.users,
+                  recipients: _vm.recipients
+                },
+                on: { addRecipient: _vm.addRecipient }
+              }),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { enctype: "multipart/form-data" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.saveMessage($event)
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name"
+                      }
+                    ],
+                    staticClass: "w-full p-1 mt-4 mb-2 border",
+                    attrs: { type: "text", placeholder: "Nadpis správy" },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.name = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("vue-editor", {
+                    staticClass: "mb-8",
+                    model: {
+                      value: _vm.body,
+                      callback: function($$v) {
+                        _vm.body = $$v
+                      },
+                      expression: "body"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary w-full",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "flex items-center justify-center" },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "fill-current h-5 w-5 text-white mr-2",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20",
+                                fill: "currentColor"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Poslať")])
+                        ]
+                      )
                     ]
                   )
-                ]
+                ],
+                1
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("tag-modal", {
+            attrs: { showModal: _vm.showModal, form: _vm.editTag },
+            on: {
+              addNewTag: _vm.addNewTag,
+              emitShowModal: function($event) {
+                _vm.showModal = false
+              }
+            }
+          })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("tag-modal", {
-        attrs: { showModal: _vm.showModal, form: _vm.editTag },
-        on: {
-          addNewTag: _vm.addNewTag,
-          emitShowModal: function($event) {
-            _vm.showModal = false
-          }
-        }
-      })
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -84450,156 +84462,161 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "border" },
-    [
-      _c(
-        "header",
-        {
-          staticClass:
-            "flex justify-between items-center px-2 py-2 cursor-pointer",
-          class: [
-            _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
-          ],
-          on: {
-            click: function($event) {
-              _vm.showCard = !_vm.showCard
-            }
-          }
-        },
+  return _vm.organization.menus.find(function(id) {
+    return id.id == 10
+  })
+    ? _c(
+        "div",
+        { staticClass: "border" },
         [
-          _c("div", { staticClass: "flex items-center justify-center" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "fill-current h-5 w-5 mr-2",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20",
-                  fill: "currentColor"
+          _c(
+            "header",
+            {
+              staticClass:
+                "flex justify-between items-center px-2 py-2 cursor-pointer",
+              class: [
+                _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+              ],
+              on: {
+                click: function($event) {
+                  _vm.showCard = !_vm.showCard
                 }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                  }
-                }),
+              }
+            },
+            [
+              _c("div", { staticClass: "flex items-center justify-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "fill-current h-5 w-5 mr-2",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                      }
+                    })
+                  ]
+                ),
                 _vm._v(" "),
-                _c("path", {
-                  attrs: {
-                    d: "M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-              _vm._v("Oznámenia zamestnávateľa")
-            ])
-          ]),
+                _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
+                  _vm._v("Oznámenia zamestnávateľa")
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.showCard
+                ? _c(
+                    "svg",
+                    {
+                      staticClass: "h-3 w-3 text-gray-700",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+                  )
+                : _c(
+                    "svg",
+                    {
+                      staticClass: "h-3 w-3 text-gray-700",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+                  )
+            ]
+          ),
           _vm._v(" "),
           _vm.showCard
             ? _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
-              )
-            : _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
-              )
-        ]
-      ),
-      _vm._v(" "),
-      _vm.showCard
-        ? _c(
-            "div",
-            { staticClass: "flex flex-col px-2" },
-            [
-              _vm._l(_vm.messengers.data, function(message) {
-                return _c(
-                  "div",
-                  {
-                    key: message.id,
-                    staticClass: "py-0 px-1 hover:bg-gray-100"
-                  },
-                  [
-                    _c(
+                "div",
+                { staticClass: "flex flex-col px-2" },
+                [
+                  _vm._l(_vm.messengers.data, function(message) {
+                    return _c(
                       "div",
                       {
-                        staticClass:
-                          "md:flex justify-between cursor-pointer items-center",
-                        on: {
-                          click: function($event) {
-                            return _vm.passMessage(message)
-                          }
-                        }
+                        key: message.id,
+                        staticClass: "py-0 px-1 hover:bg-gray-100"
                       },
                       [
-                        _c("div", [_vm._v(_vm._s(message.name))]),
-                        _vm._v(" "),
-                        message.pivot.opened == null
-                          ? _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "px-1 my-1 bg-red-600 text-xs text-white rounded-sm",
-                                attrs: { title: "Potvrdiť prijatie správy" }
-                              },
-                              [_vm._v("Nepotvrdená")]
-                            )
-                          : _c("span", {
-                              staticClass: "text-xs text-gray-500",
-                              attrs: { title: "Doručené" },
-                              domProps: {
-                                textContent: _vm._s(_vm.dateTime(message))
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "md:flex justify-between cursor-pointer items-center",
+                            on: {
+                              click: function($event) {
+                                return _vm.passMessage(message)
                               }
-                            })
+                            }
+                          },
+                          [
+                            _c("div", [_vm._v(_vm._s(message.name))]),
+                            _vm._v(" "),
+                            message.pivot.opened == null
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "px-1 my-1 bg-red-600 text-xs text-white rounded-sm",
+                                    attrs: { title: "Potvrdiť prijatie správy" }
+                                  },
+                                  [_vm._v("Nepotvrdená")]
+                                )
+                              : _c("span", {
+                                  staticClass: "text-xs text-gray-500",
+                                  attrs: { title: "Doručené" },
+                                  domProps: {
+                                    textContent: _vm._s(_vm.dateTime(message))
+                                  }
+                                })
+                          ]
+                        )
                       ]
                     )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm.messengers.data && _vm.messengers.data.length
-                ? _c("pagination", {
-                    attrs: { data: _vm.messengers },
-                    on: { urlMessengers: _vm.getMessengers }
-                  })
-                : _vm._e()
-            ],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("show-modal", {
-        attrs: { showModal: _vm.showModal, message: _vm.message },
-        on: {
-          emitShowModal: function($event) {
-            _vm.showModal = false
-          },
-          saveReading: _vm.saveReading
-        }
-      })
-    ],
-    1
-  )
+                  }),
+                  _vm._v(" "),
+                  _vm.messengers.data && _vm.messengers.data.length
+                    ? _c("pagination", {
+                        attrs: { data: _vm.messengers },
+                        on: { urlMessengers: _vm.getMessengers }
+                      })
+                    : _vm._e()
+                ],
+                2
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("show-modal", {
+            attrs: { showModal: _vm.showModal, message: _vm.message },
+            on: {
+              emitShowModal: function($event) {
+                _vm.showModal = false
+              },
+              saveReading: _vm.saveReading
+            }
+          })
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

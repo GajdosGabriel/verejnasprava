@@ -19,7 +19,7 @@
         <div class="col-span-4 bg-white">
             @role('super-admin')
             <x-oznamenia>
-                <card-mails-user/>
+                <card-mails-user :organization="{{ $organization }}"></card-mails-user>
             </x-oznamenia>
 
 
@@ -41,14 +41,12 @@
             @role('admin')
             {{-- Funkčné vue --}}
             <x-oznamenia>
-                <menu-activators/>
+                <menu-activators></menu-activators>
             </x-oznamenia>
-            {{--    @include('organizations.modul_activator')--}}
-            @endrole
 
-            @role('super-admin')
+            {{--    @include('organizations.modul_activator')--}}
             <x-oznamenia>
-                <messenger-card/>
+                <messenger-card :organization="{{ $organization }}"></messenger-card>
             </x-oznamenia>
             @endrole
 
