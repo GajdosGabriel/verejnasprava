@@ -85380,12 +85380,12 @@ var render = function() {
                   {
                     key: menu.id,
                     staticClass:
-                      "text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4",
+                      "block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4",
                     class: [
                       _vm.isOpen ? "block" : "hidden",
                       _vm.currentUrlSegment == "/" + menu.url
-                        ? "text-teal-800"
-                        : ""
+                        ? "text-white"
+                        : "text-teal-200"
                     ],
                     attrs: { href: _vm.baseUrl + menu.url }
                   },

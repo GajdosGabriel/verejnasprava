@@ -10,14 +10,14 @@
     <x-page.page3_3>
 
         <div class="col-span-4 bg-white">
-            @role('super-admin')
+            @role('admin')
             <x-oznamenia>
 
             </x-oznamenia>
             @endrole
         </div>
         <div class="col-span-4 bg-white">
-            @role('super-admin')
+            @role('admin')
             <x-oznamenia>
                 <card-mails-user :organization="{{ $organization }}"></card-mails-user>
             </x-oznamenia>

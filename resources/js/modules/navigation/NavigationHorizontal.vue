@@ -28,8 +28,8 @@
 
             <div class="">
                 <a v-for="menu in horizontalMenu" :key="menu.id"
-                   class="text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
-                   :class="[isOpen ? 'block' : 'hidden', currentUrlSegment == '/'+ menu.url ? 'text-teal-800' : '']"
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
+                   :class="[isOpen ? 'block' : 'hidden', currentUrlSegment == '/'+ menu.url ? 'text-white' : 'text-teal-200']"
                    :href="baseUrl + menu.url">
                     {{ menu.name }}
                 </a>
