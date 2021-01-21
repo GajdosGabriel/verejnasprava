@@ -19,7 +19,7 @@
         <div class="col-span-4 bg-white">
             @role('admin')
             <x-oznamenia>
-                <card-mails-user :organization="{{ $organization }}"></card-mails-user>
+                <card-mails-user></card-mails-user>
             </x-oznamenia>
 
 
@@ -46,7 +46,7 @@
 
             {{--    @include('organizations.modul_activator')--}}
             <x-oznamenia>
-                <messenger-card :organization="{{ $organization }}"></messenger-card>
+                <messenger-card></messenger-card>
             </x-oznamenia>
             @endrole
 

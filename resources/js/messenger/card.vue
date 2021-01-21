@@ -1,5 +1,5 @@
 <template>
-    <div class="border" v-if="organization.menus.find(id => id.id == 10)">
+    <div class="border" v-if="active.find(id => id.id == 10)">
         <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
@@ -85,10 +85,10 @@
     import userList from './users-list';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
     import {bus} from '../app';
+    import {mapState} from "vuex";
 
     export default {
         components: {tagList, VueEditor, tagModal, recipientItem, userList},
-        props:['organization'],
         data() {
             return {
                 title: "Nová správa",
@@ -106,8 +106,11 @@
                 users: []
             }
         },
+        computed:{
+            ...mapState('organization', ['organization', 'menus', 'active']),
+        },
         created() {
-            this.getTags();
+            this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
         },
         methods: {
             toggle(component) {

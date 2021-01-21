@@ -36,35 +36,33 @@
 
 <script>
     import {bus} from '../app';
+    import {mapState} from "vuex";
 
     export default {
 
         data: function () {
             return {
-                menus: [],
-                active: [],
+                // menus: [],
+                // active: [],
                 isOpen: false,
             }
         },
-
+        computed:{
+            ...mapState('organization', ['organization', 'menus', 'active']),
+        },
         created: function () {
-            this.getIndex();
+            this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
+            // this.getIndex();
         },
         methods: {
-            getIndex() {
-                axios.get('/api/menus/' + this.user.active_organization)
-                    .then((response) => {
-                        this.menus = response.data[0];
-                        this.active = response.data[1].menus
-                    })
-            },
 
             saveModul(id) {
                 axios.put('/api/menus/' + this.user.active_organization, {modul: id})
                     .then((response) => {
                         // window.location.reload();
-                        bus.$emit('reloadMenu');
-                        this.getIndex();
+                        // bus.$emit('reloadMenu');
+                        // this.getIndex();
+                        this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
                     })
             },
 

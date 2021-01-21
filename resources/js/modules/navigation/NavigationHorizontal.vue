@@ -68,14 +68,11 @@
 </template>
 
 <script>
-    import {bus} from '../../app';
+    import {mapState} from 'vuex';
 
     export default {
         data() {
             return {
-                menus: [],
-                active: [],
-                organization: {},
                 baseUrl: window.App.baseUrl,
                 isOpen: false,
                 dropdown: false,
@@ -83,6 +80,9 @@
             }
         },
         computed: {
+            ...mapState('organization', ['organization', 'menus', 'active']),
+
+
             horizontalMenu() {
                 return this.active.filter(menu => menu.type == 'horizontal')
             },
@@ -92,14 +92,6 @@
             }
         },
         methods: {
-            getIndex() {
-                axios.get('/api/menus/' + this.user.active_organization)
-                    .then((response) => {
-                        this.organization = response.data[1];
-                        this.menus = response.data[0];
-                        this.active = response.data[1].menus
-                    })
-            },
 
             logout() {
                 axios.post('/logout')
@@ -107,7 +99,7 @@
             }
         },
         created: function () {
-            this.getIndex();
+            this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
             let self = this;
 
             window.addEventListener('click', function (e) {
@@ -118,9 +110,7 @@
                 }
             });
 
-            bus.$on('reloadMenu', () => {
-                this.getIndex();
-            })
+
         },
 
     }

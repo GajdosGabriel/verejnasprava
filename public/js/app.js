@@ -4086,6 +4086,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4122,37 +4129,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      menus: [],
-      active: [],
+      // menus: [],
+      // active: [],
       isOpen: false
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('organization', ['organization', 'menus', 'active'])),
   created: function created() {
-    this.getIndex();
+    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization); // this.getIndex();
   },
   methods: {
-    getIndex: function getIndex() {
-      var _this = this;
-
-      axios.get('/api/menus/' + this.user.active_organization).then(function (response) {
-        _this.menus = response.data[0];
-        _this.active = response.data[1].menus;
-      });
-    },
     saveModul: function saveModul(id) {
-      var _this2 = this;
+      var _this = this;
 
       axios.put('/api/menus/' + this.user.active_organization, {
         modul: id
       }).then(function (response) {
         // window.location.reload();
-        _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('reloadMenu');
-
-        _this2.getIndex();
+        // bus.$emit('reloadMenu');
+        // this.getIndex();
+        _this.$store.dispatch('organization/getOrganization', '/api/menus/' + _this.user.active_organization);
       });
     },
     toggle: function toggle() {
@@ -4179,8 +4180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4193,6 +4193,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4273,6 +4279,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+
 
 
 
@@ -4287,7 +4294,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     recipientItem: _recipient_item__WEBPACK_IMPORTED_MODULE_0__["default"],
     userList: _users_list__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['organization'],
   data: function data() {
     return {
       title: "Nová správa",
@@ -4305,8 +4311,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       users: []
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapState"])('organization', ['organization', 'menus', 'active'])),
   created: function created() {
-    this.getTags();
+    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
   },
   methods: {
     toggle: function toggle(component) {
@@ -4430,6 +4437,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pagination */ "./resources/js/messenger/pagination.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4471,6 +4485,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -4480,7 +4495,6 @@ __webpack_require__.r(__webpack_exports__);
     showModal: _show_modal__WEBPACK_IMPORTED_MODULE_0__["default"],
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['organization'],
   data: function data() {
     return {
       showCard: true,
@@ -4489,6 +4503,7 @@ __webpack_require__.r(__webpack_exports__);
       message: {}
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])),
   created: function created() {
     var _this = this;
 
@@ -4509,8 +4524,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
-        console.log(res.data); // this.messengers.push(res.data)
-
         _this2.getMessengers();
       }, this.showModal = false);
     },
@@ -4904,7 +4917,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4978,16 +4997,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      menus: [],
-      active: [],
-      organization: {},
       baseUrl: window.App.baseUrl,
       isOpen: false,
       dropdown: false,
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['organization', 'menus', 'active'])), {}, {
     horizontalMenu: function horizontalMenu() {
       return this.active.filter(function (menu) {
         return menu.type == 'horizontal';
@@ -4998,17 +5014,8 @@ __webpack_require__.r(__webpack_exports__);
         return menu.type == 'vertical';
       });
     }
-  },
+  }),
   methods: {
-    getIndex: function getIndex() {
-      var _this = this;
-
-      axios.get('/api/menus/' + this.user.active_organization).then(function (response) {
-        _this.organization = response.data[1];
-        _this.menus = response.data[0];
-        _this.active = response.data[1].menus;
-      });
-    },
     logout: function logout() {
       axios.post('/logout').then(function () {
         return location.href = '/';
@@ -5016,9 +5023,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
-
-    this.getIndex();
+    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
     var self = this;
     window.addEventListener('click', function (e) {
       // close dropdown when clicked outside
@@ -5026,9 +5031,6 @@ __webpack_require__.r(__webpack_exports__);
         self.isOpen = false;
         self.dropdown = false;
       }
-    });
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('reloadMenu', function () {
-      _this2.getIndex();
     });
   }
 });
@@ -84090,7 +84092,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.organization.menus.find(function(id) {
+  return _vm.active.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -84462,7 +84464,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.organization.menus.find(function(id) {
+  return _vm.active.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -107085,6 +107087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_councils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/councils */ "./resources/js/store/modules/councils.js");
 /* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals.js");
+/* harmony import */ var _modules_organization__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/organization */ "./resources/js/store/modules/organization.js");
+
 
 
 
@@ -107106,7 +107110,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     items: _modules_items__WEBPACK_IMPORTED_MODULE_6__["default"],
     councils: _modules_councils__WEBPACK_IMPORTED_MODULE_7__["default"],
     meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_8__["default"],
-    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"]
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"],
+    organization: _modules_organization__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }));
 
@@ -107723,6 +107728,46 @@ var actions = {
   removeNotification: function removeNotification(_ref2, notification) {
     var commit = _ref2.commit;
     commit('REMOVE_NOTIFICATION', notification);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/organization.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/organization.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  organization: {},
+  menus: [],
+  active: []
+};
+var getters = {};
+var mutations = {
+  SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
+    state.organization = payload.data[1];
+    state.menus = payload.data[0];
+    state.active = payload.data[1].menus;
+  }
+};
+var actions = {
+  getOrganization: function getOrganization(_ref, url) {
+    var commit = _ref.commit;
+    axios.get(url).then(function (response) {
+      commit('SET_ORGANIZATION', response);
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
