@@ -84148,7 +84148,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm.body.length && !_vm.showCard
+              _vm.body && !_vm.showCard
                 ? _c("div", { staticClass: "text-xs text-red-600" }, [
                     _vm._v("Neodoslaná")
                   ])
