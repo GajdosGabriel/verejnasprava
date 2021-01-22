@@ -30,7 +30,6 @@ Route::apiResources([
     'votes' => 'Api\VoteController',
     'items' => 'Api\ItemController',
     'meetings' => 'Api\MeetingController',
-    'councils' => 'Councils\ApiCouncilController',
     'menus' => 'Api\MenuController',
 ]);
 

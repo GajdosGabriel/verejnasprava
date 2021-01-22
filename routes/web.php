@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'comments'          => 'CommentController',
         'contacts'          => 'Contacts\ContactsController',
+        'councils'          => 'Councils\CouncilController',
         'councils.meetings' => 'Meetings\CouncilMeetingController',
         'interpellations'   => 'Councils\InterpellationController',
         'items'             => 'Items\ItemController',

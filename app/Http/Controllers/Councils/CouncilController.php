@@ -20,6 +20,10 @@ class CouncilController extends Controller
         return view('council.index', compact('councils'));
     }
 
+    public function show(Council $council){
+        return $council;
+    }
+
     public function edit(Council $council){
         return view('council.edit', compact('council') );
     }
@@ -28,6 +32,17 @@ class CouncilController extends Controller
     public function userList(Council $council, $slug)
     {
         return view('council.users', compact('council'))->with('users', $council->users()->get());
+    }
+
+
+
+    public function update(Request $request, Council $council) {
+        $council->update($request->only(['name', 'description', 'quorate', 'min_user']));
+        return $council;
+    }
+
+    public function destroy(Council $council) {
+        $council->delete();
     }
 
 

@@ -123,7 +123,7 @@ const actions = {
 
     getCouncil({commit}, council) {
         commit('SET_LOADING_STATUS', true);
-        axios.get('/api/councils/' + council )
+        axios.get('/councils/' + council )
             .then(response => {
                     commit('SET_COUNCIL', response.data);
                     commit('SET_LOADING_STATUS', false);

@@ -30,7 +30,7 @@ const actions = {
     },
 
     update({commit}, payload) {
-        axios.put('/api/councils/' + payload.id, payload)
+        axios.put('/councils/' + payload.id, payload)
             .then(response => {
                 commit('modals/OPEN_FORM', null, {root: true} );
                 }
@@ -38,7 +38,7 @@ const actions = {
     },
 
     deleteCouncil({commit}, council) {
-        axios.delete('/api/councils/' + council.id)
+        axios.delete('/councils/' + council.id)
             .then(response => {
                     commit('REMOVE_COUNCIL', council.id);
                 }

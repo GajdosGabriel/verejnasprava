@@ -11,17 +11,6 @@ use phpDocumentor\Reflection\DocBlock\Description;
 class ApiCouncilController extends Controller
 {
 
-    public function show(Council $council){
-        return $council;
-    }
 
-    public function update(Request $request, Council $council) {
-        $council->update($request->only(['name', 'description', 'quorate', 'min_user']));
-        return $council;
-    }
-
-    public function destroy(Council $council) {
-        $council->delete();
-    }
 
 }
