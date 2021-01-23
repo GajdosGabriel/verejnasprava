@@ -50,6 +50,7 @@
 </template>
 
 <script>
+    import {bus} from '../../app';
     export default {
         data() {
             return {
@@ -78,6 +79,10 @@
                     self.isOpen = false
                     self.dropdown = false
                 }
+            });
+
+            bus.$on('closeDropDown', () => {
+                this.isOpen = false
             })
         },
 
