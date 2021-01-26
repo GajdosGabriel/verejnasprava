@@ -62,6 +62,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Council::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+
 
     public function items()
     {
