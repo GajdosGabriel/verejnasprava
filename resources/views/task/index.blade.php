@@ -7,9 +7,9 @@
 
         <div class="container mx-auto min-h-screen p-6">
 
-            <todo-component></todo-component>
+            <tasks-component></tasks-component>
 
-            <notification-list></notification-list>
+{{--            <notification-list></notification-list>--}}
 
         </div>
 

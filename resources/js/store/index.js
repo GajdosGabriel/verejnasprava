@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import todos from "./modules/todos";
+import tasks from "./modules/Tasks";
 import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";
@@ -18,7 +18,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        todos,
+        tasks,
         notification,
         posts,
         contacts,
