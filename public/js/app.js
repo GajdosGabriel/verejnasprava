@@ -6111,6 +6111,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -6130,18 +6137,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['users'],
   data: function data() {
     return {
       dialog: true,
       formData: {
         name: '',
-        description: ''
+        description: '',
+        user_id: this.user.id,
+        organization_id: this.user.active_organization,
+        requsted_id: ''
       }
     };
-  }
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['storeTask'])), {}, {
+    saveTask: function saveTask() {
+      this.storeTask(this.formData);
+      this.formData = {};
+    }
+  })
 });
 
 /***/ }),
@@ -6155,6 +6171,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -6181,6 +6198,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['task'],
   data: function data() {
@@ -6255,6 +6273,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -6273,8 +6292,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('tasks/getTasks', {
       root: true
     });
+    this.$store.dispatch('users/getUsers', {
+      root: true
+    });
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks']))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users']))
 });
 
 /***/ }),
@@ -86859,7 +86881,46 @@ var render = function() {
         _c("div", { staticClass: "flex justify-between " }, [
           _c("label", { attrs: { for: "cars" } }, [_vm._v("Nová požiadavka")]),
           _vm._v(" "),
-          _vm._m(0),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.requsted_id,
+                  expression: "formData.requsted_id"
+                }
+              ],
+              staticClass: "text-xs my-1",
+              attrs: { required: "", id: "cars" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.formData,
+                    "requsted_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.users, function(user) {
+              return _c(
+                "option",
+                { key: user.id, domProps: { value: user.id } },
+                [_vm._v(_vm._s(user.last_name) + " " + _vm._s(user.first_name))]
+              )
+            }),
+            0
+          ),
           _vm._v(" "),
           _c(
             "span",
@@ -86944,29 +87005,7 @@ var render = function() {
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "text-xs my-1",
-        attrs: { name: "users", required: "", id: "cars" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("--Vybrať--")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "saab" } }, [_vm._v("Saab")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "mercedes" } }, [_vm._v("Mercedes")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "audi" } }, [_vm._v("Audi")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -87191,7 +87230,9 @@ var render = function() {
         [_vm._v("Nová Požiadavka")]
       ),
       _vm._v(" "),
-      _vm.showNewTask ? _c("new-task") : _vm._e()
+      _vm.showNewTask
+        ? _c("new-task", { attrs: { users: _vm.users } })
+        : _vm._e()
     ],
     1
   )
@@ -107326,6 +107367,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals.js");
 /* harmony import */ var _modules_organization__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/organization */ "./resources/js/store/modules/organization.js");
+/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/users */ "./resources/js/store/modules/users.js");
+
 
 
 
@@ -107349,7 +107392,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     councils: _modules_councils__WEBPACK_IMPORTED_MODULE_7__["default"],
     meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_8__["default"],
     modals: _modules_modals__WEBPACK_IMPORTED_MODULE_9__["default"],
-    organization: _modules_organization__WEBPACK_IMPORTED_MODULE_10__["default"]
+    organization: _modules_organization__WEBPACK_IMPORTED_MODULE_10__["default"],
+    users: _modules_users__WEBPACK_IMPORTED_MODULE_11__["default"]
   }
 }));
 
@@ -107382,8 +107426,13 @@ var actions = {
   },
   updateTask: function updateTask(_ref2, task) {
     var commit = _ref2.commit;
-    console.log(task);
     axios.put('users/1/tasks/' + task.id, task).then(function (response) {// commit('SET_TASKS', response.data )
+    });
+  },
+  storeTask: function storeTask(_ref3, task) {
+    var commit = _ref3.commit;
+    // console.log(task);
+    axios.post('users/1/tasks', task).then(function (response) {// commit('SET_TASKS', response.data )
     });
   }
 };
@@ -108100,6 +108149,42 @@ var actions = {
       commit('SET_LOADING_STATUS', true);
       commit('SET_POSTS', response.data);
       commit('SET_LOADING_STATUS', false);
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/users.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  users: []
+};
+var getters = {};
+var mutations = {
+  SET_USERS: function SET_USERS(state, payload) {
+    state.users = payload;
+  }
+};
+var actions = {
+  getUsers: function getUsers(_ref) {
+    var commit = _ref.commit;
+    axios.get('organizations/1/users').then(function (response) {
+      commit('SET_USERS', response.data);
     });
   }
 };

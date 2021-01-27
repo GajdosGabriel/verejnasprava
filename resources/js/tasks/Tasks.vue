@@ -27,7 +27,8 @@
 
         </ul>
         <span class="text-xs text-gray-500 cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
-        <new-task v-if="showNewTask"/>
+
+        <new-task v-if="showNewTask" :users="users"/>
 
     </section>
 
@@ -47,11 +48,13 @@
         },
 
         created() {
-            this.$store.dispatch('tasks/getTasks', {root: true})
+            this.$store.dispatch('tasks/getTasks', {root: true});
+            this.$store.dispatch('users/getUsers', {root: true});
         },
 
         computed:{
-            ...mapState('tasks', ['tasks'])
+            ...mapState('tasks', ['tasks']),
+            ...mapState('users', ['users'])
         }
 
     }

@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
         'meetings.items'    => 'Items\ItemMeetingController',
         'meetings.users'    => 'Meetings\MeetingUserController',
         'organizations'     => 'Organizations\OrganizationController',
+        'organizations.councils' => 'Councils\CouncilOrganizationController',
+        'organizations.users' => 'Organizations\OrganizationUserController',
         'posts'             => 'Posts\PostController',
         'tasks'             => 'Tasks\TaskController',
         'users.tasks'       => 'Tasks\UserTaskController',
@@ -71,7 +73,6 @@ Route::group(['middleware' => 'auth'], function () {
         'tags'              => 'TagController',
         'tags.users'        => 'TagUserController',
         'messengers'        => 'MessengerController',
-        'organizations.councils' => 'Councils\CouncilOrganizationController',
     ]);
 
 

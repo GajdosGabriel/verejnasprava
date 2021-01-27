@@ -1,7 +1,7 @@
 const state = {
     organization: {},
     menus: [],
-    active: [],
+    active: []
 
 };
 const getters = {};

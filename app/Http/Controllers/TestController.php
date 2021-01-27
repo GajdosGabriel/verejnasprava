@@ -20,11 +20,8 @@ class TestController extends Controller
    public function test()
    {
 
-       $tag = Tag::first();
-
-       $menu = $tag->users;
-
-       dd($menu);
+      $organization = Organization::first();
+       dd($organization);
 
 //       $files = File::all();
 //

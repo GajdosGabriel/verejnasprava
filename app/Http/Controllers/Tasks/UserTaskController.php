@@ -14,8 +14,12 @@ class UserTaskController extends Controller
     }
 
     public function update(User $user, Task $task, Request $request ){
-//        dd($request->all());
+
        $task = $task->update($request->all());
         return $task;
+    }
+
+    public function store(User $user, Request $request){
+        $user->tasks()->create($request->all());
     }
 }
