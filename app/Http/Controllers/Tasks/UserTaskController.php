@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserTaskController extends Controller
 {
     public function index(User $user){
-        return $user->tasks;
+        return Task::whereRequestedId($user->id)->latest()->get();
     }
 
     public function update(User $user, Task $task, Request $request ){

@@ -4,7 +4,7 @@
 
             <div class="flex justify-between ">
                 <label for="cars">Nová požiadavka</label>
-                <select v-model="formData.requsted_id" required id="cars" class="text-xs my-1">
+                <select v-model="formData.requested_id" required id="cars" class="text-xs my-1">
                     <option value="">Vybrať</option>
                     <option :value="user.id" v-for="user in users" :key="user.id">{{ user.last_name}} {{ user.first_name}}</option>
                 </select>
@@ -31,9 +31,8 @@
                 formData: {
                     name: '',
                     description: '',
-                    user_id: this.user.id,
                     organization_id: this.user.active_organization,
-                    requsted_id: ''
+                    requested_id: ''
                 }
             }
         },

@@ -6149,9 +6149,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData: {
         name: '',
         description: '',
-        user_id: this.user.id,
         organization_id: this.user.active_organization,
-        requsted_id: ''
+        requested_id: ''
       }
     };
   },
@@ -6242,6 +6241,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -86904,8 +86905,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.formData.requsted_id,
-                      expression: "formData.requsted_id"
+                      value: _vm.formData.requested_id,
+                      expression: "formData.requested_id"
                     }
                   ],
                   staticClass: "text-xs my-1",
@@ -86922,7 +86923,7 @@ var render = function() {
                         })
                       _vm.$set(
                         _vm.formData,
-                        "requsted_id",
+                        "requested_id",
                         $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
@@ -87151,110 +87152,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "header",
-        {
-          staticClass:
-            "flex justify-between items-center px-2 py-2  cursor-pointer",
-          class: [
-            _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
-          ],
-          on: {
-            click: function($event) {
-              _vm.showCard = !_vm.showCard
-            }
+  return _c("section", [
+    _c(
+      "header",
+      {
+        staticClass:
+          "flex justify-between items-center px-2 py-2  cursor-pointer",
+        class: [_vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"],
+        on: {
+          click: function($event) {
+            _vm.showCard = !_vm.showCard
           }
-        },
-        [
-          _c("div", { staticClass: "flex items-center justify-center" }, [
-            _c(
+        }
+      },
+      [
+        _c("div", { staticClass: "flex items-center justify-center" }, [
+          _c(
+            "svg",
+            {
+              staticClass: "fill-current h-5 w-5 mr-2",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 20 20",
+                fill: "currentColor"
+              }
+            },
+            [
+              _c("path", { attrs: { d: "M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" } }),
+              _vm._v(" "),
+              _c("path", {
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z",
+                  "clip-rule": "evenodd"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
+            _vm._v("Požiadavky")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.showCard
+          ? _c(
               "svg",
               {
-                staticClass: "fill-current h-5 w-5 mr-2",
+                staticClass: "h-3 w-3 text-gray-700",
                 attrs: {
                   xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20",
-                  fill: "currentColor"
+                  viewBox: "0 0 20 20"
                 }
               },
-              [
-                _c("path", {
-                  attrs: { d: "M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" }
-                }),
-                _vm._v(" "),
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
+              [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+            )
+          : _c(
+              "svg",
+              {
+                staticClass: "h-3 w-3 text-gray-700",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20"
+                }
+              },
+              [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+            )
+      ]
+    ),
+    _vm._v(" "),
+    _vm.showCard
+      ? _c(
+          "div",
+          [
+            _c(
+              "ul",
+              _vm._l(_vm.tasks, function(task) {
+                return _c("Task", { key: task.id, attrs: { task: task } })
+              }),
+              1
             ),
             _vm._v(" "),
-            _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-              _vm._v("Požiadavky")
-            ])
-          ]),
-          _vm._v(" "),
-          _vm.showCard
-            ? _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
+            _c(
+              "span",
+              {
+                staticClass:
+                  "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
+                on: {
+                  click: function($event) {
+                    _vm.showNewTask = !_vm.showNewTask
                   }
-                },
-                [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
-              )
-            : _c(
-                "svg",
-                {
-                  staticClass: "h-3 w-3 text-gray-700",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
-              )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.tasks, function(task) {
-          return _c("Task", { key: task.id, attrs: { task: task } })
-        }),
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "span",
-        {
-          staticClass:
-            "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
-          on: {
-            click: function($event) {
-              _vm.showNewTask = !_vm.showNewTask
-            }
-          }
-        },
-        [_vm._v("Nová Požiadavka")]
-      ),
-      _vm._v(" "),
-      _vm.showNewTask
-        ? _c("new-task", { attrs: { users: _vm.users } })
-        : _vm._e()
-    ],
-    1
-  )
+                }
+              },
+              [_vm._v("Nová Požiadavka")]
+            ),
+            _vm._v(" "),
+            _vm.showNewTask
+              ? _c("new-task", { attrs: { users: _vm.users } })
+              : _vm._e()
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -5,8 +5,10 @@
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
                 <svg class="fill-current h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                    <path fill-rule="evenodd"
+                          d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                          clip-rule="evenodd"/>
                 </svg>
                 <h3 class="font-semibold cursor-pointer">Požiadavky</h3>
             </div>
@@ -21,29 +23,30 @@
                 <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
             </svg>
         </header>
+        <div v-if="showCard">
+            <ul>
+                <Task v-for="task in tasks" :key="task.id" :task="task"></Task>
+            </ul>
+            <span class="text-xs text-gray-500 cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
 
-        <ul>
-            <Task v-for="task in tasks" :key="task.id" :task="task"></Task>
-        </ul>
-        <span class="text-xs text-gray-500 cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
-
-        <new-task v-if="showNewTask" :users="users"/>
-
+            <new-task v-if="showNewTask" :users="users"/>
+        </div>
     </section>
 
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex';
-    import  Task from './Task';
+    import {mapState, mapActions} from 'vuex';
+    import Task from './Task';
     import NewTask from "./NewTask";
+
     export default {
-        components:{ Task, NewTask },
-        data(){
-          return {
-              showCard: true,
-              showNewTask: false,
-          }
+        components: {Task, NewTask},
+        data() {
+            return {
+                showCard: true,
+                showNewTask: false,
+            }
         },
 
         created() {
@@ -51,7 +54,7 @@
             this.$store.dispatch('users/getUsers', {root: true});
         },
 
-        computed:{
+        computed: {
             ...mapState('tasks', ['tasks']),
             ...mapState('users', ['users'])
         }
