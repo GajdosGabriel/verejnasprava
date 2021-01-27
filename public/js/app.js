@@ -6137,6 +6137,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users'],
@@ -86878,65 +86881,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.dialog
     ? _c("section", { staticClass: "bg-gray-200 p-2" }, [
-        _c("div", { staticClass: "flex justify-between " }, [
-          _c("label", { attrs: { for: "cars" } }, [_vm._v("Nová požiadavka")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.formData.requsted_id,
-                  expression: "formData.requsted_id"
-                }
-              ],
-              staticClass: "text-xs my-1",
-              attrs: { required: "", id: "cars" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.formData,
-                    "requsted_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
-            _vm._l(_vm.users, function(user) {
-              return _c(
-                "option",
-                { key: user.id, domProps: { value: user.id } },
-                [_vm._v(_vm._s(user.last_name) + " " + _vm._s(user.first_name))]
-              )
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass:
-                "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
-              on: {
-                click: function($event) {
-                  _vm.dialog = false
-                }
-              }
-            },
-            [_vm._v("Zavrieť")]
-          )
-        ]),
-        _vm._v(" "),
         _c(
           "form",
           {
@@ -86948,6 +86892,77 @@ var render = function() {
             }
           },
           [
+            _c("div", { staticClass: "flex justify-between " }, [
+              _c("label", { attrs: { for: "cars" } }, [
+                _vm._v("Nová požiadavka")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.requsted_id,
+                      expression: "formData.requsted_id"
+                    }
+                  ],
+                  staticClass: "text-xs my-1",
+                  attrs: { required: "", id: "cars" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.formData,
+                        "requsted_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Vybrať")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.users, function(user) {
+                    return _c(
+                      "option",
+                      { key: user.id, domProps: { value: user.id } },
+                      [
+                        _vm._v(
+                          _vm._s(user.last_name) + " " + _vm._s(user.first_name)
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
+                [_vm._v("Zavrieť")]
+              )
+            ]),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -86958,7 +86973,11 @@ var render = function() {
                 }
               ],
               staticClass: "text-xs w-full mb-3 border px-2 py-1",
-              attrs: { type: "text", placeholder: "Nadpis požiadavky" },
+              attrs: {
+                type: "text",
+                required: "",
+                placeholder: "Nadpis požiadavky"
+              },
               domProps: { value: _vm.formData.name },
               on: {
                 input: function($event) {
