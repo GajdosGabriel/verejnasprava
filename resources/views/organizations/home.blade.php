@@ -13,6 +13,8 @@
             @role('admin')
             <x-oznamenia>
 
+                <tasks-component></tasks-component>
+
             </x-oznamenia>
             @endrole
         </div>

@@ -51,7 +51,7 @@
         components: {showModal, pagination},
         data() {
             return {
-                showCard: true,
+                showCard: false,
                 showModal: false,
                 messengers: [],
                 message: {}

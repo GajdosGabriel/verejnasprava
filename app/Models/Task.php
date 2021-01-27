@@ -9,5 +9,19 @@ class Task extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['user'];
+
+    protected $casts = [
+        'completed' => 'boolean',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'fileable');
+    }
 
 }
