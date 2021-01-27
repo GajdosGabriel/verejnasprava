@@ -28,11 +28,11 @@ const actions = {
             })
     },
 
-    storeTask({commit}, task){
+    storeTask({commit, dispatch}, task){
         // console.log(task);
         axios.post('users/1/tasks', task)
             .then(response => {
-                // commit('SET_TASKS', response.data )
+                dispatch('getTasks')
             })
     }
 

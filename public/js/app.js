@@ -6156,6 +6156,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveTask: function saveTask() {
       this.storeTask(this.formData);
       this.formData = {};
+      this.dialog = false;
     }
   })
 });
@@ -6203,7 +6204,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['task'],
   data: function data() {
     return {
-      dialog: true
+      dialog: false
     };
   },
   methods: {
@@ -6238,7 +6239,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -87027,7 +87027,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "border-gray-400 border-b-2" }, [
     _c(
       "li",
       {
@@ -87044,16 +87044,16 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "flex flex-col" }, [
-          _c("span", { staticClass: "text-xs" }, [
+        _c("div", { staticClass: "flex justify-between text-xs w-full" }, [
+          _c("div", [_vm._v(_vm._s(_vm.task.name))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-xs" }, [
             _vm._v(
               _vm._s(_vm.task.user.first_name) +
                 " " +
                 _vm._s(_vm.task.user.last_name)
             )
-          ]),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.task.name))])
+          ])
         ]),
         _vm._v(" "),
         _vm.task.completed
@@ -87090,7 +87090,7 @@ var render = function() {
                 "span",
                 {
                   staticClass:
-                    "text-xs bg-green-300 px-1 cursor-pointer rounded-md flex justify-end",
+                    "text-xs bg-green-300 px-1 cursor-pointer rounded-md",
                   on: { click: _vm.updateTask }
                 },
                 [_vm._v("Vybavené")]
@@ -87099,7 +87099,7 @@ var render = function() {
                 "span",
                 {
                   staticClass:
-                    "text-xs bg-green-100 px-1 cursor-pointer rounded-md flex justify-end",
+                    "text-xs bg-green-100 px-1 cursor-pointer rounded-md",
                   on: { click: _vm.updateTask }
                 },
                 [_vm._v("Obnoviť")]
@@ -107430,9 +107430,11 @@ var actions = {
     });
   },
   storeTask: function storeTask(_ref3, task) {
-    var commit = _ref3.commit;
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
     // console.log(task);
-    axios.post('users/1/tasks', task).then(function (response) {// commit('SET_TASKS', response.data )
+    axios.post('users/1/tasks', task).then(function (response) {
+      dispatch('getTasks');
     });
   }
 };

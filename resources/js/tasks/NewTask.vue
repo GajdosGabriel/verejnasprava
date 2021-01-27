@@ -38,7 +38,8 @@
 
             saveTask(){
                 this.storeTask(this.formData);
-                this.formData = {}
+                this.formData = {};
+                this.dialog = false;
             }
 
         }

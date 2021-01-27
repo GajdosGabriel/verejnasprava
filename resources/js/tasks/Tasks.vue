@@ -24,7 +24,6 @@
 
         <ul>
             <Task v-for="task in tasks" :key="task.id" :task="task"></Task>
-
         </ul>
         <span class="text-xs text-gray-500 cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
 
