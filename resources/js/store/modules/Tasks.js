@@ -21,9 +21,10 @@ const actions = {
             })
     },
 
-    updateTask({commit}, task){
+    updateTask({commit, dispatch}, task){
         axios.put('users/1/tasks/' + task.id, task)
             .then(response => {
+                dispatch('getTasks')
                 // commit('SET_TASKS', response.data )
             })
     },

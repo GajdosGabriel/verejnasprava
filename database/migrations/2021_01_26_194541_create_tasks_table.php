@@ -21,8 +21,8 @@ class CreateTasksTable extends Migration
             $table->date('due_date')->nullable();
             $table->time('due_time')->nullable();
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->boolean('completed')->default(false);
+            $table->string('body')->nullable();
+            $table->dateTime('completed')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

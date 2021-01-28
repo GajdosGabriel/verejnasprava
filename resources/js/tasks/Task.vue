@@ -15,11 +15,12 @@
             </svg>
         </li>
 
-        <div v-if="dialog" class="p-2">
-            <span v-if="! task.completed" @click="updateTask" class="text-xs bg-green-300 px-1 cursor-pointer rounded-md">Vybavené</span>
-            <span v-else  @click="updateTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-md">Obnoviť</span>
-            <div>
-                komentáre
+        <div v-if="dialog" class="p-2 w-full relative ">
+            <span v-if="! task.completed" @click="updateTask" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm absolute right-0">Vybavené</span>
+            <span v-else  @click="updateTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm absolute right-0">Obnoviť</span>
+
+            <div class="text-sm">
+                {{ task.body}}
             </div>
         </div>
     </div>
@@ -36,7 +37,10 @@
         },
         methods: {
             updateTask() {
-                this.$store.dispatch('tasks/updateTask', {id: this.task.id, completed: this.task.completed = !this.task.completed}, {root: true})
+                this.$store.dispatch('tasks/updateTask', {
+                    id: this.task.id,
+                    completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
+                }, {root: true})
             }
         }
 

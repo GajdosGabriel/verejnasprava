@@ -6148,7 +6148,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dialog: true,
       formData: {
         name: '',
-        description: '',
+        body: '',
         organization_id: this.user.active_organization,
         requested_id: ''
       }
@@ -6201,6 +6201,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['task'],
@@ -6213,7 +6214,7 @@ __webpack_require__.r(__webpack_exports__);
     updateTask: function updateTask() {
       this.$store.dispatch('tasks/updateTask', {
         id: this.task.id,
-        completed: this.task.completed = !this.task.completed
+        completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
       }, {
         root: true
       });
@@ -86995,18 +86996,18 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.formData.description,
-                  expression: "formData.description"
+                  value: _vm.formData.body,
+                  expression: "formData.body"
                 }
               ],
               staticClass: "w-full mb-3 border text-sm p-2",
-              domProps: { value: _vm.formData.description },
+              domProps: { value: _vm.formData.body },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.formData, "description", $event.target.value)
+                  _vm.$set(_vm.formData, "body", $event.target.value)
                 }
               }
             }),
@@ -87104,13 +87105,13 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.dialog
-      ? _c("div", { staticClass: "p-2" }, [
+      ? _c("div", { staticClass: "p-2 w-full relative " }, [
           !_vm.task.completed
             ? _c(
                 "span",
                 {
                   staticClass:
-                    "text-xs bg-green-300 px-1 cursor-pointer rounded-md",
+                    "text-xs bg-green-300 px-1 cursor-pointer rounded-sm absolute right-0",
                   on: { click: _vm.updateTask }
                 },
                 [_vm._v("Vybavené")]
@@ -87119,13 +87120,15 @@ var render = function() {
                 "span",
                 {
                   staticClass:
-                    "text-xs bg-green-100 px-1 cursor-pointer rounded-md",
+                    "text-xs bg-green-100 px-1 cursor-pointer rounded-sm absolute right-0",
                   on: { click: _vm.updateTask }
                 },
                 [_vm._v("Obnoviť")]
               ),
           _vm._v(" "),
-          _c("div", [_vm._v("\n            komentáre\n        ")])
+          _c("div", { staticClass: "text-sm" }, [
+            _vm._v("\n            " + _vm._s(_vm.task.body) + "\n        ")
+          ])
         ])
       : _vm._e()
   ])
@@ -87152,7 +87155,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
+  return _c("section", { staticClass: "border" }, [
     _c(
       "header",
       {
@@ -87200,24 +87203,44 @@ var render = function() {
           ? _c(
               "svg",
               {
-                staticClass: "h-3 w-3 text-gray-700",
+                staticClass: "h-4 w-4 text-gray-100",
                 attrs: {
                   xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
                 }
               },
-              [_c("path", { attrs: { d: "M7 10V2h6v8h5l-8 8-8-8h5z" } })]
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
             )
           : _c(
               "svg",
               {
-                staticClass: "h-3 w-3 text-gray-700",
+                staticClass: "h-4 w-4",
                 attrs: {
                   xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
                 }
               },
-              [_c("path", { attrs: { d: "M7 10v8h6v-8h5l-8-8-8 8h5z" } })]
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
             )
       ]
     ),
@@ -107445,8 +107468,10 @@ var actions = {
     });
   },
   updateTask: function updateTask(_ref2, task) {
-    var commit = _ref2.commit;
-    axios.put('users/1/tasks/' + task.id, task).then(function (response) {// commit('SET_TASKS', response.data )
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
+    axios.put('users/1/tasks/' + task.id, task).then(function (response) {
+      dispatch('getTasks'); // commit('SET_TASKS', response.data )
     });
   },
   storeTask: function storeTask(_ref3, task) {

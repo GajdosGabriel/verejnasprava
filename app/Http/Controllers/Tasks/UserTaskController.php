@@ -13,8 +13,8 @@ class UserTaskController extends Controller
         return Task::whereRequestedId($user->id)->latest()->get();
     }
 
-    public function update(User $user, Task $task, Request $request ){
-
+    public function update(User $user, Task $task, Request $request )
+    {
        $task = $task->update($request->all());
         return $task;
     }

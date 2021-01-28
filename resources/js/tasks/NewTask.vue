@@ -13,7 +13,7 @@
 
             <input type="text" v-model="formData.name" required placeholder="Nadpis požiadavky" class="text-xs w-full mb-3 border px-2 py-1">
 
-            <textarea v-model="formData.description" class="w-full mb-3 border text-sm p-2"></textarea>
+            <textarea v-model="formData.body" class="w-full mb-3 border text-sm p-2"></textarea>
 
             <button type="submit" class="p-2 bg-green-300 w-full rounded-md hover:bg-green-400">Uložiť</button>
         </form>
@@ -30,7 +30,7 @@
                 dialog: true,
                 formData: {
                     name: '',
-                    description: '',
+                    body: '',
                     organization_id: this.user.active_organization,
                     requested_id: ''
                 }
