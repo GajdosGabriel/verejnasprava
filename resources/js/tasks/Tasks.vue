@@ -1,6 +1,6 @@
 <template>
 
-    <section class="border">
+    <section class="border" v-if="active.find(id => id.id == 6)">
         <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
                 :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
@@ -10,7 +10,7 @@
                           d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
                           clip-rule="evenodd"/>
                 </svg>
-                <h3 class="font-semibold cursor-pointer">Požiadavky ({{ uncompletedTaskList.length }})</h3>
+                <h3 class="font-semibold cursor-pointer">Úlohy ({{ uncompletedTaskList.length }})</h3>
             </div>
 
             <card-header-icon :showCard="showCard"/>
@@ -56,7 +56,9 @@
         computed: {
             ...mapState('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList']),
             ...mapState('users', ['users']),
+            ...mapState('organization', ['active']),
             ...mapGetters('tasks', ['tasksList']),
+
 
             nameOfList(){
                 return this.setTaskList ?  'aktívne' : 'vybavené'

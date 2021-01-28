@@ -6449,7 +6449,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['tasksList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['tasksList'])), {}, {
     nameOfList: function nameOfList() {
       return this.setTaskList ? 'aktívne' : 'vybavené';
     },
@@ -87557,108 +87557,115 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "border" }, [
-    _c(
-      "header",
-      {
-        staticClass:
-          "flex justify-between items-center px-2 py-2  cursor-pointer",
-        class: [_vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"],
-        on: {
-          click: function($event) {
-            _vm.showCard = !_vm.showCard
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "flex items-center justify-center" }, [
-          _c(
-            "svg",
-            {
-              staticClass: "fill-current h-5 w-5 mr-2",
-              attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                viewBox: "0 0 20 20",
-                fill: "currentColor"
+  return _vm.active.find(function(id) {
+    return id.id == 6
+  })
+    ? _c("section", { staticClass: "border" }, [
+        _c(
+          "header",
+          {
+            staticClass:
+              "flex justify-between items-center px-2 py-2  cursor-pointer",
+            class: [
+              _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+            ],
+            on: {
+              click: function($event) {
+                _vm.showCard = !_vm.showCard
               }
-            },
-            [
-              _c("path", { attrs: { d: "M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" } }),
-              _vm._v(" "),
-              _c("path", {
-                attrs: {
-                  "fill-rule": "evenodd",
-                  d:
-                    "M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z",
-                  "clip-rule": "evenodd"
-                }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-            _vm._v(
-              "Požiadavky (" + _vm._s(_vm.uncompletedTaskList.length) + ")"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _vm.showCard
-      ? _c(
-          "div",
+            }
+          },
           [
-            _c(
-              "ul",
-              _vm._l(_vm.taskList, function(task) {
-                return _c("Task", { key: task.id, attrs: { task: task } })
-              }),
-              1
-            ),
+            _c("div", { staticClass: "flex items-center justify-center" }, [
+              _c(
+                "svg",
+                {
+                  staticClass: "fill-current h-5 w-5 mr-2",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20",
+                    fill: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: { d: "M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
+                _vm._v("Úlohy (" + _vm._s(_vm.uncompletedTaskList.length) + ")")
+              ])
+            ]),
             _vm._v(" "),
-            _c(
+            _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.showCard
+          ? _c(
               "div",
-              {
-                staticClass: "flex justify-between text-xs text-gray-500 px-2"
-              },
               [
                 _c(
-                  "span",
-                  {
-                    staticClass: "cursor-pointer hover:text-gray-800",
-                    on: {
-                      click: function($event) {
-                        _vm.showNewTask = !_vm.showNewTask
-                      }
-                    }
-                  },
-                  [_vm._v("Nová Požiadavka")]
+                  "ul",
+                  _vm._l(_vm.taskList, function(task) {
+                    return _c("Task", { key: task.id, attrs: { task: task } })
+                  }),
+                  1
                 ),
                 _vm._v(" "),
                 _c(
-                  "span",
+                  "div",
                   {
-                    staticClass: "cursor-pointer hover:text-gray-800",
-                    domProps: { textContent: _vm._s(_vm.nameOfList) },
-                    on: { click: _vm.changeTaskList }
+                    staticClass:
+                      "flex justify-between text-xs text-gray-500 px-2"
                   },
-                  [_vm._v("vybavené")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.showNewTask
-              ? _c("new-task", { attrs: { users: _vm.users } })
-              : _vm._e()
-          ],
-          1
-        )
-      : _vm._e()
-  ])
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "cursor-pointer hover:text-gray-800",
+                        on: {
+                          click: function($event) {
+                            _vm.showNewTask = !_vm.showNewTask
+                          }
+                        }
+                      },
+                      [_vm._v("Nová Požiadavka")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "cursor-pointer hover:text-gray-800",
+                        domProps: { textContent: _vm._s(_vm.nameOfList) },
+                        on: { click: _vm.changeTaskList }
+                      },
+                      [_vm._v("vybavené")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.showNewTask
+                  ? _c("new-task", { attrs: { users: _vm.users } })
+                  : _vm._e()
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

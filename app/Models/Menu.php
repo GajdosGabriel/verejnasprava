@@ -21,7 +21,7 @@ class Menu extends Model
     public function scopeHorizontalMenu($query)
     {
 //        return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9]);
-        return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9,10]);
+        return $query->whereIn('id', [1, 2, 3, 4, 6, 7, 8, 9,10]);
 
     }
 }
