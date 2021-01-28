@@ -20,7 +20,8 @@
                     body: this.body,
                 })
                 .then( response => {
-                    this.body = null
+                    this.body = null;
+                    this.$store.dispatch('tasks/getTasks', {root: true});
                 })
 
             }

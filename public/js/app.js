@@ -6172,6 +6172,10 @@ __webpack_require__.r(__webpack_exports__);
         body: this.body
       }).then(function (response) {
         _this.body = null;
+
+        _this.$store.dispatch('tasks/getTasks', {
+          root: true
+        });
       });
     }
   }
@@ -87031,7 +87035,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "bg-gray-200 w-full p-2 ronded-md" }, [
+    _c("div", { staticClass: "bg-gray-200 w-full p-2 rounded-md" }, [
       _vm._v("\n        " + _vm._s(_vm.comment.body) + "\n    ")
     ])
   ])
