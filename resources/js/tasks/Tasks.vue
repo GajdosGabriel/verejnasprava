@@ -25,12 +25,12 @@
         </header>
         <div v-if="showCard">
             <ul>
-                <Task v-for="task in completedTasks" :key="task.id" :task="task"></Task>
+                <Task v-for="task in taskList" :key="task.id" :task="task"></Task>
             </ul>
 
             <div class="flex justify-between text-xs text-gray-500 px-2">
                 <span class="cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
-                <span class=" cursor-pointer hover:text-gray-800">vybavené</span>
+                <span class=" cursor-pointer hover:text-gray-800" @click="changeTaskList">vybavené</span>
             </div>
 
             <new-task v-if="showNewTask" :users="users"/>
@@ -50,7 +50,7 @@
         data() {
             return {
                 showCard: true,
-                showNewTask: false,
+                showNewTask: false
             }
         },
 
@@ -60,9 +60,26 @@
         },
 
         computed: {
-            ...mapState('tasks', ['tasks']),
+            ...mapState('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList']),
             ...mapState('users', ['users']),
-            ...mapGetters('tasks', [ 'completedTasks', 'uncompletedTasks'])
+            ...mapGetters('tasks', ['tasksList']),
+
+            taskList(){
+                if (this.setTaskList){
+                    return this.completedTaskList
+                }
+                return this.uncompletedTaskList
+            }
+        },
+        methods: {
+            ...mapActions('tasks', ['variantTaskList']),
+
+            changeTaskList(){
+                if(this.setTaskList){
+                 return this.variantTaskList(false)
+                }
+                this.variantTaskList(true)
+            }
         }
 
     }

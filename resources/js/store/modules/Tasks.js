@@ -1,21 +1,28 @@
 const state = {
-    tasks: []
+    tasks: [],
+    completedTaskList: [],
+    uncompletedTaskList: [],
+    setTaskList: false
 
 };
 const getters = {
-    completedTasks(state){
-      return state.tasks.filter(task => task.completed == ! null );
-    },
-
-    uncompletedTasks(state){
+    tasksList(state){
+        if(state.activeTaskList) {
+            return state.tasks.filter(task => task.completed == ! null );
+        }
         return state.tasks.filter(task => task.completed == null );
-    }
+    },
 
 };
 
 const mutations = {
     SET_TASKS(state, payload){
-        state.tasks = payload
+        state.completedTaskList = payload.filter(task => task.completed == ! null );
+        state.uncompletedTaskList = payload.filter(task => task.completed ==  null )
+    },
+
+    SET_TASK_LIST(state, payload){
+        state.setTaskList = payload
     }
 
 };
@@ -37,12 +44,16 @@ const actions = {
     },
 
     storeTask({commit, dispatch}, task){
-        // console.log(task);
         axios.post('users/1/tasks', task)
             .then(response => {
                 dispatch('getTasks')
             })
+    },
+
+    variantTaskList({commit}, payload){
+        commit('SET_TASK_LIST', payload);
     }
+
 
 };
 

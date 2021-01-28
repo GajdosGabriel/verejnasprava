@@ -6307,7 +6307,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['completedTasks', 'uncompletedTasks']))
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['tasksList'])), {}, {
+    taskList: function taskList() {
+      if (this.setTaskList) {
+        return this.completedTaskList;
+      }
+
+      return this.uncompletedTaskList;
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['variantTaskList'])), {}, {
+    changeTaskList: function changeTaskList() {
+      if (this.setTaskList) {
+        return this.variantTaskList(false);
+      }
+
+      this.variantTaskList(true);
+    }
+  })
 });
 
 /***/ }),
@@ -87257,7 +87274,7 @@ var render = function() {
           [
             _c(
               "ul",
-              _vm._l(_vm.completedTasks, function(task) {
+              _vm._l(_vm.taskList, function(task) {
                 return _c("Task", { key: task.id, attrs: { task: task } })
               }),
               1
@@ -87284,7 +87301,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "span",
-                  { staticClass: " cursor-pointer hover:text-gray-800" },
+                  {
+                    staticClass: " cursor-pointer hover:text-gray-800",
+                    on: { click: _vm.changeTaskList }
+                  },
                   [_vm._v("vybavené")]
                 )
               ]
@@ -107471,15 +107491,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  tasks: []
+  tasks: [],
+  completedTaskList: [],
+  uncompletedTaskList: [],
+  setTaskList: false
 };
 var getters = {
-  completedTasks: function completedTasks(state) {
-    return state.tasks.filter(function (task) {
-      return task.completed == !null;
-    });
-  },
-  uncompletedTasks: function uncompletedTasks(state) {
+  tasksList: function tasksList(state) {
+    if (state.activeTaskList) {
+      return state.tasks.filter(function (task) {
+        return task.completed == !null;
+      });
+    }
+
     return state.tasks.filter(function (task) {
       return task.completed == null;
     });
@@ -107487,7 +107511,15 @@ var getters = {
 };
 var mutations = {
   SET_TASKS: function SET_TASKS(state, payload) {
-    state.tasks = payload;
+    state.completedTaskList = payload.filter(function (task) {
+      return task.completed == !null;
+    });
+    state.uncompletedTaskList = payload.filter(function (task) {
+      return task.completed == null;
+    });
+  },
+  SET_TASK_LIST: function SET_TASK_LIST(state, payload) {
+    state.setTaskList = payload;
   }
 };
 var actions = {
@@ -107507,10 +107539,13 @@ var actions = {
   storeTask: function storeTask(_ref3, task) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    // console.log(task);
     axios.post('users/1/tasks', task).then(function (response) {
       dispatch('getTasks');
     });
+  },
+  variantTaskList: function variantTaskList(_ref4, payload) {
+    var commit = _ref4.commit;
+    commit('SET_TASK_LIST', payload);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
