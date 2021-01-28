@@ -29,7 +29,7 @@
             <!-- Comments section -->
             <section>
                 <new-comment :task="task"/>
-                <comment v-for="comment in task.comments" :comment="comment" :key="comment.id" />
+                <comment v-for="comment in task.comments" :comment="comment" :task="task" :key="comment.id" />
             </section>
         </div>
     </div>

@@ -6127,6 +6127,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 //
 //
 //
@@ -6135,8 +6136,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['comment']
+  props: ['comment', 'task'],
+  data: function data() {
+    return {
+      showDropDown: false
+    };
+  },
+  created: function created() {
+    var self = this;
+    window.addEventListener('click', function (e) {
+      // close dropdown when clicked outside
+      if (!self.$el.contains(e.target)) {
+        self.showDropDown = false;
+        self.showDropDown = false;
+      }
+    });
+  },
+  methods: {
+    deleteComment: function deleteComment() {
+      var _this = this;
+
+      axios["delete"]('tasks/' + this.task.id + '/comments/' + this.comment.id).then(function (response) {
+        _this.showDropDown = false;
+
+        _this.$store.dispatch('tasks/getTasks', {
+          root: true
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -87035,9 +87076,82 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "bg-gray-200 w-full p-2 rounded-md" }, [
-      _vm._v("\n        " + _vm._s(_vm.comment.body) + "\n    ")
-    ])
+    _c(
+      "div",
+      {
+        staticClass:
+          "bg-gray-200 w-full p-2 rounded-md flex justify-between  relative"
+      },
+      [
+        _c("span", [_vm._v(_vm._s(_vm.comment.body))]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "h5 w-5 cursor-pointer bg-white rounded-full flex justify-center items-center",
+            on: {
+              click: function($event) {
+                _vm.showDropDown = !_vm.showDropDown
+              }
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "fill-current text-gray-400 hover:text-gray-600",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm.showDropDown
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-gray-100 flex flex-col items-center border-2 rounded-md border-gray-400"
+                  },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer"
+                      },
+                      [_vm._v("upraviť")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                        on: { click: _vm.deleteComment }
+                      },
+                      [_vm._v("zmazať")]
+                    )
+                  ]
+                )
+              : _vm._e()
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -87391,7 +87505,7 @@ var render = function() {
               _vm._l(_vm.task.comments, function(comment) {
                 return _c("comment", {
                   key: comment.id,
-                  attrs: { comment: comment }
+                  attrs: { comment: comment, task: _vm.task }
                 })
               })
             ],
@@ -87463,7 +87577,9 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-            _vm._v("Požiadavky")
+            _vm._v(
+              "Požiadavky (" + _vm._s(_vm.uncompletedTaskList.length) + ")"
+            )
           ])
         ]),
         _vm._v(" "),
