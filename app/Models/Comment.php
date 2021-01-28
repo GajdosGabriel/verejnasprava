@@ -10,6 +10,7 @@ class Comment extends Model
     use SoftDeletes;
 
     protected $guarded = ['id'];
+    protected $with = ['user'];
 
     public function fileable()
     {

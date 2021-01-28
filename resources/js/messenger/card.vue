@@ -12,16 +12,8 @@
 
             <div class="text-xs text-red-600" v-if="body && ! showCard">Neodoslaná</div>
 
+            <card-header-icon :showCard="showCard"/>
 
-            <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 20 20">
-                <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
-            </svg>
-
-            <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 20 20">
-                <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
-            </svg>
         </header>
 
         <div v-show="showCard">
@@ -86,9 +78,10 @@
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
     import {bus} from '../app';
     import {mapState} from "vuex";
+    import CardHeaderIcon from "../components/Cards/CardHeaderIcon";
 
     export default {
-        components: {tagList, VueEditor, tagModal, recipientItem, userList},
+        components: {tagList, VueEditor, tagModal, recipientItem, userList, CardHeaderIcon},
         data() {
             return {
                 title: "Nová správa",

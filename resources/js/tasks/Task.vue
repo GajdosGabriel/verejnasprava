@@ -1,8 +1,8 @@
 <template>
     <div class="border-gray-400 border-b-2">
 
-        <li class="flex justify-between cursor-pointer  p-2"
-            :class="[task.completed ? 'bg-green-200 hover:bg-green-300' :'hover:bg-gray-200']"
+        <li class="flex justify-between cursor-pointer p-2"
+            :class="[task.completed ? 'bg-green-200 hover:bg-green-300' : 'hover:bg-gray-200', dialog ? 'bg-green-300' : '']"
             @click="dialog = ! dialog"
         >
             <div class="flex justify-between text-xs w-full">
@@ -15,21 +15,33 @@
             </svg>
         </li>
 
-        <div v-if="dialog" class="p-2 w-full relative ">
-            <span v-if="! task.completed" @click="updateTask" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm absolute right-0">Vybavené</span>
-            <span v-else  @click="updateTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm absolute right-0">Obnoviť</span>
+        <div v-if="dialog" class="p-2">
 
-            <div class="text-sm">
+            <div class=" w-full relative mb-8">
+                <span v-if="! task.completed" @click="updateTask" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm absolute right-0">Vybavené</span>
+                <span v-else @click="updateTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm absolute right-0">Obnoviť</span>
+            </div>
+
+            <div v-if="task.body" class="text-sm">
                 {{ task.body}}
             </div>
+
+            <!-- Comments section -->
+            <section>
+                <new-comment :task="task"/>
+                <comment v-for="comment in task.comments" :comment="comment" :key="comment.id" />
+            </section>
         </div>
     </div>
 </template>
 <script>
-    import { mapState } from 'vuex';
+    import {mapState} from 'vuex';
+    import NewComment from "./Comments/NewComment";
+    import Comment from "./Comments/Comment";
 
     export default {
         props: ['task'],
+        components: {NewComment, Comment},
         data() {
             return {
                 dialog: false

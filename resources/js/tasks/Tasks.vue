@@ -13,14 +13,7 @@
                 <h3 class="font-semibold cursor-pointer">Požiadavky</h3>
             </div>
 
-            <svg v-if="showCard" class="h-4 w-4 text-gray-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-            </svg>
-
-            <svg v-else class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/>
-            </svg>
-
+            <card-header-icon :showCard="showCard"/>
 
         </header>
         <div v-if="showCard">
@@ -30,7 +23,7 @@
 
             <div class="flex justify-between text-xs text-gray-500 px-2">
                 <span class="cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
-                <span class=" cursor-pointer hover:text-gray-800" @click="changeTaskList">vybavené</span>
+                <span class="cursor-pointer hover:text-gray-800" @click="changeTaskList" v-text="nameOfList">vybavené</span>
             </div>
 
             <new-task v-if="showNewTask" :users="users"/>
@@ -44,9 +37,10 @@
     import {mapState, mapActions, mapGetters} from 'vuex';
     import Task from './Task';
     import NewTask from "./NewTask";
+    import CardHeaderIcon from "../components/Cards/CardHeaderIcon";
 
     export default {
-        components: {Task, NewTask},
+        components: {Task, NewTask, CardHeaderIcon},
         data() {
             return {
                 showCard: true,
@@ -63,6 +57,10 @@
             ...mapState('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList']),
             ...mapState('users', ['users']),
             ...mapGetters('tasks', ['tasksList']),
+
+            nameOfList(){
+                return this.setTaskList ?  'aktívne' : 'vybavené'
+            },
 
             taskList(){
                 if (this.setTaskList){

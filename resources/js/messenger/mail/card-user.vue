@@ -10,16 +10,8 @@
                 <h3 class="font-semibold cursor-pointer">Oznámenia zamestnávateľa</h3>
             </div>
 
+            <card-header-icon :showCard="showCard"/>
 
-            <svg v-if="showCard" class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 20 20">
-                <path d="M7 10V2h6v8h5l-8 8-8-8h5z"/>
-            </svg>
-
-            <svg v-else class="h-3 w-3 text-gray-700" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 20 20">
-                <path d="M7 10v8h6v-8h5l-8-8-8 8h5z"/>
-            </svg>
         </header>
 
         <div class="flex flex-col px-2" v-if="showCard">
@@ -47,8 +39,9 @@
     import {bus} from '../../app';
     import pagination from "../pagination";
     import {mapState} from "vuex";
+    import CardHeaderIcon from "../../components/Cards/CardHeaderIcon";
     export default {
-        components: {showModal, pagination},
+        components: {showModal, pagination, CardHeaderIcon},
         data() {
             return {
                 showCard: false,

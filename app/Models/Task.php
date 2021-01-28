@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['user'];
+    protected $with = ['user', 'comments'];
 
     protected $casts = [
         'completed' => 'boolean',
