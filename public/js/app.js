@@ -6218,6 +6218,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         root: true
       });
+      this.dialog = false;
     }
   }
 });
@@ -6279,6 +6280,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -6301,7 +6307,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users']))
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['completedTasks', 'uncompletedTasks']))
 });
 
 /***/ }),
@@ -87251,24 +87257,37 @@ var render = function() {
           [
             _c(
               "ul",
-              _vm._l(_vm.tasks, function(task) {
+              _vm._l(_vm.completedTasks, function(task) {
                 return _c("Task", { key: task.id, attrs: { task: task } })
               }),
               1
             ),
             _vm._v(" "),
             _c(
-              "span",
+              "div",
               {
-                staticClass:
-                  "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
-                on: {
-                  click: function($event) {
-                    _vm.showNewTask = !_vm.showNewTask
-                  }
-                }
+                staticClass: "flex justify-between text-xs text-gray-500 px-2"
               },
-              [_vm._v("Nová Požiadavka")]
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "cursor-pointer hover:text-gray-800",
+                    on: {
+                      click: function($event) {
+                        _vm.showNewTask = !_vm.showNewTask
+                      }
+                    }
+                  },
+                  [_vm._v("Nová Požiadavka")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: " cursor-pointer hover:text-gray-800" },
+                  [_vm._v("vybavené")]
+                )
+              ]
             ),
             _vm._v(" "),
             _vm.showNewTask
@@ -107454,7 +107473,18 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   tasks: []
 };
-var getters = {};
+var getters = {
+  completedTasks: function completedTasks(state) {
+    return state.tasks.filter(function (task) {
+      return task.completed == !null;
+    });
+  },
+  uncompletedTasks: function uncompletedTasks(state) {
+    return state.tasks.filter(function (task) {
+      return task.completed == null;
+    });
+  }
+};
 var mutations = {
   SET_TASKS: function SET_TASKS(state, payload) {
     state.tasks = payload;

@@ -3,6 +3,13 @@ const state = {
 
 };
 const getters = {
+    completedTasks(state){
+      return state.tasks.filter(task => task.completed == ! null );
+    },
+
+    uncompletedTasks(state){
+        return state.tasks.filter(task => task.completed == null );
+    }
 
 };
 

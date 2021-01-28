@@ -40,7 +40,9 @@
                 this.$store.dispatch('tasks/updateTask', {
                     id: this.task.id,
                     completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
-                }, {root: true})
+                }, {root: true});
+
+                this.dialog = false;
             }
         }
 
