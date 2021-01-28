@@ -6,7 +6,9 @@
                 <label for="cars">Nová požiadavka</label>
                 <select v-model="formData.requested_id" required id="cars" class="text-xs my-1">
                     <option value="">Vybrať</option>
-                    <option :value="user.id" v-for="user in users" :key="user.id">{{ user.last_name}} {{ user.first_name}}</option>
+                    <option :value="user.id" v-for="user in users" :key="user.id">{{ user.last_name}} {{ user.first_name}}
+                      <span v-if="user.employment">- {{ user.employment | shortEmployment}}</span>
+                    </option>
                 </select>
                 <span class="text-xs text-gray-500 cursor-pointer hover:text-gray-800" @click="dialog = false">Zavrieť</span>
             </div>
@@ -45,6 +47,12 @@
                 this.dialog = false;
             }
 
+        },
+
+        filters:{
+            shortEmployment(value){
+                return value.slice(0, 8)
+            }
         }
 
     }

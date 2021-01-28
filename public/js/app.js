@@ -6262,6 +6262,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users'],
@@ -6282,7 +6284,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formData = {};
       this.dialog = false;
     }
-  })
+  }),
+  filters: {
+    shortEmployment: function shortEmployment(value) {
+      return value.slice(0, 8);
+    }
+  }
 });
 
 /***/ }),
@@ -87303,8 +87310,21 @@ var render = function() {
                       { key: user.id, domProps: { value: user.id } },
                       [
                         _vm._v(
-                          _vm._s(user.last_name) + " " + _vm._s(user.first_name)
-                        )
+                          _vm._s(user.last_name) +
+                            " " +
+                            _vm._s(user.first_name) +
+                            "\n                  "
+                        ),
+                        user.employment
+                          ? _c("span", [
+                              _vm._v(
+                                "- " +
+                                  _vm._s(
+                                    _vm._f("shortEmployment")(user.employment)
+                                  )
+                              )
+                            ])
+                          : _vm._e()
                       ]
                     )
                   })
