@@ -6471,7 +6471,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['tasksList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), {}, {
+    xxx: function xxx() {
+      return this.taskList.map(function (task) {
+        return _objectSpread(_objectSpread({}, task), {}, {
+          jmenoAtributu: 'hodnotaAtributu'
+        });
+      });
+    },
     nameOfList: function nameOfList() {
       return this.setTaskList ? 'aktívne' : 'vybavené';
     },
@@ -6485,11 +6492,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['variantTaskList'])), {}, {
     changeTaskList: function changeTaskList() {
-      if (this.setTaskList) {
-        return this.variantTaskList(false);
-      }
-
-      this.variantTaskList(true);
+      this.variantTaskList(!this.setTaskList);
     }
   })
 });
@@ -108027,15 +108030,7 @@ var state = {
   uncompletedTaskList: [],
   setTaskList: false
 };
-var getters = {
-  tasksList: function tasksList(state) {
-    if (state.activeTaskList) {
-      return state.completedTaskList;
-    }
-
-    return state.uncompletedTaskList;
-  }
-};
+var getters = {};
 var mutations = {
   SET_TASKS: function SET_TASKS(state, payload) {
     state.completedTaskList = payload.filter(function (task) {

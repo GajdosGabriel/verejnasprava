@@ -6,12 +6,6 @@ const state = {
 
 };
 const getters = {
-    tasksList(state){
-        if(state.activeTaskList) {
-            return state.completedTaskList;
-        }
-        return state.uncompletedTaskList;
-    },
 
 };
 

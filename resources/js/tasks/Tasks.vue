@@ -57,7 +57,10 @@
             ...mapState('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList']),
             ...mapState('users', ['users']),
             ...mapState('organization', ['active']),
-            ...mapGetters('tasks', ['tasksList']),
+
+            xxx(){
+            return  this.taskList.map(task => ({ ...task, jmenoAtributu: 'hodnotaAtributu'}));
+            },
 
 
             nameOfList(){
@@ -75,10 +78,7 @@
             ...mapActions('tasks', ['variantTaskList']),
 
             changeTaskList(){
-                if(this.setTaskList){
-                 return this.variantTaskList(false)
-                }
-                this.variantTaskList(true)
+                this.variantTaskList(! this.setTaskList)
             }
         }
 
