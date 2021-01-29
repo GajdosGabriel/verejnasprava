@@ -30,7 +30,7 @@
             <section>
                 <new-comment v-if="! task.completed" :task="task"/>
                 <div  v-else class="flex justify-between text-xs text-gray-600">
-                    <span>Úloha a diskusia je ukončená</span>
+                    <span>Úloha a diskusia bola ukončená dňa: {{ task.completed }}</span>
 <!--                    <span>{{ task.completed }}</span>-->
                 </div>
                 <comment v-for="comment in task.comments" :comment="comment" :task="task" :key="comment.id" />

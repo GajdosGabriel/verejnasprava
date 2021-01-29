@@ -87114,71 +87114,74 @@ var render = function() {
       [
         _c("span", [_vm._v(_vm._s(_vm.comment.body))]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "h5 w-5 cursor-pointer bg-white rounded-full flex justify-center items-center",
-            on: {
-              click: function($event) {
-                _vm.showDropDown = !_vm.showDropDown
-              }
-            }
-          },
-          [
-            _c(
-              "svg",
+        _vm.comment.user.id == _vm.user.id
+          ? _c(
+              "div",
               {
-                staticClass: "fill-current text-gray-400 hover:text-gray-600",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20",
-                  fill: "currentColor"
+                staticClass:
+                  "h5 w-5 cursor-pointer bg-white rounded-full flex justify-center items-center",
+                on: {
+                  click: function($event) {
+                    _vm.showDropDown = !_vm.showDropDown
+                  }
                 }
               },
               [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _vm.showDropDown
-              ? _c(
-                  "div",
+                _c(
+                  "svg",
                   {
                     staticClass:
-                      "bg-gray-100 flex flex-col items-center border-2 rounded-md border-gray-400"
+                      "fill-current text-gray-400 hover:text-gray-600",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
                   },
                   [
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer"
-                      },
-                      [_vm._v("upraviť")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
-                        on: { click: _vm.deleteComment }
-                      },
-                      [_vm._v("zmazať")]
-                    )
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
                   ]
-                )
-              : _vm._e()
-          ]
-        )
+                ),
+                _vm._v(" "),
+                _vm.showDropDown
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "bg-gray-100 flex flex-col items-center border-2 rounded-md border-gray-400"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer"
+                          },
+                          [_vm._v("upraviť")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                            on: { click: _vm.deleteComment }
+                          },
+                          [_vm._v("zmazať")]
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
+          : _vm._e()
       ]
     )
   ])
@@ -87623,7 +87626,14 @@ var render = function() {
                     {
                       staticClass: "flex justify-between text-xs text-gray-600"
                     },
-                    [_c("span", [_vm._v("Úloha a diskusia je ukončená")])]
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "Úloha a diskusia bola ukončená dňa: " +
+                            _vm._s(_vm.task.completed)
+                        )
+                      ])
+                    ]
                   ),
               _vm._v(" "),
               _vm._l(_vm.task.comments, function(comment) {
