@@ -6471,23 +6471,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['tasks', 'setTaskList', 'completedTaskList', 'uncompletedTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), {}, {
-    xxx: function xxx() {
-      return this.taskList.map(function (task) {
-        return _objectSpread(_objectSpread({}, task), {}, {
-          jmenoAtributu: 'hodnotaAtributu'
-        });
-      });
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['getUncompletedTasks', 'getCompletedTasks'])), {}, {
     nameOfList: function nameOfList() {
       return this.setTaskList ? 'aktívne' : 'vybavené';
     },
     taskList: function taskList() {
       if (this.setTaskList) {
-        return this.completedTaskList;
+        return this.getCompletedTasks;
       }
 
-      return this.uncompletedTaskList;
+      return this.getUncompletedTasks;
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['variantTaskList'])), {}, {
@@ -87721,7 +87714,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-                _vm._v("Úlohy (" + _vm._s(_vm.uncompletedTaskList.length) + ")")
+                _vm._v("Úlohy (" + _vm._s(_vm.taskList.length) + ")")
               ])
             ]),
             _vm._v(" "),
@@ -108024,20 +108017,34 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var state = {
   tasks: [],
-  completedTaskList: [],
-  uncompletedTaskList: [],
   setTaskList: false
 };
-var getters = {};
-var mutations = {
-  SET_TASKS: function SET_TASKS(state, payload) {
-    state.completedTaskList = payload.filter(function (task) {
+var getters = {
+  getUncompletedTasks: function getUncompletedTasks(state) {
+    return state.tasks.filter(function (task) {
+      return task.completed == null;
+    });
+  },
+  getCompletedTasks: function getCompletedTasks(state) {
+    return state.tasks.filter(function (task) {
       return task.completed !== null;
     });
-    state.uncompletedTaskList = payload.filter(function (task) {
-      return task.completed == null;
+  }
+};
+var mutations = {
+  SET_TASKS: function SET_TASKS(state, payload) {
+    state.tasks = payload.map(function (task) {
+      return _objectSpread(_objectSpread({}, task), {}, {
+        dialog: false
+      });
     });
   },
   SET_TASK_LIST: function SET_TASK_LIST(state, payload) {

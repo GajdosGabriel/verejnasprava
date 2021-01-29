@@ -1,18 +1,21 @@
 const state = {
     tasks: [],
-    completedTaskList: [],
-    uncompletedTaskList: [],
     setTaskList: false
 
 };
 const getters = {
+    getUncompletedTasks(state){
+      return state.tasks.filter(task => task.completed ==  null )
+    },
+    getCompletedTasks(state){
+        return state.tasks.filter(task => task.completed !==  null )
+    }
 
 };
 
 const mutations = {
     SET_TASKS(state, payload){
-        state.completedTaskList = payload.filter(task => task.completed !== null );
-        state.uncompletedTaskList = payload.filter(task => task.completed ==  null )
+        state.tasks = payload.map(task => ({ ...task, dialog: false}))
     },
 
     SET_TASK_LIST(state, payload){
