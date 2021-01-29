@@ -108020,20 +108020,16 @@ var state = {
 var getters = {
   tasksList: function tasksList(state) {
     if (state.activeTaskList) {
-      return state.tasks.filter(function (task) {
-        return task.completed == !null;
-      });
+      return state.completedTaskList;
     }
 
-    return state.tasks.filter(function (task) {
-      return task.completed == null;
-    });
+    return state.uncompletedTaskList;
   }
 };
 var mutations = {
   SET_TASKS: function SET_TASKS(state, payload) {
     state.completedTaskList = payload.filter(function (task) {
-      return task.completed == !null;
+      return task.completed !== null;
     });
     state.uncompletedTaskList = payload.filter(function (task) {
       return task.completed == null;

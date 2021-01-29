@@ -11,9 +11,9 @@ class Task extends Model
     protected $guarded = ['id'];
     protected $with = ['user', 'comments'];
 
-    protected $casts = [
-        'completed' => 'boolean',
-    ];
+//    protected $casts = [
+//        'completed' => 'boolean',
+//    ];
 
     public function user()
     {

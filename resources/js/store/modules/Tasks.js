@@ -8,16 +8,16 @@ const state = {
 const getters = {
     tasksList(state){
         if(state.activeTaskList) {
-            return state.tasks.filter(task => task.completed == ! null );
+            return state.completedTaskList;
         }
-        return state.tasks.filter(task => task.completed == null );
+        return state.uncompletedTaskList;
     },
 
 };
 
 const mutations = {
     SET_TASKS(state, payload){
-        state.completedTaskList = payload.filter(task => task.completed == ! null );
+        state.completedTaskList = payload.filter(task => task.completed !== null );
         state.uncompletedTaskList = payload.filter(task => task.completed ==  null )
     },
 
