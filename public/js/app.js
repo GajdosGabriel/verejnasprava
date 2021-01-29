@@ -6264,6 +6264,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users'],
@@ -6273,6 +6289,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData: {
         name: '',
         body: '',
+        due_date: '',
+        due_time: '',
         organization_id: this.user.active_organization,
         requested_id: ''
       }
@@ -6306,6 +6324,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Comments_NewComment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comments/NewComment */ "./resources/js/tasks/Comments/NewComment.vue");
 /* harmony import */ var _Comments_Comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Comments/Comment */ "./resources/js/tasks/Comments/Comment.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -87263,7 +87285,7 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "flex justify-between " }, [
+            _c("div", { staticClass: "flex justify-between" }, [
               _c("label", { attrs: { for: "cars" } }, [
                 _vm._v("Nová požiadavka")
               ]),
@@ -87313,7 +87335,7 @@ var render = function() {
                           _vm._s(user.last_name) +
                             " " +
                             _vm._s(user.first_name) +
-                            "\n                  "
+                            "\n                    "
                         ),
                         user.employment
                           ? _c("span", [
@@ -87393,6 +87415,76 @@ var render = function() {
                 }
               }
             }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex w-full mb-4 text-xs" }, [
+              _c("div", { staticClass: "mr-5" }, [
+                _c("label", { staticClass: "mr-3", attrs: { for: "start" } }, [
+                  _vm._v("Do:")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.due_date,
+                      expression: "formData.due_date"
+                    }
+                  ],
+                  attrs: {
+                    type: "date",
+                    id: "start",
+                    name: "trip-start",
+                    min: "formData.date",
+                    max: ""
+                  },
+                  domProps: { value: _vm.formData.due_date },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.formData, "due_date", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.formData.due_date
+                ? _c("div", [
+                    _c(
+                      "label",
+                      { staticClass: "mr-3", attrs: { for: "time" } },
+                      [_vm._v("Čas:")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formData.due_time,
+                          expression: "formData.due_time"
+                        }
+                      ],
+                      attrs: { type: "time", id: "time", name: "appt" },
+                      domProps: { value: _vm.formData.due_time },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.formData,
+                            "due_time",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                : _vm._e()
+            ]),
             _vm._v(" "),
             _c(
               "button",
@@ -87513,14 +87605,26 @@ var render = function() {
           _vm._v(" "),
           _vm.task.body
             ? _c("div", { staticClass: "text-sm" }, [
-                _vm._v("\n            " + _vm._s(_vm.task.body) + "\n        ")
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.task.body) +
+                    "\n            "
+                )
               ])
             : _vm._e(),
           _vm._v(" "),
           _c(
             "section",
             [
-              _c("new-comment", { attrs: { task: _vm.task } }),
+              !_vm.task.completed
+                ? _c("new-comment", { attrs: { task: _vm.task } })
+                : _c(
+                    "div",
+                    {
+                      staticClass: "flex justify-between text-xs text-gray-600"
+                    },
+                    [_c("span", [_vm._v("Úloha a diskusia je ukončená")])]
+                  ),
               _vm._v(" "),
               _vm._l(_vm.task.comments, function(comment) {
                 return _c("comment", {
