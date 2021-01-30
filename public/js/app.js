@@ -4815,11 +4815,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['data'],
   computed: {
     showPaginator: function showPaginator() {
-      if (this.data.data.length) {
-        return false;
-      }
-
-      if (this.data.data.length > this.data.per_page) {
+      if (this.data.data.length >= this.data.per_page) {
         return true;
       }
     }

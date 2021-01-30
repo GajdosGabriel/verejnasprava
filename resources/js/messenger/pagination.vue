@@ -1,5 +1,5 @@
 <template>
-    <div  v-if="showPaginator" class="flex justify-center space-x-3 text-xs my-4">
+    <div v-if="showPaginator" class="flex justify-center space-x-3 text-xs my-4">
         <button @click="fetchPaginate(data.prev_page_url)"
                 class="flex items-center justify-center h-4 p-2 font-semibold hover:bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
                 :disabled="! data.prev_page_url"> <<
@@ -24,11 +24,7 @@
 
         computed:{
             showPaginator(){
-                if (this.data.data.length){
-                    return false
-                }
-
-                if (this.data.data.length > this.data.per_page){
+                if (this.data.data.length >= this.data.per_page){
                     return true
                 }
             }
