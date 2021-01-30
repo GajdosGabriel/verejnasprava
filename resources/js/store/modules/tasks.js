@@ -4,11 +4,11 @@ const state = {
 
 };
 const getters = {
-    getUncompletedTasks(state){
-      return state.tasks.filter(task => task.completed ==  null )
-    },
-    getCompletedTasks(state){
-        return state.tasks.filter(task => task.completed !==  null )
+    taskList(state){
+        if (state.setTaskList){
+            return state.tasks.filter(task => task.completed !==  null )
+        }
+        return state.tasks.filter(task => task.completed ==  null )
     }
 
 };

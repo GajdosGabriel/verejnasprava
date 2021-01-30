@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import tasks from "./modules/Tasks";
+import tasks from "./modules/tasks";
 import notification from "./modules/notification";
 import posts from "./modules/posts";
 import contacts from "./modules/contacts";

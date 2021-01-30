@@ -6384,7 +6384,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      dialog: false
+      dialog: this.task.dialog
     };
   },
   methods: {
@@ -6480,16 +6480,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['getUncompletedTasks', 'getCompletedTasks'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['taskList'])), {}, {
     nameOfList: function nameOfList() {
       return this.setTaskList ? 'aktívne' : 'vybavené';
-    },
-    taskList: function taskList() {
-      if (this.setTaskList) {
-        return this.getCompletedTasks;
-      }
-
-      return this.getUncompletedTasks;
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['variantTaskList'])), {}, {
@@ -107972,7 +107965,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_Tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Tasks */ "./resources/js/store/modules/Tasks.js");
+/* harmony import */ var _modules_tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tasks */ "./resources/js/store/modules/tasks.js");
 /* harmony import */ var _modules_notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/notification */ "./resources/js/store/modules/notification.js");
 /* harmony import */ var _modules_posts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/posts */ "./resources/js/store/modules/posts.js");
 /* harmony import */ var _modules_contacts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/contacts */ "./resources/js/store/modules/contacts.js");
@@ -107998,7 +107991,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    tasks: _modules_Tasks__WEBPACK_IMPORTED_MODULE_2__["default"],
+    tasks: _modules_tasks__WEBPACK_IMPORTED_MODULE_2__["default"],
     notification: _modules_notification__WEBPACK_IMPORTED_MODULE_3__["default"],
     posts: _modules_posts__WEBPACK_IMPORTED_MODULE_4__["default"],
     contacts: _modules_contacts__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -108010,85 +108003,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     users: _modules_users__WEBPACK_IMPORTED_MODULE_11__["default"]
   }
 }));
-
-/***/ }),
-
-/***/ "./resources/js/store/modules/Tasks.js":
-/*!*********************************************!*\
-  !*** ./resources/js/store/modules/Tasks.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var state = {
-  tasks: [],
-  setTaskList: false
-};
-var getters = {
-  getUncompletedTasks: function getUncompletedTasks(state) {
-    return state.tasks.filter(function (task) {
-      return task.completed == null;
-    });
-  },
-  getCompletedTasks: function getCompletedTasks(state) {
-    return state.tasks.filter(function (task) {
-      return task.completed !== null;
-    });
-  }
-};
-var mutations = {
-  SET_TASKS: function SET_TASKS(state, payload) {
-    state.tasks = payload.map(function (task) {
-      return _objectSpread(_objectSpread({}, task), {}, {
-        dialog: false
-      });
-    });
-  },
-  SET_TASK_LIST: function SET_TASK_LIST(state, payload) {
-    state.setTaskList = payload;
-  }
-};
-var actions = {
-  getTasks: function getTasks(_ref) {
-    var commit = _ref.commit;
-    axios.get('users/1/tasks').then(function (response) {
-      commit('SET_TASKS', response.data);
-    });
-  },
-  updateTask: function updateTask(_ref2, task) {
-    var commit = _ref2.commit,
-        dispatch = _ref2.dispatch;
-    axios.put('users/1/tasks/' + task.id, task).then(function (response) {
-      dispatch('getTasks'); // commit('SET_TASKS', response.data )
-    });
-  },
-  storeTask: function storeTask(_ref3, task) {
-    var commit = _ref3.commit,
-        dispatch = _ref3.dispatch;
-    axios.post('users/1/tasks', task).then(function (response) {
-      dispatch('getTasks');
-    });
-  },
-  variantTaskList: function variantTaskList(_ref4, payload) {
-    var commit = _ref4.commit;
-    commit('SET_TASK_LIST', payload);
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: state,
-  getters: getters,
-  actions: actions,
-  mutations: mutations
-});
 
 /***/ }),
 
@@ -108796,6 +108710,86 @@ var actions = {
       commit('SET_POSTS', response.data);
       commit('SET_LOADING_STATUS', false);
     });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/tasks.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/tasks.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var state = {
+  tasks: [],
+  setTaskList: false
+};
+var getters = {
+  taskList: function taskList(state) {
+    if (state.setTaskList) {
+      return state.tasks.filter(function (task) {
+        return task.completed !== null;
+      });
+    }
+
+    return state.tasks.filter(function (task) {
+      return task.completed == null;
+    });
+  }
+};
+var mutations = {
+  SET_TASKS: function SET_TASKS(state, payload) {
+    state.tasks = payload.map(function (task) {
+      return _objectSpread(_objectSpread({}, task), {}, {
+        dialog: false
+      });
+    });
+  },
+  SET_TASK_LIST: function SET_TASK_LIST(state, payload) {
+    state.setTaskList = payload;
+  }
+};
+var actions = {
+  getTasks: function getTasks(_ref) {
+    var commit = _ref.commit;
+    axios.get('users/1/tasks').then(function (response) {
+      commit('SET_TASKS', response.data);
+    });
+  },
+  updateTask: function updateTask(_ref2, task) {
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
+    axios.put('users/1/tasks/' + task.id, task).then(function (response) {
+      dispatch('getTasks'); // commit('SET_TASKS', response.data )
+    });
+  },
+  storeTask: function storeTask(_ref3, task) {
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
+    axios.post('users/1/tasks', task).then(function (response) {
+      dispatch('getTasks');
+    });
+  },
+  variantTaskList: function variantTaskList(_ref4, payload) {
+    var commit = _ref4.commit;
+    commit('SET_TASK_LIST', payload);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

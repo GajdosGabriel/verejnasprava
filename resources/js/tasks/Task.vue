@@ -48,7 +48,7 @@
         components: {NewComment, Comment},
         data() {
             return {
-                dialog: false
+                dialog: this.task.dialog
             }
         },
         methods: {

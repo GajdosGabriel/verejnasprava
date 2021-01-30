@@ -57,24 +57,18 @@
             ...mapState('tasks', ['setTaskList']),
             ...mapState('users', ['users']),
             ...mapState('organization', ['active']),
-            ...mapGetters('tasks', ['getUncompletedTasks', 'getCompletedTasks']),
+            ...mapGetters('tasks', ['taskList']),
 
             nameOfList(){
                 return this.setTaskList ?  'aktívne' : 'vybavené'
             },
 
-            taskList(){
-                if (this.setTaskList){
-                    return this.getCompletedTasks
-                }
-                return this.getUncompletedTasks
-            }
         },
         methods: {
             ...mapActions('tasks', ['variantTaskList']),
 
             changeTaskList(){
-                this.variantTaskList(! this.setTaskList)
+                this.variantTaskList( ! this.setTaskList )
             }
         }
 
