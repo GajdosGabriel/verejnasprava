@@ -4529,17 +4529,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])), {}, {
-    showPaginator: function showPaginator() {
-      if (this.messengers.data.length) {
-        return false;
-      }
-
-      if (this.messengers.data.length > this.messengers.per_page) {
-        return true;
-      }
-    }
-  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])),
   created: function created() {
     var _this = this;
 
@@ -4802,6 +4792,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -4819,8 +4810,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
+  computed: {
+    showPaginator: function showPaginator() {
+      if (this.data.data.length) {
+        return false;
+      }
+
+      if (this.data.data.length > this.data.per_page) {
+        return true;
+      }
+    }
+  },
   methods: {
     fetchPaginate: function fetchPaginate(url) {
       this.$emit('urlMessengers', url);
@@ -84876,12 +84879,10 @@ var render = function() {
                     )
                   }),
                   _vm._v(" "),
-                  _vm.showPaginator
-                    ? _c("pagination", {
-                        attrs: { data: _vm.messengers },
-                        on: { urlMessengers: _vm.getMessengers }
-                      })
-                    : _vm._e()
+                  _c("pagination", {
+                    attrs: { data: _vm.messengers },
+                    on: { urlMessengers: _vm.getMessengers }
+                  })
                 ],
                 2
               )
@@ -85316,58 +85317,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flex justify-center space-x-3 text-xs my-4" },
-    [
-      _c(
-        "button",
-        {
-          staticClass:
-            "flex items-center justify-center h-4 p-2 font-semibold hover:bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-          attrs: { disabled: !_vm.data.prev_page_url },
-          on: {
-            click: function($event) {
-              return _vm.fetchPaginate(_vm.data.prev_page_url)
+  return _vm.showPaginator
+    ? _c("div", { staticClass: "flex justify-center space-x-3 text-xs my-4" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "flex items-center justify-center h-4 p-2 font-semibold hover:bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
+            attrs: { disabled: !_vm.data.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginate(_vm.data.prev_page_url)
+              }
             }
-          }
-        },
-        [_vm._v(" <<\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "flex items-center justify-center h-4 p-2 font-semibold border-2 border-gray-600 rounded-sm"
-        },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.current_page) +
-              " / " +
-              _vm._s(_vm.data.last_page) +
-              "\n    "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "flex items-center justify-center h-4 p-2 font-semibold hover:bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-          attrs: { disabled: !_vm.data.next_page_url },
-          on: {
-            click: function($event) {
-              return _vm.fetchPaginate(_vm.data.next_page_url)
+          },
+          [_vm._v(" <<\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex items-center justify-center h-4 p-2 font-semibold border-2 border-gray-600 rounded-sm"
+          },
+          [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.data.current_page) +
+                " / " +
+                _vm._s(_vm.data.last_page) +
+                "\n    "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "flex items-center justify-center h-4 p-2 font-semibold hover:bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
+            attrs: { disabled: !_vm.data.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginate(_vm.data.next_page_url)
+              }
             }
-          }
-        },
-        [_vm._v(" >>\n    ")]
-      )
-    ]
-  )
+          },
+          [_vm._v(" >>\n    ")]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
