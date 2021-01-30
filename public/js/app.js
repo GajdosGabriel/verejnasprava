@@ -4447,7 +4447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         recipients: this.recipients
       }).then(function (response) {
         _app__WEBPACK_IMPORTED_MODULE_5__["bus"].$emit('addNewMessage', response.data);
-      }, this.body = null, this.name = null, this.recipients = [], this.showCard = false, this.title = 'Správa bola rozoslaná');
+      }, this.body = null, this.name = "Správa od zamestnávateľa", this.recipients = [], this.showCard = false, this.title = 'Správa bola rozoslaná');
     }
   }
 });
@@ -4529,7 +4529,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])), {}, {
+    showPaginator: function showPaginator() {
+      if (this.messengers.data.length) {
+        return false;
+      }
+
+      if (this.messengers.data.length > this.messengers.per_page) {
+        return true;
+      }
+    }
+  }),
   created: function created() {
     var _this = this;
 
@@ -84866,7 +84876,7 @@ var render = function() {
                     )
                   }),
                   _vm._v(" "),
-                  _vm.messengers.data && _vm.messengers.data.length
+                  _vm.showPaginator
                     ? _c("pagination", {
                         attrs: { data: _vm.messengers },
                         on: { urlMessengers: _vm.getMessengers }

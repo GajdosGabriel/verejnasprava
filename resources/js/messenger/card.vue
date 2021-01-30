@@ -201,7 +201,7 @@
                         bus.$emit('addNewMessage', response.data)
                     },
                         this.body = null,
-                        this.name = null,
+                        this.name = "Správa od zamestnávateľa",
                         this.recipients = [],
                         this.showCard = false,
                         this.title = 'Správa bola rozoslaná',

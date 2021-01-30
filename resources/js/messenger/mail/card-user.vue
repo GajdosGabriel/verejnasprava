@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <pagination :data="messengers" @urlMessengers="getMessengers" v-if="messengers.data && messengers.data.length"/>
+            <pagination :data="messengers" @urlMessengers="getMessengers" v-if="showPaginator"/>
 
         </div>
 
@@ -52,6 +52,16 @@
         },
         computed:{
             ...mapState('organization', ['active']),
+
+            showPaginator(){
+                if (this.messengers.data.length){
+                    return false
+                }
+
+                if (this.messengers.data.length > this.messengers.per_page){
+                    return true
+                }
+            }
         },
         created() {
             this.getMessengers();
