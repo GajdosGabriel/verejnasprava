@@ -4,18 +4,22 @@ const state = {
 
 };
 const getters = {
-    taskList(state){
+    addDialogAttribute(state){
+       return state.tasks.map(task => ({ ...task, dialog: false}))
+    },
+
+    taskList(state, getters){
         if (state.setTaskList){
-            return state.tasks.filter(task => task.completed !==  null )
+            return getters.addDialogAttribute.filter(task => task.completed !==  null )
         }
-        return state.tasks.filter(task => task.completed ==  null )
+        return getters.addDialogAttribute.filter(task => task.completed ==  null )
     }
 
 };
 
 const mutations = {
     SET_TASKS(state, payload){
-        state.tasks = payload.map(task => ({ ...task, dialog: false}))
+        state.tasks = payload
     },
 
     SET_TASK_LIST(state, payload){

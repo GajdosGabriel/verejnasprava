@@ -84829,23 +84829,25 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
+                _c(
+                  "h3",
+                  { staticClass: "ml-2 font-semibold cursor-pointer mr-1" },
+                  [_vm._v("Oznámenia zamestnávateľa ")]
+                ),
+                _vm._v(" "),
                 _vm.unreadMessages >= 1
                   ? _c(
                       "h3",
                       {
                         class: [
                           _vm.unreadMessages >= 1
-                            ? "text-red-700 font-semibold cursor-pointer"
+                            ? "text-red-400 font-semibold cursor-pointer"
                             : ""
                         ]
                       },
                       [_vm._v(" (" + _vm._s(_vm.unreadMessages) + ")")]
                     )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("h3", { staticClass: "ml-2 font-semibold cursor-pointer" }, [
-                  _vm._v("Oznámenia zamestnávateľa ")
-                ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
@@ -108792,25 +108794,28 @@ var state = {
   setTaskList: false
 };
 var getters = {
-  taskList: function taskList(state) {
+  addDialogAttribute: function addDialogAttribute(state) {
+    return state.tasks.map(function (task) {
+      return _objectSpread(_objectSpread({}, task), {}, {
+        dialog: false
+      });
+    });
+  },
+  taskList: function taskList(state, getters) {
     if (state.setTaskList) {
-      return state.tasks.filter(function (task) {
+      return getters.addDialogAttribute.filter(function (task) {
         return task.completed !== null;
       });
     }
 
-    return state.tasks.filter(function (task) {
+    return getters.addDialogAttribute.filter(function (task) {
       return task.completed == null;
     });
   }
 };
 var mutations = {
   SET_TASKS: function SET_TASKS(state, payload) {
-    state.tasks = payload.map(function (task) {
-      return _objectSpread(_objectSpread({}, task), {}, {
-        dialog: false
-      });
-    });
+    state.tasks = payload;
   },
   SET_TASK_LIST: function SET_TASK_LIST(state, payload) {
     state.setTaskList = payload;
