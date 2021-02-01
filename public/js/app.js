@@ -4509,6 +4509,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -4529,7 +4530,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])('organization', ['active'])), {}, {
+    unreadMessages: function unreadMessages() {
+      return (this.messengers.data || []).filter(function (m) {
+        return m.pivot.opened == null;
+      }).length;
+    }
+  }),
   created: function created() {
     var _this = this;
 
@@ -84798,7 +84805,7 @@ var render = function() {
                 _c(
                   "svg",
                   {
-                    staticClass: "fill-current h-5 w-5 mr-2",
+                    staticClass: "fill-current h-5 w-5 mr-1",
                     attrs: {
                       xmlns: "http://www.w3.org/2000/svg",
                       viewBox: "0 0 20 20",
@@ -84822,8 +84829,22 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-                  _vm._v("Oznámenia zamestnávateľa")
+                _vm.unreadMessages >= 1
+                  ? _c(
+                      "h3",
+                      {
+                        class: [
+                          _vm.unreadMessages >= 1
+                            ? "text-red-700 font-semibold cursor-pointer"
+                            : ""
+                        ]
+                      },
+                      [_vm._v(" (" + _vm._s(_vm.unreadMessages) + ")")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("h3", { staticClass: "ml-2 font-semibold cursor-pointer" }, [
+                  _vm._v("Oznámenia zamestnávateľa ")
                 ])
               ]),
               _vm._v(" "),
