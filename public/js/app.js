@@ -4556,6 +4556,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     destroyMessage: function destroyMessage(message) {
       var _this2 = this;
 
+      if (message.pivot.opened == null) {
+        return alert('Nepotvrdenú správu nemožno zmazať.');
+      }
+
       axios["delete"]('/messengers/' + message.id).then(function (res) {
         _this2.getMessengers();
       }, this.showModal = false);

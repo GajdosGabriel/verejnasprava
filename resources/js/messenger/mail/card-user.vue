@@ -73,6 +73,9 @@
             },
 
             destroyMessage(message) {
+                if (message.pivot.opened == null) {
+                    return alert('Nepotvrdenú správu nemožno zmazať.')
+                }
                 axios.delete('/messengers/' + message.id)
                     .then(
                         (res) => {
