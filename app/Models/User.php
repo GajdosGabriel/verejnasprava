@@ -80,7 +80,7 @@ class User extends Authenticatable
 
     public function messengers()
     {
-        return $this->belongsToMany(Messenger::class)->latest()->withPivot(['opened', 'created_at']);
+        return $this->belongsToMany(Messenger::class)->whereNull('messenger_user.deleted_at')->latest()->withPivot(['opened', 'created_at']);
     }
 
 

@@ -27,7 +27,7 @@
 
         </div>
 
-        <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false" @saveReading="saveReading"></show-modal>
+        <show-modal :showModal="showModal" :message="message" @emitShowModal="showModal = false" @saveReading="saveReading" @destroyMessage="destroyMessage"></show-modal>
     </div>
 </template>
 
@@ -66,6 +66,17 @@
             passMessage(message) {
                 this.showModal = true;
                 this.message = message
+            },
+
+            destroyMessage(message) {
+                axios.delete('/messengers/' + message.id)
+                    .then(
+                        (res) => {
+                            this.getMessengers()
+                        },
+
+                        this.showModal = false
+                    );
             },
 
             saveReading() {

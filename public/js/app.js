@@ -4546,15 +4546,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showModal = true;
       this.message = message;
     },
-    saveReading: function saveReading() {
+    destroyMessage: function destroyMessage(message) {
       var _this2 = this;
 
-      axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
+      axios["delete"]('/messengers/' + message.id).then(function (res) {
         _this2.getMessengers();
       }, this.showModal = false);
     },
-    getMessengers: function getMessengers(url) {
+    saveReading: function saveReading() {
       var _this3 = this;
+
+      axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
+        _this3.getMessengers();
+      }, this.showModal = false);
+    },
+    getMessengers: function getMessengers(url) {
+      var _this4 = this;
 
       if (url == null) {
         var activeUrl = '/messengers';
@@ -4563,7 +4570,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       axios.get(activeUrl).then(function (res) {
-        _this3.messengers = res.data;
+        _this4.messengers = res.data;
       });
     }
   }
@@ -4582,6 +4589,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -4669,6 +4680,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     saveReading: function saveReading() {
       this.$emit('saveReading');
+    },
+    destroyMessage: function destroyMessage() {
+      this.$emit('destroyMessage', this.message);
     }
   }
 });
@@ -84883,7 +84897,8 @@ var render = function() {
               emitShowModal: function($event) {
                 _vm.showModal = false
               },
-              saveReading: _vm.saveReading
+              saveReading: _vm.saveReading,
+              destroyMessage: _vm.destroyMessage
             }
           })
         ],
@@ -84989,7 +85004,21 @@ var render = function() {
                               domProps: {
                                 textContent: _vm._s(_vm.dateTime(_vm.message))
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "cursor-pointer text-xs",
+                                attrs: { href: "#" },
+                                on: { click: _vm.destroyMessage }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Zmazať\n                            "
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c(

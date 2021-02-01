@@ -28,7 +28,11 @@
                                 </div>
 
                                 <span class="text-sm text-gray-600" v-text="dateTime(message)"></span>
-
+                                <a href="#"
+                                   @click="destroyMessage"
+                                   class="cursor-pointer text-xs">
+                                    Zmazať
+                                </a>
                             </header>
 
                             <form @submit.prevent="saveReading">
@@ -86,7 +90,11 @@
             },
             saveReading() {
                 this.$emit('saveReading');
-            }
+            },
+
+            destroyMessage() {
+                this.$emit('destroyMessage', this.message);
+            },
 
         }
     }

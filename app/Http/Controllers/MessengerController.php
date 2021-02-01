@@ -45,4 +45,8 @@ class MessengerController extends Controller
         $message->saveFile($request);
 
     }
+
+    public function destroy(Messenger $messenger){
+        $messenger->users()->updateExistingPivot(auth()->id(), ['deleted_at' => \Carbon\Carbon::now()]);
+    }
 }
