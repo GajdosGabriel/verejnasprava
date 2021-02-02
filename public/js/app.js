@@ -6398,6 +6398,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -6409,11 +6414,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      dialog: this.task.dialog
+      dialog: this.task.dialog,
+      showEditForm: false,
+      commentsSection: true
     };
   },
   methods: {
-    updateTask: function updateTask() {
+    updateCompleted: function updateCompleted() {
       this.$store.dispatch('tasks/updateTask', {
         id: this.task.id,
         completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
@@ -6421,6 +6428,16 @@ __webpack_require__.r(__webpack_exports__);
         root: true
       });
       this.dialog = false;
+    },
+    editTask: function editTask() {
+      this.showEditForm = true;
+      this.commentsSection = false;
+    },
+    updateTask: function updateTask() {
+      this.$store.dispatch('tasks/updateTask', this.task, {
+        root: true
+      });
+      this.showEditForm = false;
     }
   }
 });
@@ -87578,129 +87595,204 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "border-gray-400 border-b-2" }, [
-    _c(
-      "li",
-      {
-        staticClass: "flex justify-between cursor-pointer p-2",
-        class: [
-          _vm.task.completed
-            ? "bg-green-200 hover:bg-green-300"
-            : "hover:bg-gray-200",
-          _vm.dialog ? "bg-green-300" : ""
-        ],
-        on: {
-          click: function($event) {
-            _vm.dialog = !_vm.dialog
+  return _c(
+    "div",
+    {
+      staticClass: "border-gray-400 border-b-2",
+      class: { "border-green-500 border-2": _vm.dialog }
+    },
+    [
+      _c(
+        "li",
+        {
+          staticClass: "flex justify-between cursor-pointer p-2",
+          class: [
+            _vm.task.completed
+              ? "bg-green-200 hover:bg-green-300"
+              : "hover:bg-gray-200",
+            _vm.dialog ? "bg-green-300" : ""
+          ],
+          on: {
+            click: function($event) {
+              _vm.dialog = !_vm.dialog
+            }
           }
-        }
-      },
-      [
-        _c("div", { staticClass: "flex justify-between text-xs w-full" }, [
-          _c("div", [_vm._v(_vm._s(_vm.task.name))]),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-xs" }, [
-            _vm._v(
-              _vm._s(_vm.task.user.first_name) +
-                " " +
-                _vm._s(_vm.task.user.last_name)
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _vm.task.completed
-          ? _c(
-              "svg",
-              {
-                staticClass: "fill-current h-5 w-5 mr-2",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d: "M5 13l4 4L19 7"
+        },
+        [
+          _c("div", { staticClass: "flex justify-between text-xs w-full" }, [
+            !_vm.showEditForm
+              ? _c("div", [_vm._v(_vm._s(_vm.task.name))])
+              : _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.name,
+                      expression: "task.name"
+                    }
+                  ],
+                  staticClass: "w-full h-8 px-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.task.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.task, "name", $event.target.value)
+                    }
                   }
-                })
-              ]
-            )
-          : _vm._e()
-      ]
-    ),
-    _vm._v(" "),
-    _vm.dialog
-      ? _c("div", { staticClass: "p-2" }, [
-          _c("div", { staticClass: " w-full relative mb-8" }, [
-            !_vm.task.completed
-              ? _c(
-                  "span",
-                  {
-                    staticClass:
-                      "text-xs bg-green-300 px-1 cursor-pointer rounded-sm absolute right-0",
-                    on: { click: _vm.updateTask }
-                  },
-                  [_vm._v("Vybavené")]
-                )
-              : _c(
-                  "span",
-                  {
-                    staticClass:
-                      "text-xs bg-green-100 px-1 cursor-pointer rounded-sm absolute right-0",
-                    on: { click: _vm.updateTask }
-                  },
-                  [_vm._v("Obnoviť")]
-                )
+                }),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-xs" }, [
+              _vm._v(
+                _vm._s(_vm.task.user.first_name) +
+                  " " +
+                  _vm._s(_vm.task.user.last_name)
+              )
+            ])
           ]),
           _vm._v(" "),
-          _vm.task.body
-            ? _c("div", { staticClass: "text-sm" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.task.body) +
-                    "\n            "
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "section",
-            [
-              !_vm.task.completed
-                ? _c("new-comment", { attrs: { task: _vm.task } })
-                : _c(
-                    "div",
+          _vm.task.completed
+            ? _c(
+                "svg",
+                {
+                  staticClass: "fill-current h-5 w-5 mr-2",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d: "M5 13l4 4L19 7"
+                    }
+                  })
+                ]
+              )
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _vm.dialog
+        ? _c("div", { staticClass: "p-2" }, [
+            _c("div", { staticClass: "w-full mb-8 flex justify-between" }, [
+              _vm.task.user_id == _vm.user.id
+                ? _c(
+                    "span",
                     {
-                      staticClass: "flex justify-between text-xs text-gray-600"
+                      staticClass:
+                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
+                      on: { click: _vm.editTask }
                     },
-                    [
-                      _c("span", [
-                        _vm._v(
-                          "Úloha a diskusia bola ukončená dňa: " +
-                            _vm._s(_vm.task.completed)
-                        )
-                      ])
-                    ]
-                  ),
+                    [_vm._v("Upraviť")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
-              _vm._l(_vm.task.comments, function(comment) {
-                return _c("comment", {
-                  key: comment.id,
-                  attrs: { comment: comment, task: _vm.task }
-                })
-              })
-            ],
-            2
-          )
-        ])
-      : _vm._e()
-  ])
+              !_vm.task.completed
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-xs bg-green-300 px-1 cursor-pointer rounded-sm ",
+                      on: { click: _vm.updateCompleted }
+                    },
+                    [_vm._v("Vybavené")]
+                  )
+                : _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
+                      on: { click: _vm.updateCompleted }
+                    },
+                    [_vm._v("Obnoviť")]
+                  )
+            ]),
+            _vm._v(" "),
+            !_vm.showEditForm
+              ? _c("div", { staticClass: "text-sm" }, [
+                  _vm._v(_vm._s(_vm.task.body))
+                ])
+              : _c(
+                  "textarea",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.task.body,
+                        expression: "task.body"
+                      }
+                    ],
+                    staticClass: "border w-full text-sm p-2",
+                    domProps: { value: _vm.task.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.task, "body", $event.target.value)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.task.body))]
+                ),
+            _vm._v(" "),
+            _vm.showEditForm
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm",
+                    on: { click: _vm.updateTask }
+                  },
+                  [_vm._v("Uložiť zmeny")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.commentsSection
+              ? _c(
+                  "section",
+                  [
+                    !_vm.task.completed
+                      ? _c("new-comment", { attrs: { task: _vm.task } })
+                      : _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex justify-between text-xs text-gray-600"
+                          },
+                          [
+                            _c("span", [
+                              _vm._v(
+                                "Úloha a diskusia bola ukončená dňa: " +
+                                  _vm._s(_vm.task.completed)
+                              )
+                            ])
+                          ]
+                        ),
+                    _vm._v(" "),
+                    _vm._l(_vm.task.comments, function(comment) {
+                      return _c("comment", {
+                        key: comment.id,
+                        attrs: { comment: comment, task: _vm.task }
+                      })
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
