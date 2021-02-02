@@ -6443,6 +6443,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87715,9 +87721,26 @@ var render = function() {
             "div",
             { staticClass: "flex justify-between items-center text-xs w-full" },
             [
-              !_vm.showEditForm
-                ? _c("div", [_vm._v(_vm._s(_vm.task.name))])
-                : _c("input", {
+              _c("div", [
+                !_vm.showEditForm
+                  ? _c("div", { staticClass: "font-semibold" }, [
+                      _vm._v(_vm._s(_vm.task.name))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.task.due_date
+                  ? _c("div", { staticClass: "text-xs whitespace-no-wrap" }, [
+                      _vm._v(
+                        _vm._s(_vm.task.due_date) +
+                          " " +
+                          _vm._s(_vm.task.due_time)
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm.showEditForm
+                ? _c("input", {
                     directives: [
                       {
                         name: "model",
@@ -87752,7 +87775,8 @@ var render = function() {
                         _vm.$set(_vm.task, "name", $event.target.value)
                       }
                     }
-                  }),
+                  })
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "text-xs whitespace-no-wrap" }, [
                 _vm._v(
