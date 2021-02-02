@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class TaskCommentController extends Controller
 {
+    public function update(Task $task, Request $request, Comment $comment)
+    {
+        $comment->update($request->all());
+    }
+
     public function store(Task $task, Request $request)
     {
         $task->comments()->create($request->all());

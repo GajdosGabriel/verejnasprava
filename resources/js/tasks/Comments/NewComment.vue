@@ -1,6 +1,6 @@
 <template>
-    <form @submit.prevent="saveComment" class="flex text-xs">
-        <input type="text" required v-model="body" class="w-full p-2  border-2" placeholder="Nová správa">
+    <form @submit.prevent="saveComment" class="flex text-xs my-2">
+        <input type="text" required v-model="body" class="w-full p-1  border-2" placeholder="Nová správa">
         <button type="submit" class="bg-gray-600 text-gray-200 px-2 rounded-r-sm">Poslať</button>
     </form>
 </template>

@@ -6181,12 +6181,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comment', 'task'],
   data: function data() {
     return {
-      showDropDown: false
+      showDropDown: false,
+      editFormComment: false
     };
   },
   created: function created() {
@@ -6210,6 +6214,23 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       });
+    },
+    editComment: function editComment() {
+      this.editFormComment = true;
+    },
+    updateComment: function updateComment() {
+      var _this2 = this;
+
+      axios.put('tasks/' + this.task.id + '/comments/' + this.comment.id, {
+        body: this.comment.body
+      }).then(function (response) {
+        _this2.body = null;
+
+        _this2.$store.dispatch('tasks/getTasks', {
+          root: true
+        });
+      });
+      this.editFormComment = false;
     }
   }
 });
@@ -6403,6 +6424,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6418,6 +6442,13 @@ __webpack_require__.r(__webpack_exports__);
       showEditForm: false,
       commentsSection: true
     };
+  },
+  computed: {
+    userOwner: function userOwner() {
+      if (this.task.user_id == this.user.id) {
+        return true;
+      }
+    }
   },
   methods: {
     updateCompleted: function updateCompleted() {
@@ -87166,7 +87197,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-xs flex mt-4" }, [
-    _c("span", { staticClass: "mr-4" }, [
+    _c("span", { staticClass: "mr-4 whitespace-no-wrap" }, [
       _vm._v(
         _vm._s(_vm.comment.user.first_name) +
           " " +
@@ -87182,7 +87213,37 @@ var render = function() {
           "bg-gray-200 w-full p-2 rounded-md flex justify-between  relative"
       },
       [
-        _c("span", [_vm._v(_vm._s(_vm.comment.body))]),
+        !_vm.editFormComment
+          ? _c("div", [_vm._v(_vm._s(_vm.comment.body))])
+          : _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.comment.body,
+                  expression: "comment.body"
+                }
+              ],
+              staticClass: "w-full p-1 text-xs",
+              domProps: { value: _vm.comment.body },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.updateComment($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.comment, "body", $event.target.value)
+                }
+              }
+            }),
         _vm._v(" "),
         _vm.comment.user.id == _vm.user.id
           ? _c(
@@ -87228,14 +87289,29 @@ var render = function() {
                           "bg-gray-100 flex flex-col items-center border-2 rounded-md border-gray-400"
                       },
                       [
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer"
-                          },
-                          [_vm._v("upraviť")]
-                        ),
+                        !_vm.editFormComment
+                          ? _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                                on: { click: _vm.editComment }
+                              },
+                              [_vm._v("upraviť")]
+                            )
+                          : _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                                on: {
+                                  click: function($event) {
+                                    _vm.editFormComment = false
+                                  }
+                                }
+                              },
+                              [_vm._v("zrušiť")]
+                            ),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -87281,7 +87357,7 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "flex text-xs",
+      staticClass: "flex text-xs my-2",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -87299,7 +87375,7 @@ var render = function() {
             expression: "body"
           }
         ],
-        staticClass: "w-full p-2  border-2",
+        staticClass: "w-full p-1  border-2",
         attrs: { type: "text", required: "", placeholder: "Nová správa" },
         domProps: { value: _vm.body },
         on: {
@@ -87619,39 +87695,58 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "flex justify-between text-xs w-full" }, [
-            !_vm.showEditForm
-              ? _c("div", [_vm._v(_vm._s(_vm.task.name))])
-              : _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.task.name,
-                      expression: "task.name"
-                    }
-                  ],
-                  staticClass: "w-full h-8 px-2",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.task.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+          _c(
+            "div",
+            { staticClass: "flex justify-between items-center text-xs w-full" },
+            [
+              !_vm.showEditForm
+                ? _c("div", [_vm._v(_vm._s(_vm.task.name))])
+                : _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.task.name,
+                        expression: "task.name"
                       }
-                      _vm.$set(_vm.task, "name", $event.target.value)
+                    ],
+                    staticClass: "w-full h-8 px-2 mr-2 rounded",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.task.name },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.updateTask($event)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.task, "name", $event.target.value)
+                      }
                     }
-                  }
-                }),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-xs" }, [
-              _vm._v(
-                _vm._s(_vm.task.user.first_name) +
-                  " " +
-                  _vm._s(_vm.task.user.last_name)
-              )
-            ])
-          ]),
+                  }),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-xs whitespace-no-wrap" }, [
+                _vm._v(
+                  _vm._s(_vm.task.user.first_name) +
+                    " " +
+                    _vm._s(_vm.task.user.last_name)
+                )
+              ])
+            ]
+          ),
           _vm._v(" "),
           _vm.task.completed
             ? _c(
@@ -87683,7 +87778,7 @@ var render = function() {
       _vm.dialog
         ? _c("div", { staticClass: "p-2" }, [
             _c("div", { staticClass: "w-full mb-8 flex justify-between" }, [
-              _vm.task.user_id == _vm.user.id
+              _vm.userOwner && !_vm.showEditForm
                 ? _c(
                     "span",
                     {
@@ -87693,7 +87788,19 @@ var render = function() {
                     },
                     [_vm._v("Upraviť")]
                   )
-                : _vm._e(),
+                : _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
+                      on: {
+                        click: function($event) {
+                          _vm.showEditForm = false
+                        }
+                      }
+                    },
+                    [_vm._v("Zrušiť úpravy")]
+                  ),
               _vm._v(" "),
               !_vm.task.completed
                 ? _c(
@@ -87731,9 +87838,25 @@ var render = function() {
                         expression: "task.body"
                       }
                     ],
-                    staticClass: "border w-full text-sm p-2",
+                    staticClass:
+                      "border w-full text-sm p-2 border-gray-400 rounded",
                     domProps: { value: _vm.task.body },
                     on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.updateTask($event)
+                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -87744,18 +87867,6 @@ var render = function() {
                   },
                   [_vm._v(_vm._s(_vm.task.body))]
                 ),
-            _vm._v(" "),
-            _vm.showEditForm
-              ? _c(
-                  "div",
-                  {
-                    staticClass:
-                      "my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm",
-                    on: { click: _vm.updateTask }
-                  },
-                  [_vm._v("Uložiť zmeny")]
-                )
-              : _vm._e(),
             _vm._v(" "),
             _vm.commentsSection
               ? _c(

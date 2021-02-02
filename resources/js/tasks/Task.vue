@@ -5,11 +5,12 @@
             :class="[task.completed ? 'bg-green-200 hover:bg-green-300' : 'hover:bg-gray-200', dialog ? 'bg-green-300' : '']"
             @click="dialog = ! dialog"
         >
-            <div class="flex justify-between text-xs w-full">
+            <div class="flex justify-between items-center text-xs w-full">
                 <div v-if="!showEditForm">{{ task.name }}</div>
-                <input v-else type="text" v-model="task.name" class="w-full h-8 px-2">
 
-                <div class="text-xs">{{ task.user.first_name }} {{ task.user.last_name }}</div>
+                <input v-else @keyup.enter="updateTask" type="text" v-model="task.name" class="w-full h-8 px-2 mr-2 rounded">
+
+                <div class="text-xs whitespace-no-wrap">{{ task.user.first_name }} {{ task.user.last_name }}</div>
             </div>
 
             <svg class="fill-current h-5 w-5 mr-2" v-if="task.completed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,16 +21,18 @@
         <div v-if="dialog" class="p-2">
 
             <div class="w-full mb-8 flex justify-between">
-                <span v-if="task.user_id == user.id" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Upraviť</span>
+                <span v-if="userOwner && ! showEditForm" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Upraviť</span>
+                <span v-else @click="showEditForm = false" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Zrušiť úpravy</span>
+
                 <span v-if="! task.completed" @click="updateCompleted" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm ">Vybavené</span>
                 <span v-else @click="updateCompleted" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Obnoviť</span>
             </div>
 
             <div v-if="!showEditForm" class="text-sm">{{ task.body}}</div>
 
-            <textarea v-else v-model="task.body" class="border w-full text-sm p-2">{{ task.body}}</textarea>
+            <textarea @keyup.enter="updateTask" v-else v-model="task.body" class="border w-full text-sm p-2 border-gray-400 rounded">{{ task.body}}</textarea>
 
-            <div v-if="showEditForm" @click="updateTask" class="my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm">Uložiť zmeny</div>
+<!--            <div v-if="showEditForm" @click="updateTask" class="my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm">Uložiť zmeny</div>-->
 
             <!-- Comments section -->
             <section v-if="commentsSection">
@@ -57,6 +60,14 @@
                 showEditForm: false,
                 commentsSection: true
             }
+        },
+        computed: {
+            userOwner(){
+                if (this.task.user_id == this.user.id){
+                    return true
+                }
+            }
+
         },
         methods: {
             updateCompleted() {
