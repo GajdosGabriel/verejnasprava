@@ -6427,6 +6427,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87867,6 +87883,104 @@ var render = function() {
                   },
                   [_vm._v(_vm._s(_vm.task.body))]
                 ),
+            _vm._v(" "),
+            _vm.showEditForm
+              ? _c("div", { staticClass: "flex w-full mb-4 text-xs" }, [
+                  _c("div", { staticClass: "mr-5" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mr-3", attrs: { for: "start" } },
+                      [_vm._v("Do:")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.task.due_date,
+                          expression: "task.due_date"
+                        }
+                      ],
+                      attrs: {
+                        type: "date",
+                        id: "start",
+                        name: "trip-start",
+                        min: "formData.date",
+                        max: ""
+                      },
+                      domProps: { value: _vm.task.due_date },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.updateTask($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.task, "due_date", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      { staticClass: "mr-3", attrs: { for: "time" } },
+                      [_vm._v("Čas:")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.task.due_time,
+                          expression: "task.due_time"
+                        }
+                      ],
+                      attrs: { type: "time", id: "time", name: "appt" },
+                      domProps: { value: _vm.task.due_time },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.updateTask($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.task, "due_time", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm.commentsSection
               ? _c(

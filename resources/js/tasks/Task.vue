@@ -34,6 +34,22 @@
 
 <!--            <div v-if="showEditForm" @click="updateTask" class="my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm">Uložiť zmeny</div>-->
 
+            <div v-if="showEditForm" class="flex w-full mb-4 text-xs">
+                <div class="mr-5">
+                    <label for="start" class="mr-3">Do:</label>
+                    <input type="date" id="start" name="trip-start"
+                           v-model="task.due_date"
+                           min="formData.date" max="" @keyup.enter="updateTask">
+                </div>
+
+                <div>
+                    <label for="time" class="mr-3">Čas:</label>
+                    <input type="time" id="time" name="appt"
+                           v-model="task.due_time" @keyup.enter="updateTask"
+                    >
+                </div>
+            </div>
+
             <!-- Comments section -->
             <section v-if="commentsSection">
                 <new-comment v-if="! task.completed" :task="task"/>
