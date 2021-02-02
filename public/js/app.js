@@ -6506,6 +6506,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['taskList'])), {}, {
+    sortedList: function sortedList() {
+      return _.orderBy(this.taskList, 'due_date');
+    },
     nameOfList: function nameOfList() {
       return this.setTaskList ? 'aktívne' : 'vybavené';
     }
@@ -87783,7 +87786,7 @@ var render = function() {
               [
                 _c(
                   "ul",
-                  _vm._l(_vm.taskList, function(task) {
+                  _vm._l(_vm.sortedList, function(task) {
                     return _c("Task", { key: task.id, attrs: { task: task } })
                   }),
                   1

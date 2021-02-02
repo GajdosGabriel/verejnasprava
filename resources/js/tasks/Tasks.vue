@@ -18,7 +18,7 @@
         </header>
         <div v-if="showCard">
             <ul>
-                <Task v-for="task in taskList" :key="task.id" :task="task"></Task>
+                <Task v-for="task in sortedList" :key="task.id" :task="task"></Task>
             </ul>
 
             <div class="flex justify-between text-xs text-gray-500 px-2">
@@ -58,6 +58,10 @@
             ...mapState('users', ['users']),
             ...mapState('organization', ['active']),
             ...mapGetters('tasks', ['taskList']),
+
+            sortedList(){
+                return _.orderBy(this.taskList, 'due_date');
+            },
 
             nameOfList(){
                 return this.setTaskList ?  'aktívne' : 'vybavené'
