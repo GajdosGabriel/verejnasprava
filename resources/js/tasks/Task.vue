@@ -6,12 +6,12 @@
             @click="dialog = ! dialog"
         >
             <div class="flex justify-between items-center text-xs w-full">
-                <div>
-                    <div v-if="!showEditForm" class="font-semibold">{{ task.name }}</div>
+                <div v-if="!isEditActive" >
+                    <div class="font-semibold">{{ task.name }}</div>
                     <div v-if="task.due_date" class="text-xs whitespace-no-wrap">{{ task.due_date }} {{ task.due_time }}</div>
                 </div>
 
-                <input v-if="showEditForm" @keyup.enter="updateTask" type="text" v-model="task.name" class="w-full h-8 px-2 mr-2 rounded">
+                <input v-if="isEditActive" @keyup.enter="updateTask" type="text" v-model="task.name" class="w-full h-8 px-2 mr-2 rounded">
 
 
                 <div class="text-xs whitespace-no-wrap">{{ task.user.first_name }} {{ task.user.last_name }}</div>
@@ -27,20 +27,19 @@
         <div v-if="dialog" class="p-2">
 
             <div class="w-full mb-8 flex justify-between">
-                <span v-if="userOwner && ! showEditForm" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Upraviť</span>
-                <span v-else @click="showEditForm = false" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Zrušiť úpravy</span>
+                <span v-if="userOwner && ! isEditActive" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Upraviť</span>
+                <span v-else @click="isEditActive = false" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Zrušiť úpravy</span>
 
                 <span v-if="! task.completed" @click="updateCompleted" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm ">Vybavené</span>
                 <span v-else @click="updateCompleted" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Obnoviť</span>
             </div>
 
-            <div v-if="!showEditForm" class="text-sm">{{ task.body}}</div>
+            <div v-if="!isEditActive" class="text-sm">{{ task.body}}</div>
 
-            <textarea @keyup.enter="updateTask" v-else v-model="task.body" class="border w-full text-sm p-2 border-gray-400 rounded">{{ task.body}}</textarea>
+            <textarea v-else v-model="task.body" class="border w-full text-sm p-2 border-gray-400 rounded">{{ task.body }}</textarea>
 
-            <!--            <div v-if="showEditForm" @click="updateTask" class="my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm">Uložiť zmeny</div>-->
 
-            <div v-if="showEditForm" class="flex w-full mb-4 text-xs">
+            <div v-if="isEditActive" class="flex w-full mb-4 text-xs">
                 <div class="mr-5">
                     <label for="start" class="mr-3">Do:</label>
                     <input type="date" id="start" name="trip-start"
@@ -55,6 +54,8 @@
                     >
                 </div>
             </div>
+
+            <div v-if="isEditActive" @click="updateTask" class="my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm">Uložiť zmeny</div>
 
             <!-- Comments section -->
             <section v-if="commentsSection">
@@ -79,7 +80,7 @@
         data() {
             return {
                 dialog: this.task.dialog,
-                showEditForm: false,
+                isEditActive: false,
                 commentsSection: true
             }
         },
@@ -89,7 +90,6 @@
                     return true
                 }
             }
-
         },
         methods: {
             updateCompleted() {
@@ -101,12 +101,12 @@
                 this.dialog = false;
             },
             editTask() {
-                this.showEditForm = true;
+                this.isEditActive = true;
                 this.commentsSection = false;
             },
             updateTask() {
                 this.$store.dispatch('tasks/updateTask', this.task, {root: true});
-                this.showEditForm = false;
+                this.isEditActive = false;
             }
         }
 

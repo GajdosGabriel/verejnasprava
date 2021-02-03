@@ -6449,6 +6449,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6461,7 +6462,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dialog: this.task.dialog,
-      showEditForm: false,
+      isEditActive: false,
       commentsSection: true
     };
   },
@@ -6483,14 +6484,14 @@ __webpack_require__.r(__webpack_exports__);
       this.dialog = false;
     },
     editTask: function editTask() {
-      this.showEditForm = true;
+      this.isEditActive = true;
       this.commentsSection = false;
     },
     updateTask: function updateTask() {
       this.$store.dispatch('tasks/updateTask', this.task, {
         root: true
       });
-      this.showEditForm = false;
+      this.isEditActive = false;
     }
   }
 });
@@ -87721,25 +87722,29 @@ var render = function() {
             "div",
             { staticClass: "flex justify-between items-center text-xs w-full" },
             [
-              _c("div", [
-                !_vm.showEditForm
-                  ? _c("div", { staticClass: "font-semibold" }, [
+              !_vm.isEditActive
+                ? _c("div", [
+                    _c("div", { staticClass: "font-semibold" }, [
                       _vm._v(_vm._s(_vm.task.name))
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.task.due_date
-                  ? _c("div", { staticClass: "text-xs whitespace-no-wrap" }, [
-                      _vm._v(
-                        _vm._s(_vm.task.due_date) +
-                          " " +
-                          _vm._s(_vm.task.due_time)
-                      )
-                    ])
-                  : _vm._e()
-              ]),
+                    ]),
+                    _vm._v(" "),
+                    _vm.task.due_date
+                      ? _c(
+                          "div",
+                          { staticClass: "text-xs whitespace-no-wrap" },
+                          [
+                            _vm._v(
+                              _vm._s(_vm.task.due_date) +
+                                " " +
+                                _vm._s(_vm.task.due_time)
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _vm.showEditForm
+              _vm.isEditActive
                 ? _c("input", {
                     directives: [
                       {
@@ -87818,7 +87823,7 @@ var render = function() {
       _vm.dialog
         ? _c("div", { staticClass: "p-2" }, [
             _c("div", { staticClass: "w-full mb-8 flex justify-between" }, [
-              _vm.userOwner && !_vm.showEditForm
+              _vm.userOwner && !_vm.isEditActive
                 ? _c(
                     "span",
                     {
@@ -87835,7 +87840,7 @@ var render = function() {
                         "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
                       on: {
                         click: function($event) {
-                          _vm.showEditForm = false
+                          _vm.isEditActive = false
                         }
                       }
                     },
@@ -87863,7 +87868,7 @@ var render = function() {
                   )
             ]),
             _vm._v(" "),
-            !_vm.showEditForm
+            !_vm.isEditActive
               ? _c("div", { staticClass: "text-sm" }, [
                   _vm._v(_vm._s(_vm.task.body))
                 ])
@@ -87882,21 +87887,6 @@ var render = function() {
                       "border w-full text-sm p-2 border-gray-400 rounded",
                     domProps: { value: _vm.task.body },
                     on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.updateTask($event)
-                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -87908,7 +87898,7 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.task.body))]
                 ),
             _vm._v(" "),
-            _vm.showEditForm
+            _vm.isEditActive
               ? _c("div", { staticClass: "flex w-full mb-4 text-xs" }, [
                   _c("div", { staticClass: "mr-5" }, [
                     _c(
@@ -88004,6 +87994,18 @@ var render = function() {
                     })
                   ])
                 ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isEditActive
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm",
+                    on: { click: _vm.updateTask }
+                  },
+                  [_vm._v("Uložiť zmeny")]
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.commentsSection
