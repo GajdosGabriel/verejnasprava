@@ -6,9 +6,12 @@
             @click="dialog = ! dialog"
         >
             <div class="flex justify-between items-center text-xs w-full">
-                <div v-if="!isEditActive" >
+                <div v-if="!isEditActive">
                     <div class="font-semibold">{{ task.name }}</div>
-                    <div v-if="task.due_date" class="text-xs whitespace-no-wrap">{{ task.due_date }} {{ task.due_time }}</div>
+                    <div v-if="task.due_date" class="text-xs whitespace-no-wrap">
+                        {{ task.due_date | momentDate }}
+                        <span v-if="task.due_time"> {{ task.due_time | momentTime }}</span>
+                    </div>
                 </div>
 
                 <input v-if="isEditActive" @keyup.enter="updateTask" type="text" v-model="task.name" class="w-full h-8 px-2 mr-2 rounded">
@@ -26,12 +29,16 @@
 
         <div v-if="dialog" class="p-2">
 
-            <div class="w-full mb-8 flex justify-between">
-                <span v-if="userOwner && ! isEditActive" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Upraviť</span>
-                <span v-else @click="isEditActive = false" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Zrušiť úpravy</span>
+            <div class="w-full mb-8 flex">
+                <div v-if="userOwner">
+                    <span v-if="! isEditActive" @click="editTask" class="text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm">Upraviť</span>
+                    <span v-else @click="isEditActive = false" class="text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm">Zrušiť úpravy</span>
+                </div>
 
-                <span v-if="! task.completed" @click="updateCompleted" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm ">Vybavené</span>
-                <span v-else @click="updateCompleted" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm">Obnoviť</span>
+                <div class="">
+                    <span v-if="! task.completed" @click="updateCompleted" class="text-xs bg-green-300 px-1 cursor-pointer rounded-sm hover:bg-green-300">Vybavené</span>
+                    <span v-else @click="updateCompleted" class="text-xs bg-green-100 px-1 cursor-pointer rounded-sm hover:bg-green-300">Obnoviť</span>
+                </div>
             </div>
 
             <div v-if="!isEditActive" class="text-sm">{{ task.body}}</div>
@@ -73,6 +80,7 @@
     import {mapState} from 'vuex';
     import NewComment from "./Comments/NewComment";
     import Comment from "./Comments/Comment";
+    import moment from "moment";
 
     export default {
         props: ['task'],
@@ -107,6 +115,15 @@
             updateTask() {
                 this.$store.dispatch('tasks/updateTask', this.task, {root: true});
                 this.isEditActive = false;
+            }
+        },
+        filters: {
+            momentDate: function (date) {
+                return moment(date).format('DD-MM-YYYY');
+            },
+
+            momentTime: function (date) {
+                return moment(date).format('h:mm');
             }
         }
 

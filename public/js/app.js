@@ -6162,6 +6162,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -6184,6 +6186,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comment', 'task'],
@@ -6231,6 +6238,11 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
       this.editFormComment = false;
+    }
+  },
+  filters: {
+    moment: function moment(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('DD-MM-YYYY h:mm');
     }
   }
 });
@@ -6379,6 +6391,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Comments_NewComment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comments/NewComment */ "./resources/js/tasks/Comments/NewComment.vue");
 /* harmony import */ var _Comments_Comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Comments/Comment */ "./resources/js/tasks/Comments/Comment.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -6450,6 +6464,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -6492,6 +6514,14 @@ __webpack_require__.r(__webpack_exports__);
         root: true
       });
       this.isEditActive = false;
+    }
+  },
+  filters: {
+    momentDate: function momentDate(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_3___default()(date).format('DD-MM-YYYY');
+    },
+    momentTime: function momentTime(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_3___default()(date).format('h:mm');
     }
   }
 });
@@ -87220,13 +87250,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-xs flex mt-4" }, [
-    _c("span", { staticClass: "mr-4 whitespace-no-wrap" }, [
-      _vm._v(
-        _vm._s(_vm.comment.user.first_name) +
-          " " +
-          _vm._s(_vm.comment.user.last_name) +
-          ":"
-      )
+    _c("div", [
+      _c("span", { staticClass: "mr-4 whitespace-no-wrap" }, [
+        _vm._v(
+          _vm._s(_vm.comment.user.first_name) +
+            " " +
+            _vm._s(_vm.comment.user.last_name) +
+            ":"
+        )
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mr-4 whitespace-no-wrap text-gray-500" }, [
+        _vm._v(_vm._s(_vm._f("moment")(_vm.comment.created_at)))
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -87734,10 +87770,22 @@ var render = function() {
                           { staticClass: "text-xs whitespace-no-wrap" },
                           [
                             _vm._v(
-                              _vm._s(_vm.task.due_date) +
-                                " " +
-                                _vm._s(_vm.task.due_time)
-                            )
+                              "\n                    " +
+                                _vm._s(
+                                  _vm._f("momentDate")(_vm.task.due_date)
+                                ) +
+                                "\n                    "
+                            ),
+                            _vm.task.due_time
+                              ? _c("span", [
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(
+                                        _vm._f("momentTime")(_vm.task.due_time)
+                                      )
+                                  )
+                                ])
+                              : _vm._e()
                           ]
                         )
                       : _vm._e()
@@ -87822,50 +87870,56 @@ var render = function() {
       _vm._v(" "),
       _vm.dialog
         ? _c("div", { staticClass: "p-2" }, [
-            _c("div", { staticClass: "w-full mb-8 flex justify-between" }, [
-              _vm.userOwner && !_vm.isEditActive
-                ? _c(
-                    "span",
-                    {
-                      staticClass:
-                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
-                      on: { click: _vm.editTask }
-                    },
-                    [_vm._v("Upraviť")]
-                  )
-                : _c(
-                    "span",
-                    {
-                      staticClass:
-                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
-                      on: {
-                        click: function($event) {
-                          _vm.isEditActive = false
-                        }
-                      }
-                    },
-                    [_vm._v("Zrušiť úpravy")]
-                  ),
+            _c("div", { staticClass: "w-full mb-8 flex" }, [
+              _vm.userOwner
+                ? _c("div", [
+                    !_vm.isEditActive
+                      ? _c(
+                          "span",
+                          {
+                            staticClass:
+                              "text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
+                            on: { click: _vm.editTask }
+                          },
+                          [_vm._v("Upraviť")]
+                        )
+                      : _c(
+                          "span",
+                          {
+                            staticClass:
+                              "text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
+                            on: {
+                              click: function($event) {
+                                _vm.isEditActive = false
+                              }
+                            }
+                          },
+                          [_vm._v("Zrušiť úpravy")]
+                        )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              !_vm.task.completed
-                ? _c(
-                    "span",
-                    {
-                      staticClass:
-                        "text-xs bg-green-300 px-1 cursor-pointer rounded-sm ",
-                      on: { click: _vm.updateCompleted }
-                    },
-                    [_vm._v("Vybavené")]
-                  )
-                : _c(
-                    "span",
-                    {
-                      staticClass:
-                        "text-xs bg-green-100 px-1 cursor-pointer rounded-sm",
-                      on: { click: _vm.updateCompleted }
-                    },
-                    [_vm._v("Obnoviť")]
-                  )
+              _c("div", {}, [
+                !_vm.task.completed
+                  ? _c(
+                      "span",
+                      {
+                        staticClass:
+                          "text-xs bg-green-300 px-1 cursor-pointer rounded-sm hover:bg-green-300",
+                        on: { click: _vm.updateCompleted }
+                      },
+                      [_vm._v("Vybavené")]
+                    )
+                  : _c(
+                      "span",
+                      {
+                        staticClass:
+                          "text-xs bg-green-100 px-1 cursor-pointer rounded-sm hover:bg-green-300",
+                        on: { click: _vm.updateCompleted }
+                      },
+                      [_vm._v("Obnoviť")]
+                    )
+              ])
             ]),
             _vm._v(" "),
             !_vm.isEditActive
