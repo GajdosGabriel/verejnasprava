@@ -87317,7 +87317,7 @@ var render = function() {
                               "span",
                               {
                                 staticClass:
-                                  "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                                  "px-3 py-2 hover:bg-gray-300 cursor-pointer",
                                 on: { click: _vm.editComment }
                               },
                               [_vm._v("upraviť")]
@@ -87326,7 +87326,7 @@ var render = function() {
                               "span",
                               {
                                 staticClass:
-                                  "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                                  "px-3 py-2 hover:bg-gray-300 cursor-pointer",
                                 on: {
                                   click: function($event) {
                                     _vm.editFormComment = false
@@ -87340,7 +87340,7 @@ var render = function() {
                           "span",
                           {
                             staticClass:
-                              "px-3 py-2 mb-2 hover:bg-gray-300 cursor-pointer",
+                              "px-3 py-2 hover:bg-gray-300 cursor-pointer",
                             on: { click: _vm.deleteComment }
                           },
                           [_vm._v("zmazať")]
@@ -87899,7 +87899,7 @@ var render = function() {
                 ),
             _vm._v(" "),
             _vm.isEditActive
-              ? _c("div", { staticClass: "flex w-full mb-4 text-xs" }, [
+              ? _c("div", { staticClass: "flex w-full mb-4 mt-2 text-xs" }, [
                   _c("div", { staticClass: "mr-5" }, [
                     _c(
                       "label",

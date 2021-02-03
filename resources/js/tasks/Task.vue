@@ -39,7 +39,7 @@
             <textarea v-else v-model="task.body" class="border w-full text-sm p-2 border-gray-400 rounded">{{ task.body }}</textarea>
 
 
-            <div v-if="isEditActive" class="flex w-full mb-4 text-xs">
+            <div v-if="isEditActive" class="flex w-full mb-4 mt-2 text-xs">
                 <div class="mr-5">
                     <label for="start" class="mr-3">Do:</label>
                     <input type="date" id="start" name="trip-start"
