@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tasks;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\User;
+use App\Notifications\Task\NewTask;
 use Illuminate\Http\Request;
 
 class UserTaskController extends Controller
@@ -20,6 +21,7 @@ class UserTaskController extends Controller
     }
 
     public function store(User $user, Request $request){
-        $user->tasks()->create($request->all());
+      $task =  $user->tasks()->create($request->all());
+      $task->user->notify(new NewTask($user, $task));
     }
 }
