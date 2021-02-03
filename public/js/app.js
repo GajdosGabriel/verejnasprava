@@ -3279,6 +3279,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3881,6 +3884,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3890,7 +3907,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pmeeting'],
   components: {
-    item: _items_itemList__WEBPACK_IMPORTED_MODULE_4__["default"],
+    itemList: _items_itemList__WEBPACK_IMPORTED_MODULE_4__["default"],
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_2__["default"],
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
@@ -82908,30 +82925,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.isPublished
-    ? _c("div", {}, [
+    ? _c("div", { staticClass: "border-gray-300" }, [
         _c(
           "div",
           {
-            staticClass:
-              "flex flex-wrap border-2 border-gray-300 max-w-sm mb-4",
+            staticClass: "flex flex-wrap border-2 mb-4",
             class: {
               "border-red-300": !_vm.item.published,
-              "border-green-500": _vm.item.result
+              "border-green-500": _vm.item.result,
+              "border-blue-500 rounded-sm": _vm.item.vote_status == 1
             }
           },
           [
             _c(
               "div",
               {
-                staticClass:
-                  " border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1"
+                staticClass: "border-b-2 flex justify-between w-full px-4 py-1",
+                class: { "bg-blue-500 text-white": _vm.item.vote_status == 1 }
               },
               [
                 _c("a", { attrs: { href: "/items/" + _vm.item.id } }, [
                   _c(
                     "span",
                     {
-                      staticClass: "font-semibold text-gray-700",
+                      staticClass: "font-semibold ",
                       class: { "text-green-700": _vm.item.result }
                     },
                     [_vm._v(_vm._s(_vm.item.name))]
@@ -83135,115 +83152,118 @@ var render = function() {
                     on: { click: _vm.voteStatus }
                   })
                 : _vm._e()
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "max-w-sm w-full" },
-          [
-            _c("vote-form-button", { attrs: { item: _vm.item } }),
+            ]),
             _vm._v(" "),
-            _vm.openList
-              ? _c(
-                  "div",
-                  {
-                    staticClass: " border-2 rounded-md border-gray-300 w-full"
-                  },
-                  [
-                    _c(
+            _c(
+              "div",
+              { staticClass: "max-w-sm w-full" },
+              [
+                _c("vote-form-button", { attrs: { item: _vm.item } }),
+                _vm._v(" "),
+                _vm.openList
+                  ? _c(
                       "div",
-                      { staticClass: "flex justify-between bg-gray-300 p-1" },
+                      {
+                        staticClass:
+                          " border-2 rounded-md border-gray-300 w-full"
+                      },
                       [
                         _c(
-                          "h4",
-                          { staticClass: "font-semibold text-gray-800" },
+                          "div",
+                          {
+                            staticClass: "flex justify-between bg-gray-300 p-1"
+                          },
                           [
-                            _vm._v("Do rozpravy "),
-                            _c("small", { staticClass: "text-sm" }, [
-                              _vm._v(
-                                "\n\n                    (" +
-                                  _vm._s(_vm.item.interpellations.length) +
-                                  ")\n                "
-                              )
-                            ])
+                            _c(
+                              "h4",
+                              { staticClass: "font-semibold text-gray-800" },
+                              [
+                                _vm._v("Do rozpravy "),
+                                _c("small", { staticClass: "text-sm" }, [
+                                  _vm._v(
+                                    "\n\n                        (" +
+                                      _vm._s(_vm.item.interpellations.length) +
+                                      ")\n                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "text-sm cursor-pointer",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.updateInterpellation(_vm.item)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(_vm.hasUserInterpellation) +
+                                    "\n        "
+                                )
+                              ]
+                            )
                           ]
                         ),
                         _vm._v(" "),
                         _c(
-                          "span",
-                          {
-                            staticClass: "text-sm cursor-pointer",
-                            on: {
-                              click: function($event) {
-                                return _vm.updateInterpellation(_vm.item)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n            " +
-                                _vm._s(_vm.hasUserInterpellation) +
-                                "\n        "
+                          "ul",
+                          _vm._l(_vm.item.interpellations, function(
+                            interpellation
+                          ) {
+                            return _c(
+                              "li",
+                              {
+                                key: interpellation.user_id,
+                                staticClass:
+                                  "flex justify-between border-b-2 border-dotted px-2"
+                              },
+                              [
+                                _c("span", {
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      interpellation.user.first_name +
+                                        " " +
+                                        interpellation.user.last_name
+                                    )
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.$auth.can("council delete")
+                                  ? _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "text-gray-800 text-sm cursor-pointer",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteInterpellation(
+                                              interpellation
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("x")]
+                                    )
+                                  : _vm._e()
+                              ]
                             )
-                          ]
+                          }),
+                          0
                         )
                       ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      _vm._l(_vm.item.interpellations, function(
-                        interpellation
-                      ) {
-                        return _c(
-                          "li",
-                          {
-                            key: interpellation.user_id,
-                            staticClass:
-                              "flex justify-between border-b-2 border-dotted px-2"
-                          },
-                          [
-                            _c("span", {
-                              domProps: {
-                                textContent: _vm._s(
-                                  interpellation.user.first_name +
-                                    " " +
-                                    interpellation.user.last_name
-                                )
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.$auth.can("council delete")
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-gray-800 text-sm cursor-pointer",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteInterpellation(
-                                          interpellation
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("x")]
-                                )
-                              : _vm._e()
-                          ]
-                        )
-                      }),
-                      0
                     )
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("vote-list", { attrs: { item: _vm.item } })
-          ],
-          1
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("vote-list", { attrs: { item: _vm.item } })
+              ],
+              1
+            )
+          ]
         )
       ])
     : _vm._e()
@@ -83710,7 +83730,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "max-w-sm" },
     [
       _c(
         "div",
@@ -84056,113 +84076,147 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex justify-between max-w-sm mb- text-xs mb-6" },
-        [
-          _c(
-            "a",
-            {
-              staticClass:
-                "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm",
-              attrs: {
-                href: "/meetings/" + _vm.meeting.id + "/file/show",
-                target: "_blank"
-              }
-            },
-            [_vm._v("\n            Pozvánka\n        ")]
-          ),
-          _vm._v(" "),
-          _vm.positionSaveButton
-            ? _c(
-                "button",
-                {
-                  staticClass: "bg-blue-600 text-gray-200 px-2 rounded-sm",
-                  on: { click: _vm.savePosition }
-                },
-                [_vm._v("\n            Uložiť zmeny\n        ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.meeting.published
-            ? _c("div", [
-                _vm.isUserPresent
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm",
-                        on: { click: _vm.updateMeetingUser }
-                      },
-                      [
-                        _vm._v(
-                          "\n                Prihlásený " +
-                            _vm._s(_vm.user.last_name) +
-                            " (" +
-                            _vm._s(_vm.meetingUsers.length) +
-                            ")\n            "
-                        )
-                      ]
-                    )
-                  : _c(
-                      "button",
-                      {
-                        staticClass:
-                          "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm",
-                        on: { click: _vm.storeMeetingUser }
-                      },
-                      [
-                        _vm._v(
-                          "\n                Prezentovať sa (" +
-                            _vm._s(_vm.meetingUsers.length) +
-                            ")\n            "
-                        )
-                      ]
-                    )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.$auth.can("council delete") && _vm.meeting.published
-            ? _c(
-                "button",
+      !_vm.positionSaveButton
+        ? _c(
+            "div",
+            { staticClass: "flex justify-between max-w-sm mb- text-xs mb-6" },
+            [
+              _c(
+                "a",
                 {
                   staticClass:
-                    "border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm",
-                  on: { click: _vm.resetMeetingUser }
+                    "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm",
+                  attrs: {
+                    href: "/meetings/" + _vm.meeting.id + "/file/show",
+                    target: "_blank"
+                  }
                 },
-                [_vm._v("\n            Nová prezentácia\n        ")]
-              )
-            : _vm._e()
-        ]
-      ),
+                [_vm._v("\n            Pozvánka\n        ")]
+              ),
+              _vm._v(" "),
+              _vm.meeting.published
+                ? _c("div", [
+                    _vm.isUserPresent
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm",
+                            on: { click: _vm.updateMeetingUser }
+                          },
+                          [
+                            _vm._v(
+                              "\n                Prihlásený " +
+                                _vm._s(_vm.user.last_name) +
+                                " (" +
+                                _vm._s(_vm.meetingUsers.length) +
+                                ")\n            "
+                            )
+                          ]
+                        )
+                      : _c(
+                          "button",
+                          {
+                            staticClass:
+                              "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm",
+                            on: { click: _vm.storeMeetingUser }
+                          },
+                          [
+                            _vm._v(
+                              "\n                Prezentovať sa (" +
+                                _vm._s(_vm.meetingUsers.length) +
+                                ")\n            "
+                            )
+                          ]
+                        )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.$auth.can("council delete") && _vm.meeting.published
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm",
+                      on: { click: _vm.resetMeetingUser }
+                    },
+                    [_vm._v("\n            Nová prezentácia\n        ")]
+                  )
+                : _vm._e()
+            ]
+          )
+        : _c(
+            "div",
+            { staticClass: "flex justify-between max-w-sm mb- text-xs mb-6" },
+            [
+              _vm.positionSaveButton
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "bg-blue-600 text-gray-200 px-2 rounded-sm",
+                      on: { click: _vm.savePosition }
+                    },
+                    [_vm._v("\n            Uložiť zmeny\n        ")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.positionSaveButton
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "bg-red-600 text-gray-200 px-2 rounded-sm",
+                      on: {
+                        click: function($event) {
+                          _vm.positionSaveButton = !_vm.positionSaveButton
+                        }
+                      }
+                    },
+                    [_vm._v("\n            Zrušiť zmeny\n        ")]
+                  )
+                : _vm._e()
+            ]
+          ),
       _vm._v(" "),
-      _c(
-        "draggable",
-        {
-          model: {
-            value: _vm.items,
-            callback: function($$v) {
-              _vm.items = $$v
+      _vm.positionSaveButton
+        ? _c(
+            "draggable",
+            {
+              model: {
+                value: _vm.items,
+                callback: function($$v) {
+                  _vm.items = $$v
+                },
+                expression: "items"
+              }
             },
-            expression: "items"
-          }
-        },
-        [
-          _c(
+            [
+              _c(
+                "transition-group",
+                _vm._l(_vm.items, function(item) {
+                  return _c(
+                    "div",
+                    { key: item.id, staticClass: "odd:bg-gray-500 bg-white" },
+                    [_c("item-list", { attrs: { item: item } })],
+                    1
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          )
+        : _c(
             "transition-group",
             _vm._l(_vm.items, function(item) {
               return _c(
                 "div",
                 { key: item.id, staticClass: "odd:bg-gray-500 bg-white" },
-                [_c("item", { attrs: { item: item } })],
+                [_c("item-list", { attrs: { item: item } })],
                 1
               )
             }),
             0
-          )
-        ],
-        1
-      ),
+          ),
       _vm._v(" "),
       _vm.files.length
         ? _c(
@@ -88468,8 +88522,7 @@ var render = function() {
     ? _c(
         "div",
         {
-          staticClass:
-            "border-2 rounded-md border-gray-300 my-5 max-w-sm w-full",
+          staticClass: "border-2 mt-5 max-w-sm w-full",
           on: { click: _vm.itemShowList }
         },
         [

@@ -1,10 +1,12 @@
 <template>
-    <div class="" v-if="isPublished">
+    <div class="border-gray-300" v-if="isPublished">
 
-        <div class="flex flex-wrap border-2 border-gray-300 max-w-sm mb-4" :class="{ 'border-red-300' : ! item.published , 'border-green-500' : item.result }" >
-            <div class=" border-b-2 border-gray-300 flex justify-between w-full mb-4 px-4 py-1">
+        <div class="flex flex-wrap border-2 mb-4" :class="{ 'border-red-300' : ! item.published , 'border-green-500' : item.result, 'border-blue-500 rounded-sm' : item.vote_status == 1 }" >
+            <div class="border-b-2 flex justify-between w-full px-4 py-1"
+            :class="{'bg-blue-500 text-white' : item.vote_status == 1}"
+            >
                 <a :href="'/items/' + item.id">
-                    <span class="font-semibold text-gray-700" :class="{'text-green-700' : item.result }">{{ item.name }}</span>
+                    <span class="font-semibold " :class="{'text-green-700' : item.result }">{{ item.name }}</span>
                 </a>
 
                 <nav-drop-down v-if="$auth.can('council delete')">
@@ -81,36 +83,37 @@
 
                 </div>
             </div>
-        </div>
 
-        <div class="max-w-sm w-full">
-            <vote-form-button :item="item"></vote-form-button>
+            <div class="max-w-sm w-full">
 
-            <div class=" border-2 rounded-md border-gray-300 w-full"
-                 v-if="openList"
-            >
-                <div class="flex justify-between bg-gray-300 p-1">
-                    <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
+                <vote-form-button :item="item"></vote-form-button>
 
-                        ({{ item.interpellations.length }})
-                    </small></h4>
-                    <span @click="updateInterpellation(item)" class="text-sm cursor-pointer">
+                <div class=" border-2 rounded-md border-gray-300 w-full"
+                     v-if="openList"
+                >
+                    <div class="flex justify-between bg-gray-300 p-1">
+                        <h4 class="font-semibold text-gray-800">Do rozpravy <small class="text-sm">
+
+                            ({{ item.interpellations.length }})
+                        </small></h4>
+                        <span @click="updateInterpellation(item)" class="text-sm cursor-pointer">
                 {{ hasUserInterpellation }}
             </span>
+                    </div>
+
+                    <!--    interpellation-->
+                    <ul>
+                        <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
+                            class="flex justify-between border-b-2 border-dotted px-2">
+                            <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
+                            <span v-if="$auth.can('council delete')" @click="deleteInterpellation(interpellation)" class="text-gray-800 text-sm cursor-pointer">x</span>
+                        </li>
+                    </ul>
+
                 </div>
 
-                <!--    interpellation-->
-                <ul>
-                    <li v-for="interpellation in item.interpellations" :key="interpellation.user_id"
-                        class="flex justify-between border-b-2 border-dotted px-2">
-                        <span v-text="interpellation.user.first_name + ' ' + interpellation.user.last_name"></span>
-                        <span v-if="$auth.can('council delete')" @click="deleteInterpellation(interpellation)" class="text-gray-800 text-sm cursor-pointer">x</span>
-                    </li>
-                </ul>
-
+                <vote-list :item="item"></vote-list>
             </div>
-
-            <vote-list :item="item"></vote-list>
         </div>
 
     </div>

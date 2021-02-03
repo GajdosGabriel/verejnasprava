@@ -1,5 +1,5 @@
 <template>
-    <div v-cloak>
+    <div v-cloak class="max-w-sm">
 
         <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-2"
              :class="{ 'border-red-300' : ! meeting.published }">
@@ -109,19 +109,13 @@
             </nav-drop-down>
         </div>
 
-        <div class="flex justify-between max-w-sm mb- text-xs mb-6">
+        <div v-if="! positionSaveButton" class="flex justify-between max-w-sm mb- text-xs mb-6">
 
             <a :href="'/meetings/' + meeting.id + '/file/show'"
                class="border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm"
                target="_blank">
                 Pozvánka
             </a>
-
-
-            <button class="bg-blue-600 text-gray-200 px-2 rounded-sm" v-if="positionSaveButton"
-                    @click="savePosition">
-                Uložiť zmeny
-            </button>
 
             <!--  User-Meeting Presenter -->
             <div v-if="meeting.published">
@@ -143,14 +137,34 @@
             <!-- End of User-Meeting Presenter -->
         </div>
 
+        <div v-else class="flex justify-between max-w-sm mb- text-xs mb-6">
 
-        <draggable v-model="items">
+            <button class="bg-blue-600 text-gray-200 px-2 rounded-sm" v-if="positionSaveButton"
+                    @click="savePosition">
+                Uložiť zmeny
+            </button>
+
+            <button class="bg-red-600 text-gray-200 px-2 rounded-sm" v-if="positionSaveButton"
+                    @click="positionSaveButton = ! positionSaveButton">
+                Zrušiť zmeny
+            </button>
+
+        </div>
+
+
+        <draggable v-model="items" v-if="positionSaveButton">
             <transition-group>
                 <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 bg-white">
-                    <item :item="item"></item>
+                    <item-list :item="item"></item-list>
                 </div>
             </transition-group>
         </draggable>
+
+        <transition-group v-else>
+            <div v-for="item in items" :key="item.id" class="odd:bg-gray-500 bg-white">
+                <item-list :item="item"></item-list>
+            </div>
+        </transition-group>
 
         <!--   Files-->
         <div class="max-w-sm" v-if="files.length">
@@ -171,12 +185,12 @@
     import moment from 'moment';
     import navDropDown from '../modules/navigation/navDropDown';
     import {mapState} from 'vuex';
-    import item from '../items/itemList';
+    import itemList from '../items/itemList';
     import {bus} from '../app';
 
     export default {
         props: ['pmeeting'],
-        components: {item, navDropDown, draggable},
+        components: {itemList, navDropDown, draggable},
         data: function () {
             return {
                 moment: require('moment'),
