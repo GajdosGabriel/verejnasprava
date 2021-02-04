@@ -2,12 +2,16 @@
     <div class="border-gray-400 border-b-2" :class="{'border-green-500 border-2' : dialog}">
 
         <li class="flex justify-between cursor-pointer p-2"
-            :class="[task.completed ? 'bg-green-200 hover:bg-green-300' : 'hover:bg-gray-200', dialog ? 'bg-green-300' : '']"
-            @click="dialog = ! dialog"
-        >
-            <div class="flex justify-between items-center text-xs w-full">
-                <div v-if="!isEditActive">
+            :class="[task.completed ? 'bg-green-200 hover:bg-green-300' : 'hover:bg-gray-200', dialog ? 'bg-green-300' : '']">
+
+            <input type="checkbox" @click.stop="" v-model="markAsCompleted" class="mr-4">
+
+            <div class="flex justify-between items-center text-xs w-full"  @click="dialog = ! dialog">
+
+                <div v-if="!isEditActive" class="flex">
+
                     <div class="font-semibold">{{ task.name }}</div>
+
                     <div v-if="task.due_date" class="text-xs whitespace-no-wrap">
                         {{ task.due_date | momentDate }}
                         <span v-if="task.due_time"> {{ task.due_time | momentTime }}</span>
@@ -89,7 +93,8 @@
             return {
                 dialog: this.task.dialog,
                 isEditActive: false,
-                commentsSection: true
+                commentsSection: true,
+                markAsCompleted: false
             }
         },
         computed: {
@@ -97,6 +102,14 @@
                 if (this.task.user_id == this.user.id) {
                     return true
                 }
+            }
+        },
+        watch: {
+            markAsCompleted() {
+                this.$emit('pushMarkAsCompleted', {
+                    id: this.task.id,
+                    completed: new Date().toISOString().slice(0, 19).replace('T', ' ')
+                });
             }
         },
         methods: {
@@ -108,6 +121,7 @@
 
                 this.dialog = false;
             },
+
             editTask() {
                 this.isEditActive = true;
                 this.commentsSection = false;

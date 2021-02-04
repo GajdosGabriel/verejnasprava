@@ -6488,6 +6488,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6502,7 +6506,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dialog: this.task.dialog,
       isEditActive: false,
-      commentsSection: true
+      commentsSection: true,
+      markAsCompleted: false
     };
   },
   computed: {
@@ -6510,6 +6515,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.task.user_id == this.user.id) {
         return true;
       }
+    }
+  },
+  watch: {
+    markAsCompleted: function markAsCompleted() {
+      this.$emit('pushMarkAsCompleted', {
+        id: this.task.id,
+        completed: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      });
     }
   },
   methods: {
@@ -6558,6 +6571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task */ "./resources/js/tasks/Task.vue");
 /* harmony import */ var _NewTask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewTask */ "./resources/js/tasks/NewTask.vue");
 /* harmony import */ var _components_Cards_CardHeaderIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Cards/CardHeaderIcon */ "./resources/js/components/Cards/CardHeaderIcon.vue");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6599,6 +6613,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -6612,7 +6633,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       showCard: true,
-      showNewTask: false
+      showNewTask: false,
+      markAsCompleted: []
     };
   },
   created: function created() {
@@ -6624,6 +6646,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['taskList'])), {}, {
+    newTaskTitle: function newTaskTitle() {
+      return this.showNewTask ? 'Zavrieť' : 'Nová Požiadavka';
+    },
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, 'due_date');
     },
@@ -6632,6 +6657,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('tasks', ['variantTaskList'])), {}, {
+    multiUpdateCompleted: function multiUpdateCompleted() {
+      var _this = this;
+
+      axios.put('/tasks/1', this.markAsCompleted).then(function (response) {
+        _this.$store.dispatch('tasks/getTasks', {
+          root: true
+        });
+      });
+      this.markAsCompleted = [];
+    },
+    addOrRemoveTaskCompleted: function addOrRemoveTaskCompleted(task) {
+      if (this.markAsCompleted.find(function (t) {
+        return t.id == task.id;
+      })) {
+        return this.markAsCompleted = this.markAsCompleted.filter(function (m) {
+          return m.id !== task.id;
+        });
+      }
+
+      this.markAsCompleted.push(task);
+    },
     changeTaskList: function changeTaskList() {
       this.variantTaskList(!this.setTaskList);
     }
@@ -87800,20 +87846,64 @@ var render = function() {
               ? "bg-green-200 hover:bg-green-300"
               : "hover:bg-gray-200",
             _vm.dialog ? "bg-green-300" : ""
-          ],
-          on: {
-            click: function($event) {
-              _vm.dialog = !_vm.dialog
-            }
-          }
+          ]
         },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.markAsCompleted,
+                expression: "markAsCompleted"
+              }
+            ],
+            staticClass: "mr-4",
+            attrs: { type: "checkbox" },
+            domProps: {
+              checked: Array.isArray(_vm.markAsCompleted)
+                ? _vm._i(_vm.markAsCompleted, null) > -1
+                : _vm.markAsCompleted
+            },
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+              },
+              change: function($event) {
+                var $$a = _vm.markAsCompleted,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.markAsCompleted = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.markAsCompleted = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.markAsCompleted = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex justify-between items-center text-xs w-full" },
+            {
+              staticClass: "flex justify-between items-center text-xs w-full",
+              on: {
+                click: function($event) {
+                  _vm.dialog = !_vm.dialog
+                }
+              }
+            },
             [
               !_vm.isEditActive
-                ? _c("div", [
+                ? _c("div", { staticClass: "flex" }, [
                     _c("div", { staticClass: "font-semibold" }, [
                       _vm._v(_vm._s(_vm.task.name))
                     ]),
@@ -88226,6 +88316,31 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
+            _vm.markAsCompleted.length
+              ? _c(
+                  "svg",
+                  {
+                    staticClass: "w-8 h-5 fill-current",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    },
+                    on: { click: _vm.multiUpdateCompleted }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
           ],
           1
@@ -88238,7 +88353,11 @@ var render = function() {
                 _c(
                   "ul",
                   _vm._l(_vm.sortedList, function(task) {
-                    return _c("Task", { key: task.id, attrs: { task: task } })
+                    return _c("Task", {
+                      key: task.id,
+                      attrs: { task: task },
+                      on: { pushMarkAsCompleted: _vm.addOrRemoveTaskCompleted }
+                    })
                   }),
                   1
                 ),
@@ -88254,6 +88373,7 @@ var render = function() {
                       "span",
                       {
                         staticClass: "cursor-pointer hover:text-gray-800",
+                        domProps: { textContent: _vm._s(_vm.newTaskTitle) },
                         on: {
                           click: function($event) {
                             _vm.showNewTask = !_vm.showNewTask
