@@ -6492,6 +6492,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -87842,7 +87845,7 @@ var render = function() {
       _c(
         "li",
         {
-          staticClass: "flex justify-between cursor-pointer p-2",
+          staticClass: "flex justify-between cursor-pointer",
           class: [
             _vm.task.completed
               ? "bg-green-200 hover:bg-green-300"
@@ -87851,52 +87854,52 @@ var render = function() {
           ]
         },
         [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.markAsCompleted,
-                expression: "markAsCompleted"
-              }
-            ],
-            staticClass: "mr-4",
-            attrs: { type: "checkbox" },
-            domProps: {
-              checked: Array.isArray(_vm.markAsCompleted)
-                ? _vm._i(_vm.markAsCompleted, null) > -1
-                : _vm.markAsCompleted
-            },
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
+          _c("label", { staticClass: "p-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.markAsCompleted,
+                  expression: "markAsCompleted"
+                }
+              ],
+              staticClass: "mr-1",
+              attrs: { type: "checkbox" },
+              domProps: {
+                checked: Array.isArray(_vm.markAsCompleted)
+                  ? _vm._i(_vm.markAsCompleted, null) > -1
+                  : _vm.markAsCompleted
               },
-              change: function($event) {
-                var $$a = _vm.markAsCompleted,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (_vm.markAsCompleted = $$a.concat([$$v]))
+              on: {
+                change: function($event) {
+                  var $$a = _vm.markAsCompleted,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.markAsCompleted = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.markAsCompleted = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
                   } else {
-                    $$i > -1 &&
-                      (_vm.markAsCompleted = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                    _vm.markAsCompleted = $$c
                   }
-                } else {
-                  _vm.markAsCompleted = $$c
                 }
               }
-            }
-          }),
+            })
+          ]),
           _vm._v(" "),
           _c(
             "div",
             {
-              staticClass: "flex justify-between items-center text-xs w-full",
+              staticClass:
+                "flex justify-between items-center text-xs w-full p-2 pl-2",
               on: {
                 click: function($event) {
                   _vm.dialog = !_vm.dialog

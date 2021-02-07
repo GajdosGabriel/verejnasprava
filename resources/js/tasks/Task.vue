@@ -1,12 +1,15 @@
 <template>
     <div class="border-gray-400 border-b-2" :class="{'border-green-500 border-2' : dialog}">
 
-        <li class="flex justify-between cursor-pointer p-2"
+        <li class="flex justify-between cursor-pointer"
             :class="[task.completed ? 'bg-green-200 hover:bg-green-300' : 'hover:bg-gray-200', dialog ? 'bg-green-300' : '']">
 
-            <input type="checkbox" @click.stop="" v-model="markAsCompleted" class="mr-4">
+            <label class="p-2">
+                <input type="checkbox" v-model="markAsCompleted" class="mr-1">
+            </label>
 
-            <div class="flex justify-between items-center text-xs w-full"  @click="dialog = ! dialog">
+
+            <div class="flex justify-between items-center text-xs w-full p-2 pl-2"  @click="dialog = ! dialog">
 
                 <div v-if="!isEditActive" class="flex">
 
