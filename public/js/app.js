@@ -6650,6 +6650,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true
     });
   },
+  watch: {
+    showCard: function showCard() {
+      this.markAsCompleted = [];
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('tasks', ['setTaskList'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('users', ['users'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('organization', ['active'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tasks', ['taskList'])), {}, {
     newTaskTitle: function newTaskTitle() {
       return this.showNewTask ? 'Zavrieť' : 'Nová Požiadavka';
@@ -88352,69 +88357,62 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.showCard,
-                expression: "showCard"
-              }
-            ]
-          },
-          [
-            _c(
-              "ul",
-              _vm._l(_vm.sortedList, function(task) {
-                return _c("Task", {
-                  key: task.id,
-                  attrs: { task: task },
-                  on: { pushMarkAsCompleted: _vm.addOrRemoveTaskCompleted }
-                })
-              }),
-              1
-            ),
-            _vm._v(" "),
-            _c(
+        _vm.showCard
+          ? _c(
               "div",
-              {
-                staticClass: "flex justify-between text-xs text-gray-500 px-2"
-              },
               [
                 _c(
-                  "span",
-                  {
-                    staticClass: "cursor-pointer hover:text-gray-800",
-                    domProps: { textContent: _vm._s(_vm.newTaskTitle) },
-                    on: {
-                      click: function($event) {
-                        _vm.showNewTask = !_vm.showNewTask
-                      }
-                    }
-                  },
-                  [_vm._v("Nová Požiadavka")]
+                  "ul",
+                  _vm._l(_vm.sortedList, function(task) {
+                    return _c("Task", {
+                      key: task.id,
+                      attrs: { task: task },
+                      on: { pushMarkAsCompleted: _vm.addOrRemoveTaskCompleted }
+                    })
+                  }),
+                  1
                 ),
                 _vm._v(" "),
                 _c(
-                  "span",
+                  "div",
                   {
-                    staticClass: "cursor-pointer hover:text-gray-800",
-                    domProps: { textContent: _vm._s(_vm.nameOfList) },
-                    on: { click: _vm.changeTaskList }
+                    staticClass:
+                      "flex justify-between text-xs text-gray-500 px-2"
                   },
-                  [_vm._v("vybavené")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.showNewTask
-              ? _c("new-task", { attrs: { users: _vm.users } })
-              : _vm._e()
-          ],
-          1
-        )
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "cursor-pointer hover:text-gray-800",
+                        domProps: { textContent: _vm._s(_vm.newTaskTitle) },
+                        on: {
+                          click: function($event) {
+                            _vm.showNewTask = !_vm.showNewTask
+                          }
+                        }
+                      },
+                      [_vm._v("Nová Požiadavka")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "cursor-pointer hover:text-gray-800",
+                        domProps: { textContent: _vm._s(_vm.nameOfList) },
+                        on: { click: _vm.changeTaskList }
+                      },
+                      [_vm._v("vybavené")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.showNewTask
+                  ? _c("new-task", { attrs: { users: _vm.users } })
+                  : _vm._e()
+              ],
+              1
+            )
+          : _vm._e()
       ])
     : _vm._e()
 }

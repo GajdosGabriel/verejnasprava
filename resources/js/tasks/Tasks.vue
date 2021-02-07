@@ -24,7 +24,7 @@
             <card-header-icon :showCard="showCard"/>
 
         </header>
-        <div v-show="showCard">
+        <div v-if="showCard">
             <ul>
                 <Task v-for="task in sortedList" :key="task.id" :task="task" @pushMarkAsCompleted="addOrRemoveTaskCompleted"></Task>
             </ul>
@@ -61,6 +61,11 @@
         created() {
             this.$store.dispatch('tasks/getTasks', {root: true});
             this.$store.dispatch('users/getUsers', {root: true});
+        },
+        watch:{
+            showCard(){
+                this.markAsCompleted = []
+            }
         },
 
         computed: {
