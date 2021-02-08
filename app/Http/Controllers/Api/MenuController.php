@@ -16,9 +16,9 @@ class MenuController extends Controller
         return response([ $menu, $organization]);
     }
 
-    public function update($id, Request $request)
+    public function update(Organization $menu, Request $request)
     {
-        $organization = Organization::find($id);
-        $organization->menus()->toggle($request->input('modul'));
+        Menu::activatorOfMenus($menu, $request->input('modul'));
+
     }
 }
