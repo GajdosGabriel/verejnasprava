@@ -30,7 +30,7 @@
             </ul>
 
             <div class="flex justify-between text-xs text-gray-500 px-2">
-                <span class="cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask" v-text="newTaskTitle">Nová Požiadavka</span>
+                <span class="cursor-pointer hover:text-gray-800" @click="showNewTask = ! showNewTask">Nová Požiadavka</span>
                 <span class="cursor-pointer hover:text-gray-800" @click="changeTaskList" v-text="nameOfList">vybavené</span>
             </div>
 
@@ -73,10 +73,6 @@
             ...mapState('users', ['users']),
             ...mapState('organization', ['active']),
             ...mapGetters('tasks', ['taskList']),
-
-            newTaskTitle() {
-                return this.showNewTask ? 'Zavrieť' : 'Nová Požiadavka'
-            },
 
             sortedList() {
                 return _.orderBy(this.taskList, 'due_date');
