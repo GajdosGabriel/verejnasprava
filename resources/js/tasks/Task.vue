@@ -111,7 +111,7 @@
             markAsCompleted() {
                 this.$emit('pushMarkAsCompleted', {
                     id: this.task.id,
-                    completed: new Date().toISOString().slice(0, 19).replace('T', ' ')
+                    completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
                 });
             }
         },
