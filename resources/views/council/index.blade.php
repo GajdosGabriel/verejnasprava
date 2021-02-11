@@ -9,10 +9,13 @@
     <div class="container min-h-screen p-6 mx-auto">
         <div class="w-2/3">
             <council-table></council-table>
-                {{-- Show only first councils   --}}
+            {{-- Show only first councils   --}}
             @if(! $councils->count() > 0)
-            <a href="{{ route('organizations.councils.create',  auth()->user()->active_organization ) }}">Nové zastupiteľstvo</a>
-                @endif
+
+                @role('admin')
+                <a href="{{ route('organizations.councils.create',  auth()->user()->active_organization ) }}">Nové zastupiteľstvo</a>
+                @endrole
+            @endif
         </div>
 
     </div>

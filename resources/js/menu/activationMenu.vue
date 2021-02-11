@@ -42,8 +42,6 @@
 
         data: function () {
             return {
-                // menus: [],
-                // active: [],
                 isOpen: false,
             }
         },
@@ -52,7 +50,6 @@
         },
         created: function () {
             this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
-            // this.getIndex();
         },
         methods: {
 

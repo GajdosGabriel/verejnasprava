@@ -38,8 +38,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-//    protected function redirectTo()
-//    {
-//        return (string) auth()->user()->id.'/'. auth()->user()->slug.'/user/index' ;
-//    }
 }
