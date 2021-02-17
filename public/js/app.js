@@ -2090,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2155,6 +2156,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_4__["createNamespacedHelpers"])('contacts'),
     mapActions = _createNamespacedHelp.mapActions;
 
@@ -2164,6 +2166,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_4__["createName
     formEdit: _formEdit_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     newContactButton: _newContactButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_5__["filterMixin"]],
   data: function data() {
     return {
       numeral: numeral__WEBPACK_IMPORTED_MODULE_3___default.a,
@@ -2187,14 +2190,7 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_4__["createName
       this.$store.dispatch('contacts/fetchContacts', this.url + this.user.active_organization + '?multi=' + this.search);
     }
   },
-  methods: _objectSpread({}, mapActions(['newContactToggle', 'openEditForm', 'filterContact'])),
-  filters: {
-    pscFormat: function pscFormat(value) {
-      if (value != null) {
-        return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
-      }
-    }
-  }
+  methods: _objectSpread({}, mapActions(['newContactToggle', 'openEditForm', 'filterContact']))
 });
 
 /***/ }),
@@ -4187,14 +4183,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      // menus: [],
-      // active: [],
       isOpen: false
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('organization', ['organization', 'menus', 'active'])),
   created: function created() {
-    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization); // this.getIndex();
+    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
   },
   methods: {
     saveModul: function saveModul(id) {
@@ -5939,6 +5933,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/pagination */ "./resources/js/modules/pagination.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 //
 //
 //
@@ -6005,12 +6000,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     paginator: _modules_pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__["filterMixin"]],
   data: function data() {
     return {
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
@@ -6043,11 +6040,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePost: function deletePost(post) {
       axios["delete"]('/posts/' + post.id).then(window.location.reload());
     }
-  },
-  filters: {
-    priceFormat: function priceFormat(value) {
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
   }
 });
 
@@ -6064,6 +6056,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/pagination */ "./resources/js/modules/pagination.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 //
 //
 //
@@ -6123,12 +6116,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     paginator: _modules_pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__["filterMixin"]],
   data: function data() {
     return {
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
@@ -6159,11 +6154,6 @@ __webpack_require__.r(__webpack_exports__);
     pushOrganization: function pushOrganization(post) {
       this.search = post.organization.name;
     }
-  },
-  filters: {
-    priceFormat: function priceFormat(value) {
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
   }
 });
 
@@ -6181,6 +6171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 //
 //
 //
@@ -6207,10 +6198,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comment', 'task'],
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_2__["filterMixin"]],
   data: function data() {
     return {
       showDropDown: false,
@@ -6255,11 +6248,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
       this.editFormComment = false;
-    }
-  },
-  filters: {
-    moment: function moment(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('DD-MM-YYYY h:mm');
     }
   }
 });
@@ -6410,6 +6398,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Comments_Comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Comments/Comment */ "./resources/js/tasks/Comments/Comment.vue");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 //
 //
 //
@@ -6495,6 +6484,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -6505,6 +6495,7 @@ __webpack_require__.r(__webpack_exports__);
     NewComment: _Comments_NewComment__WEBPACK_IMPORTED_MODULE_1__["default"],
     Comment: _Comments_Comment__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_4__["filterMixin"]],
   data: function data() {
     return {
       dialog: this.task.dialog,
@@ -6547,14 +6538,6 @@ __webpack_require__.r(__webpack_exports__);
         root: true
       });
       this.isEditActive = false;
-    }
-  },
-  filters: {
-    momentDate: function momentDate(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_3___default()(date).format('DD-MM-YYYY');
-    },
-    momentTime: function momentTime(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_3___default()(date).format('h:mm');
     }
   }
 });
@@ -87368,7 +87351,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "mr-4 whitespace-no-wrap text-gray-500" }, [
-        _vm._v(_vm._s(_vm._f("moment")(_vm.comment.created_at)))
+        _vm._v(_vm._s(_vm._f("fullDateTime")(_vm.comment.created_at)))
       ])
     ]),
     _vm._v(" "),
@@ -107668,6 +107651,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_users_list_vue_vue_type_template_id_c3834086___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/mixins/filterMixin.js":
+/*!********************************************!*\
+  !*** ./resources/js/mixins/filterMixin.js ***!
+  \********************************************/
+/*! exports provided: filterMixin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterMixin", function() { return filterMixin; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+
+var filterMixin = {
+  filters: {
+    pscFormat: function pscFormat(value) {
+      if (value != null) {
+        return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
+      }
+    },
+    priceFormat: function priceFormat(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+    momentDate: function momentDate(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD-MM-YYYY');
+    },
+    momentTime: function momentTime(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('h:mm');
+    },
+    fullDateTime: function fullDateTime(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD-MM-YYYY h:mm');
+    }
+  }
+};
 
 /***/ }),
 

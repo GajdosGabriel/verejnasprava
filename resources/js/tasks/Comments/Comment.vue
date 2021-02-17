@@ -2,7 +2,7 @@
     <div class="text-xs flex mt-4">
         <div>
         <span class="mr-4 whitespace-no-wrap">{{ comment.user.first_name }} {{ comment.user.last_name }}:</span>
-        <span class="mr-4 whitespace-no-wrap text-gray-500">{{ comment.created_at | moment }}</span>
+        <span class="mr-4 whitespace-no-wrap text-gray-500">{{ comment.created_at | fullDateTime }}</span>
         </div>
 
         <div class="bg-gray-200 w-full p-2 rounded-md flex justify-between  relative">
@@ -27,9 +27,11 @@
 <script>
     import {bus} from "../../app";
     import moment from 'moment';
+    import {filterMixin} from "../../mixins/filterMixin";
 
     export default {
         props: ['comment', 'task'],
+        mixins:[filterMixin],
         data() {
             return {
                 showDropDown: false,
@@ -69,11 +71,6 @@
                     });
 
                 this.editFormComment = false;
-            }
-        },
-        filters: {
-            moment: function (date) {
-                return moment(date).format('DD-MM-YYYY h:mm');
             }
         }
 

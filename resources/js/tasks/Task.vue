@@ -88,10 +88,12 @@
     import NewComment from "./Comments/NewComment";
     import Comment from "./Comments/Comment";
     import moment from "moment";
+    import { filterMixin} from "../mixins/filterMixin";
 
     export default {
         props: ['task'],
         components: {NewComment, Comment},
+        mixins:[filterMixin],
         data() {
             return {
                 dialog: this.task.dialog,
@@ -132,15 +134,6 @@
             updateTask() {
                 this.$store.dispatch('tasks/updateTask', this.task, {root: true});
                 this.isEditActive = false;
-            }
-        },
-        filters: {
-            momentDate: function (date) {
-                return moment(date).format('DD-MM-YYYY');
-            },
-
-            momentTime: function (date) {
-                return moment(date).format('h:mm');
             }
         }
 

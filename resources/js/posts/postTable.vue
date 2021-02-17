@@ -67,9 +67,11 @@
 <script>
     import paginator from '../modules/pagination';
     import {mapState} from 'vuex';
+    import { filterMixin } from "../mixins/filterMixin";
 
     export default {
         components: { paginator },
+        mixins:[filterMixin],
         data: function () {
             return {
                 moment: require('moment'),
@@ -103,12 +105,7 @@
                 axios.delete('/posts/' + post.id)
                 .then(window.location.reload())
             }
-        },
-
-        filters: {
-            priceFormat: function (value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-            }
         }
+
     }
 </script>

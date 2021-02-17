@@ -57,6 +57,7 @@
     import paginator from './pagination.vue';
     import numeral from 'numeral';
     import {mapState} from 'vuex';
+    import { filterMixin} from "../mixins/filterMixin";
 
     import { createNamespacedHelpers } from 'vuex';
 
@@ -64,6 +65,7 @@
 
     export default {
         components: {paginator, formEdit, newContactButton },
+        mixins: [filterMixin],
         data: function () {
             return {
                 numeral: numeral,
@@ -89,14 +91,6 @@
                 'openEditForm',
                 'filterContact'
             ])
-        },
-
-        filters: {
-            pscFormat: function (value) {
-                if ( value != null) {
-                    return value.toString().replace(/\B(?=(\d{0})+(?!\d))/g, " ");
-                }
-            }
         }
     }
 </script>
