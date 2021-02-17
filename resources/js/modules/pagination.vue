@@ -25,7 +25,7 @@
     import {mapState} from 'vuex';
 
     export default {
-        props: ['data', 'url'],
+        props: ['data'],
 
         methods: {
             fetchPaginate: function (url) {

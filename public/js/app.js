@@ -2726,7 +2726,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data', 'url'],
+  props: ['data'],
   methods: {
     fetchPaginate: function fetchPaginate(url) {
       this.$store.dispatch('contacts/fetchContacts', url);
@@ -5679,7 +5679,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data', 'url'],
+  props: ['data'],
   methods: {
     fetchPaginate: function fetchPaginate(url) {
       this.$store.dispatch('posts/fetchPosts', url);
@@ -80539,7 +80539,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("paginator", { attrs: { data: _vm.contacts, url: _vm.url } }),
+      _c("paginator", { attrs: { data: _vm.contacts } }),
       _vm._v(" "),
       _c("form-edit")
     ],
@@ -87097,7 +87097,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("paginator", { attrs: { data: _vm.posts, url: _vm.url } })
+      _c("paginator", { attrs: { data: _vm.posts } })
     ],
     1
   )

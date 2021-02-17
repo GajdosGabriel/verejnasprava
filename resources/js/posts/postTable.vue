@@ -59,7 +59,7 @@
             </tbody>
         </table>
 
-        <paginator :data="posts" :url="url"/>
+        <paginator :data="posts"/>
 
     </div>
 

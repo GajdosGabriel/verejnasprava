@@ -43,7 +43,7 @@
             </tbody>
         </table>
 
-        <paginator :data="contacts" :url="url"/>
+        <paginator :data="contacts"/>
 
         <form-edit></form-edit>
 
