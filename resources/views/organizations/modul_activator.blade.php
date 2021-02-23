@@ -14,7 +14,7 @@
         @forelse(App\Models\Menu::horizontalMenu()->get() as $menu)
 {{--                        @continue($menu->type == '')--}}
             <div class="flex mb-5 max-w-sm  border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md
-         @if($menu->organizations->contains($organization->id)) bg-teal-100 @endif
+         @if($menu->organizations->contains($organization->id)) bg-blue-100 @endif
                 ">
                 <div class="py-1">
                     <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg"

@@ -1,27 +1,15 @@
-<footer class="bg-gray-300 flex-none border-t border-red h-48">
-    <div class="container mx-auto py-8 text-center">
-        <nav class="mb-8">
-            <a class="text-black no-underline mx-3" href="#">O nás</a>
-{{--            <a class="text-black no-underline mx-3" href="#">Help</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Newsletter</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Terms & Condition</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Privacy Policy</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Inside HQ</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Awards</a>--}}
-{{--            <a class="text-black no-underline mx-3" href="#">Brands</a>--}}
-            <a class="text-black no-underline mx-3" href="{{ route('home.gdpr') }}">Ochrana osobných údajov</a>
-            <a class="text-black no-underline mx-3" href="{{ route('home.contact') }}">Kontakt</a>
+<footer class="bg-gray-700 flex-none border-t border-red text-gray-200">
+    <div class="container mx-auto pt-8 pb-6 text-center">
+        <nav class="mb-6">
+            <a class="no-underline mx-3" href="#">O nás</a>
+            <a class="no-underline mx-3" href="{{ route('home.gdpr') }}">Ochrana osobných údajov</a>
+            <a class="tno-underline mx-3" href="{{ route('home.contact') }}">Kontakt</a>
         </nav>
 {{--        <a class="inline-block mb-6" href="#">--}}
 {{--            <img style="height: 180px" src="{{ asset('image/certifikat.jpg') }}" alt="">--}}
 {{--        </a>--}}
-        <p class="mb-6 text-grey-dark text-sm">Copyright © 2018 - 2020 Verejny portál | Všetky práva vyhradené</p>
-        <nav>
-            <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-facebook"></i></a>
-            <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-twitter"></i></a>
-            <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-instagram"></i></a>
-            <a class="mx-3 no-underline text-black" href="#"><i class="fab fa-lg fa-youtube"></i></a>
-        </nav>
+        <p class="text-sm">Copyright © 2018 - 2020 Verejny portál | Všetky práva vyhradené</p>
+
     </div>
 </footer>
 

@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 require('vue-multiselect/dist/vue-multiselect.min.css');
-window.Vue = require('vue');
+import Vue from 'vue';
 
 import store from './store';
 
