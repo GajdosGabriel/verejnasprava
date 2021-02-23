@@ -70,7 +70,7 @@
                     </div>
 
                 </div>
-            <a class="btn btn-primary mt-5 cursor-pointer" href="/register">Rýchla registrácia</a>
+            <a class="border-2 rounded-md px-4 py-2 hover:bg-blue-800 bg-blue-500 text-white mt-6 cursor-pointer" href="/register">Rýchla registrácia</a>
                 <span class="text-xs text-gray-700 mt-1">Registrácia bez poplatkov</span>
             </div>
 
@@ -108,7 +108,7 @@
                 </div>
                 <p class="mx-2 py-2 border-b-2 text-center text-gray-700 font-semibold uppercase">Zverejňovanie dokladov</p>
                 <p class="p-2 text-sm text-gray-700">Zverejňovanie zmlúv a faktúr.</p>
-                <p class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</p>
+                <a href="register" class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</a>
             </div>
 
             <div class="w-48 h-64 m-5 bg-white shadow-lg text-center">
@@ -117,7 +117,7 @@
                 </div>
                 <p class="mx-2 py-2 border-b-2 text-gray-700 font-semibold uppercase">Obecné zastupiteľstvo</p>
                 <p class="p-2 text-sm text-gray-700">Nástroj pre správu obecného zastupiteľstva.</p>
-                <p class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</p>
+                <a href="register" class="p-2 text-sm text-gray-700 text-center cursor-pointer text-blue-700 font-semibold">Pokračovať</a>
             </div>
 {{--            ...--}}
         </div>

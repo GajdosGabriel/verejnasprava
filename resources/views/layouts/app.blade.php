@@ -37,7 +37,7 @@
 
     @livewireStyles
 </head>
-<body>
+<body class="bg-gray-100">
 @include ('modul.kodSledovania')
 @include ('modul.facebook_login')
 
