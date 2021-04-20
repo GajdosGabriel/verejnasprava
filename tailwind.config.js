@@ -18,5 +18,5 @@ module.exports = {
         // aspectRatio: ['responsive'],
         extend: {},
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/forms")]
 };

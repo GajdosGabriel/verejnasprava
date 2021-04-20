@@ -1,7 +1,7 @@
 <div class="mb-4">
-    <label for="name" class="text-gray-700 text-sm">Vytvoriť novú schôdzu</label>
+    <label for="name" class="text-gray-700 text-sm block">Vytvoriť novú schôdzu</label>
     <input id="name" type="text"
-           class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
+           class="@error('first_name') is-invalid @enderror"
            name="name" value="{{ old('name') ?? $meeting->name }}" placeholder="Názov schôdze" required autocomplete="name" autofocus>
 
     @error('name')
@@ -12,9 +12,9 @@
 </div>
 
 <div class="mb-4">
-    <label for="locality" class="text-gray-700 text-sm">Miesto schôdze</label>
+    <label for="locality" class="text-gray-700 text-sm block">Miesto schôdze</label>
     <input id="locality" type="text"
-           class="input-control focus:outline-none focus:shadow-outline @error('locality') is-invalid @enderror"
+           class="form-control @error('locality') is-invalid @enderror"
            name="locality" value="{{ old('locality') ?? $meeting->locality }}" placeholder="nepovinné" autocomplete="name" autofocus>
     @error('locality')
     <span class="text-red-500 text-xs italic" role="alert">
@@ -23,7 +23,7 @@
     @enderror
 </div>
 
-<div class="sm:flex justify-between">
+<div class="">
 
     <div class="mb-4  sm:w-1/2 mr-4">
         <label for="start_at" class="block text-gray-700 text-sm mb-2">Dátum schôdze</label>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="first_name" class="block text-gray-700 text-sm mb-5">Prílohy pre schôdzu</label>
+        <label for="first_name" class="block text-gray-700 font-semibold mb-2 text-sm">Prílohy pre schôdzu</label>
             <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha"
                    id="filename">
 
@@ -68,6 +68,6 @@
     </div>
 </div>
 {{-- Save button --}}
-<div class="form-group">
+<div class="form-group mt-5">
     <button type="submit" class="btn btn-primary">Uložiť</button>
 </div>
