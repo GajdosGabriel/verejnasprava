@@ -75,10 +75,11 @@
 </div>
 
 
-<div class="md:flex sm:flex-col text-sm mb-8 ">
+
+<div class="md:flex justify-between mb-5">
 
     <div class="flex flex-col w-2/3">
-        <label class="input-label mb-2" for="filename">Príloha</label>
+        <label class="input-label mb-2" for="filename">Prílohy</label>
         <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
     </div>
 
@@ -86,7 +87,7 @@
     {{--Zobrazenie prílohy--}}
     <div class="md:w-3/6">
         @if(isset($post))
-            <span class="font-semibold mb-2">Príloha</span>
+            <div class="font-semibold mt-4">Prílohy</div>
             <ul>
                 @forelse($post->files as $file)
                     <li class="flex justify-between">
@@ -97,7 +98,7 @@
                         </div>
                     </li>
                 @empty
-                    <li class="text-gray-600">Bez prílohy</li>
+                    <li class="text-gray-600">Žiadna príloha</li>
                 @endforelse
             </ul>
         @endif
@@ -106,11 +107,12 @@
 </div>
 
 
+
 <div class="mb-8">
     {{-- Add post Field --}}
     <div class="flex justify-between">
         <a class="px-4 hover:bg-gray-200 shadow-md border-gray-500 border-2 rounded-md text-center" href="{{ URL::previous() }}">Späť</a>
-        <button type="submit" class="mx-2 md:w-1/6 shadow-md border-gray-500 border-2 rounded-md hover:bg-gray-200">Uložiť</button>
+        <button type="submit" class="btn hover:bg-gray-200">Uložiť</button>
     </div>
 
 </div>

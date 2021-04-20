@@ -101,6 +101,7 @@ class PostController extends Controller
 //       });
 
         $post->delete();
+        return back();
 //        flash()->success('Doklad bol zmazaný! ');
 //        return redirect('posts.index');
     }
