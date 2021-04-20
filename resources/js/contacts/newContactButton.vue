@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <span v-if="$auth.isAdmin()" @click="newContactToggle" class="text-xs cursor-pointer">
+        <span v-if="$auth.isAdmin()" @click="newContactToggle" class="px-4 hover:bg-gray-200 shadow-md border-gray-500 border-2 rounded-md text-center cursor-pointer">
             Nový
         </span>
 

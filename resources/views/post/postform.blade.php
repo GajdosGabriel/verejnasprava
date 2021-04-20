@@ -46,9 +46,9 @@
     </div>
 
     <div class="md:w-1/3 p-2">
-        <label class="input-label" for="dateIn">Doručené dňa</label>
+        <label class="input-label block" for="dateIn">Doručené dňa</label>
         <input type="date" name="date_in" value="{{ old('date_in') ?? date('Y-m-d') }}" id="dateIn"
-               class="input-control focus:outline-none focus:shadow-outline" required>
+               class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-1.5 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
         {{--<input type="datetime-local" name="date_in" value="{{ old('date_in') ?? $post->date_in->format('Y-m-d\TH:i') }}" id="dateStart" class="form-control" required>--}}
     </div>
 </div>
@@ -56,7 +56,7 @@
 {{--Title Field--}}
 <div class="w-full p-2">
     <label class="input-label" for="title">Popis dokladu</label>
-    <input class="input-control focus:outline-none focus:shadow-outline" type="text" name="name"
+    <input class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" type="text" name="name"
            value="{{ old('name') ?? $post->name }}" placeholder="Názov položky" id="title" required>
 </div>
 
@@ -65,21 +65,21 @@
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="price">Faktúrovaná cena</label>
         <input type="number" name="price" value="{{ old('price') ?? $post->price }}" placeholder="Suma faktúry (Euro)"
-               step="any" id="price" class="input-control focus:outline-none focus:shadow-outline" required>
+               step="any" id="price" class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
     </div>
 
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="number_invoice">Var. symbol</label>
         <input type="text" name="number_invoice" value="{{ old('number_invoice')  ?? $post->number_invoice  }}"
                placeholder="Dod. Číslo faktúry" id="number_invoice"
-               class="input-control focus:outline-none focus:shadow-outline" required>
+               class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
     </div>
 
     <div class="md:w-1/3 p-2">
         <label class="input-label" for="noInvoice">Číslo faktúry / objednávky</label>
         <input type="text" name="int_number" value="{{ old('int_number')  ?? $post->int_number }}"
                placeholder="Interné číslo dokladu" id="noInvoice"
-               class="input-control focus:outline-none focus:shadow-outline">
+               class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
         {{--<input type="datetime-local" name="date_in" value="{{ old('date_in') ?? $post->date_in->format('Y-m-d\TH:i') }}" id="dateStart" class="form-control" required>--}}
     </div>
 </div>
@@ -119,8 +119,8 @@
 <div class="mb-8">
     {{-- Add post Field --}}
     <div class="flex justify-between">
-        <a class="btn bg-gray-200" href="{{ URL::previous() }}">Späť</a>
-        <button type="submit" class="btn btn-primary mx-2 md:w-1/6 shadow-md">Uložiť</button>
+        <a class="px-4 hover:bg-gray-200 shadow-md border-gray-500 border-2 rounded-md text-center" href="{{ URL::previous() }}">Späť</a>
+        <button type="submit" class="mx-2 md:w-1/6 shadow-md border-gray-500 border-2 rounded-md hover:bg-gray-200">Uložiť</button>
     </div>
 
 </div>

@@ -3,4 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.page-title {
+    @apply text-gray-700 font-semibold text-2xl;
+}
+
 
