@@ -84683,18 +84683,18 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.$auth.isAdmin()
-                ? _c("td", { staticClass: "px-4 py-2 border" }, [
+                ? _c("td", { staticClass: "px-4 py-2 border text-center" }, [
                     _c(
-                      "a",
+                      "button",
                       {
-                        staticClass: "hover:underline cursor-pointer",
+                        staticClass: "hover:underline cursor-pointer text-sm",
                         on: {
                           click: function($event) {
                             return _vm.openEditForm(contact)
                           }
                         }
                       },
-                      [_vm._v("Edit")]
+                      [_vm._v("Upraviť")]
                     )
                   ])
                 : _vm._e()
@@ -86199,13 +86199,9 @@ var render = function() {
     [
       _vm.$auth.isAdmin()
         ? _c(
-            "span",
-            {
-              staticClass:
-                "px-4 text-center text-sm text-gray-500 cursor-pointer",
-              on: { click: _vm.newContactToggle }
-            },
-            [_vm._v("\n        Nový\n    ")]
+            "button",
+            { staticClass: "btn", on: { click: _vm.newContactToggle } },
+            [_vm._v("\n        Nový kontakt\n    ")]
           )
         : _vm._e(),
       _vm._v(" "),

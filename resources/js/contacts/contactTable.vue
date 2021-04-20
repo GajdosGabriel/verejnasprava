@@ -36,8 +36,8 @@
                 <td class="px-4 py-2 border" v-text="contact.dic"></td>
                 <td class="px-4 py-2 border"   v-if="$auth.isAdmin()"><a href="mailto: contact.email">{{ contact.email }}</a></td>
                 <td class="px-4 py-2 border whitespace-no-wrap"><a href="tel: contact.phone">{{ contact.phone }}</a></td>
-                <td class="px-4 py-2 border"  v-if="$auth.isAdmin()">
-                    <a class="hover:underline cursor-pointer" @click="openEditForm(contact)">Edit</a>
+                <td class="px-4 py-2 border text-center"  v-if="$auth.isAdmin()">
+                    <button class="hover:underline cursor-pointer text-sm" @click="openEditForm(contact)">Upraviť</button>
                 </td>
             </tr>
             </tbody>
