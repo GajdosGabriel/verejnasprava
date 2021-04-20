@@ -86202,7 +86202,7 @@ var render = function() {
             "span",
             {
               staticClass:
-                "px-4 hover:bg-gray-200 shadow-md border-gray-500 border-2 rounded-md text-center cursor-pointer",
+                "px-4 text-center text-sm text-gray-500 cursor-pointer",
               on: { click: _vm.newContactToggle }
             },
             [_vm._v("\n        Nový\n    ")]
