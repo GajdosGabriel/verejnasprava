@@ -3523,12 +3523,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -87560,20 +87554,10 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                          "cursor-pointer flex text-gray-700 text-sm rounded-md",
                         on: { click: _vm.openInterpellation }
                       },
-                      [
-                        _c(
-                          "span",
-                          { staticClass: "text-gray-700 text-sm rounded-md" },
-                          [
-                            _vm._v(
-                              "Rozprava " + _vm._s(_vm.interpellations.length)
-                            )
-                          ]
-                        )
-                      ]
+                      [_vm._v("Rozprava " + _vm._s(_vm.interpellations.length))]
                     )
                   ],
                   1
