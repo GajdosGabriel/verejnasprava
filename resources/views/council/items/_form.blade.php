@@ -1,21 +1,21 @@
 <div class="">
     <div class="">
-        <div class="md:flex w-full items-center">
+        <div class="md:flex items-center">
 
             {{--  title --}}
-            <div class="form-group">
+            <div class="flex w-full flex-col">
                 <label for="name" class="font-semibold">Bod programu</label>
 
                 <input id="name" type="text"
-                       class="input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
+                       class="flex-grow block @error('first_name') is-invalid @enderror"
                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
             </div>
             {{--  type vote --}}
-            <div class="form-group md:px-10">
+            <div class="md:px-10 ">
                 <label for="vote_type" class="font-semibold">Hlasovanie</label>
 
-                <select name="vote_type" class="custom-select px-4 bg-gray-200 rounded-md" id="vote_type">
+                <select name="vote_type" class="block" id="vote_type">
                     <option value="0">Verejné</option>
                     <option value="1">Tajné</option>
                 </select>

@@ -12,6 +12,7 @@
         <h1 class="page-title">Nový bod programu</h1>
 
         <form method="POST" action="{{ route('items.store') }}"
+        class=""
               enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')
