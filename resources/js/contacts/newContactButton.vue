@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <button v-if="$auth.isAdmin()" @click="newContactToggle" class="btn">
+        <button v-if="$auth.isAdmin()" @click="newContactToggle" class="text-sm text-gray-500">
             Nový kontakt
         </button>
 

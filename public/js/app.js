@@ -86200,7 +86200,10 @@ var render = function() {
       _vm.$auth.isAdmin()
         ? _c(
             "button",
-            { staticClass: "btn", on: { click: _vm.newContactToggle } },
+            {
+              staticClass: "text-sm text-gray-500",
+              on: { click: _vm.newContactToggle }
+            },
             [_vm._v("\n        Nový kontakt\n    ")]
           )
         : _vm._e(),
