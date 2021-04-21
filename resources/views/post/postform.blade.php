@@ -37,7 +37,8 @@
 
     <div class="md:w-1/3 p-2">
         <label class="input-label block" for="dateIn">Doručené dňa</label>
-        <input type="datetime-local" name="date_in" value="{{ old('date_in') ?? $post->date_in->format('Y-m-d\TH:i') }}" id="dateStart" class="w-full" required>
+        <input type="datetime-local" name="date_in" value="{{ old('date_in') ?? $post->datess }}"
+        id="dateStart" class="w-full" required>
     </div>
 </div>
 

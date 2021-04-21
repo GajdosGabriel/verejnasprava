@@ -5,6 +5,7 @@ namespace App\Models;
 
 use App\Models\RecordsActivity;
 use App\Services\FileUpload;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -80,10 +81,15 @@ class Post extends Model
         return $filters->apply($query);
     }
 
-
-
-
-
+    // Date for create and edit form
+    public function getDatessAttribute()
+    {
+        if($this->date_in) {
+          return  $this->date_in->format('Y-m-d\TH:i');
+        } else {
+            return Carbon::now()->format('Y-m-d\TH:i');
+        }
+    }
 
 
 }

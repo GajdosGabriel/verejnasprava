@@ -10,9 +10,8 @@
 
 @section('content')
     <div class="container min-h-screen p-6 mx-auto ">
-        
-        <h1 class="page-title">Vytvoriť doklad</h1>
 
+        <h1 class="page-title">Vytvoriť doklad</h1>
 
         <form class="md:w-2/3"
               action="{{ route('posts.store') }}"
