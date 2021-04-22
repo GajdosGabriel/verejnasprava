@@ -3236,19 +3236,123 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
-var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespacedHelpers)('meetings'),
+var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespacedHelpers)("meetings"),
     mapActions = _createNamespacedHelp.mapActions;
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['item'],
+  props: ["item"],
   components: {
     publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_3__.default,
     interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_4__.default,
@@ -3268,74 +3372,74 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       return this.item.published;
     },
     notificationStatus: function notificationStatus() {
-      return this.item.notification == null ? 'Výzva k hlasovaniu' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format('DD. MM. YYYY, k:mm');
+      return this.item.notification == null ? "Výzva k hlasovaniu" : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.item.notification).format("DD. MM. YYYY, k:mm");
     },
     hasUserInterpellation: function hasUserInterpellation() {
       var intUsers = this.item.interpellations.map(function (role) {
         return role.user.id;
       });
-      return intUsers.includes(this.user.id) ? 'Odhlásiť sa' : 'Prihlásiť sa';
+      return intUsers.includes(this.user.id) ? "Odhlásiť sa" : "Prihlásiť sa";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
   })),
-  methods: _objectSpread(_objectSpread({}, mapActions(['updateInterpellation', 'deleteInterpellation', 'deleteItemMeeting'])), {}, {
+  methods: _objectSpread(_objectSpread({}, mapActions(["updateInterpellation", "deleteInterpellation", "deleteItemMeeting"])), {}, {
     saveNotification: function saveNotification() {
       if (!this.item.published) {
-        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+        alert("Bod programu nie je publikovaný. Zapnite publikovanie!");
         return;
       }
 
       if (!this.meeting.published) {
-        alert('Zastupiteľstvo nie je publikovaný. Zapnite publikovanie!');
+        alert("Zastupiteľstvo nie je publikovaný. Zapnite publikovanie!");
         return;
       }
 
-      this.$store.dispatch('items/update', {
-        notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      this.$store.dispatch("items/update", {
+        notification: new Date().toISOString().slice(0, 19).replace("T", " "),
         id: this.item.id
       });
     },
     voteStatus: function voteStatus() {
       if (!this.item.published) {
-        alert('Bod programu nie je publikovaný. Zapnite publikovanie!');
+        alert("Bod programu nie je publikovaný. Zapnite publikovanie!");
         return;
       }
 
       if (this.item.interpellations.length) {
-        alert('Zoznam prihlásených do rozpravy nie je prázdny.');
+        alert("Zoznam prihlásených do rozpravy nie je prázdny.");
         return;
       }
 
       if (!this.meeting.published) {
-        alert('Zasadnutie nie je publikované.');
+        alert("Zasadnutie nie je publikované.");
         return;
       }
 
-      this.$store.dispatch('meetings/updateItem', {
+      this.$store.dispatch("meetings/updateItem", {
         id: this.item.id,
         vote_status: !this.item.vote_status
       });
     },
     listToggle: function listToggle() {
       if (this.item.vote_status || this.item.votes.length > 0) {
-        return alert('Počas hlasovania sú interpelácie vypnuté!');
+        return alert("Počas hlasovania sú interpelácie vypnuté!");
       }
 
       this.openList = !this.openList;
     },
     openInterpellation: function openInterpellation() {
-      _app__WEBPACK_IMPORTED_MODULE_0__.bus.$emit('imterpellationlist', this.item);
+      _app__WEBPACK_IMPORTED_MODULE_0__.bus.$emit("imterpellationlist", this.item);
     },
     updateItem: function updateItem(item) {
       if (item.votes.length) {
-        alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
+        alert("O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!");
         return;
       }
 
-      this.$store.dispatch('meetings/updateItem', {
+      this.$store.dispatch("meetings/updateItem", {
         id: item.id,
         published: !item.published
       });
@@ -87166,6 +87270,91 @@ var render = function() {
                         _vm._t("default", [
                           _c("div", { staticClass: "py-1" }, [
                             _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                attrs: { title: "Publikovať" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.updateItem(_vm.item)
+                                  }
+                                }
+                              },
+                              [
+                                _vm.item.published
+                                  ? _c("div", { staticClass: "flex" }, [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "w-5 h-5 mr-2",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            fill: "none",
+                                            viewBox: "0 0 24 24",
+                                            stroke: "currentColor"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              "stroke-linecap": "round",
+                                              "stroke-linejoin": "round",
+                                              "stroke-width": "2",
+                                              d:
+                                                "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(
+                                        "\n\n                                Publikované\n                            "
+                                      )
+                                    ])
+                                  : _c(
+                                      "div",
+                                      {
+                                        staticClass: "flex",
+                                        class: {
+                                          "text-red-700": !_vm.item.published
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass: "w-5 h-5 mr-2",
+                                            attrs: {
+                                              xmlns:
+                                                "http://www.w3.org/2000/svg",
+                                              fill: "none",
+                                              viewBox: "0 0 24 24",
+                                              stroke: "currentColor"
+                                            }
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "stroke-linecap": "round",
+                                                "stroke-linejoin": "round",
+                                                "stroke-width": "2",
+                                                d:
+                                                  "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                Publikovať\n                            "
+                                        )
+                                      ]
+                                    )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "py-1" }, [
+                            _c(
                               "a",
                               {
                                 staticClass:
@@ -87297,30 +87486,6 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "flex justify-between w-full text-sm" }, [
-              _vm.$auth.can("council delete")
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "p-1 text-center text-sm whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
-                      on: {
-                        click: function($event) {
-                          return _vm.updateItem(_vm.item)
-                        }
-                      }
-                    },
-                    [
-                      _vm.item.published
-                        ? _c("span", [_vm._v("Publikované")])
-                        : _c(
-                            "span",
-                            { class: { "text-red-700": !_vm.item.published } },
-                            [_vm._v("Publikovať")]
-                          )
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
               _vm.item.published
                 ? _c(
                     "div",
@@ -87330,7 +87495,7 @@ var render = function() {
                       on: { click: _vm.listToggle }
                     },
                     [
-                      _vm._v("\n                Rozprava "),
+                      _vm._v("\n                Rozprava\n                "),
                       _c("span", { staticClass: "text-gray-500" }, [
                         _vm._v(_vm._s(_vm.item.interpellations.length))
                       ])
@@ -87382,12 +87547,14 @@ var render = function() {
                               "h4",
                               { staticClass: "font-semibold text-gray-800" },
                               [
-                                _vm._v("Do rozpravy "),
+                                _vm._v(
+                                  "\n                        Do rozpravy\n                        "
+                                ),
                                 _c("small", { staticClass: "text-sm" }, [
                                   _vm._v(
-                                    "\n\n                        (" +
+                                    "\n                            (" +
                                       _vm._s(_vm.item.interpellations.length) +
-                                      ")\n                    "
+                                      ")\n                        "
                                   )
                                 ])
                               ]
@@ -87405,9 +87572,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n            " +
+                                  "\n                        " +
                                     _vm._s(_vm.hasUserInterpellation) +
-                                    "\n        "
+                                    "\n                    "
                                 )
                               ]
                             )
