@@ -86495,7 +86495,7 @@ var render = function() {
                     _c("a", { attrs: { href: "meetings/" + meeting.id } }, [
                       _vm._v(
                         "\n                        Program (" +
-                          _vm._s(meeting.items.length) +
+                          _vm._s(meeting.itemspublished.length) +
                           ")\n                    "
                       )
                     ])
