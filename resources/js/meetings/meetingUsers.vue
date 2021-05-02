@@ -1,5 +1,5 @@
 <template>
-    <div v-if="meeting.published" class="border-2 rounded-md border-gray-300 max-w-sm mb-12" @click="openToggle">
+    <div v-if="meeting.published" class="border-2 rounded-md border-gray-300 mb-12" @click="openToggle">
         <div class="flex justify-between bg-gray-300 p-1 cursor-pointer items-center" :class="quorateMeeting">
             <div class="font-medium text-gray-800">
                 <div class="flex cursor-pointer">

@@ -1,7 +1,7 @@
 <template>
-    <div v-cloak class="max-w-sm">
+    <div v-cloak class="">
 
-        <div class="flex justify-between max-w-sm border-b-2 border-gray-400 mb-2"
+        <div class="flex justify-between border-b-2 border-gray-400 mb-2"
              :class="{ 'border-red-300' : ! meeting.published }">
             <div class="">
                 <span class="text-gray-700 font-semibold" :class="{ 'text-red-700' : ! meeting.published }">Začiatok: {{ moment(meeting.start_at).format('DD. MM. YYYY') }}</span>

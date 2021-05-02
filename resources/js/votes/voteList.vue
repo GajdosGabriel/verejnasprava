@@ -1,6 +1,6 @@
 <template>
 
-    <div class="border-2 mt-5 max-w-sm w-full"  v-if="item.vote_status || item.votes.length > 0"  @click="itemShowList">
+    <div class="border-2 mt-5 w-full"  v-if="item.vote_status || item.votes.length > 0"  @click="itemShowList">
         <div class="flex justify-between bg-gray-300 p-1">
             <h4 class="font-semibold text-gray-800">Hlasovanie ({{ item.votes.length }})</h4>
             <div class="flex cursor-pointer">

@@ -172,7 +172,7 @@
                 ></div>
             </div>
 
-            <div class="max-w-sm w-full">
+            <div class="w-full">
                 <vote-form-button :item="item"></vote-form-button>
 
                 <div

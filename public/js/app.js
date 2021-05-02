@@ -87525,7 +87525,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "max-w-sm w-full" },
+              { staticClass: "w-full" },
               [
                 _c("vote-form-button", { attrs: { item: _vm.item } }),
                 _vm._v(" "),
@@ -88094,13 +88094,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-sm" },
+    {},
     [
       _c(
         "div",
         {
-          staticClass:
-            "flex justify-between max-w-sm border-b-2 border-gray-400 mb-2",
+          staticClass: "flex justify-between border-b-2 border-gray-400 mb-2",
           class: { "border-red-300": !_vm.meeting.published }
         },
         [
@@ -88658,7 +88657,7 @@ var render = function() {
     ? _c(
         "div",
         {
-          staticClass: "border-2 rounded-md border-gray-300 max-w-sm mb-12",
+          staticClass: "border-2 rounded-md border-gray-300 mb-12",
           on: { click: _vm.openToggle }
         },
         [
@@ -92990,7 +92989,7 @@ var render = function() {
     ? _c(
         "div",
         {
-          staticClass: "border-2 mt-5 max-w-sm w-full",
+          staticClass: "border-2 mt-5 w-full",
           on: { click: _vm.itemShowList }
         },
         [
