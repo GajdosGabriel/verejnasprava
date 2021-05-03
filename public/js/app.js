@@ -2774,10 +2774,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
-var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespacedHelpers)('modals'),
+var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespacedHelpers)("modals"),
     mapActions = _createNamespacedHelp.mapActions;
 
 
@@ -2799,14 +2837,14 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
   }),
   methods: {
     openForm: function openForm(item) {
-      this.$store.dispatch('modals/open_form', item);
+      this.$store.dispatch("modals/open_form", item);
     },
     deleteCouncil: function deleteCouncil(council) {
-      this.$store.dispatch('councils/deleteCouncil', council);
+      this.$store.dispatch("councils/deleteCouncil", council);
     }
   },
   created: function created() {
-    this.$store.dispatch('councils/fetchCouncils', this.user.active_organization);
+    this.$store.dispatch("councils/fetchCouncils", this.user.active_organization);
   }
 });
 
@@ -3340,6 +3378,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3360,7 +3439,8 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
   },
   data: function data() {
     return {
-      openList: false
+      openList: false,
+      readMore: true
     };
   },
   computed: _objectSpread({
@@ -6903,6 +6983,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -86410,7 +86491,7 @@ var render = function() {
     "div",
     [
       _vm._l(_vm.councils, function(council) {
-        return _c("div", { staticClass: "mb-4" }, [
+        return _c("div", { key: council.id, staticClass: "mb-4" }, [
           _c("div", { staticClass: "flex justify-between flex-wrap" }, [
             _c("div", { staticClass: "flex whitespace-no-wrap items-center" }, [
               _c(
@@ -86419,11 +86500,17 @@ var render = function() {
                   staticClass: "page-title",
                   attrs: { title: council.description }
                 },
-                [_vm._v(_vm._s(council.name))]
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(council.name) +
+                      "\n                "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "ml-2" }, [
-                _vm._v(" (" + _vm._s(council.meetings.length) + ")")
+                _vm._v("(" + _vm._s(council.meetings.length) + ")")
               ])
             ]),
             _vm._v(" "),
@@ -86576,6 +86663,7 @@ var render = function() {
               return _c(
                 "div",
                 {
+                  key: meeting.id,
                   staticClass: "flex justify-between hover:underline flex-wrap"
                 },
                 [
@@ -86588,7 +86676,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(
-                      ",\n                    " +
+                      ", " +
                         _vm._s(_vm.moment(meeting.start_at).format("h:mm")) +
                         " hod.\n                    "
                     ),
@@ -87484,6 +87572,74 @@ var render = function() {
               ],
               1
             ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-center w-full cursor-pointer" },
+              [
+                _vm.readMore
+                  ? _c(
+                      "svg",
+                      {
+                        staticClass: "h-4 w-4 mb-5 mt-2 text-gray-500",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          fill: "none",
+                          viewBox: "0 0 24 24",
+                          stroke: "currentColor"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.readMore = false
+                          }
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round",
+                            "stroke-width": "2",
+                            d: "M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                          }
+                        })
+                      ]
+                    )
+                  : _c(
+                      "svg",
+                      {
+                        staticClass: "h-4 w-4 mb-5 mt-2 text-gray-500",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          fill: "none",
+                          viewBox: "0 0 24 24",
+                          stroke: "currentColor"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.readMore = true
+                          }
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round",
+                            "stroke-width": "2",
+                            d: "M5 11l7-7 7 7M5 19l7-7 7 7"
+                          }
+                        })
+                      ]
+                    )
+              ]
+            ),
+            _vm._v(" "),
+            !_vm.readMore
+              ? _c("div", {
+                  domProps: { innerHTML: _vm._s(_vm.item.description) }
+                })
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "flex justify-between w-full text-sm" }, [
               _vm.item.published
@@ -92811,7 +92967,7 @@ var render = function() {
       staticClass: "w-full"
     },
     [
-      _c("h3", { staticClass: "text-center text-2xl text-gray-600" }, [
+      _c("h3", { staticClass: "text-center text-2xl text-gray-600 mt-3" }, [
         _vm._v("Hlasujte")
       ]),
       _vm._v(" "),
@@ -92829,13 +92985,13 @@ var render = function() {
           _c("div", [
             _c(
               "div",
-              { staticClass: "md:flex justify-between my-5 bg-gray-100" },
+              { staticClass: "md:flex justify-between my-5 px-3 bg-gray-100" },
               [
                 _c(
                   "button",
                   {
                     staticClass:
-                      "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                      "btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-2",
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
@@ -92877,7 +93033,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                      "btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-2",
                     on: {
                       click: function($event) {
                         return _vm.storeVote(2)
@@ -92918,7 +93074,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3",
+                      "btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-2",
                     on: {
                       click: function($event) {
                         return _vm.storeVote(0)

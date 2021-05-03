@@ -1,13 +1,14 @@
 <template>
     <div class="w-full" v-show="item.vote_status">
 
-        <h3 class="text-center text-2xl text-gray-600">Hlasujte</h3>
+        <h3 class="text-center text-2xl text-gray-600 mt-3">Hlasujte</h3>
+
         <form method="POST" @submit.prevent>
             <div>
-                <div class="md:flex justify-between my-5 bg-gray-100">
+                <div class="md:flex justify-between my-5 px-3 bg-gray-100">
                     <!--   Button YES-->
                     <button type="submit" @click="storeVote( 1)"
-                            class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-3">
+                            class="btn btn-primary font-semibold flex items-center justify-center md:w-auto w-full my-2">
                         Súhlasim
                         <div v-if="mojaVolba == 1">
                             <svg
@@ -22,7 +23,7 @@
 
                     <!--   Button NotVote-->
                     <button @click="storeVote( 2)"
-                            class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-3">
+                            class="btn btn-secondary font-semibold flex items-center justify-center md:w-auto w-full my-2">
                         Zdržal
                         <div v-if="mojaVolba == 2">
                             <svg
@@ -38,7 +39,7 @@
 
                     <!--   Button No-->
                     <button @click="storeVote( 0)"
-                            class="btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-3">
+                            class="btn btn-danger font-semibold flex items-center justify-center md:w-auto w-full my-2">
                         Nesúhlasim
                         <div v-if="mojaVolba == 0">
                             <svg
