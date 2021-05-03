@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-sm border-b-2" >
-        <div @click="toggle" class="flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2">
+    <div class="border-b-2" >
+        <div @click="toggle" class="flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2">
             <h2 class="text-lg">Aktivácia modulov</h2>
             <span class="cursor-pointer">
                  <div class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center">

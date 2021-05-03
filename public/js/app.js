@@ -88811,13 +88811,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-sm border-b-2" },
+    { staticClass: "border-b-2" },
     [
       _c(
         "div",
         {
           staticClass:
-            "flex justify-between items-center hover:bg-gray-100 cursor-pointer py-2",
+            "flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2",
           on: { click: _vm.toggle }
         },
         [
