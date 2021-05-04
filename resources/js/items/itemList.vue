@@ -175,7 +175,7 @@
                 </svg>
             </div>
 
-            <div v-if="! readMore" v-html="item.description"></div>
+            <div v-if="! readMore" v-html="item.body"></div>
 
             <div class="flex justify-between w-full text-sm">
                 <!-- <div @click="updateItem(item)"

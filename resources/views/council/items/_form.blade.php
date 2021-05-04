@@ -29,7 +29,7 @@
                 <label class="font-semibold">Popis návrhu</label>
 
                 <div class="col-md-8">
-                    <textarea id="editor" class="form-control" name="description" rows="10"></textarea>
+                    <textarea id="editor" class="form-control" name="body" rows="10"></textarea>
                 </div>
             </div>
 

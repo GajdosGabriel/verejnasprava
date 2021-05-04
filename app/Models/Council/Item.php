@@ -58,7 +58,7 @@ class Item extends Model
     }
 
     public function descriptionLimit($value){
-        return Str::limit($this->description, $value, ' (...)');
+        return Str::limit($this->body, $value, ' (...)');
     }
 
 }

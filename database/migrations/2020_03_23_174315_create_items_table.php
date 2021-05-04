@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->integer('position')->unsigned()->default(0);
             $table->string('name');
             $table->string('slug');
-            $table->text('description')->nullable();
+            $table->text('body')->nullable();
             $table->boolean('vote_status')->default(0);
             $table->boolean('vote_type')->default(0);
             $table->boolean('published')->default(0);

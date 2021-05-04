@@ -77,7 +77,7 @@
 
                 <!--  Body text-->
                 <div class="py-3">
-                    <p v-html="item.description"></p>
+                    <p v-html="item.body"></p>
                     <!--  File-->
                     <div v-if="files.length">
                         <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
