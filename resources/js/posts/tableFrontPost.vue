@@ -31,7 +31,7 @@
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
-                    <div v-for="file in post.files">
+                    <div v-for="file in post.files" :key="file.id">
                     <a target="_blank" :href="'/file/' + file.id + '/' + file.filename + '/file/show'">Príloha</a>
                     </div>
                </span>

@@ -13,12 +13,12 @@
 </div>
 
 <div class="my-3">
-    <label for="body" class="input-label">Popis zastupiteľstva</label>
+    <label for="description" class="input-label">Popis zastupiteľstva</label>
 
     <div class="col-md-8">
-        <input id="body" type="text" class="w-full @error('body') is-invalid @enderror" name="body" value="{{ old('body') ?? $council->body  }}" autocomplete="body">
+        <input id="description" type="text" class="w-full @error('body') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
 
-        @error('body')
+        @error('description')
         <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
         </span>
