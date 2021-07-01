@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Meetings;
 
 
-use App\Http\Controllers\Controller;
-use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
+use App\Models\Council\Meeting;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\MeetingRequest;
 
 class MeetingController extends Controller
 {
@@ -18,7 +19,7 @@ class MeetingController extends Controller
     }
 
 
-    public function update(Request $request, Meeting $meeting) {
+    public function update(MeetingRequest $request, Meeting $meeting) {
         $meeting->update(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
         return redirect()->route('meetings.show', $meeting->id);
