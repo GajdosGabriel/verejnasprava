@@ -41,7 +41,7 @@
                                 <select name="meeting" id="meetings" required>
                                     <option value="">---Vybrať---</option>
                                     @forelse($meetings as $meeting)
-                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}</option>
+                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }} {{ \Str::limit( $meeting->name, 12) }}</option>
                                     @empty
                                     @endforelse
                                 </select>

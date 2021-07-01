@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Items;
 use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
 use App\Models\Council\Meeting;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class ItemController extends Controller
     public function index(){
         $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
 
-        $meetings = Meeting::whereHas('council', function (Builder $query) {
+        $meetings = Meeting::where('start_at', '>=', Carbon::now())->whereHas('council', function (Builder $query) {
             $query->whereOrganizationId(auth()->user()->id);
-        })->get();
+        })->orderBy('start_at', 'desc')->get();
         return view('council.items.index', compact(['items', 'meetings']));
     }
 
