@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function index(){
-        $items = Item::whereUserId(auth()->user()->id)->get();
+        $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
 
         $meetings = Meeting::whereHas('council', function (Builder $query) {
             $query->whereOrganizationId(auth()->user()->id);
