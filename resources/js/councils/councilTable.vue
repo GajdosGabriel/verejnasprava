@@ -101,7 +101,7 @@
 
                     <div class="cursor-pointer">
                         <a :href="'meetings/' + meeting.id">
-                            Program ({{ meeting.itemspublished.length }}/{{ meeting.items.length }})
+                            Program ({{ meeting.itemspublished.length }}<span v-if=" meeting.itemspublished.length !== meeting.items.length">/{{ meeting.items.length }}</span>)
                         </a>
                     </div>
                 </div>
