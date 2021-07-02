@@ -13,7 +13,11 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
+        if(auth()->user()->hasRole('admin')){
+            $items = Item::whereOrganizationId(auth()->user()->active_organization)->whereDoesntHave('meetings')->get();
+        }else {
+            $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
+        };
 
         $meetings = Meeting::where('start_at', '>=', Carbon::now())->whereHas('council', function (Builder $query) {
             $query->whereOrganizationId(auth()->user()->id);
