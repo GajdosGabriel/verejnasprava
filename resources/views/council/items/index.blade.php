@@ -46,7 +46,7 @@
                                     @empty
                                     @endforelse
                                 </select>
-                                <button class="px-2 hover:bg-gray-300 rounded-md">Uložiť</button>
+                                <button class="btn btn-secondary">Uložiť</button>
                             </form>
                             @endcan
                         @endforelse
