@@ -5,7 +5,7 @@
         <div class="flex mb-5 max-w-sm">
             <input wire:model.lazy="newComment" type="text"
                    class="w-full border-2 border-gray-400 pl-3 rounded-l-g text-sm focus:outline-none"
-                   placeholder="Napíšte podnet" aria-label="Recipient's username" aria-describedby="button-addon2">
+                   placeholder="Napíšte príspevok" aria-label="Recipient's username" aria-describedby="button-addon2">
             <button class="btn btn-primary rounded-r-lg text-sm" type="submit">Poslať</button>
         </div>
     </form>
