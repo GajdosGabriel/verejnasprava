@@ -61,20 +61,6 @@
                         </div>
                     </a>
 
-                    <!--  Poslať všetkým notifikáciu -->
-                    <a v-if="meeting.published"
-                       class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                       href="#"
-                       title="Notifikácia pre voliteľov">
-                        <div class="flex" @click="saveNotification">
-                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 20 20">
-                                <path
-                                    d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
-                            </svg>
-                            <span v-text="notificationStatus"></span>
-                        </div>
-                    </a>
 
                     <!--  Position save button -->
                     <a class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
@@ -87,6 +73,21 @@
                                     d="M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z"/>
                             </svg>
                             <span>Zmeniť poradie</span>
+                        </div>
+                    </a>
+
+                         <!--  Poslať všetkým notifikáciu -->
+                    <a v-if="meeting.published"
+                       class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                       href="#"
+                       title="Notifikácia pre voliteľov">
+                        <div class="flex" @click="saveNotification">
+                            <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 20 20">
+                                <path
+                                    d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
+                            </svg>
+                            <span v-text="notificationStatus"></span>
                         </div>
                     </a>
 

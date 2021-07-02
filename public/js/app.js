@@ -4036,6 +4036,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -88452,6 +88453,46 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                        attrs: { href: "#", title: "Notifikácia pre voliteľov" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "flex",
+                            on: { click: _vm.changeOrderItems }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-4 h-4 mr-2 fill-current",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("span", [_vm._v("Zmeniť poradie")])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
                     _vm.meeting.published
                       ? _c(
                           "a",
@@ -88500,46 +88541,6 @@ var render = function() {
                           ]
                         )
                       : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                        attrs: { href: "#", title: "Notifikácia pre voliteľov" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "flex",
-                            on: { click: _vm.changeOrderItems }
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z"
-                                  }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("Zmeniť poradie")])
-                          ]
-                        )
-                      ]
-                    ),
                     _vm._v(" "),
                     _c(
                       "div",
