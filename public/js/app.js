@@ -86688,6 +86688,8 @@ var render = function() {
                       _vm._v(
                         "\n                        Program (" +
                           _vm._s(meeting.itemspublished.length) +
+                          "/" +
+                          _vm._s(meeting.items.length) +
                           ")\n                    "
                       )
                     ])

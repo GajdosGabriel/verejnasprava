@@ -101,7 +101,7 @@
 
                     <div class="cursor-pointer">
                         <a :href="'meetings/' + meeting.id">
-                            Program ({{ meeting.itemspublished.length }})
+                            Program ({{ meeting.itemspublished.length }}/{{ meeting.items.length }})
                         </a>
                     </div>
                 </div>
