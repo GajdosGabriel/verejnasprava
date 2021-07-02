@@ -11,36 +11,45 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
 
         $meetings = Meeting::where('start_at', '>=', Carbon::now())->whereHas('council', function (Builder $query) {
             $query->whereOrganizationId(auth()->user()->id);
         })->orderBy('start_at', 'desc')->get();
+
         return view('council.items.index', compact(['items', 'meetings']));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('council.items.create');
     }
 
-    public function show(Item $item) {
+    public function show(Item $item)
+    {
         return view('council.items.show', compact('item'));
     }
 
-    public function edit(Item $item) {
+    public function edit(Item $item)
+    {
         return view('council.items.edit', compact('item'));
     }
 
-    public function update(Request $request, Item $item) {
+    public function update(Request $request, Item $item)
+    {
         $item->update(array_merge($request->except('filename', 'fileDelete'), ['user_id' => auth()->user()->id]));
         $item->saveFile($request);
-        return redirect()->route('items.show',$item->id);
+        return redirect()->route('items.show', $item->id);
     }
 
-    public function store(Request $request) {
-
-        $item = Item::create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
+    public function store(Request $request)
+    {
+        $item = Item::create(array_merge($request->except('filename'), [
+            'user_id' => auth()->user()->id,
+            'organization_id' => auth()->user()->active_organization,
+        ]));
 
 //        $item->update(['order' => $meeting->items()->count() +1] );
 //
@@ -50,9 +59,8 @@ class ItemController extends Controller
 
 
 
-    public function destroy(Item $item) {
+    public function destroy(Item $item)
+    {
         $item->delete();
     }
-
-
 }
