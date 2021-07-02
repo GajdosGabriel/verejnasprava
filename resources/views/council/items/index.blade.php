@@ -38,7 +38,7 @@
                             @can('council delete')
                             <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
                                 @csrf @method('PUT')
-                                <label for="meetings">Zaradiť:</label>
+                                <label for="meetings">Schôdza:</label>
                                 <select name="meeting" id="meetings" required>
                                     <option value="">---Vybrať---</option>
                                     @forelse($meetings as $meeting)
@@ -46,7 +46,7 @@
                                     @empty
                                     @endforelse
                                 </select>
-                                <button class="btn btn-secondary">Uložiť</button>
+                                <button class="btn btn-secondary">Zaradiť</button>
                             </form>
                             @endcan
                         @endforelse

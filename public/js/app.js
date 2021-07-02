@@ -88320,7 +88320,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(
-                              "\n                            Nový bod\n                        "
+                              "\n                            Nový návrh\n                        "
                             )
                           ])
                         ]
