@@ -14,9 +14,9 @@ class CreateInvitationsTable extends Migration
     public function up()
     {
         Schema::create('invitations', function (Blueprint $table) {
-            $table->increments('id')->index();
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('meeting_id')->unsigned();
+            $table->integer('meeting_id')->unsigned()->index();
             $table->dateTime('send_at')->nullable();
             $table->dateTime('confirmed_at')->nullable();
             $table->softDeletes();

@@ -18,13 +18,7 @@ class MeetingController extends Controller
     public function update(Request $request, Meeting $meeting)
     {
         $meeting->update($request->all());
-
-        if ($request->has('notification')) {
-            foreach ($meeting->council->users as $user) {
-                $user->notify(new NewMeeting($user, $meeting));
-            }
-            return Response('Pozvánka na zasadnutie bola odoslaná.');
-        }
+        
         return $meeting;
     }
 }

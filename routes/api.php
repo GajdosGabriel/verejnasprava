@@ -27,10 +27,11 @@ Route::delete('contacts/{contact}', 'Contacts\ApiContactsController@delete');
 
 
 Route::apiResources([
-    'votes' => 'Api\VoteController',
-    'items' => 'Api\ItemController',
-    'meetings' => 'Api\MeetingController',
-    'menus' => 'Api\MenuController',
+    'votes'                 => 'Api\VoteController',
+    'items'                 => 'Api\ItemController',
+    'meetings'              => 'Api\MeetingController',
+    'meeting.invitation'    => 'Api\MeetingInvitationController',
+    'menus'                 => 'Api\MenuController',
 ]);
 
 

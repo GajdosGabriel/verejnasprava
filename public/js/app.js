@@ -4231,6 +4231,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4274,6 +4287,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     openToggle: function openToggle() {
       this.openList = !this.openList;
+    },
+    saveNotification: function saveNotification() {
+      if (!this.meeting.published) {
+        alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
+      }
+
+      axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
+        allUsers: true
+      }).then(function (response) {});
     }
   }
 });
@@ -89052,7 +89074,7 @@ var render = function() {
               _c("span", { staticClass: "text-sm flex" }, [
                 _vm._v(
                   "\n            (" +
-                    _vm._s(_vm.meetingUsers.length) +
+                    _vm._s(_vm.meeting.invitations.length) +
                     "/" +
                     _vm._s(_vm.councilUsers.length) +
                     ")\n        "
@@ -89105,7 +89127,7 @@ var render = function() {
                           staticClass: "border px-4 py-2",
                           domProps: { textContent: _vm._s(invitation.send_at) }
                         },
-                        [_vm._v("Dna")]
+                        [_vm._v("\n                Dna\n            ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -89116,14 +89138,18 @@ var render = function() {
                             textContent: _vm._s(invitation.confirmed_at)
                           }
                         },
-                        [_vm._v("Potvrdená")]
+                        [_vm._v("\n                Potvrdená\n            ")]
                       )
                     ])
                   })
                 ],
                 2
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.saveNotification } }, [
+            _vm._v("Poslať pozvánky")
+          ])
         ]
       )
     : _vm._e()

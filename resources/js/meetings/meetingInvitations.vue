@@ -2,11 +2,11 @@
     <div
         v-if="meeting.published"
         class="border-2 rounded-md border-gray-300 mb-12"
-        @click="openToggle"
     >
         <div
             class="flex justify-between bg-gray-300 p-1 cursor-pointer items-center"
             :class="quorateMeeting"
+            @click="openToggle"
         >
             <div class="font-medium text-gray-800">
                 <div class="flex cursor-pointer">
@@ -24,7 +24,7 @@
             </div>
 
             <span class="text-sm flex">
-                ({{ meetingUsers.length }}/{{ councilUsers.length }})
+                ({{ meeting.invitations.length }}/{{ councilUsers.length }})
             </span>
 
             <svg
@@ -46,12 +46,37 @@
                 <th class="bg-blue-100 border text-left px-8 py-2">Pozvánka</th>
                 <th class="bg-blue-100 border text-left px-8 py-2">Účasť</th>
             </tr>
-            <tr v-for="invitation in  meeting.invitations" :key="invitation.id">
-                <td v-text="invitation.user.first_name + ' ' + invitation.user.last_name" class="border px-4 py-2"></td>
-                <td v-text="invitation.send_at" class="border px-4 py-2">Dna</td>
-                <td v-text="invitation.confirmed_at" class="border px-4 py-2">Potvrdená</td>
+            <tr v-for="invitation in meeting.invitations" :key="invitation.id">
+                <td
+                    v-text="
+                        invitation.user.first_name +
+                            ' ' +
+                            invitation.user.last_name
+                    "
+                    class="border px-4 py-2"
+                ></td>
+                <td v-text="invitation.send_at" class="border px-4 py-2">
+                    Dna
+                </td>
+                <td v-text="invitation.confirmed_at" class="border px-4 py-2">
+                    Potvrdená
+                </td>
             </tr>
         </table>
+
+        <button @click="saveNotification">
+            <svg
+                class="w-4 h-4 mr-2 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                />
+            </svg>
+            Poslať všetkým
+        </button>
+        <button>Nepotvrdeným</button>
     </div>
 </template>
 
@@ -93,6 +118,20 @@ export default {
     methods: {
         openToggle() {
             this.openList = !this.openList;
+        },
+
+        saveNotification() {
+            if (!this.meeting.published) {
+                alert(
+                    "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
+                );
+            }
+
+            axios
+                .post("/api/meeting/" + this.meeting.id + "/invitation", {
+                    allUsers: true
+                })
+                .then(response => {});
         }
     }
 };
