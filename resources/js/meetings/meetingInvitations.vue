@@ -55,11 +55,23 @@
                     "
                     class="border px-4 py-2"
                 ></td>
-                <td v-text="invitation.send_at" class="border px-4 py-2">
-                    Dna
+                <td class="border px-4 py-2">
+                    {{ invitation.send_at | fullDateTime }}
                 </td>
-                <td v-text="invitation.confirmed_at" class="border px-4 py-2">
-                    Potvrdená
+                <td class="border px-4 py-2 text-xs">
+                    <button
+                        v-if="invitation.confirmed_at"
+                        class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                    >
+                        Potvrdená
+                    </button>
+
+                    <button
+                        v-else
+                        class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                    >
+                        Nepotvrdená
+                    </button>
                 </td>
             </tr>
         </table>
@@ -76,7 +88,7 @@
                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
                         />
                     </svg>
-                    Pozvánky všetkým
+                    Pozvať všetkých
                 </div>
             </a>
             <a href="#">Nepotvrdeným</a>
@@ -86,8 +98,9 @@
 
 <script>
 import { mapState } from "vuex";
-
+import { filterMixin } from "../mixins/filterMixin";
 export default {
+    mixins: [filterMixin],
     props: {
         councilid: {
             type: Number,

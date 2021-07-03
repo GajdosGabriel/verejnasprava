@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="hover:bg-gray-200" v-for="contact in contacts.data">
+            <tr class="hover:bg-gray-200" v-for="contact in contacts.data" :key="contact.id">
                 <td class="px-4 py-2 border" v-text="contact.name"></td>
                 <td class="px-4 py-2 border" v-text="contact.street"></td>
                 <td class="px-4 py-2 border whitespace-no-wrap" v-text="contact.city"></td>

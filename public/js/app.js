@@ -4142,7 +4142,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4235,8 +4236,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__.filterMixin],
   props: {
     councilid: {
       type: Number,
@@ -4258,7 +4273,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return "bg-blue-300";
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     meetingUsers: function meetingUsers(state) {
       return state.meetings.meetingUsers;
     },
@@ -7618,7 +7633,7 @@ var filterMixin = {
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('h:mm');
     },
     fullDateTime: function fullDateTime(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD-MM-YYYY h:mm');
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD MM YYYY h:mm');
     }
   }
 };
@@ -85052,67 +85067,77 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.contacts.data, function(contact) {
-            return _c("tr", { staticClass: "hover:bg-gray-200" }, [
-              _c("td", {
-                staticClass: "px-4 py-2 border",
-                domProps: { textContent: _vm._s(contact.name) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                staticClass: "px-4 py-2 border",
-                domProps: { textContent: _vm._s(contact.street) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                staticClass: "px-4 py-2 border whitespace-no-wrap",
-                domProps: { textContent: _vm._s(contact.city) }
-              }),
-              _vm._v(" "),
-              _c("td", { staticClass: "px-4 py-2 border whitespace-no-wrap" }, [
-                _vm._v(_vm._s(_vm._f("pscFormat")(contact.psc)))
-              ]),
-              _vm._v(" "),
-              _c("td", {
-                staticClass: "px-4 py-2 border",
-                domProps: { textContent: _vm._s(contact.ico) }
-              }),
-              _vm._v(" "),
-              _c("td", {
-                staticClass: "px-4 py-2 border",
-                domProps: { textContent: _vm._s(contact.dic) }
-              }),
-              _vm._v(" "),
-              _vm.$auth.isAdmin()
-                ? _c("td", { staticClass: "px-4 py-2 border" }, [
-                    _c("a", { attrs: { href: "mailto: contact.email" } }, [
-                      _vm._v(_vm._s(contact.email))
+            return _c(
+              "tr",
+              { key: contact.id, staticClass: "hover:bg-gray-200" },
+              [
+                _c("td", {
+                  staticClass: "px-4 py-2 border",
+                  domProps: { textContent: _vm._s(contact.name) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  staticClass: "px-4 py-2 border",
+                  domProps: { textContent: _vm._s(contact.street) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  staticClass: "px-4 py-2 border whitespace-no-wrap",
+                  domProps: { textContent: _vm._s(contact.city) }
+                }),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "px-4 py-2 border whitespace-no-wrap" },
+                  [_vm._v(_vm._s(_vm._f("pscFormat")(contact.psc)))]
+                ),
+                _vm._v(" "),
+                _c("td", {
+                  staticClass: "px-4 py-2 border",
+                  domProps: { textContent: _vm._s(contact.ico) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  staticClass: "px-4 py-2 border",
+                  domProps: { textContent: _vm._s(contact.dic) }
+                }),
+                _vm._v(" "),
+                _vm.$auth.isAdmin()
+                  ? _c("td", { staticClass: "px-4 py-2 border" }, [
+                      _c("a", { attrs: { href: "mailto: contact.email" } }, [
+                        _vm._v(_vm._s(contact.email))
+                      ])
                     ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("td", { staticClass: "px-4 py-2 border whitespace-no-wrap" }, [
-                _c("a", { attrs: { href: "tel: contact.phone" } }, [
-                  _vm._v(_vm._s(contact.phone))
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.$auth.isAdmin()
-                ? _c("td", { staticClass: "px-4 py-2 border text-center" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "hover:underline cursor-pointer text-sm",
-                        on: {
-                          click: function($event) {
-                            return _vm.openEditForm(contact)
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "px-4 py-2 border whitespace-no-wrap" },
+                  [
+                    _c("a", { attrs: { href: "tel: contact.phone" } }, [
+                      _vm._v(_vm._s(contact.phone))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.$auth.isAdmin()
+                  ? _c("td", { staticClass: "px-4 py-2 border text-center" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "hover:underline cursor-pointer text-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.openEditForm(contact)
+                            }
                           }
-                        }
-                      },
-                      [_vm._v("Upraviť")]
-                    )
-                  ])
-                : _vm._e()
-            ])
+                        },
+                        [_vm._v("Upraviť")]
+                      )
+                    ])
+                  : _vm._e()
+              ]
+            )
           }),
           0
         )
@@ -89081,25 +89106,41 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border px-4 py-2",
-                        domProps: { textContent: _vm._s(invitation.send_at) }
-                      },
-                      [_vm._v("\n                Dna\n            ")]
-                    ),
+                    _c("td", { staticClass: "border px-4 py-2" }, [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm._f("fullDateTime")(invitation.send_at)) +
+                          "\n            "
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass: "border px-4 py-2",
-                        domProps: {
-                          textContent: _vm._s(invitation.confirmed_at)
-                        }
-                      },
-                      [_vm._v("\n                Potvrdená\n            ")]
-                    )
+                    _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
+                      invitation.confirmed_at
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Potvrdená\n                "
+                              )
+                            ]
+                          )
+                        : _c(
+                            "button",
+                            {
+                              staticClass:
+                                "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Nepotvrdená\n                "
+                              )
+                            ]
+                          )
+                    ])
                   ])
                 })
               ],
@@ -89131,7 +89172,7 @@ var render = function() {
                     })
                   ]
                 ),
-                _vm._v("\n                Pozvánky všetkým\n            ")
+                _vm._v("\n                Pozvať všetkých\n            ")
               ])
             ]
           ),
