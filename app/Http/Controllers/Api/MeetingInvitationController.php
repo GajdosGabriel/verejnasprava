@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class MeetingInvitationController extends Controller
 {
+    public function index(Meeting $meeting)
+    {
+       return $meeting->invitations()->get();
+    }
+
     public function store(Meeting $meeting, Request $request)
     {
         foreach ($meeting->council->users as $user) {
@@ -18,7 +23,7 @@ class MeetingInvitationController extends Controller
                 ['send_at' => Carbon::now()]
             );
 
-            $user->notify(new NewMeeting($user, $meeting));
+            // $user->notify(new NewMeeting($user, $meeting));
         }
 
         return Response('Pozvánka na zasadnutie bola odoslaná.');

@@ -46,7 +46,7 @@
                 <th class="bg-blue-100 border text-left px-8 py-2">Pozvánka</th>
                 <th class="bg-blue-100 border text-left px-8 py-2">Účasť</th>
             </tr>
-            <tr v-for="invitation in meeting.invitations" :key="invitation.id">
+            <tr v-for="invitation in invitations" :key="invitation.id">
                 <td
                     v-text="
                         invitation.user.first_name +
@@ -77,7 +77,7 @@
         </table>
 
         <div class="flex justify-between p-2">
-            <a href="#" @click="saveNotification">
+            <button @click="saveNotification">
                 <div class="flex items-center">
                     <svg
                         class="w-4 h-4 mr-2 fill-current"
@@ -88,10 +88,10 @@
                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
                         />
                     </svg>
-                    Pozvať všetkých
+                    Pozvať všetkých ({{ councilUsers.length }})
                 </div>
-            </a>
-            <a href="#">Nepotvrdeným</a>
+            </button>
+            <button>Nepotvrdeným</button>
         </div>
     </div>
 </template>
@@ -109,7 +109,8 @@ export default {
     },
     data() {
         return {
-            openList: true
+            openList: true,
+            invitations: []
         };
     },
     computed: {
@@ -130,11 +131,19 @@ export default {
         })
     },
     created() {
-        this.$store.dispatch("meetings/getCouncil", this.councilid);
+        this.fetchInvitations();
     },
     methods: {
         openToggle() {
             this.openList = !this.openList;
+        },
+
+        fetchInvitations() {
+            axios
+                .get("/api/meeting/" + 1 + "/invitation")
+                .then(response => {
+                    this.invitations = response.data;
+                });
         },
 
         saveNotification() {
@@ -148,7 +157,9 @@ export default {
                 .post("/api/meeting/" + this.meeting.id + "/invitation", {
                     allUsers: true
                 })
-                .then(response => {});
+                .then(response => {
+                    this.fetchInvitations()
+                });
         }
     }
 };
