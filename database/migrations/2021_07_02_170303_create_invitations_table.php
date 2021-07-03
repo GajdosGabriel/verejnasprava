@@ -15,11 +15,16 @@ class CreateInvitationsTable extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
             $table->integer('meeting_id')->unsigned()->index();
             $table->dateTime('send_at')->nullable();
             $table->dateTime('confirmed_at')->nullable();
             $table->softDeletes();
+
+            $table->foreign('meeting_id')->references('id')->on('meetings');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unique(['user_id', 'meeting_id']);
         });
     }
 

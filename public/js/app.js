@@ -4022,21 +4022,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4123,16 +4108,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     publishedMeeting: function publishedMeeting(published) {
       this.$store.dispatch('meetings/update', {
         published: published,
-        id: this.meeting.id
-      });
-    },
-    saveNotification: function saveNotification() {
-      if (!this.meeting.published) {
-        alert('Zasadnutie nie je publikované. Najprv zapnite publikovanie!');
-      }
-
-      this.$store.dispatch('meetings/update', {
-        notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
         id: this.meeting.id
       });
     },
@@ -4244,6 +4219,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4254,7 +4245,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      openList: false
+      openList: true
     };
   },
   computed: _objectSpread({
@@ -4367,6 +4358,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4385,10 +4400,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
 
       if (percento > this.council.quorate) {
-        return 'bg-green-200 ';
+        return "bg-green-200 ";
       }
 
-      return 'bg-red-200';
+      return "bg-red-200";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
     meetingUsers: function meetingUsers(state) {
@@ -4405,7 +4420,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.$store.dispatch('meetings/getCouncil', this.councilid);
+    this.$store.dispatch("meetings/getCouncil", this.councilid);
   },
   methods: {
     openToggle: function openToggle() {
@@ -88712,55 +88727,6 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm.meeting.published
-                      ? _c(
-                          "a",
-                          {
-                            staticClass:
-                              "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                            attrs: {
-                              href: "#",
-                              title: "Notifikácia pre voliteľov"
-                            }
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "flex",
-                                on: { click: _vm.saveNotification }
-                              },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "w-4 h-4 mr-2 fill-current",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("span", {
-                                  domProps: {
-                                    textContent: _vm._s(_vm.notificationStatus)
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
                     _c(
                       "div",
                       {
@@ -89031,127 +88997,148 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.meeting.published
-    ? _c(
-        "div",
-        {
-          staticClass: "border-2 rounded-md border-gray-300 mb-12",
-          on: { click: _vm.openToggle }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
-              class: _vm.quorateMeeting
-            },
-            [
-              _c("div", { staticClass: "font-medium text-gray-800" }, [
-                _c("div", { staticClass: "flex cursor-pointer" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass:
-                        "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v("\n                Pozvánky\n            ")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-sm flex" }, [
-                _vm._v(
-                  "\n            (" +
-                    _vm._s(_vm.meeting.invitations.length) +
-                    "/" +
-                    _vm._s(_vm.councilUsers.length) +
-                    ")\n        "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "-mr-1 ml-2 h-5 w-5",
-                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-                },
-                [
-                  _c("path", {
+    ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
+            class: _vm.quorateMeeting,
+            on: { click: _vm.openToggle }
+          },
+          [
+            _c("div", { staticClass: "font-medium text-gray-800" }, [
+              _c("div", { staticClass: "flex cursor-pointer" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
                     attrs: {
-                      "fill-rule": "evenodd",
-                      d:
-                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                      "clip-rule": "evenodd"
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
                     }
-                  })
-                ]
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v("\n                Pozvánky\n            ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-sm flex" }, [
+              _vm._v(
+                "\n            (" +
+                  _vm._s(_vm.meeting.invitations.length) +
+                  "/" +
+                  _vm._s(_vm.councilUsers.length) +
+                  ")\n        "
               )
+            ]),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                staticClass: "-mr-1 ml-2 h-5 w-5",
+                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm.openList
+          ? _c(
+              "table",
+              { staticClass: "bg-white w-full" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.meeting.invitations, function(invitation) {
+                  return _c("tr", { key: invitation.id }, [
+                    _c("td", {
+                      staticClass: "border px-4 py-2",
+                      domProps: {
+                        textContent: _vm._s(
+                          invitation.user.first_name +
+                            " " +
+                            invitation.user.last_name
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        staticClass: "border px-4 py-2",
+                        domProps: { textContent: _vm._s(invitation.send_at) }
+                      },
+                      [_vm._v("\n                Dna\n            ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        staticClass: "border px-4 py-2",
+                        domProps: {
+                          textContent: _vm._s(invitation.confirmed_at)
+                        }
+                      },
+                      [_vm._v("\n                Potvrdená\n            ")]
+                    )
+                  ])
+                })
+              ],
+              2
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex justify-between p-2" }, [
+          _c(
+            "a",
+            { attrs: { href: "#" }, on: { click: _vm.saveNotification } },
+            [
+              _c("div", { staticClass: "flex items-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4 h-4 mr-2 fill-current",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v("\n                Pozvánky všetkým\n            ")
+              ])
             ]
           ),
           _vm._v(" "),
-          _vm.openList
-            ? _c(
-                "table",
-                { staticClass: "shadow-lg bg-white w-full" },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _vm._l(_vm.meeting.invitations, function(invitation) {
-                    return _c("tr", { key: invitation.id }, [
-                      _c("td", {
-                        staticClass: "border px-4 py-2",
-                        domProps: {
-                          textContent: _vm._s(
-                            invitation.user.first_name +
-                              " " +
-                              invitation.user.last_name
-                          )
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        {
-                          staticClass: "border px-4 py-2",
-                          domProps: { textContent: _vm._s(invitation.send_at) }
-                        },
-                        [_vm._v("\n                Dna\n            ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        {
-                          staticClass: "border px-4 py-2",
-                          domProps: {
-                            textContent: _vm._s(invitation.confirmed_at)
-                          }
-                        },
-                        [_vm._v("\n                Potvrdená\n            ")]
-                      )
-                    ])
-                  })
-                ],
-                2
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("button", { on: { click: _vm.saveNotification } }, [
-            _vm._v("Poslať pozvánky")
-          ])
-        ]
-      )
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Nepotvrdeným")])
+        ])
+      ])
     : _vm._e()
 }
 var staticRenderFns = [
@@ -89197,136 +89184,129 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.meeting.published
-    ? _c(
-        "div",
-        {
-          staticClass: "border-2 rounded-md border-gray-300 mb-12",
-          on: { click: _vm.openToggle }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
-              class: _vm.quorateMeeting
-            },
-            [
-              _c("div", { staticClass: "font-medium text-gray-800" }, [
-                _c("div", { staticClass: "flex cursor-pointer" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass:
-                        "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v("\n                Prezentácia\n            ")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-sm flex" }, [
-                _vm._v(
-                  "\n           (" +
-                    _vm._s(_vm.meetingUsers.length) +
-                    "/" +
-                    _vm._s(_vm.councilUsers.length) +
-                    ")\n        "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "-mr-1 ml-2 h-5 w-5",
-                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-                },
-                [
-                  _c("path", {
+    ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
+            class: _vm.quorateMeeting,
+            on: { click: _vm.openToggle }
+          },
+          [
+            _c("div", { staticClass: "font-medium text-gray-800" }, [
+              _c("div", { staticClass: "flex cursor-pointer" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
                     attrs: {
-                      "fill-rule": "evenodd",
-                      d:
-                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                      "clip-rule": "evenodd"
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
                     }
-                  })
-                ]
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v("\n                Prezentácia\n            ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-sm flex" }, [
+              _vm._v(
+                "\n            (" +
+                  _vm._s(_vm.meetingUsers.length) +
+                  "/" +
+                  _vm._s(_vm.councilUsers.length) +
+                  ")\n        "
               )
-            ]
-          ),
-          _vm._v(" "),
-          _vm.openList
-            ? _c(
-                "ul",
-                _vm._l(_vm.councilUsers, function(user) {
-                  return _c(
-                    "li",
-                    {
-                      key: user.id,
-                      staticClass:
-                        "flex justify-between border-b-2 border-dotted px-2 text-gray-600",
-                      class: {
-                        "text-gray-700 font-semibold": _vm.meetingUsers.find(
-                          function(o) {
-                            return o.id == user.id
-                          }
+            ]),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                staticClass: "-mr-1 ml-2 h-5 w-5",
+                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm.openList
+          ? _c(
+              "ul",
+              _vm._l(_vm.councilUsers, function(user) {
+                return _c(
+                  "li",
+                  {
+                    key: user.id,
+                    staticClass:
+                      "flex justify-between border-b-2 border-dotted px-2 text-gray-600",
+                    class: {
+                      "text-gray-700 font-semibold": _vm.meetingUsers.find(
+                        function(o) {
+                          return o.id == user.id
+                        }
+                      )
+                    }
+                  },
+                  [
+                    _c("span", {
+                      domProps: {
+                        textContent: _vm._s(
+                          user.first_name + " " + user.last_name
                         )
                       }
-                    },
-                    [
-                      _c("span", {
-                        domProps: {
-                          textContent: _vm._s(
-                            user.first_name + " " + user.last_name
-                          )
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.meetingUsers.find(function(o) {
-                        return o.id == user.id
-                      })
-                        ? _c("div", [
-                            _c(
-                              "svg",
-                              {
-                                staticClass:
-                                  "w-4 h-4 mr-1 fill-current my-1 text-gray-500",
+                    }),
+                    _vm._v(" "),
+                    _vm.meetingUsers.find(function(o) {
+                      return o.id == user.id
+                    })
+                      ? _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "w-4 h-4 mr-1 fill-current my-1 text-gray-500",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
+                              }
+                            },
+                            [
+                              _c("path", {
                                 attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
+                                  d:
+                                    "M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"
                                 }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"
-                                  }
-                                })
-                              ]
-                            )
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                }),
-                0
-              )
-            : _vm._e()
-        ]
-      )
+                              })
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              }),
+              0
+            )
+          : _vm._e()
+      ])
     : _vm._e()
 }
 var staticRenderFns = []
