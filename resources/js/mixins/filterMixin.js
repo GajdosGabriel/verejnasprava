@@ -22,7 +22,7 @@ export const filterMixin = {
         },
 
         fullDateTime: function (date) {
-            return moment(date).format('DD MM YYYY h:mm');
+            return moment(date).format('D. M. YYYY h:mm');
         }
     }
 

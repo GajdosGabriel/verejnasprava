@@ -4248,6 +4248,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4273,6 +4288,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return "bg-blue-300";
+    },
+    unsendUsers: function unsendUsers() {
+      return this.invitations.filter(function (o) {
+        return o.send_at == null;
+      }).length;
+    },
+    unconfirmedUsers: function unconfirmedUsers() {
+      return this.invitations.filter(function (o) {
+        return o.confirmed_at == null;
+      }).length;
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     meetingUsers: function meetingUsers(state) {
@@ -4314,6 +4339,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         _this2.fetchInvitations();
       });
+    },
+    getInvitationDetails: function getInvitationDetails(user) {
+      if (this.invitations.find(function (o) {
+        return o.user_id == user.id;
+      })) {
+        return this.invitations.find(function (o) {
+          return o.user_id == user.id;
+        });
+      }
+
+      return false;
     }
   }
 });
@@ -7645,7 +7681,7 @@ var filterMixin = {
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('h:mm');
     },
     fullDateTime: function fullDateTime(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD MM YYYY h:mm');
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('D. M. YYYY h:mm');
     }
   }
 };
@@ -89105,15 +89141,13 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _vm._l(_vm.invitations, function(invitation) {
-                  return _c("tr", { key: invitation.id }, [
+                _vm._l(_vm.councilUsers, function(councilUser) {
+                  return _c("tr", { key: councilUser.id }, [
                     _c("td", {
                       staticClass: "border px-4 py-2",
                       domProps: {
                         textContent: _vm._s(
-                          invitation.user.first_name +
-                            " " +
-                            invitation.user.last_name
+                          councilUser.first_name + " " + councilUser.last_name
                         )
                       }
                     }),
@@ -89121,37 +89155,43 @@ var render = function() {
                     _c("td", { staticClass: "border px-4 py-2" }, [
                       _vm._v(
                         "\n                " +
-                          _vm._s(_vm._f("fullDateTime")(invitation.send_at)) +
+                          _vm._s(
+                            _vm.getInvitationDetails(councilUser).send_at
+                          ) +
                           "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      invitation.confirmed_at
-                        ? _c(
-                            "button",
-                            {
-                              staticClass:
-                                "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Potvrdená\n                "
-                              )
-                            ]
-                          )
-                        : _c(
-                            "button",
-                            {
-                              staticClass:
-                                "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Nepotvrdená\n                "
-                              )
-                            ]
-                          )
+                      _vm.getInvitationDetails(councilUser).send_at
+                        ? _c("div", [
+                            _vm.getInvitationDetails(councilUser).confirmed_at
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        Potvrdená\n                    "
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        Nepotvrdená\n                    "
+                                    )
+                                  ]
+                                )
+                          ])
+                        : _vm._e()
                     ])
                   ])
                 })
@@ -89161,12 +89201,44 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-between p-2" }, [
-          _c("button", { on: { click: _vm.saveNotification } }, [
+          _c(
+            "button",
+            { staticClass: "text-xs", on: { click: _vm.saveNotification } },
+            [
+              _c("div", { staticClass: "flex items-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-3 h-3 mr-1 fill-current",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(
+                  "\n                Pozvať všetkých (" +
+                    _vm._s(_vm.councilUsers.length + -+_vm.invitations.length) +
+                    ")\n            "
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "text-xs" }, [
             _c("div", { staticClass: "flex items-center" }, [
               _c(
                 "svg",
                 {
-                  staticClass: "w-4 h-4 mr-2 fill-current",
+                  staticClass: "w-3 h-3 mr-1 fill-current",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 20 20"
@@ -89182,14 +89254,12 @@ var render = function() {
                 ]
               ),
               _vm._v(
-                "\n                Pozvať všetkých (" +
-                  _vm._s(_vm.councilUsers.length) +
+                "\n                Nepotvrdeným (" +
+                  _vm._s(_vm.unconfirmedUsers) +
                   ")\n            "
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("button", [_vm._v("Nepotvrdeným")])
+          ])
         ])
       ])
     : _vm._e()

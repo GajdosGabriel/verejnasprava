@@ -46,41 +46,43 @@
                 <th class="bg-blue-100 border text-left px-8 py-2">Pozvánka</th>
                 <th class="bg-blue-100 border text-left px-8 py-2">Účasť</th>
             </tr>
-            <tr v-for="invitation in invitations" :key="invitation.id">
+            <tr v-for="councilUser in councilUsers" :key="councilUser.id">
                 <td
                     v-text="
-                        invitation.user.first_name +
-                            ' ' +
-                            invitation.user.last_name
+                        councilUser.first_name + ' ' + councilUser.last_name
                     "
                     class="border px-4 py-2"
                 ></td>
                 <td class="border px-4 py-2">
-                    {{ invitation.send_at | fullDateTime }}
+                    {{ getInvitationDetails(councilUser).send_at }}
                 </td>
                 <td class="border px-4 py-2 text-xs">
-                    <button
-                        v-if="invitation.confirmed_at"
-                        class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
-                    >
-                        Potvrdená
-                    </button>
+                    <div v-if="getInvitationDetails(councilUser).send_at">
+                        <button
+                            v-if="
+                                getInvitationDetails(councilUser).confirmed_at
+                            "
+                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                        >
+                            Potvrdená
+                        </button>
 
-                    <button
-                        v-else
-                        class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
-                    >
-                        Nepotvrdená
-                    </button>
+                        <button
+                            v-else
+                            class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                        >
+                            Nepotvrdená
+                        </button>
+                    </div>
                 </td>
             </tr>
         </table>
 
         <div class="flex justify-between p-2">
-            <button @click="saveNotification">
+            <button @click="saveNotification" class="text-xs">
                 <div class="flex items-center">
                     <svg
-                        class="w-4 h-4 mr-2 fill-current"
+                        class="w-3 h-3 mr-1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                     >
@@ -88,10 +90,23 @@
                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
                         />
                     </svg>
-                    Pozvať všetkých ({{ councilUsers.length }})
+                    Pozvať všetkých ({{ councilUsers.length + - + invitations.length }})
                 </div>
             </button>
-            <button>Nepotvrdeným</button>
+            <button class="text-xs">
+                <div class="flex items-center">
+                    <svg
+                        class="w-3 h-3 mr-1 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                        />
+                    </svg>
+                    Nepotvrdeným ({{ unconfirmedUsers }})
+                </div>
+            </button>
         </div>
     </div>
 </template>
@@ -123,6 +138,15 @@ export default {
             }
             return "bg-blue-300";
         },
+
+        unsendUsers() {
+            return this.invitations.filter(o => o.send_at == null).length;
+        },
+
+        unconfirmedUsers() {
+            return this.invitations.filter(o => o.confirmed_at == null).length;
+        },
+
         ...mapState({
             meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
@@ -139,11 +163,9 @@ export default {
         },
 
         fetchInvitations() {
-            axios
-                .get("/api/meeting/" + 1 + "/invitation")
-                .then(response => {
-                    this.invitations = response.data;
-                });
+            axios.get("/api/meeting/" + 1 + "/invitation").then(response => {
+                this.invitations = response.data;
+            });
         },
 
         saveNotification() {
@@ -158,8 +180,15 @@ export default {
                     allUsers: true
                 })
                 .then(response => {
-                    this.fetchInvitations()
+                    this.fetchInvitations();
                 });
+        },
+        getInvitationDetails(user) {
+            if (this.invitations.find(o => o.user_id == user.id)) {
+                return this.invitations.find(o => o.user_id == user.id);
+            }
+
+            return false;
         }
     }
 };
