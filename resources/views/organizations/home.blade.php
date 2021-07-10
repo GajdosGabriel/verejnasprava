@@ -45,7 +45,7 @@
             <x-oznamenia>
                 <menu-activators></menu-activators>
             </x-oznamenia>
-
+            
             {{--    @include('organizations.modul_activator')--}}
             <x-oznamenia>
                 <messenger-card></messenger-card>

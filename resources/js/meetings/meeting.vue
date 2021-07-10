@@ -95,7 +95,7 @@
             </nav-drop-down>
         </div>
 
-        <div v-if="! positionSaveButton" class="flex justify-between max-w-sm mb- text-xs mb-6">
+        <div v-if="! positionSaveButton" class="flex justify-between mb- text-xs mb-6">
 
             <a :href="'/meetings/' + meeting.id + '/file/show'"
                class="border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm"
