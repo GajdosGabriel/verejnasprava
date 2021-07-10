@@ -136,7 +136,7 @@
 
 
                 <ul class="">
-                    <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
+                    <li v-for="vote in item.votes" :key="vote.id" class="flex justify-between border-b-2 border-dotted">
                         {{ vote.user.last_name }}  {{ vote.user.first_name }}
                         <div v-if="item.vote_type == 0">
                             <span v-if="vote.vote == 1" class="font-semibold">Áno</span>

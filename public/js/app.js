@@ -4142,8 +4142,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4263,6 +4265,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4276,6 +4283,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       openList: true,
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       invitations: []
     };
   },
@@ -4294,12 +4302,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return o.send_at == null;
       }).length;
     },
+    sendUsers: function sendUsers() {
+      return this.invitations.filter(function (o) {
+        return o.send_at != null;
+      }).length;
+    },
     unconfirmedUsers: function unconfirmedUsers() {
       return this.invitations.filter(function (o) {
         return o.confirmed_at == null;
       }).length;
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
     meetingUsers: function meetingUsers(state) {
       return state.meetings.meetingUsers;
     },
@@ -4327,8 +4340,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.invitations = response.data;
       });
     },
-    saveNotification: function saveNotification() {
+    saveNotification: function saveNotification(user) {
       var _this2 = this;
+
+      if (!this.meeting.published) {
+        alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
+      }
+
+      axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
+        user_id: user
+      }).then(function (response) {
+        _this2.fetchInvitations();
+      });
+    },
+    notificationForAllUsers: function notificationForAllUsers() {
+      var _this3 = this;
 
       if (!this.meeting.published) {
         alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
@@ -4337,19 +4363,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
         allUsers: true
       }).then(function (response) {
-        _this2.fetchInvitations();
+        _this3.fetchInvitations();
       });
     },
     getInvitationDetails: function getInvitationDetails(user) {
-      if (this.invitations.find(function (o) {
+      return this.invitations.find(function (o) {
         return o.user_id == user.id;
-      })) {
-        return this.invitations.find(function (o) {
-          return o.user_id == user.id;
-        });
-      }
-
-      return false;
+      }).send_at == null ? "" : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.invitations.find(function (o) {
+        return o.user_id == user.id;
+      }).send_at).format("DD. MM. YYYY HH:mm");
     }
   }
 });
@@ -7681,7 +7703,7 @@ var filterMixin = {
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('h:mm');
     },
     fullDateTime: function fullDateTime(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('D. M. YYYY h:mm');
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('D. M. YYYY H:mm');
     }
   }
 };
@@ -88447,6 +88469,7 @@ var render = function() {
               return _c(
                 "li",
                 {
+                  key: vote.id,
                   staticClass: "flex justify-between border-b-2 border-dotted"
                 },
                 [
@@ -89144,23 +89167,27 @@ var render = function() {
                 _vm._l(_vm.councilUsers, function(councilUser) {
                   return _c("tr", { key: councilUser.id }, [
                     _c("td", {
-                      staticClass: "border px-4 py-2",
+                      staticClass: "border px-4 py-2 cursor-pointer",
                       domProps: {
                         textContent: _vm._s(
                           councilUser.first_name + " " + councilUser.last_name
                         )
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.saveNotification(councilUser.id)
+                        }
                       }
                     }),
                     _vm._v(" "),
-                    _c("td", { staticClass: "border px-4 py-2" }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(
-                            _vm.getInvitationDetails(councilUser).send_at
-                          ) +
-                          "\n            "
-                      )
-                    ]),
+                    _c("td", {
+                      staticClass: "border px-4 py-2",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.getInvitationDetails(councilUser)
+                        )
+                      }
+                    }),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
                       _vm.getInvitationDetails(councilUser).send_at
@@ -89203,7 +89230,10 @@ var render = function() {
         _c("div", { staticClass: "flex justify-between p-2" }, [
           _c(
             "button",
-            { staticClass: "text-xs", on: { click: _vm.saveNotification } },
+            {
+              staticClass: "text-xs",
+              on: { click: _vm.notificationForAllUsers }
+            },
             [
               _c("div", { staticClass: "flex items-center" }, [
                 _c(
@@ -89226,7 +89256,7 @@ var render = function() {
                 ),
                 _vm._v(
                   "\n                Pozvať všetkých (" +
-                    _vm._s(_vm.councilUsers.length + -+_vm.invitations.length) +
+                    _vm._s(_vm.councilUsers.length - _vm.sendUsers) +
                     ")\n            "
                 )
               ])

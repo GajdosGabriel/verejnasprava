@@ -51,10 +51,14 @@
                     v-text="
                         councilUser.first_name + ' ' + councilUser.last_name
                     "
-                    class="border px-4 py-2"
+                    class="border px-4 py-2 cursor-pointer"
+                    @click="saveNotification(councilUser.id)"
                 ></td>
-                <td class="border px-4 py-2">
-                    {{ getInvitationDetails(councilUser).send_at }}
+                <td
+                    class="border px-4 py-2"
+                    v-text="getInvitationDetails(councilUser)"
+                >
+                    <!-- {{ moment(getInvitationDetails(councilUser).send_at).format("DD. MM. YYYY, HH:mm") }} -->
                 </td>
                 <td class="border px-4 py-2 text-xs">
                     <div v-if="getInvitationDetails(councilUser).send_at">
@@ -79,7 +83,7 @@
         </table>
 
         <div class="flex justify-between p-2">
-            <button @click="saveNotification" class="text-xs">
+            <button @click="notificationForAllUsers" class="text-xs">
                 <div class="flex items-center">
                     <svg
                         class="w-3 h-3 mr-1 fill-current"
@@ -90,7 +94,7 @@
                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
                         />
                     </svg>
-                    Pozvať všetkých ({{ councilUsers.length + - + invitations.length }})
+                    Pozvať všetkých ({{ councilUsers.length - sendUsers }})
                 </div>
             </button>
             <button class="text-xs">
@@ -114,6 +118,7 @@
 <script>
 import { mapState } from "vuex";
 import { filterMixin } from "../mixins/filterMixin";
+import moment from "moment";
 export default {
     mixins: [filterMixin],
     props: {
@@ -125,6 +130,7 @@ export default {
     data() {
         return {
             openList: true,
+            moment: require("moment"),
             invitations: []
         };
     },
@@ -141,6 +147,10 @@ export default {
 
         unsendUsers() {
             return this.invitations.filter(o => o.send_at == null).length;
+        },
+
+        sendUsers() {
+            return this.invitations.filter(o => o.send_at != null).length;
         },
 
         unconfirmedUsers() {
@@ -168,7 +178,23 @@ export default {
             });
         },
 
-        saveNotification() {
+        saveNotification(user) {
+            if (!this.meeting.published) {
+                alert(
+                    "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
+                );
+            }
+
+            axios
+                .post("/api/meeting/" + this.meeting.id + "/invitation", {
+                    user_id: user
+                })
+                .then(response => {
+                    this.fetchInvitations();
+                });
+        },
+
+        notificationForAllUsers() {
             if (!this.meeting.published) {
                 alert(
                     "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
@@ -183,12 +209,14 @@ export default {
                     this.fetchInvitations();
                 });
         },
-        getInvitationDetails(user) {
-            if (this.invitations.find(o => o.user_id == user.id)) {
-                return this.invitations.find(o => o.user_id == user.id);
-            }
 
-            return false;
+        getInvitationDetails(user) {
+            return this.invitations.find(o => o.user_id == user.id).send_at ==
+                null
+                ? ""
+                : moment(
+                      this.invitations.find(o => o.user_id == user.id).send_at
+                  ).format("DD. MM. YYYY HH:mm");
         }
     }
 };
