@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="meeting.published"
+        v-if="meeting.published && $auth.can('council delete')"
         class="border-2 rounded-md border-gray-300 mb-12"
     >
         <div

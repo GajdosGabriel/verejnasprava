@@ -4022,6 +4022,107 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4029,7 +4130,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['pmeeting'],
+  props: ["pmeeting"],
   components: {
     itemList: _items_itemList__WEBPACK_IMPORTED_MODULE_3__.default,
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_2__.default,
@@ -4050,7 +4151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).length;
     },
     notificationStatus: function notificationStatus() {
-      return this.meeting.notification == null ? 'Pozvánka na zasadnutie' : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format('DD. MM. YYYY, HH:mm');
+      return this.meeting.notification == null ? "Pozvánka na zasadnutie" : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format("DD. MM. YYYY, HH:mm");
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     meeting: function meeting(state) {
@@ -4068,52 +4169,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return this.$store.state.meetings.items;
       },
       set: function set(value) {
-        this.$store.commit('meetings/UPDATE_LIST', value);
+        this.$store.commit("meetings/UPDATE_LIST", value);
       }
     }
   }),
   created: function created() {
-    this.$store.dispatch('meetings/fetchMeeting', this.pmeeting.id);
+    this.$store.dispatch("meetings/fetchMeeting", this.pmeeting.id);
   },
   methods: {
     changeOrderItems: function changeOrderItems() {
       var _this2 = this;
 
-      _app__WEBPACK_IMPORTED_MODULE_4__.bus.$emit('closeDropDown', function () {
+      _app__WEBPACK_IMPORTED_MODULE_4__.bus.$emit("closeDropDown", function () {
         _this2.isOpen = false;
       });
       this.positionSaveButton = !this.positionSaveButton;
     },
     resetMeetingUser: function resetMeetingUser() {
-      this.$store.dispatch('meetings/deleteMeetingUser', {
+      this.$store.dispatch("meetings/deleteMeetingUser", {
         id: this.meeting.id
       });
     },
     updateMeetingUser: function updateMeetingUser() {
-      this.$store.dispatch('meetings/updateMeetingUser', {
+      this.$store.dispatch("meetings/updateMeetingUser", {
         user: this.user.id,
         id: this.meeting.id
       });
     },
     storeMeetingUser: function storeMeetingUser() {
-      this.$store.dispatch('meetings/storeMeetingUser', {
+      this.$store.dispatch("meetings/storeMeetingUser", {
         user: this.user.id,
         id: this.meeting.id
       });
     },
     deleteMeeting: function deleteMeeting(meeting) {
-      axios["delete"]('/meetings/' + meeting.id).then( // window.location.reload();
-      window.location.href = '/zastupitelstva');
+      axios["delete"]("/meetings/" + meeting.id).then( // window.location.reload();
+      window.location.href = "/zastupitelstva");
     },
     publishedMeeting: function publishedMeeting(published) {
-      this.$store.dispatch('meetings/update', {
+      this.$store.dispatch("meetings/update", {
         published: published,
         id: this.meeting.id
       });
     },
     savePosition: function savePosition() {
       this.items.forEach(function (item, key) {
-        console.log('Key ' + key + ' ' + item.name);
+        console.log("Key " + key + " " + item.name);
       });
       var postData = {};
       postData.items = this.items.map(function (item) {
@@ -4121,8 +4222,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           id: item.id
         };
       });
-      axios.put('/item/position/slug/item/position', postData).then(function (response) {
-        return console.log('response', response);
+      axios.put("/item/position/slug/item/position", postData).then(function (response) {
+        return console.log("response", response);
       });
       this.positionSaveButton = !this.positionSaveButton;
     }
@@ -88553,7 +88654,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "Začiatok: " +
+                  "Začiatok:\n                " +
                     _vm._s(
                       _vm.moment(_vm.meeting.start_at).format("DD. MM. YYYY")
                     )
@@ -88837,13 +88938,38 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm",
+                  "border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm flex",
                 attrs: {
                   href: "/meetings/" + _vm.meeting.id + "/file/show",
                   target: "_blank"
                 }
               },
-              [_vm._v("\n            Pozvánka\n        ")]
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-4 w-4 mr-1",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      fill: "none",
+                      viewBox: "0 0 24 24",
+                      stroke: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round",
+                        "stroke-width": "2",
+                        d:
+                          "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v("\n\n            Pozvánka\n        ")
+              ]
             ),
             _vm._v(" "),
             _vm.meeting.published
@@ -88980,7 +89106,7 @@ var render = function() {
                   staticClass: "mt-4",
                   staticStyle: { "border-bottom": "2px solid silver" }
                 },
-                [_vm._v("Príloha")]
+                [_vm._v("\n            Príloha\n        ")]
               ),
               _vm._v(" "),
               _vm._l(_vm.files, function(file, index) {
@@ -89041,7 +89167,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.meeting.published
+  return _vm.meeting.published && _vm.$auth.can("council delete")
     ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
         _c(
           "div",
