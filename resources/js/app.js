@@ -61,6 +61,7 @@ Vue.component('card-mails-user', require('./messenger/mail/card-user.vue').defau
 
 
 Vue.component('tasks-component', require('./tasks/Tasks.vue').default);
+Vue.component('home-card-meeting', require('./meetings/homeCardMeeting.vue').default);
 Vue.component('notification-list', require('./notifications/NotificationList.vue').default);
 
 
