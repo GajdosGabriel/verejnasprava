@@ -4467,12 +4467,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.fetchInvitations();
       });
     },
-    getInvitationDetails: function getInvitationDetails(user) {
-      return this.invitations.find(function (o) {
+    userInvitationDetails: function userInvitationDetails(user) {
+      if (this.invitations.find(function (o) {
         return o.user_id == user.id;
-      }).send_at == null ? "" : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.invitations.find(function (o) {
-        return o.user_id == user.id;
-      }).send_at).format("DD. MM. YYYY HH:mm");
+      })) {
+        return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.invitations.find(function (o) {
+          return o.user_id == user.id;
+        }).send_at).format("DD. MM. YYYY HH:mm");
+      }
+
+      return '';
     }
   }
 });
@@ -89259,15 +89263,15 @@ var render = function() {
                       staticClass: "border px-4 py-2",
                       domProps: {
                         textContent: _vm._s(
-                          _vm.getInvitationDetails(councilUser)
+                          _vm.userInvitationDetails(councilUser)
                         )
                       }
                     }),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      _vm.getInvitationDetails(councilUser).send_at
+                      _vm.userInvitationDetails(councilUser).send_at
                         ? _c("div", [
-                            _vm.getInvitationDetails(councilUser).confirmed_at
+                            _vm.userInvitationDetails(councilUser).confirmed_at
                               ? _c(
                                   "button",
                                   {

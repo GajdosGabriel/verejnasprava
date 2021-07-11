@@ -56,15 +56,15 @@
                 ></td>
                 <td
                     class="border px-4 py-2"
-                    v-text="getInvitationDetails(councilUser)"
+                    v-text="userInvitationDetails(councilUser)"
                 >
-                    <!-- {{ moment(getInvitationDetails(councilUser).send_at).format("DD. MM. YYYY, HH:mm") }} -->
+                    <!-- {{ moment(userInvitationDetails(councilUser).send_at).format("DD. MM. YYYY, HH:mm") }} -->
                 </td>
                 <td class="border px-4 py-2 text-xs">
-                    <div v-if="getInvitationDetails(councilUser).send_at">
+                    <div v-if="userInvitationDetails(councilUser).send_at">
                         <button
                             v-if="
-                                getInvitationDetails(councilUser).confirmed_at
+                                userInvitationDetails(councilUser).confirmed_at
                             "
                             class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
                         >
@@ -210,13 +210,13 @@ export default {
                 });
         },
 
-        getInvitationDetails(user) {
-            return this.invitations.find(o => o.user_id == user.id).send_at ==
-                null
-                ? ""
-                : moment(
-                      this.invitations.find(o => o.user_id == user.id).send_at
-                  ).format("DD. MM. YYYY HH:mm");
+        userInvitationDetails(user) {
+            if (this.invitations.find(o => o.user_id == user.id)) {
+                return moment(
+                    this.invitations.find(o => o.user_id == user.id).send_at
+                ).format("DD. MM. YYYY HH:mm");
+            }
+            return '';
         }
     }
 };
