@@ -77,7 +77,7 @@
 
                 <!--  Body text-->
                 <div class="py-3">
-                    <p v-html="item.description"></p>
+                    <p v-html="item.body"></p>
                     <!--  File-->
                     <div v-if="files.length">
                         <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
@@ -136,7 +136,7 @@
 
 
                 <ul class="">
-                    <li v-for="vote in item.votes" class="flex justify-between border-b-2 border-dotted">
+                    <li v-for="vote in item.votes" :key="vote.id" class="flex justify-between border-b-2 border-dotted">
                         {{ vote.user.last_name }}  {{ vote.user.first_name }}
                         <div v-if="item.vote_type == 0">
                             <span v-if="vote.vote == 1" class="font-semibold">Áno</span>

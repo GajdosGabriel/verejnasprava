@@ -16,7 +16,7 @@
     <label for="description" class="input-label">Popis zastupiteľstva</label>
 
     <div class="col-md-8">
-        <input id="description" type="text" class="w-full @error('description') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
+        <input id="description" type="text" class="w-full @error('body') is-invalid @enderror" name="description" value="{{ old('description') ?? $council->description  }}" autocomplete="description">
 
         @error('description')
         <span class="invalid-feedback" role="alert">

@@ -12,7 +12,7 @@
 
     <div class="container mx-auto min-h-screen p-6">
 
-        <h1 class="page-title">Nový bod programu</h1>
+        <h1 class="page-title">Nový návrh programu</h1>
 
         <form method="POST" action="{{ route('meetings.items.store', $meeting->id) }}"
               enctype="multipart/form-data">

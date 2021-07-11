@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Council\Council;
 use App\Models\Council\Item;
 use App\Models\Council\Meeting;
+use App\Models\Council\Invitation;
 use App\Notifications\UserRegistration;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, HasRoles, HasFactory;
 
-    protected $with = ['roles', 'permissions', 'organization'];
+    protected $with = ['roles', 'permissions', 'organization', 'invitation'];
 
     /**
      * The attributes that are mass assignable.
@@ -102,6 +103,11 @@ class User extends Authenticatable
     public function full_name()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class);
     }
 
 

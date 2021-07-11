@@ -33,6 +33,11 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
     public function votes(){
         return $this->hasMany(Vote::class);
     }
@@ -58,7 +63,7 @@ class Item extends Model
     }
 
     public function descriptionLimit($value){
-        return Str::limit($this->description, $value, ' (...)');
+        return Str::limit($this->body, $value, ' (...)');
     }
 
 }

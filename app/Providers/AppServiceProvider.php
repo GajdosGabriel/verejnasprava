@@ -2,23 +2,25 @@
 
 namespace App\Providers;
 
-use App\Models\Council\Council;
-use App\Observers\CouncilObserver;
-use App\Observers\UserObserver;
-use App\Observers\ContactObserver;
-use App\Observers\ItemOrderObserver;
-use App\Observers\OrderItemObserver;
-use App\Observers\OrganizationObserver;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\OrderItem;
 use App\Models\Council\Item;
 use App\Models\Organization;
-use App\View\Components\Navigation\navPublic;
-use Carbon\Carbon;
-use Illuminate\Support\ServiceProvider;
+use App\Models\Council\Council;
+use App\Observers\UserObserver;
+use App\Models\Council\Invitation;
+use App\Observers\InvitationObserver;
+use App\Observers\ContactObserver;
+use App\Observers\CouncilObserver;
+use App\Observers\ItemOrderObserver;
+use App\Observers\OrderItemObserver;
 use Illuminate\Pagination\Paginator;
+use App\Observers\OrganizationObserver;
+use Illuminate\Support\ServiceProvider;
+use App\View\Components\Navigation\navPublic;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -46,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
         OrderItem::observe(OrderItemObserver::class);
         Item::observe(ItemOrderObserver::class);
         Council::observe(CouncilObserver::class);
+        Invitation::observe(InvitationObserver::class);
         Paginator::useTailwind();
 
 

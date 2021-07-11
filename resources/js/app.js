@@ -47,11 +47,12 @@ Vue.component('organization-edit', require('./organizations/edit.vue').default);
 Vue.component('user-edit', require('./user/edit.vue').default);
 Vue.component('contact-create', require('./contacts/formCreate.vue').default);
 Vue.component('meeting', require('./meetings/meeting.vue').default);
+Vue.component('meeting-prezentations', require('./meetings/meetingPrezentations.vue').default);
+Vue.component('meeting-invitations', require('./meetings/meetingInvitations.vue').default);
 Vue.component('council-table', require('./councils/councilTable.vue').default);
 Vue.component('council-edit', require('./councils/edit.vue').default);
 Vue.component('vote-list', require('./votes/voteList.vue').default);
 Vue.component('item-show', require('./items/itemShow.vue').default);
-Vue.component('meeting-users', require('./meetings/meetingUsers.vue').default);
 Vue.component('menu-activators', require('./menu/activationMenu.vue').default);
 Vue.component('messenger-card', require('./messenger/card.vue').default);
 Vue.component('card-mails-user', require('./messenger/mail/card-user.vue').default);
@@ -60,6 +61,7 @@ Vue.component('card-mails-user', require('./messenger/mail/card-user.vue').defau
 
 
 Vue.component('tasks-component', require('./tasks/Tasks.vue').default);
+Vue.component('home-card-meeting', require('./meetings/homeCardMeeting.vue').default);
 Vue.component('notification-list', require('./notifications/NotificationList.vue').default);
 
 

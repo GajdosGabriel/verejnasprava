@@ -2,26 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
-use App\Models\Council\Council;
-use App\Models\Council\Meeting;
+use Carbon\Carbon;
+use App\Models\Tag;
 use App\Models\File;
 use App\Models\Menu;
-use App\Models\Organization;
 use App\Models\Post;
-use App\Models\Tag;
 use App\Models\Tags;
 use App\Models\User;
+use App\Models\Activity;
+use App\Models\Organization;
+use App\Models\Council\Council;
+use App\Models\Council\Meeting;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class TestController extends Controller
 {
-   public function test()
-   {
+    public function test()
+    {
+        $meeting = Meeting::first();
 
-      $organization = Organization::first();
-       dd($organization);
+        $meeting =    $meeting->invitations()->whereUserId(auth()->user()->id)->updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            ['send_at' => Carbon::now()]
+        );
+
+
+
+        // [
+        //     'send_at' => Carbon::now(),
+        //     'user_id' =>  auth()->user()->id
+        // ]);
+        dd($meeting);
+
+
+
+
+        $organization = Organization::first();
+        dd($organization);
 
 //       $files = File::all();
 //
@@ -89,7 +107,5 @@ class TestController extends Controller
 //       foreach ($users as $user){
 //          $user->organizations()->attach( $user->active_organization);
 //       }
-   }
-
-
+    }
 }

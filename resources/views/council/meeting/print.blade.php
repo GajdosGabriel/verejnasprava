@@ -43,7 +43,7 @@
     <ol class="mr-12">
         @forelse($meeting->items as $item)
             @if($item->published)
-                <li>{{ $item->name }}</li>
+                <li>{{ $loop->iteration }}. {{ $item->name }}</li>
             @endif
         @empty
             <p>Žiadny prgram</p>

@@ -78,7 +78,7 @@
 <div class="md:flex justify-between mb-5">
 
     <div class="flex flex-col w-2/3">
-        <label class="input-label mb-2" for="filename">Prílohy</label>
+        <label class="font-semibold mb-2" for="filename">Pridať prílohu</label>
         <input type="file" name="filename[]" value="{{ old('filename') }}" multiple placeholder="Príloha" id="filename">
     </div>
 
@@ -89,12 +89,12 @@
             <div class="font-semibold mt-4">Prílohy</div>
             <ul>
                 @forelse($post->files as $file)
-                    <li class="flex justify-between">
-                        {{ $file->org_name }}
-                        <div style="margin-left: 20px">
+                    <li class="flex hover:bg-gray-200 p-2">
+                        <div class="mr-6">
                             <input type="checkbox" id="file{{ $file->id }}" name="fileDelete[]" value="{{ $file->id }}">
-                            <label class="" for="file{{ $file->id }}"> Zmazať</label><br>
+                            <label class="ml-1" for="file{{ $file->id }}">Zmazať</label><br>
                         </div>
+                       <span class="fontsemibold">{{ $file->org_name }}</span>
                     </li>
                 @empty
                     <li class="text-gray-600">Žiadna príloha</li>
@@ -111,7 +111,7 @@
     {{-- Add post Field --}}
     <div class="flex justify-between">
         <a class="px-4 hover:bg-gray-200 shadow-md border-gray-500 border-2 rounded-md text-center" href="{{ URL::previous() }}">Späť</a>
-        <button type="submit" class="btn hover:bg-gray-200">Uložiť</button>
+        <button type="submit" class="btn btn-primary">Uložiť</button>
     </div>
 
 </div>

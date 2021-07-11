@@ -22,7 +22,8 @@
                 @forelse($items as $item)
                     <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
                         <a href="{{ route('items.show', $item->id) }}">
-                            {{ $item->name }}
+                          <span class="font-semibold block">{{ $item->name }}</span>
+                            <span class="text-xs">{{ $item->user->full_name() }}</span>
                         </a>
 
 
@@ -37,15 +38,15 @@
                             @can('council delete')
                             <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
                                 @csrf @method('PUT')
-                                <label for="meetings">Zastupiteľstvo:</label>
+                                <label for="meetings">Schôdza:</label>
                                 <select name="meeting" id="meetings" required>
                                     <option value="">---Vybrať---</option>
                                     @forelse($meetings as $meeting)
-                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}</option>
+                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }} {{ \Str::limit( $meeting->name, 12) }}</option>
                                     @empty
                                     @endforelse
                                 </select>
-                                <button class="px-2 hover:bg-gray-300 rounded-md">Uložiť</button>
+                                <button class="btn btn-secondary">Zaradiť</button>
                             </form>
                             @endcan
                         @endforelse

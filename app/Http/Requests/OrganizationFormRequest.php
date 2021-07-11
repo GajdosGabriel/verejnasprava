@@ -34,4 +34,6 @@ class OrganizationFormRequest extends FormRequest
             'dic' => 'max:20',
         ];
     }
+
+
 }

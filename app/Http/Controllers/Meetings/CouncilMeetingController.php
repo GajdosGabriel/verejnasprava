@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Meetings;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Council\Council;
 use App\Models\Council\Meeting;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\MeetingRequest;
 
 class CouncilMeetingController extends Controller
 {
@@ -14,7 +15,7 @@ class CouncilMeetingController extends Controller
         return view('council.meeting.create', compact(['council', 'meeting']) );
     }
 
-    public function store(Request $request, Council $council) {
+    public function store(MeetingRequest $request, Council $council) {
         $meeting = $council->meetings()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
         $meeting->saveFile($request);
         return redirect()->route('meetings.show', $meeting->id);

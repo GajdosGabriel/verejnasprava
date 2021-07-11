@@ -8,12 +8,14 @@
 
     <div class="container min-h-screen p-6 mx-auto">
         <div class="w-2/3">
+
             <council-table></council-table>
+
             {{-- Show only first councils   --}}
             @if(! $councils->count() > 0)
 
                 @role('admin')
-                <a href="{{ route('organizations.councils.create',  auth()->user()->active_organization ) }}">Nové zastupiteľstvo</a>
+                <a class="btn btn-primary float-right" href="{{ route('organizations.councils.create',  auth()->user()->active_organization ) }}">Nové zastupiteľstvo</a>
                 @endrole
             @endif
         </div>

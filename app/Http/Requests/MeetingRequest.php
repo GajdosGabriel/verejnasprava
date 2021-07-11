@@ -24,7 +24,21 @@ class MeetingRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer|exists:meetings,id',
+            'name' => 'required|string|min:3|max:250',
+            'start_at' => 'required|date',
         ];
     }
+
+
+    public function messages()
+    {
+        $messages = [
+          'name.required' => 'Názov môže byť dlhý maximálne 250 znakov a minimálne 3 znaky!',
+          'start_at.required' => 'Začiatok stupiteľstva neskorší ako dnes!',
+        ];
+
+        return $messages;
+    }
+
+
 }

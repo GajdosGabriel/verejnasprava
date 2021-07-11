@@ -14,6 +14,8 @@
             <x-oznamenia>
 
                 <tasks-component></tasks-component>
+                
+                <home-card-meeting></home-card-meeting>
 
             </x-oznamenia>
             @endrole

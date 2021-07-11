@@ -29,6 +29,11 @@ class Organization extends Model
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
     }
 
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
     public function tags()
     {
         return $this->hasMany(Tag::class);
