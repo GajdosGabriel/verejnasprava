@@ -6945,23 +6945,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['users'],
+  props: ["users"],
   data: function data() {
     return {
       dialog: true,
       formData: {
-        name: '',
-        body: '',
-        due_date: '',
-        due_time: '',
+        name: "",
+        body: "",
+        due_date: "",
+        due_time: "",
         organization_id: this.user.active_organization,
-        requested_id: ''
+        requested_id: ""
       }
     };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('tasks', ['storeTask'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("tasks", ["storeTask"])), {}, {
     saveTask: function saveTask() {
       this.storeTask(this.formData);
       this.formData = {};
@@ -92856,6 +92891,20 @@ var render = function() {
   return _vm.dialog
     ? _c("section", { staticClass: "bg-gray-200 p-2" }, [
         _c(
+          "div",
+          {
+            staticClass:
+              "float-right mb-2 text-xs text-gray-500 cursor-pointer hover:text-gray-800",
+            on: {
+              click: function($event) {
+                _vm.dialog = false
+              }
+            }
+          },
+          [_vm._v("Zavrieť\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
           "form",
           {
             on: {
@@ -92866,90 +92915,6 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("label", { attrs: { for: "cars" } }, [
-                _vm._v("Nová požiadavka")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.formData.requested_id,
-                      expression: "formData.requested_id"
-                    }
-                  ],
-                  staticClass: "text-xs my-1",
-                  attrs: { required: "", id: "cars" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.formData,
-                        "requested_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Vybrať")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.users, function(user) {
-                    return _c(
-                      "option",
-                      { key: user.id, domProps: { value: user.id } },
-                      [
-                        _vm._v(
-                          _vm._s(user.last_name) +
-                            " " +
-                            _vm._s(user.first_name) +
-                            "\n                    "
-                        ),
-                        user.employment
-                          ? _c("span", [
-                              _vm._v(
-                                "- " +
-                                  _vm._s(
-                                    _vm._f("shortEmployment")(user.employment)
-                                  )
-                              )
-                            ])
-                          : _vm._e()
-                      ]
-                    )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "text-xs text-gray-500 cursor-pointer hover:text-gray-800",
-                  on: {
-                    click: function($event) {
-                      _vm.dialog = false
-                    }
-                  }
-                },
-                [_vm._v("Zavrieť")]
-              )
-            ]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -92997,75 +92962,162 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "flex w-full mb-4 text-xs" }, [
-              _c("div", { staticClass: "mr-5" }, [
-                _c("label", { staticClass: "mr-3", attrs: { for: "start" } }, [
-                  _vm._v("Do:")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
+            _c(
+              "div",
+              { staticClass: "flex justify-between w-full mb-4 text-xs" },
+              [
+                _c("div", {}, [
+                  _c(
+                    "label",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.formData.due_date,
-                      expression: "formData.due_date"
-                    }
-                  ],
-                  attrs: {
-                    type: "date",
-                    id: "start",
-                    name: "trip-start",
-                    min: "formData.date",
-                    max: ""
-                  },
-                  domProps: { value: _vm.formData.due_date },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.formData, "due_date", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _vm.formData.due_date
-                ? _c("div", [
-                    _c(
-                      "label",
-                      { staticClass: "mr-3", attrs: { for: "time" } },
-                      [_vm._v("Čas:")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
+                      staticClass: "block font-semibold mb-1",
+                      attrs: { for: "user" }
+                    },
+                    [_vm._v("Komu")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formData.due_time,
-                          expression: "formData.due_time"
+                          value: _vm.formData.requested_id,
+                          expression: "formData.requested_id"
                         }
                       ],
-                      attrs: { type: "time", id: "time", name: "appt" },
-                      domProps: { value: _vm.formData.due_time },
+                      attrs: { required: "", id: "user" },
                       on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
                           _vm.$set(
                             _vm.formData,
-                            "due_time",
-                            $event.target.value
+                            "requested_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
                           )
                         }
                       }
-                    })
-                  ])
-                : _vm._e()
-            ]),
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Vybrať")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.users, function(user) {
+                        return _c(
+                          "option",
+                          { key: user.id, domProps: { value: user.id } },
+                          [
+                            _vm._v(
+                              _vm._s(user.last_name) +
+                                " " +
+                                _vm._s(user.first_name) +
+                                "\n                        "
+                            ),
+                            user.employment
+                              ? _c("span", [
+                                  _vm._v(
+                                    "- " +
+                                      _vm._s(
+                                        _vm._f("shortEmployment")(
+                                          user.employment
+                                        )
+                                      )
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block font-semibold mb-1",
+                      attrs: { for: "start" }
+                    },
+                    [_vm._v("Do:")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formData.due_date,
+                        expression: "formData.due_date"
+                      }
+                    ],
+                    attrs: {
+                      type: "date",
+                      id: "start",
+                      name: "trip-start",
+                      min: "formData.date",
+                      max: ""
+                    },
+                    domProps: { value: _vm.formData.due_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.formData, "due_date", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.formData.due_date
+                  ? _c("div", [
+                      _c(
+                        "label",
+                        { staticClass: "mr-3", attrs: { for: "time" } },
+                        [_vm._v("Čas:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.due_time,
+                            expression: "formData.due_time"
+                          }
+                        ],
+                        attrs: { type: "time", id: "time", name: "appt" },
+                        domProps: { value: _vm.formData.due_time },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formData,
+                              "due_time",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e()
+              ]
+            ),
             _vm._v(" "),
             _c(
               "button",
@@ -93074,7 +93126,7 @@ var render = function() {
                   "p-2 bg-green-300 w-full rounded-md hover:bg-green-400",
                 attrs: { type: "submit" }
               },
-              [_vm._v("Uložiť")]
+              [_vm._v("\n            Uložiť\n        ")]
             )
           ]
         )
