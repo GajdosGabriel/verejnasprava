@@ -19,12 +19,12 @@
                             d="M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
                         />
                     </svg>
-                    Pozvánky
+                    <span v-text="titleToggle"></span>
                 </div>
             </div>
 
             <span class="text-sm flex">
-                ({{ meeting.invitations.length }}/{{ councilUsers.length }})
+                ({{ sendUsers }}/{{ councilUsers.length }})
             </span>
 
             <svg
@@ -51,40 +51,39 @@
                     v-text="
                         councilUser.first_name + ' ' + councilUser.last_name
                     "
-                    class="border px-4 py-2 cursor-pointer"
-                    @click="saveNotification(councilUser.id)"
+                    class="border px-4 py-2"
                 ></td>
                 <td
                     class="border px-4 py-2"
-                    v-text="userInvitationDetails(councilUser)"
+                    v-text="userSendAtDetails(councilUser)"
                 >
                     <!-- {{ moment(userInvitationDetails(councilUser).send_at).format("DD. MM. YYYY, HH:mm") }} -->
                 </td>
                 <td class="border px-4 py-2 text-xs">
-                    <div v-if="userInvitationDetails(councilUser).send_at">
-                        <button
-                            v-if="
-                                userInvitationDetails(councilUser).confirmed_at
-                            "
-                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                    <div v-if="userSendAtDetails(councilUser).send_at == null">
+                        {{ userSendAtDetails(councilUser).confirmed_at }}
+                        <div
+                            v-if="userConfirmedAtDetails(councilUser)"
+                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
                         >
                             Potvrdená
-                        </button>
+                        </div>
 
-                        <button
+                        <div
                             v-else
-                            class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                            class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
+                            @click="sendNotification(councilUser.id)"
                         >
                             Nepotvrdená
-                        </button>
+                        </div>
                     </div>
                 </td>
             </tr>
         </table>
 
         <div class="flex justify-between p-2">
-            <button @click="notificationForAllUsers" class="text-xs">
-                <div class="flex items-center">
+            <div @click="notificationForAllUsers" class="text-xs">
+                <div class="flex items-center cursor-pointer">
                     <svg
                         class="w-3 h-3 mr-1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -94,11 +93,11 @@
                             d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
                         />
                     </svg>
-                    Pozvať všetkých ({{ councilUsers.length - sendUsers }})
+                    Pozvať všetkých ({{ unsendUsers }})
                 </div>
-            </button>
-            <button class="text-xs">
-                <div class="flex items-center">
+            </div>
+            <div class="text-xs">
+                <div class="flex items-center cursor-pointer">
                     <svg
                         class="w-3 h-3 mr-1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +109,7 @@
                     </svg>
                     Nepotvrdeným ({{ unconfirmedUsers }})
                 </div>
-            </button>
+            </div>
         </div>
     </div>
 </template>
@@ -135,6 +134,13 @@ export default {
         };
     },
     computed: {
+        titleToggle() {
+            if (this.sendUsers == this.councilUsers.length) {
+                return "Potvrdené";
+            }
+
+            return "Pozvánky";
+        },
         quorateMeeting() {
             var percento =
                 (100 * this.meetingUsers.length) / this.councilUsers.length;
@@ -146,15 +152,18 @@ export default {
         },
 
         unsendUsers() {
-            return this.invitations.filter(o => o.send_at == null).length;
+            return this.councilUsers.length - this.sendUsers;
         },
 
         sendUsers() {
-            return this.invitations.filter(o => o.send_at != null).length;
+            return this.invitations.length;
         },
 
         unconfirmedUsers() {
-            return this.invitations.filter(o => o.confirmed_at == null).length;
+            return (
+                this.councilUsers.length -
+                this.invitations.filter(o => o.confirmed_at != null).length
+            );
         },
 
         ...mapState({
@@ -178,12 +187,16 @@ export default {
             });
         },
 
-        saveNotification(user) {
+        checkIfMeetingPublished() {
             if (!this.meeting.published) {
-                alert(
+              return  alert(
                     "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
                 );
             }
+        },
+
+        sendNotification(user) {
+            this.checkIfMeetingPublished();
 
             axios
                 .post("/api/meeting/" + this.meeting.id + "/invitation", {
@@ -195,9 +208,12 @@ export default {
         },
 
         notificationForAllUsers() {
-            if (!this.meeting.published) {
+
+            this.checkIfMeetingPublished();
+
+            if (this.sendUsers == this.councilUsers.length) {
                 alert(
-                    "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
+                    "Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!"
                 );
             }
 
@@ -210,13 +226,21 @@ export default {
                 });
         },
 
-        userInvitationDetails(user) {
+        userSendAtDetails(user) {
             if (this.invitations.find(o => o.user_id == user.id)) {
                 return moment(
                     this.invitations.find(o => o.user_id == user.id).send_at
                 ).format("DD. MM. YYYY HH:mm");
             }
-            return '';
+            return "";
+        },
+
+        userConfirmedAtDetails(user) {
+            if (this.invitations.find(o => o.user_id == user.id)) {
+                return this.invitations.find(o => o.user_id == user.id)
+                    .confirmed_at;
+            }
+            return "";
         }
     }
 };

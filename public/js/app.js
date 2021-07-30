@@ -4399,7 +4399,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -4419,6 +4418,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({
+    titleToggle: function titleToggle() {
+      if (this.sendUsers == this.councilUsers.length) {
+        return "Potvrdené";
+      }
+
+      return "Pozvánky";
+    },
     quorateMeeting: function quorateMeeting() {
       var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
 
@@ -4429,18 +4435,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "bg-blue-300";
     },
     unsendUsers: function unsendUsers() {
-      return this.invitations.filter(function (o) {
-        return o.send_at == null;
-      }).length;
+      return this.councilUsers.length - this.sendUsers;
     },
     sendUsers: function sendUsers() {
-      return this.invitations.filter(function (o) {
-        return o.send_at != null;
-      }).length;
+      return this.invitations.length;
     },
     unconfirmedUsers: function unconfirmedUsers() {
-      return this.invitations.filter(function (o) {
-        return o.confirmed_at == null;
+      return this.councilUsers.length - this.invitations.filter(function (o) {
+        return o.confirmed_at != null;
       }).length;
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
@@ -4471,13 +4473,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.invitations = response.data;
       });
     },
-    saveNotification: function saveNotification(user) {
+    checkIfMeetingPublished: function checkIfMeetingPublished() {
+      if (!this.meeting.published) {
+        return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
+      }
+    },
+    sendNotification: function sendNotification(user) {
       var _this2 = this;
 
-      if (!this.meeting.published) {
-        alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
-      }
-
+      this.checkIfMeetingPublished();
       axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
         user_id: user
       }).then(function (response) {
@@ -4487,8 +4491,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     notificationForAllUsers: function notificationForAllUsers() {
       var _this3 = this;
 
-      if (!this.meeting.published) {
-        alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
+      this.checkIfMeetingPublished();
+
+      if (this.sendUsers == this.councilUsers.length) {
+        alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
       }
 
       axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
@@ -4497,7 +4503,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.fetchInvitations();
       });
     },
-    userInvitationDetails: function userInvitationDetails(user) {
+    userSendAtDetails: function userSendAtDetails(user) {
       if (this.invitations.find(function (o) {
         return o.user_id == user.id;
       })) {
@@ -4506,7 +4512,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }).send_at).format("DD. MM. YYYY HH:mm");
       }
 
-      return '';
+      return "";
+    },
+    userConfirmedAtDetails: function userConfirmedAtDetails(user) {
+      if (this.invitations.find(function (o) {
+        return o.user_id == user.id;
+      })) {
+        return this.invitations.find(function (o) {
+          return o.user_id == user.id;
+        }).confirmed_at;
+      }
+
+      return "";
     }
   }
 });
@@ -89504,14 +89521,17 @@ var render = function() {
                     })
                   ]
                 ),
-                _vm._v("\n                Pozvánky\n            ")
+                _vm._v(" "),
+                _c("span", {
+                  domProps: { textContent: _vm._s(_vm.titleToggle) }
+                })
               ])
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "text-sm flex" }, [
               _vm._v(
                 "\n            (" +
-                  _vm._s(_vm.meeting.invitations.length) +
+                  _vm._s(_vm.sendUsers) +
                   "/" +
                   _vm._s(_vm.councilUsers.length) +
                   ")\n        "
@@ -89548,37 +89568,38 @@ var render = function() {
                 _vm._l(_vm.councilUsers, function(councilUser) {
                   return _c("tr", { key: councilUser.id }, [
                     _c("td", {
-                      staticClass: "border px-4 py-2 cursor-pointer",
+                      staticClass: "border px-4 py-2",
                       domProps: {
                         textContent: _vm._s(
                           councilUser.first_name + " " + councilUser.last_name
                         )
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.saveNotification(councilUser.id)
-                        }
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
                       staticClass: "border px-4 py-2",
                       domProps: {
-                        textContent: _vm._s(
-                          _vm.userInvitationDetails(councilUser)
-                        )
+                        textContent: _vm._s(_vm.userSendAtDetails(councilUser))
                       }
                     }),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      _vm.userInvitationDetails(councilUser).send_at
+                      _vm.userSendAtDetails(councilUser).send_at == null
                         ? _c("div", [
-                            _vm.userInvitationDetails(councilUser).confirmed_at
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(
+                                  _vm.userSendAtDetails(councilUser)
+                                    .confirmed_at
+                                ) +
+                                "\n                    "
+                            ),
+                            _vm.userConfirmedAtDetails(councilUser)
                               ? _c(
-                                  "button",
+                                  "div",
                                   {
                                     staticClass:
-                                      "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                                      "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
                                   },
                                   [
                                     _vm._v(
@@ -89587,10 +89608,17 @@ var render = function() {
                                   ]
                                 )
                               : _c(
-                                  "button",
+                                  "div",
                                   {
                                     staticClass:
-                                      "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                                      "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.sendNotification(
+                                          councilUser.id
+                                        )
+                                      }
+                                    }
                                   },
                                   [
                                     _vm._v(
@@ -89610,13 +89638,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-between p-2" }, [
           _c(
-            "button",
+            "div",
             {
               staticClass: "text-xs",
               on: { click: _vm.notificationForAllUsers }
             },
             [
-              _c("div", { staticClass: "flex items-center" }, [
+              _c("div", { staticClass: "flex items-center cursor-pointer" }, [
                 _c(
                   "svg",
                   {
@@ -89637,15 +89665,15 @@ var render = function() {
                 ),
                 _vm._v(
                   "\n                Pozvať všetkých (" +
-                    _vm._s(_vm.councilUsers.length - _vm.sendUsers) +
+                    _vm._s(_vm.unsendUsers) +
                     ")\n            "
                 )
               ])
             ]
           ),
           _vm._v(" "),
-          _c("button", { staticClass: "text-xs" }, [
-            _c("div", { staticClass: "flex items-center" }, [
+          _c("div", { staticClass: "text-xs" }, [
+            _c("div", { staticClass: "flex items-center cursor-pointer" }, [
               _c(
                 "svg",
                 {
