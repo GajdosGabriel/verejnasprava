@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Council\Meeting;
 use App\Http\Controllers\Controller;
-use App\Notifications\Meeting\NewMeeting;
+use App\Notifications\Invitation\InvitationForUser;
 use Carbon\Carbon;
 
 class MeetingInvitationController extends Controller
@@ -28,7 +28,7 @@ class MeetingInvitationController extends Controller
                     ['send_at' => Carbon::now()]
                 );
 
-                // $user->notify(new NewMeeting($user, $meeting));
+                // $user->notify(new InvitationForUser($user, $meeting));
             }
 
             return;
@@ -41,7 +41,7 @@ class MeetingInvitationController extends Controller
             ['send_at' => Carbon::now()]
         );
 
-        // $user->notify(new NewMeeting($user, $meeting));
+        // $user->notify(new InvitationForUser($user, $meeting));
 
         return Response('Pozvánka na zasadnutie bola odoslaná.');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Meeting;
+namespace App\Notifications\Invitation;
 
 use App\Models\Council\Meeting;
 use App\Models\User;
@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMeeting extends Notification
+class InvitationForUser extends Notification
 {
     use Queueable;
 
