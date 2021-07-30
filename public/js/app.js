@@ -6860,8 +6860,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['task'],
+  props: ["task"],
   data: function data() {
     return {
       body: null
@@ -6871,13 +6887,13 @@ __webpack_require__.r(__webpack_exports__);
     saveComment: function saveComment() {
       var _this = this;
 
-      axios.post('tasks/' + this.task.id + '/comments', {
+      axios.post("tasks/" + this.task.id + "/comments", {
         user_id: this.user.id,
         body: this.body
       }).then(function (response) {
         _this.body = null;
 
-        _this.$store.dispatch('tasks/getTasks', {
+        _this.$store.dispatch("tasks/getTasks", {
           root: true
         });
       });
@@ -7113,13 +7129,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['task'],
+  props: ["task"],
   components: {
     NewComment: _Comments_NewComment__WEBPACK_IMPORTED_MODULE_0__.default,
     Comment: _Comments_Comment__WEBPACK_IMPORTED_MODULE_1__.default
@@ -7142,17 +7235,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     markAsCompleted: function markAsCompleted() {
-      this.$emit('pushMarkAsCompleted', {
+      this.$emit("pushMarkAsCompleted", {
         id: this.task.id,
-        completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
+        completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace("T", " ")
       });
     }
   },
   methods: {
     updateCompleted: function updateCompleted() {
-      this.$store.dispatch('tasks/updateTask', {
+      this.$store.dispatch("tasks/updateTask", {
         id: this.task.id,
-        completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace('T', ' ')
+        completed: this.task.completed ? null : new Date().toISOString().slice(0, 19).replace("T", " ")
       }, {
         root: true
       });
@@ -7163,7 +7256,7 @@ __webpack_require__.r(__webpack_exports__);
       this.commentsSection = false;
     },
     updateTask: function updateTask() {
-      this.$store.dispatch('tasks/updateTask', this.task, {
+      this.$store.dispatch("tasks/updateTask", this.task, {
         root: true
       });
       this.isEditActive = false;
@@ -92823,7 +92916,6 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "flex text-xs my-2",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -92832,36 +92924,49 @@ var render = function() {
       }
     },
     [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.body,
-            expression: "body"
-          }
-        ],
-        staticClass: "w-full p-1  border-2",
-        attrs: { type: "text", required: "", placeholder: "Nová správa" },
-        domProps: { value: _vm.body },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.body = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
       _c(
-        "button",
-        {
-          staticClass: "bg-gray-600 text-gray-200 px-2 rounded-r-sm",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("Poslať")]
-      )
+        "label",
+        { staticClass: "text-xs font-semibold", attrs: { for: "comment" } },
+        [_vm._v("Dotaz")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex text-xs w-full" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.body,
+              expression: "body"
+            }
+          ],
+          staticClass: "w-full p-1 text-xs  border-2",
+          attrs: {
+            type: "text",
+            required: "",
+            placeholder: "Nová správa",
+            id: "comment"
+          },
+          domProps: { value: _vm.body },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.body = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "bg-gray-600 text-gray-200 px-2 rounded-r-sm",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("\n            Poslať\n        ")]
+        )
+      ])
     ]
   )
 }
@@ -93249,7 +93354,7 @@ var render = function() {
                             _vm.task.due_time
                               ? _c("span", [
                                   _vm._v(
-                                    " " +
+                                    "\n                        " +
                                       _vm._s(
                                         _vm._f("momentTime")(_vm.task.due_time)
                                       )
@@ -93303,9 +93408,11 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "text-xs whitespace-no-wrap" }, [
                 _vm._v(
-                  _vm._s(_vm.task.user.first_name) +
+                  "\n                " +
+                    _vm._s(_vm.task.user.first_name) +
                     " " +
-                    _vm._s(_vm.task.user.last_name)
+                    _vm._s(_vm.task.user.last_name) +
+                    "\n            "
                 )
               ])
             ]
@@ -93340,7 +93447,29 @@ var render = function() {
       _vm._v(" "),
       _vm.dialog
         ? _c("div", { staticClass: "p-2" }, [
-            _c("div", { staticClass: "w-full mb-8 flex" }, [
+            _c("div", { staticClass: "w-full mb-8 flex justify-between" }, [
+              _c("div", {}, [
+                !_vm.task.completed
+                  ? _c(
+                      "span",
+                      {
+                        staticClass:
+                          "btn btn-small text-xs bg-green-200 px-1 cursor-pointer rounded-sm hover:bg-green-300",
+                        on: { click: _vm.updateCompleted }
+                      },
+                      [_vm._v("Vybavené")]
+                    )
+                  : _c(
+                      "span",
+                      {
+                        staticClass:
+                          "btn btn-small text-xs bg-green-100 px-1 cursor-pointer rounded-sm hover:bg-green-300",
+                        on: { click: _vm.updateCompleted }
+                      },
+                      [_vm._v("Obnoviť")]
+                    )
+              ]),
+              _vm._v(" "),
               _vm.userOwner
                 ? _c("div", [
                     !_vm.isEditActive
@@ -93348,7 +93477,7 @@ var render = function() {
                           "span",
                           {
                             staticClass:
-                              "text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
+                              "btn btn-small text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
                             on: { click: _vm.editTask }
                           },
                           [_vm._v("Upraviť")]
@@ -93357,7 +93486,7 @@ var render = function() {
                           "span",
                           {
                             staticClass:
-                              "text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
+                              "btn btn-small text-xs bg-green-100 px-1 cursor-pointer hover:bg-green-300 rounded-sm",
                             on: {
                               click: function($event) {
                                 _vm.isEditActive = false
@@ -93367,29 +93496,7 @@ var render = function() {
                           [_vm._v("Zrušiť úpravy")]
                         )
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", {}, [
-                !_vm.task.completed
-                  ? _c(
-                      "span",
-                      {
-                        staticClass:
-                          "text-xs bg-green-300 px-1 cursor-pointer rounded-sm hover:bg-green-300",
-                        on: { click: _vm.updateCompleted }
-                      },
-                      [_vm._v("Vybavené")]
-                    )
-                  : _c(
-                      "span",
-                      {
-                        staticClass:
-                          "text-xs bg-green-100 px-1 cursor-pointer rounded-sm hover:bg-green-300",
-                        on: { click: _vm.updateCompleted }
-                      },
-                      [_vm._v("Obnoviť")]
-                    )
-              ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             !_vm.isEditActive
@@ -93528,7 +93635,7 @@ var render = function() {
                       "my-3 py-2 text-white text-center bg-blue-500 hover:bg-blue-700 px-1 w-full cursor-pointer rounded-sm",
                     on: { click: _vm.updateTask }
                   },
-                  [_vm._v("Uložiť zmeny")]
+                  [_vm._v("\n            Uložiť zmeny\n        ")]
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -93547,7 +93654,7 @@ var render = function() {
                           [
                             _c("span", [
                               _vm._v(
-                                "Úloha a diskusia bola ukončená dňa: " +
+                                "Úloha a diskusia bola ukončená dňa:\n                    " +
                                   _vm._s(_vm.task.completed)
                               )
                             ])
@@ -93595,7 +93702,7 @@ var render = function() {
   return _vm.active.find(function(id) {
     return id.id == 6
   })
-    ? _c("section", { staticClass: "border" }, [
+    ? _c("section", { staticClass: "border mb-4" }, [
         _c(
           "header",
           {
@@ -93707,7 +93814,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Nová Požiadavka")]
+                      [_vm._v("Nová požiadavka")]
                     ),
                     _vm._v(" "),
                     _c(
