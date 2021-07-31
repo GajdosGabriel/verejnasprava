@@ -177,7 +177,7 @@ export default {
         },
 
         fetchInvitations() {
-            axios.get("/api/meeting/" + 1 + "/invitation").then(response => {
+            axios.get("/api/meetings/" + 1 + "/invitation").then(response => {
                 this.invitations = response.data;
             });
         },
@@ -194,7 +194,7 @@ export default {
             this.checkIfMeetingPublished();
 
             axios
-                .post("/api/meeting/" + this.meeting.id + "/invitation", {
+                .put("/api/meetings/" + this.meeting.id + "/invitation/" + user, {
                     user_id: user
                 })
                 .then(response => {
@@ -212,7 +212,7 @@ export default {
             }
 
             axios
-                .post("/api/meeting/" + this.meeting.id + "/invitation", {
+                .post("/api/meetings/" + this.meeting.id + "/invitation", {
                     allUsers: true
                 })
                 .then(response => {

@@ -4464,7 +4464,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetchInvitations: function fetchInvitations() {
       var _this = this;
 
-      axios.get("/api/meeting/" + 1 + "/invitation").then(function (response) {
+      axios.get("/api/meetings/" + 1 + "/invitation").then(function (response) {
         _this.invitations = response.data;
       });
     },
@@ -4477,7 +4477,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.checkIfMeetingPublished();
-      axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
+      axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user, {
         user_id: user
       }).then(function (response) {
         _this2.fetchInvitations();
@@ -4492,7 +4492,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
       }
 
-      axios.post("/api/meeting/" + this.meeting.id + "/invitation", {
+      axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
         allUsers: true
       }).then(function (response) {
         _this3.fetchInvitations();
