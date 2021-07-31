@@ -18,12 +18,12 @@ class MeetingInvitationController extends Controller
     public function update(Meeting $meeting, Request $request)
     {
         // Notify for single user
-        $meeting->invitations()->updateOrCreate(
+        $invitation =  $meeting->invitations()->updateOrCreate(
             ['user_id' => $request->user_id],
             ['send_at' => Carbon::now()]
         );
 
-        // $user->notify(new InvitationForUser($user, $meeting));
+        $invitation->user->notify(new InvitationForUser($invitation));
 
         return Response('Pozvánka na zasadnutie bola odoslaná.');
     }
@@ -36,15 +36,13 @@ class MeetingInvitationController extends Controller
         // Notify for all users
         if ($request->allUsers) {
             foreach ($meeting->council->users as $user) {
-                $meeting->invitations()->updateOrCreate(
+                $invitation = $meeting->invitations()->updateOrCreate(
                     ['user_id' => $user->id],
                     ['send_at' => Carbon::now()]
                 );
 
-                // $user->notify(new InvitationForUser($user, $meeting));
+                $invitation->user->notify(new InvitationForUser($invitation));
             }
-
-            return;
         }
 
         return Response('Pozvánka na zasadnutie bola odoslaná.');

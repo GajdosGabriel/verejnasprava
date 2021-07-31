@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Invitation;
 
+use App\Models\Council\Invitation;
 use App\Models\Council\Meeting;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -18,12 +19,11 @@ class InvitationForUser extends Notification
      *
      * @return void
      */
-    protected $user;
-    protected $meeting;
-    public function __construct(User $user, Meeting $meeting)
+
+    protected $invitation;
+    public function __construct( Invitation $invitation)
     {
-        $this->user = $user;
-        $this->meeting = $meeting;
+        $this->invitation = $invitation;
     }
 
     /**
@@ -48,14 +48,16 @@ class InvitationForUser extends Notification
         return (new MailMessage)
             ->subject( 'Pozvanie na zasadnutie')
             ->greeting('P O Z V Á N K A')
-            ->line('Dobrý deň ' . $this->user->full_name())
-            ->line('Pozývame Vás na zasadnutie, '. $this->meeting->council->name )
+            ->line('Dobrý deň ' . $this->invitation->user->full_name())
+            ->line('Pozývame Vás na zasadnutie, '. $this->invitation->meeting->council->name )
 
-            ->line('dňa: ' . $this->meeting->start_at->format('m. d. Y') . ' o '
-                .$this->meeting->start_at->format('H:i') .' hod.' )
-            ->line('Miesto: '. $this->meeting->locality )
+            ->line('dňa: ' . $this->invitation->meeting->start_at->format('m. d. Y') . ' o '
+                .$this->invitation->meeting->start_at->format('H:i') .' hod.' )
+            ->line('Miesto: '. $this->invitation->meeting->locality )
 
-            ->action( $this->meeting->name , url( route('meetings.show', $this->meeting->id)))
+
+            ->action( $this->invitation->meeting->name , url( route('meetings.show', $this->invitation->meeting->id)))
+            ->action( 'Potvrdiť účasť' , url( route('invitations.show', $this->invitation->id)))
             ->line('Vystavené v aplikácií ' . env('APP_NAME'). '.');
     }
 
