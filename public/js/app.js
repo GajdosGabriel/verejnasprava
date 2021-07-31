@@ -4507,7 +4507,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.fetchInvitations();
       });
     },
-    userDetails: function userDetails(user) {
+    invitationDetails: function invitationDetails(user) {
       var details = {
         send_at: 'Odoslať',
         confirmed_at: null
@@ -89581,7 +89581,7 @@ var render = function() {
                       staticClass: "border px-4 py-2 cursor-pointer",
                       domProps: {
                         textContent: _vm._s(
-                          _vm.userDetails(councilUser).send_at
+                          _vm.invitationDetails(councilUser).send_at
                         )
                       },
                       on: {
@@ -89592,17 +89592,18 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      _vm.userDetails(councilUser).send_at
+                      _vm.invitationDetails(councilUser).send_at
                         ? _c("div", [
-                            _vm.userDetails(councilUser).send_at != "Odoslať"
+                            _vm.invitationDetails(councilUser).send_at !=
+                            "Odoslať"
                               ? _c("div", {
                                   staticClass:
                                     "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center",
-                                  class: _vm.userDetails(councilUser)
+                                  class: _vm.invitationDetails(councilUser)
                                     .confirmed_title_class,
                                   domProps: {
                                     textContent: _vm._s(
-                                      _vm.userDetails(councilUser)
+                                      _vm.invitationDetails(councilUser)
                                         .confirmed_title
                                     )
                                   }

@@ -56,17 +56,17 @@
                 <td
                     class="border px-4 py-2 cursor-pointer"
                     @click="singleNotification(councilUser)"
-                    v-text="userDetails(councilUser).send_at"
+                    v-text="invitationDetails(councilUser).send_at"
                 ></td>
                 <td class="border px-4 py-2 text-xs">
-                    <div v-if="userDetails(councilUser).send_at">
-                        <!-- {{ userDetails(councilUser).confirmed_at }} -->
+                    <div v-if="invitationDetails(councilUser).send_at">
+                        <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
                         <div
-                            v-if="userDetails(councilUser).send_at != 'Odoslať'"
-                            v-text="userDetails(councilUser).confirmed_title"
+                            v-if="invitationDetails(councilUser).send_at != 'Odoslať'"
+                            v-text="invitationDetails(councilUser).confirmed_title"
                             class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center"
                             :class="
-                                userDetails(councilUser).confirmed_title_class
+                                invitationDetails(councilUser).confirmed_title_class
                             "
                         >
                             <!-- Potvrdená or Nepotvrdená -->
@@ -228,7 +228,7 @@ export default {
                 });
         },
 
-        userDetails(user) {
+        invitationDetails(user) {
             var details = {
                 send_at: 'Odoslať',
                 confirmed_at: null
