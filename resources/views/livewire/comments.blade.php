@@ -25,7 +25,7 @@
 
         </div>
     @empty
-        Bez záznamu.
+        Žiadne príspevky.
     @endforelse
 
     @error('newComment') <span class="error text-danger">{{ $message }}</span> @enderror

@@ -36,12 +36,12 @@ class MeetingInvitationController extends Controller
         // Notify for all users
         if ($request->allUsers) {
             foreach ($meeting->council->users as $user) {
-                $invitation = $meeting->invitations()->updateOrCreate(
-                    ['user_id' => $user->id],
-                    ['send_at' => Carbon::now()]
-                );
+                $invitation = $meeting->invitations()->create([
+                    'user_id' => $user->id,
+                    'send_at' => Carbon::now()
+                ]);
 
-                $invitation->user->notify(new InvitationForUser($invitation));
+                // $invitation->user->notify(new InvitationForUser($invitation));
             }
         }
 

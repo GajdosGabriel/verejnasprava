@@ -4476,7 +4476,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     singleNotification: function singleNotification(user) {
       var _this2 = this;
 
-      this.checkIfMeetingPublished();
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
+
       axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user.id, {
         user_id: user.id
       }).then(function (response) {
@@ -4486,7 +4491,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     notificationForAllUsers: function notificationForAllUsers() {
       var _this3 = this;
 
-      this.checkIfMeetingPublished();
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
 
       if (this.sendUsers == this.councilUsers.length) {
         alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
@@ -4500,7 +4509,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     userDetails: function userDetails(user) {
       var details = {
-        send_at: null,
+        send_at: 'Odoslať',
         confirmed_at: null
       };
 
@@ -89560,10 +89569,19 @@ var render = function() {
                 _vm._l(_vm.councilUsers, function(councilUser) {
                   return _c("tr", { key: councilUser.id }, [
                     _c("td", {
-                      staticClass: "border px-4 py-2 cursor-pointer",
+                      staticClass: "border px-4 py-2",
                       domProps: {
                         textContent: _vm._s(
                           councilUser.first_name + " " + councilUser.last_name
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      staticClass: "border px-4 py-2 cursor-pointer",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.userDetails(councilUser).send_at
                         )
                       },
                       on: {
@@ -89573,19 +89591,10 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("td", {
-                      staticClass: "border px-4 py-2",
-                      domProps: {
-                        textContent: _vm._s(
-                          _vm.userDetails(councilUser).send_at
-                        )
-                      }
-                    }),
-                    _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
                       _vm.userDetails(councilUser).send_at
                         ? _c("div", [
-                            _vm.userDetails(councilUser).send_at
+                            _vm.userDetails(councilUser).send_at != "Odoslať"
                               ? _c("div", {
                                   staticClass:
                                     "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center",
@@ -89609,70 +89618,76 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between p-2" }, [
-          _c(
-            "div",
-            {
-              staticClass: "text-xs",
-              on: { click: _vm.notificationForAllUsers }
-            },
-            [
-              _c("div", { staticClass: "flex items-center cursor-pointer" }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "w-3 h-3 mr-1 fill-current",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(
-                  "\n                Pozvať všetkých (" +
-                    _vm._s(_vm.unsendUsers) +
-                    ")\n            "
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-xs" }, [
-            _c("div", { staticClass: "flex items-center cursor-pointer" }, [
+        _vm.$auth.isAdmin()
+          ? _c("div", { staticClass: "flex justify-between p-2" }, [
               _c(
-                "svg",
+                "div",
                 {
-                  staticClass: "w-3 h-3 mr-1 fill-current",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
+                  staticClass: "text-xs",
+                  on: { click: _vm.notificationForAllUsers }
                 },
                 [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                    }
-                  })
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center cursor-pointer" },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-3 h-3 mr-1 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                Pozvať všetkých (" +
+                          _vm._s(_vm.unsendUsers) +
+                          ")\n            "
+                      )
+                    ]
+                  )
                 ]
               ),
-              _vm._v(
-                "\n                Nepotvrdeným (" +
-                  _vm._s(_vm.unconfirmedUsers) +
-                  ")\n            "
-              )
+              _vm._v(" "),
+              _c("div", { staticClass: "text-xs" }, [
+                _c("div", { staticClass: "flex items-center cursor-pointer" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-3 h-3 mr-1 fill-current",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(
+                    "\n                Nepotvrdeným (" +
+                      _vm._s(_vm.unconfirmedUsers) +
+                      ")\n            "
+                  )
+                ])
+              ])
             ])
-          ])
-        ])
+          : _vm._e()
       ])
     : _vm._e()
 }

@@ -51,18 +51,18 @@
                     v-text="
                         councilUser.first_name + ' ' + councilUser.last_name
                     "
-                    class="border px-4 py-2 cursor-pointer"
-                    @click="singleNotification(councilUser)"
+                    class="border px-4 py-2"
                 ></td>
                 <td
-                    class="border px-4 py-2"
+                    class="border px-4 py-2 cursor-pointer"
+                    @click="singleNotification(councilUser)"
                     v-text="userDetails(councilUser).send_at"
                 ></td>
                 <td class="border px-4 py-2 text-xs">
                     <div v-if="userDetails(councilUser).send_at">
                         <!-- {{ userDetails(councilUser).confirmed_at }} -->
                         <div
-                            v-if="userDetails(councilUser).send_at"
+                            v-if="userDetails(councilUser).send_at != 'Odoslať'"
                             v-text="userDetails(councilUser).confirmed_title"
                             class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center"
                             :class="
@@ -76,7 +76,7 @@
             </tr>
         </table>
 
-        <div class="flex justify-between p-2">
+        <div class="flex justify-between p-2" v-if="$auth.isAdmin()">
             <div @click="notificationForAllUsers" class="text-xs">
                 <div class="flex items-center cursor-pointer">
                     <svg
@@ -192,6 +192,9 @@ export default {
         singleNotification(user) {
             this.checkIfMeetingPublished();
 
+            // Only admin can send invitation
+            if(! this.$auth.isAdmin()) {return}
+
             axios
                 .put(
                     "/api/meetings/" + this.meeting.id + "/invitation/" + user.id,
@@ -206,6 +209,9 @@ export default {
 
         notificationForAllUsers() {
             this.checkIfMeetingPublished();
+
+             // Only admin can send invitation
+            if(! this.$auth.isAdmin()) {return}
 
             if (this.sendUsers == this.councilUsers.length) {
                 alert(
@@ -224,7 +230,7 @@ export default {
 
         userDetails(user) {
             var details = {
-                send_at: null,
+                send_at: 'Odoslať',
                 confirmed_at: null
             };
             if ((user = this.invitations.find(o => o.user_id == user.id))) {
