@@ -51,7 +51,8 @@
                     v-text="
                         councilUser.first_name + ' ' + councilUser.last_name
                     "
-                    class="border px-4 py-2"
+                    class="border px-4 py-2 cursor-pointer"
+                    @click="singleNotification(councilUser.id)"
                 ></td>
                 <td
                     class="border px-4 py-2"
@@ -72,9 +73,9 @@
                         <div
                             v-else
                             class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
-                            @click="sendNotification(councilUser.id)"
+                            @click="singleNotification(councilUser.id)"
                         >
-                            Nepotvrdená
+                            Nepotvrdená {{ pokus(councilUser).send_at }}
                         </div>
                     </div>
                 </td>
@@ -189,13 +190,13 @@ export default {
 
         checkIfMeetingPublished() {
             if (!this.meeting.published) {
-              return  alert(
+                return alert(
                     "Zasadnutie nie je publikované. Najprv zapnite publikovanie!"
                 );
             }
         },
 
-        sendNotification(user) {
+        singleNotification(user) {
             this.checkIfMeetingPublished();
 
             axios
@@ -208,7 +209,6 @@ export default {
         },
 
         notificationForAllUsers() {
-
             this.checkIfMeetingPublished();
 
             if (this.sendUsers == this.councilUsers.length) {
@@ -241,6 +241,13 @@ export default {
                     .confirmed_at;
             }
             return "";
+        },
+
+        pokus(user) {
+            if (this.invitations.find(o => o.user_id == user.id)) {
+                return this.invitations.find(o => o.user_id == user.id)
+            }
+ return "";
         }
     }
 };

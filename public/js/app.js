@@ -4399,6 +4399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -4478,7 +4479,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
       }
     },
-    sendNotification: function sendNotification(user) {
+    singleNotification: function singleNotification(user) {
       var _this2 = this;
 
       this.checkIfMeetingPublished();
@@ -4521,6 +4522,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return this.invitations.find(function (o) {
           return o.user_id == user.id;
         }).confirmed_at;
+      }
+
+      return "";
+    },
+    pokus: function pokus(user) {
+      if (this.invitations.find(function (o) {
+        return o.user_id == user.id;
+      })) {
+        return this.invitations.find(function (o) {
+          return o.user_id == user.id;
+        });
       }
 
       return "";
@@ -89568,11 +89580,16 @@ var render = function() {
                 _vm._l(_vm.councilUsers, function(councilUser) {
                   return _c("tr", { key: councilUser.id }, [
                     _c("td", {
-                      staticClass: "border px-4 py-2",
+                      staticClass: "border px-4 py-2 cursor-pointer",
                       domProps: {
                         textContent: _vm._s(
                           councilUser.first_name + " " + councilUser.last_name
                         )
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.singleNotification(councilUser.id)
+                        }
                       }
                     }),
                     _vm._v(" "),
@@ -89614,7 +89631,7 @@ var render = function() {
                                       "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer",
                                     on: {
                                       click: function($event) {
-                                        return _vm.sendNotification(
+                                        return _vm.singleNotification(
                                           councilUser.id
                                         )
                                       }
@@ -89622,7 +89639,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                        Nepotvrdená\n                    "
+                                      "\n                        Nepotvrdená " +
+                                        _vm._s(_vm.pokus(councilUser).send_at) +
+                                        "\n                    "
                                     )
                                   ]
                                 )
