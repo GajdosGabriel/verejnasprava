@@ -4394,6 +4394,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4473,7 +4484,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
       }
     },
-    singleNotification: function singleNotification(user) {
+    storeInvitation: function storeInvitation(user) {
       var _this2 = this;
 
       this.checkIfMeetingPublished(); // Only admin can send invitation
@@ -4488,8 +4499,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.fetchInvitations();
       });
     },
-    notificationForAllUsers: function notificationForAllUsers() {
+    saveConfirmation: function saveConfirmation(invitation_id) {
       var _this3 = this;
+
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
+
+      axios.put("/api/invitations/" + invitation_id, {
+        confirmed_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      }).then(function (response) {
+        _this3.fetchInvitations();
+      });
+    },
+    notificationForAllUsers: function notificationForAllUsers() {
+      var _this4 = this;
 
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
@@ -4504,12 +4530,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
         allUsers: true
       }).then(function (response) {
-        _this3.fetchInvitations();
+        _this4.fetchInvitations();
       });
     },
     invitationDetails: function invitationDetails(user) {
       var details = {
-        send_at: 'Odoslať',
+        send_at: "Odoslať",
         confirmed_at: null
       };
 
@@ -4517,6 +4543,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return o.user_id == user.id;
       })) {
         return details = {
+          invitation_id: user.id,
           send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
           confirmed_at: user.confirmed_at,
           confirmed_title: user.confirmed_at ? "Potvrdená" : "Nepotvrdená",
@@ -89586,7 +89613,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          return _vm.singleNotification(councilUser)
+                          return _vm.storeInvitation(councilUser)
                         }
                       }
                     }),
@@ -89606,6 +89633,14 @@ var render = function() {
                                       _vm.invitationDetails(councilUser)
                                         .confirmed_title
                                     )
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.saveConfirmation(
+                                        _vm.invitationDetails(councilUser)
+                                          .invitation_id
+                                      )
+                                    }
                                   }
                                 })
                               : _vm._e()

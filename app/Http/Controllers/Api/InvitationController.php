@@ -18,4 +18,14 @@ class InvitationController extends Controller
 
         return redirect()->route('meetings.show', $invitation->meeting->id);
     }
+
+    public function update(Invitation $invitation, Request $request)
+    {
+        // Notify for single user
+        $invitation->update($request->all());
+
+        // $invitation->user->notify(new InvitationForUser($invitation));
+
+        return Response('Pozvánka na zasadnutie bola odoslaná.');
+    }
 }

@@ -55,18 +55,29 @@
                 ></td>
                 <td
                     class="border px-4 py-2 cursor-pointer"
-                    @click="singleNotification(councilUser)"
+                    @click="storeInvitation(councilUser)"
                     v-text="invitationDetails(councilUser).send_at"
                 ></td>
                 <td class="border px-4 py-2 text-xs">
                     <div v-if="invitationDetails(councilUser).send_at">
                         <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
                         <div
-                            v-if="invitationDetails(councilUser).send_at != 'Odoslať'"
-                            v-text="invitationDetails(councilUser).confirmed_title"
+                            v-if="
+                                invitationDetails(councilUser).send_at !=
+                                    'Odoslať'
+                            "
+                            @click="
+                                saveConfirmation(
+                                    invitationDetails(councilUser).invitation_id
+                                )
+                            "
+                            v-text="
+                                invitationDetails(councilUser).confirmed_title
+                            "
                             class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center"
                             :class="
-                                invitationDetails(councilUser).confirmed_title_class
+                                invitationDetails(councilUser)
+                                    .confirmed_title_class
                             "
                         >
                             <!-- Potvrdená or Nepotvrdená -->
@@ -189,15 +200,20 @@ export default {
                 );
             }
         },
-        singleNotification(user) {
+        storeInvitation(user) {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
-            if(! this.$auth.isAdmin()) {return}
+            if (!this.$auth.isAdmin()) {
+                return;
+            }
 
             axios
                 .put(
-                    "/api/meetings/" + this.meeting.id + "/invitation/" + user.id,
+                    "/api/meetings/" +
+                        this.meeting.id +
+                        "/invitation/" +
+                        user.id,
                     {
                         user_id: user.id
                     }
@@ -207,11 +223,35 @@ export default {
                 });
         },
 
+         saveConfirmation(invitation_id) {
+            this.checkIfMeetingPublished();
+
+            // Only admin can send invitation
+            if (!this.$auth.isAdmin()) {
+                return;
+            }
+
+            axios
+                .put(
+                    "/api/invitations/" +
+                        invitation_id,
+                    {
+                        confirmed_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+                    }
+                )
+                .then(response => {
+                    this.fetchInvitations();
+                });
+        },
+
+
         notificationForAllUsers() {
             this.checkIfMeetingPublished();
 
-             // Only admin can send invitation
-            if(! this.$auth.isAdmin()) {return}
+            // Only admin can send invitation
+            if (!this.$auth.isAdmin()) {
+                return;
+            }
 
             if (this.sendUsers == this.councilUsers.length) {
                 alert(
@@ -230,11 +270,12 @@ export default {
 
         invitationDetails(user) {
             var details = {
-                send_at: 'Odoslať',
+                send_at: "Odoslať",
                 confirmed_at: null
             };
             if ((user = this.invitations.find(o => o.user_id == user.id))) {
                 return (details = {
+                    invitation_id: user.id,
                     send_at: moment(user.send_at).format("DD. MM. YYYY HH:mm"),
                     confirmed_at: user.confirmed_at,
                     confirmed_title: user.confirmed_at
