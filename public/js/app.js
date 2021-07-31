@@ -4526,16 +4526,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return "";
     },
-    pokus: function pokus(user) {
-      if (this.invitations.find(function (o) {
+    userDetails: function userDetails(user) {
+      var details = {
+        send_at: null,
+        confirmed_at: null
+      };
+
+      if (user = this.invitations.find(function (o) {
         return o.user_id == user.id;
       })) {
-        return this.invitations.find(function (o) {
-          return o.user_id == user.id;
-        });
+        return details = {
+          send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
+          confirmed_at: user.confirmed_at
+        };
       }
 
-      return "";
+      return details;
     }
   }
 });
@@ -89640,7 +89646,7 @@ var render = function() {
                                   [
                                     _vm._v(
                                       "\n                        Nepotvrdená " +
-                                        _vm._s(_vm.pokus(councilUser).send_at) +
+                                        _vm._s(_vm.userDetails(councilUser)) +
                                         "\n                    "
                                     )
                                   ]

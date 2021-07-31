@@ -75,7 +75,7 @@
                             class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
                             @click="singleNotification(councilUser.id)"
                         >
-                            Nepotvrdená {{ pokus(councilUser).send_at }}
+                            Nepotvrdená {{ userDetails(councilUser) }}
                         </div>
                     </div>
                 </td>
@@ -243,11 +243,18 @@ export default {
             return "";
         },
 
-        pokus(user) {
-            if (this.invitations.find(o => o.user_id == user.id)) {
-                return this.invitations.find(o => o.user_id == user.id)
+        userDetails(user) {
+            var details = {
+                send_at: null,
+                confirmed_at: null
+            };
+            if ((user = this.invitations.find(o => o.user_id == user.id))) {
+                return details = {
+                    send_at: moment(user.send_at).format("DD. MM. YYYY HH:mm"),
+                    confirmed_at: user.confirmed_at,
+                };
             }
- return "";
+            return details;
         }
     }
 };
