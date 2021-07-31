@@ -56,26 +56,20 @@
                 ></td>
                 <td
                     class="border px-4 py-2"
-                    v-text="userSendAtDetails(councilUser)"
-                >
-                    <!-- {{ moment(userInvitationDetails(councilUser).send_at).format("DD. MM. YYYY, HH:mm") }} -->
-                </td>
+                    v-text="userDetails(councilUser).send_at"
+                ></td>
                 <td class="border px-4 py-2 text-xs">
-                    <div v-if="userSendAtDetails(councilUser).send_at == null">
-                        {{ userSendAtDetails(councilUser).confirmed_at }}
+                    <div v-if="userDetails(councilUser).send_at">
+                        <!-- {{ userDetails(councilUser).confirmed_at }} -->
                         <div
-                            v-if="userConfirmedAtDetails(councilUser)"
+                            v-if="userDetails(councilUser).send_at"
+                            v-text="userDetails(councilUser).confirmed_title"
                             class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
+                            :class="
+                                userDetails(councilUser).confirmed_title_class
+                            "
                         >
-                            Potvrdená
-                        </div>
-
-                        <div
-                            v-else
-                            class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
-                            @click="singleNotification(councilUser.id)"
-                        >
-                            Nepotvrdená {{ userDetails(councilUser) }}
+                            <!-- Potvrdená or Nepotvrdená -->
                         </div>
                     </div>
                 </td>
@@ -226,33 +220,22 @@ export default {
                 });
         },
 
-        userSendAtDetails(user) {
-            if (this.invitations.find(o => o.user_id == user.id)) {
-                return moment(
-                    this.invitations.find(o => o.user_id == user.id).send_at
-                ).format("DD. MM. YYYY HH:mm");
-            }
-            return "";
-        },
-
-        userConfirmedAtDetails(user) {
-            if (this.invitations.find(o => o.user_id == user.id)) {
-                return this.invitations.find(o => o.user_id == user.id)
-                    .confirmed_at;
-            }
-            return "";
-        },
-
         userDetails(user) {
             var details = {
                 send_at: null,
                 confirmed_at: null
             };
             if ((user = this.invitations.find(o => o.user_id == user.id))) {
-                return details = {
+                return (details = {
                     send_at: moment(user.send_at).format("DD. MM. YYYY HH:mm"),
                     confirmed_at: user.confirmed_at,
-                };
+                    confirmed_title: user.confirmed_at
+                        ? "Potvrdená"
+                        : "Nepotvrdená",
+                    confirmed_title_class: user.confirmed_at
+                        ? ""
+                        : "border-blue-300 bg-blue-100 border-2"
+                });
             }
             return details;
         }

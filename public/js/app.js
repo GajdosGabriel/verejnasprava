@@ -4394,12 +4394,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4504,28 +4498,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.fetchInvitations();
       });
     },
-    userSendAtDetails: function userSendAtDetails(user) {
-      if (this.invitations.find(function (o) {
-        return o.user_id == user.id;
-      })) {
-        return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.invitations.find(function (o) {
-          return o.user_id == user.id;
-        }).send_at).format("DD. MM. YYYY HH:mm");
-      }
-
-      return "";
-    },
-    userConfirmedAtDetails: function userConfirmedAtDetails(user) {
-      if (this.invitations.find(function (o) {
-        return o.user_id == user.id;
-      })) {
-        return this.invitations.find(function (o) {
-          return o.user_id == user.id;
-        }).confirmed_at;
-      }
-
-      return "";
-    },
     userDetails: function userDetails(user) {
       var details = {
         send_at: null,
@@ -4537,7 +4509,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })) {
         return details = {
           send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
-          confirmed_at: user.confirmed_at
+          confirmed_at: user.confirmed_at,
+          confirmed_title: user.confirmed_at ? "Potvrdená" : "Nepotvrdená",
+          confirmed_title_class: user.confirmed_at ? "" : "border-blue-300 bg-blue-100 border-2"
         };
       }
 
@@ -89602,55 +89576,29 @@ var render = function() {
                     _c("td", {
                       staticClass: "border px-4 py-2",
                       domProps: {
-                        textContent: _vm._s(_vm.userSendAtDetails(councilUser))
+                        textContent: _vm._s(
+                          _vm.userDetails(councilUser).send_at
+                        )
                       }
                     }),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      _vm.userSendAtDetails(councilUser).send_at == null
+                      _vm.userDetails(councilUser).send_at
                         ? _c("div", [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(
-                                  _vm.userSendAtDetails(councilUser)
-                                    .confirmed_at
-                                ) +
-                                "\n                    "
-                            ),
-                            _vm.userConfirmedAtDetails(councilUser)
-                              ? _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                        Potvrdená\n                    "
+                            _vm.userDetails(councilUser).send_at
+                              ? _c("div", {
+                                  staticClass:
+                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer",
+                                  class: _vm.userDetails(councilUser)
+                                    .confirmed_title_class,
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      _vm.userDetails(councilUser)
+                                        .confirmed_title
                                     )
-                                  ]
-                                )
-                              : _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.singleNotification(
-                                          councilUser.id
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                        Nepotvrdená " +
-                                        _vm._s(_vm.userDetails(councilUser)) +
-                                        "\n                    "
-                                    )
-                                  ]
-                                )
+                                  }
+                                })
+                              : _vm._e()
                           ])
                         : _vm._e()
                     ])
