@@ -4477,8 +4477,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.checkIfMeetingPublished();
-      axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user, {
-        user_id: user
+      axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user.id, {
+        user_id: user.id
       }).then(function (response) {
         _this2.fetchInvitations();
       });
@@ -89568,7 +89568,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          return _vm.singleNotification(councilUser.id)
+                          return _vm.singleNotification(councilUser)
                         }
                       }
                     }),
@@ -89588,7 +89588,7 @@ var render = function() {
                             _vm.userDetails(councilUser).send_at
                               ? _c("div", {
                                   staticClass:
-                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer",
+                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center",
                                   class: _vm.userDetails(councilUser)
                                     .confirmed_title_class,
                                   domProps: {

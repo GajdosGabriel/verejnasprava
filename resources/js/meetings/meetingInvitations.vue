@@ -52,7 +52,7 @@
                         councilUser.first_name + ' ' + councilUser.last_name
                     "
                     class="border px-4 py-2 cursor-pointer"
-                    @click="singleNotification(councilUser.id)"
+                    @click="singleNotification(councilUser)"
                 ></td>
                 <td
                     class="border px-4 py-2"
@@ -64,7 +64,7 @@
                         <div
                             v-if="userDetails(councilUser).send_at"
                             v-text="userDetails(councilUser).confirmed_title"
-                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer"
+                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center"
                             :class="
                                 userDetails(councilUser).confirmed_title_class
                             "
@@ -189,14 +189,16 @@ export default {
                 );
             }
         },
-
         singleNotification(user) {
             this.checkIfMeetingPublished();
 
             axios
-                .put("/api/meetings/" + this.meeting.id + "/invitation/" + user, {
-                    user_id: user
-                })
+                .put(
+                    "/api/meetings/" + this.meeting.id + "/invitation/" + user.id,
+                    {
+                        user_id: user.id
+                    }
+                )
                 .then(response => {
                     this.fetchInvitations();
                 });
