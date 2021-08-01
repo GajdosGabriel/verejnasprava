@@ -4405,6 +4405,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4484,7 +4493,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
       }
     },
-    storeInvitation: function storeInvitation(user) {
+    updateInvitation: function updateInvitation(user) {
       var _this2 = this;
 
       this.checkIfMeetingPublished(); // Only admin can send invitation
@@ -4509,7 +4518,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       axios.put("/api/invitations/" + invitation_id, {
-        confirmed_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        confirmed_at: new Date().toISOString().slice(0, 19).replace("T", " ")
       }).then(function (response) {
         _this3.fetchInvitations();
       });
@@ -4544,6 +4553,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })) {
         return details = {
           invitation_id: user.id,
+          owner: this.$auth.isOwner(user.user_id) ? "cursor-pointer" : "",
+          user_id: user.user_id,
+          meeting_id: user.meeting_id,
           send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
           confirmed_at: user.confirmed_at,
           confirmed_title: user.confirmed_at ? "Potvrdená" : "Nepotvrdená",
@@ -7861,13 +7873,19 @@ var Auth = /*#__PURE__*/function () {
   }, {
     key: "isAdmin",
     value: function isAdmin() {
-      return this.roles().includes('admin');
+      return this.roles().includes("admin");
     } // can('permisionName')
 
   }, {
     key: "can",
     value: function can($permissionName) {
       return this.permissions().includes($permissionName);
+    } // is ovner('user_id')
+
+  }, {
+    key: "isOwner",
+    value: function isOwner($user_id) {
+      return this.user.id == $user_id;
     }
   }]);
 
@@ -89591,7 +89609,29 @@ var render = function() {
               "table",
               { staticClass: "bg-white w-full" },
               [
-                _vm._m(0),
+                _c("tr", [
+                  _c(
+                    "th",
+                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
+                    [_vm._v("Meno")]
+                  ),
+                  _vm._v(" "),
+                  _vm.$auth.isAdmin()
+                    ? _c(
+                        "th",
+                        {
+                          staticClass: "bg-blue-100 border text-left px-8 py-2"
+                        },
+                        [_vm._v("\n                Pozvánka\n            ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
+                    [_vm._v("Účasť")]
+                  )
+                ]),
                 _vm._v(" "),
                 _vm._l(_vm.councilUsers, function(councilUser) {
                   return _c("tr", { key: councilUser.id }, [
@@ -89604,19 +89644,21 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("td", {
-                      staticClass: "border px-4 py-2 cursor-pointer",
-                      domProps: {
-                        textContent: _vm._s(
-                          _vm.invitationDetails(councilUser).send_at
-                        )
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.storeInvitation(councilUser)
-                        }
-                      }
-                    }),
+                    _vm.$auth.isAdmin()
+                      ? _c("td", {
+                          staticClass: "border px-4 py-2 cursor-pointer",
+                          domProps: {
+                            textContent: _vm._s(
+                              _vm.invitationDetails(councilUser).send_at
+                            )
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.updateInvitation(councilUser)
+                            }
+                          }
+                        })
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
                       _vm.invitationDetails(councilUser).send_at
@@ -89625,9 +89667,12 @@ var render = function() {
                             "Odoslať"
                               ? _c("div", {
                                   staticClass:
-                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center",
-                                  class: _vm.invitationDetails(councilUser)
-                                    .confirmed_title_class,
+                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center",
+                                  class:
+                                    _vm.invitationDetails(councilUser)
+                                      .confirmed_title_class +
+                                    " " +
+                                    _vm.invitationDetails(councilUser).owner,
                                   domProps: {
                                     textContent: _vm._s(
                                       _vm.invitationDetails(councilUser)
@@ -89727,26 +89772,7 @@ var render = function() {
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { staticClass: "bg-blue-100 border text-left px-8 py-2" }, [
-        _vm._v("Meno")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "bg-blue-100 border text-left px-8 py-2" }, [
-        _vm._v("Pozvánka")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "bg-blue-100 border text-left px-8 py-2" }, [
-        _vm._v("Účasť")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -43,7 +43,12 @@
         <table v-if="openList" class="bg-white w-full">
             <tr>
                 <th class="bg-blue-100 border text-left px-8 py-2">Meno</th>
-                <th class="bg-blue-100 border text-left px-8 py-2">Pozvánka</th>
+                <th
+                    class="bg-blue-100 border text-left px-8 py-2"
+                    v-if="$auth.isAdmin()"
+                >
+                    Pozvánka
+                </th>
                 <th class="bg-blue-100 border text-left px-8 py-2">Účasť</th>
             </tr>
             <tr v-for="councilUser in councilUsers" :key="councilUser.id">
@@ -53,9 +58,11 @@
                     "
                     class="border px-4 py-2"
                 ></td>
+
                 <td
+                    v-if="$auth.isAdmin()"
                     class="border px-4 py-2 cursor-pointer"
-                    @click="storeInvitation(councilUser)"
+                    @click="updateInvitation(councilUser)"
                     v-text="invitationDetails(councilUser).send_at"
                 ></td>
                 <td class="border px-4 py-2 text-xs">
@@ -74,10 +81,12 @@
                             v-text="
                                 invitationDetails(councilUser).confirmed_title
                             "
-                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm cursor-pointer text-center"
+                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center"
                             :class="
                                 invitationDetails(councilUser)
-                                    .confirmed_title_class
+                                    .confirmed_title_class +
+                                    ' ' +
+                                    invitationDetails(councilUser).owner
                             "
                         >
                             <!-- Potvrdená or Nepotvrdená -->
@@ -200,7 +209,7 @@ export default {
                 );
             }
         },
-        storeInvitation(user) {
+        updateInvitation(user) {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -223,7 +232,7 @@ export default {
                 });
         },
 
-         saveConfirmation(invitation_id) {
+        saveConfirmation(invitation_id) {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -232,18 +241,16 @@ export default {
             }
 
             axios
-                .put(
-                    "/api/invitations/" +
-                        invitation_id,
-                    {
-                        confirmed_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
-                    }
-                )
+                .put("/api/invitations/" + invitation_id, {
+                    confirmed_at: new Date()
+                        .toISOString()
+                        .slice(0, 19)
+                        .replace("T", " ")
+                })
                 .then(response => {
                     this.fetchInvitations();
                 });
         },
-
 
         notificationForAllUsers() {
             this.checkIfMeetingPublished();
@@ -276,6 +283,11 @@ export default {
             if ((user = this.invitations.find(o => o.user_id == user.id))) {
                 return (details = {
                     invitation_id: user.id,
+                    owner: this.$auth.isOwner(user.user_id)
+                        ? "cursor-pointer"
+                        : "",
+                    user_id: user.user_id,
+                    meeting_id: user.meeting_id,
                     send_at: moment(user.send_at).format("DD. MM. YYYY HH:mm"),
                     confirmed_at: user.confirmed_at,
                     confirmed_title: user.confirmed_at
