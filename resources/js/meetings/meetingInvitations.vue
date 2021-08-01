@@ -59,12 +59,15 @@
                     class="border px-4 py-2"
                 ></td>
 
+                <!-- Pozvánka -->
                 <td
                     v-if="$auth.isAdmin()"
                     class="border px-4 py-2 cursor-pointer"
                     @click="updateInvitation(councilUser)"
                     v-text="invitationDetails(councilUser).send_at"
                 ></td>
+
+                <!--Učasť -->
                 <td class="border px-4 py-2 text-xs">
                     <div v-if="invitationDetails(councilUser).send_at">
                         <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
@@ -210,6 +213,7 @@ export default {
             }
         },
         updateInvitation(user) {
+            console.log(777)
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -233,6 +237,7 @@ export default {
         },
 
         saveConfirmation(invitation_id) {
+            console.log('saveC');
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation

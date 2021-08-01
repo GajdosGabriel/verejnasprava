@@ -4414,6 +4414,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4496,6 +4499,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateInvitation: function updateInvitation(user) {
       var _this2 = this;
 
+      console.log(777);
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
       if (!this.$auth.isAdmin()) {
@@ -4511,6 +4515,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveConfirmation: function saveConfirmation(invitation_id) {
       var _this3 = this;
 
+      console.log('saveC');
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
       if (!this.$auth.isAdmin()) {
