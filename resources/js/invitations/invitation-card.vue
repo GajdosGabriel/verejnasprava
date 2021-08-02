@@ -139,8 +139,8 @@ import moment from "moment";
 export default {
     mixins: [filterMixin],
     props: {
-        councilid: {
-            type: Number,
+        meeting: {
+            type: Object,
             required: true
         }
     },
@@ -187,8 +187,7 @@ export default {
         ...mapState({
             meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
-            council: state => state.meetings.council,
-            meeting: state => state.meetings.meeting
+            council: state => state.meetings.council
         })
     },
     created() {
@@ -200,7 +199,7 @@ export default {
         },
 
         fetchInvitations() {
-            axios.get("/api/meetings/" + 1 + "/invitation").then(response => {
+            axios.get("/api/meetings/" + this.meeting.id + "/invitation").then(response => {
                 this.invitations = response.data;
             });
         },

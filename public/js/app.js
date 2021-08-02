@@ -3044,6 +3044,316 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__.filterMixin],
+  props: {
+    meeting: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      openList: true,
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
+      invitations: []
+    };
+  },
+  computed: _objectSpread({
+    titleToggle: function titleToggle() {
+      if (this.sendUsers == this.councilUsers.length) {
+        return "Potvrdené";
+      }
+
+      return "Pozvánky";
+    },
+    quorateMeeting: function quorateMeeting() {
+      var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
+
+      if (percento > this.council.quorate) {
+        return "bg-green-200 ";
+      }
+
+      return "bg-blue-300";
+    },
+    unsendUsers: function unsendUsers() {
+      return this.councilUsers.length - this.sendUsers;
+    },
+    sendUsers: function sendUsers() {
+      return this.invitations.length;
+    },
+    unconfirmedUsers: function unconfirmedUsers() {
+      return this.councilUsers.length - this.invitations.filter(function (o) {
+        return o.confirmed_at != null;
+      }).length;
+    }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+    meetingUsers: function meetingUsers(state) {
+      return state.meetings.meetingUsers;
+    },
+    councilUsers: function councilUsers(state) {
+      return state.meetings.councilUsers;
+    },
+    council: function council(state) {
+      return state.meetings.council;
+    }
+  })),
+  created: function created() {
+    this.fetchInvitations();
+  },
+  methods: {
+    openToggle: function openToggle() {
+      this.openList = !this.openList;
+    },
+    fetchInvitations: function fetchInvitations() {
+      var _this = this;
+
+      axios.get("/api/meetings/" + this.meeting.id + "/invitation").then(function (response) {
+        _this.invitations = response.data;
+      });
+    },
+    checkIfMeetingPublished: function checkIfMeetingPublished() {
+      if (!this.meeting.published) {
+        return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
+      }
+    },
+    updateInvitation: function updateInvitation(user) {
+      var _this2 = this;
+
+      console.log(777);
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
+
+      axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user.id, {
+        user_id: user.id
+      }).then(function (response) {
+        _this2.fetchInvitations();
+      });
+    },
+    saveConfirmation: function saveConfirmation(invitation_id) {
+      var _this3 = this;
+
+      console.log('saveC');
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
+
+      axios.put("/api/invitations/" + invitation_id, {
+        confirmed_at: new Date().toISOString().slice(0, 19).replace("T", " ")
+      }).then(function (response) {
+        _this3.fetchInvitations();
+      });
+    },
+    notificationForAllUsers: function notificationForAllUsers() {
+      var _this4 = this;
+
+      this.checkIfMeetingPublished(); // Only admin can send invitation
+
+      if (!this.$auth.isAdmin()) {
+        return;
+      }
+
+      if (this.sendUsers == this.councilUsers.length) {
+        alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
+      }
+
+      axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
+        allUsers: true
+      }).then(function (response) {
+        _this4.fetchInvitations();
+      });
+    },
+    invitationDetails: function invitationDetails(user) {
+      var details = {
+        send_at: "Odoslať",
+        confirmed_at: null
+      };
+
+      if (user = this.invitations.find(function (o) {
+        return o.user_id == user.id;
+      })) {
+        return details = {
+          invitation_id: user.id,
+          owner: this.$auth.isOwner(user.user_id) ? "cursor-pointer" : "",
+          user_id: user.user_id,
+          meeting_id: user.meeting_id,
+          send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
+          confirmed_at: user.confirmed_at,
+          confirmed_title: user.confirmed_at ? "Potvrdená" : "Nepotvrdená",
+          confirmed_title_class: user.confirmed_at ? "" : "border-blue-300 bg-blue-100 border-2"
+        };
+      }
+
+      return details;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/items/InterpellationCard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/items/InterpellationCard.vue?vue&type=script&lang=js& ***!
@@ -4256,319 +4566,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return console.log("response", response);
       });
       this.positionSaveButton = !this.positionSaveButton;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/filterMixin */ "./resources/js/mixins/filterMixin.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__.filterMixin],
-  props: {
-    councilid: {
-      type: Number,
-      required: true
-    }
-  },
-  data: function data() {
-    return {
-      openList: true,
-      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
-      invitations: []
-    };
-  },
-  computed: _objectSpread({
-    titleToggle: function titleToggle() {
-      if (this.sendUsers == this.councilUsers.length) {
-        return "Potvrdené";
-      }
-
-      return "Pozvánky";
-    },
-    quorateMeeting: function quorateMeeting() {
-      var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
-
-      if (percento > this.council.quorate) {
-        return "bg-green-200 ";
-      }
-
-      return "bg-blue-300";
-    },
-    unsendUsers: function unsendUsers() {
-      return this.councilUsers.length - this.sendUsers;
-    },
-    sendUsers: function sendUsers() {
-      return this.invitations.length;
-    },
-    unconfirmedUsers: function unconfirmedUsers() {
-      return this.councilUsers.length - this.invitations.filter(function (o) {
-        return o.confirmed_at != null;
-      }).length;
-    }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
-    meetingUsers: function meetingUsers(state) {
-      return state.meetings.meetingUsers;
-    },
-    councilUsers: function councilUsers(state) {
-      return state.meetings.councilUsers;
-    },
-    council: function council(state) {
-      return state.meetings.council;
-    },
-    meeting: function meeting(state) {
-      return state.meetings.meeting;
-    }
-  })),
-  created: function created() {
-    this.fetchInvitations();
-  },
-  methods: {
-    openToggle: function openToggle() {
-      this.openList = !this.openList;
-    },
-    fetchInvitations: function fetchInvitations() {
-      var _this = this;
-
-      axios.get("/api/meetings/" + 1 + "/invitation").then(function (response) {
-        _this.invitations = response.data;
-      });
-    },
-    checkIfMeetingPublished: function checkIfMeetingPublished() {
-      if (!this.meeting.published) {
-        return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
-      }
-    },
-    updateInvitation: function updateInvitation(user) {
-      var _this2 = this;
-
-      console.log(777);
-      this.checkIfMeetingPublished(); // Only admin can send invitation
-
-      if (!this.$auth.isAdmin()) {
-        return;
-      }
-
-      axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user.id, {
-        user_id: user.id
-      }).then(function (response) {
-        _this2.fetchInvitations();
-      });
-    },
-    saveConfirmation: function saveConfirmation(invitation_id) {
-      var _this3 = this;
-
-      console.log('saveC');
-      this.checkIfMeetingPublished(); // Only admin can send invitation
-
-      if (!this.$auth.isAdmin()) {
-        return;
-      }
-
-      axios.put("/api/invitations/" + invitation_id, {
-        confirmed_at: new Date().toISOString().slice(0, 19).replace("T", " ")
-      }).then(function (response) {
-        _this3.fetchInvitations();
-      });
-    },
-    notificationForAllUsers: function notificationForAllUsers() {
-      var _this4 = this;
-
-      this.checkIfMeetingPublished(); // Only admin can send invitation
-
-      if (!this.$auth.isAdmin()) {
-        return;
-      }
-
-      if (this.sendUsers == this.councilUsers.length) {
-        alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
-      }
-
-      axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
-        allUsers: true
-      }).then(function (response) {
-        _this4.fetchInvitations();
-      });
-    },
-    invitationDetails: function invitationDetails(user) {
-      var details = {
-        send_at: "Odoslať",
-        confirmed_at: null
-      };
-
-      if (user = this.invitations.find(function (o) {
-        return o.user_id == user.id;
-      })) {
-        return details = {
-          invitation_id: user.id,
-          owner: this.$auth.isOwner(user.user_id) ? "cursor-pointer" : "",
-          user_id: user.user_id,
-          meeting_id: user.meeting_id,
-          send_at: moment__WEBPACK_IMPORTED_MODULE_1___default()(user.send_at).format("DD. MM. YYYY HH:mm"),
-          confirmed_at: user.confirmed_at,
-          confirmed_title: user.confirmed_at ? "Potvrdená" : "Nepotvrdená",
-          confirmed_title_class: user.confirmed_at ? "" : "border-blue-300 bg-blue-100 border-2"
-        };
-      }
-
-      return details;
     }
   }
 });
@@ -7959,7 +7956,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__.default.component('user-edit', __webpack_requir
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('contact-create', __webpack_require__(/*! ./contacts/formCreate.vue */ "./resources/js/contacts/formCreate.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('meeting', __webpack_require__(/*! ./meetings/meeting.vue */ "./resources/js/meetings/meeting.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('meeting-prezentations', __webpack_require__(/*! ./meetings/meetingPrezentations.vue */ "./resources/js/meetings/meetingPrezentations.vue").default);
-vue__WEBPACK_IMPORTED_MODULE_1__.default.component('meeting-invitations', __webpack_require__(/*! ./meetings/meetingInvitations.vue */ "./resources/js/meetings/meetingInvitations.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('invitation-card', __webpack_require__(/*! ./invitations/invitation-card.vue */ "./resources/js/invitations/invitation-card.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('council-table', __webpack_require__(/*! ./councils/councilTable.vue */ "./resources/js/councils/councilTable.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('council-edit', __webpack_require__(/*! ./councils/edit.vue */ "./resources/js/councils/edit.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('vote-list', __webpack_require__(/*! ./votes/voteList.vue */ "./resources/js/votes/voteList.vue").default);
@@ -81874,6 +81871,45 @@ component.options.__file = "resources/js/councils/modalEdit.vue"
 
 /***/ }),
 
+/***/ "./resources/js/invitations/invitation-card.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/invitations/invitation-card.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./invitation-card.vue?vue&type=template&id=502013be& */ "./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be&");
+/* harmony import */ var _invitation_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./invitation-card.vue?vue&type=script&lang=js& */ "./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _invitation_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__.render,
+  _invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/invitations/invitation-card.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/items/InterpellationCard.vue":
 /*!***************************************************!*\
   !*** ./resources/js/items/InterpellationCard.vue ***!
@@ -82109,45 +82145,6 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/meetings/meeting.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/meetings/meetingInvitations.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/meetings/meetingInvitations.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./meetingInvitations.vue?vue&type=template&id=7e3b7e88& */ "./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88&");
-/* harmony import */ var _meetingInvitations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meetingInvitations.vue?vue&type=script&lang=js& */ "./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _meetingInvitations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__.render,
-  _meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/meetings/meetingInvitations.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -83551,6 +83548,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_invitation_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./invitation-card.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_invitation_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/items/InterpellationCard.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/items/InterpellationCard.vue?vue&type=script&lang=js& ***!
@@ -83648,22 +83661,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_meeting_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./meeting.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meeting.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_meeting_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
-
-/***/ }),
-
-/***/ "./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_meetingInvitations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./meetingInvitations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_meetingInvitations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -84467,6 +84464,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_invitation_card_vue_vue_type_template_id_502013be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./invitation-card.vue?vue&type=template&id=502013be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be&");
+
+
+/***/ }),
+
 /***/ "./resources/js/items/InterpellationCard.vue?vue&type=template&id=65a1a581&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/items/InterpellationCard.vue?vue&type=template&id=65a1a581& ***!
@@ -84565,23 +84579,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_meeting_vue_vue_type_template_id_c874417c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_meeting_vue_vue_type_template_id_c874417c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./meeting.vue?vue&type=template&id=c874417c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meeting.vue?vue&type=template&id=c874417c&");
-
-
-/***/ }),
-
-/***/ "./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_meetingInvitations_vue_vue_type_template_id_7e3b7e88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./meetingInvitations.vue?vue&type=template&id=7e3b7e88& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88&");
 
 
 /***/ }),
@@ -87899,6 +87896,265 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/invitations/invitation-card.vue?vue&type=template&id=502013be& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.meeting.published && _vm.$auth.can("council delete")
+    ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
+            class: _vm.quorateMeeting,
+            on: { click: _vm.openToggle }
+          },
+          [
+            _c("div", { staticClass: "font-medium text-gray-800" }, [
+              _c("div", { staticClass: "flex cursor-pointer" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  domProps: { textContent: _vm._s(_vm.titleToggle) }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-sm flex" }, [
+              _vm._v(
+                "\n            (" +
+                  _vm._s(_vm.sendUsers) +
+                  "/" +
+                  _vm._s(_vm.councilUsers.length) +
+                  ")\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "svg",
+              {
+                staticClass: "-mr-1 ml-2 h-5 w-5",
+                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm.openList
+          ? _c(
+              "table",
+              { staticClass: "bg-white w-full" },
+              [
+                _c("tr", [
+                  _c(
+                    "th",
+                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
+                    [_vm._v("Meno")]
+                  ),
+                  _vm._v(" "),
+                  _vm.$auth.isAdmin()
+                    ? _c(
+                        "th",
+                        {
+                          staticClass: "bg-blue-100 border text-left px-8 py-2"
+                        },
+                        [_vm._v("\n                Pozvánka\n            ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
+                    [_vm._v("Účasť")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.councilUsers, function(councilUser) {
+                  return _c("tr", { key: councilUser.id }, [
+                    _c("td", {
+                      staticClass: "border px-4 py-2",
+                      domProps: {
+                        textContent: _vm._s(
+                          councilUser.first_name + " " + councilUser.last_name
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.$auth.isAdmin()
+                      ? _c("td", {
+                          staticClass: "border px-4 py-2 cursor-pointer",
+                          domProps: {
+                            textContent: _vm._s(
+                              _vm.invitationDetails(councilUser).send_at
+                            )
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.updateInvitation(councilUser)
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
+                      _vm.invitationDetails(councilUser).send_at
+                        ? _c("div", [
+                            _vm.invitationDetails(councilUser).send_at !=
+                            "Odoslať"
+                              ? _c("div", {
+                                  staticClass:
+                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center",
+                                  class:
+                                    _vm.invitationDetails(councilUser)
+                                      .confirmed_title_class +
+                                    " " +
+                                    _vm.invitationDetails(councilUser).owner,
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      _vm.invitationDetails(councilUser)
+                                        .confirmed_title
+                                    )
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.saveConfirmation(
+                                        _vm.invitationDetails(councilUser)
+                                          .invitation_id
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e()
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.$auth.isAdmin()
+          ? _c("div", { staticClass: "flex justify-between p-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "text-xs",
+                  on: { click: _vm.notificationForAllUsers }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center cursor-pointer" },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-3 h-3 mr-1 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(
+                        "\n                Pozvať všetkých (" +
+                          _vm._s(_vm.unsendUsers) +
+                          ")\n            "
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-xs" }, [
+                _c("div", { staticClass: "flex items-center cursor-pointer" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-3 h-3 mr-1 fill-current",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(
+                    "\n                Nepotvrdeným (" +
+                      _vm._s(_vm.unconfirmedUsers) +
+                      ")\n            "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/items/InterpellationCard.vue?vue&type=template&id=65a1a581&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/items/InterpellationCard.vue?vue&type=template&id=65a1a581& ***!
@@ -89517,265 +89773,6 @@ var render = function() {
     ],
     1
   )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/meetings/meetingInvitations.vue?vue&type=template&id=7e3b7e88& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.meeting.published && _vm.$auth.can("council delete")
-    ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
-            class: _vm.quorateMeeting,
-            on: { click: _vm.openToggle }
-          },
-          [
-            _c("div", { staticClass: "font-medium text-gray-800" }, [
-              _c("div", { staticClass: "flex cursor-pointer" }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("span", {
-                  domProps: { textContent: _vm._s(_vm.titleToggle) }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-sm flex" }, [
-              _vm._v(
-                "\n            (" +
-                  _vm._s(_vm.sendUsers) +
-                  "/" +
-                  _vm._s(_vm.councilUsers.length) +
-                  ")\n        "
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "svg",
-              {
-                staticClass: "-mr-1 ml-2 h-5 w-5",
-                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm.openList
-          ? _c(
-              "table",
-              { staticClass: "bg-white w-full" },
-              [
-                _c("tr", [
-                  _c(
-                    "th",
-                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
-                    [_vm._v("Meno")]
-                  ),
-                  _vm._v(" "),
-                  _vm.$auth.isAdmin()
-                    ? _c(
-                        "th",
-                        {
-                          staticClass: "bg-blue-100 border text-left px-8 py-2"
-                        },
-                        [_vm._v("\n                Pozvánka\n            ")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    { staticClass: "bg-blue-100 border text-left px-8 py-2" },
-                    [_vm._v("Účasť")]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.councilUsers, function(councilUser) {
-                  return _c("tr", { key: councilUser.id }, [
-                    _c("td", {
-                      staticClass: "border px-4 py-2",
-                      domProps: {
-                        textContent: _vm._s(
-                          councilUser.first_name + " " + councilUser.last_name
-                        )
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.$auth.isAdmin()
-                      ? _c("td", {
-                          staticClass: "border px-4 py-2 cursor-pointer",
-                          domProps: {
-                            textContent: _vm._s(
-                              _vm.invitationDetails(councilUser).send_at
-                            )
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.updateInvitation(councilUser)
-                            }
-                          }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
-                      _vm.invitationDetails(councilUser).send_at
-                        ? _c("div", [
-                            _vm.invitationDetails(councilUser).send_at !=
-                            "Odoslať"
-                              ? _c("div", {
-                                  staticClass:
-                                    "border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center",
-                                  class:
-                                    _vm.invitationDetails(councilUser)
-                                      .confirmed_title_class +
-                                    " " +
-                                    _vm.invitationDetails(councilUser).owner,
-                                  domProps: {
-                                    textContent: _vm._s(
-                                      _vm.invitationDetails(councilUser)
-                                        .confirmed_title
-                                    )
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.saveConfirmation(
-                                        _vm.invitationDetails(councilUser)
-                                          .invitation_id
-                                      )
-                                    }
-                                  }
-                                })
-                              : _vm._e()
-                          ])
-                        : _vm._e()
-                    ])
-                  ])
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.$auth.isAdmin()
-          ? _c("div", { staticClass: "flex justify-between p-2" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "text-xs",
-                  on: { click: _vm.notificationForAllUsers }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "flex items-center cursor-pointer" },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-3 h-3 mr-1 fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                Pozvať všetkých (" +
-                          _vm._s(_vm.unsendUsers) +
-                          ")\n            "
-                      )
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-xs" }, [
-                _c("div", { staticClass: "flex items-center cursor-pointer" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "w-3 h-3 mr-1 fill-current",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(
-                    "\n                Nepotvrdeným (" +
-                      _vm._s(_vm.unconfirmedUsers) +
-                      ")\n            "
-                  )
-                ])
-              ])
-            ])
-          : _vm._e()
-      ])
-    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
