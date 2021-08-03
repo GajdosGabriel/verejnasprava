@@ -39,96 +39,71 @@
                 />
             </svg>
         </div>
+        <transition name="fade">
+            <table v-if="openList" class="bg-white w-full">
+                <tr>
+                    <th class="bg-blue-100 border text-left px-8 py-2">Meno</th>
+                    <th
+                        class="bg-blue-100 border text-left px-8 py-2"
+                        v-if="$auth.isAdmin()"
+                    >
+                        Pozvánka
+                    </th>
+                    <th class="bg-blue-100 border text-left px-8 py-2">
+                        Účasť
+                    </th>
+                </tr>
+                <tr v-for="councilUser in councilUsers" :key="councilUser.id">
+                    <td
+                        v-text="
+                            councilUser.first_name + ' ' + councilUser.last_name
+                        "
+                        class="border px-4 py-2"
+                    ></td>
 
-        <table v-if="openList" class="bg-white w-full">
-            <tr>
-                <th class="bg-blue-100 border text-left px-8 py-2">Meno</th>
-                <th
-                    class="bg-blue-100 border text-left px-8 py-2"
-                    v-if="$auth.isAdmin()"
-                >
-                    Pozvánka
-                </th>
-                <th class="bg-blue-100 border text-left px-8 py-2">Účasť</th>
-            </tr>
-            <tr v-for="councilUser in councilUsers" :key="councilUser.id">
-                <td
-                    v-text="
-                        councilUser.first_name + ' ' + councilUser.last_name
-                    "
-                    class="border px-4 py-2"
-                ></td>
+                    <!-- Pozvánka -->
+                    <td
+                        v-if="$auth.isAdmin()"
+                        class="border px-4 py-2 cursor-pointer"
+                        @click="updateInvitation(councilUser)"
+                        v-text="invitationDetails(councilUser).send_at"
+                    ></td>
 
-                <!-- Pozvánka -->
-                <td
-                    v-if="$auth.isAdmin()"
-                    class="border px-4 py-2 cursor-pointer"
-                    @click="updateInvitation(councilUser)"
-                    v-text="invitationDetails(councilUser).send_at"
-                ></td>
-
-                <!--Učasť -->
-                <td class="border px-4 py-2 text-xs">
-                    <div v-if="invitationDetails(councilUser).send_at">
-                        <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
-                        <div
-                            v-if="
-                                invitationDetails(councilUser).send_at !=
-                                    'Odoslať'
-                            "
-                            @click="
-                                saveConfirmation(
-                                    invitationDetails(councilUser).invitation_id
-                                )
-                            "
-                            v-text="
-                                invitationDetails(councilUser).confirmed_title
-                            "
-                            class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center"
-                            :class="
-                                invitationDetails(councilUser)
-                                    .confirmed_title_class +
-                                    ' ' +
-                                    invitationDetails(councilUser).owner
-                            "
-                        >
-                            <!-- Potvrdená or Nepotvrdená -->
+                    <!--Učasť -->
+                    <td class="border px-4 py-2 text-xs">
+                        <div v-if="invitationDetails(councilUser).send_at">
+                            <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
+                            <div
+                                v-if="
+                                    invitationDetails(councilUser).send_at !=
+                                        'Odoslať'
+                                "
+                                @click="
+                                    saveConfirmation(
+                                        invitationDetails(councilUser)
+                                            .invitation_id
+                                    )
+                                "
+                                v-text="
+                                    invitationDetails(councilUser)
+                                        .confirmed_title
+                                "
+                                class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm text-center"
+                                :class="
+                                    invitationDetails(councilUser)
+                                        .confirmed_title_class +
+                                        ' ' +
+                                        invitationDetails(councilUser).owner
+                                "
+                            >
+                                <!-- Potvrdená or Nepotvrdená -->
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        <div class="flex justify-between p-2" v-if="$auth.isAdmin()">
-            <div @click="notificationForAllUsers" class="text-xs">
-                <div class="flex items-center cursor-pointer">
-                    <svg
-                        class="w-3 h-3 mr-1 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                        />
-                    </svg>
-                    Pozvať všetkých ({{ unsendUsers }})
-                </div>
-            </div>
-            <div class="text-xs">
-                <div class="flex items-center cursor-pointer">
-                    <svg
-                        class="w-3 h-3 mr-1 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"
-                        />
-                    </svg>
-                    Nepotvrdeným ({{ unconfirmedUsers }})
-                </div>
-            </div>
-        </div>
+                    </td>
+                </tr>
+            </table>
+        </transition>
+        <invitation-card-admin-panel></invitation-card-admin-panel>
     </div>
 </template>
 
@@ -136,8 +111,10 @@
 import { mapState } from "vuex";
 import { filterMixin } from "../mixins/filterMixin";
 import moment from "moment";
+import invitationCardAdminPanel from "./invitation-card-admin-panel.vue";
 export default {
     mixins: [filterMixin],
+    components: { invitationCardAdminPanel },
     props: {
         meeting_id: {
             type: Number,
@@ -158,6 +135,11 @@ export default {
 
             return "Pozvánky";
         },
+
+        sendUsers() {
+            return this.meeting.invitations.length;
+        },
+
         quorateMeeting() {
             var percento =
                 (100 * this.meetingUsers.length) / this.councilUsers.length;
@@ -166,21 +148,6 @@ export default {
                 return "bg-green-200 ";
             }
             return "bg-blue-300";
-        },
-
-        unsendUsers() {
-            return this.councilUsers.length - this.sendUsers;
-        },
-
-        sendUsers() {
-            return this.meeting.invitations.length;
-        },
-
-        unconfirmedUsers() {
-            return (
-                this.councilUsers.length -
-                this.meeting.invitations.filter(o => o.confirmed_at != null).length
-            );
         },
 
         ...mapState({
@@ -199,7 +166,7 @@ export default {
         },
 
         fetchInvitations() {
-             this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
+            this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
         },
 
         checkIfMeetingPublished() {
@@ -209,8 +176,8 @@ export default {
                 );
             }
         },
-        updateInvitation(user) {
 
+        updateInvitation(user) {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -233,8 +200,7 @@ export default {
                 });
         },
 
-        saveConfirmation(invitation_id)
-        {
+        saveConfirmation(invitation_id) {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -254,35 +220,16 @@ export default {
                 });
         },
 
-        notificationForAllUsers() {
-            this.checkIfMeetingPublished();
-
-            // Only admin can send invitation
-            if (!this.$auth.isAdmin()) {
-                return;
-            }
-
-            if (this.sendUsers == this.councilUsers.length) {
-                alert(
-                    "Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!"
-                );
-            }
-
-            axios
-                .post("/api/meetings/" + this.meeting.id + "/invitation", {
-                    allUsers: true
-                })
-                .then(response => {
-                    this.fetchInvitations();
-                });
-        },
-
         invitationDetails(user) {
             var details = {
                 send_at: "Odoslať",
                 confirmed_at: null
             };
-            if ((user = this.meeting.invitations.find(o => o.user_id == user.id))) {
+            if (
+                (user = this.meeting.invitations.find(
+                    o => o.user_id == user.id
+                ))
+            ) {
                 return (details = {
                     invitation_id: user.id,
                     owner: this.$auth.isOwner(user.user_id)
