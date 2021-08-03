@@ -3205,16 +3205,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_mixins_filterMixin__WEBPACK_IMPORTED_MODULE_0__.filterMixin],
   props: {
-    meeting: {
-      type: Object,
+    meeting_id: {
+      type: Number,
       required: true
     }
   },
   data: function data() {
     return {
       openList: true,
-      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
-      invitations: []
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
     };
   },
   computed: _objectSpread({
@@ -3238,10 +3237,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.councilUsers.length - this.sendUsers;
     },
     sendUsers: function sendUsers() {
-      return this.invitations.length;
+      return this.meeting.invitations.length;
     },
     unconfirmedUsers: function unconfirmedUsers() {
-      return this.councilUsers.length - this.invitations.filter(function (o) {
+      return this.councilUsers.length - this.meeting.invitations.filter(function (o) {
         return o.confirmed_at != null;
       }).length;
     }
@@ -3254,6 +3253,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     council: function council(state) {
       return state.meetings.council;
+    },
+    meeting: function meeting(state) {
+      return state.meetings.meeting;
     }
   })),
   created: function created() {
@@ -3264,11 +3266,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.openList = !this.openList;
     },
     fetchInvitations: function fetchInvitations() {
-      var _this = this;
-
-      axios.get("/api/meetings/" + this.meeting.id + "/invitation").then(function (response) {
-        _this.invitations = response.data;
-      });
+      this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
     },
     checkIfMeetingPublished: function checkIfMeetingPublished() {
       if (!this.meeting.published) {
@@ -3276,9 +3274,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     updateInvitation: function updateInvitation(user) {
-      var _this2 = this;
+      var _this = this;
 
-      console.log(777);
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
       if (!this.$auth.isAdmin()) {
@@ -3288,13 +3285,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.put("/api/meetings/" + this.meeting.id + "/invitation/" + user.id, {
         user_id: user.id
       }).then(function (response) {
-        _this2.fetchInvitations();
+        _this.fetchInvitations();
       });
     },
     saveConfirmation: function saveConfirmation(invitation_id) {
-      var _this3 = this;
+      var _this2 = this;
 
-      console.log('saveC');
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
       if (!this.$auth.isAdmin()) {
@@ -3304,11 +3300,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.put("/api/invitations/" + invitation_id, {
         confirmed_at: new Date().toISOString().slice(0, 19).replace("T", " ")
       }).then(function (response) {
-        _this3.fetchInvitations();
+        _this2.fetchInvitations();
       });
     },
     notificationForAllUsers: function notificationForAllUsers() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.checkIfMeetingPublished(); // Only admin can send invitation
 
@@ -3323,7 +3319,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
         allUsers: true
       }).then(function (response) {
-        _this4.fetchInvitations();
+        _this3.fetchInvitations();
       });
     },
     invitationDetails: function invitationDetails(user) {
@@ -3332,7 +3328,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmed_at: null
       };
 
-      if (user = this.invitations.find(function (o) {
+      if (user = this.meeting.invitations.find(function (o) {
         return o.user_id == user.id;
       })) {
         return details = {

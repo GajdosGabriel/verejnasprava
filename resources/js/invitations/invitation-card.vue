@@ -139,16 +139,15 @@ import moment from "moment";
 export default {
     mixins: [filterMixin],
     props: {
-        meeting: {
-            type: Object,
+        meeting_id: {
+            type: Number,
             required: true
         }
     },
     data() {
         return {
             openList: true,
-            moment: require("moment"),
-            invitations: []
+            moment: require("moment")
         };
     },
     computed: {
@@ -174,20 +173,21 @@ export default {
         },
 
         sendUsers() {
-            return this.invitations.length;
+            return this.meeting.invitations.length;
         },
 
         unconfirmedUsers() {
             return (
                 this.councilUsers.length -
-                this.invitations.filter(o => o.confirmed_at != null).length
+                this.meeting.invitations.filter(o => o.confirmed_at != null).length
             );
         },
 
         ...mapState({
             meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
-            council: state => state.meetings.council
+            council: state => state.meetings.council,
+            meeting: state => state.meetings.meeting
         })
     },
     created() {
@@ -199,9 +199,7 @@ export default {
         },
 
         fetchInvitations() {
-            axios.get("/api/meetings/" + this.meeting.id + "/invitation").then(response => {
-                this.invitations = response.data;
-            });
+             this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
         },
 
         checkIfMeetingPublished() {
@@ -212,7 +210,7 @@ export default {
             }
         },
         updateInvitation(user) {
-            console.log(777)
+
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -235,8 +233,8 @@ export default {
                 });
         },
 
-        saveConfirmation(invitation_id) {
-            console.log('saveC');
+        saveConfirmation(invitation_id)
+        {
             this.checkIfMeetingPublished();
 
             // Only admin can send invitation
@@ -284,7 +282,7 @@ export default {
                 send_at: "Odoslať",
                 confirmed_at: null
             };
-            if ((user = this.invitations.find(o => o.user_id == user.id))) {
+            if ((user = this.meeting.invitations.find(o => o.user_id == user.id))) {
                 return (details = {
                     invitation_id: user.id,
                     owner: this.$auth.isOwner(user.user_id)
