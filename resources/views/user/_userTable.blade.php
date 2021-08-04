@@ -2,7 +2,7 @@
     <thead class="bg-gray-300">
     <tr>
         <th class="px-4 py-2">Meno</th>
-        <th class="px-4 py-2">Člen</th>
+        <th class="px-4 py-2">Zastupiteľstvo</th>
         @role('admin')
         <th class="px-4 py-2">Email</th>
         <th class="px-4 py-2">Status</th>

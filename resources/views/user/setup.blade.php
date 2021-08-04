@@ -70,7 +70,7 @@
                 </div>
             </organization-edit>
 
-            <council-edit inline-template>
+            <council-create inline-template>
                 <div class="border-gray-400 border-2 p-3 hover:bg-gray-200">
 
                     <div class="flex justify-between items-center cursor-pointer" @click="toggle">
@@ -104,9 +104,7 @@
                         </form>
                     </div>
                 </div>
-            </council-edit>
-
-            <tag-card/>
+            </council-create>
 
             @endrole
 
