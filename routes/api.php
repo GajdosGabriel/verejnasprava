@@ -42,8 +42,14 @@ Route::get('artisan/run', function () {
     \Artisan::call('view:clear');
     \Artisan::call('config:clear');
     \Artisan::call('optimize:clear');
-    \Artisan::call('queue:work');
 
     dd("All is cleared");
+});
+
+Route::get('artisan/run/queue', function () {
+
+    \Artisan::call('queue:work');
+
+    dd("Queue working");
 
 });
