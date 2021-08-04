@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvitationForUser extends Notification
+class InvitationForUser extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -57,7 +57,6 @@ class InvitationForUser extends Notification
 
 
             ->action( $this->invitation->meeting->name , url( route('meetings.show', $this->invitation->meeting->id)))
-            ->action( 'Potvrdiť účasť' , url( route('invitations.show', $this->invitation->id)))
             ->line('Vystavené v aplikácií ' . env('APP_NAME'). '.');
     }
 
