@@ -48,7 +48,7 @@
         {{-- ICO Field --}}
         <div class="mb-4">
             <label class="flex-shrink-0 input-label" id="basic-addon7">IČO</label>
-            <input type="number" name="ico" class="w-full"  placeholder="IČO organizácie" value="{{ old('ico') ?? $organization->ico }}" maxlength="8" aria-describedby="basic-addon7"/>
+            <input type="number" name="ico" class="w-full"  placeholder="IČO organizácie" value="{{ old('ico') ?? $organization->ico }}" maxlength="8" aria-describedby="basic-addon7" required/>
         </div>
 
         {{-- DIČ Field --}}

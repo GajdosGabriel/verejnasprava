@@ -84,7 +84,7 @@
         components: {tagList, VueEditor, tagModal, recipientItem, userList, CardHeaderIcon},
         data() {
             return {
-                title: "Nová správa",
+                title: "Správa zamestnancom",
                 name: "Správa od zamestnávateľa",
                 body: "",
                 postFormData: new FormData(),

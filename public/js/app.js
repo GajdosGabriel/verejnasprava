@@ -5009,7 +5009,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: "Nová správa",
+      title: "Správa zamestnancom",
       name: "Správa od zamestnávateľa",
       body: "",
       postFormData: new FormData(),
@@ -90948,23 +90948,10 @@ var render = function() {
                                         "\n                                    " +
                                           _vm._s(
                                             _vm.message.pivot.opened == null
-                                              ? "Beriem na vedomie"
+                                              ? "Beriem na vedomie a podpisujem firemným elektronickým podpisom."
                                               : "Potvrdené"
                                           ) +
                                           "\n                                "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-default",
-                                      on: { click: _vm.closeModal }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    Späť\n                                "
                                       )
                                     ]
                                   )
