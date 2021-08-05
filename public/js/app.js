@@ -2842,6 +2842,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -87555,7 +87556,9 @@ var render = function() {
                 "div",
                 {
                   key: meeting.id,
-                  staticClass: "flex justify-between hover:underline flex-wrap"
+                  staticClass:
+                    "flex justify-between hover:underline flex-wrap ",
+                  class: meeting.published ? "" : "text-red-700"
                 },
                 [
                   _c("a", { attrs: { href: "meetings/" + meeting.id } }, [

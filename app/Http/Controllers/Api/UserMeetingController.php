@@ -11,8 +11,7 @@ class UserMeetingController extends Controller
 {
     public function index(User $user)
     {
-        // dd($user);
-        // $councils =  auth()->user()->councils;
+        // Zlá funkcia berie iba jeden council
 
         foreach($user->councils as $council){
           $meeting = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)

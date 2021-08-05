@@ -85,7 +85,8 @@
             </div>
             <div class="flex flex-col sm:ml-5">
                 <div
-                    class="flex justify-between hover:underline flex-wrap"
+                    class="flex justify-between hover:underline flex-wrap "
+                    :class="meeting.published ? '' : 'text-red-700'"
                     v-for="meeting in council.meetings"
                     :key="meeting.id"
                 >
