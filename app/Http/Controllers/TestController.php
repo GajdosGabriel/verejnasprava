@@ -18,8 +18,22 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TestController extends Controller
 {
+
+    // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
+        $councils =  auth()->user()->councils;
+
+        foreach($councils as $council){
+          $meetings = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)
+          ->sortBy('start_at')
+          ->take(1)
+          ;
+        }
+
+        dd($meetings);
+
+
         $meeting = Meeting::first();
 
         $meeting =    $meeting->invitations()->whereUserId(auth()->user()->id)->updateOrCreate(

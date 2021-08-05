@@ -31,6 +31,7 @@ Route::apiResources([
     'items'                 => 'Api\ItemController',
     'meetings'              => 'Api\MeetingController',
     'meetings.invitation'   => 'Api\MeetingInvitationController',
+    'users.meetings'        => 'Api\UserMeetingController',
     'invitations'           => 'Api\InvitationController',
     'menus'                 => 'Api\MenuController',
 ]);
