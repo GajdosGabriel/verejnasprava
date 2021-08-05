@@ -8,7 +8,13 @@
 
 
         <div class="container mx-auto p-6 min-h-screen">
-            <h1 class="page-title">Založiť zastupiteľstvo</h1>
+
+            <x-page.page-title>
+                <x-slot name="title">
+                    Založiť zastupiteľstvo
+                </x-slot>
+            </x-page.page-title>
+
             <div class="col-md-12">
                 <div class="md:w-1/2 ">
                     <form  method="POST" action="{{route('organizations.councils.store', $organization->id) }}">

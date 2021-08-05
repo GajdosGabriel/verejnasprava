@@ -9,14 +9,19 @@
         <div class="w-full">
 
 
-            <div class="flex justify-between items-center pb-8">
-                <h1 class="page-title">Zverejnené doklady</h1>
+            <x-page.page-title>
+                <x-slot name="title">
+                    Zverejnené doklady
+                </x-slot>
+
                 @role('admin')
                 <a class="btn btn-primary"
                    href="{{ route('posts.create') }}">Nový doklad
                 </a>
                 @endrole
-            </div>
+
+            </x-page.page-title>
+
 
             <post-table/>
 

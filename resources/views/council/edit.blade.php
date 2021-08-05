@@ -10,9 +10,15 @@
 @section('content')
 
     <div class="container mx-auto p-6 min-h-screen">
-    <h1 class="page-title">Upraviť zastupiteľstvo</h1>
 
+        <x-page.page-title>
+            <x-slot name="title">
+                Upraviť zastupiteľstvo
+            </x-slot>
 
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+
+        </x-page.page-title>
 
         <div class="row">
             <div class="col-md-12">

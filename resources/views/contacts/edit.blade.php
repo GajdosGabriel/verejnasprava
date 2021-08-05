@@ -9,7 +9,15 @@
 @section('content')
     <div class="container mx-auto min-h-screen p-6">
 
-    <h1 class="page-title">Upraviť dodávateľa</h1>
+        <x-page.page-title>
+            <x-slot name="title">
+                Upraviť dodávateľa
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+
+        </x-page.page-title>
+
 
     <form action="{{ route('contact.update', $contact->id) }}" method="POST">
         @csrf @method('PUT')

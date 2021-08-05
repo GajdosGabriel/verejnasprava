@@ -8,7 +8,15 @@
 
 
         <div class="container mx-auto p-6 min-h-screen">
-            <h1 class="page-title">Nové zasadnutie</h1>
+            <x-page.page-title>
+                <x-slot name="title">
+                    Nové zasadnutie
+                </x-slot>
+
+                <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+
+            </x-page.page-title>
+
             <div class="max-w-lg">
 
                 <form method="POST" action="{{ route('councils.meetings.store', $council->id) }}" enctype="multipart/form-data">

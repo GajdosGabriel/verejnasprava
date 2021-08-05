@@ -9,10 +9,14 @@
 @section('content')
 
     <div class="container mx-auto min-h-screen p-6">
-        <div class="flex justify-between">
-            <h1 class="page-title">Členovia výboru: {{ $council->name }}</h1>
+
+        <x-page.page-title>
+            <x-slot name="title">
+                Členovia výboru: {{ $council->name }}
+            </x-slot>
+
             <a class="btn btn-primary text-center" href="{{ route('user.create', [$council->id, $council->slug]) }}">Nový člen</a>
-        </div>
+        </x-page.page-title>
 
 
     @include('user._userTable')

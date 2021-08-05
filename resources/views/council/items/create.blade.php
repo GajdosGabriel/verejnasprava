@@ -9,7 +9,14 @@
 
     <div class="container mx-auto min-h-screen p-6">
 
-        <h1 class="page-title">Nový návrh programu</h1>
+        <x-page.page-title>
+            <x-slot name="title">
+                Nový návrh programu
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+
+        </x-page.page-title>
 
         <form method="POST" action="{{ route('items.store') }}"
         class=""

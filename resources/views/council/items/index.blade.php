@@ -2,7 +2,7 @@
 @section('page-title', 'Program zasadnutia')
 
 
-@section('navigation') @include('organizations.navigation') @endsection
+    @section('navigation') @include('organizations.navigation') @endsection
 
 
 @section('content')
@@ -11,18 +11,21 @@
 
         <div class="lg:w-3/4 px-4 md:px-6  mb-6">
 
-            <div class="flex justify-between items-center pb-8">
+            <x-page.page-title>
+                <x-slot name="title">
+                    Návrhy
+                </x-slot>
 
-                <h1 class="page-title">Návrhy</h1>
-                <a class="btn btn-primary"
-                   href="{{ route('items.create') }}">Nový návrh</a>
-            </div>
+                <a class="btn btn-primary" href="{{ route('items.create') }}">Nový návrh</a>
+
+            </x-page.page-title>
+
             <ul>
 
                 @forelse($items as $item)
                     <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
                         <a href="{{ route('items.show', $item->id) }}">
-                          <span class="font-semibold block">{{ $item->name }}</span>
+                            <span class="font-semibold block">{{ $item->name }}</span>
                             <span class="text-xs">{{ $item->user->full_name() }}</span>
                         </a>
 
@@ -30,40 +33,42 @@
                         @forelse($item->meetings as $meeting)
                             <a href="{{ route('meetings.show', $meeting->id) }}">
                                 <span class="p-1 bg-yellow-400 text-sm rounded-2xl px-2 hover:bg-yellow-500 ">
-                                {{ $meeting->name }} {{ $meeting->start_at->format('d. m. Y') }}
+                                    {{ $meeting->name }} {{ $meeting->start_at->format('d. m. Y') }}
                                 </span>
                             </a>
                         @empty
 
                             @can('council delete')
-                            <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
-                                @csrf @method('PUT')
-                                <label for="meetings">Schôdza:</label>
-                                <select name="meeting" id="meetings" required>
-                                    <option value="">---Vybrať---</option>
-                                    @forelse($meetings as $meeting)
-                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }} {{ \Str::limit( $meeting->name, 12) }}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                                <button class="btn btn-secondary">Zaradiť</button>
-                            </form>
+                                <form method="POST"
+                                    action="{{ route('meetings.items.update', ['slugmeetings', $item->id]) }}">
+                                    @csrf @method('PUT')
+                                    <label for="meetings">Schôdza:</label>
+                                    <select name="meeting" id="meetings" required>
+                                        <option value="">---Vybrať---</option>
+                                        @forelse($meetings as $meeting)
+                                            <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}
+                                                {{ \Str::limit($meeting->name, 12) }}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                    <button class="btn btn-secondary">Zaradiť</button>
+                                </form>
                             @endcan
                         @endforelse
                     </li>
-                @empty
-                @endforelse
-            </ul>
+                    @empty
+                    @endforelse
+                </ul>
+            </div>
+
+            {{-- ASIDE --}}
+            <div class="lg:w-1/4 md:px-6 px-4">
+
+            </div>
+
         </div>
 
-        {{-- ASIDE --}}
-        <div class="lg:w-1/4 md:px-6 px-4">
-
-        </div>
-
-    </div>
 
 
 
-
-@endsection
+    @endsection

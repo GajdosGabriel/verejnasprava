@@ -8,8 +8,13 @@
 
 
 
+        <x-page.page-title>
+            <x-slot name="title">
+                Upraviť zastupiteľstvo
+            </x-slot>
 
-        <h1 class="page-title">Upraviť zastupiteľstvo</h1>
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+        </x-page.page-title>
 
         <div class="row">
             <div class="col-md-12">

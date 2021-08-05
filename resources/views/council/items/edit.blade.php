@@ -7,7 +7,14 @@
 @section('content')
 
     <div class="container mx-auto p-6 min-h-screen">
-        <h1 class="page-title">Úprava návrhu na uznesenie</h1>
+
+        <x-page.page-title>
+            <x-slot name="title">
+                Úprava návrhu na uznesenie
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+        </x-page.page-title>
 
         <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data">
             @csrf @method('PUT')

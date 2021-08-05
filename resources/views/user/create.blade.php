@@ -6,22 +6,45 @@
 
     <div class="container mx-auto p-6 min-h-screen">
 
-        <div class="md:w-1/2">
-        <h1 class="font-bold text-2xl">Nový užívateľ</h1>
+        <div class="">
+            <x-page.page-title>
+                <x-slot name="title">
+                    Nový užívateľ
+                </x-slot>
 
-        <form action="{{ route('users.store', auth()->user()->active_organization) }}" method="POST" enctype="multipart/form-data">
-            @csrf @method('POST')
-            @include('modul.errors')
-            @include('user._userForm')
-            @include('user._userRoleForm')
-            @include('user._permissionsForm')
-            <div class="form-group">
-                <div class="flex justify-between my-3">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
-                    <button type="submit" class="btn btn-primary">Uložiť</button>
-                </div>
-            </div>
-        </form>
+                <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+            </x-page.page-title>
+
+
+            <form action="{{ route('users.store', auth()->user()->active_organization) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf @method('POST')
+                @include('modul.errors')
+
+                <x-page.page3_3>
+                    <div class="col-span-4 bg-white p-3">
+                        @include('user._userForm')
+                        <div class="form-group">
+                            <div class="flex justify-between my-3">
+                                <div></div>
+                                <button type="submit" class="btn btn-primary">Uložiť</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4 bg-white p-3">
+                        @include('user._userRoleForm')
+                    </div>
+
+                    <div class="col-span-4 bg-white p-3">
+                        @include('user._permissionsForm')
+                    </div>
+
+
+
+
+                </x-page.page3_3>
+            </form>
         </div>
 
     </div>
@@ -29,4 +52,3 @@
 
 
 @endsection
-

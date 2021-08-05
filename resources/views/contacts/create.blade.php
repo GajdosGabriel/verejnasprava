@@ -7,7 +7,15 @@
 
     <div class="container mx-auto min-h-screen p-6">
 
-        <h1 class="page-title">Nový kontakt</h1>
+        <x-page.page-title>
+            <x-slot name="title">
+                Nový kontakt
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+
+        </x-page.page-title>
+
         <form class="md:w-full text-sm" action="{{ route('contacts.store', $org->id) }}" method="POST">
             @csrf @method('POST')
             @include('modul.errors')
