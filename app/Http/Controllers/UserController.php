@@ -40,6 +40,11 @@ class UserController extends Controller
         return view('user.create', compact('user'));
     }
 
+    public function show(User $user) {
+        return view('user.show', compact('user'));
+    }
+
+
     public function edit(User $user) {
         return view('user.edit', compact('user'));
     }

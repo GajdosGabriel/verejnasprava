@@ -56,7 +56,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('posts', $posts);
         });
 
-        view()->composer(['user.edit', 'user.create'], function ($view) {
+        view()->composer(['user.edit', 'user.create', 'user.show'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
             $roles =  Role::all();
             $permissions =  Permission::all();
