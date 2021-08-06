@@ -22,7 +22,7 @@
                     <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
                 </div>
 
-                <span v-if="recipients && recipients.length > 1" class="absolute bottom-0 right-0 text-xs cursor-pointer" @click="clearRecipientsList">vyčistiť všetko</span>
+                <span v-if="recipients && recipients.length > 1" class="absolute bottom-0 right-0 text-xs cursor-pointer" @click="clearRecipientsList">odstrániť všetko</span>
             </div>
 
             <div class="flex justify-between text-xs">
@@ -36,7 +36,7 @@
                     <span class="px-2 cursor-pointer" @click="showModal = true">Nová nálepka</span>
                     <span class="px-2 cursor-pointer" @click="editAdminPanel = ! editAdminPanel">Upraviť</span>
                 </div>
-                <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
+                <tag-list :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
             </div>
 
             <user-list :showUsers="showUsers" :users="users" :recipients="recipients" @addRecipient="addRecipient"/>

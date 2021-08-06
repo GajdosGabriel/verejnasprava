@@ -5649,6 +5649,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -5663,14 +5665,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['tags', 'editAdminPanel'],
+  props: ['editAdminPanel'],
+  data: function data() {
+    return {
+      tags: []
+    };
+  },
+  mounted: function mounted() {
+    this.getTags();
+  },
   methods: {
     addToList: function addToList(tag) {
       this.$emit('pushTagToRecipientList', tag);
     },
     editTag: function editTag(tag) {
       this.$emit('editTag', tag);
+    },
+    getTags: function getTags() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/organizations/' + this.user.active_organization + '/tags').then(function (response) {
+        _this.tags = response.data;
+      });
     }
   }
 });
@@ -90480,7 +90498,7 @@ var render = function() {
                             "absolute bottom-0 right-0 text-xs cursor-pointer",
                           on: { click: _vm.clearRecipientsList }
                         },
-                        [_vm._v("vyčistiť všetko")]
+                        [_vm._v("odstrániť všetko")]
                       )
                     : _vm._e()
                 ],
@@ -90561,10 +90579,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("tag-list", {
-                        attrs: {
-                          tags: _vm.tags,
-                          editAdminPanel: _vm.editAdminPanel
-                        },
+                        attrs: { editAdminPanel: _vm.editAdminPanel },
                         on: {
                           pushTagToRecipientList: _vm.getUsersByTag,
                           editTag: _vm.getEditTag

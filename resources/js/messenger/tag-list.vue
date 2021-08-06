@@ -13,15 +13,33 @@
 </template>
 
 <script>
+import axios from 'axios';
 
     export default {
-        props:['tags', 'editAdminPanel'],
+        props:['editAdminPanel'],
+
+        data(){
+            return {
+                tags: []
+            }
+
+        },
+        mounted(){
+            this.getTags()
+        },
         methods:{
             addToList(tag){
                 this.$emit('pushTagToRecipientList', tag)
             },
             editTag(tag){
                 this.$emit('editTag', tag);
+            },
+
+            getTags(){
+                axios.get('/api/organizations/' + this.user.active_organization + '/tags')
+                .then( response => {
+                    this.tags = response.data
+                })
             }
         }
     }

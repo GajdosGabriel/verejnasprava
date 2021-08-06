@@ -21,30 +21,6 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
-        $user = User::first();
-
-
-
-        dd($user->organization->tags()->create( [
-            'name' => 'employment',
-            'slug' => 'employment'
-            // 'slug' => Str::slug($saveTagRequest->input('name'), '-')
-        ]));
-
-        // $tag = new Tag();
-        // dd($tag->all());
-        // Tag::create([
-        //     'organization_id' => 1,
-        //     'name' => 'employment',
-        //     'slug' => 'employment'
-        //     // 'slug' => Str::slug($saveTagRequest->input('name'), '-')
-        // ]);
-        // $tag = new Tag($pokus);
-        // dd($tag);
-
-        // $tag->save();
-
-        dd('Hotovo');
 
         // $councils =  auth()->user()->councils;
 
