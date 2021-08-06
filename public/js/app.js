@@ -5097,6 +5097,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     toggle: function toggle(component) {
       if (component == 'showTag') {
         this.showTag = !this.showTag;
+        this.getTags();
       } else {
         this.showTag = false;
       }
@@ -5667,29 +5668,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['editAdminPanel'],
-  data: function data() {
-    return {
-      tags: []
-    };
-  },
-  mounted: function mounted() {
-    this.getTags();
-  },
+  props: ['tags', 'editAdminPanel'],
   methods: {
     addToList: function addToList(tag) {
       this.$emit('pushTagToRecipientList', tag);
     },
     editTag: function editTag(tag) {
       this.$emit('editTag', tag);
-    },
-    getTags: function getTags() {
-      var _this = this;
+    } // getTags(){
+    //     axios.get('/api/organizations/' + this.user.active_organization + '/tags')
+    //     .then( response => {
+    //         this.tags = response.data
+    //     })
+    // }
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/organizations/' + this.user.active_organization + '/tags').then(function (response) {
-        _this.tags = response.data;
-      });
-    }
   }
 });
 
@@ -90579,7 +90571,10 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("tag-list", {
-                        attrs: { editAdminPanel: _vm.editAdminPanel },
+                        attrs: {
+                          tags: _vm.tags,
+                          editAdminPanel: _vm.editAdminPanel
+                        },
                         on: {
                           pushTagToRecipientList: _vm.getUsersByTag,
                           editTag: _vm.getEditTag

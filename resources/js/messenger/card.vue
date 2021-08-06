@@ -36,7 +36,7 @@
                     <span class="px-2 cursor-pointer" @click="showModal = true">Nová nálepka</span>
                     <span class="px-2 cursor-pointer" @click="editAdminPanel = ! editAdminPanel">Upraviť</span>
                 </div>
-                <tag-list :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
+                <tag-list :tags="tags" :editAdminPanel="editAdminPanel" @pushTagToRecipientList="getUsersByTag" @editTag="getEditTag"/>
             </div>
 
             <user-list :showUsers="showUsers" :users="users" :recipients="recipients" @addRecipient="addRecipient"/>
@@ -108,7 +108,8 @@
         methods: {
             toggle(component) {
                 if (component == 'showTag') {
-                    this.showTag = !this.showTag
+                    this.showTag = !this.showTag;
+                    this.getTags()
                 } else {
                     this.showTag = false
                 }

@@ -16,17 +16,7 @@
 import axios from 'axios';
 
     export default {
-        props:['editAdminPanel'],
-
-        data(){
-            return {
-                tags: []
-            }
-
-        },
-        mounted(){
-            this.getTags()
-        },
+        props:['tags','editAdminPanel'],
         methods:{
             addToList(tag){
                 this.$emit('pushTagToRecipientList', tag)
@@ -35,12 +25,12 @@ import axios from 'axios';
                 this.$emit('editTag', tag);
             },
 
-            getTags(){
-                axios.get('/api/organizations/' + this.user.active_organization + '/tags')
-                .then( response => {
-                    this.tags = response.data
-                })
-            }
+            // getTags(){
+            //     axios.get('/api/organizations/' + this.user.active_organization + '/tags')
+            //     .then( response => {
+            //         this.tags = response.data
+            //     })
+            // }
         }
     }
 </script>
