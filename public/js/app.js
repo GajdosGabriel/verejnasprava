@@ -89464,10 +89464,7 @@ var render = function() {
     ? _c("section", { staticClass: "border" }, [
         _c(
           "header",
-          {
-            staticClass:
-              "flex justify-between items-center px-2 py-2  cursor-pointer"
-          },
+          { staticClass: "flex justify-between items-center px-2 py-2" },
           [
             _c("div", { staticClass: "flex" }, [
               _c(
@@ -89503,7 +89500,14 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.meeting[0].name))])
+            _c(
+              "a",
+              {
+                staticClass: "hover:text-red-600 hover:underline",
+                attrs: { href: "/meetings/" + _vm.meeting[0].id }
+              },
+              [_vm._v(_vm._s(_vm.meeting[0].name))]
+            )
           ]
         )
       ])

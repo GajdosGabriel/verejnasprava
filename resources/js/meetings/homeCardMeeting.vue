@@ -1,7 +1,7 @@
 <template>
     <section class="border" v-if="meeting">
         <header
-            class="flex justify-between items-center px-2 py-2  cursor-pointer"
+            class="flex justify-between items-center px-2 py-2"
         >
             <div class="flex">
                 <svg
@@ -21,7 +21,7 @@
                     Najbližšie zastupiteľstvo
                 </h3>
             </div>
-            <div>{{ meeting[0].name }}</div>
+            <a class="hover:text-red-600 hover:underline" :href="'/meetings/' +  meeting[0].id">{{ meeting[0].name }}</a>
         </header>
     </section>
 </template>
