@@ -4,7 +4,7 @@
 @section('navigation') @include('organizations.navigation') @endsection
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
 
         <div class="w-full">
 
@@ -32,7 +32,7 @@
             {{--            </div>--}}
 
         </div>
-    </div>
+    </x-page.container>
 
 
 

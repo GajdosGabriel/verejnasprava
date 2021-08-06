@@ -9,7 +9,7 @@
 {{--@endsection--}}
 
 @section('content')
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -26,7 +26,7 @@
             @include('modul.errors')
             @include('post.postform')
         </form>
-    </div>
+    </x-page.container>
 
 @endsection
 

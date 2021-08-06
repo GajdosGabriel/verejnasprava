@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container mx-auto min-h-screen p-6">
+<x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -22,6 +22,6 @@
             @include('organizations._form')
         </form>
 
-    </div>
+    </x-page.container>
 
     @endsection

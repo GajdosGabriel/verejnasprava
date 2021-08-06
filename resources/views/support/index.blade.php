@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
         <div class="row">
             <div class="col-8">
                 <h2 class="font-bold text-3xl">Vaše otázky</h2>
@@ -122,7 +122,7 @@
     <div class="mt-5"></div>
     <div class="col-sm-6">
 
-    </div>
+    </x-page.container>
 
 
 @endsection

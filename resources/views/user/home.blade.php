@@ -9,7 +9,7 @@
 @section('content')
 
 
-    <div class="container mx-auto min-h-screen">
+    <x-page.container>
 
         <h2>Vitaj home user</h2>
 
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-    </div>
+    </x-page.page-container>
 
 
 @endsection

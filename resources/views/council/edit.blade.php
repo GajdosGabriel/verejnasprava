@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -45,5 +45,5 @@
             </div>
         </div>
 
-    </div>
+    </x-page.container>
 @endsection

@@ -9,7 +9,7 @@
 @section('content')
 
 
-    <div class="container p-6 mx-auto">
+<x-page.container>
 
         <div class="flex justify-between">
 
@@ -82,7 +82,7 @@
 
             </tbody>
         </table>
-    </div>
+    </x-page.container>
 
 
 @endsection

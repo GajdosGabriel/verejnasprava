@@ -5,13 +5,13 @@
 
 @section('content')
 
-        <div class="container mx-auto min-h-screen p-6">
+<x-page.container>
 
             <tasks-component></tasks-component>
 
 {{--            <notification-list></notification-list>--}}
 
-        </div>
+</x-page.container>
 
     @endsection
 

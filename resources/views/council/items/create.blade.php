@@ -2,12 +2,12 @@
 
 @section('page-title', 'Vytvoriť návrh')
 
-@section('navigation') @include('organizations.navigation') @endsection
+    @section('navigation') @include('organizations.navigation') @endsection
 
 
 @section('content')
 
-    <div class="container mx-auto min-h-screen p-6">
+    <x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -18,9 +18,7 @@
 
         </x-page.page-title>
 
-        <form method="POST" action="{{ route('items.store') }}"
-        class=""
-              enctype="multipart/form-data">
+        <form method="POST" action="{{ route('items.store') }}" class="" enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')
             @include('council.items._form')
@@ -28,5 +26,5 @@
 
         @include('council.items._editor')
 
-    </div>
+    </x-page.container>
 @endsection

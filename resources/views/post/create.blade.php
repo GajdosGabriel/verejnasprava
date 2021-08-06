@@ -9,7 +9,7 @@
 {{--@endsection--}}
 
 @section('content')
-    <div class="container min-h-screen p-6 mx-auto ">
+<x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -33,7 +33,7 @@
         <h3 class="mb-4  text-lg">Posledné pridané doklady</h3>
 
         @include('post.table_index')
-    </div>
+    </x-page.container>
 
 @endsection
 

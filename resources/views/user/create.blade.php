@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
 
         <div class="">
             <x-page.page-title>
@@ -47,7 +47,7 @@
             </form>
         </div>
 
-    </div>
+    </x-page.container>
 
 
 

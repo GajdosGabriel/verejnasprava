@@ -6,7 +6,7 @@
 
 
 @section('content')
-
+<x-page.container>
     <x-page.page3_3>
         {{-- Section 1 --}}
         <div class="w-full col-span-4 bg-white">
@@ -123,6 +123,6 @@
         {{-- Section 3 --}}
         <div class="w-full col-span-4 bg-white"></div>
     </x-page.page3_3>
-
+</x-page.container>
 
 @endsection
