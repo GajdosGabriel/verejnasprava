@@ -5169,7 +5169,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getTags: function getTags() {
       var _this4 = this;
 
-      axios.get('/tags').then(function (response) {
+      axios.get('/api/organizations/' + this.user.active_organization + '/tags').then(function (response) {
         _this4.tags = response.data;
       });
     },
@@ -5543,7 +5543,7 @@ __webpack_require__.r(__webpack_exports__);
     saveTag: function saveTag() {
       var _this = this;
 
-      axios.post('tags', this.form).then(function (res) {
+      axios.post('/api/organizations/' + this.user.active_organization + '/tags', this.form).then(function (res) {
         _this.$emit('addNewTag', res.data);
       }, this.form = {});
       this.closeModal();
@@ -90700,7 +90700,9 @@ var render = function() {
           _c("tag-modal", {
             attrs: { showModal: _vm.showModal, form: _vm.editTag },
             on: {
-              addNewTag: _vm.addNewTag,
+              addNewTag: function($event) {
+                return _vm.getTags()
+              },
               emitShowModal: function($event) {
                 _vm.showModal = false
               }

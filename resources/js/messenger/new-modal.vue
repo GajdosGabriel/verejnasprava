@@ -78,7 +78,7 @@
                 this.form.id = '';
             },
             saveTag() {
-                axios.post('tags', this.form)
+                axios.post('/api/organizations/'+ this.user.active_organization +'/tags', this.form)
                     .then(
                         (res) => {
                             this.$emit('addNewTag', res.data)

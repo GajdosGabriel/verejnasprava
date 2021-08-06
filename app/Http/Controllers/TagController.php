@@ -16,15 +16,6 @@ class TagController extends Controller
         return $tag;
     }
 
-    public function store(SaveTagRequest $saveTagRequest)
-    {
-        $tag = Tag::create([
-            'organization_id' => auth()->user()->active_organization,
-            'name' => $saveTagRequest->input('name'),
-            'slug' => Str::slug($saveTagRequest->input('name'), '-')
-        ]);
-        return $tag;
-    }
 
     public function destroy($id)
     {

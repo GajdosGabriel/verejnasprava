@@ -28,13 +28,15 @@ class UserObserver
     private function addTag($user)
     {
         // If Employment is empty.
-        if($user->employment == '') return ;
+        if ($user->employment == '') {
+            return ;
+        }
 
         // If Tag slug exist.
         if (! $user->organization->tags()->whereSlug(Str::slug($user->employment, '-'))->first()) {
+
             $tag = $user->organization->tags()->create([
-                'name' => $user->employment,
-                'slug' => Str::slug($user->employment, '-')
+                'name' => $user->employment
             ]);
 
             $user->tags()->attach($tag->id);

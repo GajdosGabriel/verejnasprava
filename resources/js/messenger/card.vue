@@ -66,7 +66,7 @@
             </form>
         </div>
 
-        <tag-modal :showModal="showModal" :form="editTag" @addNewTag="addNewTag" @emitShowModal="showModal = false"/>
+        <tag-modal :showModal="showModal" :form="editTag" @addNewTag="getTags()" @emitShowModal="showModal = false"/>
     </div>
 </template>
 
@@ -174,7 +174,7 @@
                     })
             },
             getTags() {
-                axios.get('/tags')
+                axios.get('/api/organizations/'+ this.user.active_organization + '/tags')
                     .then((response) => {
                         this.tags = response.data
                     })
