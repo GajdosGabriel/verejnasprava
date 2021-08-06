@@ -10,11 +10,6 @@ use Str;
 
 class TagController extends Controller
 {
-    public function index()
-    {
-        return Tag::whereOrganizationId(auth()->user()->id)->get();
-    }
-
     public function update(Tag $tag, SaveTagRequest $saveTagRequest)
     {
         $tag->update($saveTagRequest->all());
