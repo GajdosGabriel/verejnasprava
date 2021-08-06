@@ -21,6 +21,9 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
+        $user = User::first();
+
+        $user->tags()->attach(135);
 
         // $councils =  auth()->user()->councils;
 
