@@ -7,7 +7,6 @@ use App\Models\Tag;
 use App\Models\File;
 use App\Models\Menu;
 use App\Models\Post;
-use App\Models\Tags;
 use App\Models\User;
 use App\Models\Activity;
 use App\Models\Organization;
@@ -22,16 +21,41 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
-        $councils =  auth()->user()->councils;
+        $user = User::first();
 
-        foreach($councils as $council){
-          $meetings = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)
-          ->sortBy('start_at')
-          ->take(1)
-          ;
-        }
 
-        dd($meetings);
+
+        dd($user->organization->tags()->create( [
+            'name' => 'employment',
+            'slug' => 'employment'
+            // 'slug' => Str::slug($saveTagRequest->input('name'), '-')
+        ]));
+
+        // $tag = new Tag();
+        // dd($tag->all());
+        // Tag::create([
+        //     'organization_id' => 1,
+        //     'name' => 'employment',
+        //     'slug' => 'employment'
+        //     // 'slug' => Str::slug($saveTagRequest->input('name'), '-')
+        // ]);
+        // $tag = new Tag($pokus);
+        // dd($tag);
+
+        // $tag->save();
+
+        dd('Hotovo');
+
+        // $councils =  auth()->user()->councils;
+
+        // foreach($councils as $council){
+        //   $meetings = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)
+        //   ->sortBy('start_at')
+        //   ->take(1)
+        //   ;
+        // }
+
+        // dd($meetings);
 
 
         $meeting = Meeting::first();
