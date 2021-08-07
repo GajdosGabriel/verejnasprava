@@ -21,6 +21,11 @@ class Contact extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function setPscAttribute($value)
     {
         $this->attributes['psc']  = str_replace(' ', '', $value);

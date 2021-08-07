@@ -9,7 +9,7 @@
             type="text"
             v-model="search"
             class="p-1 border-2 border-gray-300 rounded-sm"
-            placeholder="Name, email, phone, city"
+            placeholder="Meno, email, tel., mesto"
         />
         <span
             @click="search = ''"
@@ -38,7 +38,17 @@
                     v-for="contact in contacts.data"
                     :key="contact.id"
                 >
-                    <td class="px-4 py-2 border" v-text="contact.name"></td>
+                    <td class="px-4 py-2 border">
+                        <a
+                            :href="
+                                /organizations/ +
+                                    contact.organization_id +
+                                    /contacts/ +
+                                    contact.id
+                            "
+                            >{{ contact.name }}</a
+                        >
+                    </td>
                     <td class="px-4 py-2 border" v-text="contact.street"></td>
                     <td
                         class="px-4 py-2 border whitespace-no-wrap"
