@@ -49,7 +49,7 @@
 
             <div class="col-span-8 bg-white p-3">
                 <h3 class="text-lg mb-4">Doklady od <span class="font-semibold">{{ $user->name }}</span></h3>
-               @include('post.table_index', ['posts' => $user->posts])
+               @include('post._table_index', ['posts' => $user->posts])
             </div>
 
         </x-page.page3_3>

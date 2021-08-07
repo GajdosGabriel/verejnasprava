@@ -87512,9 +87512,9 @@ var render = function() {
     [
       _vm.$auth.isAdmin()
         ? _c(
-            "button",
+            "a",
             {
-              staticClass: "btn btn-secondary",
+              staticClass: "hover:underline hover:text-gray-900 cursor-pointer",
               on: { click: _vm.newContactToggle }
             },
             [_vm._v("\n        Nový kontakt\n    ")]

@@ -48,7 +48,7 @@
                         <span>{{ $user->send_invitation }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Účet potvrdený</span>
+                        <span>Email potvrdený</span>
                         <span>{{ $user->email_verified_at }}</span>
                     </div>
                 </div>

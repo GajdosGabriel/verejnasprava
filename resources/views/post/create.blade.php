@@ -32,7 +32,7 @@
 
         <h3 class="mb-4  text-lg">Posledné pridané doklady</h3>
 
-        @include('post.table_index')
+        @include('post._table_index')
     </x-page.container>
 
 @endsection

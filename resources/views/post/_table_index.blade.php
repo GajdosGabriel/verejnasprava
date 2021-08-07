@@ -72,7 +72,7 @@
                 {{-- @endcan --}}
             </tr>
         @empty
-            {{-- <tbody><tr><td>Žiadne doklady</td></tr></tbody> --}}
+            <tbody><tr><td>Žiadne doklady</td></tr></tbody>
         @endforelse
 
     </tbody>

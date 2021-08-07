@@ -26,7 +26,7 @@
             <post-table/>
 
 
-            {{--            @include('post.table_index')--}}
+            {{--            @include('post._table_index')--}}
             {{--            <div class="my-6">--}}
             {{--                {{ $posts->links() }}--}}
             {{--            </div>--}}
