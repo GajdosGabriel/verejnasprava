@@ -28,7 +28,7 @@
             <div class="flex justify-between text-xs">
                 <span class="px-2 cursor-pointer" @click="pushAllUsers">všetkým</span>
                 <span class="px-2 cursor-pointer" @click="toggle('showTag')">nálepky</span>
-                <span class="px-2 cursor-pointer" @click="toggle('showUsers')">zamestnanci</span>
+                <span class="px-2 cursor-pointer" @click="toggle('showUsers')">uživatelia</span>
             </div>
 
             <div v-if="showTag">
@@ -66,14 +66,14 @@
             </form>
         </div>
 
-        <tag-modal :showModal="showModal" :form="editTag" @addNewTag="getTags()" @emitShowModal="showModal = false"/>
+        <new-modal-tag-form :showModal="showModal" :form="editTag" @addNewTag="getTags()" @emitShowModal="showModal = false"/>
     </div>
 </template>
 
 <script>
     import recipientItem from './recipient-item';
     import tagList from './tag-list';
-    import tagModal from './new-modal';
+    import newModalTagForm from './new-modal-tag-form';
     import userList from './users-list';
     import {VueEditor} from "vue2-editor/dist/vue2-editor.core.js";
     import {bus} from '../app';
@@ -81,7 +81,7 @@
     import CardHeaderIcon from "../components/Cards/CardHeaderIcon";
 
     export default {
-        components: {tagList, VueEditor, tagModal, recipientItem, userList, CardHeaderIcon},
+        components: {tagList, VueEditor, newModalTagForm, recipientItem, userList, CardHeaderIcon},
         data() {
             return {
                 title: "Správa zamestnancom",

@@ -5,9 +5,9 @@
 <!--        </svg>-->
         <div v-if="showUsers">
             <div class="font-semibold">Všetci užívatelia</div>
-            <div class="flex space-x-2 mt-2">
-                <div v-for="user in users" :key="user.id" class="flex items-center text-sm">
-                    <div @click="addRecipient(user)" class="border-2 px-1 hover:bg-gray-200 rounded-md"
+            <div class="flex flex-wrap m-2">
+                <div v-for="user in users" :key="user.id" class="flex items-center m-1 rounded-md bg-green-200 hover:bg-green-300 text-sm">
+                    <div @click="addRecipient(user)" class="border-2 px-1"
                     :class="greenBackground(user.id)"
                     >
                     {{ user.first_name }} {{ user.last_name }}

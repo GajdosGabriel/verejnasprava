@@ -1,13 +1,9 @@
 <template>
     <div>
-        <x-page.page-title>
-            <x-slot name="title">
-                Kontakty
-            </x-slot>
-
+        <div class="flex justify-between mb-6">
+            <h1 class="font-bold text-2xl">Kontakty</h1>
             <new-contact-button />
-        </x-page.page-title>
-
+        </div>
 
         <input
             type="text"

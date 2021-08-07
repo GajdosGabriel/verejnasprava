@@ -17,9 +17,9 @@ class TagController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        $tag = Tag::whereId($id)->first();
-        $tag->delete();
-    }
+    // public function destroy($id)
+    // {
+    //     $tag = Tag::whereId($id)->first();
+    //     $tag->delete();
+    // }
 }
