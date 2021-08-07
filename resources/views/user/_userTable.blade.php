@@ -7,7 +7,7 @@
             <th class="px-4 py-2">Email</th>
             <th class="px-4 py-2">Status</th>
             <th class="px-4 py-2">Role</th>
-            <th class="px-4 py-2">Skupina</th>
+            <th class="px-4 py-2">Nálepka</th>
             <th class="px-4 py-2">Panel</th>
             @endrole
         </tr>

@@ -8,7 +8,7 @@
 @section('content')
 
 
-<x-page.container>
+    <x-page.container>
 
 
 
@@ -19,8 +19,6 @@
 
             <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
         </x-page.page-title>
-
-        {{-- <h1 class="font-bold text-2xl">Upraviť užívateľa</h1> --}}
 
         <form class="" action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('PATCH')
@@ -56,13 +54,16 @@
                 </div>
 
                 <div class="col-span-4 bg-white p-3">
-                    @include('user._userRoleForm')
-                    @include('user._permissionsForm')
+                    @role('admin')
+                        @include('user._userRoleForm')
+                        @include('user._permissionsForm')
+                    @endrole
                 </div>
 
                 <div class="col-span-4 bg-white p-3">
-                    @include('tag._userTagsForm')
-
+                    @role('admin')
+                        @include('tag._userTagsForm')
+                    @endrole
                 </div>
 
 
