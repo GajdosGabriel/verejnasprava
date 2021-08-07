@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use App\Models\Organization;
 use Illuminate\Http\Request;
@@ -22,5 +23,10 @@ class OrganizationTagController extends Controller
         ]);
 
         return $tag;
+    }
+
+    public function destroy(Organization $organization, Tag $tag)
+    {
+      $tag->delete();
     }
 }

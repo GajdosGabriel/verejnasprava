@@ -31,6 +31,7 @@
 
             {{-- Section 2 --}}
             <div class="w-full col-span-4 bg-white">
+                <new-tag-form></new-tag-form>
             </div>
 
             {{-- Section 3 --}}

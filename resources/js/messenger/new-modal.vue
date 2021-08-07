@@ -89,7 +89,7 @@
                 this.closeModal()
             },
             deleteTag() {
-                axios.delete('tags', this.form)
+                axios.delete('/api/organizations/'+ this.form.organization_id +'/tags/' + this.form.id)
                     .then(
                         (res) => {
                             this.$emit('addNewTag', res.data)
