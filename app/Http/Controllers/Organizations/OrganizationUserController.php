@@ -12,4 +12,5 @@ class OrganizationUserController extends Controller
     {
         return $organization->users;
     }
+
 }

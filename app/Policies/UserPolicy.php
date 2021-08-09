@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -29,7 +30,12 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        $organization = Organization::find($user->active_organization);
+
+        return $organization->users->contains(function ($value, $key) use ($model){
+            return $value->id == $model->id;
+        });
+
     }
 
     /**

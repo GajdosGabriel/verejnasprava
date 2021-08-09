@@ -23,7 +23,13 @@ class TestController extends Controller
     {
         $user = User::first();
 
-        $user->tags()->attach(135);
+      $organization = Organization::first();
+
+     $výsledok = $organization->users->contains(function ($value, $key) {
+        return $value->id == 137;
+    });
+
+       dd( $výsledok );
 
         // $councils =  auth()->user()->councils;
 
