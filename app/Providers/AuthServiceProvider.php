@@ -18,11 +18,13 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          'App\Models\Post' => 'App\Policies\PostPolicy',
+         'App\Models\User' => 'App\Policies\UserPolicy',
          'App\Models\Customer' => 'App\Policies\CustomerPolicy',
          'App\Models\Organization' => 'App\Policies\OrganizationPolicy',
          'App\Models\Comment' => 'App\Policies\CommentPolicy',
         Comment::class => CommentPolicy::class,
         Support::class => SupportPolicy::class,
+
     ];
 
     /**
@@ -34,13 +36,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('delete-post', function ($user, $post) {
-            return $user->id == $post->user_id;
-        });
+        // Gate::define('delete-post', function ($user, $post) {
+        //     return $user->id == $post->user_id;
+        // });
 
 
-        Gate::define('admin', function ($user) {
-            return $user->role == 'admin';
-        });
+        // Gate::define('admin', function ($user) {
+        //     return $user->role == 'admin';
+        // });
     }
 }
