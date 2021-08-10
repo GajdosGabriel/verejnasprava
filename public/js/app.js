@@ -89746,9 +89746,9 @@ var render = function() {
               "a",
               {
                 staticClass: "hover:text-red-600 hover:underline",
-                attrs: { href: "/meetings/" + _vm.meeting[0].id }
+                attrs: { href: "/meetings/" + _vm.meeting.id }
               },
-              [_vm._v(_vm._s(_vm.meeting[0].name))]
+              [_vm._v(_vm._s(_vm.meeting.name))]
             )
           ]
         )

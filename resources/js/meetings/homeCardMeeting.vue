@@ -21,7 +21,7 @@
                     Najbližšie zastupiteľstvo
                 </h3>
             </div>
-            <a class="hover:text-red-600 hover:underline" :href="'/meetings/' +  meeting[0].id">{{ meeting[0].name }}</a>
+            <a class="hover:text-red-600 hover:underline" :href="'/meetings/' +  meeting.id">{{ meeting.name }}</a>
         </header>
     </section>
 </template>

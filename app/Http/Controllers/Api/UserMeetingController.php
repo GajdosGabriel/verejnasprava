@@ -11,13 +11,10 @@ class UserMeetingController extends Controller
 {
     public function index(User $user)
     {
-        // Zlá funkcia berie iba jeden council
-
         foreach($user->councils as $council){
-          $meeting = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)
-          ->sortBy('start_at')
-          ->take(1);
-        }
+            $meetings[] = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1);
+          }
+          $meeting = collect($meetings)->flatten(1)->sortBy('start_at') ->take(1)->first();
 
         return $meeting;
     }

@@ -21,26 +21,25 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
-        $user = User::first();
+    //     $user = User::first();
 
-      $organization = Organization::first();
+    //   $organization = Organization::first();
 
-     $výsledok = $organization->users->contains(function ($value, $key) {
-        return $value->id == 137;
-    });
+    //  $výsledok = $organization->users->contains(function ($value, $key) {
+    //     return $value->id == 137;
+    // });
 
-       dd( $výsledok );
+    //    dd( $výsledok );
 
-        // $councils =  auth()->user()->councils;
+        $councils =  auth()->user()->councils;
 
-        // foreach($councils as $council){
-        //   $meetings = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1)
-        //   ->sortBy('start_at')
-        //   ->take(1)
-        //   ;
-        // }
+        foreach($councils as $council){
+          $meetings[] = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1);
+        }
+        $new = collect($meetings)->flatten(1)->sortBy('start_at') ->take(1)->first();
 
-        // dd($meetings);
+
+        dd($new);
 
 
         $meeting = Meeting::first();
