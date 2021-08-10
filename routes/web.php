@@ -1,5 +1,8 @@
 <?php
 
+// Zmena auth Usera
+// $userId = 140;
+// Auth::loginUsingId($userId, true);
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@redirect');
