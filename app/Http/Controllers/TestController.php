@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\File;
@@ -21,7 +22,10 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
-    //     $user = User::first();
+        $user = User::first();
+
+        dd( $user->can('update', $user) );
+        return new UserResource($user);
 
     //   $organization = Organization::first();
 

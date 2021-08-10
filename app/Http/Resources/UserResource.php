@@ -13,35 +13,41 @@ class UserResource extends JsonResource
      * @return array
      */
 
-    public function toArray($request)
-    {
-        return parent::toArray($request);
-    }
-
-
     // public function toArray($request)
     // {
-    //     return [
-    //         'canUpdate'             => $request->user->can('update',$request->user),
-    //         'id'                    => $this->id,
-    //         'first_name'            => $this->first_name,
-    //         'last_name'             => $this->last_name,
-    //         'full_name'             => $this->full_name(),
-    //         'employment'            => $this->employment,
-    //         'email_verified_at'     => $this->email_verified_at,
-    //         'active_organization'   => $this->active_organization,
-    //         'send_invitation'       => $this->send_invitation,
-    //         'url' => [
-    //             'view'                  => route('organizations.users.show', [$this->active_organization, $this->id]),
-    //             'create'                => $request->user->can('create',$request->user) ? route('organizations.users.create', [$this->active_organization])  : false,
-    //             'edit'                  => $request->user->can('update',$request->user) ? route('organizations.users.edit', [$this->active_organization, $this->id])  : false,
-    //             'update'                => $request->user->can('update',$request->user) ? route('organizations.users.update', [$this->active_organization, $this->id]) : false,
-    //             'store'                 => route('organizations.users.store', [$this->active_organization]),
-    //             'destroy'               => $request->user->can('delete',$request->user) ? route('organizations.users.destroy', [$this->active_organization, $this->id])  : false,
-    //         ]
-
-    //     ];
+    //     return parent::toArray($request);
     // }
+
+
+    public function toArray($request)
+    {
+        return [
+            'canUpdate'             => $request->can('update', $request->user),
+            'id'                    => $this->id,
+            'first_name'            => $this->first_name,
+            'last_name'             => $this->last_name,
+            'full_name'             => $this->full_name(),
+            'employment'            => $this->employment,
+            'email_verified_at'     => $this->email_verified_at,
+            'active_organization'   => $this->active_organization,
+            'send_invitation'       => $this->send_invitation,
+            'roles'                 => RoleResource::collection($this->whenLoaded('roles')),
+            'permissions'           => PermissionResource::collection($this->whenLoaded('permissions')),
+            'organization'          => new OrganizationResource( $this->organization ),
+            'pokus'               => $this->when(false, 777),
+
+
+            'url' => [
+                // 'view'                     => $this->when( $request->user->can('update',$request->user), route('organizations.users.show', [$this->active_organization, $this->id])),
+                // 'create'                => $this->when( $request->user->can('create',$request->user), route('organizations.users.create', [$this->active_organization])),
+                // 'edit'                  => $this->when( $request->user->can('update',$request->user), route('organizations.users.edit', [$this->active_organization, $this->id])),
+                // 'update'                => $this->when( $request->user->can('update',$request->user), route('organizations.users.update', [$this->active_organization, $this->id])),
+                // 'store'                 => $this->when( $request->user->can('update',$request->user), route('organizations.users.store', [$this->active_organization])),
+                // 'destroy'               => $this->when( $request->user->can('delete',$request->user), route('organizations.users.destroy', [$this->active_organization, $this->id])),
+            ]
+
+        ];
+    }
 
     // public function with($request) {
     //     //
