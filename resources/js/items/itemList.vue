@@ -137,9 +137,7 @@
             </div>
 
             <!-- Body  -->
-            <div
-                class="flex justify-center w-full cursor-pointer"
-            >
+            <div class="flex justify-center w-full cursor-pointer">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-4 w-4 mb-5 mt-2 text-gray-500"
@@ -159,7 +157,7 @@
 
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                     class="h-4 w-4 mb-5 mt-2 text-gray-500"
+                    class="h-4 w-4 mb-5 mt-2 text-gray-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -175,8 +173,10 @@
                 </svg>
             </div>
 
-            <div v-if="! readMore" v-html="item.body"></div>
-
+            <transition name="fade">
+                <div v-if="!readMore" v-html="item.body"></div>
+            </transition>
+            
             <div class="flex justify-between w-full text-sm">
                 <!-- <div @click="updateItem(item)"
                      v-if="$auth.can('council delete')"

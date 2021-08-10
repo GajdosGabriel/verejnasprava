@@ -4792,6 +4792,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -89092,9 +89096,11 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            !_vm.readMore
-              ? _c("div", { domProps: { innerHTML: _vm._s(_vm.item.body) } })
-              : _vm._e(),
+            _c("transition", { attrs: { name: "fade" } }, [
+              !_vm.readMore
+                ? _c("div", { domProps: { innerHTML: _vm._s(_vm.item.body) } })
+                : _vm._e()
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex justify-between w-full text-sm" }, [
               _vm.item.published
@@ -89245,7 +89251,8 @@ var render = function() {
               ],
               1
             )
-          ]
+          ],
+          1
         )
       ])
     : _vm._e()
@@ -90312,129 +90319,137 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.meeting.published
-    ? _c("div", { staticClass: "border-2 rounded-md border-gray-300 mb-12" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
-            class: _vm.quorateMeeting,
-            on: { click: _vm.openToggle }
-          },
-          [
-            _c("div", { staticClass: "font-medium text-gray-800" }, [
-              _c("div", { staticClass: "flex cursor-pointer" }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20"
-                    }
-                  },
-                  [
-                    _c("path", {
+    ? _c(
+        "div",
+        { staticClass: "border-2 rounded-md border-gray-300 mb-12" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex justify-between bg-gray-300 p-1 cursor-pointer items-center",
+              class: _vm.quorateMeeting,
+              on: { click: _vm.openToggle }
+            },
+            [
+              _c("div", { staticClass: "font-medium text-gray-800" }, [
+                _c("div", { staticClass: "flex cursor-pointer" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "w-4 h-4 mr-1 fill-current my-1 text-gray-600",
                       attrs: {
-                        d:
-                          "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
                       }
-                    })
-                  ]
-                ),
-                _vm._v("\n                Prezentácia\n            ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-sm flex" }, [
-              _vm._v(
-                "\n            (" +
-                  _vm._s(_vm.meetingUsers.length) +
-                  "/" +
-                  _vm._s(_vm.councilUsers.length) +
-                  ")\n        "
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "svg",
-              {
-                staticClass: "-mr-1 ml-2 h-5 w-5",
-                attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm.openList
-          ? _c(
-              "ul",
-              _vm._l(_vm.councilUsers, function(user) {
-                return _c(
-                  "li",
-                  {
-                    key: user.id,
-                    staticClass:
-                      "flex justify-between border-b-2 border-dotted px-2 text-gray-600",
-                    class: {
-                      "text-gray-700 font-semibold": _vm.meetingUsers.find(
-                        function(o) {
-                          return o.id == user.id
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
                         }
-                      )
-                    }
-                  },
-                  [
-                    _c("span", {
-                      domProps: {
-                        textContent: _vm._s(
-                          user.first_name + " " + user.last_name
-                        )
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.meetingUsers.find(function(o) {
-                      return o.id == user.id
-                    })
-                      ? _c("div", [
-                          _c(
-                            "svg",
-                            {
-                              staticClass:
-                                "w-4 h-4 mr-1 fill-current my-1 text-gray-500",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                viewBox: "0 0 20 20"
-                              }
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      : _vm._e()
-                  ]
+                      })
+                    ]
+                  ),
+                  _vm._v("\n                Prezentácia\n            ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-sm flex" }, [
+                _vm._v(
+                  "\n            (" +
+                    _vm._s(_vm.meetingUsers.length) +
+                    "/" +
+                    _vm._s(_vm.councilUsers.length) +
+                    ")\n        "
                 )
-              }),
-              0
-            )
-          : _vm._e()
-      ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "svg",
+                {
+                  staticClass: "-mr-1 ml-2 h-5 w-5",
+                  attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("transition", { attrs: { name: "fade" } }, [
+            _vm.openList
+              ? _c(
+                  "ul",
+                  _vm._l(_vm.councilUsers, function(user) {
+                    return _c(
+                      "li",
+                      {
+                        key: user.id,
+                        staticClass:
+                          "flex justify-between border-b-2 border-dotted px-2 text-gray-600",
+                        class: {
+                          "text-gray-700 font-semibold": _vm.meetingUsers.find(
+                            function(o) {
+                              return o.id == user.id
+                            }
+                          )
+                        }
+                      },
+                      [
+                        _c("span", {
+                          domProps: {
+                            textContent: _vm._s(
+                              user.first_name + " " + user.last_name
+                            )
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.meetingUsers.find(function(o) {
+                          return o.id == user.id
+                        })
+                          ? _c("div", [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "w-4 h-4 mr-1 fill-current my-1 text-gray-500",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = []
