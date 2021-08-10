@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Home profil')
+@section('page-title', 'Zobraziť užívateľa')
 
     @section('navigation') @include('organizations.navigation') @endsection
 

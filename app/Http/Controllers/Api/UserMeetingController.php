@@ -11,6 +11,9 @@ class UserMeetingController extends Controller
 {
     public function index(User $user)
     {
+        // ak user nie je v zastupiteľstve
+        if($user->councils) return;
+
         foreach($user->councils as $council){
             $meetings[] = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1);
           }
