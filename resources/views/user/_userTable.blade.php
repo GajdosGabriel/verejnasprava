@@ -2,6 +2,7 @@
     <thead class="bg-gray-300">
         <tr>
             <th class="px-4 py-2">Meno</th>
+            <th class="px-4 py-2">Pracovné zaradenie</th>
             <th class="px-4 py-2">Zastupiteľstvo</th>
             @role('admin')
             <th class="px-4 py-2">Email</th>
@@ -15,10 +16,11 @@
     <tbody>
         @forelse($users as $user)
             <tr>
-                <td class="border px-4 py-2 flex justify-between">
+                <td class="border px-4 py-2">
                     <a href="{{ route('users.show', $user->id) }}"><strong>{{ $user->full_name() }}</strong></a>
-
-                    <span class="text-gray-600">{{ $user->employment }}</span>
+                </td>
+                <td class="border px-4 py-2">
+                    {{ $user->employment }}
                 </td>
                 <td class="border px-4 py-2">
                     @foreach ($user->councils as $role)
