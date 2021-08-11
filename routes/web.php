@@ -1,7 +1,7 @@
 <?php
 
 // Zmena auth Usera
-// $userId = 140;
+// $userId = 137;
 // Auth::loginUsingId($userId, true);
 
 Route::get('/', 'HomeController@index')->name('home.index');

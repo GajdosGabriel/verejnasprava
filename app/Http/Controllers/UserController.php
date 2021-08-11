@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\User;
@@ -31,7 +33,7 @@ class UserController extends Controller
         if(\Request::wantsJson()) {
            return $users;
         }
-        return view('user.index', compact('users'));
+        return view('user.index', [ 'users' => UserResource::collection($users)] );
     }
 
 

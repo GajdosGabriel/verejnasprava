@@ -22,7 +22,6 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'canUpdate'             => $request->user()->can('update', $request->user()),
             'id'                    => $this->id,
             'first_name'            => $this->first_name,
             'last_name'             => $this->last_name,
@@ -39,16 +38,16 @@ class UserResource extends JsonResource
 
 
             'url' => [
-                'view'              => $this->when( $request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization]) ),
-                'edit'              => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.edit', [$this->active_organization, $this->active_organization])),
-                'update'            => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.update', [$this->active_organization, $this->id])),
-                'store'             => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.store', [$this->active_organization])),
+                'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),
+                'edit'              => $this->when($request->user()->can('update', $request->user()), route('organizations.users.edit', [$this->active_organization, $this->active_organization])),
+                'update'            => $this->when($request->user()->can('update', $request->user()), route('organizations.users.update', [$this->active_organization, $this->id])),
+                'store'             => $this->when($request->user()->can('update', $request->user()), route('organizations.users.store', [$this->active_organization])),
                 // 'destroy'               => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.destroy', [$this->active_organization, $this->id])),
             ],
 
             'titles' => [
-                'view'                     => $this->when( $request->user()->can('view', $request->user()), 'Zobraziť' ),
-                'edit'                     => $this->when( $request->user()->can('update', $request->user()), 'Upraviť' ),
+                'view'              => $this->when($request->user()->can('view', $request->user()), 'Zobraziť'),
+                'edit'              => $this->when($request->user()->can('update', $request->user()), 'Upraviť'),
             ]
 
         ];
