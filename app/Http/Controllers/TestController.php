@@ -24,7 +24,7 @@ class TestController extends Controller
     {
         $user = User::first();
 
-        dd( $user->can('update', $user) );
+        // dd( $user->can('update', $user) );
         return new UserResource($user);
 
     //   $organization = Organization::first();
