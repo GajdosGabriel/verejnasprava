@@ -2165,7 +2165,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.createNamespace
   watch: {
     search: function search(val) {
       console.log("dddd");
-      this.$store.dispatch("contacts/fetchContacts", this.url + this.user.active_organization + "?multi=" + this.search);
+      this.$store.dispatch("contacts/fetchContacts", this.url + this.user.active_organization + "/contacts?multi=" + this.search);
     }
   },
   methods: _objectSpread({}, mapActions(["newContactToggle", "openEditForm", "filterContact"]))

@@ -124,7 +124,7 @@ export default {
                 "contacts/fetchContacts",
                 this.url +
                     this.user.active_organization +
-                    "?multi=" +
+                    "/contacts?multi=" +
                     this.search
             );
         }
