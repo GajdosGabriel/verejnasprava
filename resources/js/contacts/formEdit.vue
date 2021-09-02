@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed z-10 inset-0 overflow-y-auto" v-if="showModal">
+    <form @submit.prevent="updateContact(contact)" class="fixed z-10 inset-0 overflow-y-auto" v-if="showModal">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!--
               Background overlay, show/hide based on modal state.
@@ -48,7 +48,7 @@
                                 <li class="bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm border-2 border-gray-500" v-for="error in errors">{{ error[0] }}</li>
                             </ul>
 
-                            <form @submit.prevent="saveContact">
+
                                 <div class="mt-2">
                                     <div class="md:flex">
 
@@ -157,7 +157,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -171,8 +171,7 @@
                             Zrušiť
                         </button>
 
-                        <button type="button"
-                            @click="updateContact(contact)"
+                        <button type="submit"
                             class="ml-3 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                             Uložiť
                         </button>
@@ -194,7 +193,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>

@@ -2373,10 +2373,145 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
-var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespacedHelpers)('contacts'),
+var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespacedHelpers)("contacts"),
     mapActions = _createNamespacedHelp.mapActions;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2391,7 +2526,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
       return state.contacts.showCreateForm;
     }
   }),
-  methods: _objectSpread({}, mapActions(['newContactToggle', 'saveContact']))
+  methods: _objectSpread({}, mapActions(["newContactToggle", "saveContact"]))
 });
 
 /***/ }),
@@ -2414,7 +2549,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -86066,803 +86200,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showNewForm
-    ? _c("div", { staticClass: "fixed z-10 inset-0 overflow-y-auto" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("span", {
-              staticClass: "hidden sm:inline-block sm:align-middle sm:h-screen"
-            }),
-            _vm._v("​\n        "),
-            _vm._v(" "),
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.saveContact([_vm.contact, _vm.user])
+        }
+      }
+    },
+    [
+      _vm.showNewForm
+        ? _c("div", { staticClass: "fixed z-10 inset-0 overflow-y-auto" }, [
             _c(
               "div",
               {
                 staticClass:
-                  "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
-                attrs: {
-                  role: "dialog",
-                  "aria-modal": "true",
-                  "aria-labelledby": "modal-headline"
-                }
+                  "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
               },
               [
-                _c(
-                  "div",
-                  { staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" },
-                  [
-                    _c("div", { staticClass: "sm:flex sm:items-start" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
-                        },
-                        [
-                          _c("div", { staticClass: "flex justify-between" }, [
-                            _c(
-                              "h3",
-                              {
-                                staticClass:
-                                  "text-lg leading-6 font-medium text-gray-900",
-                                attrs: { id: "modal-headline" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                Nový kontakt\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "cursor-pointer text-gray-500",
-                                on: { click: _vm.newContactToggle }
-                              },
-                              [_vm._v("X")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "form",
-                            { attrs: { "submit.prevent": "saveContact" } },
-                            [
-                              _c("div", { staticClass: "mt-2" }, [
-                                _c("div", { staticClass: "md:flex" }, [
-                                  _c("div", { staticClass: "max-w-sm" }, [
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon1" }
-                                        },
-                                        [_vm._v("Firma")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.name,
-                                            expression: "contact.name"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "name",
-                                          placeholder: "Názov firmy"
-                                        },
-                                        domProps: { value: _vm.contact.name },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "name",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon2" }
-                                        },
-                                        [_vm._v("Ulica a číslo")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.street,
-                                            expression: "contact.street"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "street",
-                                          placeholder: "Ulica a číslo"
-                                        },
-                                        domProps: { value: _vm.contact.street },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "street",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon3" }
-                                        },
-                                        [_vm._v("PSČ")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.psc,
-                                            expression: "contact.psc"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "number",
-                                          name: "psc",
-                                          placeholder: "Poštové smerové číslo",
-                                          "aria-describedby": "basic-addon3",
-                                          required: ""
-                                        },
-                                        domProps: { value: _vm.contact.psc },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "psc",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon4" }
-                                        },
-                                        [_vm._v("Mesto")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.city,
-                                            expression: "contact.city"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "city",
-                                          placeholder: "Mesto",
-                                          "aria-describedby": "basic-addon4",
-                                          required: ""
-                                        },
-                                        domProps: { value: _vm.contact.city },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "city",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon5" }
-                                        },
-                                        [_vm._v("Email")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.email,
-                                            expression: "contact.email"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "email",
-                                          name: "email",
-                                          placeholder: "Email dodávateľa",
-                                          "aria-describedby": "basic-addon5",
-                                          required: ""
-                                        },
-                                        domProps: { value: _vm.contact.email },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "email",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mb-4" }, [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "input-label",
-                                          attrs: { id: "basic-addon6" }
-                                        },
-                                        [_vm._v("Telefón")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.contact.phone,
-                                            expression: "contact.phone"
-                                          }
-                                        ],
-                                        staticClass: "input-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "phone",
-                                          placeholder: "Telefón dodávateľa",
-                                          "aria-describedby": "basic-addon6"
-                                        },
-                                        domProps: { value: _vm.contact.phone },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.contact,
-                                              "phone",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "max-w-sm md:px-4" },
-                                    [
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "basic-addon7" }
-                                          },
-                                          [_vm._v("IČO")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.ico,
-                                              expression: "contact.ico"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "number",
-                                            name: "ico",
-                                            placeholder: "IČO organizácie",
-                                            maxlength: "8",
-                                            "aria-describedby": "basic-addon7"
-                                          },
-                                          domProps: { value: _vm.contact.ico },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "ico",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "basic-addon8" }
-                                          },
-                                          [_vm._v("DIČ")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.dic,
-                                              expression: "contact.dic"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "text",
-                                            name: "dic",
-                                            placeholder: "DIČ dodávateľa",
-                                            "aria-describedby": "basic-addon8"
-                                          },
-                                          domProps: { value: _vm.contact.dic },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "dic",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "basic-addon9" }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "IC\n                                                DIČ"
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.ic_dic,
-                                              expression: "contact.ic_dic"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "text",
-                                            name: "ic_dic",
-                                            placeholder:
-                                              "IC DIČ pre plátcov DPH",
-                                            "aria-describedby": "basic-addon9"
-                                          },
-                                          domProps: {
-                                            value: _vm.contact.ic_dic
-                                          },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "ic_dic",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "banka" }
-                                          },
-                                          [_vm._v("Názov banky")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.bank_name,
-                                              expression: "contact.bank_name"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "text",
-                                            name: "bank_name",
-                                            placeholder: "Bankový účet",
-                                            "aria-describedby": "banka"
-                                          },
-                                          domProps: {
-                                            value: _vm.contact.bank_name
-                                          },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "bank_name",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "bankaNo" }
-                                          },
-                                          [_vm._v("Číslo účtu")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.bank_number,
-                                              expression: "contact.bank_number"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "text",
-                                            name: "bank_number",
-                                            placeholder: "Číslo účtu",
-                                            "aria-describedby": "bankaNo"
-                                          },
-                                          domProps: {
-                                            value: _vm.contact.bank_number
-                                          },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "bank_number",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mb-4" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "flex-shrink-0 input-label",
-                                            attrs: { id: "bank_iban" }
-                                          },
-                                          [_vm._v("IBAN")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.contact.bank_iban,
-                                              expression: "contact.bank_iban"
-                                            }
-                                          ],
-                                          staticClass: "input-control",
-                                          attrs: {
-                                            type: "text",
-                                            name: "bank_iban",
-                                            placeholder: "Iban",
-                                            "aria-describedby": "bank_iban"
-                                          },
-                                          domProps: {
-                                            value: _vm.contact.bank_iban
-                                          },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.contact,
-                                                "bank_iban",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ])
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]
-                ),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass:
+                    "hidden sm:inline-block sm:align-middle sm:h-screen"
+                }),
+                _vm._v("​\n            "),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
                     staticClass:
-                      "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+                      "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                    attrs: {
+                      role: "dialog",
+                      "aria-modal": "true",
+                      "aria-labelledby": "modal-headline"
+                    }
                   },
                   [
                     _c(
-                      "span",
-                      {
-                        staticClass:
-                          "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
-                      },
+                      "div",
+                      { staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" },
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.saveContact([_vm.contact, _vm.user])
-                              }
-                            }
-                          },
-                          [_vm._v("\n        Uložiť\n      ")]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.newContactToggle }
-                          },
-                          [_vm._v("\n        Zrušiť\n      ")]
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ]
-        )
-      ])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "fixed inset-0 transition-opacity" }, [
-      _c("div", { staticClass: "absolute inset-0 bg-gray-500 opacity-75" })
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/contacts/formEdit.vue?vue&type=template&id=4f47239c&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/contacts/formEdit.vue?vue&type=template&id=4f47239c& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.showModal
-    ? _c("div", { staticClass: "fixed z-10 inset-0 overflow-y-auto" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("span", {
-              staticClass: "hidden sm:inline-block sm:align-middle sm:h-screen"
-            }),
-            _vm._v("​\n            "),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
-                attrs: {
-                  role: "dialog",
-                  "aria-modal": "true",
-                  "aria-labelledby": "modal-headline"
-                }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" },
-                  [
-                    _c("div", { staticClass: "sm:flex sm:items-start" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
-                        },
-                        [
-                          _c("div", { staticClass: "flex justify-between" }, [
-                            _c(
-                              "h3",
-                              {
-                                staticClass:
-                                  "text-lg leading-6 font-medium text-gray-900",
-                                attrs: { id: "modal-headline" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Upraviť - " +
-                                    _vm._s(_vm.contact.name) +
-                                    "\n                                "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "cursor-pointer text-gray-500",
-                                on: { click: _vm.openEditForm }
-                              },
-                              [_vm._v("X")]
-                            )
-                          ]),
-                          _vm._v(" "),
+                        _c("div", { staticClass: "sm:flex sm:items-start" }, [
                           _c(
-                            "ul",
-                            _vm._l(_vm.errors, function(error) {
-                              return _c(
-                                "li",
-                                {
-                                  staticClass:
-                                    "bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm border-2 border-gray-500"
-                                },
-                                [_vm._v(_vm._s(error[0]))]
-                              )
-                            }),
-                            0
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "form",
+                            "div",
                             {
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.saveContact($event)
-                                }
-                              }
+                              staticClass:
+                                "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
                             },
                             [
+                              _c(
+                                "div",
+                                { staticClass: "flex justify-between" },
+                                [
+                                  _c(
+                                    "h3",
+                                    {
+                                      staticClass:
+                                        "text-lg leading-6 font-medium text-gray-900",
+                                      attrs: { id: "modal-headline" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Nový kontakt\n                                "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "cursor-pointer text-gray-500",
+                                      on: { click: _vm.newContactToggle }
+                                    },
+                                    [_vm._v("X")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
                               _c("div", { staticClass: "mt-2" }, [
                                 _c("div", { staticClass: "md:flex" }, [
                                   _c("div", { staticClass: "max-w-sm" }, [
@@ -86888,7 +86307,6 @@ var render = function() {
                                         staticClass: "input-control",
                                         attrs: {
                                           type: "text",
-                                          name: "name",
                                           placeholder: "Názov firmy",
                                           required: ""
                                         },
@@ -87220,11 +86638,7 @@ var render = function() {
                                               "flex-shrink-0 input-label",
                                             attrs: { id: "basic-addon9" }
                                           },
-                                          [
-                                            _vm._v(
-                                              "IC\n                                                    DIČ"
-                                            )
-                                          ]
+                                          [_vm._v("IC DIČ")]
                                         ),
                                         _vm._v(" "),
                                         _c("input", {
@@ -87324,7 +86738,8 @@ var render = function() {
                                               name: "model",
                                               rawName: "v-model",
                                               value: _vm.contact.bank_number,
-                                              expression: "contact.bank_number"
+                                              expression:
+                                                "\n                                                    contact.bank_number\n                                                "
                                             }
                                           ],
                                           staticClass: "input-control",
@@ -87402,84 +86817,39 @@ var render = function() {
                               ])
                             ]
                           )
-                        ]
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse flex justify-between items-center"
-                  },
-                  [
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.openEditForm }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Zrušiť\n                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "ml-3 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.updateContact(_vm.contact)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Uložiť\n                        "
-                            )
-                          ]
-                        )
+                        ])
                       ]
                     ),
                     _vm._v(" "),
                     _c(
-                      "span",
+                      "div",
                       {
                         staticClass:
-                          "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
+                          "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
                       },
                       [
+                        _vm._m(1),
+                        _vm._v(" "),
                         _c(
-                          "button",
+                          "span",
                           {
                             staticClass:
-                              "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteContact(_vm.contact)
-                              }
-                            }
+                              "mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
                           },
                           [
-                            _vm._v(
-                              "\n                        Zmazať\n                    "
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                                attrs: { type: "submit" },
+                                on: { click: _vm.newContactToggle }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Zrušiť\n                        "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -87489,9 +86859,777 @@ var render = function() {
                 )
               ]
             )
+          ])
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fixed inset-0 transition-opacity" }, [
+      _c("div", { staticClass: "absolute inset-0 bg-gray-500 opacity-75" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto" },
+      [
+        _c(
+          "button",
+          {
+            staticClass:
+              "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+            attrs: { type: "submit" }
+          },
+          [
+            _vm._v(
+              "\n                            Uložiť\n                        "
+            )
           ]
         )
-      ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/contacts/formEdit.vue?vue&type=template&id=4f47239c&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/contacts/formEdit.vue?vue&type=template&id=4f47239c& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.showModal
+    ? _c(
+        "form",
+        {
+          staticClass: "fixed z-10 inset-0 overflow-y-auto",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.updateContact(_vm.contact)
+            }
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("span", {
+                staticClass:
+                  "hidden sm:inline-block sm:align-middle sm:h-screen"
+              }),
+              _vm._v("​\n            "),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                  attrs: {
+                    role: "dialog",
+                    "aria-modal": "true",
+                    "aria-labelledby": "modal-headline"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" },
+                    [
+                      _c("div", { staticClass: "sm:flex sm:items-start" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
+                          },
+                          [
+                            _c("div", { staticClass: "flex justify-between" }, [
+                              _c(
+                                "h3",
+                                {
+                                  staticClass:
+                                    "text-lg leading-6 font-medium text-gray-900",
+                                  attrs: { id: "modal-headline" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Upraviť - " +
+                                      _vm._s(_vm.contact.name) +
+                                      "\n                                "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "cursor-pointer text-gray-500",
+                                  on: { click: _vm.openEditForm }
+                                },
+                                [_vm._v("X")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "ul",
+                              _vm._l(_vm.errors, function(error) {
+                                return _c(
+                                  "li",
+                                  {
+                                    staticClass:
+                                      "bg-red-500 text-red-200 font-semibold my-2 px-2 rounded-sm border-2 border-gray-500"
+                                  },
+                                  [_vm._v(_vm._s(error[0]))]
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-2" }, [
+                              _c("div", { staticClass: "md:flex" }, [
+                                _c("div", { staticClass: "max-w-sm" }, [
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon1" }
+                                      },
+                                      [_vm._v("Firma")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.name,
+                                          expression: "contact.name"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "name",
+                                        placeholder: "Názov firmy",
+                                        required: ""
+                                      },
+                                      domProps: { value: _vm.contact.name },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon2" }
+                                      },
+                                      [_vm._v("Ulica a číslo")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.street,
+                                          expression: "contact.street"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "street",
+                                        placeholder: "Ulica a číslo"
+                                      },
+                                      domProps: { value: _vm.contact.street },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "street",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon3" }
+                                      },
+                                      [_vm._v("PSČ")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.psc,
+                                          expression: "contact.psc"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "number",
+                                        name: "psc",
+                                        placeholder: "Poštové smerové číslo",
+                                        "aria-describedby": "basic-addon3",
+                                        required: ""
+                                      },
+                                      domProps: { value: _vm.contact.psc },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "psc",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon4" }
+                                      },
+                                      [_vm._v("Mesto")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.city,
+                                          expression: "contact.city"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "city",
+                                        placeholder: "Mesto",
+                                        "aria-describedby": "basic-addon4",
+                                        required: ""
+                                      },
+                                      domProps: { value: _vm.contact.city },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "city",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon5" }
+                                      },
+                                      [_vm._v("Email")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.email,
+                                          expression: "contact.email"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "email",
+                                        name: "email",
+                                        placeholder: "Email dodávateľa",
+                                        "aria-describedby": "basic-addon5",
+                                        required: ""
+                                      },
+                                      domProps: { value: _vm.contact.email },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "email",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "input-label",
+                                        attrs: { id: "basic-addon6" }
+                                      },
+                                      [_vm._v("Telefón")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.phone,
+                                          expression: "contact.phone"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "phone",
+                                        placeholder: "Telefón dodávateľa",
+                                        "aria-describedby": "basic-addon6"
+                                      },
+                                      domProps: { value: _vm.contact.phone },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "phone",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "max-w-sm md:px-4" }, [
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "basic-addon7" }
+                                      },
+                                      [_vm._v("IČO")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.ico,
+                                          expression: "contact.ico"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "number",
+                                        name: "ico",
+                                        placeholder: "IČO organizácie",
+                                        maxlength: "8",
+                                        "aria-describedby": "basic-addon7"
+                                      },
+                                      domProps: { value: _vm.contact.ico },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "ico",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "basic-addon8" }
+                                      },
+                                      [_vm._v("DIČ")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.dic,
+                                          expression: "contact.dic"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "dic",
+                                        placeholder: "DIČ dodávateľa",
+                                        "aria-describedby": "basic-addon8"
+                                      },
+                                      domProps: { value: _vm.contact.dic },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "dic",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "basic-addon9" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "IC\n                                                    DIČ"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.ic_dic,
+                                          expression: "contact.ic_dic"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "ic_dic",
+                                        placeholder: "IC DIČ pre plátcov DPH",
+                                        "aria-describedby": "basic-addon9"
+                                      },
+                                      domProps: { value: _vm.contact.ic_dic },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "ic_dic",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "banka" }
+                                      },
+                                      [_vm._v("Názov banky")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.bank_name,
+                                          expression: "contact.bank_name"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "bank_name",
+                                        placeholder: "Bankový účet",
+                                        "aria-describedby": "banka"
+                                      },
+                                      domProps: {
+                                        value: _vm.contact.bank_name
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "bank_name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "bankaNo" }
+                                      },
+                                      [_vm._v("Číslo účtu")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.bank_number,
+                                          expression: "contact.bank_number"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "bank_number",
+                                        placeholder: "Číslo účtu",
+                                        "aria-describedby": "bankaNo"
+                                      },
+                                      domProps: {
+                                        value: _vm.contact.bank_number
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "bank_number",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "mb-4" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 input-label",
+                                        attrs: { id: "bank_iban" }
+                                      },
+                                      [_vm._v("IBAN")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.contact.bank_iban,
+                                          expression: "contact.bank_iban"
+                                        }
+                                      ],
+                                      staticClass: "input-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "bank_iban",
+                                        placeholder: "Iban",
+                                        "aria-describedby": "bank_iban"
+                                      },
+                                      domProps: {
+                                        value: _vm.contact.bank_iban
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.contact,
+                                            "bank_iban",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse flex justify-between items-center"
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                              attrs: { type: "submit" },
+                              on: { click: _vm.openEditForm }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Zrušiť\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "ml-3 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                              attrs: { type: "submit" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Uložiť\n                        "
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteContact(_vm.contact)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Zmazať\n                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
     : _vm._e()
 }
 var staticRenderFns = [
