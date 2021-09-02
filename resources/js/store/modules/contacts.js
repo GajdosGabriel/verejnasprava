@@ -4,7 +4,7 @@ const state = {
     errors: [],
     showEditForm: false,
     showCreateForm: false,
-    url: '/api/contacts/',
+    url: '/api/organizations/',
     contact: ''
 };
 const getters = {};
@@ -52,10 +52,10 @@ const actions = {
         commit('SHOW_NEW_FORM', data)
     },
 
-    async deleteContact({commit}, id) {
-        await axios.delete('/api/contacts/' + id);
+    async deleteContact({commit}, contact) {
+        await axios.delete('/api/organizations/' + contact.organization_id + '/contacts/' + contact.id);
 
-        commit('REMOVE_CONTACT', id);
+        commit('REMOVE_CONTACT', contact.id);
         commit('SHOW_FORM');
 
         commit('notification/NEW_NOTIFICATION', {

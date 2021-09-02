@@ -13,34 +13,33 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
 
 Route::get('posts/{userId}', 'Posts\ApiPostController@index');
-Route::get('contacts/{organizationId}', 'Contacts\ApiContactsController@getContacts');
-Route::delete('contacts/{contact}', 'Contacts\ApiContactsController@delete');
-
 
 
 
 Route::apiResources([
-    'votes'                 => 'Api\VoteController',
-    'items'                 => 'Api\ItemController',
-    'meetings'              => 'Api\MeetingController',
-    'meetings.invitation'   => 'Api\MeetingInvitationController',
-    'organizations.tags'    => 'Api\OrganizationTagController',
-    'organizations.users'   => 'Api\OrganizationUserController',
-    'users.meetings'        => 'Api\UserMeetingController',
-    'invitations'           => 'Api\InvitationController',
-    'menus'                 => 'Api\MenuController',
+    'votes'                     => 'Api\VoteController',
+    'items'                     => 'Api\ItemController',
+    'meetings'                  => 'Api\MeetingController',
+    'meetings.invitation'       => 'Api\MeetingInvitationController',
+    'organizations.tags'        => 'Api\OrganizationTagController',
+    'organizations.users'       => 'Api\OrganizationUserController',
+    'organizations.contacts'    => 'Api\OrganizationContactController',
+    'users.meetings'            => 'Api\UserMeetingController',
+    'invitations'               => 'Api\InvitationController',
+    'menus'                     => 'Api\MenuController',
 ]);
 
 
-Route::get('artisan/run', function () {
 
+Route::get('artisan/run', function ()
+{
     \Artisan::call('cache:clear');
     \Artisan::call('view:clear');
     \Artisan::call('config:clear');

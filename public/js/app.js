@@ -2160,7 +2160,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.createNamespace
     }
   }),
   created: function created() {
-    this.$store.dispatch("contacts/fetchContacts", this.url + this.user.active_organization);
+    this.$store.dispatch("contacts/fetchContacts", this.url + this.user.active_organization + '/contacts');
   },
   watch: {
     search: function search(val) {
@@ -8429,7 +8429,7 @@ var state = {
   errors: [],
   showEditForm: false,
   showCreateForm: false,
-  url: '/api/contacts/',
+  url: '/api/organizations/',
   contact: ''
 };
 var getters = {};
@@ -8473,7 +8473,7 @@ var actions = {
     var commit = _ref2.commit;
     commit('SHOW_NEW_FORM', data);
   },
-  deleteContact: function deleteContact(_ref3, id) {
+  deleteContact: function deleteContact(_ref3, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -8482,10 +8482,10 @@ var actions = {
             case 0:
               commit = _ref3.commit;
               _context.next = 3;
-              return axios["delete"]('/api/contacts/' + id);
+              return axios["delete"]('/api/organizations/' + contact.organization_id + '/contacts/' + contact.id);
 
             case 3:
-              commit('REMOVE_CONTACT', id);
+              commit('REMOVE_CONTACT', contact.id);
               commit('SHOW_FORM');
               commit('notification/NEW_NOTIFICATION', {
                 type: 'bg-green-400',
@@ -87458,7 +87458,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.deleteContact(_vm.contact.id)
+                                return _vm.deleteContact(_vm.contact)
                               }
                             }
                           },

@@ -114,7 +114,7 @@ export default {
     created() {
         this.$store.dispatch(
             "contacts/fetchContacts",
-            this.url + this.user.active_organization
+            this.url + this.user.active_organization + '/contacts'
         );
     },
     watch: {
