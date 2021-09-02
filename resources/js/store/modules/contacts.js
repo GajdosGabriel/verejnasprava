@@ -65,7 +65,7 @@ const actions = {
     },
 
     async updateContact({commit}, contact) {
-        await axios.put('/contacts/' + contact.id, contact)
+        await axios.put('/api/organizations/' + contact.organization_id +  '/contacts/' + contact.id, contact)
             .then(response => {
 
                 commit('SHOW_FORM');

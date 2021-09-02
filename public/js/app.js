@@ -8511,7 +8511,7 @@ var actions = {
             case 0:
               commit = _ref4.commit;
               _context2.next = 3;
-              return axios.put('/contacts/' + contact.id, contact).then(function (response) {
+              return axios.put('/api/organizations/' + contact.organization_id + '/contacts/' + contact.id, contact).then(function (response) {
                 commit('SHOW_FORM'); // Notify for add task
 
                 commit('notification/NEW_NOTIFICATION', {

@@ -7,6 +7,7 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Filters\ContactFilters;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactCreateRequest;
 
 class OrganizationContactController extends Controller
 {
@@ -16,6 +17,14 @@ class OrganizationContactController extends Controller
             ->filter($contactFilters)
             ->latest()->paginate();
     }
+
+    public function update(Organization $organization, Contact $contact, ContactCreateRequest $request) {
+        //        $this->authorize('update', $company);
+                $contact->update($request->all());
+        //        flash()->success('Dodávateľ aktualizovaný!');
+        //        return redirect()->route('contact.index');
+            }
+
 
     public function destroy(Organization $organization, Contact $contact){
         $contact->delete();

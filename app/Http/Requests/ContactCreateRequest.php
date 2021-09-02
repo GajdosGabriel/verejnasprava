@@ -13,7 +13,7 @@ class ContactCreateRequest extends OrganizationFormRequest
      */
     public function authorize()
     {
-        return \Auth::check();
+        return true;
     }
 
     /**
