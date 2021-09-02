@@ -8417,6 +8417,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -8539,18 +8551,21 @@ var actions = {
       }, _callee2);
     }))();
   },
-  saveContact: function saveContact(_ref5, data) {
+  saveContact: function saveContact(_ref5, _ref6) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var commit;
+      var commit, _ref7, data, user;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               commit = _ref5.commit;
-              _context3.next = 3;
-              return axios.post('/contacts', data);
+              _ref7 = _slicedToArray(_ref6, 2), data = _ref7[0], user = _ref7[1];
+              console.log(user);
+              _context3.next = 5;
+              return axios.post('/api/organizations/' + user.active_organization + '/contacts', data);
 
-            case 3:
+            case 5:
               commit('SHOW_CREATE_FORM');
               commit('INSERT_CONTACT', data); // Notify for add task
 
@@ -8561,7 +8576,7 @@ var actions = {
                 root: true
               });
 
-            case 6:
+            case 8:
             case "end":
               return _context3.stop();
           }
@@ -8569,8 +8584,8 @@ var actions = {
       }, _callee3);
     }))();
   },
-  fetchContacts: function fetchContacts(_ref6, url) {
-    var commit = _ref6.commit;
+  fetchContacts: function fetchContacts(_ref8, url) {
+    var commit = _ref8.commit;
     commit('SET_LOADING_STATUS', 'loading');
     axios.get(url).then(function (response) {
       commit('SET_LOADING_STATUS', 'notLoading');
@@ -86686,7 +86701,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.saveContact(_vm.contact)
+                                return _vm.saveContact([_vm.contact, _vm.user])
                               }
                             }
                           },

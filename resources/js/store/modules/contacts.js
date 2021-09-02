@@ -92,8 +92,10 @@ const actions = {
 
     },
 
-    async saveContact({commit}, data) {
-        await axios.post('/contacts', data);
+    async saveContact({commit}, [ data, user]) {
+
+        console.log(user);
+        await axios.post('/api/organizations/' + user.active_organization + '/contacts', data);
 
 
         commit('SHOW_CREATE_FORM');

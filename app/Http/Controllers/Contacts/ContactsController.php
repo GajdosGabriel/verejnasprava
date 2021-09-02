@@ -25,26 +25,16 @@ class ContactsController extends Controller
         return view('contacts.index');
     }
 
-    public function create(Organization $organization) {
-        $org = $organization; // for route
-        $organization = new Organization; // for form
-        return view('contacts.create', compact('organization', 'org'));
-    }
+    // public function create(Organization $organization) {
+    //     $org = $organization; // for route
+    //     $organization = new Organization; // for form
+    //     return view('contacts.create', compact('organization', 'org'));
+    // }
 
 
 
-    public function edit(Contact $contact) {
-        return view('contacts.edit', compact('contact'));
-    }
-
-
-    public function store(ContactCreateRequest $contactRequest)
-    {
-        $organization = Organization::findOrFail(auth()->user()->active_organization);
-        $organization->contacts()->create($contactRequest->all());
-//        flash()->success('Dodávateľ bol vytvorený');
-//        return redirect()->route('contact.index');
-    }
-
+    // public function edit(Contact $contact) {
+    //     return view('contacts.edit', compact('contact'));
+    // }
 
 }

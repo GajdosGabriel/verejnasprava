@@ -18,15 +18,26 @@ class OrganizationContactController extends Controller
             ->latest()->paginate();
     }
 
-    public function update(Organization $organization, Contact $contact, ContactCreateRequest $request) {
+    public function update(Organization $organization, Contact $contact, ContactCreateRequest $request)
+    {
         //        $this->authorize('update', $company);
-                $contact->update($request->all());
+        $contact->update($request->all());
         //        flash()->success('Dodávateľ aktualizovaný!');
         //        return redirect()->route('contact.index');
-            }
+    }
 
 
-    public function destroy(Organization $organization, Contact $contact){
+    public function store(Organization $organization, ContactCreateRequest $contactRequest)
+    {
+        $organization->contacts()->create($contactRequest->all());
+        //        flash()->success('Dodávateľ bol vytvorený');
+        //        return redirect()->route('contact.index');
+    }
+
+
+
+    public function destroy(Organization $organization, Contact $contact)
+    {
         $contact->delete();
     }
 }
