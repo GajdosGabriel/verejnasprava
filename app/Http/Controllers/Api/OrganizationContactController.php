@@ -15,7 +15,7 @@ class OrganizationContactController extends Controller
     {
         return $organization->contacts()
             ->filter($contactFilters)
-            ->latest()->paginate();
+            ->paginate();
     }
 
     public function update(Organization $organization, Contact $contact, ContactCreateRequest $request)
