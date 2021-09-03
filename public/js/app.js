@@ -6496,6 +6496,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["data"]
 });
@@ -92196,107 +92197,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
-    _c(
-      "button",
-      {
-        staticClass:
-          "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-        attrs: { disabled: !_vm.data.prev_page_url },
-        on: {
-          click: function($event) {
-            return _vm.$emit("pathUrl", _vm.data.prev_page_url)
-          }
-        }
-      },
-      [
+  return _vm.data.last_page > 1
+    ? _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
+        _vm._v("\n    " + _vm._s() + "\n    "),
         _c(
-          "svg",
+          "button",
           {
-            staticClass: "h-4 w-4",
-            attrs: {
-              xmlns: "http://www.w3.org/2000/svg",
-              viewBox: "0 0 20 20",
-              fill: "currentColor"
+            staticClass:
+              "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
+            attrs: { disabled: !_vm.data.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.$emit("pathUrl", _vm.data.prev_page_url)
+              }
             }
           },
           [
-            _c("path", {
-              attrs: {
-                "fill-rule": "evenodd",
-                d:
-                  "M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z",
-                "clip-rule": "evenodd"
-              }
-            })
+            _c(
+              "svg",
+              {
+                staticClass: "h-4 w-4",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
           ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm"
-      },
-      [
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm.data.current_page) +
-            " / " +
-            _vm._s(_vm.data.last_page) +
-            "\n    "
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass:
-          "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-        attrs: { disabled: !_vm.data.next_page_url },
-        on: {
-          click: function($event) {
-            return _vm.$emit("pathUrl", _vm.data.next_page_url)
-          }
-        }
-      },
-      [
+        ),
+        _vm._v(" "),
         _c(
-          "svg",
+          "div",
           {
-            staticClass: "h-4 w-4",
-            attrs: {
-              xmlns: "http://www.w3.org/2000/svg",
-              viewBox: "0 0 20 20",
-              fill: "currentColor"
+            staticClass:
+              "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm"
+          },
+          [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.data.current_page) +
+                " / " +
+                _vm._s(_vm.data.last_page) +
+                "\n    "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
+            attrs: { disabled: !_vm.data.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.$emit("pathUrl", _vm.data.next_page_url)
+              }
             }
           },
           [
-            _c("path", {
-              attrs: {
-                "fill-rule": "evenodd",
-                d:
-                  "M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z",
-                "clip-rule": "evenodd"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              attrs: {
-                "fill-rule": "evenodd",
-                d:
-                  "M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z",
-                "clip-rule": "evenodd"
-              }
-            })
+            _c(
+              "svg",
+              {
+                staticClass: "h-4 w-4",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z",
+                    "clip-rule": "evenodd"
+                  }
+                }),
+                _vm._v(" "),
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z",
+                    "clip-rule": "evenodd"
+                  }
+                })
+              ]
+            )
           ]
         )
-      ]
-    )
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

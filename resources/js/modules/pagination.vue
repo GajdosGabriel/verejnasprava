@@ -1,5 +1,6 @@
 <template>
-    <div class="flex justify-center my-10 space-x-3">
+    <div class="flex justify-center my-10 space-x-3" v-if="data.last_page > 1" >
+        {{ }}
         <button
             @click="$emit('pathUrl', data.prev_page_url)"
             class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
