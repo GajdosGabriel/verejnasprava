@@ -6909,7 +6909,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       this.search = contactId;
     },
     deletePost: function deletePost(post) {
-      axios["delete"](this.url + '/' + post.id).then(window.location.reload());
+      axios["delete"]("/api/organizations/" + this.user.active_organization + "/posts/" + post.id).then(window.location.reload());
     },
     changePaginateUrl: function changePaginateUrl(path) {
       this.url = path;

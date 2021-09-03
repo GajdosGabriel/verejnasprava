@@ -152,7 +152,7 @@ export default {
 
         deletePost: function(post) {
             axios
-                .delete(this.url + '/' + post.id)
+                .delete("/api/organizations/" + this.user.active_organization + "/posts/" + post.id)
                 .then(window.location.reload());
         },
 
