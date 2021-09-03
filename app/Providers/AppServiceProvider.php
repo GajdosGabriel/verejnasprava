@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Contact;
 use App\Models\Category;
@@ -10,18 +11,18 @@ use App\Models\OrderItem;
 use App\Models\Council\Item;
 use App\Models\Organization;
 use App\Models\Council\Council;
+use App\Observers\PostObserver;
 use App\Observers\UserObserver;
 use App\Models\Council\Invitation;
-use App\Observers\InvitationObserver;
 use App\Observers\ContactObserver;
 use App\Observers\CouncilObserver;
 use App\Observers\ItemOrderObserver;
 use App\Observers\OrderItemObserver;
 use Illuminate\Pagination\Paginator;
+use App\Observers\InvitationObserver;
 use App\Observers\OrganizationObserver;
 use Illuminate\Support\ServiceProvider;
 use App\View\Components\Navigation\navPublic;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,7 +33,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
     /**
@@ -49,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         Item::observe(ItemOrderObserver::class);
         Council::observe(CouncilObserver::class);
         Invitation::observe(InvitationObserver::class);
+        Post::observe(PostObserver::class);
         Paginator::useTailwind();
 
 
@@ -56,24 +57,20 @@ class AppServiceProvider extends ServiceProvider
         \Schema::defaultStringLength(191);
 
 
-        view()->composer('user.listAllUsers', function($view)
-        {
-            $view->with('organizations', Organization::withCount('posts')->get() );
+        view()->composer('user.listAllUsers', function ($view) {
+            $view->with('organizations', Organization::withCount('posts')->get());
         });
 
 
-        view()->composer('modul.categoryList',  function($view)
-        {
+        view()->composer('modul.categoryList', function ($view) {
             $view->with('categories', Category::all());
         });
 
 
-        \Blade::component('navigation.navPublic',  navPublic::class);
-        \Blade::component('navigation.navigationOrganization',  navigationOrganization::class);
-        \Blade::component('navigation.navigationUser',  navigationUser::class);
-        \Blade::component('navigation.navigationMeeting',  navigationMeeting::class);
-        \Blade::component('navigation.navigationItems',  navigationItems::class);
-
-
+        \Blade::component('navigation.navPublic', navPublic::class);
+        \Blade::component('navigation.navigationOrganization', navigationOrganization::class);
+        \Blade::component('navigation.navigationUser', navigationUser::class);
+        \Blade::component('navigation.navigationMeeting', navigationMeeting::class);
+        \Blade::component('navigation.navigationItems', navigationItems::class);
     }
 }

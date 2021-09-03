@@ -39,7 +39,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span>Telefón</span>
-                    <span>{{ $user->phone }}</span>
+                    <span>{{ strrev(chunk_split(strrev( $user->phone),3," ")) }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Dátum vytvorenia</span>
