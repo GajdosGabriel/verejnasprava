@@ -4,7 +4,6 @@ const state = {
     errors: [],
     showEditForm: false,
     showCreateForm: false,
-    url: '/api/organizations/',
     contact: ''
 };
 const getters = {};

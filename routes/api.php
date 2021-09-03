@@ -19,10 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::get('posts/{userId}', 'Posts\ApiPostController@index');
-
-
-
 Route::apiResources([
     'votes'                     => 'Api\VoteController',
     'items'                     => 'Api\ItemController',
@@ -31,6 +27,7 @@ Route::apiResources([
     'organizations.tags'        => 'Api\OrganizationTagController',
     'organizations.users'       => 'Api\OrganizationUserController',
     'organizations.contacts'    => 'Api\OrganizationContactController',
+    'organizations.posts'       => 'Api\OrganizationPostController',
     'users.meetings'            => 'Api\UserMeetingController',
     'invitations'               => 'Api\InvitationController',
     'menus'                     => 'Api\MenuController',

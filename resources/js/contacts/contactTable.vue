@@ -80,7 +80,7 @@
             </tbody>
         </table>
 
-        <paginator :data="contacts" />
+        <paginator :data="contacts" @pathUrl="changePaginateUrl" />
 
         <form-edit></form-edit>
     </div>
@@ -89,7 +89,7 @@
 <script>
 import newContactButton from "./newContactButton.vue";
 import formEdit from "./formEdit.vue";
-import paginator from "./pagination.vue";
+import paginator from "../modules/pagination";
 import numeral from "numeral";
 import { mapState } from "vuex";
 import { filterMixin } from "../mixins/filterMixin";
@@ -104,35 +104,36 @@ export default {
     data: function() {
         return {
             numeral: numeral,
-            search: ""
+            search: "",
+            url:
+                "/api/organizations/" +
+                this.user.active_organization +
+                "/contacts"
         };
     },
     computed: mapState({
-        contacts: state => state.contacts.contacts,
-        url: state => state.contacts.url
+        contacts: state => state.contacts.contacts
     }),
     created() {
-        this.$store.dispatch(
-            "contacts/fetchContacts",
-            this.url + this.user.active_organization + '/contacts'
-        );
+        this.fetchContacts(this.url);
     },
     watch: {
         search: function(val) {
-            console.log("dddd");
-            this.$store.dispatch(
-                "contacts/fetchContacts",
-                this.url +
-                    this.user.active_organization +
-                    "/contacts?multi=" +
-                    this.search
-            );
+            this.fetchContacts(this.url + "?multi=" + this.search);
         }
     },
     methods: {
-        ...mapActions(["newContactToggle", "openEditForm", "filterContact"])
+        ...mapActions([
+            "newContactToggle",
+            "openEditForm",
+            "filterContact",
+            "fetchContacts"
+        ]),
+
+        changePaginateUrl(path) {
+            this.url = path;
+            this.fetchContacts(this.url);
+        }
     }
 };
 </script>
-
-<style lang="scss"></style>

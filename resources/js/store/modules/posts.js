@@ -1,7 +1,6 @@
 const state = {
     loadingStatus: false,
     posts: [],
-    url: '/api/posts/',
     urlPostFront: 'posts/frontPostsTable'
 };
 
