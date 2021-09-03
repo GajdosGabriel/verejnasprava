@@ -6541,7 +6541,7 @@ __webpack_require__.r(__webpack_exports__);
 
     setTimeout(function () {
       _this.$store.dispatch('notification/removeNotification', _this.notification);
-    }, 3000);
+    }, 4500);
   }
 });
 
@@ -8522,12 +8522,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var state = {
-  loadingStatus: 'notLoading',
+  loadingStatus: "notLoading",
   contacts: [],
   errors: [],
   showEditForm: false,
   showCreateForm: false,
-  contact: ''
+  contact: ""
 };
 var getters = {};
 var mutations = {
@@ -8564,11 +8564,11 @@ var mutations = {
 var actions = {
   openEditForm: function openEditForm(_ref, data) {
     var commit = _ref.commit;
-    commit('SHOW_FORM', data);
+    commit("SHOW_FORM", data);
   },
   newContactToggle: function newContactToggle(_ref2, data) {
     var commit = _ref2.commit;
-    commit('SHOW_NEW_FORM', data);
+    commit("SHOW_NEW_FORM", data);
   },
   deleteContact: function deleteContact(_ref3, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -8579,19 +8579,23 @@ var actions = {
             case 0:
               commit = _ref3.commit;
               _context.next = 3;
-              return axios["delete"]('/api/organizations/' + contact.organization_id + '/contacts/' + contact.id);
-
-            case 3:
-              commit('REMOVE_CONTACT', contact.id);
-              commit('SHOW_FORM');
-              commit('notification/NEW_NOTIFICATION', {
-                type: 'bg-green-400',
-                message: 'Kontakt zmazaný!'
-              }, {
-                root: true
+              return axios["delete"]("/api/organizations/" + contact.organization_id + "/contacts/" + contact.id).then(function (response) {
+                commit("REMOVE_CONTACT", contact.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-green-300",
+                  message: "Kontakt zmazaný!"
+                }, {
+                  root: true
+                });
+              })["catch"](function (error) {
+                commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-red-200",
+                  message: "Kontakt už obsahuje zverejnené doklady."
+                }, {
+                  root: true
+                });
               });
 
-            case 6:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -8608,24 +8612,24 @@ var actions = {
             case 0:
               commit = _ref4.commit;
               _context2.next = 3;
-              return axios.put('/api/organizations/' + contact.organization_id + '/contacts/' + contact.id, contact).then(function (response) {
-                commit('SHOW_FORM'); // Notify for add task
+              return axios.put("/api/organizations/" + contact.organization_id + "/contacts/" + contact.id, contact).then(function (response) {
+                commit("SHOW_FORM"); // Notify for add task
 
-                commit('notification/NEW_NOTIFICATION', {
-                  type: 'bg-green-400',
-                  message: 'Kontakt uložený!'
+                commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-green-400",
+                  message: "Kontakt uložený!"
                 }, {
                   root: true
                 });
               })["catch"](function (error) {
                 // Notify for add task
-                commit('notification/NEW_NOTIFICATION', {
-                  type: 'bg-red-400',
-                  message: 'Chyba, kontakt nebol aktualizovaný!'
+                commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-red-400",
+                  message: "Chyba, kontakt nebol aktualizovaný!"
                 }, {
                   root: true
                 });
-                commit('SET_ERRORS', error.response.data.errors); // console.log(error.response.data)
+                commit("SET_ERRORS", error.response.data.errors); // console.log(error.response.data)
               });
 
             case 3:
@@ -8648,15 +8652,15 @@ var actions = {
               _ref7 = _slicedToArray(_ref6, 2), data = _ref7[0], user = _ref7[1];
               console.log(user);
               _context3.next = 5;
-              return axios.post('/api/organizations/' + user.active_organization + '/contacts', data);
+              return axios.post("/api/organizations/" + user.active_organization + "/contacts", data);
 
             case 5:
-              commit('SHOW_CREATE_FORM');
-              commit('INSERT_CONTACT', data); // Notify for add task
+              commit("SHOW_CREATE_FORM");
+              commit("INSERT_CONTACT", data); // Notify for add task
 
-              commit('notification/NEW_NOTIFICATION', {
-                type: 'bg-green-400',
-                message: 'Kontakt uložený!'
+              commit("notification/NEW_NOTIFICATION", {
+                type: "bg-green-400",
+                message: "Kontakt uložený!"
               }, {
                 root: true
               });
@@ -8671,10 +8675,10 @@ var actions = {
   },
   fetchContacts: function fetchContacts(_ref8, url) {
     var commit = _ref8.commit;
-    commit('SET_LOADING_STATUS', 'loading');
+    commit("SET_LOADING_STATUS", "loading");
     axios.get(url).then(function (response) {
-      commit('SET_LOADING_STATUS', 'notLoading');
-      commit('SET_CONTACTS', response.data);
+      commit("SET_LOADING_STATUS", "notLoading");
+      commit("SET_CONTACTS", response.data);
     });
   }
 };

@@ -38,7 +38,9 @@ class OrganizationContactController extends Controller
 
     public function destroy(Organization $organization, Contact $contact)
     {
-        if($contact->posts->count()) return response('Kontak nemožno zmazať pretože má zverejnené doklady.');
+        if ($contact->posts->count()) {
+            return response()->json(['message' => 'Kontakt už obsahuje zverejnené doklady.'], 401);
+        }
 
         $contact->delete();
     }

@@ -27,7 +27,7 @@
             setTimeout(() => {
                 this.$store.dispatch('notification/removeNotification', this.notification)
 
-            }, 3000)
+            }, 4500)
         }
 
     }
