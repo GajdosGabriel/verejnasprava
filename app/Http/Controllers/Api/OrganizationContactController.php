@@ -38,6 +38,8 @@ class OrganizationContactController extends Controller
 
     public function destroy(Organization $organization, Contact $contact)
     {
+        // if($contact->post()) return;
+
         $contact->delete();
     }
 }

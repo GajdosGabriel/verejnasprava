@@ -33,12 +33,12 @@
                 <td class="border px-4 py-2">
                     <nav-drop-down inline-template>
                         <div class="relative flex items-start">
-                            <a @click="isOpen =! isOpen" class="" href="#">
+                            <button @click="isOpen =! isOpen" class="pointer">
                                 <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path
                                         d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
                                 </svg>
-                            </a>
+                            </button>
 
                             <div v-if="isOpen"
                                 class="absolute z-10 py-1 flex flex-col border-2 border-gray-300 shadow-md rounded text-sm bg-white">
@@ -46,7 +46,7 @@
                                 {{-- Item Up button --}}
                                 <a class="hover:bg-gray-200 px-4 py-1 whitespace-no-wrap"
                                     href="{{ route('posts.edit', $post->id) }}" title="Upraviť položku">
-                                    Upraviť položku
+                                    Upraviť
                                 </a>
 
                                 {{-- Item Down button --}}

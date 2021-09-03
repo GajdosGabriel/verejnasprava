@@ -45,6 +45,20 @@
                     <span>Dátum vytvorenia</span>
                     <span>{{ $user->created_at }}</span>
                 </div>
+
+                @if($user->ico)
+                <div class="flex justify-between">
+                    <span>ICO</span>
+                    <span>{{ $user->ico }}</span>
+                </div>
+                @endif
+
+                @if($user->dic)
+                <div class="flex justify-between">
+                    <span>DIC</span>
+                    <span>{{ $user->dic }}</span>
+                </div>
+                @endif
             </div>
 
             <div class="col-span-8 bg-white p-3">

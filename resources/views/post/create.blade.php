@@ -13,7 +13,7 @@
 
         <x-page.page-title>
             <x-slot name="title">
-                Vytvoriť doklad
+                Nový doklad
             </x-slot>
 
             <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
