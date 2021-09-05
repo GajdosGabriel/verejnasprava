@@ -37,7 +37,7 @@ class UserResource extends JsonResource
             'organization_id'       => $this->organization->id,
 
 
-            'url' => [
+            'links' => [
                 'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),
                 'edit'              => $this->when($request->user()->can('update', $request->user()), route('organizations.users.edit', [$this->active_organization, $this->active_organization])),
                 'update'            => $this->when($request->user()->can('update', $request->user()), route('organizations.users.update', [$this->active_organization, $this->id])),
