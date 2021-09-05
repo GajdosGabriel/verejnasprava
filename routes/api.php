@@ -18,8 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
-Route::apiResources([
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResources([
     'votes'                     => 'Api\VoteController',
     'items'                     => 'Api\ItemController',
     'meetings'                  => 'Api\MeetingController',
@@ -31,12 +31,10 @@ Route::apiResources([
     'users.meetings'            => 'Api\UserMeetingController',
     'invitations'               => 'Api\InvitationController',
     'menus'                     => 'Api\MenuController',
-]);
+    ]);
+});
 
-
-
-Route::get('artisan/run', function ()
-{
+Route::get('artisan/run', function () {
     \Artisan::call('cache:clear');
     \Artisan::call('view:clear');
     \Artisan::call('config:clear');
@@ -46,9 +44,7 @@ Route::get('artisan/run', function ()
 });
 
 Route::get('artisan/run/queue', function () {
-
     \Artisan::call('queue:work');
 
     dd("Queue working");
-
 });

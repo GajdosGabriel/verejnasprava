@@ -24,10 +24,10 @@
 
             <tr class="hover:bg-gray-100" v-for="post in posts.data" :key="post.id">
                 <td class="border px-4 py-2 whitespace-no-wrap" v-text="moment(post.date_in).format('DD. MM. YYYY')"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.organization.name" @click="pushOrganization(post)"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap cursor-pointer" v-text="post.organization_name" @click="pushOrganization(post)"></td>
                 <td class="border px-4 py-2" v-text="post.name"></td>
-                <td class="border px-4 py-2" v-text="post.category.name"></td>
-                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.contact.name"></td>
+                <td class="border px-4 py-2" v-text="post.category_name"></td>
+                <td class="border px-4 py-2 whitespace-no-wrap" v-text="post.contact_name"></td>
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ post.price | priceFormat }} Eu</td>
                 <td class="border px-4 py-2">
                 <span v-if="post.files.length > 0">
@@ -91,7 +91,7 @@
         },
         methods: {
             pushOrganization(post){
-                this.search = post.organization.name
+                this.search = post.organization_name
             }
         }
     }

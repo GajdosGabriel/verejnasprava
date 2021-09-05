@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\PostFilters;
-use App\Models\Organization;
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Filters\PostFilters;
+use App\Models\Organization;
+use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
 
 class HomeController extends Controller
 {
@@ -77,7 +78,7 @@ class HomeController extends Controller
         $posts = Post::filter($postFilters)
             ->latest()->paginate(20);
 //        dd($posts);
-        return $posts;
+        return PostResource::collection($posts);
     }
 
 

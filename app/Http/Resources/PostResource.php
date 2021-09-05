@@ -22,6 +22,7 @@ class PostResource extends JsonResource
             'price'             => $this->price,
             'category_name'     => $this->category->name,
             'contact_name'      => $this->contact->name,
+            'organization_name' => $this->organization->name,
             'files'             => $this->files,
             'date_in'           => $this->date_in,
             'organization_id'   => $this->organization_id,
