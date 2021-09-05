@@ -92494,13 +92494,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", {
                   staticClass: "border px-4 py-2",
-                  domProps: { textContent: _vm._s(post.category.name) }
+                  domProps: { textContent: _vm._s(post.category_name) }
                 }),
                 _vm._v(" "),
                 _c("td", {
                   staticClass:
                     "border px-4 py-2 whitespace-no-wrap cursor-pointer",
-                  domProps: { textContent: _vm._s(post.contact.name) },
+                  domProps: { textContent: _vm._s(post.contact_name) },
                   on: {
                     click: function($event) {
                       return _vm.searchByContact(post.contact.id)

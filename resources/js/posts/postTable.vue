@@ -39,11 +39,11 @@
                     <td class="border px-4 py-2" v-text="post.name"></td>
                     <td
                         class="border px-4 py-2"
-                        v-text="post.category.name"
+                        v-text="post.category_name"
                     ></td>
                     <td
                         class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
-                        v-text="post.contact.name"
+                        v-text="post.contact_name"
                         @click="searchByContact(post.contact.id)"
                     ></td>
                     <td class="border px-4 py-2 whitespace-no-wrap">
