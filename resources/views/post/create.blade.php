@@ -22,7 +22,7 @@
 
 
         <form class="md:w-2/3"
-              action="{{ route('posts.store') }}"
+              action="{{ route('organizations.posts.store', $organization->id) }}"
               method="POST" enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')

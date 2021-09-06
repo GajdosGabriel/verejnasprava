@@ -22,7 +22,7 @@
 
         <x-page.page3_3>
             <div class="col-span-8 bg-white p-3">
-                <form action="{{ route('posts.update', $post->id) }}" method="POST"
+                <form action="{{ route('organizations.posts.update', [$post->organization_id, $post->id]) }}" method="POST"
                     enctype="multipart/form-data">
                   @csrf @method('PUT')
                   @include('modul.errors')
