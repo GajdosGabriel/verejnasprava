@@ -12,13 +12,18 @@ use App\Http\Requests\ContactCreateRequest;
 
 class OrganizationContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Contact::class, 'contact');
+    }
+
     public function index(Organization $organization, ContactFilters $contactFilters)
     {
         $contacts = $organization->contacts()
             ->filter($contactFilters)
             ->paginate();
 
-            return ContactResource::collection($contacts);
+        return ContactResource::collection($contacts);
     }
 
 

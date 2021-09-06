@@ -30,7 +30,7 @@ class PostResource extends JsonResource
             'category_id'       => $this->category_id,
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
-            'testovanie'        => $this->when( auth()->user(), 'niečo' ),
+            // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'links' => [
                 // 'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),
