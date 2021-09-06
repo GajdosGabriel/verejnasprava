@@ -9,7 +9,7 @@ use App\Models\Question;
 use App\Filters\PostFilters;
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Http\Resources\PostResource;
+use App\Http\Resources\PostfrontedResource;
 
 class HomeController extends Controller
 {
@@ -78,7 +78,7 @@ class HomeController extends Controller
         $posts = Post::filter($postFilters)
             ->latest()->paginate(20);
 //        dd($posts);
-        return PostResource::collection($posts);
+        return PostfrontedResource::collection($posts);
     }
 
 
