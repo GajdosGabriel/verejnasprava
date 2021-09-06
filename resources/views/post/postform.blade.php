@@ -43,7 +43,7 @@
 
 {{-- Title Field --}}
 <div class="w-full p-2">
-    <label class="input-label" for="title">Popis dokladu</label>
+    <label class="input-label text-red-700" for="title">Popis dokladu</label>
     <input
         class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         type="text" name="name" value="{{ old('name') ?? $post->name }}" placeholder="Názov položky" id="title"
@@ -53,7 +53,7 @@
 
 <div class="md:flex mb-5">
     <div class="md:w-1/3 p-2">
-        <label class="input-label" for="price">Faktúrovaná cena</label>
+        <label class="input-label text-red-700" for="price">Faktúrovaná cena</label>
         <input type="number" name="price" value="{{ old('price') ?? $post->price }}" placeholder="Suma faktúry (Euro)"
             step="any" id="price"
             class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -61,7 +61,7 @@
     </div>
 
     <div class="md:w-1/3 p-2">
-        <label class="input-label" for="number_invoice">Var. symbol</label>
+        <label class="input-label text-red-700" for="number_invoice">Var. symbol</label>
         <input type="text" name="number_invoice" value="{{ old('number_invoice') ?? $post->number_invoice }}"
             placeholder="Dod. Číslo faktúry" id="number_invoice"
             class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"

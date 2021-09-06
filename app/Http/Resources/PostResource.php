@@ -30,6 +30,7 @@ class PostResource extends JsonResource
             'category_id'       => $this->category_id,
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
+            'testovanie'        => $this->when( \Auth::check() && \Auth::user()->can('create', App\Models\Post::class), 'niečo' ),
             // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'links' => [
