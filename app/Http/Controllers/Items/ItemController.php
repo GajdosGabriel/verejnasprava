@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Item::class, 'item');
+    }
+
     public function index()
     {
         if(auth()->user()->hasRole('admin')){
@@ -66,5 +72,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
+        return redirect()->route('items.index');
     }
 }
