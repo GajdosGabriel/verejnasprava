@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Councils;
+namespace App\Http\Controllers\Organizations;
 
-use App\Http\Controllers\Controller;
-use App\Models\Council\Council;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Models\Council\Council;
+use App\Http\Controllers\Controller;
 
-class CouncilOrganizationController extends Controller
+class OrganizationCouncilController extends Controller
 {
     public function index(Organization $organization)
     {
