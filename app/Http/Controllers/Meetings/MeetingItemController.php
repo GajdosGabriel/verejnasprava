@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Items;
+namespace App\Http\Controllers\Meetings;
 
-use App\Http\Controllers\Controller;
 use App\Models\Council\Item;
-use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
+use App\Models\Council\Meeting;
+use App\Http\Controllers\Controller;
 
-class ItemMeetingController extends Controller
+class MeetingItemController extends Controller
 {
     public function create(Meeting $meeting) {
         return view('council.meeting.createItem', compact('meeting'));
