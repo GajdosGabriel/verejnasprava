@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Meetings;
+namespace App\Http\Controllers\Councils;
 
 use Illuminate\Http\Request;
 use App\Models\Council\Council;
