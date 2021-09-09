@@ -7189,13 +7189,16 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       this.fetchPosts(this.url + "?contact=" + this.search);
     }
   },
-  methods: _objectSpread(_objectSpread({}, mapActions(["fetchPosts"])), {}, {
+  methods: _objectSpread(_objectSpread({}, mapActions(["fetchPosts", "editPost"])), {}, {
     searchByContact: function searchByContact(contactId) {
       this.prefix = "contact";
       this.search = contactId;
     },
     deletePost: function deletePost(post) {
       axios["delete"]("/api/organizations/" + this.user.active_organization + "/posts/" + post.id).then(window.location.reload());
+    },
+    toEditPost: function toEditPost(url) {
+      this.editPost(url);
     },
     changePaginateUrl: function changePaginateUrl(path) {
       this.url = path;
@@ -9508,13 +9511,9 @@ var actions = {
       commit('SET_LOADING_STATUS', false);
     });
   },
-  frontedPosts: function frontedPosts(_ref2, url) {
+  editPost: function editPost(_ref2, url) {
     var commit = _ref2.commit;
-    axios.get(url).then(function (response) {
-      commit('SET_LOADING_STATUS', true);
-      commit('SET_POSTS', response.data);
-      commit('SET_LOADING_STATUS', false);
-    });
+    window.location.replace(url);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -93584,13 +93583,17 @@ var render = function() {
                         _vm._t("default", [
                           _c("div", { staticClass: "py-1" }, [
                             _c(
-                              "a",
+                              "div",
                               {
                                 staticClass:
                                   "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                                attrs: {
-                                  href: "posts/" + post.id + "/edit",
-                                  title: "Upraviť položku"
+                                attrs: { title: "Upraviť položku" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.toEditPost(
+                                      "posts/" + post.id + "/edit"
+                                    )
+                                  }
                                 }
                               },
                               [

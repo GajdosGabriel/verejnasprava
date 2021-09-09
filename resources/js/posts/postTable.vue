@@ -79,13 +79,13 @@
                         <nav-drop-down>
                             <slot>
                                 <div class="py-1">
-                                    <a
+                                    <div
                                         class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                        :href="'posts/' + post.id + '/edit'"
+                                       @click="toEditPost('posts/' + post.id + '/edit')"
                                         title="Upraviť položku"
                                     >
                                         Upraviť
-                                    </a>
+                                    </div>
 
                                     <div
                                         @click="deletePost(post)"
@@ -143,7 +143,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(["fetchPosts"]),
+        ...mapActions(["fetchPosts", "editPost"]),
 
         searchByContact: function(contactId) {
             this.prefix = "contact";
@@ -152,8 +152,17 @@ export default {
 
         deletePost: function(post) {
             axios
-                .delete("/api/organizations/" + this.user.active_organization + "/posts/" + post.id)
+                .delete(
+                    "/api/organizations/" +
+                        this.user.active_organization +
+                        "/posts/" +
+                        post.id
+                )
                 .then(window.location.reload());
+        },
+
+        toEditPost: function(url) {
+            this.editPost(url)
         },
 
         changePaginateUrl(path) {

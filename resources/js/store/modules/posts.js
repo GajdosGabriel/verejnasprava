@@ -28,13 +28,8 @@ const actions = {
             })
     },
 
-    frontedPosts: function({commit}, url) {
-        axios.get(url)
-            .then(response => {
-                commit('SET_LOADING_STATUS', true);
-                commit('SET_POSTS', response.data);
-                commit('SET_LOADING_STATUS', false);
-            })
+    editPost: function({commit}, url) {
+        window.location.replace(url);
     }
 };
 
