@@ -41,7 +41,7 @@ class CouncilPolicy
      */
     public function create(User $user)
     {
-        // return auth()->user();
+        return auth()->user();
     }
 
     /**
