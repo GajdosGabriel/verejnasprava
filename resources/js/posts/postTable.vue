@@ -72,56 +72,56 @@
 
                     <td class="border px-4 py-2" v-text="post.int_number"></td>
 
-                    <td
-                        class="border px-4 py-2 cursor-pointer flex flex-col"
-                        @click="adminPanel = post.id"
-                    >
-                        <nav-drop-down>
+                    <td class="border px-4 py-2 cursor-pointer flex flex-col">
+                        <drop-down-component :navigations="post.navigations">
                             <slot>
-                                <div class="py-1">
+                                <div
+                                    v-for="(item, index) in post.navigations"
+                                    :key="item.index"
+                                >
                                     <div
-                                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                       @click="toEditPost('posts/' + post.id + '/edit')"
-                                        title="Upraviť položku"
+                                        class="block flex px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                        :title="item.title"
+                                        @click="
+                                            clickOnItem(item.url, item.action)
+                                        "
                                     >
-                                        Upraviť
-                                    </div>
+                                        <component
+                                            :is="item.icon"
+                                            class="mr-2"
+                                        ></component>
 
-                                    <div
-                                        @click="deletePost(post)"
-                                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                        title="Zmazať položku"
-                                    >
-                                        Zmazať
+                                        {{ item.name }}
                                     </div>
                                 </div>
                             </slot>
-                        </nav-drop-down>
+                        </drop-down-component>
                     </td>
                 </tr>
             </tbody>
         </table>
 
         <paginator :data="posts" @pathUrl="changePaginateUrl" />
-        <!-- <paginator :data="posts"/> -->
     </div>
 </template>
 <script>
 import paginator from "../modules/pagination";
-import { mapState } from "vuex";
+import dropDownComponent from "../components/dropDown/dropDownComponent";
 import { filterMixin } from "../mixins/filterMixin";
 
-import { createNamespacedHelpers } from "vuex";
+import iconEdit from "../components/dropDown/itemIcons/editIcon.vue";
+import iconDelete from "../components/dropDown/itemIcons/deleteIcon.vue";
 
+import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 
 export default {
-    components: { paginator },
+    components: { paginator, dropDownComponent, iconEdit, iconDelete },
     mixins: [filterMixin],
     data: function() {
         return {
             moment: require("moment"),
-            adminPanel: false,
             search: "",
             url:
                 "/api/organizations/" + this.user.active_organization + "/posts"
@@ -143,26 +143,21 @@ export default {
     },
 
     methods: {
-        ...mapActions(["fetchPosts", "editPost"]),
+        ...mapActions(["fetchPosts", "editPost", "deletePost"]),
 
         searchByContact: function(contactId) {
             this.prefix = "contact";
             this.search = contactId;
         },
 
-        deletePost: function(post) {
-            axios
-                .delete(
-                    "/api/organizations/" +
-                        this.user.active_organization +
-                        "/posts/" +
-                        post.id
-                )
-                .then(window.location.reload());
-        },
+        clickOnItem(post, action) {
+            if (action == "edit") {
+                this.editPost(post);
+            }
 
-        toEditPost: function(url) {
-            this.editPost(url)
+            if (action == "delete") {
+                this.deletePost(post);
+            }
         },
 
         changePaginateUrl(path) {

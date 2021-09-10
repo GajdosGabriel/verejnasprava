@@ -25,8 +25,6 @@
             @role('admin')
             <x-oznamenia>
                 <card-mails-user></card-mails-user>
-
-                <drop-down-component></drop-down-component>
             </x-oznamenia>
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative inline-block text-left" v-if="links.length">
+    <div class="relative inline-block text-left" v-if="navigations">
         <div>
             <span class="rounded-md shadow-sm">
                 <button
@@ -21,30 +21,21 @@
         </div>
 
         <div
-            v-if="isOpen"
+            v-show="isOpen"
             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
         >
-            <div class="rounded-md bg-white shadow-xs">
-                <item :items="links"></item>
-            </div>
+            <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
-import item from "./dropDownItem.vue";
-
 export default {
-    components: { item },
+    props: ["navigations"],
     data() {
         return {
             isOpen: false,
-            dropdown: false,
-
-            links: [
-                { name: "Upraviť", url: "http:://edit", icon: "iconEdit" },
-                { name: "Zmazať", url: "http:://delete", icon: "iconDelete" }
-            ]
+            dropdown: false
         };
     },
 

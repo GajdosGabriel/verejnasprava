@@ -33,15 +33,19 @@ class PostResource extends JsonResource
             // 'testovanie'        => $this->when( \Auth::check() && \Auth::user()->can('create', App\Models\Post::class), 'niečo' ),
             // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
-            'links' => [
+            'navigations' => [
                 'edit' => [
                     'name' => 'Upraviť',
+                    'title' => 'Upraviť položku',
+                    'action' => 'edit',
                     'url' => route('posts.edit', [$this->id]),
                     'icon' => 'iconEdit',
                 ],
 
                 'delete' => [
                     'name' => 'Zmazať',
+                    'title' => 'Zmazať položku',
+                    'action' => 'delete',
                     'url' => route('organizations.posts.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
                 ]
