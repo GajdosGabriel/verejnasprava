@@ -31,6 +31,15 @@ const actions = {
 
     deletePost: function({ commit }, url) {
         axios.delete(url).then(window.location.reload());
+    },
+
+    frontedPosts: function({commit}, url) {
+        axios.get(url)
+            .then(response => {
+                commit('SET_LOADING_STATUS', true);
+                commit('SET_POSTS', response.data);
+                commit('SET_LOADING_STATUS', false);
+            })
     }
 };
 

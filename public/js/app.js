@@ -9465,6 +9465,14 @@ var actions = {
   deletePost: function deletePost(_ref3, url) {
     var commit = _ref3.commit;
     axios["delete"](url).then(window.location.reload());
+  },
+  frontedPosts: function frontedPosts(_ref4, url) {
+    var commit = _ref4.commit;
+    axios.get(url).then(function (response) {
+      commit('SET_LOADING_STATUS', true);
+      commit('SET_POSTS', response.data);
+      commit('SET_LOADING_STATUS', false);
+    });
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -93402,9 +93410,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "td",
-                  {
-                    staticClass: "border px-4 py-2 cursor-pointer flex flex-col"
-                  },
+                  { staticClass: "border text-center" },
                   [
                     _c(
                       "drop-down-component",
@@ -93413,12 +93419,12 @@ var render = function() {
                         _vm._t(
                           "default",
                           _vm._l(post.navigations, function(item, index) {
-                            return _c("div", { key: item.index }, [
+                            return _c("div", { key: index }, [
                               _c(
                                 "div",
                                 {
                                   staticClass:
-                                    "block flex px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                    "flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
                                   attrs: { title: item.title },
                                   on: {
                                     click: function($event) {

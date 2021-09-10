@@ -72,15 +72,15 @@
 
                     <td class="border px-4 py-2" v-text="post.int_number"></td>
 
-                    <td class="border px-4 py-2 cursor-pointer flex flex-col">
+                    <td class="border text-center">
                         <drop-down-component :navigations="post.navigations">
                             <slot>
                                 <div
                                     v-for="(item, index) in post.navigations"
-                                    :key="item.index"
+                                    :key="index"
                                 >
                                     <div
-                                        class="block flex px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                        class="flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                                         :title="item.title"
                                         @click="
                                             clickOnItem(item.url, item.action)
