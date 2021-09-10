@@ -73,29 +73,12 @@
                     <td class="border px-4 py-2" v-text="post.int_number"></td>
 
                     <td class="border text-center">
-                        <drop-down-component :navigations="post.navigations">
-                            <slot>
-                                <div
-                                    v-for="(item, index) in post.navigations"
-                                    :key="index"
-                                >
-                                    <div
-                                        class="flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                        :title="item.title"
-                                        @click="
-                                            clickOnItem(item.url, item.action)
-                                        "
-                                    >
-                                        <component
-                                            :is="item.icon"
-                                            class="mr-2"
-                                        ></component>
 
-                                        {{ item.name }}
-                                    </div>
-                                </div>
-                            </slot>
-                        </drop-down-component>
+                        <drop-down-component
+                            :navigations="post.navigations"
+                            @fromItem="clickOnItem"
+                        ></drop-down-component>
+
                     </td>
                 </tr>
             </tbody>
@@ -109,15 +92,12 @@ import paginator from "../modules/pagination";
 import dropDownComponent from "../components/dropDown/dropDownComponent";
 import { filterMixin } from "../mixins/filterMixin";
 
-import iconEdit from "../components/dropDown/itemIcons/editIcon.vue";
-import iconDelete from "../components/dropDown/itemIcons/deleteIcon.vue";
-
 import { mapState } from "vuex";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 
 export default {
-    components: { paginator, dropDownComponent, iconEdit, iconDelete },
+    components: { paginator, dropDownComponent },
     mixins: [filterMixin],
     data: function() {
         return {

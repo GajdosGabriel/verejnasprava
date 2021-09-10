@@ -24,14 +24,28 @@
             v-show="isOpen"
             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
         >
-            <slot></slot>
+            <div v-for="(item, index) in navigations" :key="index">
+                <div
+                    class="flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                    :title="item.title"
+                    @click="$emit('fromItem', item.url, item.action)"
+                >
+                    <component :is="item.icon" class="mr-2"></component>
+
+                    {{ item.name }}
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import iconEdit from "./itemIcons/editIcon.vue";
+import iconDelete from "./itemIcons/deleteIcon.vue";
+
 export default {
     props: ["navigations"],
+    components: { iconEdit, iconDelete },
     data() {
         return {
             isOpen: false,
