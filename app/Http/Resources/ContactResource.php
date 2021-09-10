@@ -28,13 +28,29 @@ class ContactResource extends JsonResource
             'dic'             => $this->dic,
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
 
-            'links' => [
+            'navigations' => [
+                'edit' => [
+                    'name' => 'Upraviť',
+                    'title' => 'Upraviť položku',
+                    'action' => 'edit',
+                    'url' => '',
+                    'icon' => 'iconEdit',
+                ],
+
+                'delete' => [
+                    'name' => 'Zmazať',
+                    'title' => 'Zmazať položku',
+                    'action' => 'delete',
+                    'url' => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
+                    'icon' => 'iconDelete',
+                ]
                 // 'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),
                 // 'edit'              => $this->when($request->user()->can('update', $request->user()), route('organizations.users.edit', [$this->active_organization, $this->active_organization])),
-                // 'update'            => $this->when($request->user()->can('update', $request->user()), route('organizations.users.update', [$this->active_organization, $this->id])),
+                // 'destroy'           => $this->when($request->user()->can('destroy', $request->user()), route('organizations.posts.update', [$this->organization_id, $this->id])),
                 // 'store'             => $this->when($request->user()->can('update', $request->user()), route('organizations.users.store', [$this->active_organization])),
                 // 'destroy'           => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.destroy', [$this->active_organization, $this->id])),
             ],
         ];
+       
     }
 }

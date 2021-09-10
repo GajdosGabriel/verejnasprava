@@ -73,18 +73,18 @@
                     <td class="border px-4 py-2" v-text="post.int_number"></td>
 
                     <td class="border text-center">
-
                         <drop-down-component
                             :navigations="post.navigations"
                             @fromItem="clickOnItem"
                         ></drop-down-component>
-
                     </td>
                 </tr>
             </tbody>
         </table>
 
         <paginator :data="posts" @pathUrl="changePaginateUrl" />
+
+        <notification-list></notification-list>
     </div>
 </template>
 <script>

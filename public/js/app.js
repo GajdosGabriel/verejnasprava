@@ -8850,7 +8850,7 @@ var actions = {
 
                 commit("notification/NEW_NOTIFICATION", {
                   type: "bg-green-400",
-                  message: "Kontakt uložený!"
+                  message: "Kontakt aktualizovaný!"
                 }, {
                   root: true
                 });
@@ -9459,14 +9459,22 @@ var actions = {
   },
   deletePost: function deletePost(_ref3, url) {
     var commit = _ref3.commit;
-    axios["delete"](url).then(window.location.reload());
+    axios["delete"](url).then(function (response) {
+      // Notify for delete post
+      commit("notification/NEW_NOTIFICATION", {
+        type: "bg-green-400",
+        message: "Kontakt uložený!"
+      }, {
+        root: true
+      }), window.location.reload();
+    });
   },
   frontedPosts: function frontedPosts(_ref4, url) {
     var commit = _ref4.commit;
     axios.get(url).then(function (response) {
-      commit('SET_LOADING_STATUS', true);
-      commit('SET_POSTS', response.data);
-      commit('SET_LOADING_STATUS', false);
+      commit("SET_LOADING_STATUS", true);
+      commit("SET_POSTS", response.data);
+      commit("SET_LOADING_STATUS", false);
     });
   }
 };
@@ -93449,7 +93457,9 @@ var render = function() {
       _c("paginator", {
         attrs: { data: _vm.posts },
         on: { pathUrl: _vm.changePaginateUrl }
-      })
+      }),
+      _vm._v(" "),
+      _c("notification-list")
     ],
     1
   )

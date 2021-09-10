@@ -99,7 +99,7 @@ const actions = {
                     "notification/NEW_NOTIFICATION",
                     {
                         type: "bg-green-400",
-                        message: "Kontakt uložený!"
+                        message: "Kontakt aktualizovaný!"
                     },
                     { root: true }
                 );

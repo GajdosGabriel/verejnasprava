@@ -30,16 +30,26 @@ const actions = {
     },
 
     deletePost: function({ commit }, url) {
-        axios.delete(url).then(window.location.reload());
+        axios.delete(url).then(response => {
+            // Notify for delete post
+            commit(
+                "notification/NEW_NOTIFICATION",
+                {
+                    type: "bg-green-400",
+                    message: "Kontakt uložený!"
+                },
+                { root: true }
+            ),
+                window.location.reload();
+        });
     },
 
-    frontedPosts: function({commit}, url) {
-        axios.get(url)
-            .then(response => {
-                commit('SET_LOADING_STATUS', true);
-                commit('SET_POSTS', response.data);
-                commit('SET_LOADING_STATUS', false);
-            })
+    frontedPosts: function({ commit }, url) {
+        axios.get(url).then(response => {
+            commit("SET_LOADING_STATUS", true);
+            commit("SET_POSTS", response.data);
+            commit("SET_LOADING_STATUS", false);
+        });
     }
 };
 
