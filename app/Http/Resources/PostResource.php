@@ -34,26 +34,21 @@ class PostResource extends JsonResource
             // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'navigations' => [
-                'edit' => [
+                'edit' => $this->when( auth()->user()->hasAnyRole(['admin', 'moderator']), [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
                     'url' => route('posts.edit', [$this->id]),
                     'icon' => 'iconEdit',
-                ],
+                ]),
 
-                'delete' => [
+                'delete' =>  $this->when( auth()->user()->hasAnyRole(['admin', 'moderator']), [
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
                     'url' => route('organizations.posts.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
-                ]
-                // 'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),
-                // 'edit'              => $this->when($request->user()->can('update', $request->user()), route('organizations.users.edit', [$this->active_organization, $this->active_organization])),
-                // 'destroy'           => $this->when($request->user()->can('destroy', $request->user()), route('organizations.posts.update', [$this->organization_id, $this->id])),
-                // 'store'             => $this->when($request->user()->can('update', $request->user()), route('organizations.users.store', [$this->active_organization])),
-                // 'destroy'           => $this->when( $request->user()->can('update', $request->user()), route('organizations.users.destroy', [$this->active_organization, $this->id])),
+                ])
             ],
         ];
     }
