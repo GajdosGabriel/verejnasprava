@@ -12,6 +12,10 @@ const mutations = {
     },
     SET_POSTS: function(state, posts) {
         state.posts = posts;
+    },
+
+    REMOVE_POST: function(state, post) {
+        state.posts.data = state.posts.data.filter(p => p.id !== post.id);
     }
 };
 
@@ -31,6 +35,10 @@ const actions = {
 
     deletePost: function({ commit }, url) {
         axios.delete(url).then(response => {
+
+            commit("REMOVE_POST", response.data);
+
+
             // Notify for delete post
             commit(
                 "notification/NEW_NOTIFICATION",
@@ -39,8 +47,8 @@ const actions = {
                     message: "Kontakt uložený!"
                 },
                 { root: true }
-            ),
-                window.location.reload();
+            )
+                // window.location.reload();
         });
     },
 

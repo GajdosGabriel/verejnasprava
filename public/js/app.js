@@ -9441,6 +9441,11 @@ var mutations = {
   },
   SET_POSTS: function SET_POSTS(state, posts) {
     state.posts = posts;
+  },
+  REMOVE_POST: function REMOVE_POST(state, post) {
+    state.posts.data = state.posts.data.filter(function (p) {
+      return p.id !== post.id;
+    });
   }
 };
 var actions = {
@@ -9460,13 +9465,14 @@ var actions = {
   deletePost: function deletePost(_ref3, url) {
     var commit = _ref3.commit;
     axios["delete"](url).then(function (response) {
-      // Notify for delete post
+      commit("REMOVE_POST", response.data); // Notify for delete post
+
       commit("notification/NEW_NOTIFICATION", {
         type: "bg-green-400",
         message: "Kontakt uložený!"
       }, {
         root: true
-      }), window.location.reload();
+      }); // window.location.reload();
     });
   },
   frontedPosts: function frontedPosts(_ref4, url) {

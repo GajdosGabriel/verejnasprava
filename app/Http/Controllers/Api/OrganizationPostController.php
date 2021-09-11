@@ -48,6 +48,8 @@ class OrganizationPostController extends Controller
 
     public function destroy(Organization $organization, Post $post)
     {
-        $post->delete();
+        // $post->delete();
+
+        return $post;
     }
 }
