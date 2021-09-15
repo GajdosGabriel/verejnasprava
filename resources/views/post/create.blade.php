@@ -4,12 +4,12 @@
 
 @section('navigation') @include('organizations.navigation') @endsection
 
-{{--@section('navigation')--}}
-{{--    @include('organizations.navigation')--}}
-{{--@endsection--}}
+{{-- @section('navigation') --}}
+{{-- @include('organizations.navigation') --}}
+{{-- @endsection --}}
 
 @section('content')
-<x-page.container>
+    <x-page.container>
 
         <x-page.page-title>
             <x-slot name="title">
@@ -21,9 +21,8 @@
         </x-page.page-title>
 
 
-        <form class="md:w-2/3"
-              action="{{ route('organizations.posts.store', $organization->id) }}"
-              method="POST" enctype="multipart/form-data">
+        <form class="md:w-2/3" action="{{ route('organizations.posts.store', $organization->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf @method('POST')
             @include('modul.errors')
             @include('post.postform')
@@ -36,5 +35,3 @@
     </x-page.container>
 
 @endsection
-
-
