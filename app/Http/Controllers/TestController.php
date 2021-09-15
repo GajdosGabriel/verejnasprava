@@ -22,6 +22,12 @@ class TestController extends Controller
     // Route::get('test/test/test', 'TestController@test');
     public function test()
     {
+
+        $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get()->groupBy('contact_id');
+
+
+        dd($posts);
+
         $user = User::first();
 
         // dd( $user->can('update', $user) );

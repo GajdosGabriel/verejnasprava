@@ -32,7 +32,7 @@ class OrganizationPostController extends Controller
 
         $post->saveFile($request);
 
-        return back();
+        return redirect()->route('posts.create');
     }
 
     public function update(Organization $organization, Post $post, SavePostRequest $request)
