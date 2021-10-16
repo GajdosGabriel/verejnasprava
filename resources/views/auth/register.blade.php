@@ -105,8 +105,10 @@
                             <div class="my-5">
                                 <div class="flex content-center">
                                     <label for="iamHuman"
-                                           class="block whitespace-no-wrap uppercase text-gray-700 text-xs font-bold mb-2">Som
-                                        človek 3 + 2 =
+                                           class="block whitespace-no-wrap uppercase text-gray-700 text-xs font-bold mb-2">
+                                          <span class="whitespace-nowrap">Som človek</span><br>
+                                           3 + 2 =
+
                                     </label>
 
                                     <input id="iamHuman" type="number"

@@ -59,8 +59,10 @@
 <script>
 import { bus } from "../app";
 import { mapState } from "vuex";
+import { createdMixin } from "../mixins/createdMixin";
 
 export default {
+        mixins: [createdMixin],
     data: function() {
         return {
             isOpen: false
