@@ -1,7 +1,7 @@
 <template>
     <div class="border" v-if="active.find(id => id.id == 10)">
-        <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="showCard =! showCard"
-                :class="[showCard ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
+        <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="isOpen =! isOpen"
+                :class="[isOpen ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
                 <svg class="fill-current h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
@@ -10,13 +10,13 @@
                 <h3 class="font-semibold cursor-pointer" v-text="title"></h3>
             </div>
 
-            <div class="text-xs text-red-600" v-if="body && ! showCard">Neodoslaná</div>
+            <div class="text-xs text-red-600" v-if="body && ! isOpen">Neodoslaná</div>
 
-            <card-header-icon :showCard="showCard"/>
+            <card-header-icon :showCard="isOpen"/>
 
         </header>
 
-        <div v-show="showCard">
+        <div v-show="isOpen">
             <div class="my-4 p-2 border flex flex-wrap relative">Komu: <span v-if="recipients && recipients.length > 0"> ({{ recipients.length }})</span>
                 <div v-for="recipient in recipients" :key="recipient.id">
                     <recipientItem :recipient="recipient" @deleteRecipient="removeRecipient"/>
@@ -79,8 +79,10 @@
     import {bus} from '../app';
     import {mapState} from "vuex";
     import CardHeaderIcon from "../components/Cards/CardHeaderIcon";
+    import { createdMixin } from "../mixins/createdMixin";
 
     export default {
+         mixins: [createdMixin],
         components: {tagList, VueEditor, newModalTagForm, recipientItem, userList, CardHeaderIcon},
         data() {
             return {
@@ -89,7 +91,7 @@
                 body: "",
                 postFormData: new FormData(),
                 recipients: [],
-                showCard: false,
+                isOpen: false,
                 showModal: false,
                 showTag: false,
                 showUsers: false,
@@ -204,7 +206,7 @@
                         this.body = null,
                         this.name = "Správa od zamestnávateľa",
                         this.recipients = [],
-                        this.showCard = false,
+                        this.isOpen = false,
                         this.title = 'Správa bola rozoslaná',
                     )
                 ;

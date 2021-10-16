@@ -22,7 +22,7 @@
 
         <div
             v-show="isOpen"
-            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
+            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10 bg-gray-100"
         >
             <div v-for="(item, index) in navigations" :key="index">
                 <div

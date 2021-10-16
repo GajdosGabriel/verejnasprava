@@ -5228,8 +5228,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue2-editor/dist/vue2-editor.core.js */ "./node_modules/vue2-editor/dist/vue2-editor.core.js");
 /* harmony import */ var vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Cards_CardHeaderIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Cards/CardHeaderIcon */ "./resources/js/components/Cards/CardHeaderIcon.vue");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5328,7 +5329,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_7__.createdMixin],
   components: {
     tagList: _tag_list__WEBPACK_IMPORTED_MODULE_1__.default,
     VueEditor: vue2_editor_dist_vue2_editor_core_js__WEBPACK_IMPORTED_MODULE_4__.VueEditor,
@@ -5344,7 +5347,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       body: "",
       postFormData: new FormData(),
       recipients: [],
-      showCard: false,
+      isOpen: false,
       showModal: false,
       showTag: false,
       showUsers: false,
@@ -5354,7 +5357,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)('organization', ['organization', 'menus', 'active'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus', 'active'])),
   created: function created() {
     this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
   },
@@ -5460,7 +5463,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         recipients: this.recipients
       }).then(function (response) {
         _app__WEBPACK_IMPORTED_MODULE_5__.bus.$emit('addNewMessage', response.data);
-      }, this.body = null, this.name = "Správa od zamestnávateľa", this.recipients = [], this.showCard = false, this.title = 'Správa bola rozoslaná');
+      }, this.body = null, this.name = "Správa od zamestnávateľa", this.recipients = [], this.isOpen = false, this.title = 'Správa bola rozoslaná');
     }
   }
 });
@@ -5483,8 +5486,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pagination */ "./resources/js/messenger/pagination.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Cards_CardHeaderIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Cards/CardHeaderIcon */ "./resources/js/components/Cards/CardHeaderIcon.vue");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5525,6 +5529,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -5532,6 +5581,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__.createdMixin],
   components: {
     showModal: _show_modal__WEBPACK_IMPORTED_MODULE_0__.default,
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_3__.default,
@@ -5539,13 +5589,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      showCard: false,
+      isOpen: false,
       showModal: false,
       messengers: [],
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)('organization', ['active'])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["active"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -5556,13 +5606,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     this.getMessengers();
-    _app__WEBPACK_IMPORTED_MODULE_2__.bus.$on('addNewMessage', function (data) {
+    _app__WEBPACK_IMPORTED_MODULE_2__.bus.$on("addNewMessage", function (data) {
       _this.getMessengers();
     });
   },
   methods: {
     dateTime: function dateTime(message) {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(message.pivot.created_at).format('DD. MM. YYYY, k:mm');
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(message.pivot.created_at).format("DD. MM. YYYY, k:mm");
     },
     passMessage: function passMessage(message) {
       this.showModal = true;
@@ -5572,17 +5622,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       if (message.pivot.opened == null) {
-        return alert('Nepotvrdenú správu nemožno zmazať.');
+        return alert("Nepotvrdenú správu nemožno zmazať.");
       }
 
-      axios["delete"]('/messengers/' + message.id).then(function (res) {
+      axios["delete"]("/messengers/" + message.id).then(function (res) {
         _this2.getMessengers();
       }, this.showModal = false);
     },
     saveReading: function saveReading() {
       var _this3 = this;
 
-      axios.put('/messengers/' + this.message.id, this.message).then(function (res) {
+      axios.put("/messengers/" + this.message.id, this.message).then(function (res) {
         _this3.getMessengers();
       }, this.showModal = false);
     },
@@ -5590,7 +5640,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       if (url == null) {
-        var activeUrl = '/messengers';
+        var activeUrl = "/messengers";
       } else {
         var activeUrl = url;
       }
@@ -11821,7 +11871,7 @@ ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_bubble_css__WEBPACK_IMPORTED_MODULE_3__.default);
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_4__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -86732,7 +86782,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10"
+              "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10 bg-gray-100"
           },
           _vm._l(_vm.navigations, function(item, index) {
             return _c("div", { key: index }, [
@@ -91014,11 +91064,11 @@ var render = function() {
               staticClass:
                 "flex justify-between items-center px-2 py-2  cursor-pointer",
               class: [
-                _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+                _vm.isOpen ? "bg-gray-600 text-white" : "hover:bg-gray-200"
               ],
               on: {
                 click: function($event) {
-                  _vm.showCard = !_vm.showCard
+                  _vm.isOpen = !_vm.isOpen
                 }
               }
             },
@@ -91057,13 +91107,13 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm.body && !_vm.showCard
+              _vm.body && !_vm.isOpen
                 ? _c("div", { staticClass: "text-xs text-red-600" }, [
                     _vm._v("Neodoslaná")
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
+              _c("card-header-icon", { attrs: { showCard: _vm.isOpen } })
             ],
             1
           ),
@@ -91075,8 +91125,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.showCard,
-                  expression: "showCard"
+                  value: _vm.isOpen,
+                  expression: "isOpen"
                 }
               ]
             },
@@ -91368,11 +91418,11 @@ var render = function() {
               staticClass:
                 "flex justify-between items-center px-2 py-2 cursor-pointer",
               class: [
-                _vm.showCard ? "bg-gray-600 text-white" : "hover:bg-gray-200"
+                _vm.isOpen ? "bg-gray-600 text-white" : "hover:bg-gray-200"
               ],
               on: {
                 click: function($event) {
-                  _vm.showCard = !_vm.showCard
+                  _vm.isOpen = !_vm.isOpen
                 }
               }
             },
@@ -91408,7 +91458,11 @@ var render = function() {
                 _c(
                   "h3",
                   { staticClass: "ml-2 font-semibold cursor-pointer mr-1" },
-                  [_vm._v("Oznámenia zamestnávateľa ")]
+                  [
+                    _vm._v(
+                      "\n                Oznámenia zamestnávateľa\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm.unreadMessages >= 1
@@ -91421,17 +91475,23 @@ var render = function() {
                             : ""
                         ]
                       },
-                      [_vm._v(" (" + _vm._s(_vm.unreadMessages) + ")")]
+                      [
+                        _vm._v(
+                          "\n                (" +
+                            _vm._s(_vm.unreadMessages) +
+                            ")\n            "
+                        )
+                      ]
                     )
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("card-header-icon", { attrs: { showCard: _vm.showCard } })
+              _c("card-header-icon", { attrs: { showCard: _vm.isOpen } })
             ],
             1
           ),
           _vm._v(" "),
-          _vm.showCard
+          _vm.isOpen
             ? _c(
                 "div",
                 { staticClass: "flex flex-col px-2" },
