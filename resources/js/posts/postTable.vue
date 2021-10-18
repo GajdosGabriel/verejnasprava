@@ -1,18 +1,20 @@
 <template>
     <div>
         <div class="flex justify-between">
-            <input
-                type="text"
-                v-model="search"
-                placeholder="hľadať v popise"
-                class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm"
-            />
-            <span
-                @click="search = ''"
-                class="cursor-pointer text-gray-500"
-                v-if="search !== ''"
-                >X</span
-            >
+            <div>
+                <input
+                    type="text"
+                    v-model="search"
+                    placeholder="hľadať v popise"
+                    class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm"
+                />
+                <span
+                    @click="search = ''"
+                    class="cursor-pointer text-gray-500"
+                    v-if="search !== ''"
+                    >X</span
+                >
+            </div>
 
             <div>
                 <label>Rok</label>

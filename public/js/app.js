@@ -7158,6 +7158,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -93479,43 +93481,45 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "flex justify-between" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.search,
-              expression: "search"
-            }
-          ],
-          staticClass:
-            "p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm",
-          attrs: { type: "text", placeholder: "hľadať v popise" },
-          domProps: { value: _vm.search },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.search = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.search !== ""
-          ? _c(
-              "span",
+        _c("div", [
+          _c("input", {
+            directives: [
               {
-                staticClass: "cursor-pointer text-gray-500",
-                on: {
-                  click: function($event) {
-                    _vm.search = ""
-                  }
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass:
+              "p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm",
+            attrs: { type: "text", placeholder: "hľadať v popise" },
+            domProps: { value: _vm.search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              },
-              [_vm._v("X")]
-            )
-          : _vm._e(),
+                _vm.search = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.search !== ""
+            ? _c(
+                "span",
+                {
+                  staticClass: "cursor-pointer text-gray-500",
+                  on: {
+                    click: function($event) {
+                      _vm.search = ""
+                    }
+                  }
+                },
+                [_vm._v("X")]
+              )
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c("div", [
           _c("label", [_vm._v("Rok")]),

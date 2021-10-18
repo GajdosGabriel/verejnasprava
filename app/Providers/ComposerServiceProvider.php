@@ -47,7 +47,7 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('post.create', function ($view) {
             $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get();
             $view->with('posts', $posts->take(5));
-            $view->with('postsForCopyTable', $posts->groupBy('contact_id'));
+            $view->with('postsForCopyTable', $posts->groupBy('contact_id')->take(31));
         });
 
         view()->composer('post.post-table-predna', function ($view) {
