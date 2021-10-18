@@ -2882,42 +2882,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     contact: {
@@ -88009,8 +87973,7 @@ var render = function() {
                 name: "model",
                 rawName: "v-model",
                 value: _vm.contact.bank_number,
-                expression:
-                  "\n                                                   contact.bank_number\n                                               "
+                expression: "contact.bank_number"
               }
             ],
             staticClass: "input-control",
