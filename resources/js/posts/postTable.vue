@@ -1,17 +1,28 @@
 <template>
     <div>
-        <input
-            type="text"
-            v-model="search"
-            placeholder="hľadať v popise"
-            class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm"
-        />
-        <span
-            @click="search = ''"
-            class="cursor-pointer text-gray-500"
-            v-if="search !== ''"
-            >X</span
-        >
+        <div class="flex justify-between">
+            <input
+                type="text"
+                v-model="search"
+                placeholder="hľadať v popise"
+                class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm"
+            />
+            <span
+                @click="search = ''"
+                class="cursor-pointer text-gray-500"
+                v-if="search !== ''"
+                >X</span
+            >
+
+            <div>
+                <label>Rok</label>
+                <select v-model="year">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+        </div>
 
         <table class="table-auto table-bordered text-sm w-full">
             <thead>
@@ -103,6 +114,7 @@ export default {
         return {
             moment: require("moment"),
             search: "",
+            year: 2021,
             url:
                 "/api/organizations/" + this.user.active_organization + "/posts"
         };
@@ -119,6 +131,10 @@ export default {
     watch: {
         search: function(val) {
             this.fetchPosts(this.url + "?contact=" + this.search);
+        },
+
+        year: function(val) {
+            this.fetchPosts(this.url + "?year=" + this.year);
         }
     },
 
