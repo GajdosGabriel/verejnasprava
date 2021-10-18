@@ -28,7 +28,8 @@ class ContactFilters extends Filters
             ->where('name', 'like', "%$search%")
             ->orWhere('city', 'like', "%$search%")
             ->orWhere('email', 'like', "%$search%")
-            ->orWhere('street', 'like', "%$search%");
+            ->orWhere('street', 'like', "%$search%")
+            ->orWhere('ico', 'like', "%$search%");
     }
 
     public function name(string $search)

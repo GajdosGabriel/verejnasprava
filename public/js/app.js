@@ -7159,6 +7159,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7178,6 +7191,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
     return {
       moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
       search: "",
+      contactName: "",
       year: 2021,
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
@@ -7192,16 +7206,20 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
   },
   watch: {
     search: function search(val) {
-      this.fetchPosts(this.url + "?contact=" + this.search);
+      this.fetchPosts(this.url + "?name=" + this.search);
     },
     year: function year(val) {
       this.fetchPosts(this.url + "?year=" + this.year);
     }
   },
   methods: _objectSpread(_objectSpread({}, mapActions(["fetchPosts", "editPost", "deletePost"])), {}, {
-    searchByContact: function searchByContact(contactId) {
-      this.prefix = "contact";
-      this.search = contactId;
+    searchByContact: function searchByContact(contact) {
+      this.fetchPosts(this.url + "?contact=" + contact.id);
+      this.contactName = contact.name;
+    },
+    clearContactSearch: function clearContactSearch() {
+      this.fetchPosts(this.url);
+      this.contactName = "";
     },
     clickOnItem: function clickOnItem(post, action) {
       if (action == "edit") {
@@ -93479,7 +93497,7 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "flex justify-between" }, [
-        _c("div", [
+        _c("div", { staticClass: "flex items-center" }, [
           _c("input", {
             directives: [
               {
@@ -93515,6 +93533,29 @@ var render = function() {
                   }
                 },
                 [_vm._v("X")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.contactName
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "font-semibold bg-red-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
+                },
+                [
+                  _c("span", [_vm._v(_vm._s(_vm.contactName))]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "cursor-pointer ml-3 text-gray-300 hover:text-gray-400",
+                      on: { click: _vm.clearContactSearch }
+                    },
+                    [_vm._v("\n                    X\n                ")]
+                  )
+                ]
               )
             : _vm._e()
         ]),
@@ -93595,7 +93636,7 @@ var render = function() {
                   domProps: { textContent: _vm._s(post.contact.name) },
                   on: {
                     click: function($event) {
-                      return _vm.searchByContact(post.contact.id)
+                      return _vm.searchByContact(post.contact)
                     }
                   }
                 }),

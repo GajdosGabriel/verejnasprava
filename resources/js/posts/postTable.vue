@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex justify-between">
-            <div>
+            <div class="flex items-center">
                 <input
                     type="text"
                     v-model="search"
@@ -14,6 +14,19 @@
                     v-if="search !== ''"
                     >X</span
                 >
+
+                <div
+                    class="font-semibold bg-red-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
+                    v-if="contactName"
+                >
+                    <span>{{ contactName }}</span>
+                    <div
+                        class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
+                        @click="clearContactSearch"
+                    >
+                        X
+                    </div>
+                </div>
             </div>
 
             <div>
@@ -57,7 +70,7 @@
                     <td
                         class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
                         v-text="post.contact.name"
-                        @click="searchByContact(post.contact.id)"
+                        @click="searchByContact(post.contact)"
                     ></td>
                     <td class="border px-4 py-2 whitespace-no-wrap">
                         {{ post.price | priceFormat }} Eu
@@ -116,6 +129,7 @@ export default {
         return {
             moment: require("moment"),
             search: "",
+            contactName: "",
             year: 2021,
             url:
                 "/api/organizations/" + this.user.active_organization + "/posts"
@@ -132,7 +146,7 @@ export default {
 
     watch: {
         search: function(val) {
-            this.fetchPosts(this.url + "?contact=" + this.search);
+            this.fetchPosts(this.url + "?name=" + this.search);
         },
 
         year: function(val) {
@@ -143,9 +157,14 @@ export default {
     methods: {
         ...mapActions(["fetchPosts", "editPost", "deletePost"]),
 
-        searchByContact: function(contactId) {
-            this.prefix = "contact";
-            this.search = contactId;
+        searchByContact: function(contact) {
+            this.fetchPosts(this.url + "?contact=" + contact.id);
+            this.contactName = contact.name;
+        },
+
+        clearContactSearch: function() {
+            this.fetchPosts(this.url);
+            this.contactName = "";
         },
 
         clickOnItem(post, action) {
