@@ -6792,7 +6792,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["data"]
 });
@@ -93253,16 +93252,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.data.meta.last_page > 1
     ? _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
-        _vm._v("\n    " + _vm._s() + "\n    "),
         _c(
           "button",
           {
             staticClass:
               "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-            attrs: { disabled: !_vm.data.prev_page_url },
+            attrs: { disabled: !_vm.data.links.prev },
             on: {
               click: function($event) {
-                return _vm.$emit("pathUrl", _vm.data.prev_page_url)
+                return _vm.$emit("pathUrl", _vm.data.links.prev)
               }
             }
           },
