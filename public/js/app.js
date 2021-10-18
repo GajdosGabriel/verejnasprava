@@ -93182,7 +93182,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.data.last_page > 1
+  return _vm.data.meta.last_page > 1
     ? _c("div", { staticClass: "flex justify-center my-10 space-x-3" }, [
         _vm._v("\n    " + _vm._s() + "\n    "),
         _c(
@@ -93231,9 +93231,9 @@ var render = function() {
           [
             _vm._v(
               "\n        " +
-                _vm._s(_vm.data.current_page) +
+                _vm._s(_vm.data.meta.current_page) +
                 " / " +
-                _vm._s(_vm.data.last_page) +
+                _vm._s(_vm.data.meta.last_page) +
                 "\n    "
             )
           ]
@@ -93244,10 +93244,10 @@ var render = function() {
           {
             staticClass:
               "flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer",
-            attrs: { disabled: !_vm.data.next_page_url },
+            attrs: { disabled: !_vm.data.links.next },
             on: {
               click: function($event) {
-                return _vm.$emit("pathUrl", _vm.data.next_page_url)
+                return _vm.$emit("pathUrl", _vm.data.links.next)
               }
             }
           },

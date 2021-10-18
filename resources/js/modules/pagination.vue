@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center my-10 space-x-3" v-if="data.last_page > 1" >
+    <div class="flex justify-center my-10 space-x-3" v-if="data.meta.last_page > 1" >
         {{ }}
         <button
             @click="$emit('pathUrl', data.prev_page_url)"
@@ -22,12 +22,12 @@
         <div
             class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm"
         >
-            {{ data.current_page }} / {{ data.last_page }}
+            {{ data.meta.current_page }} / {{ data.meta.last_page }}
         </div>
         <button
-            @click="$emit('pathUrl', data.next_page_url)"
+            @click="$emit('pathUrl', data.links.next)"
             class="flex items-center justify-center h-8 p-3 font-semibold bg-gray-400 border-2 border-gray-600 rounded-sm cursor-pointer"
-            :disabled="!data.next_page_url"
+            :disabled="!data.links.next"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

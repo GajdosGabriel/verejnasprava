@@ -21,7 +21,7 @@ class OrganizationPostController extends Controller
     public function index(Organization $organization, PostFilters $postFilters)
     {
         $posts = $organization->posts()->filter($postFilters)
-           ->latest()->paginate();
+           ->latest()->paginate(15);
 
         return PostResource::collection($posts);
     }
