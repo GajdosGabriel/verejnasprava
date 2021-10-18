@@ -35,7 +35,7 @@ class PostFilters extends Filters
 
     public function year($year)
     {
-        return $this->builder->whereYear('created_at', $year );
+        return $this->builder->whereYear('date_in', $year );
     }
 
 
