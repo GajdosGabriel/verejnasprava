@@ -8,11 +8,11 @@
 @section('content')
 
 
-        <div class="container mx-auto md:flex min-h-screen">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header text-2xl">Resetovať heslo</div>
+        <div class="container mx-auto md:flex min-h-screen text-center justify-center">
+            <div class="text-center">
+                <div class="w-full">
+                    <div class="">
+                        <div class="text-2xl">Resetovať heslo</div>
 
                         <div class="card-body">
                             @if (session('status'))
@@ -28,7 +28,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Emailová
                                         adresa</label>
 
-                                    <div class="col-md-6">
+                                    <div class="my-4">
                                         <input id="email" type="email"
                                                class="input-control @error('email') is-invalid @enderror" name="email"
                                                placeholder="Vložte registračný email"

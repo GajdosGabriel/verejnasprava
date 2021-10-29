@@ -1969,26 +1969,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       formLogin: {},
-      user: ''
+      errors: [],
+      user: ""
     };
   },
   methods: {
     loginHandle: function loginHandle() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/login', this.formLogin).then(function (response) {
-        _this.getUser(), window.location.reload('organizations');
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", this.formLogin).then(function (response) {
+        _this.getUser(), window.location.reload("organizations");
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors.email;
+        console.log(error.response.data.errors.email); // console.log(error.response.data.message || error.message);
       });
     },
     getUser: function getUser() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user").then(function (response) {
         _this2.user = response.data;
       });
     }
@@ -86351,7 +86363,13 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.errors.length
+                            ? _c("div", { staticClass: "text-red-600" }, [
+                                _vm._v("Prihlasovacie údaje nie sú správne.")
+                              ])
+                            : _vm._e()
                         ]),
                         _vm._v(" "),
                         _vm._m(2),
@@ -86379,7 +86397,9 @@ var staticRenderFns = [
     return _c("div", { staticClass: "rounded-t mb-0 px-6 py-6" }, [
       _c("div", { staticClass: "text-center mb-3" }, [
         _c("h6", { staticClass: "text-gray-600 text-sm font-bold" }, [
-          _vm._v("Prihlásenie cez")
+          _vm._v(
+            "\n                                Prihlásenie cez\n                            "
+          )
         ])
       ]),
       _vm._v(" "),
@@ -86442,7 +86462,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                                        Prihlásiť sa\n                                    "
+            "\n                                    Prihlásiť sa\n                                "
           )
         ]
       )
@@ -86454,9 +86474,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex flex-wrap mt-6" }, [
       _c("div", { staticClass: "w-1/2" }, [
-        _c("a", { staticClass: "text-gray-900", attrs: { href: "" } }, [
-          _c("small", [_vm._v("Zabudnuté heslo?")])
-        ])
+        _c(
+          "a",
+          { staticClass: "text-gray-900", attrs: { href: "/password/reset" } },
+          [_c("small", [_vm._v("Zabudnuté heslo?")])]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "w-1/2 text-right" }, [
