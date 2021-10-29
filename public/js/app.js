@@ -1962,21 +1962,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -86239,154 +86224,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "absolute w-full h-full" }, [
-    _c("div", { staticClass: "absolute top-0 w-full h-full bg-gray-900" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "container mx-auto px-4 h-full" }, [
-      _c(
-        "div",
-        {
-          staticClass: "flex content-center items-center justify-center h-full"
-        },
-        [
-          _c("div", { staticClass: "w-full lg:w-4/12 px-4" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
+  return _c("div", { staticClass: "w-full lg:w-4/12 px-4" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.loginHandle($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "flex-auto px-4 lg:px-10 py-10 pt-0" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "relative w-full mb-3" }, [
                 _c(
-                  "form",
+                  "label",
                   {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.loginHandle($event)
-                      }
-                    }
+                    staticClass:
+                      "block uppercase text-gray-700 text-xs font-bold mb-2",
+                    attrs: { for: "grid-password" }
                   },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "flex-auto px-4 lg:px-10 py-10 pt-0" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "relative w-full mb-3" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass:
-                                "block uppercase text-gray-700 text-xs font-bold mb-2",
-                              attrs: { for: "grid-password" }
-                            },
-                            [_vm._v("Email")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.formLogin.email,
-                                expression: "formLogin.email"
-                              }
-                            ],
-                            staticClass:
-                              "px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full",
-                            staticStyle: { transition: "all 0.15s ease 0s" },
-                            attrs: {
-                              type: "email",
-                              required: "",
-                              name: "email",
-                              placeholder: "Email"
-                            },
-                            domProps: { value: _vm.formLogin.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.formLogin,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "relative w-full mb-3" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass:
-                                "block uppercase text-gray-700 text-xs font-bold mb-2",
-                              attrs: { for: "grid-password" }
-                            },
-                            [_vm._v("Heslo")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.formLogin.password,
-                                expression: "formLogin.password"
-                              }
-                            ],
-                            staticClass:
-                              "px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full",
-                            staticStyle: { transition: "all 0.15s ease 0s" },
-                            attrs: {
-                              type: "password",
-                              required: "",
-                              name: "password",
-                              placeholder: "Heslo"
-                            },
-                            domProps: { value: _vm.formLogin.password },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.formLogin,
-                                  "password",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.length
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v("Prihlasovacie údaje nie sú správne.")
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _vm._m(4)
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ])
-        ]
-      )
-    ])
+                  [_vm._v("Email")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formLogin.email,
+                      expression: "formLogin.email"
+                    }
+                  ],
+                  staticClass:
+                    "px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full",
+                  staticStyle: { transition: "all 0.15s ease 0s" },
+                  attrs: {
+                    type: "email",
+                    required: "",
+                    name: "email",
+                    placeholder: "Email"
+                  },
+                  domProps: { value: _vm.formLogin.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.formLogin, "email", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "relative w-full mb-3" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block uppercase text-gray-700 text-xs font-bold mb-2",
+                    attrs: { for: "grid-password" }
+                  },
+                  [_vm._v("Heslo")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formLogin.password,
+                      expression: "formLogin.password"
+                    }
+                  ],
+                  staticClass:
+                    "px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full",
+                  staticStyle: { transition: "all 0.15s ease 0s" },
+                  attrs: {
+                    type: "password",
+                    required: "",
+                    name: "password",
+                    placeholder: "Heslo"
+                  },
+                  domProps: { value: _vm.formLogin.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.formLogin, "password", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.length
+                  ? _c("div", { staticClass: "text-red-600" }, [
+                      _vm._v(
+                        "\n                        Prihlasovacie údaje nie sú správne.\n                    "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -86397,9 +86358,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "rounded-t mb-0 px-6 py-6" }, [
       _c("div", { staticClass: "text-center mb-3" }, [
         _c("h6", { staticClass: "text-gray-600 text-sm font-bold" }, [
-          _vm._v(
-            "\n                                Prihlásenie cez\n                            "
-          )
+          _vm._v("\n                    Prihlásenie cez\n                ")
         ])
       ]),
       _vm._v(" "),
@@ -86460,11 +86419,7 @@ var staticRenderFns = [
           staticStyle: { transition: "all 0.15s ease 0s" },
           attrs: { type: "submit" }
         },
-        [
-          _vm._v(
-            "\n                                    Prihlásiť sa\n                                "
-          )
-        ]
+        [_vm._v("\n                        Prihlásiť sa\n                    ")]
       )
     ])
   },

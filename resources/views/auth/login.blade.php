@@ -7,9 +7,12 @@
 
 @section('content')
 
+
+<x-page.login>
+
     <login-form></login-form>
 
-
+</x-page.login>
 
 
     {{-- <div class="container"> --}}
