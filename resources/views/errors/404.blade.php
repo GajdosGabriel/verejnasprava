@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('page-title', 'Úvodná stránka')
+@section('page-title', 'Stránka sa nenašla')
 
 
-@section('navigation') @include('organizations.navigation') @endsection
+@section('navigation') <x-navigation.navPublic /> @endsection
 
 @section('content')
 
