@@ -16,7 +16,7 @@
                 Nový doklad
             </x-slot>
 
-            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+            <a href="{{  route('posts.index') }}" class="btn btn-secondary">Späť</a>
 
         </x-page.page-title>
 
@@ -44,3 +44,4 @@
     </x-page.container>
 
 @endsection
+
