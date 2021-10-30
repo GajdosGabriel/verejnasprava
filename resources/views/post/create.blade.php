@@ -16,7 +16,7 @@
                 Nový doklad
             </x-slot>
 
-            <a href="{{  route('posts.index') }}" class="btn btn-secondary">Späť</a>
+            <a href="{{ route('posts.index') }}" class="btn btn-secondary">Späť</a>
 
         </x-page.page-title>
 
