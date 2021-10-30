@@ -52,6 +52,12 @@ class PostController extends Controller
         return view('post.edit', compact('post'));
     }
 
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back();
+    }
+
     public function copy(Post $post)
     {
         $this->authorize('update', $post);

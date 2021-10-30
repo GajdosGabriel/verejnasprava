@@ -90,7 +90,7 @@
 
     {{-- Zobrazenie prílohy --}}
     <div class="md:w-3/6">
-        @if (isset($post))
+        @if (isset($post) and $post->files()->count())
             <div class="font-semibold mt-4">Prílohy</div>
             <ul>
                 @forelse($post->files as $file)
