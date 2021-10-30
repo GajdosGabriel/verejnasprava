@@ -117,12 +117,10 @@
 <div class="mb-8">
     {{-- Add post Field --}}
     <div class="relative">
-        @if (isset($post->id))
-            <a class="btn btn-default" href="{{ route('posts.create') }}">
-                Reset
-            </a>
-        @endif
+        <a class="btn btn-default" href="{{ route('posts.create') }}">
+            Reset
+        </a>
+
         <button type="submit" class="btn btn-primary absolute inset-y-0 right-0">Uložiť</button>
     </div>
-
 </div>
