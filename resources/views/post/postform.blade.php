@@ -23,7 +23,8 @@
                 class="input-control block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 required id="exampleSelect1">
                 <option value="" selected disabled>Vybrať dodávateľa</option>
-                @foreach (\App\Models\Contact::where('organization_id', '=', auth()->user()->active_organization)->orderBy('contact_used', 'desc')->get() as $contact)
+                @foreach (\App\Models\Contact::where('organization_id', '=', auth()->user()->active_organization)->orderBy('contact_used', 'desc')->get()
+    as $contact)
                     <option @if (isset($post->contact->id) and $post->contact->id == $contact->id)
                         selected
                 @endif
@@ -115,13 +116,13 @@
 
 <div class="mb-8">
     {{-- Add post Field --}}
-    <div class="flex justify-between">
-        <a href="{{ URL::previous() }}">
-            <div class="btn btn-default">
-                Späť
-            </div>
-        </a>
-        <button type="submit" class="btn btn-primary">Uložiť</button>
+    <div class="relative">
+        @if (isset($post->id))
+            <a class="btn btn-default" href="{{ route('posts.create') }}">
+                Reset
+            </a>
+        @endif
+        <button type="submit" class="btn btn-primary absolute inset-y-0 right-0">Uložiť</button>
     </div>
 
 </div>
