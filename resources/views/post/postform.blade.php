@@ -118,7 +118,7 @@
     {{-- Add post Field --}}
     <div class="relative">
         <a class="btn btn-default" href="{{ route('posts.create') }}">
-            Reset
+            Nový
         </a>
 
         <button type="submit" class="btn btn-primary absolute inset-y-0 right-0">Uložiť</button>

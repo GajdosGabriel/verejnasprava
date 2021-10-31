@@ -20,7 +20,7 @@ class Post extends Model
 
     protected $guarded = ['id'];
     protected $casts = [
-        'date_in' => 'date'
+        'date_in' => 'dateTime'
     ];
 
     public function contact()
