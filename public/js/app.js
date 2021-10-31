@@ -5146,9 +5146,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", "menus", "active"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", "active"])),
   created: function created() {
-    this.$store.dispatch("organization/getOrganization", "/api/menus/" + this.user.active_organization);
+    this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
   },
   methods: {
     saveModul: function saveModul(id) {
@@ -5320,7 +5320,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus', 'active'])),
   created: function created() {
-    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
+    this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
   },
   methods: {
     toggle: function toggle(component) {
@@ -6111,14 +6111,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)('organization', ['organization', 'menus', 'active'])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)('organization', ['organization'])), {}, {
     horizontalMenu: function horizontalMenu() {
-      return this.active.filter(function (menu) {
+      return this.organization.menus.filter(function (menu) {
         return menu.type == 'horizontal';
       });
     },
     verticalMenu: function verticalMenu() {
-      return this.active.filter(function (menu) {
+      return this.organization.menus.filter(function (menu) {
         return menu.type == 'vertical';
       });
     }
@@ -6131,7 +6131,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
+    this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
     var self = this;
     window.addEventListener('click', function (e) {
       // close dropdown when clicked outside
@@ -9541,23 +9541,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var state = {
-  organization: {},
-  menus: [],
-  active: []
+  organization: {} // menus: [],
+  // active: [],
+  // yearsOfPosts: []
+
 };
 var getters = {};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
-    state.organization = payload.data[1];
-    state.menus = payload.data[0];
-    state.active = payload.data[1].menus;
+    state.organization = payload.data; // state.menus = payload.data.menus;
+    // state.active = payload.data[1].menus;
+    // state.yearsOfPosts = payload.data.yearsOfPosts;
   }
 };
 var actions = {
   getOrganization: function getOrganization(_ref, url) {
     var commit = _ref.commit;
     axios.get(url).then(function (response) {
-      commit('SET_ORGANIZATION', response);
+      commit('SET_ORGANIZATION', response.data);
     });
   }
 };
@@ -90975,7 +90976,9 @@ var render = function() {
                 [
                   _c("div", [
                     _vm._v(
-                      _vm._s(_vm.active.length) + "/" + _vm._s(_vm.menus.length)
+                      _vm._s(_vm.active.length) +
+                        "/" +
+                        _vm._s(_vm.organization.menus.length)
                     )
                   ])
                 ]
@@ -90988,7 +90991,7 @@ var render = function() {
       _c(
         "transition-group",
         { attrs: { name: "fade" } },
-        _vm._l(_vm.menus, function(menu) {
+        _vm._l(_vm.organization.menus, function(menu) {
           return _vm.isOpen
             ? _c("div", { key: menu.id }, [
                 _c(

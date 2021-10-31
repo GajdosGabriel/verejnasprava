@@ -80,15 +80,15 @@
             }
         },
         computed: {
-            ...mapState('organization', ['organization', 'menus', 'active']),
+            ...mapState('organization', ['organization']),
 
 
             horizontalMenu() {
-                return this.active.filter(menu => menu.type == 'horizontal')
+                return this.organization.menus.filter(menu => menu.type == 'horizontal')
             },
 
             verticalMenu() {
-                return this.active.filter(menu => menu.type == 'vertical')
+                return this.organization.menus.filter(menu => menu.type == 'vertical')
             }
         },
         methods: {
@@ -99,7 +99,7 @@
             }
         },
         created: function () {
-            this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
+            this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
             let self = this;
 
             window.addEventListener('click', function (e) {

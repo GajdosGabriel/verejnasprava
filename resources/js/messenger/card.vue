@@ -105,7 +105,7 @@
             ...mapState('organization', ['organization', 'menus', 'active']),
         },
         created() {
-            this.$store.dispatch('organization/getOrganization', '/api/menus/' + this.user.active_organization);
+            this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
         },
         methods: {
             toggle(component) {

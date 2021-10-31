@@ -11,13 +11,13 @@
                     <div
                         class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
                     >
-                        <div>{{ active.length }}/{{ menus.length }}</div>
+                        <div>{{ active.length }}/{{ organization.menus.length }}</div>
                     </div>
                 </span>
             </div>
         </div>
         <transition-group name="fade">
-            <div v-for="menu in menus" :key="menu.id" v-if="isOpen">
+            <div v-for="menu in organization.menus" :key="menu.id" v-if="isOpen">
                 <div
                     class="flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
                 >
@@ -69,12 +69,12 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", ["organization", "menus", "active"])
+        ...mapState("organization", ["organization", "active"])
     },
     created: function() {
         this.$store.dispatch(
             "organization/getOrganization",
-            "/api/menus/" + this.user.active_organization
+            "/api/organization/" + this.user.active_organization
         );
     },
     methods: {

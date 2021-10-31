@@ -23,12 +23,13 @@ class TestController extends Controller
     public function test()
     {
 
-        $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get()->groupBy('contact_id');
+        $org = Organization::findOrFail(48);
+
+        dd($org->yearsOfPosts);
 
 
-        dd($posts);
 
-        $user = User::first();
+        $user = User::whereId(48)->get();
 
         // dd( $user->can('update', $user) );
         return new UserResource($user);

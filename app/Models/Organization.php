@@ -14,6 +14,7 @@ class Organization extends Model
     protected $guarded = ['id'];
 
     protected $with = ['menus'];
+   
 
     protected $withCount = [
         'orders',
@@ -60,5 +61,9 @@ class Organization extends Model
         return $this->belongsToMany(Menu::class);
     }
 
+    public function getYearsOfPostsAttribute()
+    {
+        return $this->posts()->whereNotNull('created_at')->distinct()->get([\DB::raw('YEAR(created_at) as year')]);
+    }
 
 }
