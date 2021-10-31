@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-span-3 bg-white p-3">
-                <h3 class="text-lg mb-4 border-b border-gray-200">Doklady od firmy {{ $post->contact->name }}</h3>
+                <h3 class="text-lg mb-4 border-b border-gray-200 text-gray-400">Doklady od firmy <span class="text-gray-800">{{ $post->contact->name }}</span></h3>
                 @include('post._table_edit')
             </div>
 
