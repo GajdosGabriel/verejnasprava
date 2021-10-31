@@ -24,7 +24,19 @@
                         class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
                         @click="clearContactSearch"
                     >
-                        X
+                       <span class=" text-sm">X</span>
+                    </div>
+                </div>
+                <div
+                    class="font-semibold bg-green-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
+                    v-if="categoryName"
+                >
+                    <span>{{ categoryName }}</span>
+                    <div
+                        class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
+                        @click="clearCategorySearch"
+                    >
+                       <span class=" text-sm">X</span>
                     </div>
                 </div>
             </div>
@@ -64,8 +76,9 @@
                     ></td>
                     <td class="border px-4 py-2" v-text="post.name"></td>
                     <td
-                        class="border px-4 py-2"
+                        class="border px-4 py-2 cursor-pointer"
                         v-text="post.category.name"
+                        @click="searchByCategory(post.category)"
                     ></td>
                     <td
                         class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
@@ -130,6 +143,7 @@ export default {
             moment: require("moment"),
             search: "",
             contactName: "",
+            categoryName: "",
             year: 2021,
             url:
                 "/api/organizations/" + this.user.active_organization + "/posts"
@@ -161,10 +175,19 @@ export default {
             this.fetchPosts(this.url + "?contact=" + contact.id);
             this.contactName = contact.name;
         },
+        searchByCategory: function(category) {
+            this.fetchPosts(this.url + "?category=" + category.id);
+            this.categoryName = category.name;
+        },
 
         clearContactSearch: function() {
             this.fetchPosts(this.url);
             this.contactName = "";
+        },
+
+        clearCategorySearch: function() {
+            this.fetchPosts(this.url);
+            this.categoryName = "";
         },
 
         clickOnItem(post, action) {

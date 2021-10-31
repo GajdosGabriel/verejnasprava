@@ -12,6 +12,7 @@ class PostFilters extends Filters
         'id',
         'name',
         'contact',
+        'category',
         'categories',
         'supplierFilter',
         'organization',
@@ -31,6 +32,11 @@ class PostFilters extends Filters
     public function contact($contactId)
     {
         return $this->builder->where('contact_id', 'like', $contactId );
+    }
+
+    public function category($categoryId)
+    {
+        return $this->builder->where('category_id', 'like', $categoryId );
     }
 
     public function year($year)
