@@ -44,6 +44,7 @@
             <div>
                 <label>Rok</label>
                 <select v-model="year">
+                    <!-- <option value="year" v-for="(year, index) in yearsOfPosts" :key="index" v-text="year" ></option> -->
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
@@ -150,10 +151,14 @@ export default {
         };
     },
 
-    computed: mapState({
-        posts: state => state.posts.posts
-    }),
+    // computed: mapState({
+    //     posts: state => state.posts.posts
+    // }),
 
+computed: {
+          ...mapState('organization', ['yearsOfPosts']),
+          ...mapState('posts', ['posts']),
+},
     created() {
         this.fetchPosts(this.url);
     },

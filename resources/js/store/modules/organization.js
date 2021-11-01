@@ -17,7 +17,7 @@ const mutations = {
         state.verticalMenu = payload.data.menus.filter(menu => menu.type == 'vertical');
         state.menuactive = payload.data.menuactive;
         state.paidmodules = payload.data.paidmodules;
-        state.yearsOfPosts = payload.data.yearsOfPosts;
+        state.yearsOfPosts = payload.data.years_of_posts;
     },
 
 };

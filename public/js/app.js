@@ -7181,6 +7181,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -7206,11 +7207,10 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
   },
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
-    posts: function posts(state) {
-      return state.posts.posts;
-    }
-  }),
+  // computed: mapState({
+  //     posts: state => state.posts.posts
+  // }),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('organization', ['yearsOfPosts'])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('posts', ['posts'])),
   created: function created() {
     this.fetchPosts(this.url);
   },
@@ -9595,7 +9595,7 @@ var mutations = {
     });
     state.menuactive = payload.data.menuactive;
     state.paidmodules = payload.data.paidmodules;
-    state.yearsOfPosts = payload.data.yearsOfPosts;
+    state.yearsOfPosts = payload.data.years_of_posts;
   }
 };
 var actions = {
