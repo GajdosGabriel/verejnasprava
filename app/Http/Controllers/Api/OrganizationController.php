@@ -9,12 +9,8 @@ use App\Http\Resources\OrganizationResource;
 
 class OrganizationController extends Controller
 {
-    public function show(Organization $organization){
-        // $menu = Menu::horizontalMenu()->get();
-        // $organization = Organization::find($id);
-
-        // return response([ $menu, $organization]);
-
+    public function show(Organization $organization)
+    {
         return new OrganizationResource($organization);
     }
 

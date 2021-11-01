@@ -13,9 +13,6 @@ class Organization extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['menus'];
-   
-
     protected $withCount = [
         'orders',
     ];
