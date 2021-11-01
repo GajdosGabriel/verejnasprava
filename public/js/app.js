@@ -5136,6 +5136,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5146,7 +5155,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", "active"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", "menuactive", 'paidmodules'])),
   created: function created() {
     this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
   },
@@ -5160,7 +5169,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // window.location.reload();
         // bus.$emit('reloadMenu');
         // this.getIndex();
-        _this.$store.dispatch("organization/getOrganization", "/api/menus/" + _this.user.active_organization);
+        _this.$store.dispatch("organization/getOrganization", "/api/organization/" + _this.user.active_organization);
       });
     },
     toggle: function toggle() {
@@ -5318,7 +5327,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus', 'active'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus', 'menuactive'])),
   created: function created() {
     this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
   },
@@ -5556,7 +5565,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["active"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["menuactive"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -6101,6 +6110,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6111,29 +6157,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)('organization', ['organization'])), {}, {
-    horizontalMenu: function horizontalMenu() {
-      return this.organization.menus.filter(function (menu) {
-        return menu.type == 'horizontal';
-      });
-    },
-    verticalMenu: function verticalMenu() {
-      return this.organization.menus.filter(function (menu) {
-        return menu.type == 'vertical';
-      });
-    }
-  }),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organization", ["organization", "horizontalMenu", "verticalMenu"])),
   methods: {
     logout: function logout() {
-      axios.post('/logout').then(function () {
-        return location.href = '/';
+      axios.post("/logout").then(function () {
+        return location.href = "/";
       });
     }
   },
   created: function created() {
-    this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
+    this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
     var self = this;
-    window.addEventListener('click', function (e) {
+    window.addEventListener("click", function (e) {
       // close dropdown when clicked outside
       if (!self.$el.contains(e.target)) {
         self.isOpen = false;
@@ -8148,7 +8183,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['active'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['menuactive'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, 'due_date');
     },
@@ -8690,7 +8725,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__.default.component('vote-list', __webpack_requir
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('item-show', __webpack_require__(/*! ./items/itemShow.vue */ "./resources/js/items/itemShow.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('menu-activators', __webpack_require__(/*! ./menu/activationMenu.vue */ "./resources/js/menu/activationMenu.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('messenger-card', __webpack_require__(/*! ./messenger/card.vue */ "./resources/js/messenger/card.vue").default);
-vue__WEBPACK_IMPORTED_MODULE_1__.default.component('card-mails-user', __webpack_require__(/*! ./messenger/mail/card-user.vue */ "./resources/js/messenger/mail/card-user.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('messenger-mails-card-user', __webpack_require__(/*! ./messenger/mail/card-user.vue */ "./resources/js/messenger/mail/card-user.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('new-tag-form', __webpack_require__(/*! ./tag/new-tag-form.vue */ "./resources/js/tag/new-tag-form.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('login-form', __webpack_require__(/*! ./auth/login.vue */ "./resources/js/auth/login.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.component('tasks-component', __webpack_require__(/*! ./tasks/Tasks.vue */ "./resources/js/tasks/Tasks.vue").default);
@@ -9541,17 +9576,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var state = {
-  organization: {} // menus: [],
-  // active: [],
-  // yearsOfPosts: []
-
+  organization: {},
+  horizontalMenu: [],
+  verticalMenu: [],
+  menuactive: [],
+  paidmodules: [],
+  yearsOfPosts: []
 };
 var getters = {};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
-    state.organization = payload.data; // state.menus = payload.data.menus;
-    // state.active = payload.data[1].menus;
-    // state.yearsOfPosts = payload.data.yearsOfPosts;
+    state.organization = payload.data;
+    state.horizontalMenu = payload.data.menus.filter(function (menu) {
+      return menu.type == 'horizontal';
+    });
+    state.verticalMenu = payload.data.menus.filter(function (menu) {
+      return menu.type == 'vertical';
+    });
+    state.menuactive = payload.data.menuactive;
+    state.paidmodules = payload.data.paidmodules;
+    state.yearsOfPosts = payload.data.yearsOfPosts;
   }
 };
 var actions = {
@@ -9700,21 +9744,21 @@ var mutations = {
 var actions = {
   getTasks: function getTasks(_ref) {
     var commit = _ref.commit;
-    axios.get('users/1/tasks').then(function (response) {
+    axios.get('/api/users/1/tasks').then(function (response) {
       commit('SET_TASKS', response.data);
     });
   },
   updateTask: function updateTask(_ref2, task) {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    axios.put('users/1/tasks/' + task.id, task).then(function (response) {
+    axios.put('/api/users/1/tasks/' + task.id, task).then(function (response) {
       dispatch('getTasks'); // commit('SET_TASKS', response.data )
     });
   },
   storeTask: function storeTask(_ref3, task) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios.post('users/1/tasks', task).then(function (response) {
+    axios.post('/api/users/1/tasks', task).then(function (response) {
       dispatch('getTasks');
     });
   },
@@ -11965,7 +12009,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\n    display: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\r\n    display: none;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -90951,133 +90995,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "border-2 rounded-sm" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2",
-            class: { "bg-red-200 hover:bg-red-200 ": _vm.isOpen },
-            on: { click: _vm.toggle }
-          },
-          [
-            _c("h2", { staticClass: "text-lg" }, [_vm._v("Aktivácia modulov")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "cursor-pointer" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
-                },
-                [
-                  _c("div", [
-                    _vm._v(
-                      _vm._s(_vm.active.length) +
-                        "/" +
-                        _vm._s(_vm.organization.menus.length)
-                    )
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
+  return _c("div", [
+    _c("div", { staticClass: "border-2 rounded-sm" }, [
       _c(
-        "transition-group",
-        { attrs: { name: "fade" } },
-        _vm._l(_vm.organization.menus, function(menu) {
-          return _vm.isOpen
-            ? _c("div", { key: menu.id }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
-                  },
-                  [
-                    _c("div", { staticClass: "py-1" }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass:
-                            "fill-current h-6 w-6 text-teal-500 mr-4",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "md:flex w-full justify-between items-center"
-                      },
-                      [
-                        _c("div", { staticClass: "md:font-bold" }, [
-                          _vm._v("Modul: " + _vm._s(menu.name))
-                        ]),
-                        _vm._v(" "),
+        "div",
+        {
+          staticClass:
+            "flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2",
+          class: { "bg-red-200 hover:bg-red-200 ": _vm.isOpen },
+          on: { click: _vm.toggle }
+        },
+        [
+          _c("h2", { staticClass: "text-lg" }, [_vm._v("Aktivácia modulov")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "cursor-pointer" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
+              },
+              [
+                _c("div", [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.menuactive.length) +
+                      "/\n                        " +
+                      _vm._s(_vm.paidmodules.length) +
+                      "\n                    "
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.isOpen
+      ? _c(
+          "div",
+          [
+            _c(
+              "transition-group",
+              { attrs: { name: "fade" } },
+              _vm._l(_vm.paidmodules, function(menu) {
+                return _c("div", { key: menu.id }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                    },
+                    [
+                      _c("div", { staticClass: "py-1" }, [
                         _c(
-                          "button",
+                          "svg",
                           {
                             staticClass:
-                              "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
-                            class: {
-                              "bg-red-700 font-semibold": _vm.active.find(
-                                function(o) {
-                                  return o.id == menu.id
-                                }
-                              )
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.saveModul(menu.id)
-                              }
+                              "fill-current h-6 w-6 text-teal-500 mr-4",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
                             }
                           },
                           [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(
-                                  _vm.active.find(function(o) {
-                                    return o.id == menu.id
-                                  })
-                                    ? "Aktivne"
-                                    : "Aktivovať"
-                                ) +
-                                "\n                    "
-                            )
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                              }
+                            })
                           ]
                         )
-                      ]
-                    )
-                  ]
-                )
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ],
-    1
-  )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "md:flex w-full justify-between items-center"
+                        },
+                        [
+                          _c("div", { staticClass: "md:font-bold" }, [
+                            _vm._v(
+                              "\n                            Modul: " +
+                                _vm._s(menu.name) +
+                                "\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
+                              class: {
+                                "bg-red-700 font-semibold": _vm.menuactive.find(
+                                  function(o) {
+                                    return o.id == menu.id
+                                  }
+                                )
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.saveModul(menu.id)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.menuactive.find(function(o) {
+                                      return o.id == menu.id
+                                    })
+                                      ? "Aktivne"
+                                      : "Aktivovať"
+                                  ) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              }),
+              0
+            )
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91102,7 +91154,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.active.find(function(id) {
+  return _vm.menuactive.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -91456,7 +91508,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.active.find(function(id) {
+  return _vm.menuactive.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -92328,7 +92380,9 @@ var render = function() {
           _c("span", { staticClass: "font-semibold text-xl tracking-tight" }, [
             _c("a", { attrs: { href: _vm.baseUrl + "organizations" } }, [
               _vm._v(
-                "\n            " + _vm._s(_vm.organization.name) + "\n        "
+                "\n                " +
+                  _vm._s(_vm.organization.name) +
+                  "\n            "
               )
             ])
           ])
@@ -92358,7 +92412,9 @@ var render = function() {
                 }
               },
               [
-                _c("title", [_vm._v("\n                Menu")]),
+                _c("title", [
+                  _vm._v("\n                    Menu\n                ")
+                ]),
                 _vm._v(" "),
                 _c("path", {
                   attrs: { d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" }
@@ -92488,7 +92544,11 @@ var render = function() {
                             "rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap text-left",
                           on: { click: _vm.logout }
                         },
-                        [_vm._v("Odhlásiť sa")]
+                        [
+                          _vm._v(
+                            "\n                        Odhlásiť sa\n                    "
+                          )
+                        ]
                       )
                     ],
                     2
@@ -95111,7 +95171,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.active.find(function(id) {
+  return _vm.menuactive.find(function(id) {
     return id.id == 6
   })
     ? _c("section", { staticClass: "border mb-4" }, [

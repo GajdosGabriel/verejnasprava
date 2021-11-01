@@ -24,7 +24,7 @@
         <div class="col-span-4 bg-white">
             @role('admin')
             <x-oznamenia>
-                <card-mails-user></card-mails-user>
+                <messenger-mails-card-user></messenger-mails-card-user>
             </x-oznamenia>
 
 
@@ -46,10 +46,9 @@
             @role('admin')
             {{-- Funkčné vue --}}
             <x-oznamenia>
-                {{-- <menu-activators></menu-activators> --}}
+                <menu-activators></menu-activators>
             </x-oznamenia>
 
-            {{--    @include('organizations.modul_activator')--}}
             <x-oznamenia>
                 <messenger-card></messenger-card>
             </x-oznamenia>

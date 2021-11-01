@@ -1,5 +1,5 @@
 <template>
-    <div class="border" v-if="active.find(id => id.id == 10)">
+    <div class="border" v-if="menuactive.find(id => id.id == 10)">
         <header class="flex justify-between items-center px-2 py-2  cursor-pointer" @click="isOpen =! isOpen"
                 :class="[isOpen ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']">
             <div class="flex items-center justify-center">
@@ -102,7 +102,7 @@
             }
         },
         computed:{
-            ...mapState('organization', ['organization', 'menus', 'active']),
+            ...mapState('organization', ['organization', 'menus', 'menuactive']),
         },
         created() {
             this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
