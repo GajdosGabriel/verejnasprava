@@ -80,16 +80,16 @@
             }
         },
         computed: {
-            ...mapState('organization', ['organization']),
+            ...mapState('organization', ['organization', 'horizontalMenu', 'verticalMenu']),
 
 
-            horizontalMenu() {
-                return this.organization.menus.filter(menu => menu.type == 'horizontal')
-            },
+            // horizontalMenu() {
+            //     return this.organization.menus.filter(menu => menu.type == 'horizontal')
+            // },
 
-            verticalMenu() {
-                return this.organization.menus.filter(menu => menu.type == 'vertical')
-            }
+            // verticalMenu() {
+            //     return this.organization.menus.filter(menu => menu.type == 'vertical')
+            // }
         },
         methods: {
 

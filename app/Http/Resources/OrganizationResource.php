@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Menu;
+use App\Http\Resources\MenuResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrganizationResource extends JsonResource
@@ -26,9 +28,9 @@ class OrganizationResource extends JsonResource
             'ico'               => $this->ico,
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
-            'menus'             => $this->menus,
-            // 'menu_active_horizontal'   => $this->menus()->horizontal()->get(),
-            // 'menu_active_vertical'   => $this->menus()->vertical()->get(),
+            'menus'             => MenuResource::collection($this->menus),
+            'paidmodules'       => MenuResource::collection(Menu::paidmodule()->get()),
+            'menuactive'        => MenuResource::collection($this->menus()->paidmodule()->get()),
             'years_of_posts'    => $this->years_of_posts,
         ];
     }
