@@ -22,6 +22,11 @@ class Organization extends Model
         return $this->belongsToMany(User::class)->latest();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'active_organization');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
