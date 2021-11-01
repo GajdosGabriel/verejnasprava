@@ -74,7 +74,6 @@ Route::group(['middleware' => 'auth'], function () {
         'posts'                 => 'Posts\PostController',
         'tasks'                 => 'Tasks\TaskController',
         'tasks.comments'        => 'Tasks\TaskCommentController',
-        'users.tasks'           => 'Tasks\UserTaskController',
         'users'                 => 'UserController',
         'tags'                  => 'TagController',
         'tags.users'            => 'TagUserController',

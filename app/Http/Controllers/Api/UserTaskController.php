@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Tasks;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\User;
-use App\Notifications\Task\NewTask;
 use Illuminate\Http\Request;
+use App\Notifications\Task\NewTask;
+use App\Http\Controllers\Controller;
 
 class UserTaskController extends Controller
 {

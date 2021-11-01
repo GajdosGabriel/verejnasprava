@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     'invitations'               => 'Api\InvitationController',
     'menus'                     => 'Api\MenuController',
     'organization'              => 'Api\OrganizationController',
+    'users.tasks'               => 'Api\UserTaskController',
     ]);
 });
 
