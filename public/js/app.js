@@ -7203,7 +7203,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organization", ["organization", "posts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organization", ["orgPosts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
   created: function created() {
     this.fetchPosts(this.url);
   },
@@ -9574,7 +9574,7 @@ var state = {
   horizontalMenu: [],
   verticalMenu: [],
   paidmodules: [],
-  posts: []
+  orgPosts: []
 };
 var getters = {};
 var mutations = {
@@ -9588,7 +9588,7 @@ var mutations = {
       return menu.type == 'vertical';
     });
     state.paidmodules = payload.data.menus.paidmodules;
-    state.posts = payload.data.posts;
+    state.orgPosts = payload.data.posts;
   }
 };
 var actions = {
@@ -93621,7 +93621,7 @@ var render = function() {
                 }
               }
             },
-            _vm._l(_vm.posts.years_of_posts, function(year, index) {
+            _vm._l(_vm.orgPosts.years_of_posts, function(year, index) {
               return _c("option", {
                 key: index,
                 domProps: { value: year.year, textContent: _vm._s(year.year) }
