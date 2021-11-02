@@ -13,10 +13,10 @@ const mutations = {
 
     SET_ORGANIZATION: function (state, payload) {
         state.organization = payload.data;
-        state.horizontalMenu = payload.data.menus.filter(menu => menu.type == 'horizontal');
-        state.verticalMenu = payload.data.menus.filter(menu => menu.type == 'vertical');
-        state.menuactive = payload.data.menuactive;
-        state.paidmodules = payload.data.paidmodules;
+        state.horizontalMenu = payload.data.menus.base.filter(menu => menu.type == 'horizontal');
+        state.verticalMenu = payload.data.menus.base.filter(menu => menu.type == 'vertical');
+        state.menuactive = payload.data.menus.menuactive;
+        state.paidmodules = payload.data.menus.paidmodules;
         state.yearsOfPosts = payload.data.years_of_posts;
     },
 

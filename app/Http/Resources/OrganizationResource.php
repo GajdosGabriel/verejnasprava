@@ -28,9 +28,11 @@ class OrganizationResource extends JsonResource
             'ico'               => $this->ico,
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
-            'menus'             => MenuResource::collection($this->menus),
-            'paidmodules'       => MenuResource::collection(Menu::paidmodule()->get()),
-            'menuactive'        => MenuResource::collection($this->menus()->paidmodule()->get()),
+            'menus'             => [
+                'base'          => MenuResource::collection($this->menus),
+                'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
+                'menuactive'    => MenuResource::collection($this->menus()->paidmodule()->get()),
+            ],
             'years_of_posts'    => $this->years_of_posts,
             'authUser'          => new UserResource($this->user)
         ];
