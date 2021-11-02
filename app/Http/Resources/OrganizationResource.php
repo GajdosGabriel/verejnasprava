@@ -33,7 +33,12 @@ class OrganizationResource extends JsonResource
                 'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
                 'menuactive'    => MenuResource::collection($this->menus()->paidmodule()->get()),
             ],
-            'years_of_posts'    => $this->years_of_posts,
+            'posts' => [
+                'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
+                'years_of_posts'=> $this->years_of_posts,
+
+            ],
+
             'authUser'          => new UserResource($this->user)
         ];
     }
