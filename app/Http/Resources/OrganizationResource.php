@@ -29,7 +29,7 @@ class OrganizationResource extends JsonResource
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
             'menus'             => [
-                'base'          => MenuResource::collection($this->menus),
+                'menuActive'    => MenuResource::collection($this->menus),
                 'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
             ],
             'posts' => [

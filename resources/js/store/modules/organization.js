@@ -1,6 +1,6 @@
 const state = {
     organization: {},
-    base: [],
+    menuActive: [],
     horizontalMenu: [],
     verticalMenu: [],
     paidmodules: [],
@@ -12,9 +12,9 @@ const mutations = {
 
     SET_ORGANIZATION: function (state, payload) {
         state.organization = payload.data;
-        state.base = payload.data.menus.base;
-        state.horizontalMenu = payload.data.menus.base.filter(menu => menu.type == 'horizontal');
-        state.verticalMenu = payload.data.menus.base.filter(menu => menu.type == 'vertical');
+        state.menuActive = payload.data.menus.menuActive;
+        state.horizontalMenu = payload.data.menus.menuActive.filter(menu => menu.type == 'horizontal');
+        state.verticalMenu = payload.data.menus.menuActive.filter(menu => menu.type == 'vertical');
         state.paidmodules = payload.data.menus.paidmodules;
         state.orgPosts = payload.data.posts;
     },

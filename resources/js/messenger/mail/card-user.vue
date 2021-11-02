@@ -1,5 +1,5 @@
 <template>
-    <div class="border" v-if="base.find(id => id.id == 10)">
+    <div class="border" v-if="menuActive.find(id => id.id == 10)">
         <header
             class="flex justify-between items-center px-2 py-2 cursor-pointer"
             @click="isOpen = !isOpen"
@@ -96,7 +96,7 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", ["base"]),
+        ...mapState("organization", ["menuActive"]),
         unreadMessages() {
             return (this.messengers.data || []).filter(
                 m => m.pivot.opened == null
