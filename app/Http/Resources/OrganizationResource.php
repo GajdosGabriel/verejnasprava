@@ -33,7 +33,7 @@ class OrganizationResource extends JsonResource
                 'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
             ],
             'posts' => [
-                'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
+                // 'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
                 'years_of_posts'    => $this->years_of_posts,
 
             ],
