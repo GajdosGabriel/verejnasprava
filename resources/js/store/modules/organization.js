@@ -4,8 +4,6 @@ const state = {
     verticalMenu: [],
     menuactive: [],
     paidmodules: [],
-    posts: {},
-
 };
 const getters = {};
 
@@ -17,7 +15,6 @@ const mutations = {
         state.verticalMenu = payload.data.menus.base.filter(menu => menu.type == 'vertical');
         state.menuactive = payload.data.menus.menuactive;
         state.paidmodules = payload.data.menus.paidmodules;
-        state.posts = payload.data.posts;
     },
 
 };

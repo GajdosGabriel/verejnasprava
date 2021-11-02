@@ -35,7 +35,7 @@ class OrganizationResource extends JsonResource
             ],
             'posts' => [
                 'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
-                'years_of_posts'=> $this->years_of_posts,
+                'years_of_posts' => $this->years_of_posts,
 
             ],
 

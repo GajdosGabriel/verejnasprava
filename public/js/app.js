@@ -7207,10 +7207,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
   },
-  // computed: mapState({
-  //     posts: state => state.posts.posts
-  // }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('organization', ['yearsOfPosts'])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('posts', ['posts'])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organization", ["organization"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
   created: function created() {
     this.fetchPosts(this.url);
   },
@@ -9580,22 +9577,20 @@ var state = {
   horizontalMenu: [],
   verticalMenu: [],
   menuactive: [],
-  paidmodules: [],
-  yearsOfPosts: []
+  paidmodules: []
 };
 var getters = {};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
     state.organization = payload.data;
-    state.horizontalMenu = payload.data.menus.filter(function (menu) {
+    state.horizontalMenu = payload.data.menus.base.filter(function (menu) {
       return menu.type == 'horizontal';
     });
-    state.verticalMenu = payload.data.menus.filter(function (menu) {
+    state.verticalMenu = payload.data.menus.base.filter(function (menu) {
       return menu.type == 'vertical';
     });
-    state.menuactive = payload.data.menuactive;
-    state.paidmodules = payload.data.paidmodules;
-    state.yearsOfPosts = payload.data.years_of_posts;
+    state.menuactive = payload.data.menus.menuactive;
+    state.paidmodules = payload.data.menus.paidmodules;
   }
 };
 var actions = {
@@ -93638,13 +93633,16 @@ var render = function() {
                 }
               }
             },
-            [
-              _c("option", { attrs: { value: "2021" } }, [_vm._v("2021")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2020" } }, [_vm._v("2020")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
-            ]
+            _vm._l(_vm.organization.posts.years_of_posts, function(
+              year,
+              index
+            ) {
+              return _c("option", {
+                key: index,
+                domProps: { value: year.year, textContent: _vm._s(year.year) }
+              })
+            }),
+            0
           )
         ])
       ]),
