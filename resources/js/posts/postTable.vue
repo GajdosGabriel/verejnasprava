@@ -24,7 +24,7 @@
                         class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
                         @click="clearContactSearch"
                     >
-                       <span class=" text-sm">X</span>
+                        <span class=" text-sm">X</span>
                     </div>
                 </div>
                 <div
@@ -36,7 +36,7 @@
                         class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
                         @click="clearCategorySearch"
                     >
-                       <span class=" text-sm">X</span>
+                        <span class=" text-sm">X</span>
                     </div>
                 </div>
             </div>
@@ -151,14 +151,10 @@ export default {
         };
     },
 
-    // computed: mapState({
-    //     posts: state => state.posts.posts
-    // }),
-
-computed: {
-          ...mapState('organization', ['posts']),
-          ...mapState('posts', ['posts']),
-},
+    computed: {
+        ...mapState("organization", ["posts"]),
+        ...mapState("posts", ["posts"])
+    },
     created() {
         this.fetchPosts(this.url);
     },
