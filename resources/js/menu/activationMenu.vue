@@ -74,11 +74,11 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", ["organization", 'paidmodules'])
+        ...mapState("organizations", ["organization", 'paidmodules'])
     },
     created: function() {
         this.$store.dispatch(
-            "organization/getOrganization",
+            "organizations/getOrganization",
             "/api/organization/" + this.user.active_organization
         );
     },
@@ -93,7 +93,7 @@ export default {
                     // bus.$emit('reloadMenu');
                     // this.getIndex();
                     this.$store.dispatch(
-                        "organization/getOrganization",
+                        "organizations/getOrganization",
                         "/api/organization/" + this.user.active_organization
                     );
                 });

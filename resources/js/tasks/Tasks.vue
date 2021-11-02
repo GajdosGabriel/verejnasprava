@@ -71,7 +71,7 @@
         computed: {
             ...mapState('tasks', ['setTaskList']),
             ...mapState('users', ['users']),
-            ...mapState('organization', ['menuActive']),
+            ...mapState('organizations', ['menuActive']),
             ...mapGetters('tasks', ['taskList']),
 
             sortedList() {

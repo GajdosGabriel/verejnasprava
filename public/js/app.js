@@ -5151,9 +5151,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", 'paidmodules'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organizations", ["organization", 'paidmodules'])),
   created: function created() {
-    this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
+    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
   },
   methods: {
     saveModul: function saveModul(id) {
@@ -5165,7 +5165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // window.location.reload();
         // bus.$emit('reloadMenu');
         // this.getIndex();
-        _this.$store.dispatch("organization/getOrganization", "/api/organization/" + _this.user.active_organization);
+        _this.$store.dispatch("organizations/getOrganization", "/api/organization/" + _this.user.active_organization);
       });
     },
     toggle: function toggle() {
@@ -5323,9 +5323,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menuActive'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organizations', ['organization', 'menuActive'])),
   created: function created() {
-    this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
+    this.$store.dispatch('organizations/getOrganization', '/api/organization/' + this.user.active_organization);
   },
   methods: {
     toggle: function toggle(component) {
@@ -5561,7 +5561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["menuActive"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organizations", ["menuActive"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -6153,7 +6153,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organization", ["organization", "horizontalMenu", "verticalMenu"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organizations", ["organization", "horizontalMenu", "verticalMenu"])),
   methods: {
     logout: function logout() {
       axios.post("/logout").then(function () {
@@ -6162,7 +6162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
+    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
     var self = this;
     window.addEventListener("click", function (e) {
       // close dropdown when clicked outside
@@ -7203,7 +7203,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organization", ["orgPosts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organizations", ["orgPosts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
   created: function created() {
     this.fetchPosts(this.url);
   },
@@ -8176,7 +8176,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['menuActive'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organizations', ['menuActive'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, 'due_date');
     },
@@ -8871,7 +8871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_councils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/councils */ "./resources/js/store/modules/councils.js");
 /* harmony import */ var _modules_meetings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/meetings */ "./resources/js/store/modules/meetings.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals.js");
-/* harmony import */ var _modules_organization__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/organization */ "./resources/js/store/modules/organization.js");
+/* harmony import */ var _modules_organizations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/organizations */ "./resources/js/store/modules/organizations.js");
 /* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/users */ "./resources/js/store/modules/users.js");
 
 
@@ -8897,7 +8897,7 @@ vue__WEBPACK_IMPORTED_MODULE_10__.default.use(vuex__WEBPACK_IMPORTED_MODULE_11__
     councils: _modules_councils__WEBPACK_IMPORTED_MODULE_5__.default,
     meetings: _modules_meetings__WEBPACK_IMPORTED_MODULE_6__.default,
     modals: _modules_modals__WEBPACK_IMPORTED_MODULE_7__.default,
-    organization: _modules_organization__WEBPACK_IMPORTED_MODULE_8__.default,
+    organizations: _modules_organizations__WEBPACK_IMPORTED_MODULE_8__.default,
     users: _modules_users__WEBPACK_IMPORTED_MODULE_9__.default
   }
 }));
@@ -9557,10 +9557,10 @@ var actions = {
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/organization.js":
-/*!****************************************************!*\
-  !*** ./resources/js/store/modules/organization.js ***!
-  \****************************************************/
+/***/ "./resources/js/store/modules/organizations.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/organizations.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12002,7 +12002,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\r\n    display: none;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\n    display: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

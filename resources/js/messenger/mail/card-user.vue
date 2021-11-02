@@ -96,7 +96,7 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", ["menuActive"]),
+        ...mapState("organizations", ["menuActive"]),
         unreadMessages() {
             return (this.messengers.data || []).filter(
                 m => m.pivot.opened == null

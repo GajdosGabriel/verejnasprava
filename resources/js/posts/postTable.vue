@@ -152,7 +152,7 @@ export default {
     },
 
     computed: {
-        ...mapState("organization", ["orgPosts"]),
+        ...mapState("organizations", ["orgPosts"]),
         ...mapState("posts", ["posts"])
     },
     created() {

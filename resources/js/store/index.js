@@ -8,7 +8,7 @@ import items from "./modules/items";
 import councils from "./modules/councils";
 import meetings from "./modules/meetings";
 import modals from "./modules/modals";
-import organization from "./modules/organization";
+import organizations from "./modules/organizations";
 import users from "./modules/users";
 
 
@@ -27,7 +27,7 @@ export default new Vuex.Store({
         councils,
         meetings,
         modals,
-        organization,
+        organizations,
         users
     }
 })

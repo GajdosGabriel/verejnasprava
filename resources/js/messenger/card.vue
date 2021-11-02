@@ -102,10 +102,10 @@
             }
         },
         computed:{
-            ...mapState('organization', ['organization', 'menuActive']),
+            ...mapState('organizations', ['organization', 'menuActive']),
         },
         created() {
-            this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
+            this.$store.dispatch('organizations/getOrganization', '/api/organization/' + this.user.active_organization);
         },
         methods: {
             toggle(component) {

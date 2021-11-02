@@ -117,7 +117,7 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", [
+        ...mapState("organizations", [
             "organization",
             "horizontalMenu",
             "verticalMenu"
@@ -130,7 +130,7 @@ export default {
     },
     created: function() {
         this.$store.dispatch(
-            "organization/getOrganization",
+            "organizations/getOrganization",
             "/api/organization/" + this.user.active_organization
         );
         let self = this;
