@@ -30,12 +30,17 @@ class PostResource extends JsonResource
             'category_id'       => $this->category_id,
             'dic'               => $this->dic,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
-            // 'routeindex'        => route('organizations.posts.index', auth()->user()->organization_active),
+            'url'               => [
+                    'index'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
+                    'show'      =>  route('organizations.posts.show', [auth()->user()->active_organization, $this->id]),
+                    'store'     =>  route('organizations.posts.store', [auth()->user()->active_organization]),
+                    'destroy'   =>  route('organizations.posts.destroy', [auth()->user()->active_organization, $this->id]),
+            ],
             // 'testovanie'        => $this->when( \Auth::check() && \Auth::user()->can('create', App\Models\Post::class), 'niečo' ),
             // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'navigations' => [
-                'edit' => $this->when( auth()->user()->hasAnyRole(['admin', 'moderator']), [
+                'edit' => $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']), [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
@@ -43,7 +48,7 @@ class PostResource extends JsonResource
                     'icon' => 'iconEdit',
                 ]),
 
-                'delete' =>  $this->when( auth()->user()->hasAnyRole(['admin', 'moderator']), [
+                'delete' =>  $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']), [
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
