@@ -25,6 +25,11 @@ class Menu extends Model
 
     }
 
+    public function getActiveAttribute()
+    {
+        return $this->organizations()->where('id', auth()->user()->active_organization)->exists();
+    }
+
     public static function activatorOfMenus($organization, $input){
 
         // If active/deActive Zverejnovanie add Contact also

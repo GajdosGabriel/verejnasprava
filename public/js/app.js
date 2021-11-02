@@ -5141,10 +5141,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -5155,7 +5151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", "menuactive", 'paidmodules'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organization", ["organization", 'paidmodules'])),
   created: function created() {
     this.$store.dispatch("organization/getOrganization", "/api/organization/" + this.user.active_organization);
   },
@@ -5327,7 +5323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus', 'menuactive'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus'])),
   created: function created() {
     this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
   },
@@ -5565,7 +5561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["menuactive"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["organization"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -8180,7 +8176,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['menuactive'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['organization'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, 'due_date');
     },
@@ -9576,7 +9572,6 @@ var state = {
   organization: {},
   horizontalMenu: [],
   verticalMenu: [],
-  menuactive: [],
   paidmodules: []
 };
 var getters = {};
@@ -9589,7 +9584,6 @@ var mutations = {
     state.verticalMenu = payload.data.menus.base.filter(function (menu) {
       return menu.type == 'vertical';
     });
-    state.menuactive = payload.data.menus.menuactive;
     state.paidmodules = payload.data.menus.paidmodules;
   }
 };
@@ -11980,7 +11974,7 @@ ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_bubble_css__WEBPACK_IMPORTED_MODULE_3__.default);
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_4__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -91014,8 +91008,6 @@ var render = function() {
                 _c("div", [
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.menuactive.length) +
-                      "/\n                        " +
                       _vm._s(_vm.paidmodules.length) +
                       "\n                    "
                   )
@@ -91086,11 +91078,7 @@ var render = function() {
                               staticClass:
                                 "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
                               class: {
-                                "bg-red-700 font-semibold": _vm.menuactive.find(
-                                  function(o) {
-                                    return o.id == menu.id
-                                  }
-                                )
+                                "bg-red-700 font-semibold": menu.active
                               },
                               on: {
                                 click: function($event) {
@@ -91102,11 +91090,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(
-                                    _vm.menuactive.find(function(o) {
-                                      return o.id == menu.id
-                                    })
-                                      ? "Aktivne"
-                                      : "Aktivovať"
+                                    menu.active ? "Aktivne" : "Aktivovať"
                                   ) +
                                   "\n                        "
                               )
@@ -91149,7 +91133,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuactive.find(function(id) {
+  return _vm.organization.menus.base.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -91503,7 +91487,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuactive.find(function(id) {
+  return _vm.organization.menus.base.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -95169,7 +95153,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuactive.find(function(id) {
+  return _vm.organization.menus.base.find(function(id) {
     return id.id == 6
   })
     ? _c("section", { staticClass: "border mb-4" }, [

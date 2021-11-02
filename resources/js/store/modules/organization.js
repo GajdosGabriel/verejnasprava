@@ -2,7 +2,6 @@ const state = {
     organization: {},
     horizontalMenu: [],
     verticalMenu: [],
-    menuactive: [],
     paidmodules: [],
 };
 const getters = {};
@@ -13,7 +12,6 @@ const mutations = {
         state.organization = payload.data;
         state.horizontalMenu = payload.data.menus.base.filter(menu => menu.type == 'horizontal');
         state.verticalMenu = payload.data.menus.base.filter(menu => menu.type == 'vertical');
-        state.menuactive = payload.data.menus.menuactive;
         state.paidmodules = payload.data.menus.paidmodules;
     },
 

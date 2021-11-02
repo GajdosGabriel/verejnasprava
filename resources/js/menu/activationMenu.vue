@@ -12,7 +12,7 @@
                         class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
                     >
                         <div>
-                            {{ menuactive.length }}/
+                            <!-- {{ menuactive.length }}/ -->
                             {{ paidmodules.length }}
                         </div>
                     </div>
@@ -45,16 +45,12 @@
                             <button
                                 class="px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm"
                                 :class="{
-                                    'bg-red-700 font-semibold': menuactive.find(
-                                        o => o.id == menu.id
-                                    )
+                                    'bg-red-700 font-semibold': menu.active
                                 }"
                                 @click="saveModul(menu.id)"
                             >
                                 {{
-                                    menuactive.find(o => o.id == menu.id)
-                                        ? "Aktivne"
-                                        : "Aktivovať"
+                                    menu.active ? "Aktivne" : "Aktivovať"
                                 }}
                             </button>
                         </div>
@@ -78,7 +74,7 @@ export default {
         };
     },
     computed: {
-        ...mapState("organization", ["organization", "menuactive", 'paidmodules'])
+        ...mapState("organization", ["organization", 'paidmodules'])
     },
     created: function() {
         this.$store.dispatch(
