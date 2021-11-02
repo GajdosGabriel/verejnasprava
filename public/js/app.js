@@ -5323,7 +5323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'menus'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organization', ['organization', 'base'])),
   created: function created() {
     this.$store.dispatch('organization/getOrganization', '/api/organization/' + this.user.active_organization);
   },
@@ -5561,7 +5561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["organization"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organization", ["base"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -8176,7 +8176,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['organization'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organization', ['base'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, 'due_date');
     },
@@ -9570,6 +9570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   organization: {},
+  base: [],
   horizontalMenu: [],
   verticalMenu: [],
   paidmodules: []
@@ -9578,6 +9579,7 @@ var getters = {};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
     state.organization = payload.data;
+    state.base = payload.data.menus.base;
     state.horizontalMenu = payload.data.menus.base.filter(function (menu) {
       return menu.type == 'horizontal';
     });
@@ -91133,7 +91135,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.organization.menus.base.find(function(id) {
+  return _vm.base.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -91487,7 +91489,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.organization.menus.base.find(function(id) {
+  return _vm.base.find(function(id) {
     return id.id == 10
   })
     ? _c(
@@ -95153,7 +95155,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.organization.menus.base.find(function(id) {
+  return _vm.base.find(function(id) {
     return id.id == 6
   })
     ? _c("section", { staticClass: "border mb-4" }, [
