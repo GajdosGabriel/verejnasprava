@@ -12,7 +12,7 @@ const mutations = {
 };
 const actions = {
     getUsers({commit}) {
-        axios.get('organizations/1/users')
+        axios.get('/api/organizations/1/users')
             .then(response => {
                     commit('SET_USERS', response.data);
                 }

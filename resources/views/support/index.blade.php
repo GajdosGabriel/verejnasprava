@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page-title', 'Podpora')
+
 @section('navigation') @include('organizations.navigation') @endsection
 
 

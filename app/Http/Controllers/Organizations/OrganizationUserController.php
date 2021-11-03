@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class OrganizationUserController extends Controller
 {
-    public function index(Organization $organization)
-    {
-        return $organization->users;
-    }
+    // public function index(Organization $organization)
+    // {
+    //     return $organization->users;
+    // }
 
 }
