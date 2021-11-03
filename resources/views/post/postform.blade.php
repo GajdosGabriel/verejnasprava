@@ -121,6 +121,8 @@
             Nový
         </a>
 
-        <button type="submit" class="btn btn-primary absolute inset-y-0 right-0">Uložiť</button>
+        <div class="absolute inset-y-0 right-0">
+            <button type="submit" class="btn btn-primary">Uložiť</button>            
+        </div>
     </div>
 </div>
