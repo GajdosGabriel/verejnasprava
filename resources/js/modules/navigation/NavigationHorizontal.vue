@@ -63,7 +63,7 @@
                     class=" mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 focus:outline-none"
                 >
                     <div class="flex items-center">
-                        {{ user.first_name }} {{ user.last_name }}
+                        {{ user.full_name }}
                         <span class="ml-2">
                             <svg
                                 class="fill-current h-4 w-4 transform group-hover:-rotate-180
@@ -118,6 +118,7 @@ export default {
     },
     computed: {
         ...mapState("organizations", [
+            "user",
             "organization",
             "horizontalMenu",
             "verticalMenu"
