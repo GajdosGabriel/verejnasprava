@@ -11,8 +11,6 @@ export default {
     data() {
         return {
             baseUrl: window.App.baseUrl,
-            isOpen: false,
-            dropdown: false,
             currentUrlSegment: window.location.pathname
         };
     },

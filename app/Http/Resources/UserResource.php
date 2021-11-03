@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\OrganizationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -32,10 +33,7 @@ class UserResource extends JsonResource
             'send_invitation'       => $this->send_invitation,
             // 'roles'                 => RoleResource::collection($this->whenLoaded('roles')),
             // 'permissions'           => PermissionResource::collection($this->whenLoaded('permissions')),
-            // 'organization'          => new OrganizationResource( $this->organization ),
-            'organization'          => $this->organization->name,
-            'organization_id'       => $this->organization->id,
-
+            'organization'          => new OrganizationResource( $this->organization ),
 
             'links' => [
                 'view'              => $this->when($request->user()->can('view', $request->user()), route('organizations.users.create', [$this->active_organization])),

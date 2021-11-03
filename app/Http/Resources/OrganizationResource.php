@@ -38,7 +38,6 @@ class OrganizationResource extends JsonResource
 
             ],
 
-            'authUser'          => new UserResource($this->user)
         ];
     }
 }
