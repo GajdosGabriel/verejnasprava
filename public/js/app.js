@@ -6162,7 +6162,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
+    // this.$store.dispatch(
+    //     "organizations/getOrganization",
+    //     "/api/organization/" + this.user.active_organization
+    // );
+    this.$store.dispatch("organizations/getOrganization");
     var self = this;
     window.addEventListener("click", function (e) {
       // close dropdown when clicked outside
@@ -8277,8 +8281,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       baseUrl: window.App.baseUrl,
-      isOpen: false,
-      dropdown: false,
       currentUrlSegment: window.location.pathname
     };
   },
@@ -9550,6 +9552,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var state = {
+  user: {},
   organization: {},
   menuActive: [],
   horizontalMenu: [],
@@ -9560,22 +9563,19 @@ var state = {
 var getters = {};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
-    state.organization = payload.data;
-    state.menuActive = payload.data.menus.menuActive;
-    state.horizontalMenu = payload.data.menus.menuActive.filter(function (menu) {
-      return menu.type == 'horizontal';
-    });
-    state.verticalMenu = payload.data.menus.menuActive.filter(function (menu) {
-      return menu.type == 'vertical';
-    });
-    state.paidmodules = payload.data.menus.paidmodules;
-    state.orgPosts = payload.data.posts;
+    state.user = payload.data;
+    state.organization = payload.data.organization;
+    state.menuActive = payload.data.organization.menus.menuActive;
+    state.horizontalMenu = payload.data.organization.menus.horizontal;
+    state.verticalMenu = payload.data.organization.menus.menuActive.vertical;
+    state.paidmodules = payload.data.organization.menus.paidmodules;
+    state.orgPosts = payload.data.organization.posts;
   }
 };
 var actions = {
-  getOrganization: function getOrganization(_ref, url) {
+  getOrganization: function getOrganization(_ref) {
     var commit = _ref.commit;
-    axios.get(url).then(function (response) {
+    axios.get('/api/user').then(function (response) {
       commit('SET_ORGANIZATION', response.data);
     });
   }

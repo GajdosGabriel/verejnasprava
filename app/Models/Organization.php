@@ -63,6 +63,16 @@ class Organization extends Model
         return $this->belongsToMany(Menu::class);
     }
 
+    public function getHorizontalAttribute()
+    {
+        return $this->menus()->where('type', 'horizontal')->get();
+    }
+
+    public function getVerticalAttribute()
+    {
+        return $this->menus()->where('type', 'vertical')->get();
+    }
+
     public function getYearsOfPostsAttribute()
     {
         return $this->posts()->whereNotNull('created_at')->distinct()->get([\DB::raw('YEAR(created_at) as year')]);

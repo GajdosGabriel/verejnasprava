@@ -31,6 +31,8 @@ class OrganizationResource extends JsonResource
             'menus'             => [
                 'menuActive'    => MenuResource::collection($this->menus),
                 'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
+                'horizontal'    => MenuResource::collection($this->horizontal),
+                'vertical'      => MenuResource::collection($this->vertical),
             ],
             'posts' => [
                 // 'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),

@@ -129,10 +129,13 @@ export default {
         }
     },
     created: function() {
-        this.$store.dispatch(
-            "organizations/getOrganization",
-            "/api/organization/" + this.user.active_organization
-        );
+        // this.$store.dispatch(
+        //     "organizations/getOrganization",
+        //     "/api/organization/" + this.user.active_organization
+        // );
+
+        this.$store.dispatch("organizations/getOrganization");
+
         let self = this;
 
         window.addEventListener("click", function(e) {
