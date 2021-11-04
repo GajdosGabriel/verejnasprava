@@ -16,7 +16,7 @@ const mutations = {
         state.organization = payload.data.organization;
         state.menuActive = payload.data.organization.menus.menuActive;
         state.horizontalMenu = payload.data.organization.menus.horizontal;
-        state.verticalMenu = payload.data.organization.menus.menuActive.vertical;
+        state.verticalMenu = payload.data.organization.menus.vertical;
         state.paidmodules = payload.data.organization.menus.paidmodules;
         state.orgPosts = payload.data.organization.posts;
     },
