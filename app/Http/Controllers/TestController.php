@@ -26,7 +26,7 @@ class TestController extends Controller
         $org = Organization::findOrFail(48);
         $menu = Menu::findOrFail(1);
 
-        dd($menu);
+        dd($org->menus);
 
 
 

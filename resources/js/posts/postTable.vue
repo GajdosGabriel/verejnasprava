@@ -44,7 +44,7 @@
             <div>
                 <label>Rok</label>
                 <select v-model="year">
-                    <option :value="year.year" v-for="(year, index) in orgPosts.years_of_posts" :key="index" v-text="year.year" ></option>
+                    <option :value="year.year" v-for="(year, index) in orgPosts" :key="index" v-text="year.year" ></option>
                     <!-- <option value="2021">2021</option> -->
                     <!-- <option value="2020">2020</option> -->
                     <!-- <option value="2019">2019</option> -->
@@ -132,7 +132,7 @@ import paginator from "../modules/pagination";
 import dropDownComponent from "../components/dropDown/dropDownComponent";
 import { filterMixin } from "../mixins/filterMixin";
 
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 
@@ -152,7 +152,7 @@ export default {
     },
 
     computed: {
-        ...mapState("organizations", ["orgPosts"]),
+        ...mapGetters("organizations", ["orgPosts"]),
         ...mapState("posts", ["posts"])
     },
     created() {

@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
     data() {
@@ -117,11 +117,17 @@ export default {
         };
     },
     computed: {
-        ...mapState("organizations", [
-            "user",
-            "organization",
+        ...mapGetters("organizations", [
+            "menuActive",
             "horizontalMenu",
             "verticalMenu"
+        ]),
+
+        ...mapState("organizations", [
+            "user",
+            "organization"
+            // "horizontalMenu",
+            // "verticalMenu"
         ])
     },
     methods: {

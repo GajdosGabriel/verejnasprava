@@ -5151,9 +5151,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organizations", ["organization", 'paidmodules'])),
-  created: function created() {
-    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["organization", 'paidmodules'])),
+  created: function created() {// this.$store.dispatch(
+    //     "organizations/getOrganization",
+    //     "/api/organization/" + this.user.active_organization
+    // );
+    //   this.$store.dispatch("organizations/getOrganization");
   },
   methods: {
     saveModul: function saveModul(id) {
@@ -5287,6 +5290,70 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5323,20 +5390,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)('organizations', ['organization', 'menuActive'])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapGetters)("organizations", ["organization", "menuActive", 10])), {}, {
+    isModulActiveById: function isModulActiveById() {
+      return this.$store.getters["organizations/menuActive"](10);
+    }
+  }),
   created: function created() {
-    this.$store.dispatch('organizations/getOrganization', '/api/organization/' + this.user.active_organization);
+    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
   },
   methods: {
     toggle: function toggle(component) {
-      if (component == 'showTag') {
+      if (component == "showTag") {
         this.showTag = !this.showTag;
         this.getTags();
       } else {
         this.showTag = false;
       }
 
-      if (component == 'showUsers') {
+      if (component == "showUsers") {
         this.showUsers = !this.showUsers;
         this.getUsers();
       } else {
@@ -5345,13 +5416,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     onFileChange: function onFileChange(event) {
       for (var key in event.target.files) {
-        this.postFormData.append('filename[]', event.target.files[key]);
+        this.postFormData.append("filename[]", event.target.files[key]);
       }
     },
     pushAllUsers: function pushAllUsers() {
       var _this = this;
 
-      axios.get('/users').then(function (response) {
+      axios.get("/users").then(function (response) {
         var _this$recipients;
 
         (_this$recipients = _this.recipients).push.apply(_this$recipients, _toConsumableArray(response.data)); // this.uniqueRecipients();
@@ -5361,7 +5432,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getUsersByTag: function getUsersByTag(tag) {
       var _this2 = this;
 
-      axios.get('/tags/' + tag.id + '/users').then(function (response) {
+      axios.get("/tags/" + tag.id + "/users").then(function (response) {
         var _this2$recipients;
 
         (_this2$recipients = _this2.recipients).push.apply(_this2$recipients, _toConsumableArray(response.data));
@@ -5397,24 +5468,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getUsers: function getUsers() {
       var _this3 = this;
 
-      axios.get('/users').then(function (response) {
+      axios.get("/users").then(function (response) {
         _this3.users = response.data;
       });
     },
     getTags: function getTags() {
       var _this4 = this;
 
-      axios.get('/api/organizations/' + this.user.active_organization + '/tags').then(function (response) {
+      axios.get("/api/organizations/" + this.user.active_organization + "/tags").then(function (response) {
         _this4.tags = response.data;
       });
     },
     saveMessage: function saveMessage() {
       if (this.body.length < 2) {
-        return alert('Správa je prázdna.');
+        return alert("Správa je prázdna.");
       }
 
       if (this.recipients.length == 0) {
-        return alert('Nezadali ste prijímatteľa.');
+        return alert("Nezadali ste prijímatteľa.");
       } //  // Form add file
       // const formData = new FormData();
       //  this.postFormData.append('body', this.body);
@@ -5423,13 +5494,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // axios.post('/messengers', this.postFormData)
 
 
-      axios.post('/messengers', {
+      axios.post("/messengers", {
         body: this.body,
         name: this.name,
         recipients: this.recipients
       }).then(function (response) {
-        _app__WEBPACK_IMPORTED_MODULE_5__.bus.$emit('addNewMessage', response.data);
-      }, this.body = null, this.name = "Správa od zamestnávateľa", this.recipients = [], this.isOpen = false, this.title = 'Správa bola rozoslaná');
+        _app__WEBPACK_IMPORTED_MODULE_5__.bus.$emit("addNewMessage", response.data);
+      }, this.body = null, this.name = "Správa od zamestnávateľa", this.recipients = [], this.isOpen = false, this.title = "Správa bola rozoslaná");
     }
   }
 });
@@ -5561,11 +5632,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("organizations", ["menuActive"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("organizations", ["menuActive"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
       }).length;
+    },
+    isModulActiveById: function isModulActiveById() {
+      return this.$store.getters["organizations/menuActive"](10);
     }
   }),
   created: function created() {
@@ -6153,7 +6227,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organizations", ["user", "organization", "horizontalMenu", "verticalMenu"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("organizations", ["menuActive", "horizontalMenu", "verticalMenu"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organizations", ["user", "organization" // "horizontalMenu",
+  // "verticalMenu"
+  ])),
   methods: {
     logout: function logout() {
       axios.post("/logout").then(function () {
@@ -7207,7 +7283,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createNamespace
       url: "/api/organizations/" + this.user.active_organization + "/posts"
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organizations", ["orgPosts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("organizations", ["orgPosts"])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("posts", ["posts"])),
   created: function created() {
     this.fetchPosts(this.url);
   },
@@ -8149,6 +8225,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8168,10 +8273,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    this.$store.dispatch('tasks/getTasks', {
+    this.$store.dispatch("tasks/getTasks", {
       root: true
     });
-    this.$store.dispatch('users/getUsers', {
+    this.$store.dispatch("users/getUsers", {
       root: true
     });
   },
@@ -8180,20 +8285,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('tasks', ['setTaskList'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('users', ['users'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)('organizations', ['menuActive'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('tasks', ['taskList'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("tasks", ["setTaskList"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("users", ["users"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("organizations", ["menuActive"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("tasks", ["taskList"])), {}, {
     sortedList: function sortedList() {
-      return _.orderBy(this.taskList, 'due_date');
+      return _.orderBy(this.taskList, "due_date");
     },
     nameOfList: function nameOfList() {
-      return this.setTaskList ? 'aktívne' : 'vybavené';
+      return this.setTaskList ? "aktívne" : "vybavené";
+    },
+    isModulActiveById: function isModulActiveById() {
+      return this.$store.getters["organizations/menuActive"](6);
     }
   }),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('tasks', ['variantTaskList'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)("tasks", ["variantTaskList"])), {}, {
     multiUpdateCompleted: function multiUpdateCompleted() {
       var _this = this;
 
-      axios.put('/tasks/1', this.markAsCompleted).then(function (response) {
-        _this.$store.dispatch('tasks/getTasks', {
+      axios.put("/tasks/1", this.markAsCompleted).then(function (response) {
+        _this.$store.dispatch("tasks/getTasks", {
           root: true
         });
       });
@@ -9512,23 +9620,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   user: {},
-  organization: {},
-  menuActive: [],
-  horizontalMenu: [],
-  verticalMenu: [],
-  paidmodules: [],
-  orgPosts: []
+  organization: {} // orgPosts: [],
+
 };
-var getters = {};
+var getters = {
+  organization: function organization(state) {
+    return state.organization;
+  },
+  menuActive: function menuActive(state) {
+    return function (id) {
+      var _state$organization, _state$organization$m;
+
+      return (_state$organization = state.organization) === null || _state$organization === void 0 ? void 0 : (_state$organization$m = _state$organization.menus) === null || _state$organization$m === void 0 ? void 0 : _state$organization$m.menuActive.find(function (item) {
+        return item.id == id;
+      });
+    };
+  },
+  horizontalMenu: function horizontalMenu(state) {
+    var _state$organization2, _state$organization2$;
+
+    return (_state$organization2 = state.organization) === null || _state$organization2 === void 0 ? void 0 : (_state$organization2$ = _state$organization2.menus) === null || _state$organization2$ === void 0 ? void 0 : _state$organization2$.horizontal;
+  },
+  verticalMenu: function verticalMenu(state) {
+    var _state$organization3, _state$organization3$;
+
+    return (_state$organization3 = state.organization) === null || _state$organization3 === void 0 ? void 0 : (_state$organization3$ = _state$organization3.menus) === null || _state$organization3$ === void 0 ? void 0 : _state$organization3$.vertical;
+  },
+  paidmodules: function paidmodules(state) {
+    var _state$organization4, _state$organization4$;
+
+    return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.paidmodules;
+  },
+  orgPosts: function orgPosts(state) {
+    var _state$organization5, _state$organization5$;
+
+    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.posts) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.years_of_posts;
+  }
+};
 var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
     state.user = payload.data;
     state.organization = payload.data.organization;
-    state.menuActive = payload.data.organization.menus.menuActive;
-    state.horizontalMenu = payload.data.organization.menus.horizontal;
-    state.verticalMenu = payload.data.organization.menus.menuActive.vertical;
-    state.paidmodules = payload.data.organization.menus.paidmodules;
-    state.orgPosts = payload.data.organization.posts;
   }
 };
 var actions = {
@@ -90951,24 +91083,7 @@ var render = function() {
         [
           _c("h2", { staticClass: "text-lg" }, [_vm._v("Aktivácia modulov")]),
           _vm._v(" "),
-          _c("span", { staticClass: "cursor-pointer" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
-              },
-              [
-                _c("div", [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.paidmodules.length) +
-                      "\n                    "
-                  )
-                ])
-              ]
-            )
-          ])
+          _vm._m(0)
         ]
       )
     ]),
@@ -90979,7 +91094,7 @@ var render = function() {
           [
             _c(
               "transition-group",
-              { attrs: { name: "fade" } },
+              { attrs: { name: "fade", tag: "p" } },
               _vm._l(_vm.paidmodules, function(menu) {
                 return _c("div", { key: menu.id }, [
                   _c(
@@ -91064,7 +91179,23 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "cursor-pointer" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
+        },
+        [_c("div")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -91087,9 +91218,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuActive.find(function(id) {
-    return id.id == 10
-  })
+  return _vm.isModulActiveById
     ? _c(
         "div",
         { staticClass: "border" },
@@ -91145,7 +91274,7 @@ var render = function() {
               _vm._v(" "),
               _vm.body && !_vm.isOpen
                 ? _c("div", { staticClass: "text-xs text-red-600" }, [
-                    _vm._v("Neodoslaná")
+                    _vm._v("\n            Neodoslaná\n        ")
                   ])
                 : _vm._e(),
               _vm._v(" "),
@@ -91171,10 +91300,14 @@ var render = function() {
                 "div",
                 { staticClass: "my-4 p-2 border flex flex-wrap relative" },
                 [
-                  _vm._v("Komu: "),
+                  _vm._v("\n            Komu:\n            "),
                   _vm.recipients && _vm.recipients.length > 0
                     ? _c("span", [
-                        _vm._v(" (" + _vm._s(_vm.recipients.length) + ")")
+                        _vm._v(
+                          "\n                (" +
+                            _vm._s(_vm.recipients.length) +
+                            ")"
+                        )
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -91441,9 +91574,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuActive.find(function(id) {
-    return id.id == 10
-  })
+  return _vm.isModulActiveById
     ? _c(
         "div",
         { staticClass: "border" },
@@ -93569,7 +93700,7 @@ var render = function() {
                 }
               }
             },
-            _vm._l(_vm.orgPosts.years_of_posts, function(year, index) {
+            _vm._l(_vm.orgPosts, function(year, index) {
               return _c("option", {
                 key: index,
                 domProps: { value: year.year, textContent: _vm._s(year.year) }
@@ -95102,9 +95233,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.menuActive.find(function(id) {
-    return id.id == 6
-  })
+  return _vm.isModulActiveById
     ? _c("section", { staticClass: "border mb-4" }, [
         _c(
           "header",
@@ -95149,7 +95278,11 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("h3", { staticClass: "font-semibold cursor-pointer" }, [
-                _vm._v("Úlohy (" + _vm._s(_vm.taskList.length) + ")")
+                _vm._v(
+                  "\n                Úlohy (" +
+                    _vm._s(_vm.taskList.length) +
+                    ")\n            "
+                )
               ])
             ]),
             _vm._v(" "),

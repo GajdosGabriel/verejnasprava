@@ -1,5 +1,5 @@
 <template>
-    <div class="border" v-if="menuActive.find(id => id.id == 10)">
+    <div class="border" v-if="isModulActiveById">
         <header
             class="flex justify-between items-center px-2 py-2 cursor-pointer"
             @click="isOpen = !isOpen"
@@ -81,7 +81,7 @@ import showModal from "./show-modal";
 import moment from "moment";
 import { bus } from "../../app";
 import pagination from "../pagination";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import CardHeaderIcon from "../../components/Cards/CardHeaderIcon";
 import { createdMixin } from "../../mixins/createdMixin";
 export default {
@@ -96,11 +96,15 @@ export default {
         };
     },
     computed: {
-        ...mapState("organizations", ["menuActive"]),
+        ...mapGetters("organizations", ["menuActive"]),
         unreadMessages() {
             return (this.messengers.data || []).filter(
                 m => m.pivot.opened == null
             ).length;
+        },
+
+        isModulActiveById() {
+            return this.$store.getters["organizations/menuActive"](10);
         }
     },
     created() {

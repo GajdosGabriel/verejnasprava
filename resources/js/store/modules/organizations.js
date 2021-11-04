@@ -1,24 +1,34 @@
 const state = {
     user: {},
     organization: {},
-    menuActive: [],
-    horizontalMenu: [],
-    verticalMenu: [],
-    paidmodules: [],
-    orgPosts: [],
+    // orgPosts: [],
 };
-const getters = {};
+const getters = {
+    organization: state => {
+        return state.organization
+    },
+    menuActive: (state) => (id) => {
+        return state.organization?.menus?.menuActive.find(item => item.id == id)
+    },
+    horizontalMenu: state => {
+        return state.organization?.menus?.horizontal
+    },
+    verticalMenu: state => {
+        return state.organization?.menus?.vertical
+    },
+    paidmodules: state => {
+        return state.organization?.menus?.paidmodules
+    },
+    orgPosts: state => {
+        return state.organization?.posts?.years_of_posts
+    }
+};
 
 const mutations = {
 
     SET_ORGANIZATION: function (state, payload) {
         state.user = payload.data;
         state.organization = payload.data.organization;
-        state.menuActive = payload.data.organization.menus.menuActive;
-        state.horizontalMenu = payload.data.organization.menus.horizontal;
-        state.verticalMenu = payload.data.organization.menus.vertical;
-        state.paidmodules = payload.data.organization.menus.paidmodules;
-        state.orgPosts = payload.data.organization.posts;
     },
 
 };

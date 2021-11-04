@@ -13,14 +13,14 @@
                     >
                         <div>
                             <!-- {{ menuactive.length }}/ -->
-                            {{ paidmodules.length }}
+                            <!-- {{ paidmodules.length }} -->
                         </div>
                     </div>
                 </span>
             </div>
         </div>
         <div v-if="isOpen">
-            <transition-group name="fade">
+            <transition-group name="fade" tag="p">
                 <div v-for="menu in paidmodules" :key="menu.id">
                     <div
                         class="flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
@@ -63,7 +63,7 @@
 
 <script>
 import { bus } from "../app";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { createdMixin } from "../mixins/createdMixin";
 
 export default {
@@ -74,13 +74,15 @@ export default {
         };
     },
     computed: {
-        ...mapState("organizations", ["organization", 'paidmodules'])
+        ...mapGetters("organizations", ["organization", 'paidmodules'])
     },
     created: function() {
-        this.$store.dispatch(
-            "organizations/getOrganization",
-            "/api/organization/" + this.user.active_organization
-        );
+        // this.$store.dispatch(
+        //     "organizations/getOrganization",
+        //     "/api/organization/" + this.user.active_organization
+        // );
+
+        //   this.$store.dispatch("organizations/getOrganization");
     },
     methods: {
         saveModul(id) {
