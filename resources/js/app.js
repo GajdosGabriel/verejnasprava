@@ -54,7 +54,7 @@ Vue.component('council-table', require('./councils/councilTable.vue').default);
 Vue.component('council-create', require('./councils/create.vue').default);
 Vue.component('vote-list', require('./votes/voteList.vue').default);
 Vue.component('item-show', require('./items/itemShow.vue').default);
-Vue.component('menu-activators', require('./menu/activationMenu.vue').default);
+Vue.component('activatorModules', require('./modules/activator/activationMenu.vue').default);
 Vue.component('messenger-card', require('./messenger/card.vue').default);
 Vue.component('messenger-mails-card-user', require('./messenger/mail/card-user.vue').default);
 Vue.component('new-tag-form', require('./tag/new-tag-form.vue').default);

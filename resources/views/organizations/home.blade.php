@@ -45,7 +45,7 @@
             @role('admin')
             {{-- Funkčné vue --}}
             <x-oznamenia>
-                <menu-activators></menu-activators>
+                <activator-modules></activator-modules>
             </x-oznamenia>
 
             <x-oznamenia>

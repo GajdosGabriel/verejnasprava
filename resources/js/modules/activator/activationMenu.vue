@@ -62,9 +62,9 @@
 </template>
 
 <script>
-import { bus } from "../app";
+import { bus } from "../../app";
 import { mapState, mapGetters } from "vuex";
-import { createdMixin } from "../mixins/createdMixin";
+import { createdMixin } from "../../mixins/createdMixin";
 
 export default {
     mixins: [createdMixin],
