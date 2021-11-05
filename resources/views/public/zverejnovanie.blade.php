@@ -11,9 +11,10 @@
 
     <div class="container w-full min-h-screen p-6 mx-auto">
 
-        <div class="w-2/3 mx-auto">
+        <div class="w-full mx-auto">
             <div class="embed-responsive aspect-ratio-16/9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sXCDTYenouQ"></iframe>
+                <iframe class="embed-responsive-item " width="560"
+                height="315" src="https://www.youtube.com/embed/sXCDTYenouQ"></iframe>
             </div>
         </div>
 
