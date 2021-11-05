@@ -5,18 +5,7 @@
             <new-contact-button />
         </div>
 
-        <input
-            type="text"
-            v-model="search"
-            class="p-1 border-2 border-gray-300 rounded-sm"
-            placeholder="Meno, email, tel., mesto"
-        />
-        <span
-            @click="search = ''"
-            class="cursor-pointer text-gray-500"
-            v-if="search !== ''"
-            >X</span
-        >
+        <search-form @emitForm="searchForm"></search-form>
 
         <table class="table-auto w-full">
             <thead>
@@ -87,6 +76,7 @@
 </template>
 
 <script>
+import searchForm from "../components/SearchForm";
 import newContactButton from "./newContactButton.vue";
 import formEdit from "./formEdit.vue";
 import paginator from "../modules/pagination";
@@ -99,7 +89,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("contacts");
 
 export default {
-    components: { paginator, formEdit, newContactButton },
+    components: { paginator, formEdit, newContactButton, searchForm },
     mixins: [filterMixin],
     data: function() {
         return {
@@ -133,6 +123,9 @@ export default {
         changePaginateUrl(path) {
             this.url = path;
             this.fetchContacts(this.url);
+        },
+        searchForm(val) {
+            this.search = val;
         }
     }
 };

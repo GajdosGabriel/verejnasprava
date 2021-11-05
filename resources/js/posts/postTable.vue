@@ -2,18 +2,7 @@
     <div>
         <div class="flex justify-between">
             <div class="flex items-center">
-                <input
-                    type="text"
-                    v-model="search"
-                    placeholder="hľadať v popise"
-                    class="p-1 focus:border-purple-500 border-gray-200 border-2 rounded-sm"
-                />
-                <span
-                    @click="search = ''"
-                    class="cursor-pointer text-gray-500"
-                    v-if="search !== ''"
-                    >X</span
-                >
+                <search-form @emitForm="searchForm"></search-form>
 
                 <div
                     class="font-semibold bg-red-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
@@ -44,7 +33,12 @@
             <div>
                 <label>Rok</label>
                 <select v-model="year">
-                    <option :value="year.year" v-for="(year, index) in orgPosts" :key="index" v-text="year.year" ></option>
+                    <option
+                        :value="year.year"
+                        v-for="(year, index) in orgPosts"
+                        :key="index"
+                        v-text="year.year"
+                    ></option>
                     <!-- <option value="2021">2021</option> -->
                     <!-- <option value="2020">2020</option> -->
                     <!-- <option value="2019">2019</option> -->
@@ -128,6 +122,7 @@
     </div>
 </template>
 <script>
+import searchForm from "../components/SearchForm";
 import paginator from "../modules/pagination";
 import dropDownComponent from "../components/dropDown/dropDownComponent";
 import { filterMixin } from "../mixins/filterMixin";
@@ -137,7 +132,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 
 export default {
-    components: { paginator, dropDownComponent },
+    components: { paginator, dropDownComponent, searchForm },
     mixins: [filterMixin],
     data: function() {
         return {
@@ -145,7 +140,7 @@ export default {
             search: "",
             contactName: "",
             categoryName: "",
-            year: 2021,
+            year: new Date().getFullYear(),
             url:
                 "/api/organizations/" + this.user.active_organization + "/posts"
         };
@@ -204,6 +199,10 @@ export default {
         changePaginateUrl(path) {
             this.url = path;
             this.fetchPosts(this.url);
+        },
+
+        searchForm(val) {
+            this.search = val;
         }
     }
 };
