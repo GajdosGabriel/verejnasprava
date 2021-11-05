@@ -1,7 +1,6 @@
 const state = {
     user: {},
     organization: {},
-    // orgPosts: [],
 };
 const getters = {
     organization: state => {
@@ -18,6 +17,9 @@ const getters = {
     },
     paidmodules: state => {
         return state.organization?.menus?.paidmodules
+    },
+    paidmodulesCount: state => {
+        return state.organization?.menus?.paidmodules.length
     },
     orgPosts: state => {
         return state.organization?.posts?.years_of_posts

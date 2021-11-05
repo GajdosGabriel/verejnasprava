@@ -5151,7 +5151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["organization", 'paidmodules'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["organization", 'paidmodules', 'paidmodulesCount'])),
   created: function created() {// this.$store.dispatch(
     //     "organizations/getOrganization",
     //     "/api/organization/" + this.user.active_organization
@@ -9620,8 +9620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   user: {},
-  organization: {} // orgPosts: [],
-
+  organization: {}
 };
 var getters = {
   organization: function organization(state) {
@@ -9651,10 +9650,15 @@ var getters = {
 
     return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.paidmodules;
   },
-  orgPosts: function orgPosts(state) {
+  paidmodulesCount: function paidmodulesCount(state) {
     var _state$organization5, _state$organization5$;
 
-    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.posts) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.years_of_posts;
+    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.menus) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.paidmodules.length;
+  },
+  orgPosts: function orgPosts(state) {
+    var _state$organization6, _state$organization6$;
+
+    return (_state$organization6 = state.organization) === null || _state$organization6 === void 0 ? void 0 : (_state$organization6$ = _state$organization6.posts) === null || _state$organization6$ === void 0 ? void 0 : _state$organization6$.years_of_posts;
   }
 };
 var mutations = {
@@ -91070,132 +91074,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "border-2 rounded-sm" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2",
-          class: { "bg-red-200 hover:bg-red-200 ": _vm.isOpen },
-          on: { click: _vm.toggle }
-        },
-        [
-          _c("h2", { staticClass: "text-lg" }, [_vm._v("Aktivácia modulov")]),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _vm.isOpen
-      ? _c(
+  return _c(
+    "div",
+    { staticClass: "border-2 border-gray-300 rounded-md bg-gray-100" },
+    [
+      _c("div", { staticClass: "border-2 rounded-sm" }, [
+        _c(
           "div",
+          {
+            staticClass:
+              "flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2",
+            class: { "bg-red-200 hover:bg-red-200 ": _vm.isOpen },
+            on: { click: _vm.toggle }
+          },
           [
-            _c(
-              "transition-group",
-              { attrs: { name: "fade", tag: "p" } },
-              _vm._l(_vm.paidmodules, function(menu) {
-                return _c("div", { key: menu.id }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
-                    },
-                    [
-                      _c("div", { staticClass: "py-1" }, [
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "fill-current h-6 w-6 text-teal-500 mr-4",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
-                              }
-                            })
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "md:flex w-full justify-between items-center"
-                        },
-                        [
-                          _c("div", { staticClass: "md:font-bold" }, [
-                            _vm._v(
-                              "\n                            Modul: " +
-                                _vm._s(menu.name) +
-                                "\n                        "
-                            )
-                          ]),
-                          _vm._v(" "),
+            _c("h2", { staticClass: "text-lg" }, [_vm._v("Aktivácia modulov")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "cursor-pointer" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
+                },
+                [
+                  _c("div", [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.paidmodulesCount) +
+                        "\n                    "
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm.isOpen
+        ? _c(
+            "div",
+            { staticClass: "px-4" },
+            [
+              _c(
+                "transition-group",
+                { attrs: { name: "fade" } },
+                _vm._l(_vm.paidmodules, function(menu) {
+                  return _c("div", { key: menu.id, staticClass: "bg-white" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex my-3 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                      },
+                      [
+                        _c("div", { staticClass: "py-1" }, [
                           _c(
-                            "button",
+                            "svg",
                             {
                               staticClass:
-                                "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
-                              class: {
-                                "bg-red-700 font-semibold": menu.active
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.saveModul(menu.id)
-                                }
+                                "fill-current h-6 w-6 text-teal-500 mr-4",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
                               }
                             },
                             [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(
-                                    menu.active ? "Aktivne" : "Aktivovať"
-                                  ) +
-                                  "\n                        "
-                              )
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                                }
+                              })
                             ]
                           )
-                        ]
-                      )
-                    ]
-                  )
-                ])
-              }),
-              0
-            )
-          ],
-          1
-        )
-      : _vm._e()
-  ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "md:flex w-full justify-between items-center"
+                          },
+                          [
+                            _c("div", { staticClass: "md:font-bold" }, [
+                              _vm._v(
+                                "\n                            Modul: " +
+                                  _vm._s(menu.name) +
+                                  "\n                        "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
+                                class: {
+                                  "bg-red-700 font-semibold": menu.active
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.saveModul(menu.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(
+                                      menu.active ? "Aktivne" : "Aktivovať"
+                                    ) +
+                                    "\n                        "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                }),
+                0
+              )
+            ],
+            1
+          )
+        : _vm._e()
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "cursor-pointer" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
-        },
-        [_c("div")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

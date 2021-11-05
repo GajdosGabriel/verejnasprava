@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="border-2 border-gray-300 rounded-md bg-gray-100">
         <div class="border-2 rounded-sm">
             <div
                 @click="toggle"
@@ -13,17 +13,17 @@
                     >
                         <div>
                             <!-- {{ menuactive.length }}/ -->
-                            <!-- {{ paidmodules.length }} -->
+                            {{ paidmodulesCount }}
                         </div>
                     </div>
                 </span>
             </div>
         </div>
-        <div v-if="isOpen">
-            <transition-group name="fade" tag="p">
-                <div v-for="menu in paidmodules" :key="menu.id">
+        <div v-if="isOpen" class="px-4">
+            <transition-group name="fade">
+                <div v-for="menu in paidmodules" :key="menu.id" class="bg-white">
                     <div
-                        class="flex mb-5 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                        class="flex my-3 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
                     >
                         <div class="py-1">
                             <svg
@@ -74,7 +74,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("organizations", ["organization", 'paidmodules'])
+        ...mapGetters("organizations", ["organization", 'paidmodules', 'paidmodulesCount'])
     },
     created: function() {
         // this.$store.dispatch(
