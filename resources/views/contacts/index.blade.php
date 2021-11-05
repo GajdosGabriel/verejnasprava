@@ -17,7 +17,7 @@
     <x-page.container>
 
         <contact-table />
-        
+
     </x-page.container>
     <notification-list></notification-list>
 @endsection

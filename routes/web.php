@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
         'comments'              => 'CommentController',
-        'contacts'              => 'Contacts\ContactsController',
+        // 'contacts'              => 'Contacts\ContactsController',
         'councils'              => 'Councils\CouncilController',
         'councils.meetings'     => 'Councils\CouncilMeetingController',
         'interpellations'       => 'Councils\InterpellationController',
@@ -85,6 +85,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 });
+
+Route::resources([
+    'contacts'              => 'Contacts\ContactsController',
+]);
 
 
 Auth::routes();
