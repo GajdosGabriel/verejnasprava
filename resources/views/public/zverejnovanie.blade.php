@@ -11,7 +11,7 @@
 
     <div class="container w-full min-h-screen p-6 mx-auto">
 
-        <div class="w-full mx-auto">
+        <div class=" flex justify-center">
             <div class="embed-responsive aspect-ratio-16/9">
                 <iframe class="embed-responsive-item " width="560"
                 height="315" src="https://www.youtube.com/embed/sXCDTYenouQ"></iframe>
@@ -26,7 +26,7 @@
         </div>
 
 
-        <h3 class="font-semibold text-2xl text-center mt-12 mb-6">Zverejnené doklady</h3>
+        {{-- <h3 class="font-semibold text-2xl text-center mt-12 mb-6">Zverejnené doklady</h3> --}}
         {{--        @include('modul.categoryList')--}}
 {{--        @include('post.post-table-predna')--}}
 
