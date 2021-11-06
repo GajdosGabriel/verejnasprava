@@ -26,7 +26,7 @@ class ItemController extends Controller
         };
 
         $meetings = Meeting::where('start_at', '>=', Carbon::now())->whereHas('council', function (Builder $query) {
-            $query->whereOrganizationId(auth()->user()->id);
+            $query->whereOrganizationId(auth()->user()->active_organization);
         })->orderBy('start_at', 'desc')->get();
 
         return view('council.items.index', compact(['items', 'meetings']));

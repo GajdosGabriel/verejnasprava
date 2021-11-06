@@ -20,10 +20,10 @@
 
         <x-page.page3_3>
 
-            <ul class="col-span-9 bg-white p-3">
+            <div class="col-span-9 bg-white p-3">
 
                 @forelse($items as $item)
-                    <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2 px-2">
+                    <div class="flex justify-between border-b-2 hover:bg-gray-100 py-2 px-2">
                         <a href="{{ route('items.show', $item->id) }}">
                             <span class="font-semibold block">{{ $item->name }}</span>
                             <span class="text-xs">{{ $item->user->full_name() }}</span>
@@ -55,14 +55,14 @@
                                 </form>
                             @endcan
                         @endforelse
-                    </li>
+                    </div>
                     @empty
                     @endforelse
-            </ul>
+            </div>
 
 
                 {{-- ASIDE --}}
-                <div class="lg:w-1/4 md:px-6 px-4">
+                <div  class="col-span-3 bg-white p-3">
 
                 </div>
 
