@@ -28,7 +28,7 @@ class OrganizationPostController extends Controller
 
     public function store(Organization $organization, SavePostRequest $request)
     {
-        $post = $organization->posts()->create($request->except('filename'));
+        $post = $organization->posts()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id] ));
 
         $post->saveFile($request);
 

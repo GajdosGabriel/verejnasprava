@@ -20,7 +20,7 @@ class Post extends Model
 
     protected $guarded = ['id'];
     protected $casts = [
-        'date_in' => 'dateTime'
+        'date_in' => 'datetime'
     ];
 
     public function contact()
@@ -41,7 +41,6 @@ class Post extends Model
     public function files() {
         return $this->morphMany(File::class, 'fileable');
     }
-
 
     public function setNameAttribute($value)
     {
