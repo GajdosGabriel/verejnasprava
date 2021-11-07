@@ -29,6 +29,8 @@ class UserController extends Controller
     }
 
     public function index() {
+        $this->authorize('viewAny', User::class);
+
         $users =  Organization::whereId(auth()->user()->active_organization)->first()->users;
         if(\Request::wantsJson()) {
            return $users;
