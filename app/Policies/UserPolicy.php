@@ -46,7 +46,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return false;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -70,7 +70,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return false;
+        return $user->hasRole('admin');
     }
 
     /**
