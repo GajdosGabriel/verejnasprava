@@ -70,6 +70,16 @@
                 </li>
             </ul>
         </transition>
+
+        <div v-if="councilUsers < 2" class="text-center">
+            V zastupiteľstve nie sú členovia.
+
+            <a href="/users" class="block my-2">
+                <button class="border-red-300 bg-red-500 border-2 text-gray-100 hover:bg-red-400 px-1 rounded-md">
+                    Pridať člena
+                </button>
+            </a>
+        </div>
     </div>
 </template>
 

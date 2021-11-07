@@ -5056,6 +5056,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -91194,13 +91204,38 @@ var render = function() {
                   0
                 )
               : _vm._e()
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.councilUsers < 2
+            ? _c("div", { staticClass: "text-center" }, [
+                _vm._v(
+                  "\n        V zastupiteľstve nie sú členovia.\n\n        "
+                ),
+                _vm._m(0)
+              ])
+            : _vm._e()
         ],
         1
       )
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "block my-2", attrs: { href: "/users" } }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "border-red-300 bg-red-500 border-2 text-gray-100 hover:bg-red-400 px-1 rounded-md"
+        },
+        [_vm._v("\n                Pridať člena\n            ")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
