@@ -6122,7 +6122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["organization", 'paidmodules', 'paidmodulesCount'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["organization", 'paidmodules', 'paidmodulesCount', 'menuActiveCount'])),
   created: function created() {// this.$store.dispatch(
     //     "organizations/getOrganization",
     //     "/api/organization/" + this.user.active_organization
@@ -9692,30 +9692,37 @@ var getters = {
       });
     };
   },
-  horizontalMenu: function horizontalMenu(state) {
+  menuActiveCount: function menuActiveCount(state) {
     var _state$organization2, _state$organization2$;
 
-    return (_state$organization2 = state.organization) === null || _state$organization2 === void 0 ? void 0 : (_state$organization2$ = _state$organization2.menus) === null || _state$organization2$ === void 0 ? void 0 : _state$organization2$.horizontal;
+    return (_state$organization2 = state.organization) === null || _state$organization2 === void 0 ? void 0 : (_state$organization2$ = _state$organization2.menus) === null || _state$organization2$ === void 0 ? void 0 : _state$organization2$.paidmodules.filter(function (item) {
+      return item.active == true;
+    }).length;
   },
-  verticalMenu: function verticalMenu(state) {
+  horizontalMenu: function horizontalMenu(state) {
     var _state$organization3, _state$organization3$;
 
-    return (_state$organization3 = state.organization) === null || _state$organization3 === void 0 ? void 0 : (_state$organization3$ = _state$organization3.menus) === null || _state$organization3$ === void 0 ? void 0 : _state$organization3$.vertical;
+    return (_state$organization3 = state.organization) === null || _state$organization3 === void 0 ? void 0 : (_state$organization3$ = _state$organization3.menus) === null || _state$organization3$ === void 0 ? void 0 : _state$organization3$.horizontal;
   },
-  paidmodules: function paidmodules(state) {
+  verticalMenu: function verticalMenu(state) {
     var _state$organization4, _state$organization4$;
 
-    return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.paidmodules;
+    return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.vertical;
   },
-  paidmodulesCount: function paidmodulesCount(state) {
+  paidmodules: function paidmodules(state) {
     var _state$organization5, _state$organization5$;
 
-    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.menus) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.paidmodules.length;
+    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.menus) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.paidmodules;
   },
-  orgPosts: function orgPosts(state) {
+  paidmodulesCount: function paidmodulesCount(state) {
     var _state$organization6, _state$organization6$;
 
-    return (_state$organization6 = state.organization) === null || _state$organization6 === void 0 ? void 0 : (_state$organization6$ = _state$organization6.posts) === null || _state$organization6$ === void 0 ? void 0 : _state$organization6$.years_of_posts;
+    return (_state$organization6 = state.organization) === null || _state$organization6 === void 0 ? void 0 : (_state$organization6$ = _state$organization6.menus) === null || _state$organization6$ === void 0 ? void 0 : _state$organization6$.paidmodules.length;
+  },
+  orgPosts: function orgPosts(state) {
+    var _state$organization7, _state$organization7$;
+
+    return (_state$organization7 = state.organization) === null || _state$organization7 === void 0 ? void 0 : (_state$organization7$ = _state$organization7.posts) === null || _state$organization7$ === void 0 ? void 0 : _state$organization7$.years_of_posts;
   }
 };
 var mutations = {
@@ -9793,7 +9800,7 @@ var actions = {
 
       commit("notification/NEW_NOTIFICATION", {
         type: "bg-green-400",
-        message: "Kontakt uložený!"
+        message: "Doklad uložený!"
       }, {
         root: true
       }); // window.location.reload();
@@ -92477,6 +92484,8 @@ var render = function() {
                   _c("div", [
                     _vm._v(
                       "\n                        " +
+                        _vm._s(_vm.menuActiveCount) +
+                        "/\n                        " +
                         _vm._s(_vm.paidmodulesCount) +
                         "\n                    "
                     )

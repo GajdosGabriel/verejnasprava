@@ -9,6 +9,9 @@ const getters = {
     menuActive: (state) => (id) => {
         return state.organization?.menus?.menuActive.find(item => item.id == id)
     },
+    menuActiveCount: (state) => {
+        return state.organization?.menus?.paidmodules.filter(item => item.active == true).length
+    },
     horizontalMenu: state => {
         return state.organization?.menus?.horizontal
     },

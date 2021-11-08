@@ -12,7 +12,7 @@
                         class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
                     >
                         <div>
-                            <!-- {{ menuactive.length }}/ -->
+                            {{ menuActiveCount }}/
                             {{ paidmodulesCount }}
                         </div>
                     </div>
@@ -74,7 +74,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("organizations", ["organization", 'paidmodules', 'paidmodulesCount'])
+        ...mapGetters("organizations", ["organization", 'paidmodules', 'paidmodulesCount', 'menuActiveCount'])
     },
     created: function() {
         // this.$store.dispatch(
