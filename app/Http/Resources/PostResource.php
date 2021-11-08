@@ -40,7 +40,7 @@ class PostResource extends JsonResource
             // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'navigations' => [
-                'edit' => $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']), [
+                'edit' => $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']) || auth()->user()->id == $this->user_id, [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
@@ -48,7 +48,7 @@ class PostResource extends JsonResource
                     'icon' => 'iconEdit',
                 ]),
 
-                'delete' =>  $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']), [
+                'delete' =>  $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']) || auth()->user()->id == $this->user_id, [
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
