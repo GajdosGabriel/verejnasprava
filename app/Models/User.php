@@ -63,12 +63,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Council::class);
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class)->latest();
     }
-
-
 
     public function items()
     {
