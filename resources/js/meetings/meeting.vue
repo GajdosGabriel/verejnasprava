@@ -323,7 +323,7 @@ export default {
             this.positionSaveButton = !this.positionSaveButton;
         },
         resetMeetingUser() {
-            this.$store.dispatch("meetings/deleteMeetingUser", {
+            this.$store.dispatch("meetings/deleteMeetingUsers", {
                 id: this.meeting.id
             });
         },

@@ -4917,7 +4917,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.positionSaveButton = !this.positionSaveButton;
     },
     resetMeetingUser: function resetMeetingUser() {
-      this.$store.dispatch("meetings/deleteMeetingUser", {
+      this.$store.dispatch("meetings/deleteMeetingUsers", {
         id: this.meeting.id
       });
     },
@@ -9521,13 +9521,13 @@ var actions = {
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios.put('/api/meetings/' + meeting.id + '/users/1', meeting).then(function (response) {
+    axios.put('/api/meetings/' + meeting.id + '/users/' + meeting.user, meeting).then(function (response) {
       dispatch('meetings/fetchMeeting', _this5.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteMeetingUser: function deleteMeetingUser(_ref8, meeting) {
+  deleteMeetingUsers: function deleteMeetingUsers(_ref8, meeting) {
     var _this6 = this;
 
     var commit = _ref8.commit,

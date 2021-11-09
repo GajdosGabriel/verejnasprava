@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 
 class MeetingUserController extends Controller
 {
-    public function update(Meeting $meeting, $user = null, Request $request )
+    public function update(Meeting $meeting, $user, Request $request )
     {
-        $meeting->users()->detach($request->input('user'));
+        $meeting->users()->detach($user);
     }
 
     public function store(Meeting $meeting, Request $request)

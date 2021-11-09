@@ -101,13 +101,13 @@ const actions = {
     },
 
     updateMeetingUser({commit, dispatch}, meeting) {
-        axios.put('/api/meetings/' + meeting.id +'/users/1', meeting )
+        axios.put('/api/meetings/' + meeting.id +'/users/' + meeting.user, meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
-    deleteMeetingUser({commit, dispatch}, meeting) {
+    deleteMeetingUsers({commit, dispatch}, meeting) {
         axios.delete('/api/meetings/' + meeting.id +'/users/1')
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
