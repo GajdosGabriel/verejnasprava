@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Meetings;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Council\Meeting;
 use Illuminate\Http\Request;
+use App\Models\Council\Meeting;
+use App\Http\Controllers\Controller;
 
 class MeetingUserController extends Controller
 {

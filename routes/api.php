@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     'items'                     => 'Api\ItemController',
     'meetings'                  => 'Api\MeetingController',
     'meetings.invitation'       => 'Api\MeetingInvitationController',
+    'meetings.users'            => 'Api\MeetingUserController',
     'organizations.tags'        => 'Api\OrganizationTagController',
     'organizations.users'       => 'Api\OrganizationUserController',
     'organizations.contacts'    => 'Api\OrganizationContactController',
