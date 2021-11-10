@@ -15,7 +15,7 @@
 
         <x-page.page-title>
             <x-slot name="title">
-                Návrhy
+                Návrh
             </x-slot>
 
             <a class="btn btn-primary" href="{{ route('items.create') }}">Nový návrh</a>
