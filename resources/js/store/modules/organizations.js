@@ -26,6 +26,9 @@ const getters = {
     },
     orgPosts: state => {
         return state.organization?.posts?.years_of_posts
+    },
+    userAdmin: state => {
+        return state.user?.roles?.find( o => o.name == 'admin')
     }
 };
 
