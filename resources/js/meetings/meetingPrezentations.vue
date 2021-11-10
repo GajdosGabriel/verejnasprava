@@ -10,15 +10,7 @@
         >
             <div class="font-medium text-gray-800">
                 <div class="flex cursor-pointer">
-                    <svg
-                        class="w-4 h-4 mr-1 fill-current my-1 text-gray-600"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M2 6H0v2h2v2h2V8h2V6H4V4H2v2zm7 0a3 3 0 0 1 6 0v2a3 3 0 0 1-6 0V6zm11 9.14A15.93 15.93 0 0 0 12 13c-2.91 0-5.65.78-8 2.14V18h16v-2.86z"
-                        />
-                    </svg>
+                    <icon-user-plus />
                     Prezentácia
                 </div>
             </div>
@@ -75,7 +67,9 @@
             V zastupiteľstve nie sú členovia.
 
             <a href="/users" class="block my-2">
-                <button class="border-red-300 bg-red-500 border-2 text-gray-100 hover:bg-red-400 px-1 rounded-md">
+                <button
+                    class="border-red-300 bg-red-500 border-2 text-gray-100 hover:bg-red-400 px-1 rounded-md"
+                >
                     Pridať člena
                 </button>
             </a>
@@ -85,6 +79,7 @@
 
 <script>
 import { mapState } from "vuex";
+import iconUserPlus from "../components/icons/userPlus.vue";
 
 export default {
     props: {
@@ -93,6 +88,7 @@ export default {
             required: true
         }
     },
+    components: { iconUserPlus },
     data() {
         return {
             openList: false
