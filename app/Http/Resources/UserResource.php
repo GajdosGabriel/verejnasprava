@@ -31,8 +31,8 @@ class UserResource extends JsonResource
             'email_verified_at'     => $this->email_verified_at,
             'active_organization'   => $this->active_organization,
             'send_invitation'       => $this->send_invitation,
-            // 'roles'                 => RoleResource::collection($this->whenLoaded('roles')),
-            // 'permissions'           => PermissionResource::collection($this->whenLoaded('permissions')),
+            'roles'                 => RoleResource::collection($this->whenLoaded('roles')),
+            'permissions'           => PermissionResource::collection($this->whenLoaded('permissions')),
             'organization'          => new OrganizationResource( $this->organization ),
 
             'links' => [

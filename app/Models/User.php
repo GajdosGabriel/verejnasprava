@@ -18,7 +18,12 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, HasRoles, HasFactory;
 
-    protected $with = ['roles', 'permissions', 'organization', 'invitation'];
+    protected $with = [
+        'roles', 
+        'permissions', 
+        // 'organization', 
+        // 'invitation'
+    ];
 
     /**
      * The attributes that are mass assignable.
