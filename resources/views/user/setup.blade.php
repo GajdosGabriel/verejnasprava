@@ -114,7 +114,7 @@
         <div class="w-full col-span-4 bg-white">
             <div class="w-full col-span-4 bg-white">
 
-                <a href="{{ route('organizations.tags.index', $organization->id) }}">
+                <a href="{{ route('tags.index') }}">
                     Tags
                 </a>
 

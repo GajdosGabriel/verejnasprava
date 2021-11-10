@@ -10,6 +10,10 @@ use Str;
 
 class TagController extends Controller
 {
+    public function index()
+    {
+        return view('tag.index');
+    }
     public function update(Tag $tag, SaveTagRequest $saveTagRequest)
     {
         $tag->update($saveTagRequest->all());

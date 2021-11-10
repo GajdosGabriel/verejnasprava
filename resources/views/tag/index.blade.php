@@ -21,17 +21,12 @@
         <x-page.page3_3>
             {{-- Section 1 --}}
             <div class="w-full col-span-4 bg-white">
-                <ul>
-                    @foreach ($tags as $tag)
-                        <li>{{ $tag->name }}</li>
-                    @endforeach
-                </ul>
 
             </div>
 
             {{-- Section 2 --}}
             <div class="w-full col-span-4 bg-white">
-                <new-tag-form></new-tag-form>
+                <tags-card></tags-card>
             </div>
 
             {{-- Section 3 --}}

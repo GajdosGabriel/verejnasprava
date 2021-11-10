@@ -1,8 +1,8 @@
 <template>
     <div>
         <!-- Button show-hide modal Form -->
-        <span class="cursor-pointer hover:text-red-700" @click="toggle"
-            >Nová nálepka</span
+        <div class="cursor-pointer hover:text-red-700" @click="toggle"
+            >Nová nálepka</div
         >
         <!-- Modal Form start -->
         <div class="fixed z-10 inset-0 overflow-y-auto" v-if="showModalForm">
