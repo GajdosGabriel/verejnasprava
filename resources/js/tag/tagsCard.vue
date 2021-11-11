@@ -1,7 +1,8 @@
 <template>
-    <div class="flex flex-wrap">
-        <tag-form />
-        <div class="block">
+    <div>
+        <card-header :icon="'tag'" :title="'Tags'" @openCard="isOpen =! isOpen" />
+        <tag-form v-if="isOpen" />
+        <div v-if="isOpen">
             <div v-for="tag in tags" :key="tag.id">
                 <tag-item :tag="tag"></tag-item>
             </div>
@@ -12,12 +13,16 @@
 <script>
 import tagItem from "./tag-Item";
 import tagForm from "./tagForm";
+import cardHeader from "../components/Cards/CardHeader.vue";
+import { createdMixin } from "../mixins/createdMixin";
 
 export default {
-    components: { tagItem, tagForm },
+    components: { tagItem, tagForm, cardHeader },
+        mixins: [createdMixin],
     data() {
         return {
             hover: false,
+            isOpen: false,
             tags: {}
         };
     },
@@ -26,9 +31,15 @@ export default {
     },
     methods: {
         getTags() {
-            axios.get("/api/organizations/1/tags").then(response => {
-                this.tags = response.data;
-            });
+            axios
+                .get(
+                    "/api/organizations/" +
+                        this.user.active_organization +
+                        "/tags"
+                )
+                .then(response => {
+                    this.tags = response.data.data;
+                });
         }
     }
 };
