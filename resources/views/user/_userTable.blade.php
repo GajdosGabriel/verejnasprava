@@ -45,12 +45,12 @@
                 </td>
                 <td class="border px-4 py-2">
                     @foreach ($user->roles as $role)
-                        <span class="badge badge-secondary">{{ $role->name }}</span>
+                        <span class="border-2 rounded-md border-gray-400 px-2">{{ $role->name }}</span>
                     @endforeach
                 </td>
                 <td class="border px-4 py-2">
                     @foreach ($user->tags as $tag)
-                        <span class="badge badge-secondary">{{ $tag->name }}</span>
+                        <span class="border-2 rounded-md border-gray-400 px-2">{{ $tag->name }}</span>
                     @endforeach
                 </td>
 

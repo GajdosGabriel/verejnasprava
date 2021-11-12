@@ -18,7 +18,7 @@
                     </div>
                 </div>
             @empty
-               Žiadne skupiny.
+               Žiadne nálepky.
             @endforelse
         </div>
     </div>
