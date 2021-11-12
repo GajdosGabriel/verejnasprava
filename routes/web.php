@@ -9,6 +9,7 @@ Route::get('/home', 'HomeController@redirect');
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
 Route::get('/zverejnovanie', 'HomeController@zverejnovanie')->name('home.zverejnovanie');
 Route::get('/gdpr', 'HomeController@gdpr')->name('home.gdpr');
+Route::post('/contactUs', 'HomeController@store')->name('home.contactUs');
 
 Route::get('/posts/frontPostsTable', 'HomeController@frontPosts');
 
@@ -22,8 +23,14 @@ Route::get('/auth/{service}', 'Auth\AuthController@redirectToProvider')
 Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallback')
     ->where('service', '(github|facebook|google|twitter|linkedin|bitbucket)');
 
+    Route::group(['middleware' => 'auth' ], function () {
 
-Route::group(['middleware' => 'auth'], function () {
+    Route::resources([
+        'organizations'   => 'Organizations\OrganizationController',
+    ]);
+});
+
+Route::group(['middleware' => ['auth', 'checkOrganization'] ], function () {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
@@ -64,7 +71,6 @@ Route::group(['middleware' => 'auth'], function () {
         'supports'              => 'SupportController',
         'meetings'              => 'Meetings\MeetingController',
         'meetings.items'        => 'Meetings\MeetingItemController',
-        'organizations'         => 'Organizations\OrganizationController',
         'organizations.councils' => 'Organizations\OrganizationCouncilController',
         'organizations.users'   => 'Organizations\OrganizationUserController',
         'organizations.contacts' => 'Organizations\OrganizationContactController',
@@ -74,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
         'users'                 => 'UserController',
         'tags'                  => 'TagController',
         'messengers'            => 'MessengerController',
+        'contacts'              => 'Contacts\ContactsController',
     ]);
 
 
@@ -81,10 +88,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 });
-
-Route::resources([
-    'contacts'              => 'Contacts\ContactsController',
-]);
 
 
 Auth::routes();

@@ -56,7 +56,7 @@
 
                 @include('modul.errors')
 
-                <form method="POST" action="{{ route('contacts.store') }}">
+                <form method="POST" action="{{ route('home.contactUs') }}">
                     @csrf @method('POST')
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

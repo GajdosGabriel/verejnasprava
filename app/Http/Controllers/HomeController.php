@@ -5,27 +5,18 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Question;
 use App\Filters\PostFilters;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostfrontedResource;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ContactUs;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        if (auth()->user()) {
-
-            if (auth()->user()->active_organization == null) {
-
-                // Verificed auth user
-                return redirect()->route('organizations.create');
-            }
-            return redirect()->route('organizations.index');
-        }
-
         return view('public.index');
     }
 
@@ -79,6 +70,28 @@ class HomeController extends Controller
             ->latest()->paginate(20);
 //        dd($posts);
         return PostfrontedResource::collection($posts);
+    }
+
+    public function store(Request $request)
+    {
+
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'body' => 'required',
+        ]);
+
+        $users = User::whereHas('roles', function ($q) {
+            $q->whereName('super-admin');
+        })->get();
+
+
+        foreach ($users as $user) {
+            Notification::send($user, new ContactUs($request));
+        }
+
+        session()->flash('flash', 'Správa bola odoslaná.');
+
+        return redirect()->back();
     }
 
 
