@@ -10,11 +10,10 @@ class Tag extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['users'];
 
-    public function users()
+    public function organizations()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Organization::class);
     }
 
     public function setNameAttribute($value)

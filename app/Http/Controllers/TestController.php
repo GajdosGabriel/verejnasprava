@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TagCollection;
 use App\Http\Resources\UserResource;
 use Carbon\Carbon;
 use App\Models\Tag;
@@ -23,10 +24,10 @@ class TestController extends Controller
     public function test()
     {
 
-        $org = Organization::findOrFail(48);
+        $org = Organization::findOrFail(1);
         $menu = Menu::findOrFail(1);
 
-        dd($org->menus);
+        dd(  new TagCollection(Tag::all() ));
 
 
 

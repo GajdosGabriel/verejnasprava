@@ -1,6 +1,6 @@
 <template>
     <div>
-        <card-header :icon="'tag'" :title="'Tags'" @openCard="isOpen =! isOpen" />
+        <card-header :item="'tag'" :title="'Nálepky'" @openCard="isOpen =! isOpen" />
         <tag-form v-if="isOpen" />
         <div v-if="isOpen">
             <div v-for="tag in tags" :key="tag.id">
@@ -23,7 +23,7 @@ export default {
         return {
             hover: false,
             isOpen: false,
-            tags: {}
+            tags: []
         };
     },
     created() {

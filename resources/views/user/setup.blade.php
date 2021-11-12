@@ -113,11 +113,7 @@
         {{-- Section 2 --}}
         <div class="w-full col-span-4 bg-white">
             <div class="w-full col-span-4 bg-white">
-
-                <a href="{{ route('tags.index') }}">
-                    Tags
-                </a>
-
+                <tags-card></tags-card>
             </div>
         </div>
         {{-- Section 3 --}}
