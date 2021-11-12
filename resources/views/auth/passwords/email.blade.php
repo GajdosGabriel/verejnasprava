@@ -16,10 +16,10 @@
 
                 <div class="">
                     @if (session('status'))
-                        <div class="font-semibold border-gray-500 border-2 rounded-md shadow-md p-4 mb-2" role="alert">
+                        <div class="font-semibold border-gray-500 border-2 rounded-md shadow-md p-4 mb-2 text-center text-red-700" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @else
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
@@ -50,6 +50,8 @@
                             </div>
                         </div>
                     </form>
+
+                    @endif
                 </div>
             </div>
         </div>

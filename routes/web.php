@@ -33,8 +33,7 @@ Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallba
 Route::group(['middleware' => ['auth', 'checkOrganization'] ], function () {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
-        Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
-        Route::get('{user}/{name}/invitation', 'UserController@sendInvitation')->name('invitation');
+        Route::get('{user}/invitation', 'UserController@sendInvitation')->name('invitation');
         Route::get('users/setup/', 'UserController@setup')->name('setup');
     });
 
