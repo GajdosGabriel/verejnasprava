@@ -7,7 +7,7 @@ const getters = {};
 
 const mutations = {
     SET_USERS: function (state, payload) {
-        state.users = payload
+        state.users = payload.data
     },
     SET_USER: function (state, payload) {
         state.user = payload

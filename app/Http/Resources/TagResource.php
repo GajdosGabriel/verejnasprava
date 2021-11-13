@@ -26,8 +26,20 @@ class TagResource extends JsonResource
                 'show'      =>  route('organizations.tags.show', [auth()->user()->active_organization, $this->id]),
                 'store'     =>  route('organizations.tags.store', [auth()->user()->active_organization]),
                 'destroy'   =>  route('organizations.tags.destroy', [auth()->user()->active_organization, $this->id]),
+            ],
+
+            "can" => [
+                "viewAny"   => auth()->user()->can("viewAny", $this->resource),
+                "view"      => auth()->user()->can("view", $this->resource),
+                "create"    => auth()->user()->can("create", $this->resource),
+                "update"    => auth()->user()->can("update", $this->resource),
+                "store"     => auth()->user()->can("store", $this->resource),
+                "delete"    => auth()->user()->can("delete", $this->resource)
             ]
         ];
 
     }
+
+    
+
 }

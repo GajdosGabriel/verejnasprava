@@ -46,6 +46,15 @@ class UserResource extends JsonResource
             'titles' => [
                 'view'              => $this->when($request->user()->can('view', $request->user()), 'Zobraziť'),
                 'edit'              => $this->when($request->user()->can('update', $request->user()), 'Upraviť'),
+            ],
+
+            "can" => [
+                "viewAny"   => auth()->user()->can("viewAny", $this->resource),
+                "view"      => auth()->user()->can("view", $this->resource),
+                "create"    => auth()->user()->can("create", $this->resource),
+                "update"    => auth()->user()->can("update", $this->resource),
+                "store"     => auth()->user()->can("store", $this->resource),
+                "delete"    => auth()->user()->can("delete", $this->resource)
             ]
 
         ];

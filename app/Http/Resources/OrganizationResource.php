@@ -40,6 +40,15 @@ class OrganizationResource extends JsonResource
 
             ],
 
+            "can" => [
+                "viewAny"   => auth()->user()->can("viewAny", $this->resource),
+                "view"      => auth()->user()->can("view", $this->resource),
+                "create"    => auth()->user()->can("create", $this->resource),
+                "update"    => auth()->user()->can("update", $this->resource),
+                "store"     => auth()->user()->can("store", $this->resource),
+                "delete"    => auth()->user()->can("delete", $this->resource)
+            ]
+
         ];
     }
 }
