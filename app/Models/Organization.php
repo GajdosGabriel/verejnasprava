@@ -70,7 +70,10 @@ class Organization extends Model
 
     public function getVerticalAttribute()
     {
-        return $this->menus()->where('type', 'vertical')->get();
+        // Vylúčiť zobrazenie nemu Ľudia ak nie admin
+       $excuswId = auth()->user()->hasRole(['admin']) ? 0 : 9;
+       
+        return $this->menus()->where('type', 'vertical')->whereNotIn('id', [$excuswId])->get();
     }
 
     public function getYearsOfPostsAttribute()
