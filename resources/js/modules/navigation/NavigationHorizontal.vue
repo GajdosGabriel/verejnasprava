@@ -117,17 +117,13 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("organizations", [
-            "menuActive",
-            "horizontalMenu",
-            "verticalMenu"
-        ]),
+        ...mapGetters("organizations", ["menuActive"]),
 
         ...mapState("organizations", [
             "user",
-            "organization"
-            // "horizontalMenu",
-            // "verticalMenu"
+            "organization",
+            "horizontalMenu",
+            "verticalMenu"
         ])
     },
     methods: {

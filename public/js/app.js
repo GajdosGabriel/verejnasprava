@@ -6357,9 +6357,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUrlSegment: window.location.pathname
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("organizations", ["menuActive", "horizontalMenu", "verticalMenu"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organizations", ["user", "organization" // "horizontalMenu",
-  // "verticalMenu"
-  ])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("organizations", ["menuActive"])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("organizations", ["user", "organization", "horizontalMenu", "verticalMenu"])),
   methods: {
     logout: function logout() {
       axios.post("/logout").then(function () {
@@ -9863,7 +9861,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   user: {},
-  organization: {}
+  organization: {},
+  horizontalMenu: [],
+  verticalMenu: []
 };
 var getters = {
   organization: function organization(state) {
@@ -9885,30 +9885,26 @@ var getters = {
       return item.active == true;
     }).length;
   },
-  horizontalMenu: function horizontalMenu(state) {
+  // horizontalMenu: state => {
+  //     return state.organization?.menus?.horizontal
+  // },
+  // verticalMenu: state => {
+  //     return state.organization?.menus?.vertical
+  // },
+  paidmodules: function paidmodules(state) {
     var _state$organization3, _state$organization3$;
 
-    return (_state$organization3 = state.organization) === null || _state$organization3 === void 0 ? void 0 : (_state$organization3$ = _state$organization3.menus) === null || _state$organization3$ === void 0 ? void 0 : _state$organization3$.horizontal;
-  },
-  verticalMenu: function verticalMenu(state) {
-    var _state$organization4, _state$organization4$;
-
-    return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.vertical;
-  },
-  paidmodules: function paidmodules(state) {
-    var _state$organization5, _state$organization5$;
-
-    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.menus) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.paidmodules;
+    return (_state$organization3 = state.organization) === null || _state$organization3 === void 0 ? void 0 : (_state$organization3$ = _state$organization3.menus) === null || _state$organization3$ === void 0 ? void 0 : _state$organization3$.paidmodules;
   },
   paidmodulesCount: function paidmodulesCount(state) {
-    var _state$organization6, _state$organization6$;
+    var _state$organization4, _state$organization4$;
 
-    return (_state$organization6 = state.organization) === null || _state$organization6 === void 0 ? void 0 : (_state$organization6$ = _state$organization6.menus) === null || _state$organization6$ === void 0 ? void 0 : _state$organization6$.paidmodules.length;
+    return (_state$organization4 = state.organization) === null || _state$organization4 === void 0 ? void 0 : (_state$organization4$ = _state$organization4.menus) === null || _state$organization4$ === void 0 ? void 0 : _state$organization4$.paidmodules.length;
   },
   orgPosts: function orgPosts(state) {
-    var _state$organization7, _state$organization7$;
+    var _state$organization5, _state$organization5$;
 
-    return (_state$organization7 = state.organization) === null || _state$organization7 === void 0 ? void 0 : (_state$organization7$ = _state$organization7.posts) === null || _state$organization7$ === void 0 ? void 0 : _state$organization7$.years_of_posts;
+    return (_state$organization5 = state.organization) === null || _state$organization5 === void 0 ? void 0 : (_state$organization5$ = _state$organization5.posts) === null || _state$organization5$ === void 0 ? void 0 : _state$organization5$.years_of_posts;
   },
   userAdmin: function userAdmin(state) {
     var _state$user, _state$user$roles;
@@ -9922,6 +9918,8 @@ var mutations = {
   SET_ORGANIZATION: function SET_ORGANIZATION(state, payload) {
     state.user = payload.data;
     state.organization = payload.data.organization;
+    state.horizontalMenu = payload.data.organization.menus.horizontal;
+    state.verticalMenu = payload.data.organization.menus.vertical;
   }
 };
 var actions = {

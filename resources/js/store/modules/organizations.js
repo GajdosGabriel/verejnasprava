@@ -1,6 +1,8 @@
 const state = {
     user: {},
     organization: {},
+    horizontalMenu: [],
+    verticalMenu: []
 };
 const getters = {
     organization: state => {
@@ -12,12 +14,12 @@ const getters = {
     menuActiveCount: (state) => {
         return state.organization?.menus?.paidmodules.filter(item => item.active == true).length
     },
-    horizontalMenu: state => {
-        return state.organization?.menus?.horizontal
-    },
-    verticalMenu: state => {
-        return state.organization?.menus?.vertical
-    },
+    // horizontalMenu: state => {
+    //     return state.organization?.menus?.horizontal
+    // },
+    // verticalMenu: state => {
+    //     return state.organization?.menus?.vertical
+    // },
     paidmodules: state => {
         return state.organization?.menus?.paidmodules
     },
@@ -37,6 +39,8 @@ const mutations = {
     SET_ORGANIZATION: function (state, payload) {
         state.user = payload.data;
         state.organization = payload.data.organization;
+        state.horizontalMenu = payload.data.organization.menus.horizontal;
+        state.verticalMenu = payload.data.organization.menus.vertical;
     },
 
 };

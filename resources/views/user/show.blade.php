@@ -2,7 +2,7 @@
 
 @section('page-title', 'Zobraziť užívateľa')
 
-    @section('navigation') @include('organizations.navigation') @endsection
+@section('navigation') @include('organizations.navigation') @endsection
 
 
 @section('content')
@@ -20,7 +20,8 @@
             <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
         </x-page.page-title>
 
-        <form class="" action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+        <form class="" action="{{ route('users.update', $user->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf @method('PATCH')
             @include('modul.errors')
 
@@ -49,7 +50,11 @@
                     </div>
                     <div class="flex justify-between">
                         <span>Email potvrdený</span>
-                        <span>{{ $user->email_verified_at }}</span>
+                        @if ($user->email_verified_at)
+                            <span>{{ $user->email_verified_at }}</span>
+                        @else
+                            <span>nepotvrdený</span>
+                        @endif
                     </div>
                 </div>
 
