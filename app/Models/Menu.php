@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $guarded = ['id'];
 
-//    protected $with = ['organizations'];
+    //  protected $with = ['organizations'];
 
     public function organizations()
     {
@@ -20,9 +20,8 @@ class Menu extends Model
 
     public function scopePaidmodule($query)
     {
-//        return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9]);
-        return $query->whereIn('id', [1, 3, 6,10]);
-
+        // return $query->whereIn('id', [1, 2, 3, 4, 7, 8, 9]);
+        return $query->whereIn('id', [1, 3, 6, 10]);
     }
 
     public function getActiveAttribute()
@@ -30,16 +29,17 @@ class Menu extends Model
         return $this->organizations()->where('id', auth()->user()->active_organization)->exists();
     }
 
-    public static function activatorOfMenus($organization, $input){
+    public static function activatorOfMenus($organization, $input)
+    {
 
         // If active/deActive Zverejnovanie add Contact also
         if ($input == 1) {
-          return  $organization->menus()->toggle([1,2]);
+            return  $organization->menus()->toggle([1, 2]);
         }
 
         // If active/deActive Zasadnutia add Návrhy also
         if ($input == 3) {
-          return  $organization->menus()->toggle([3,4]);
+            return  $organization->menus()->toggle([3, 4]);
         }
 
         $organization->menus()->toggle($input);
