@@ -36,11 +36,9 @@ class PostResource extends JsonResource
                     'store'     =>  route('organizations.posts.store', [auth()->user()->active_organization]),
                     'destroy'   =>  route('organizations.posts.destroy', [auth()->user()->active_organization, $this->id]),
             ],
-            // 'testovanie'        => $this->when( \Auth::check() && \Auth::user()->can('create', App\Models\Post::class), 'niečo' ),
-            // 'testovanie'        => $this->when( auth()->user()->can('create', App\Models\Post::class), 'niečo' ),
 
             'navigations' => [
-                'edit' => $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']) || auth()->user()->id == $this->user_id, [
+                'edit' => $this->when(auth()->user()->can("update", $this->resource), [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
@@ -48,7 +46,7 @@ class PostResource extends JsonResource
                     'icon' => 'iconEdit',
                 ]),
 
-                'delete' =>  $this->when(auth()->user()->hasAnyRole(['admin', 'moderator']) || auth()->user()->id == $this->user_id, [
+                'delete' =>  $this->when(auth()->user()->can("delete", $this->resource), [
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
@@ -62,7 +60,6 @@ class PostResource extends JsonResource
                 "view"      => auth()->user()->can("view", $this->resource),
                 "create"    => auth()->user()->can("create", $this->resource),
                 "update"    => auth()->user()->can("update", $this->resource),
-                "store"     => auth()->user()->can("store", $this->resource),
                 "delete"    => auth()->user()->can("delete", $this->resource)
             ]
         ];
