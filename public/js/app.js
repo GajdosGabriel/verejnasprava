@@ -8531,7 +8531,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _.orderBy(this.taskList, "due_date");
     },
     nameOfList: function nameOfList() {
-      return this.setTaskList ? "aktívne" : "vybavené";
+      return this.setTaskList ? "aktí­vne" : "vybavené";
     },
     isModulActiveById: function isModulActiveById() {
       return this.$store.getters["organizations/menuActive"](6);
@@ -10119,7 +10119,7 @@ var state = {
 var getters = {};
 var mutations = {
   SET_USERS: function SET_USERS(state, payload) {
-    state.users = payload;
+    state.users = payload.data;
   },
   SET_USER: function SET_USER(state, payload) {
     state.user = payload;

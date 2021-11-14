@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TagCollection;
-use App\Http\Resources\UserResource;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\File;
 use App\Models\Menu;
 use App\Models\Post;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Activity;
 use App\Models\Organization;
 use App\Models\Council\Council;
 use App\Models\Council\Meeting;
 use Spatie\Permission\Models\Role;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\TagCollection;
+use App\Http\Resources\TaskCollection;
+use PhpParser\ErrorHandler\Collecting;
 use Illuminate\Database\Eloquent\Builder;
 
 class TestController extends Controller
@@ -27,7 +30,7 @@ class TestController extends Controller
         $org = Organization::findOrFail(1);
         $menu = Menu::findOrFail(1);
 
-        dd(  new TagCollection(Tag::all() ));
+        return new TaskCollection(Task::all());
 
 
 

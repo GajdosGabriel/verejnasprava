@@ -108,7 +108,7 @@ export default {
         },
 
         nameOfList() {
-            return this.setTaskList ? "aktívne" : "vybavené";
+            return this.setTaskList ? "aktí­vne" : "vybavené";
         },
 
         isModulActiveById() {

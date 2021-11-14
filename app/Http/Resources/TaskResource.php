@@ -37,5 +37,4 @@ class TaskResource extends JsonResource
             ]
         ];
     }
-
 }

@@ -24,6 +24,7 @@ const mutations = {
 
     SET_TASK_LIST(state, payload){
         state.setTaskList = payload
+
     }
 
 };
