@@ -186,12 +186,12 @@ export default {
             this.categoryName = "";
         },
 
-        clickOnItem(post, action) {
-            if (action == "edit") {
-                this.editPost(post);
+        clickOnItem(post) {
+            if (post.action == "edit") {
+                this.editPost(post.url);
             }
 
-            if (action == "delete") {
+            if (post.action == "delete") {
                 this.deletePost(post);
             }
         },
