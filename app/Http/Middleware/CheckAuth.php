@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
-class CheckUser
+class CheckAuth
 {
     /**
      * Handle an incoming request.
@@ -13,8 +14,9 @@ class CheckUser
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
+        if(auth()->user()) return redirect()->route('organizations.index');
         return $next($request);
     }
 }

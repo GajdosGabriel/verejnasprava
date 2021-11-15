@@ -3,7 +3,7 @@
 // Zmena auth Usera
 // $userId = 137;
 // Auth::loginUsingId($userId, true);
-Route::group(['middleware' => ['checkUser']], function () {
+Route::group(['middleware' => ['checkAuth']], function () {
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/home', 'HomeController@redirect');
     Route::get('/contact', 'HomeController@contact')->name('home.contact');
