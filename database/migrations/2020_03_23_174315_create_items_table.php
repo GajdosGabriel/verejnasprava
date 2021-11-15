@@ -16,10 +16,11 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->integer('user_id')->unsigned();
+            $table->integer('organization_id')->unsigned();
             $table->integer('position')->unsigned()->default(0);
             $table->string('name');
             $table->string('slug');
-            $table->text('description')->nullable();
+            $table->text('body')->nullable();
             $table->boolean('vote_status')->default(0);
             $table->boolean('vote_type')->default(0);
             $table->boolean('published')->default(0);

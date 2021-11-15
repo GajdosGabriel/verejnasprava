@@ -1,41 +1,25 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Verejná správa') }}</title>
-
-    <!-- Fonts -->
-    {{--<link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
-    {{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-    <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
-
-@yield('stylesheet')
-
-<!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-
-{{--@include('modul.navigation')--}}
+@section('page-title', 'Stránka sa nenašla')
 
 
-<div class="container">
-   <h1>Stránka sa nenašla</h1>
-    <p>Ospravedlňujeme sa, niekde sa stala chyba 404</p>
+@section('navigation') <x-navigation.navPublic /> @endsection
 
-  <a href="{{ url('/') }}"><button class="btn btn-primary btn-lg">Vrátiť sa späť</button></a>
+@section('content')
 
-</div>
+<x-page.container>
+    <x-page.page-title>
+        <x-slot name="title">
+            Stránka sa nenašla
+        </x-slot>
+
+        <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+    </x-page.page-title>
+
+    <h6>Ospravedlňujeme sa, niekde sa stala chyba 404</h6>
+</x-page.container>
+
+@endsection
 
 
 
-<!-- Scripts -->
-<script src="{{ asset('js/bootstrap.js')}}"></script>
-<script src="{{ asset('js/app.js')}}"></script>
-</body>
-</html>

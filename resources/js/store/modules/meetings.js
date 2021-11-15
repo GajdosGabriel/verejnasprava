@@ -94,28 +94,28 @@ const actions = {
     },
 
     storeMeetingUser({commit, dispatch}, meeting) {
-        axios.post('/meetings/' +  meeting.id + '/users', meeting )
+        axios.post('/api/meetings/' +  meeting.id + '/users', meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
     updateMeetingUser({commit, dispatch}, meeting) {
-        axios.put('/meetings/' + meeting.id +'/users/1', meeting )
+        axios.put('/api/meetings/' + meeting.id +'/users/' + meeting.user, meeting )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
-    deleteMeetingUser({commit, dispatch}, meeting) {
-        axios.delete('/meetings/' + meeting.id +'/users/1')
+    deleteMeetingUsers({commit, dispatch}, meeting) {
+        axios.delete('/api/meetings/' + meeting.id +'/users/1')
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
 
     deleteItemMeeting({commit, dispatch}, item) {
-        axios.delete('/meetings/'+ this.state.meetings.meeting.id + '/items/' + item.id )
+        axios.delete('/api/meetings/'+ this.state.meetings.meeting.id + '/items/' + item.id )
             .then(response => {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });

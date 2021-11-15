@@ -136,6 +136,47 @@
                 </nav-drop-down>
             </div>
 
+            <!-- Body  -->
+            <div class="flex justify-center w-full cursor-pointer">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mb-5 mt-2 text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    v-if="readMore"
+                    @click="readMore = false"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                    />
+                </svg>
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mb-5 mt-2 text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    v-else
+                    @click="readMore = true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                    />
+                </svg>
+            </div>
+
+            <transition name="fade">
+                <div v-if="!readMore" v-html="item.body"></div>
+            </transition>
+            
             <div class="flex justify-between w-full text-sm">
                 <!-- <div @click="updateItem(item)"
                      v-if="$auth.can('council delete')"
@@ -239,7 +280,8 @@ export default {
     components: { publishedButton, interpellation, navDropDown },
     data: function() {
         return {
-            openList: false
+            openList: false,
+            readMore: true
         };
     },
     computed: {

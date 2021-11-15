@@ -19,9 +19,8 @@ class Post extends Model
     use RecordsActivity, FileUpload, SoftDeletes, HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['category', 'files', 'contact', 'organization'];
     protected $casts = [
-        'date_in' => 'date'
+        'date_in' => 'datetime'
     ];
 
     public function contact()
@@ -34,6 +33,11 @@ class Post extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -42,7 +46,6 @@ class Post extends Model
     public function files() {
         return $this->morphMany(File::class, 'fileable');
     }
-
 
     public function setNameAttribute($value)
     {

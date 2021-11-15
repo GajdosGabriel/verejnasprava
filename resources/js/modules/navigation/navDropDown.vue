@@ -1,5 +1,5 @@
 <template>
-    <div class="relative inline-block text-left" v-if="$auth.isAdmin()">
+    <div class="relative inline-block text-left">
         <div>
             <span class="rounded-md shadow-sm">
                 <button @click="isOpen =! isOpen" :class="addBackground" class="focus:outline-none  hover:bg-gray-300 p-1 rounded-full transition duration-400 ease-in-out">

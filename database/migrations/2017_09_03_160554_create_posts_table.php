@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->nullable();
             $table->string('number_invoice')->nullable();
             $table->decimal('price',10,2);
-            $table->date('date_in');
+            $table->dateTime('date_in');
             $table->integer('organization_id')->unsigned();
             $table->integer('contact_id')->unsigned();
             $table->integer('category_id')->unsigned();

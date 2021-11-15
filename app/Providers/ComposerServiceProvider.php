@@ -33,7 +33,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['organizations.navigation', 'council.meeting.navigation', 'council.items.navigation', 'council.meeting.print', 'organizations.modul_activator', 'organizations.home'], function ($view) {
+        view()->composer(['post._table_edit', 'organizations.navigation', 'council.meeting.navigation', 'council.items.navigation', 'council.meeting.print', 'organizations.modul_activator', 'organizations.home', 'post.create'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
             $view->with('organization', $organization);
         });
@@ -45,8 +45,9 @@ class ComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer('post.create', function ($view) {
-            $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get()->take(4);
-            $view->with('posts', $posts);
+            $posts = Post::whereOrganizationId(auth()->user()->active_organization)->latest()->get();
+            $view->with('posts', $posts->take(5));
+            $view->with('postsForCopyTable', $posts->groupBy('contact_id')->take(31));
         });
 
         view()->composer('post.post-table-predna', function ($view) {
@@ -56,7 +57,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('posts', $posts);
         });
 
-        view()->composer(['user.edit', 'user.create'], function ($view) {
+        view()->composer(['user.edit', 'user.create', 'user.show'], function ($view) {
             $organization = Organization::whereId(auth()->user()->active_organization)->first();
             $roles =  Role::all();
             $permissions =  Permission::all();

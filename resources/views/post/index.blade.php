@@ -4,30 +4,35 @@
 @section('navigation') @include('organizations.navigation') @endsection
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
+<x-page.container>
 
         <div class="w-full">
 
 
-            <div class="flex justify-between items-center pb-8">
-                <h1 class="page-title">Zverejnené doklady</h1>
+            <x-page.page-title>
+                <x-slot name="title">
+                    Zverejnené doklady
+                </x-slot>
+
                 @role('admin')
                 <a class="btn btn-primary"
                    href="{{ route('posts.create') }}">Nový doklad
                 </a>
                 @endrole
-            </div>
+
+            </x-page.page-title>
+
 
             <post-table/>
 
 
-            {{--            @include('post.table_index')--}}
+            {{--            @include('post._table_index')--}}
             {{--            <div class="my-6">--}}
             {{--                {{ $posts->links() }}--}}
             {{--            </div>--}}
 
         </div>
-    </div>
+    </x-page.container>
 
 
 

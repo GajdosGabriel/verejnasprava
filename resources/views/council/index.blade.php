@@ -6,19 +6,24 @@
 @section('content')
 
 
-    <div class="container min-h-screen p-6 mx-auto">
-        <div class="w-2/3">
-            <council-table></council-table>
-            {{-- Show only first councils   --}}
-            @if(! $councils->count() > 0)
+    <x-page.container>
+        <x-page.page3_3>
+            <div class="col-span-9 bg-white p-3">
 
-                @role('admin')
-                <a href="{{ route('organizations.councils.create',  auth()->user()->active_organization ) }}">Nové zastupiteľstvo</a>
-                @endrole
-            @endif
-        </div>
+                <council-table></council-table>
 
-    </div>
+                {{-- Show if any councils dont exists --}}
+                @if (!$councils->count() > 0)
+                    @role('admin')
+                        <a class="btn btn-primary float-right"
+                            href="{{ route('organizations.councils.create', auth()->user()->active_organization) }}">
+                            Nové zastupiteľstvo
+                        </a>
+                    @endrole
+                @endif
+            </div>
+        </x-page.page3_3>
+    </x-page.container>
 
 
 

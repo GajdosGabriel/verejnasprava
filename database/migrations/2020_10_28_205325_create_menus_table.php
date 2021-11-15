@@ -39,7 +39,7 @@ class CreateMenusTable extends Migration
             ],
             [
                 'id' => 3,
-                'name' => 'Zasadnutia',
+                'name' => 'Zastupiteľstvá',
                 'route' => 'council.index',
                 'url' => '/zastupitelstva',
                 'type' => 'horizontal',

@@ -1,0 +1,61 @@
+const state = {
+    user: {},
+    organization: {},
+};
+const getters = {
+    organization: state => {
+        return state.organization
+    },
+    menuActive: (state) => (id) => {
+        return state.organization?.menus?.menuActive.find(item => item.id == id)
+    },
+    menuActiveCount: (state) => {
+        return state.organization?.menus?.paidmodules.filter(item => item.active == true).length
+    },
+    horizontalMenu: state => {
+        return state.organization?.menus?.horizontal
+    },
+    verticalMenu: state => {
+        return state.organization?.menus?.vertical
+    },
+    paidmodules: state => {
+        return state.organization?.menus?.paidmodules
+    },
+    paidmodulesCount: state => {
+        return state.organization?.menus?.paidmodules.length
+    },
+    orgPosts: state => {
+        return state.organization?.posts?.years_of_posts
+    },
+    userAdmin: state => {
+        return state.user?.roles?.find( o => o.name == 'admin')
+    }
+};
+
+const mutations = {
+
+    SET_ORGANIZATION: function (state, payload) {
+        state.user = payload.data;
+        state.organization = payload.data.organization;
+    },
+
+};
+const actions = {
+
+    getOrganization({commit}) {
+        axios.get('/api/user')
+            .then(response => {
+                    commit('SET_ORGANIZATION', response.data);
+                }
+            );
+    },
+
+};
+
+export default {
+    namespaced: true,
+    state,
+    getters,
+    actions,
+    mutations
+}

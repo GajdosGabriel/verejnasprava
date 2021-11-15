@@ -29,7 +29,7 @@ return [
         'array'   => ':Attribute musí mať rozsah :min - :max prvkov.',
     ],
     'boolean'        => ':Attribute musí byť pravda alebo nepravda.',
-    'confirmed'      => ':Attribute konfirmácia sa nezhoduje.',
+    'confirmed'      => ':Attribute potvrdenie sa nezhoduje.',
     'date'           => ':Attribute má neplatný dátum.',
     'date_equals'    => ':Attribute musí byť dátum rovnajúci sa :date.',
     'date_format'    => ':Attribute sa nezhoduje s formátom :format.',
@@ -146,6 +146,23 @@ return [
     */
 
     'attributes' => [
-        'iamHuman' => 'Som človek,'
+        'first_name' => 'Meno',
+        'last_name' => 'Priezvisko',
+        'iamHuman' => 'Som človek,',
+        'quantity' => 'Počet',
+        'name' => 'Meno',
+        'street' => 'Ulica',
+        'city' => 'Mesto',
+        'phone' => 'Telefón',
+        'ico' => 'IČO',
+        'dic' => 'DIČ',
+        'bank_name' => 'Názov banky',
+        'bank_number' => 'Číslo účtu',
+        'bank_iban' => 'Iban banky',
+        'trip-start' => 'Začiatok akcie',
+        'filename' => 'Príloha',
+        'price' => 'Cena',
+        'tax' => 'Daň',
+        'question' => 'Otázka',
     ],
 ];

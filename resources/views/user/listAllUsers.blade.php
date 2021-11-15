@@ -1,5 +1,5 @@
 
-    <div class="container" style="margin-bottom: 15px">
+<x-page.container>
         <div class="clearfix">
         </div>
 
@@ -15,7 +15,7 @@
                 {{--@endforelse--}}
             </ul>
         </div>
-    </div>
+    </x-page.container>
 
 
 

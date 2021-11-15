@@ -21,7 +21,8 @@
 
         <div class="col-span-4 bg-white p-3">
             {{-- Vuex component --}}
-            <meeting-users :councilid="{{ $meeting->council_id }}"></meeting-users>
+            <meeting-prezentations :councilid="{{ $meeting->council_id }}"></meeting-prezentations>
+            <invitation-card :meeting_id="{{ $meeting->id }}"></invitation-card>
         </div>
 
         <div class="col-span-4 bg-white p-3">

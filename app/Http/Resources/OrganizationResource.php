@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Models\Menu;
+use App\Http\Resources\MenuResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class OrganizationResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return [
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'slug'              => $this->slug,
+            'street'            => $this->street,
+            'city'              => $this->city,
+            'psc'               => $this->psc,
+            'phones'            => $this->phone,
+            'web'               => $this->web,
+            'ico'               => $this->ico,
+            'dic'               => $this->dic,
+            'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
+            'menus'             => [
+                'menuActive'    => MenuResource::collection($this->menus),
+                'paidmodules'   => MenuResource::collection(Menu::paidmodule()->get()),
+                'horizontal'    => MenuResource::collection($this->horizontal),
+                'vertical'      => MenuResource::collection($this->vertical),
+            ],
+            'posts' => [
+                // 'postsindex'     =>  route('organizations.posts.index', [auth()->user()->active_organization]),
+                'years_of_posts'    => $this->years_of_posts,
+
+            ],
+
+        ];
+    }
+}

@@ -16,8 +16,8 @@ class CheckOrganization
     public function handle($request, Closure $next)
     {
 
-//        if(auth()->user()->active_organization == null )
-//            return redirect('org/create');
+       if(auth()->user()->active_organization == null )
+           return redirect()->route('organizations.create');
 
         return $next($request);
     }

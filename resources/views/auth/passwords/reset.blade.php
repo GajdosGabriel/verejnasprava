@@ -8,51 +8,50 @@
 
 
 
-    <div class="container mx-auto md:flex min-h-screen">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="text-2xl">Zadanie nového hesla</div>
+<x-page.login>
+    <div class="w-full lg:w-4/12 px-4 bg-gray-100 ">
+        <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0 p-6">
+                <div class="text-2xl text-center mb-6 font-semibold">Zadanie nového hesla</div>
 
-                <div class="card-body">
+                <div class="text-center">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group row">
+                        <div class="flex flex-col mb-4">
                             <label for="email" class="col-md-4 col-form-label text-md-right">Emailová adresa</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="input-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="rounded-md  @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="text-red-600" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="flex flex-col mb-4">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Nové heslo</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="input-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="rounded-md @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="text-red-600" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="flex flex-col mb-6">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Zopakovať heslo</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="input-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="rounded-md" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
@@ -68,5 +67,5 @@
             </div>
         </div>
     </div>
-</div>
+</x-page.login>
 @endsection

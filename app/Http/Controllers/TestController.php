@@ -2,26 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
-use App\Models\Council\Council;
-use App\Models\Council\Meeting;
+use App\Http\Resources\TagCollection;
+use App\Http\Resources\UserResource;
+use Carbon\Carbon;
+use App\Models\Tag;
 use App\Models\File;
 use App\Models\Menu;
-use App\Models\Organization;
 use App\Models\Post;
-use App\Models\Tag;
-use App\Models\Tags;
 use App\Models\User;
+use App\Models\Activity;
+use App\Models\Organization;
+use App\Models\Council\Council;
+use App\Models\Council\Meeting;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class TestController extends Controller
 {
-   public function test()
-   {
 
-      $organization = Organization::first();
-       dd($organization);
+    // Route::get('test/test/test', 'TestController@test');
+    public function test()
+    {
+
+        $org = Organization::findOrFail(1);
+        $menu = Menu::findOrFail(1);
+
+        dd(  new TagCollection(Tag::all() ));
+
+
+
+        $user = User::whereId(48)->get();
+
+        // dd( $user->can('update', $user) );
+        return new UserResource($user);
+
+    //   $organization = Organization::first();
+
+    //  $výsledok = $organization->users->contains(function ($value, $key) {
+    //     return $value->id == 137;
+    // });
+
+    //    dd( $výsledok );
+
+        $councils =  auth()->user()->councils;
+
+        foreach($councils as $council){
+          $meetings[] = $council->meetings->where('start_at', '>=', Carbon::now())->where('published', '=', 1);
+        }
+        $new = collect($meetings)->flatten(1)->sortBy('start_at') ->take(1)->first();
+
+
+        dd($new);
+
+
+        $meeting = Meeting::first();
+
+        $meeting =    $meeting->invitations()->whereUserId(auth()->user()->id)->updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            ['send_at' => Carbon::now()]
+        );
+
+
+
+        // [
+        //     'send_at' => Carbon::now(),
+        //     'user_id' =>  auth()->user()->id
+        // ]);
+        dd($meeting);
+
+
+
+
+        $organization = Organization::first();
+        dd($organization);
 
 //       $files = File::all();
 //
@@ -89,7 +142,5 @@ class TestController extends Controller
 //       foreach ($users as $user){
 //          $user->organizations()->attach( $user->active_organization);
 //       }
-   }
-
-
+    }
 }

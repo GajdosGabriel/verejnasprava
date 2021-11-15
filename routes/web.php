@@ -1,11 +1,15 @@
 <?php
 
+// Zmena auth Usera
+// $userId = 137;
+// Auth::loginUsingId($userId, true);
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@redirect');
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
 Route::get('/zverejnovanie', 'HomeController@zverejnovanie')->name('home.zverejnovanie');
 Route::get('/gdpr', 'HomeController@gdpr')->name('home.gdpr');
+Route::post('/contactUs', 'HomeController@store')->name('home.contactUs');
 
 Route::get('/posts/frontPostsTable', 'HomeController@frontPosts');
 
@@ -19,8 +23,14 @@ Route::get('/auth/{service}', 'Auth\AuthController@redirectToProvider')
 Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallback')
     ->where('service', '(github|facebook|google|twitter|linkedin|bitbucket)');
 
+    Route::group(['middleware' => 'auth' ], function () {
 
-Route::group(['middleware' => 'auth'], function () {
+    Route::resources([
+        'organizations'   => 'Organizations\OrganizationController',
+    ]);
+});
+
+Route::group(['middleware' => ['auth', 'checkOrganization'] ], function () {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
         Route::get('{user}/{slug}/home', 'UserController@home')->name('home');
@@ -53,27 +63,24 @@ Route::group(['middleware' => 'auth'], function () {
 
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
-        'comments'          => 'CommentController',
-        'contacts'          => 'Contacts\ContactsController',
-        'councils'          => 'Councils\CouncilController',
-        'councils.meetings' => 'Meetings\CouncilMeetingController',
-        'interpellations'   => 'Councils\InterpellationController',
-        'items'             => 'Items\ItemController',
-        'supports'          => 'SupportController',
-        'meetings'          => 'Meetings\MeetingController',
-        'meetings.items'    => 'Items\ItemMeetingController',
-        'meetings.users'    => 'Meetings\MeetingUserController',
-        'organizations'     => 'Organizations\OrganizationController',
-        'organizations.councils' => 'Councils\CouncilOrganizationController',
-        'organizations.users' => 'Organizations\OrganizationUserController',
-        'posts'             => 'Posts\PostController',
-        'tasks'             => 'Tasks\TaskController',
-        'tasks.comments'    => 'Tasks\TaskCommentController',
-        'users.tasks'       => 'Tasks\UserTaskController',
-        'users'             => 'UserController',
-        'tags'              => 'TagController',
-        'tags.users'        => 'TagUserController',
-        'messengers'        => 'MessengerController',
+        'comments'              => 'CommentController',
+        'councils'              => 'Councils\CouncilController',
+        'councils.meetings'     => 'Councils\CouncilMeetingController',
+        'interpellations'       => 'Councils\InterpellationController',
+        'items'                 => 'Items\ItemController',
+        'supports'              => 'SupportController',
+        'meetings'              => 'Meetings\MeetingController',
+        'meetings.items'        => 'Meetings\MeetingItemController',
+        'organizations.councils' => 'Organizations\OrganizationCouncilController',
+        'organizations.users'   => 'Organizations\OrganizationUserController',
+        'organizations.contacts' => 'Organizations\OrganizationContactController',
+        'posts'                 => 'Posts\PostController',
+        'tasks'                 => 'Tasks\TaskController',
+        'tasks.comments'        => 'Tasks\TaskCommentController',
+        'users'                 => 'UserController',
+        'tags'                  => 'TagController',
+        'messengers'            => 'MessengerController',
+        'contacts'              => 'Contacts\ContactsController',
     ]);
 
 

@@ -14,6 +14,11 @@ use App\Http\Requests\UserUpdateRequest;
 
 class CouncilController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Council::class, 'council');
+    }
+
     public function index()
     {
         $councils = Council::whereOrganizationId(auth()->user()->active_organization)->orderBy('id', 'asc')->get();
@@ -42,6 +47,9 @@ class CouncilController extends Controller
     }
 
     public function destroy(Council $council) {
+        if ($council->meetings->count()) {
+            return response()->json(['message' => 'Zastupiteľstvo už obsahuje zasadnutia.'], 401);
+        }
         $council->delete();
     }
 

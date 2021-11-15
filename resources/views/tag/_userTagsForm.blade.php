@@ -21,7 +21,7 @@
                Žiadne skupiny.
             @endforelse
         </div>
-
     </div>
+    <new-tag-form class="border-t border-gray-700 mt-2"></new-tag-form>
 </section>
 @endrole

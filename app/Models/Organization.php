@@ -13,8 +13,6 @@ class Organization extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['contacts', 'menus'];
-
     protected $withCount = [
         'orders',
     ];
@@ -24,9 +22,19 @@ class Organization extends Model
         return $this->belongsToMany(User::class)->latest();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'active_organization');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'desc');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 
     public function tags()
@@ -55,5 +63,19 @@ class Organization extends Model
         return $this->belongsToMany(Menu::class);
     }
 
+    public function getHorizontalAttribute()
+    {
+        return $this->menus()->where('type', 'horizontal')->get();
+    }
+
+    public function getVerticalAttribute()
+    {
+        return $this->menus()->where('type', 'vertical')->get();
+    }
+
+    public function getYearsOfPostsAttribute()
+    {
+        return $this->posts()->whereNotNull('created_at')->distinct()->get([\DB::raw('YEAR(created_at) as year')]);
+    }
 
 }

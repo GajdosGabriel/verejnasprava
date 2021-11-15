@@ -1,5 +1,5 @@
 @role('admin')
-<div class="sm:flex">
+<div class="flex flex-wrap ">
 
     @forelse($organization->menus as $menu)
         @if($menu->id == 1)

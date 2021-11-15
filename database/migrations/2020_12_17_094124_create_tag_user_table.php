@@ -17,7 +17,6 @@ class CreateTagUserTable extends Migration
             $table->engine = 'MyISAM';
             $table->integer('tag_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->timestamps();
 
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->foreign('user_id')->references('id')->on('users');

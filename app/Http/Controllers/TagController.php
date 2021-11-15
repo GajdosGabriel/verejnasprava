@@ -12,28 +12,18 @@ class TagController extends Controller
 {
     public function index()
     {
-        return Tag::whereOrganizationId(auth()->user()->id)->get();
+        return view('tag.index');
     }
-
     public function update(Tag $tag, SaveTagRequest $saveTagRequest)
     {
         $tag->update($saveTagRequest->all());
         return $tag;
     }
 
-    public function store(SaveTagRequest $saveTagRequest)
-    {
-        $tag = Tag::create([
-            'organization_id' => auth()->user()->active_organization,
-            'name' => $saveTagRequest->input('name'),
-            'slug' => Str::slug($saveTagRequest->input('name'), '-')
-        ]);
-        return $tag;
-    }
 
-    public function destroy($id)
-    {
-        $tag = Tag::whereId($id)->first();
-        $tag->delete();
-    }
+    // public function destroy($id)
+    // {
+    //     $tag = Tag::whereId($id)->first();
+    //     $tag->delete();
+    // }
 }

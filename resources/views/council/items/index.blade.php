@@ -7,62 +7,70 @@
 
 @section('content')
 
-    <div class="lg:container lg:flex mx-auto lg:px-6 min-h-screen py-6">
+    <x-page.container>
 
-        <div class="lg:w-3/4 px-4 md:px-6  mb-6">
+        <x-page.page-title>
+            <x-slot name="title">
+                Návrhy
+            </x-slot>
 
-            <div class="flex justify-between items-center pb-8">
+            <a class="btn btn-primary" href="{{ route('items.create') }}">Nový návrh</a>
 
-                <h1 class="page-title">Návrhy</h1>
-                <a class="btn btn-primary"
-                   href="{{ route('items.create') }}">Nový návrh</a>
-            </div>
-            <ul>
+        </x-page.page-title>
+
+        <x-page.page3_3>
+
+            <div class="col-span-9 bg-white p-3">
 
                 @forelse($items as $item)
-                    <li class="flex justify-between border-b-2 hover:bg-gray-100 py-2">
+                    <div class="flex justify-between border-b-2 hover:bg-gray-100 py-2 px-2">
                         <a href="{{ route('items.show', $item->id) }}">
-                            {{ $item->name }}
+                            <span class="font-semibold block">{{ $item->name }}</span>
+                            <span class="text-xs">{{ $item->user->full_name() }}</span>
                         </a>
 
 
                         @forelse($item->meetings as $meeting)
                             <a href="{{ route('meetings.show', $meeting->id) }}">
                                 <span class="p-1 bg-yellow-400 text-sm rounded-2xl px-2 hover:bg-yellow-500 ">
-                                {{ $meeting->name }} {{ $meeting->start_at->format('d. m. Y') }}
+                                    {{ $meeting->name }} {{ $meeting->start_at->format('d. m. Y') }}
                                 </span>
                             </a>
                         @empty
 
                             @can('council delete')
-                            <form method="POST" action="{{ route('meetings.items.update', [ 'slugmeetings' , $item->id]) }}">
-                                @csrf @method('PUT')
-                                <label for="meetings">Zastupiteľstvo:</label>
-                                <select name="meeting" id="meetings" required>
-                                    <option value="">---Vybrať---</option>
-                                    @forelse($meetings as $meeting)
-                                        <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                                <button class="px-2 hover:bg-gray-300 rounded-md">Uložiť</button>
-                            </form>
+                                <form method="POST"
+                                    action="{{ route('meetings.items.update', ['slugmeetings', $item->id]) }}">
+                                    @csrf @method('PUT')
+                                    <label for="meetings">Schôdza:</label>
+                                    <select name="meeting" id="meetings" required>
+                                        <option value="">---Vybrať---</option>
+                                        @forelse($meetings as $meeting)
+                                            <option value="{{ $meeting->id }}">{{ $meeting->start_at->format('d. m. Y') }}
+                                                {{ \Str::limit($meeting->name, 12) }}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                    <button class="btn btn-secondary">Zaradiť</button>
+                                </form>
                             @endcan
                         @endforelse
-                    </li>
-                @empty
-                @endforelse
-            </ul>
-        </div>
-
-        {{-- ASIDE --}}
-        <div class="lg:w-1/4 md:px-6 px-4">
-
-        </div>
-
-    </div>
+                    </div>
+                    @empty
+                    @endforelse
+            </div>
 
 
+                {{-- ASIDE --}}
+                <div  class="col-span-3 bg-white p-3">
+
+                </div>
+
+            </x-page.page3_3>
+
+            </div>
 
 
-@endsection
+        </x-page.container>
+
+    @endsection

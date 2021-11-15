@@ -10,9 +10,16 @@
 
 @section('content')
 
-    <div class="container mx-auto min-h-screen p-6">
+<x-page.container>
 
-        <h1 class="page-title">Nový bod programu</h1>
+        <x-page.page-title>
+            <x-slot name="title">
+                Nový návrh programu
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+        </x-page.page-title>
+
 
         <form method="POST" action="{{ route('meetings.items.store', $meeting->id) }}"
               enctype="multipart/form-data">
@@ -23,5 +30,5 @@
 
         @include('council.items._editor')
 
-    </div>
+    </x-page.container>
 @endsection

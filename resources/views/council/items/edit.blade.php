@@ -2,12 +2,19 @@
 
 @section('page-title', 'Upraviť návrh')
 
-@section('navigation') @include('organizations.navigation') @endsection
+    @section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
 
-    <div class="container mx-auto p-6 min-h-screen">
-        <h1 class="page-title">Úprava návrhu na uznesenie</h1>
+    <x-page.container>
+
+        <x-page.page-title>
+            <x-slot name="title">
+                Úprava návrhu na uznesenie
+            </x-slot>
+
+            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+        </x-page.page-title>
 
         <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data">
             @csrf @method('PUT')
@@ -20,9 +27,9 @@
                         <div class="lg:w-3/4">
                             <label for="name" class="font-semibold">Bod programu</label>
                             <input id="name" type="text"
-                                   class="w-full input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
-                                   name="name" value="{{ old('name') ?? $item->name }}" required autocomplete="name"
-                                   autofocus>
+                                class="w-full input-control focus:outline-none focus:shadow-outline @error('first_name') is-invalid @enderror"
+                                name="name" value="{{ old('name') ?? $item->name }}" required autocomplete="name"
+                                autofocus>
                         </div>
 
 
@@ -31,13 +38,9 @@
 
                             <div class="">
                                 <select name="vote_type" class="custom-select" id="vote_typ">
-                                    <option value="0"
-                                            @if($item->vote_type == 0) selected @endif
-                                    >Verejné
+                                    <option value="0" @if ($item->vote_type == 0) selected @endif>Verejné
                                     </option>
-                                    <option value="1"
-                                            @if($item->vote_type == 1) selected @endif
-                                    >Tajné
+                                    <option value="1" @if ($item->vote_type == 1) selected @endif>Tajné
                                     </option>
                                 </select>
                             </div>
@@ -48,34 +51,33 @@
                         <label class="font-semibold">Popis návrhu</label>
 
                         <div class="col-md-8">
-                            <textarea id="editor" class="form-control" name="description"
-                                      rows="10">{{ $item->description }}</textarea>
+                            <textarea id="editor" class="form-control" name="body" rows="10">{{ $item->body }}</textarea>
                         </div>
                     </div>
 
-                    {{--Príloha--}}
+                    {{-- Príloha --}}
                     <div class="form-group row mt-5">
                         <label for="filename" class="font-semibold">Prílohy k návrhu</label>
 
                         <div class="col-md-8">
                             <input type="file" name="filename[]" value="{{ old('filename') }}" multiple
-                                   placeholder="Príloha" id="filename">
+                                placeholder="Príloha" id="filename">
 
-                            {{--File--}}
-                            @if( $item->files->count())
+                            {{-- File --}}
+                            @if ($item->files->count())
                                 <div class="flex float-right">
-{{--                                    <h5>Príloha</h5>--}}
+                                    {{-- <h5>Príloha</h5> --}}
                                     @forelse($item->files as $file)
                                         <div class="hover:bg-gray-200 p-3">
                                             <a class="mr-2" target="_blank"
-                                               href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}
+                                                href="{{ route('file.show', [$file->id, $file->filename]) }}">{{ $loop->iteration }}
                                                 . Príloha
                                             </a>
 
                                             {{-- Check box --}}
                                             <div class="mr-4">
                                                 <input name="fileDelete[]" value="{{ $file->id }}" type="checkbox"
-                                                       class="" id="exampleCheck1">
+                                                    class="" id="exampleCheck1">
                                                 <label class="" for="exampleCheck1">Zmazať</label>
                                             </div>
                                         </div>
@@ -102,7 +104,7 @@
         </form>
 
 
-    </div>
+    </x-page.container>
 
 
     @include('council.items._editor')

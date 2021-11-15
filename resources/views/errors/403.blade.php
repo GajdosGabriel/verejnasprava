@@ -6,13 +6,16 @@
 @section('navigation') @include('organizations.navigation') @endsection
 
 @section('content')
-    <div class="container mx-auto min-h-screen p-6">
-    <h1>Nie ste autorizovaný.</h1>
-    <h3>Ak sa domievate, že ide o chybu, kontaktujte administrátora! Kod 403</h3>
+<x-page.container>
+    <x-page.page-title>
+        <x-slot name="title">
+            Nie ste autorizovaný
+        </x-slot>
 
-  <a href="{{ url('/') }}"><button class="btn btn-primary btn-lg">Vrátiť sa späť</button></a>
+        <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+    </x-page.page-title>
 
-</div>
-
+    <h6>Kód chyby 403</h6>
+</x-page.container>
 
 @endsection

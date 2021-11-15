@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\Council\Council;
 use App\Models\Organization;
 use App\Models\User;
@@ -27,11 +29,13 @@ class UserController extends Controller
     }
 
     public function index() {
+        $this->authorize('viewAny', User::class);
+
         $users =  Organization::whereId(auth()->user()->active_organization)->first()->users;
         if(\Request::wantsJson()) {
            return $users;
         }
-        return view('user.index', compact('users'));
+        return view('user.index', [ 'users' => UserResource::collection($users)] );
     }
 
 
@@ -40,7 +44,14 @@ class UserController extends Controller
         return view('user.create', compact('user'));
     }
 
+    public function show(User $user) {
+        $this->authorize('view', $user);
+        return view('user.show', compact('user'));
+    }
+
+
     public function edit(User $user) {
+        $this->authorize('update', $user);
         return view('user.edit', compact('user'));
     }
 

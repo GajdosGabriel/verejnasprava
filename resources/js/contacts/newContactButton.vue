@@ -1,27 +1,30 @@
 <template>
     <div>
-
-        <button v-if="$auth.isAdmin()" @click="newContactToggle" class="text-sm text-gray-500">
+        <a
+            v-if="userAdmin"
+            @click="newContactToggle"
+            class="hover:underline hover:text-gray-900 cursor-pointer"
+        >
             Nový kontakt
-        </button>
+        </a>
 
         <form-create></form-create>
     </div>
 </template>
 
 <script>
-    import formCreate from './formCreate.vue';
-    import { createNamespacedHelpers } from 'vuex';
-    const { mapActions } = createNamespacedHelpers('contacts');
+import formCreate from "./formCreate.vue";
+import { mapGetters } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapActions } = createNamespacedHelpers("contacts");
 
-    export default {
-        components: {formCreate},
-
-        methods: {
-            ...mapActions([
-                'newContactToggle'
-            ])
-        }
-
+export default {
+    components: { formCreate },
+    computed: {
+        ...mapGetters("organizations", ["userAdmin"])
+    },
+    methods: {
+        ...mapActions(["newContactToggle"])
     }
+};
 </script>
