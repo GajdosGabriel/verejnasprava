@@ -15,8 +15,7 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-//        $path = (string) 'org/'. auth()->user()->id.'/'. auth()->user()->slug.'/index';
-//        if(auth()->user()->active_organization) return redirect($path);
+       if(auth()->user()) return redirect()->route('organizations.index');
         return $next($request);
     }
 }
