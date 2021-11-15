@@ -1,6 +1,6 @@
 <template>
     <svg
-        class="w-4 h-4 mr-1 fill-current my-1 text-gray-600"
+        class="w-4 h-4 mr-2"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

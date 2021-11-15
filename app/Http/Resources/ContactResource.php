@@ -29,6 +29,14 @@ class ContactResource extends JsonResource
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
 
             'navigations' => [
+                'show' => [
+                    'name' => 'Zobraziť',
+                    'title' => 'Zobraziť položku',
+                    'action' => 'show',
+                    'url' => route('organizations.contacts.show', [$this->organization_id, $this->id]),
+                    'icon' => 'iconShow',
+                ],
+
                 'edit' => [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',

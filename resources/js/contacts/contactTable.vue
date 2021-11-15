@@ -95,7 +95,13 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("contacts");
 
 export default {
-    components: { paginator, formEdit, newContactButton, searchForm, dropDownComponent },
+    components: {
+        paginator,
+        formEdit,
+        newContactButton,
+        searchForm,
+        dropDownComponent
+    },
     mixins: [filterMixin],
     data: function() {
         return {
@@ -134,9 +140,11 @@ export default {
             this.search = val;
         },
         clickOnItem(action, post) {
-                            console.log(post);
-            if (action == "edit") {
+            if (action == "show") {
+                window.location.href = post.navigations.show.url;
+            }
 
+            if (action == "edit") {
                 this.openEditForm(post);
             }
 
