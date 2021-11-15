@@ -2022,7 +2022,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["icon", "title"],
@@ -7858,6 +7857,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tagForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tagForm */ "./resources/js/tags/tagForm.vue");
 /* harmony import */ var _components_Cards_CardHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Cards/CardHeader.vue */ "./resources/js/components/Cards/CardHeader.vue");
 /* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
+//
+//
+//
+//
 //
 //
 //
@@ -87367,12 +87370,7 @@ var render = function() {
     "header",
     {
       staticClass:
-        "flex justify-between items-center px-2 py-2  cursor-pointer bg-gray-200 hover:bg-gray-300",
-      on: {
-        click: function($event) {
-          return _vm.$emit("openCard")
-        }
-      }
+        "flex justify-between items-center px-2 py-2  cursor-pointer bg-gray-200 hover:bg-gray-300"
     },
     [
       _c(
@@ -95322,8 +95320,8 @@ var render = function() {
     [
       _c("card-header", {
         attrs: { item: "tag", title: "Nálepky" },
-        on: {
-          openCard: function($event) {
+        nativeOn: {
+          click: function($event) {
             _vm.isOpen = !_vm.isOpen
           }
         }
