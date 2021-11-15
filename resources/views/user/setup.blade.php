@@ -32,7 +32,7 @@
 
                         </div>
                         <div v-if="show">
-                            <form action="{{ route('users.update', [$user->id, $user->slug]) }}" method="POST"
+                            <form action="{{ route('users.update', [$user->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf @method('PATCH')
                                 @include('modul.errors')

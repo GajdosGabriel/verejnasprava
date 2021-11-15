@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole('admin');
+        return $user->organization_id == auth()->user()->organization_id || $user->hasRole('admin');
     }
 
     /**

@@ -54,7 +54,6 @@ class UserController extends Controller
 
     public function update(User $user, UserUpdateRequest $userRequest)
     {
-
         $userRequest->save($user);
 
         $this->userRoles($user, $userRequest);
