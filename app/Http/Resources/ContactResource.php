@@ -29,29 +29,29 @@ class ContactResource extends JsonResource
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
 
             'navigations' => [
-                'show' => [
+                'show' =>  $this->when(auth()->user()->can("view", $this->resource), [
                     'name' => 'Zobraziť',
                     'title' => 'Zobraziť položku',
                     'action' => 'show',
                     'url' => route('organizations.contacts.show', [$this->organization_id, $this->id]),
                     'icon' => 'iconShow',
-                ],
+                ]),
 
-                'edit' => [
+                'edit' =>  $this->when(auth()->user()->can("update", $this->resource), [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
                     'url' => '',
                     'icon' => 'iconEdit',
-                ],
+                ]),
 
-                'delete' => [
+                'delete' => $this->when(auth()->user()->can("delete", $this->resource), [
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
                     'url' => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
-                ]
+                ])
             ],
 
             "can" => [

@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user()->id == $post->user_id;
+        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $post->user_id;
     }
 
     /**
@@ -66,7 +66,7 @@ class PostPolicy
     public function delete(User $user, Post $post)
     {
         // return true;
-        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user()->id == $post->user_id;
+        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $post->user_id;
     }
 
     /**

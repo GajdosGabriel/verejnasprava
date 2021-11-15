@@ -18,7 +18,7 @@
                     <th class="px-4 py-2">Dič</th>
                     <th class="px-4 py-2" v-if="$auth.isAdmin()">Email</th>
                     <th class="px-4 py-2">Tel.</th>
-                    <th class="px-4 py-2" v-if="$auth.isAdmin()">Panel</th>
+                    <th class="px-4 py-2">Panel</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +56,6 @@
                     </td>
                     <td
                         class="px-4 py-2 border text-center"
-                        v-if="$auth.isAdmin()"
                     >
                         <drop-down-component
                             :items="contact"

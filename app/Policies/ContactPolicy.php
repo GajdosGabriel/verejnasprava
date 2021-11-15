@@ -53,7 +53,7 @@ class ContactPolicy
      */
     public function update(User $user, Contact $contact)
     {
-        return $user->active_organization == $contact->organization_id;
+        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $contact->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class ContactPolicy
      */
     public function delete(User $user, Contact $contact)
     {
-        return $user->active_organization == $contact->organization_id;
+        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $contact->user_id;
     }
 
     /**
