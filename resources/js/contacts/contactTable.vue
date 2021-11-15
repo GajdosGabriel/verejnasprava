@@ -58,12 +58,17 @@
                         class="px-4 py-2 border text-center"
                         v-if="$auth.isAdmin()"
                     >
-                        <button
+                        <drop-down-component
+                            :items="contact"
+                            @fromItem="clickOnItem"
+                        ></drop-down-component>
+
+                        <!-- <button
                             class="hover:underline cursor-pointer text-sm"
                             @click="openEditForm(contact)"
                         >
                             Upraviť
-                        </button>
+                        </button> -->
                     </td>
                 </tr>
             </tbody>
@@ -76,6 +81,7 @@
 </template>
 
 <script>
+import dropDownComponent from "../components/dropDown/dropDownComponent";
 import searchForm from "../components/SearchForm";
 import newContactButton from "./newContactButton.vue";
 import formEdit from "./formEdit.vue";
@@ -89,7 +95,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("contacts");
 
 export default {
-    components: { paginator, formEdit, newContactButton, searchForm },
+    components: { paginator, formEdit, newContactButton, searchForm, dropDownComponent },
     mixins: [filterMixin],
     data: function() {
         return {
@@ -126,6 +132,17 @@ export default {
         },
         searchForm(val) {
             this.search = val;
+        },
+        clickOnItem(action, post) {
+                            console.log(post);
+            if (action == "edit") {
+
+                this.openEditForm(post);
+            }
+
+            if (action == "delete") {
+                this.deletePost(post);
+            }
         }
     }
 };

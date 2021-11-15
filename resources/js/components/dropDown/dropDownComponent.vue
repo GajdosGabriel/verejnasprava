@@ -1,14 +1,14 @@
 <template>
-    <div class="relative inline-block text-left" v-if="navigations">
+    <div class="relative inline-block text-left" v-if="items">
         <div>
             <span class="rounded-md shadow-sm">
                 <button
                     @click="isOpen = !isOpen"
                     :class="addBackground"
-                    class="focus:outline-none  hover:bg-gray-300 p-1 rounded-full transition duration-400 ease-in-out"
+                    class="focus:outline-none hover:bg-gray-300 p-1 rounded-full transition duration-400 ease-in-out"
                 >
                     <svg
-                        class="w-4 h-4p-2"
+                        class="w-4 h-4"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                     >
@@ -24,11 +24,11 @@
             v-show="isOpen"
             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10 bg-gray-100"
         >
-            <div v-for="(item, index) in navigations" :key="index">
+            <div v-for="(item, index) in items.navigations" :key="index">
                 <div
                     class="flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
                     :title="item.title"
-                    @click="$emit('fromItem', item)"
+                    @click="$emit('fromItem', item.action, items)"
                 >
                     <component :is="item.icon" class="mr-2"></component>
 
@@ -45,7 +45,7 @@ import iconEdit from "./itemIcons/editIcon.vue";
 import iconDelete from "./itemIcons/deleteIcon.vue";
 
 export default {
-    props: ["navigations"],
+    props: ["items"],
     components: { iconEdit, iconDelete, iconShow },
     data() {
         return {

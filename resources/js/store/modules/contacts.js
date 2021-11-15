@@ -4,7 +4,7 @@ const state = {
     errors: [],
     showEditForm: false,
     showCreateForm: false,
-    contact: ""
+    contact: ''
 };
 const getters = {};
 
@@ -14,6 +14,9 @@ const mutations = {
     },
     SET_CONTACTS: function(state, payload) {
         state.contacts = payload;
+    },
+    SET_CONTACT: function(state, payload) {
+        state.contact = payload;
     },
     SET_ERRORS: function(state, payload) {
         state.errors = payload;

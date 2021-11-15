@@ -108,7 +108,7 @@
 
                     <td class="border text-center">
                         <drop-down-component
-                            :navigations="post.navigations"
+                            :items="post"
                             @fromItem="clickOnItem"
                         ></drop-down-component>
                     </td>
@@ -186,13 +186,13 @@ export default {
             this.categoryName = "";
         },
 
-        clickOnItem(post) {
-            if (post.action == "edit") {
-                this.editPost(post.url);
+        clickOnItem(action, post) {
+            if (action == "edit") {
+                this.editPost(post.navigations.edit.url);
             }
 
-            if (post.action == "delete") {
-                this.deletePost(post);
+            if (action == "delete") {
+                this.deletePost(post.navigations.delete.url);
             }
         },
 
