@@ -95329,7 +95329,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm.isOpen ? _c("tag-form") : _vm._e(),
+      _vm.isOpen
+        ? _c("tag-form", { on: { addNewTag: _vm.getTags } })
+        : _vm._e(),
       _vm._v(" "),
       _vm.isOpen
         ? _c(

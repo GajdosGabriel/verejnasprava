@@ -1,7 +1,7 @@
 <template>
     <div>
         <card-header :item="'tag'" :title="'Nálepky'" @openCard="isOpen =! isOpen" />
-        <tag-form v-if="isOpen" />
+        <tag-form v-if="isOpen" @addNewTag="getTags"/>
         <div v-if="isOpen">
             <div v-for="tag in tags" :key="tag.id">
                 <tag-item :tag="tag"></tag-item>
