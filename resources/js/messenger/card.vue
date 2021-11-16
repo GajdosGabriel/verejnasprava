@@ -262,7 +262,7 @@ export default {
                         "/tags"
                 )
                 .then(response => {
-                    this.tags = response.data;
+                    this.tags = response.data.data;
                 });
         },
 

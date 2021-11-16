@@ -5507,7 +5507,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       axios.get("/api/organizations/" + this.user.active_organization + "/tags").then(function (response) {
-        _this4.tags = response.data;
+        _this4.tags = response.data.data;
       });
     },
     saveMessage: function saveMessage() {
