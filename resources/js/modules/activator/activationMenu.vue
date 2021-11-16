@@ -1,27 +1,20 @@
 <template>
     <div class="border-2 border-gray-300 rounded-md bg-gray-100">
-        <div class="border-2 rounded-sm">
-            <div
-                @click="toggle"
-                class="flex justify-between items-center hover:bg-gray-100 cursor-pointer p-2"
-                :class="{ 'bg-red-200 hover:bg-red-200 ': isOpen }"
-            >
-                <h2 class="text-lg">Aktivácia modulov</h2>
-                <span class="cursor-pointer">
-                    <div
-                        class="h-6 w-6 text-xs bg-red-700 text-white rounded-full flex items-center justify-center"
-                    >
-                        <div>
-                            {{ menuActiveCount }}/
-                            {{ paidmodulesCount }}
-                        </div>
-                    </div>
-                </span>
-            </div>
-        </div>
+        <card-header
+            :icon="'config'"
+            :title="'Aktivácia modulov'"
+            :title2="menuActiveCount + '/' + paidmodulesCount"
+            :isOpen="isOpen"
+            @click.native="isOpen = !isOpen"
+        />
+
         <div v-if="isOpen" class="px-4">
             <transition-group name="fade">
-                <div v-for="menu in paidmodules" :key="menu.id" class="bg-white">
+                <div
+                    v-for="menu in paidmodules"
+                    :key="menu.id"
+                    class="bg-white"
+                >
                     <div
                         class="flex my-3 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
                     >
@@ -49,9 +42,7 @@
                                 }"
                                 @click="saveModul(menu.id)"
                             >
-                                {{
-                                    menu.active ? "Aktivne" : "Aktivovať"
-                                }}
+                                {{ menu.active ? "Aktivne" : "Aktivovať" }}
                             </button>
                         </div>
                     </div>
@@ -62,11 +53,13 @@
 </template>
 
 <script>
+import cardHeader from "../../components/Cards/CardHeader.vue";
 import { bus } from "../../app";
 import { mapState, mapGetters } from "vuex";
 import { createdMixin } from "../../mixins/createdMixin";
 
 export default {
+    components: { cardHeader },
     mixins: [createdMixin],
     data: function() {
         return {
@@ -74,14 +67,18 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("organizations", ["organization", 'paidmodules', 'paidmodulesCount', 'menuActiveCount'])
+        ...mapGetters("organizations", [
+            "organization",
+            "paidmodules",
+            "paidmodulesCount",
+            "menuActiveCount"
+        ])
     },
     created: function() {
         // this.$store.dispatch(
         //     "organizations/getOrganization",
         //     "/api/organization/" + this.user.active_organization
         // );
-
         //   this.$store.dispatch("organizations/getOrganization");
     },
     methods: {
