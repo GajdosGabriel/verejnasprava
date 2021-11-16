@@ -53,11 +53,10 @@ import moment from "moment";
 import { bus } from "../../app";
 import pagination from "../pagination";
 import { mapState, mapGetters } from "vuex";
-import CardHeaderIcon from "../../components/Cards/CardHeaderIcon";
 import { createdMixin } from "../../mixins/createdMixin";
 export default {
     mixins: [createdMixin],
-    components: { showModal, pagination, CardHeaderIcon, cardHeader },
+    components: { showModal, pagination, cardHeader },
     data() {
         return {
             isOpen: false,
