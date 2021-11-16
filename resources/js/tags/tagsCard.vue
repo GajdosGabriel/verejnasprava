@@ -1,10 +1,13 @@
 <template>
     <div>
         <card-header
-            :item="'tag'"
+            :icon="'tag'"
             :title="'Nálepky'"
+            :title2="null"
+            :isOpen="isOpen"
             @click.native="isOpen = !isOpen"
         />
+
         <tag-form v-if="isOpen" @addNewTag="getTags" />
         <div v-if="isOpen">
             <div v-for="tag in tags" :key="tag.id">

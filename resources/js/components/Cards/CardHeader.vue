@@ -6,6 +6,12 @@
         <div class="flex items-center justify-center">
             <comment :is="icon" />
             <h3 class="font-semibold cursor-pointer" v-text="title"></h3>
+            <h3
+                v-if="title2"
+                class="text-red-400 font-semibold cursor-pointer ml-2"
+            >
+                ({{ title2 }})
+            </h3>
         </div>
         <component :is="rightIcon" />
     </header>
@@ -18,7 +24,7 @@ import openRightIcon from "../icons/openRightIcon.vue";
 import closeRightIcon from "../icons/closeRightIcon.vue";
 import Comment from "../../tasks/Comments/Comment.vue";
 export default {
-    props: ["icon", "title", "isOpen"],
+    props: ["icon", "title", "title2", "isOpen"],
     components: { openRightIcon, closeRightIcon, mail, tag, Comment },
     computed: {
         rightIcon() {

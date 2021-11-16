@@ -3,6 +3,7 @@
         <card-header
             :icon="'mail'"
             :title="'Správa zamestnancom'"
+            :title2="null"
             :isOpen="isOpen"
             @click.native="isOpen = !isOpen"
         />

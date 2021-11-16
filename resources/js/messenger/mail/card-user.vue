@@ -1,42 +1,12 @@
 <template>
     <div class="border" v-if="isModulActiveById">
-        <header
-            class="flex justify-between items-center px-2 py-2 cursor-pointer"
-            @click="isOpen = !isOpen"
-            :class="[isOpen ? 'bg-gray-600 text-white' : 'hover:bg-gray-200']"
-        >
-            <div class="flex items-center justify-center">
-                <svg
-                    class="fill-current h-5 w-5 mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                >
-                    <path
-                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                    />
-                    <path
-                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                    />
-                </svg>
-                <h3 class="ml-2 font-semibold cursor-pointer mr-1">
-                    Oznámenia zamestnávateľa
-                </h3>
-                <h3
-                    v-if="unreadMessages >= 1"
-                    :class="[
-                        unreadMessages >= 1
-                            ? 'text-red-400 font-semibold cursor-pointer'
-                            : ''
-                    ]"
-                >
-                    ({{ unreadMessages }})
-                </h3>
-            </div>
-
-            <card-header-icon :showCard="isOpen" />
-        </header>
-
+        <card-header
+            :icon="'mail'"
+            :title="' Oznámenia zamestnávateľa'"
+            :title2="unreadMessages"
+            :isOpen="isOpen"
+            @click.native="isOpen = !isOpen"
+        />
         <div class="flex flex-col px-2" v-if="isOpen">
             <div
                 class="py-0 px-1 hover:bg-gray-100"
@@ -77,6 +47,7 @@
 </template>
 
 <script>
+import cardHeader from "../../components/Cards/CardHeader.vue";
 import showModal from "./show-modal";
 import moment from "moment";
 import { bus } from "../../app";
@@ -86,7 +57,7 @@ import CardHeaderIcon from "../../components/Cards/CardHeaderIcon";
 import { createdMixin } from "../../mixins/createdMixin";
 export default {
     mixins: [createdMixin],
-    components: { showModal, pagination, CardHeaderIcon },
+    components: { showModal, pagination, CardHeaderIcon, cardHeader },
     data() {
         return {
             isOpen: false,
