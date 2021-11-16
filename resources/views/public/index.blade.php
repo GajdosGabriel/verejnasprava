@@ -97,7 +97,7 @@
 
     <div class="w-full p-6 bg-blue-100">
 
-        <div class="w-48 mx-auto pt-6 border-b-2 border-teal-500 text-center text-2xl text-blue-700">BEZ ZÁVEZKOV</div>
+        <div class="w-48 mx-auto pt-6 border-b-2 border-teal-500 text-center text-2xl text-blue-700 capitalize">BEZ ZÁVÄZKOV</div>
         <div class="p-2 text-center text-lg text-gray-700">Jednou bezplatnou registráciou získate riešenie pre správu obecného zastupiteľstva <br /> a prístup k zverejňovaniu zmlúv a faktúr.
             <span class="font-semibold">Registrácia zadarmo.</span></div>
         <div class="flex justify-center flex-wrap p-6">
