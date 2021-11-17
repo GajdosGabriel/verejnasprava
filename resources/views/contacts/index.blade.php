@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('page-title', 'Zoznam kontaktov')
 
-    @section('navigation') @include('organizations.navigation') @endsection
-    {{-- @section('navigation') --}}
-    {{-- @include('organizations.navigation') --}}
-    {{-- @endsection --}}
+@section('navigation') @include('organizations.navigation') @endsection
+{{-- @section('navigation') --}}
+{{-- @include('organizations.navigation') --}}
+{{-- @endsection --}}
 
 @section('content')
 
@@ -16,7 +16,12 @@
 
     <x-page.container>
 
-        <contact-table />
+        <x-page.page3_3>
+            <div class="col-span-12 bg-white p-3">
+                <contact-table />
+            </div>
+
+        </x-page.page3_3>
 
     </x-page.container>
     <notification-list></notification-list>
