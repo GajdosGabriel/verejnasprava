@@ -2041,7 +2041,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["icon", "title", "title2", "isOpen"],
+  props: {
+    icon: {
+      type: String
+    },
+    title: {
+      type: String
+    },
+    title2: {
+      "default": null
+    },
+    isOpen: {
+      type: Boolean,
+      "default": null
+    }
+  },
   components: {
     openRightIcon: _icons_openRightIcon_vue__WEBPACK_IMPORTED_MODULE_3__.default,
     closeRightIcon: _icons_closeRightIcon_vue__WEBPACK_IMPORTED_MODULE_4__.default,
@@ -5526,9 +5540,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pagination */ "./resources/js/messenger/pagination.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Cards_CardHeaderIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Cards/CardHeaderIcon */ "./resources/js/components/Cards/CardHeaderIcon.vue");
-/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5590,13 +5603,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_6__.createdMixin],
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__.createdMixin],
   components: {
     showModal: _show_modal__WEBPACK_IMPORTED_MODULE_1__.default,
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_4__.default,
-    CardHeaderIcon: _components_Cards_CardHeaderIcon__WEBPACK_IMPORTED_MODULE_5__.default,
     cardHeader: _components_Cards_CardHeader_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
@@ -5607,7 +5618,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)("organizations", ["menuActive"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("organizations", ["menuActive"])), {}, {
     unreadMessages: function unreadMessages() {
       return (this.messengers.data || []).filter(function (m) {
         return m.pivot.opened == null;
@@ -6157,13 +6168,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("organizations", ["organization", "paidmodules", "paidmodulesCount", "menuActiveCount"])),
-  created: function created() {// this.$store.dispatch(
-    //     "organizations/getOrganization",
-    //     "/api/organization/" + this.user.active_organization
-    // );
-    //   this.$store.dispatch("organizations/getOrganization");
-  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("organizations", ["paidmodules", "paidmodulesCount", "menuActiveCount"])), {}, {
+    statisticActiveModules: function statisticActiveModules() {
+      return this.menuActiveCount + "/" + this.paidmodulesCount;
+    }
+  }),
   methods: {
     saveModul: function saveModul(id) {
       var _this = this;
@@ -6171,9 +6180,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.put("/api/menus/" + this.user.active_organization, {
         modul: id
       }).then(function (response) {
-        // window.location.reload();
-        // bus.$emit('reloadMenu');
-        // this.getIndex();
         _this.$store.dispatch("organizations/getOrganization", "/api/organization/" + _this.user.active_organization);
       });
     },
@@ -92367,7 +92373,7 @@ var render = function() {
             attrs: {
               icon: "mail",
               title: "Správa zamestnancom",
-              title2: null,
+              title2: 0,
               isOpen: _vm.isOpen
             },
             nativeOn: {
@@ -93447,7 +93453,7 @@ var render = function() {
         attrs: {
           icon: "config",
           title: "Aktivácia modulov",
-          title2: _vm.menuActiveCount + "/" + _vm.paidmodulesCount,
+          title2: _vm.statisticActiveModules,
           isOpen: _vm.isOpen
         },
         nativeOn: {

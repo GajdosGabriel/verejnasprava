@@ -3,7 +3,7 @@
         <card-header
             :icon="'config'"
             :title="'Aktivácia modulov'"
-            :title2="menuActiveCount + '/' + paidmodulesCount"
+            :title2="statisticActiveModules"
             :isOpen="isOpen"
             @click.native="isOpen = !isOpen"
         />
@@ -68,18 +68,13 @@ export default {
     },
     computed: {
         ...mapGetters("organizations", [
-            "organization",
             "paidmodules",
             "paidmodulesCount",
             "menuActiveCount"
-        ])
-    },
-    created: function() {
-        // this.$store.dispatch(
-        //     "organizations/getOrganization",
-        //     "/api/organization/" + this.user.active_organization
-        // );
-        //   this.$store.dispatch("organizations/getOrganization");
+        ]),
+        statisticActiveModules() {
+            return this.menuActiveCount + "/" + this.paidmodulesCount;
+        }
     },
     methods: {
         saveModul(id) {
@@ -88,9 +83,6 @@ export default {
                     modul: id
                 })
                 .then(response => {
-                    // window.location.reload();
-                    // bus.$emit('reloadMenu');
-                    // this.getIndex();
                     this.$store.dispatch(
                         "organizations/getOrganization",
                         "/api/organization/" + this.user.active_organization

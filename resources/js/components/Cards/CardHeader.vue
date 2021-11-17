@@ -25,7 +25,21 @@ import openRightIcon from "../icons/openRightIcon.vue";
 import closeRightIcon from "../icons/closeRightIcon.vue";
 import Comment from "../../tasks/Comments/Comment.vue";
 export default {
-    props: ["icon", "title", "title2", "isOpen"],
+    props: {
+        icon: {
+            type: String
+        },
+        title: {
+            type: String
+        },
+        title2: {
+            default: null
+        },
+        isOpen: {
+            type: Boolean,
+            default: null
+        }
+    },
     components: { openRightIcon, closeRightIcon, mail, tag, Comment, config },
     computed: {
         rightIcon() {
