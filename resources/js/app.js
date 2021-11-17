@@ -32,8 +32,9 @@ Vue.prototype.$auth = new Auth(window.App.user);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('order-index', require('./components/Order-index.vue').default);
-Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
+// Vue.component('order-index', require('./components/Order-index.vue').default);
+// Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
+// Vue.component('user-index', require('./users/index.vue').default);
 Vue.component('contact-table', require('./contacts/contactTable.vue').default);
 Vue.component('new-contact-button', require('./contacts/newContactButton.vue').default);
 Vue.component('navigation-horizontal', require('./modules/navigation/NavigationHorizontal.vue').default);
@@ -44,7 +45,6 @@ Vue.component('post-table', require('./posts/postTable.vue').default);
 Vue.component('vote-form-button', require('./votes/voteButtons.vue').default);
 Vue.component('vote-start-button', require('./votes/voteStartButton.vue').default);
 Vue.component('organization-edit', require('./organizations/edit.vue').default);
-// Vue.component('user-index', require('./users/index.vue').default);
 Vue.component('user-edit', require('./users/edit.vue').default);
 Vue.component('contact-create', require('./contacts/formCreate.vue').default);
 Vue.component('meeting', require('./meetings/meeting.vue').default);

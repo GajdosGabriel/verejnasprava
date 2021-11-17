@@ -15,7 +15,7 @@
 {{--            @include('order._form_bottom')--}}
 
 {{--            <order0 :order="{{ $organization }}"></order0>--}}
-            <order-group :order="{{ $organization }}"></order-group>
+            {{-- <order-group :order="{{ $organization }}"></order-group> --}}
 {{--        </form>--}}
 
 
