@@ -81,6 +81,19 @@
                             placeholder="Vaša správa ..." rows="7" required></textarea>
                     </div>
 
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="phone">Tel.</span>
+                        </div>
+                        <input type="text" name="phone" class="border-2 w-full rounded shadow-md p-2 border-gray-500"
+                            placeholder="Telefónný kontakt" value="{{ old('phone') }}" required aria-describedby="phone" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label>Som človek 3+2 = </label>
+                        <input class="mx-2 rounded-sm text-gray-800" type="number" name="iamHuman"
+                            placeholder="Zadajte číslo 5" required>
+                    </div>
 
                     <div class="form-group">
                         <button class="btn btn-primary w-full">Odoslať</button>

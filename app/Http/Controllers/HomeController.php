@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use App\Filters\PostFilters;
+use App\Http\Requests\ContactUsRequest;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostfrontedResource;
@@ -72,13 +73,13 @@ class HomeController extends Controller
         return PostfrontedResource::collection($posts);
     }
 
-    public function store(Request $request)
+    public function store(ContactUsRequest $request)
     {
 
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'body' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'email' => 'required|email',
+        //     'body' => 'required',
+        // ]);
 
         $users = User::whereHas('roles', function ($q) {
             $q->whereName('super-admin');

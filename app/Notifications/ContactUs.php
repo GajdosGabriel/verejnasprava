@@ -44,6 +44,7 @@ class ContactUs extends Notification
         return (new MailMessage)
                     ->line('Nová správa z portálu "Verejna správa.eu".')
                     ->line('Od: '. $this->message->name)
+                    ->line('Tel: '. $this->message->phone)
                     ->line($this->message->email)
                     ->line('Správa: ' . $this->message->body)
                     ->action('Zobraziť stránku', route('home.index'))
