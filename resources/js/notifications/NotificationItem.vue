@@ -7,7 +7,6 @@
 </template>
 
 <script>
-    import notification from "../store/modules/notification";
 
     export default {
         props: ['notification'],

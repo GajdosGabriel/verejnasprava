@@ -59,7 +59,7 @@ class UserController extends Controller
         $this->userRoles($user, $userRequest);
         $user->tags()->sync($userRequest->input('tag'));
 
-        return redirect()->route('users.index');
+        return new UserResource($user);
     }
 
     public function store(Organization $organization, UserCreateRequest $userRequest)
