@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Menu;
 use App\Http\Resources\MenuResource;
+use App\Http\Resources\CouncilResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrganizationResource extends JsonResource
@@ -26,7 +27,8 @@ class OrganizationResource extends JsonResource
             'phones'            => $this->phone,
             'web'               => $this->web,
             'ico'               => $this->ico,
-            'dic'               => $this->dic,
+            'dic'               => $this->when($this->ic_dic, $this->ic_dic),
+            'user'              => $this->user,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
             'menus'             => [
                 'menuActive'    => MenuResource::collection($this->menus),
@@ -39,6 +41,8 @@ class OrganizationResource extends JsonResource
                 'years_of_posts'    => $this->years_of_posts,
 
             ],
+
+            'councils'          => CouncilResource::collection($this->councils),
 
             "can" => [
                 "viewAny"   => auth()->user()->can("viewAny", $this->resource),

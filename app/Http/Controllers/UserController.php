@@ -54,12 +54,13 @@ class UserController extends Controller
 
     public function update(User $user, UserUpdateRequest $userRequest)
     {
+        // dd($userRequest->all());
         $userRequest->save($user);
 
         $this->userRoles($user, $userRequest);
         $user->tags()->sync($userRequest->input('tag'));
 
-        return new UserResource($user);
+        return back();
     }
 
     public function store(Organization $organization, UserCreateRequest $userRequest)
@@ -84,14 +85,13 @@ class UserController extends Controller
     // For update and store User
     private function userRoles($user, $userRequest)
     {
-
         // Only admin giving roles and permissions
         if (!auth()->user()->hasAnyRole(['super-admin', 'admin'])) return;
 
         // For table user_council
         $user->councils()->sync($userRequest->input('council'));
         $user->roles()->sync($userRequest->input('role'));
-        $user->syncPermissions($userRequest->input('permission'));
+        // $user->syncPermissions($userRequest->input('permission'));
     }
 
 

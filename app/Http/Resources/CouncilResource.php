@@ -14,6 +14,15 @@ class CouncilResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'organization_id' => $this->organization_id,
+            'min_user' => $this->min_user,
+            'approved' => $this->approved,
+            'quorate' => $this->quorate,
+            'name' => $this->name,
+            'description' => $this->description,
+            'checked' =>  $this->users->contains(auth()->user()->id)        
+        ];
     }
 }
