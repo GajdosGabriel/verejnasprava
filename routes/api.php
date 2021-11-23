@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     'users.meetings'            => 'Api\UserMeetingController',
     'invitations'               => 'Api\InvitationController',
     'menus'                     => 'Api\MenuController',
-    'organization'              => 'Api\OrganizationController',
+    'organizations'             => 'Api\OrganizationController',
     'users'                     => 'Api\UserController',
     'users.tasks'               => 'Api\UserTaskController',
     ]);

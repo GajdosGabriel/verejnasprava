@@ -134,7 +134,7 @@ export default {
     created: function() {
         // this.$store.dispatch(
         //     "organizations/getOrganization",
-        //     "/api/organization/" + this.user.active_organization
+        //     "/api/organizations/" + this.user.active_organization
         // );
 
         this.$store.dispatch("organizations/getOrganization");

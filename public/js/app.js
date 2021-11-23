@@ -5270,7 +5270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.$store.dispatch("organizations/getOrganization", "/api/organization/" + this.user.active_organization);
+    this.$store.dispatch("organizations/getOrganization", "/api/organizations/" + this.user.active_organization);
   },
   methods: {
     toggle: function toggle(component) {
@@ -6038,7 +6038,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.put("/api/menus/" + this.user.active_organization, {
         modul: id
       }).then(function (response) {
-        _this.$store.dispatch("organizations/getOrganization", "/api/organization/" + _this.user.active_organization);
+        _this.$store.dispatch("organizations/getOrganization", "/api/organizations/" + _this.user.active_organization);
       });
     },
     toggle: function toggle() {
@@ -6194,7 +6194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     // this.$store.dispatch(
     //     "organizations/getOrganization",
-    //     "/api/organization/" + this.user.active_organization
+    //     "/api/organizations/" + this.user.active_organization
     // );
     this.$store.dispatch("organizations/getOrganization");
     var self = this;
@@ -6458,7 +6458,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _store_modules_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/modules/notification */ "./resources/js/store/modules/notification.js");
 //
 //
 //
@@ -6467,7 +6466,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['notification'],
   computed: {
@@ -9587,14 +9585,28 @@ var mutations = {
 var actions = {
   getUsers: function getUsers(_ref) {
     var commit = _ref.commit;
-    axios.get('/api/organizations/1/users').then(function (response) {
-      commit('SET_USERS', response.data);
+    axios.get("/api/organizations/1/users").then(function (response) {
+      commit("SET_USERS", response.data);
     });
   },
   getUser: function getUser(_ref2) {
     var commit = _ref2.commit;
-    axios.get('/api/user').then(function (response) {
-      commit('SET_USER', response.data);
+    axios.get("/api/user").then(function (response) {
+      commit("SET_USER", response.data);
+    });
+  },
+  updateUser: function updateUser(_ref3, user) {
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
+    axios.put("/users/" + user.id + "/", user).then(function (response) {
+      commit("SET_USER", response.data); // Notify for update user
+
+      dispatch("notification/addNewNotification", {
+        message: "Údaje boli aktualizované.",
+        type: "bg-green-400"
+      }, {
+        root: true
+      });
     });
   }
 };
@@ -11718,7 +11730,7 @@ ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_bubble_css__WEBPACK_IMPORTED_MODULE_3__.default);
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_4__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* Import the Quill styles you want */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11778,7 +11790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\n    display: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n[v-cloak] {\r\n    display: none;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
