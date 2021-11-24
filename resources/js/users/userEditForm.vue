@@ -1,7 +1,7 @@
 <template>
     <div class="border-2 border-gray-300 rounded-md bg-gray-100">
         <card-header
-            :icon="'config'"
+            :icon="'user'"
             :title="'Osobné nastavenia'"
             :isOpen="isOpen"
             @click.native="isOpen = !isOpen"

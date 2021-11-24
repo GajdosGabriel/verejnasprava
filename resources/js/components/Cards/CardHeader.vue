@@ -21,6 +21,7 @@
 import config from "../icons/config.vue";
 import tag from "../icons/tag.vue";
 import mail from "../icons/mail.vue";
+import user from "../icons/user.vue";
 import openRightIcon from "../icons/openRightIcon.vue";
 import closeRightIcon from "../icons/closeRightIcon.vue";
 import Comment from "../../tasks/Comments/Comment.vue";
@@ -40,7 +41,7 @@ export default {
             default: null
         }
     },
-    components: { openRightIcon, closeRightIcon, mail, tag, Comment, config },
+    components: { openRightIcon, closeRightIcon, mail, tag, Comment, config, user },
     computed: {
         rightIcon() {
             if (this.isOpen) {
