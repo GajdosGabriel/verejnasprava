@@ -42,7 +42,7 @@ return [
     'ends_with'      => ':attribute musí obsahovať jednú z týchto hodnôt: :values.',
     'exists'         => 'označený :attribute je neplatný.',
     'file'           => ':Attribute musí byť súbor.',
-    'filled'         => ':Attribute je požadované.',
+    'filled'         => ':Attribute sa požaduje.',
     'gt'             => [
         'numeric' => 'Hodnota :attribute musí byť väčšia ako :value.',
         'file'    => ':Attribute musí mať viac kilobajtov ako :value.',

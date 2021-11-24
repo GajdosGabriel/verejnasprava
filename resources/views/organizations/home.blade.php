@@ -23,7 +23,9 @@
             <div class="col-span-4 bg-white">
                 @role('admin')
                     <x-oznamenia>
-                        <messenger-mails-card-user></messenger-mails-card-user>
+                        {{-- <messenger-mails-card-user></messenger-mails-card-user> --}}
+
+                        <user-edit-form></user-edit-form>
                     </x-oznamenia>
 
 
@@ -49,7 +51,7 @@
                     </x-oznamenia>
 
                     <x-oznamenia>
-                        <messenger-card></messenger-card>
+                        {{-- <messenger-card></messenger-card> --}}
                     </x-oznamenia>
                 @endrole
 

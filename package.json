@@ -25,16 +25,17 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "@braid/vue-formulate": "^2.5.2",
     "@ckeditor/ckeditor5-build-decoupled-document": "^18.0.0",
     "@tailwindcss/forms": "^0.3.2",
     "fund": "^1.0.0",
-    "funding": "^1.0.9",
+    "funding": "^0.0.0",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "numeral": "^2.0.6",
     "vue": "^2.6.12",
     "vue-multiselect": "^2.1.6",
-    "vue2-editor": "^2.10.2",
+    "vue2-editor": "^1.1.12",
     "vuedraggable": "^2.24.3",
     "vuex": "^3.5.1"
   }
