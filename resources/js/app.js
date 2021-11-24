@@ -47,67 +47,35 @@ Vue.use(VueFormulate, {
 // Vue.component('order-group', require('./modules/order/OrderGroup.vue').default);
 // Vue.component('user-index', require('./users/index.vue').default);
 Vue.component("contact-table", require("./contacts/contactTable.vue").default);
-Vue.component(
-    "new-contact-button",
-    require("./contacts/newContactButton.vue").default
-);
-Vue.component(
-    "navigation-horizontal",
-    require("./modules/navigation/NavigationHorizontal.vue").default
-);
-Vue.component(
-    "nav-drop-down",
-    require("./modules/navigation/navDropDown.vue").default
-);
-Vue.component(
-    "flash-message",
-    require("./modules/notification/flashMessage.vue").default
-);
-Vue.component(
-    "table-front-post",
-    require("./posts/tableFrontPost.vue").default
-);
+Vue.component("new-contact-button", require("./contacts/newContactButton.vue").default);
+Vue.component("navigation-horizontal", require("./modules/navigation/NavigationHorizontal.vue").default);
+Vue.component("nav-drop-down", require("./modules/navigation/navDropDown.vue").default);
+Vue.component("flash-message", require("./modules/notification/flashMessage.vue").default);
+Vue.component("table-front-post", require("./posts/tableFrontPost.vue").default);
 Vue.component("post-table", require("./posts/postTable.vue").default);
 Vue.component("vote-form-button", require("./votes/voteButtons.vue").default);
-Vue.component(
-    "vote-start-button",
-    require("./votes/voteStartButton.vue").default
-);
+Vue.component("vote-start-button", require("./votes/voteStartButton.vue").default);
 Vue.component("organization-edit", require("./organizations/edit.vue").default);
 Vue.component("user-edit", require("./users/edit.vue").default);
 Vue.component("user-edit-form", require("./users/userEditForm.vue").default);
 Vue.component("contact-create", require("./contacts/formCreate.vue").default);
 Vue.component("meeting", require("./meetings/meeting.vue").default);
-Vue.component(
-    "meeting-prezentations",
-    require("./meetings/meetingPrezentations.vue").default
-);
-Vue.component(
-    "invitation-card",
-    require("./invitations/invitation-card.vue").default
-);
+Vue.component("meeting-prezentations",require("./meetings/meetingPrezentations.vue").default);
+Vue.component("invitation-card",require("./invitations/invitation-card.vue").default);
 Vue.component("council-table", require("./councils/councilTable.vue").default);
 Vue.component("council-create", require("./councils/create.vue").default);
 Vue.component("vote-list", require("./votes/voteList.vue").default);
 Vue.component("item-show", require("./items/itemShow.vue").default);
-Vue.component(
-    "activatorModules",
-    require("./modules/activator/activationMenu.vue").default
-);
+Vue.component("activatorModules", require("./modules/activator/activationMenu.vue").default);
+
 // Vue.component('messenger-card', require('./messenger/card.vue').default);
 // Vue.component('messenger-mails-card-user', require('./messenger/mail/card-user.vue').default);
 Vue.component("tags-card", require("./tags/tagsCard.vue").default);
 Vue.component("login-form", require("./auth/login.vue").default);
 
 Vue.component("tasks-component", require("./tasks/Tasks.vue").default);
-Vue.component(
-    "home-card-meeting",
-    require("./meetings/homeCardMeeting.vue").default
-);
-Vue.component(
-    "notification-list",
-    require("./notifications/NotificationList.vue").default
-);
+Vue.component("home-card-meeting", require("./meetings/homeCardMeeting.vue").default);
+Vue.component("notification-list", require("./notifications/NotificationList.vue").default);
 
 export const bus = new Vue();
 
