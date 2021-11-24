@@ -31,9 +31,5 @@ class OrganizationController extends Controller
         return redirect()->route('organizations.index');
     }
 
-    public function update(Organization $organization, OrganizationUpdateRequest $request) {
-        $organization->update($request->all());
-        return back();
-    }
 
 }

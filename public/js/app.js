@@ -6106,6 +6106,169 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_Cards_CardHeader_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Cards/CardHeader.vue */ "./resources/js/components/Cards/CardHeader.vue");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    cardHeader: _components_Cards_CardHeader_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_1__.createdMixin],
+  data: function data() {
+    return {
+      isOpen: false
+    };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)("organizations", ["organization"])),
+  methods: {
+    updateOrg: function updateOrg() {
+      this.$store.dispatch("organizations/updateOrganization", this.organization);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/posts/postTable.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/posts/postTable.vue?vue&type=script&lang=js& ***!
@@ -7979,6 +8142,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("vote-start-button", (__we
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("organization-edit", (__webpack_require__(/*! ./organizations/edit.vue */ "./resources/js/organizations/edit.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("user-edit", (__webpack_require__(/*! ./users/edit.vue */ "./resources/js/users/edit.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("user-edit-form", (__webpack_require__(/*! ./users/userEditForm.vue */ "./resources/js/users/userEditForm.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("organization-edit-form", (__webpack_require__(/*! ./organizations/organizationEditForm.vue */ "./resources/js/organizations/organizationEditForm.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("contact-create", (__webpack_require__(/*! ./contacts/formCreate.vue */ "./resources/js/contacts/formCreate.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("meeting", (__webpack_require__(/*! ./meetings/meeting.vue */ "./resources/js/meetings/meeting.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("meeting-prezentations", (__webpack_require__(/*! ./meetings/meetingPrezentations.vue */ "./resources/js/meetings/meetingPrezentations.vue")["default"]));
@@ -8894,7 +9058,7 @@ var getters = {
     var _state$user, _state$user$roles;
 
     return (_state$user = state.user) === null || _state$user === void 0 ? void 0 : (_state$user$roles = _state$user.roles) === null || _state$user$roles === void 0 ? void 0 : _state$user$roles.find(function (o) {
-      return o.name == 'admin';
+      return o.name == "admin";
     });
   }
 };
@@ -8909,8 +9073,22 @@ var mutations = {
 var actions = {
   getOrganization: function getOrganization(_ref) {
     var commit = _ref.commit;
-    axios.get('/api/user').then(function (response) {
-      commit('SET_ORGANIZATION', response.data);
+    axios.get("/api/user").then(function (response) {
+      commit("SET_ORGANIZATION", response.data);
+    });
+  },
+  updateOrganization: function updateOrganization(_ref2, organization) {
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
+    axios.put("/api/organizations/" + organization.id + "/", organization).then(function (response) {
+      commit("SET_USER", response.data); // Notify for update user
+
+      dispatch("notification/addNewNotification", {
+        message: "Údaje boli aktualizované.",
+        type: "bg-green-400"
+      }, {
+        root: true
+      });
     });
   }
 };
@@ -69370,6 +69548,45 @@ component.options.__file = "resources/js/organizations/edit.vue"
 
 /***/ }),
 
+/***/ "./resources/js/organizations/organizationEditForm.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/organizations/organizationEditForm.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./organizationEditForm.vue?vue&type=template&id=5eb8c44e& */ "./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e&");
+/* harmony import */ var _organizationEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./organizationEditForm.vue?vue&type=script&lang=js& */ "./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _organizationEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/organizations/organizationEditForm.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/posts/postTable.vue":
 /*!******************************************!*\
   !*** ./resources/js/posts/postTable.vue ***!
@@ -70435,6 +70652,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_organizationEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./organizationEditForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_organizationEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/posts/postTable.vue?vue&type=script&lang=js&":
 /*!*******************************************************************!*\
   !*** ./resources/js/posts/postTable.vue?vue&type=script&lang=js& ***!
@@ -71403,6 +71636,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_1e3130d2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_1e3130d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./edit.vue?vue&type=template&id=1e3130d2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/edit.vue?vue&type=template&id=1e3130d2&");
+
+
+/***/ }),
+
+/***/ "./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_organizationEditForm_vue_vue_type_template_id_5eb8c44e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./organizationEditForm.vue?vue&type=template&id=5eb8c44e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e&");
 
 
 /***/ }),
@@ -77301,6 +77551,261 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/organizations/organizationEditForm.vue?vue&type=template&id=5eb8c44e& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "border-2 border-gray-300 rounded-md bg-gray-100" },
+    [
+      _c("card-header", {
+        attrs: { icon: "config", title: "Firemnné údaje", isOpen: _vm.isOpen },
+        nativeOn: {
+          click: function ($event) {
+            _vm.isOpen = !_vm.isOpen
+          },
+        },
+      }),
+      _vm._v(" "),
+      _vm.isOpen
+        ? _c(
+            "div",
+            { staticClass: "px-4" },
+            [
+              _c(
+                "FormulateForm",
+                { on: { submit: _vm.updateOrg } },
+                [
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Firma",
+                      validation: "bail|required",
+                      "validation-name": "Názov firmy",
+                      placeholder: "Firma",
+                    },
+                    model: {
+                      value: _vm.organization.name,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "name", $$v)
+                      },
+                      expression: "organization.name",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Ulica a číslo",
+                      validation: "bail|required",
+                      "validation-name": "Adresa",
+                      placeholder: "Ulica a číslo",
+                    },
+                    model: {
+                      value: _vm.organization.street,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "street", $$v)
+                      },
+                      expression: "organization.street",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Mesto",
+                      validation: "bail|required",
+                      "validation-name": "Mesto",
+                      placeholder: "Mesto",
+                    },
+                    model: {
+                      value: _vm.organization.city,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "city", $$v)
+                      },
+                      expression: "organization.city",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "PSČ",
+                      validation: "bail|required",
+                      "validation-name": "Psč",
+                      placeholder: "Psč",
+                    },
+                    model: {
+                      value: _vm.organization.psc,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "psc", $$v)
+                      },
+                      expression: "organization.psc",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "email",
+                      label: "Email",
+                      placeholder: "Váš email",
+                    },
+                    model: {
+                      value: _vm.organization.email,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "email", $$v)
+                      },
+                      expression: "organization.email",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Telefón",
+                      "validation-name": "Telefón",
+                      placeholder: "Telefón",
+                    },
+                    model: {
+                      value: _vm.organization.phone,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "phone", $$v)
+                      },
+                      expression: "organization.phone",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "ICO",
+                      "validation-name": "Ičo",
+                      placeholder: "Ičo firmy",
+                    },
+                    model: {
+                      value: _vm.organization.ico,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "ico", $$v)
+                      },
+                      expression: "organization.ico",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "DIC",
+                      "validation-name": "DIC",
+                      placeholder: "Dič firmy",
+                    },
+                    model: {
+                      value: _vm.organization.dic,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "dic", $$v)
+                      },
+                      expression: "organization.dic",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "IC DIC",
+                      "validation-name": "IC DIC",
+                      placeholder: "IC Dič firmy",
+                    },
+                    model: {
+                      value: _vm.organization.ic_dic,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "ic_dic", $$v)
+                      },
+                      expression: "organization.ic_dic",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Názov banky",
+                      "validation-name": "Názov banky",
+                      placeholder: "Názov banky",
+                    },
+                    model: {
+                      value: _vm.organization.bank_name,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "bank_name", $$v)
+                      },
+                      expression: "organization.bank_name",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "Číslo účtu",
+                      "validation-name": "Číslo účtu",
+                      placeholder: "Číslo účtu",
+                    },
+                    model: {
+                      value: _vm.organization.bank_number,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "bank_number", $$v)
+                      },
+                      expression: "organization.bank_number",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      type: "text",
+                      label: "IBAN",
+                      "validation-name": "IBAN",
+                      placeholder: "Iban",
+                    },
+                    model: {
+                      value: _vm.organization.iban,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.organization, "iban", $$v)
+                      },
+                      expression: "organization.iban",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    staticClass: "btn btn-primary mt-4",
+                    attrs: { type: "submit", label: "Uložiť" },
+                  }),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

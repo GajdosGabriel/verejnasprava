@@ -6,6 +6,7 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrganizationResource;
+use App\Http\Requests\OrganizationUpdateRequest;
 
 class OrganizationController extends Controller
 {
@@ -13,5 +14,11 @@ class OrganizationController extends Controller
     {
         return new OrganizationResource($organization);
     }
+
+    public function update(Organization $organization, OrganizationUpdateRequest $request) {
+        $organization->update($request->all());
+        return new OrganizationResource($organization);
+    }
+
 
 }
