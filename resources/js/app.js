@@ -55,7 +55,6 @@ Vue.component("table-front-post", require("./posts/tableFrontPost.vue").default)
 Vue.component("post-table", require("./posts/postTable.vue").default);
 Vue.component("vote-form-button", require("./votes/voteButtons.vue").default);
 Vue.component("vote-start-button", require("./votes/voteStartButton.vue").default);
-Vue.component("organization-edit", require("./organizations/edit.vue").default);
 Vue.component("user-edit", require("./users/edit.vue").default);
 Vue.component("user-edit-form", require("./users/userEditForm.vue").default);
 Vue.component("organization-edit-form", require("./organizations/organizationEditForm.vue").default);

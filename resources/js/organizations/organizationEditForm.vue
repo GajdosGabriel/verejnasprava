@@ -48,6 +48,7 @@
                 <FormulateInput
                     type="email"
                     label="Email"
+                    validation="bail|email"
                     placeholder="Váš email"
                     v-model="organization.email"
                 />

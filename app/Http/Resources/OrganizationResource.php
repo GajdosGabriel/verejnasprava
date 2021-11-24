@@ -25,6 +25,7 @@ class OrganizationResource extends JsonResource
             'city'              => $this->city,
             'psc'               => $this->psc,
             'phones'            => $this->phone,
+            'email'             => $this->email,
             'web'               => $this->web,
             'ico'               => $this->ico,
             'dic'               => $this->when($this->ic_dic, $this->ic_dic),
