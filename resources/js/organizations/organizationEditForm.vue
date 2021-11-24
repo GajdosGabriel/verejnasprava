@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 border-gray-300 rounded-md bg-gray-100">
+    <Card>
         <card-header
             icon="config"
             :title="'Firemnné údaje'"
@@ -116,15 +116,16 @@
                 />
             </FormulateForm>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script>
+import Card from "../components/Cards/Card.vue";
 import cardHeader from "../components/Cards/CardHeader.vue";
 import { createdMixin } from "../mixins/createdMixin";
 import { mapState } from "vuex";
 export default {
-    components: { cardHeader },
+    components: { cardHeader, Card },
     mixins: [createdMixin],
     data: function () {
         return {

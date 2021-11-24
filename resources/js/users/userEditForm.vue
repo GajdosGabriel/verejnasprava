@@ -1,7 +1,7 @@
 <template>
-    <div class="border-2 border-gray-300 rounded-md bg-gray-100">
+    <Card>
         <card-header
-            :icon="'user'"
+            icon="user"
             :title="'Osobné nastavenia'"
             :isOpen="isOpen"
             @click.native="isOpen = !isOpen"
@@ -43,15 +43,16 @@
                 />
             </FormulateForm>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script>
+import Card from "../components/Cards/Card.vue";
 import cardHeader from "../components/Cards/CardHeader.vue";
 import { createdMixin } from "../mixins/createdMixin";
 import { mapState } from "vuex";
 export default {
-    components: { cardHeader },
+    components: { cardHeader, Card },
     mixins: [createdMixin],
     data: function () {
         return {
@@ -65,6 +66,6 @@ export default {
         update: function () {
             this.$store.dispatch("users/updateUser", this.user);
         },
-    }
+    },
 };
 </script>

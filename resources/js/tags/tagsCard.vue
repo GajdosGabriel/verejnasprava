@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <Card>
         <card-header
             :icon="'tag'"
             :title="'Nálepky'"
@@ -14,17 +14,18 @@
                 <tag-item :tag="tag"></tag-item>
             </div>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script>
+import Card from "../components/Cards/Card.vue";
 import tagItem from "./tag-Item";
 import tagForm from "./tagForm";
 import cardHeader from "../components/Cards/CardHeader.vue";
 import { createdMixin } from "../mixins/createdMixin";
 
 export default {
-    components: { tagItem, tagForm, cardHeader },
+    components: { tagItem, tagForm, cardHeader, Card },
     mixins: [createdMixin],
     data() {
         return {
