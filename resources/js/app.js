@@ -68,7 +68,7 @@ Vue.component("vote-list", require("./votes/voteList.vue").default);
 Vue.component("item-show", require("./items/itemShow.vue").default);
 Vue.component("activatorModules", require("./modules/activator/activationMenu.vue").default);
 
-Vue.component('messenger-card', require('./messenger/card.vue').default);
+// Vue.component('messenger-card', require('./messenger/card.vue').default);
 // Vue.component('messenger-mails-card-user', require('./messenger/mail/card-user.vue').default);
 Vue.component("tags-card", require("./tags/tagsCard.vue").default);
 Vue.component("login-form", require("./auth/login.vue").default);

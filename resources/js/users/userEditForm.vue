@@ -54,11 +54,6 @@ import { mapState } from "vuex";
 export default {
     components: { cardHeader, Card },
     mixins: [createdMixin],
-    data: function () {
-        return {
-            isOpen: false,
-        };
-    },
     computed: {
         ...mapState("organizations", ["user"]),
     },

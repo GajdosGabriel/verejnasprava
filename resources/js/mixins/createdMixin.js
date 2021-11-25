@@ -1,4 +1,10 @@
 export const createdMixin = {
+    data: function () {
+        return {
+            isOpen: false,
+        };
+    },
+    
     created: function() {
         let self = this;
 
