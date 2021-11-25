@@ -40,12 +40,7 @@ class CouncilController extends Controller
     }
 
 
-    public function destroy(Council $council) {
-        if ($council->meetings->count()) {
-            return response()->json(['message' => 'Zastupiteľstvo už obsahuje zasadnutia.'], 401);
-        }
-        $council->delete();
-    }
+
 
 
 }

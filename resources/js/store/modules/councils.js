@@ -62,7 +62,7 @@ const actions = {
     },
 
     deleteCouncil({ commit, dispatch }, council) {
-        axios.delete("/councils/" + council.id).then((response) => {
+        axios.delete("/api/organizations/"+ council.organization_id +"/councils/" + council.id).then((response) => {
             commit("REMOVE_COUNCIL", council.id);
 
             // Notify for Delete council

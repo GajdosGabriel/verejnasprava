@@ -20,4 +20,11 @@ class OrganizationCouncilController extends Controller
         $organization->councils()->create(array_merge($request->all()));
         return new OrganizationResource($organization);
     }
+
+    public function destroy(Organization $organization, Council $council) {
+        if ($council->meetings->count()) {
+            return response()->json(['message' => 'Zastupiteľstvo už obsahuje zasadnutia.'], 401);
+        }
+        $council->delete();
+    }
 }
