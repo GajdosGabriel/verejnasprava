@@ -27,9 +27,9 @@ const actions = {
             });
     },
 
-    storeCouncil({ commit, dispatch }, [org1, form2]) {
+    storeCouncil({ commit, dispatch }, [orgId, form2]) {
         axios
-            .post("/api/organizations/" + org1 + "/councils", form2)
+            .post("/api/organizations/" + orgId + "/councils", form2)
             .then((response) => {
                 commit("SET_COUNCILS", response.data);
 
@@ -45,15 +45,35 @@ const actions = {
             });
     },
 
-    update({ commit }, payload) {
-        axios.put("/councils/" + payload.id, payload).then((response) => {
+    updateCouncil({ commit, dispatch }, payload) {
+        axios.put("/api/organizations/" + payload.organization_id + '/councils/' + payload.id, payload).then((response) => {
             commit("modals/OPEN_FORM", null, { root: true });
+
+             // Notify for update council
+             dispatch(
+                "notification/addNewNotification",
+                {
+                    message: "Zastupiteľstvo bolo aktualizované.",
+                    type: "bg-green-400",
+                },
+                { root: true }
+            );
         });
     },
 
-    deleteCouncil({ commit }, council) {
+    deleteCouncil({ commit, dispatch }, council) {
         axios.delete("/councils/" + council.id).then((response) => {
             commit("REMOVE_COUNCIL", council.id);
+
+            // Notify for Delete council
+            dispatch(
+                "notification/addNewNotification",
+                {
+                    message: "Zastupiteľstvo bolo zmazané.",
+                    type: "bg-green-400",
+                },
+                { root: true }
+            );
         });
     },
 };

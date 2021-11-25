@@ -40,12 +40,6 @@ class CouncilController extends Controller
     }
 
 
-
-    public function update(Request $request, Council $council) {
-        $council->update($request->only(['name', 'description', 'quorate', 'min_user']));
-        return $council;
-    }
-
     public function destroy(Council $council) {
         if ($council->meetings->count()) {
             return response()->json(['message' => 'Zastupiteľstvo už obsahuje zasadnutia.'], 401);

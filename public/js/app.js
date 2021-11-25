@@ -3683,7 +3683,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
   }),
   methods: _objectSpread({
     update: function update(council) {
-      this.$store.dispatch('councils/update', council);
+      this.$store.dispatch('councils/updateCouncil', council);
     }
   }, mapActions(['open_form']))
 });
@@ -8535,10 +8535,10 @@ var actions = {
         dispatch = _ref2.dispatch;
 
     var _ref4 = _slicedToArray(_ref3, 2),
-        org1 = _ref4[0],
+        orgId = _ref4[0],
         form2 = _ref4[1];
 
-    axios.post("/api/organizations/" + org1 + "/councils", form2).then(function (response) {
+    axios.post("/api/organizations/" + orgId + "/councils", form2).then(function (response) {
       commit("SET_COUNCILS", response.data); // Notify for create council
 
       dispatch("notification/addNewNotification", {
@@ -8549,18 +8549,34 @@ var actions = {
       });
     });
   },
-  update: function update(_ref5, payload) {
-    var commit = _ref5.commit;
-    axios.put("/councils/" + payload.id, payload).then(function (response) {
+  updateCouncil: function updateCouncil(_ref5, payload) {
+    var commit = _ref5.commit,
+        dispatch = _ref5.dispatch;
+    axios.put("/api/organizations/" + payload.organization_id + '/councils/' + payload.id, payload).then(function (response) {
       commit("modals/OPEN_FORM", null, {
+        root: true
+      }); // Notify for update council
+
+      dispatch("notification/addNewNotification", {
+        message: "Zastupiteľstvo bolo aktualizované.",
+        type: "bg-green-400"
+      }, {
         root: true
       });
     });
   },
   deleteCouncil: function deleteCouncil(_ref6, council) {
-    var commit = _ref6.commit;
+    var commit = _ref6.commit,
+        dispatch = _ref6.dispatch;
     axios["delete"]("/councils/" + council.id).then(function (response) {
-      commit("REMOVE_COUNCIL", council.id);
+      commit("REMOVE_COUNCIL", council.id); // Notify for Delete council
+
+      dispatch("notification/addNewNotification", {
+        message: "Zastupiteľstvo bolo zmazané.",
+        type: "bg-green-400"
+      }, {
+        root: true
+      });
     });
   }
 };

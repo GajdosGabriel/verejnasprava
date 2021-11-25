@@ -130,7 +130,7 @@
 
         methods: {
             update(council) {
-                this.$store.dispatch('councils/update', council)
+                this.$store.dispatch('councils/updateCouncil', council)
             },
             ...mapActions([
                 'open_form'
