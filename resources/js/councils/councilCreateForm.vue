@@ -26,6 +26,26 @@
                 />
 
                 <FormulateInput
+                    type="radio"
+                    label="Minimálna účasť na zasadnutí je:"
+                    v-model="council.min_user"
+                    :options="{
+                        50: 'Nadpolovičná z všetkých členov',
+                        75: 'Dvojtretinová z všetkých členov',
+                    }"
+                />
+
+                <FormulateInput
+                    type="radio"
+                    label="Úspešné hlasovanie je:"
+                    v-model="council.quorate"
+                    :options="{
+                        50: 'Nadpolovičná z prítomných',
+                        75: 'Dvojtretinová z prítomných',
+                    }"
+                />
+
+                <FormulateInput
                     type="submit"
                     label="Uložiť"
                     class="btn btn-primary mt-4"
@@ -48,6 +68,8 @@ export default {
             council: {
                 name: "",
                 description: "",
+                min_user: "",
+                quorate: "",
             },
         };
     },
