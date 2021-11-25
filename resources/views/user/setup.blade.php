@@ -104,7 +104,7 @@
             <div class="w-full col-span-4 bg-white">
                 <user-edit-form></user-edit-form>
                 <organization-edit-form></organization-edit-form>
-            
+                <council-create-form></council-create-form>
             </div>
         </x-page.page3_3>
     </x-page.container>

@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import council from "../icons/council.vue";
 import config from "../icons/config.vue";
 import tag from "../icons/tag.vue";
 import mail from "../icons/mail.vue";
@@ -41,7 +42,7 @@ export default {
             default: null
         }
     },
-    components: { openRightIcon, closeRightIcon, mail, tag, Comment, config, user },
+    components: { openRightIcon, closeRightIcon, mail, tag, Comment, config, user, council },
     computed: {
         rightIcon() {
             if (this.isOpen) {
