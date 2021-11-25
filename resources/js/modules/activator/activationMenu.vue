@@ -54,18 +54,12 @@
 
 <script>
 import cardHeader from "../../components/Cards/CardHeader.vue";
-import { bus } from "../../app";
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import { createdMixin } from "../../mixins/createdMixin";
 
 export default {
     components: { cardHeader },
     mixins: [createdMixin],
-    data: function() {
-        return {
-            isOpen: false
-        };
-    },
     computed: {
         ...mapGetters("organizations", [
             "paidmodules",
@@ -88,10 +82,6 @@ export default {
                         "/api/organizations/" + this.user.active_organization
                     );
                 });
-        },
-
-        toggle() {
-            this.isOpen = !this.isOpen;
         }
     }
 };

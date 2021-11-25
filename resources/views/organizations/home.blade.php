@@ -51,7 +51,7 @@
                     </x-oznamenia>
 
                     <x-oznamenia>
-                        <messenger-card></messenger-card>
+                        {{-- <messenger-card></messenger-card> --}}
 
                     </x-oznamenia>
                 @endrole
