@@ -9272,7 +9272,7 @@ var actions = {
     var commit = _ref10.commit;
     commit('SET_LOADING_STATUS', true);
     axios.get('/councils/' + council).then(function (response) {
-      commit('SET_COUNCIL', response.data);
+      commit('SET_COUNCIL', response.data.data);
       commit('SET_LOADING_STATUS', false);
     });
   }

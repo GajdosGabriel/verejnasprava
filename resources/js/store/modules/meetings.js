@@ -125,7 +125,7 @@ const actions = {
         commit('SET_LOADING_STATUS', true);
         axios.get('/councils/' + council )
             .then(response => {
-                    commit('SET_COUNCIL', response.data);
+                    commit('SET_COUNCIL', response.data.data);
                     commit('SET_LOADING_STATUS', false);
                 }
             );
