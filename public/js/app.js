@@ -3802,8 +3802,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -75084,7 +75082,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Modal", [
+  return _c("Modal", { attrs: { title: "Zmazať" } }, [
     _c(
       "form",
       {
@@ -75097,10 +75095,8 @@ var render = function () {
       },
       [
         _c("div", { staticClass: "mt-2" }, [
-          _c("div", {}, [
-            _c("div", { staticClass: "block" }, [
-              _vm._v("\n                Skutočne vymazať\n                "),
-            ]),
+          _c("div", { staticClass: "mb-4" }, [
+            _c("div", { staticClass: "block" }, [_vm._v("Skutočne vymazať")]),
             _vm._v(" "),
             _c("div", { staticClass: "font-semibold block text-center" }, [
               _vm._v(
@@ -75150,7 +75146,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Modal", [
+  return _c("Modal", { attrs: { title: "Upraviť" } }, [
     _c(
       "form",
       {

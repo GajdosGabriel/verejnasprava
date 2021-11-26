@@ -1,11 +1,9 @@
 <template>
-    <Modal>
+    <Modal title="Zmazať">
         <form @submit.prevent="deleteCouncil">
             <div class="mt-2">
-                <div class="">
-                    <div class="block">
-                    Skutočne vymazať
-                    </div>
+                <div class="mb-4">
+                    <div class="block">Skutočne vymazať</div>
                     <div class="font-semibold block text-center">
                         {{ council.name }}
                     </div>
