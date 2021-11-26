@@ -1,249 +1,142 @@
 <template>
     <Modal>
-        <div
-            class="
-                inline-block
-                align-bottom
-                bg-white
-                rounded-lg
-                text-left
-                overflow-hidden
-                shadow-xl
-                transform
-                transition-all
-                sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
-            "
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-headline"
-        >
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
-                    <div
-                        class="
-                            mt-3
-                            text-center
-                            sm:mt-0 sm:ml-4 sm:text-left
-                            w-full
-                        "
-                    >
-                        <div class="flex justify-between">
-                            <h3
-                                class="
-                                    text-lg
-                                    leading-6
-                                    font-medium
-                                    text-gray-900
-                                "
-                                id="modal-headline"
+        <form @submit.prevent="updateCouncil">
+            <div class="mt-2">
+                <div class="md:flex">
+                    <!--SITE A -->
+                    <div class="w-full">
+                        <div class="my-3">
+                            <label for="name" class="input-label"
+                                >Názov zastupiteľstva</label
                             >
-                                Upraviť
-                            </h3>
-                            <span
-                                @click="open_form"
-                                class="cursor-pointer text-gray-500"
-                                >X</span
-                            >
+
+                            <div class="col-md-8">
+                                <input
+                                    id="name"
+                                    type="text"
+                                    class="
+                                        input-control
+                                        focus:outline-none focus:shadow-outline
+                                    "
+                                    name="name"
+                                    v-model="council.name"
+                                    required
+                                    autocomplete="name"
+                                />
+                            </div>
                         </div>
 
-                        <form @submit.prevent="saveContact">
-                            <div class="mt-2">
-                                <div class="md:flex">
-                                    <!--SITE A -->
-                                    <div class="w-full">
-                                        <div class="my-3">
-                                            <label
-                                                for="name"
-                                                class="input-label"
-                                                >Názov zastupiteľstva</label
-                                            >
+                        <div class="my-3">
+                            <label for="description" class="input-label"
+                                >Popis zastupiteľstva</label
+                            >
 
-                                            <div class="col-md-8">
-                                                <input
-                                                    id="name"
-                                                    type="text"
-                                                    class="
-                                                        input-control
-                                                        focus:outline-none
-                                                        focus:shadow-outline
-                                                    "
-                                                    name="name"
-                                                    v-model="council.name"
-                                                    required
-                                                    autocomplete="name"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div class="my-3">
-                                            <label
-                                                for="description"
-                                                class="input-label"
-                                                >Popis zastupiteľstva</label
-                                            >
-
-                                            <div class="col-md-8">
-                                                <input
-                                                    id="description"
-                                                    type="text"
-                                                    class="
-                                                        input-control
-                                                        focus:outline-none
-                                                        focus:shadow-outline
-                                                    "
-                                                    name="description"
-                                                    v-model="
-                                                        council.description
-                                                    "
-                                                    autocomplete="description"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div class="my-3">
-                                            <label class="input-label"
-                                                >Minimálna účasť na zasadnutí
-                                                je:</label
-                                            >
-                                            <div class="max-w-sm">
-                                                <input
-                                                    type="radio"
-                                                    id="min_user1"
-                                                    name="min_user"
-                                                    value="50"
-                                                    v-model="council.min_user"
-                                                />
-                                                <label for="min_user1"
-                                                    >Polovičná z všetkých
-                                                    členov</label
-                                                ><br />
-                                                <input
-                                                    type="radio"
-                                                    id="min_user2"
-                                                    name="min_user"
-                                                    value="75"
-                                                    v-model="council.min_user"
-                                                />
-                                                <label for="min_user2"
-                                                    >Dvojtretinová z všetkých
-                                                    členov</label
-                                                ><br />
-                                            </div>
-                                        </div>
-
-                                        <div class="my-3">
-                                            <label class="input-label"
-                                                >Úspešné hlasovanie je:</label
-                                            >
-                                            <div class="max-w-sm">
-                                                <input
-                                                    type="radio"
-                                                    id="quorate1"
-                                                    name="quorate"
-                                                    value="50"
-                                                    v-model="council.quorate"
-                                                />
-                                                <label for="quorate1"
-                                                    >Polovičná z
-                                                    prítomných</label
-                                                ><br />
-                                                <input
-                                                    type="radio"
-                                                    id="quorate2"
-                                                    name="quorate"
-                                                    value="75"
-                                                    v-model="council.quorate"
-                                                />
-                                                <label for="quorate2"
-                                                    >Dvojtretinová z
-                                                    prítomných</label
-                                                ><br />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-md-8">
+                                <input
+                                    id="description"
+                                    type="text"
+                                    class="
+                                        input-control
+                                        focus:outline-none focus:shadow-outline
+                                    "
+                                    name="description"
+                                    v-model="council.description"
+                                    autocomplete="description"
+                                />
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="my-3">
+                            <label class="input-label"
+                                >Minimálna účasť na zasadnutí je:</label
+                            >
+                            <div class="max-w-sm">
+                                <input
+                                    type="radio"
+                                    id="min_user1"
+                                    name="min_user"
+                                    value="50"
+                                    v-model="council.min_user"
+                                />
+                                <label for="min_user1"
+                                    >Polovičná z všetkých členov</label
+                                ><br />
+                                <input
+                                    type="radio"
+                                    id="min_user2"
+                                    name="min_user"
+                                    value="75"
+                                    v-model="council.min_user"
+                                />
+                                <label for="min_user2"
+                                    >Dvojtretinová z všetkých členov</label
+                                ><br />
+                            </div>
+                        </div>
+
+                        <div class="my-3">
+                            <label class="input-label"
+                                >Úspešné hlasovanie je:</label
+                            >
+                            <div class="max-w-sm">
+                                <input
+                                    type="radio"
+                                    id="quorate1"
+                                    name="quorate"
+                                    value="50"
+                                    v-model="council.quorate"
+                                />
+                                <label for="quorate1"
+                                    >Polovičná z prítomných</label
+                                ><br />
+                                <input
+                                    type="radio"
+                                    id="quorate2"
+                                    name="quorate"
+                                    value="75"
+                                    v-model="council.quorate"
+                                />
+                                <label for="quorate2"
+                                    >Dvojtretinová z prítomných</label
+                                ><br />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div
-                class="
-                    bg-gray-50
-                    px-4
-                    py-3
-                    sm:px-6 sm:flex sm:flex-row-reverse
-                    flex
-                    justify-between
-                    items-center
-                "
-            >
-                <span
-                    class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
-                >
-                    <button
-                        type="submit"
-                        class="
-                            inline-flex
-                            justify-center
-                            w-full
-                            rounded-md
-                            border border-gray-300
-                            px-4
-                            py-2
-                            bg-white
-                            text-base
-                            leading-6
-                            font-medium
-                            text-gray-700
-                            shadow-sm
-                            hover:text-gray-500
-                            focus:outline-none
-                            focus:border-blue-300
-                            focus:shadow-outline-blue
-                            transition
-                            ease-in-out
-                            duration-150
-                            sm:text-sm sm:leading-5
-                        "
-                        @click="open_form"
-                    >
-                        Zrušiť
-                    </button>
 
-                    <button
-                        type="button"
-                        @click="update(council)"
-                        class="
-                            ml-3
-                            inline-flex
-                            justify-center
-                            w-full
-                            rounded-md
-                            border border-transparent
-                            px-4
-                            py-2
-                            bg-red-600
-                            text-base
-                            leading-6
-                            font-medium
-                            text-white
-                            shadow-sm
-                            hover:bg-red-500
-                            focus:outline-none
-                            focus:border-red-700
-                            focus:shadow-outline-red
-                            transition
-                            ease-in-out
-                            duration-150
-                            sm:text-sm sm:leading-5
-                        "
-                    >
-                        Uložiť
-                    </button>
-                </span>
+            <div>
+                <button
+                    type="submit"
+                    class="
+                        ml-3
+                        inline-flex
+                        justify-center
+                        w-full
+                        rounded-md
+                        border border-transparent
+                        px-4
+                        py-2
+                        bg-red-600
+                        text-base
+                        leading-6
+                        font-medium
+                        text-white
+                        shadow-sm
+                        hover:bg-red-500
+                        focus:outline-none
+                        focus:border-red-700
+                        focus:shadow-outline-red
+                        transition
+                        ease-in-out
+                        duration-150
+                        sm:text-sm sm:leading-5
+                    "
+                >
+                    Uložiť
+                </button>
             </div>
-        </div>
+        </form>
     </Modal>
 </template>
 
@@ -257,15 +150,13 @@ const { mapActions } = createNamespacedHelpers("modals");
 export default {
     components: { Modal },
     computed: mapState({
-        showModal: (state) => state.modals.showModal,
         council: (state) => state.councils.council,
     }),
 
     methods: {
-        update(council) {
-            this.$store.dispatch("councils/updateCouncil", council);
+        updateCouncil() {
+            this.$store.dispatch("councils/updateCouncil", this.council);
         },
-        ...mapActions(["open_form"]),
     },
 };
 </script>

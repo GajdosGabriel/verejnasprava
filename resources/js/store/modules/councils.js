@@ -46,35 +46,53 @@ const actions = {
     },
 
     updateCouncil({ commit, dispatch }, payload) {
-        axios.put("/api/organizations/" + payload.organization_id + '/councils/' + payload.id, payload).then((response) => {
-            commit("modals/OPEN_FORM", null, { root: true });
+        console.log(payload);
+        axios
+            .put(
+                "/api/organizations/" +
+                    payload.organization_id +
+                    "/councils/" +
+                    payload.id,
+                payload
+            )
+            .then((response) => {
+                commit("modals/OPEN_FORM", null, { root: true });
 
-             // Notify for update council
-             dispatch(
-                "notification/addNewNotification",
-                {
-                    message: "Zastupiteľstvo bolo aktualizované.",
-                    type: "bg-green-400",
-                },
-                { root: true }
-            );
-        });
+                // Notify for update council
+                dispatch(
+                    "notification/addNewNotification",
+                    {
+                        message: "Zastupiteľstvo bolo aktualizované.",
+                        type: "bg-green-400",
+                    },
+                    { root: true }
+                );
+
+                dispatch("modals/open_form", { root: true });
+            });
     },
 
     deleteCouncil({ commit, dispatch }, council) {
-        axios.delete("/api/organizations/"+ council.organization_id +"/councils/" + council.id).then((response) => {
-            commit("REMOVE_COUNCIL", council.id);
+        axios
+            .delete(
+                "/api/organizations/" +
+                    council.organization_id +
+                    "/councils/" +
+                    council.id
+            )
+            .then((response) => {
+                commit("REMOVE_COUNCIL", council.id);
 
-            // Notify for Delete council
-            dispatch(
-                "notification/addNewNotification",
-                {
-                    message: "Zastupiteľstvo bolo zmazané.",
-                    type: "bg-green-400",
-                },
-                { root: true }
-            );
-        });
+                // Notify for Delete council
+                dispatch(
+                    "notification/addNewNotification",
+                    {
+                        message: "Zastupiteľstvo bolo zmazané.",
+                        type: "bg-green-400",
+                    },
+                    { root: true }
+                );
+            });
     },
 };
 
