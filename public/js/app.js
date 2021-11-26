@@ -4279,7 +4279,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     titleToggle: function titleToggle() {
-      if (this.sendUsers == this.meeting.council_users) {
+      if (this.sendUsers == this.meeting.council_users.length) {
         return "Potvrdené";
       }
 
@@ -4289,7 +4289,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.meeting.invitations.length;
     },
     quorateMeeting: function quorateMeeting() {
-      var percento = 100 * this.meeting.users.length / this.meeting.council_users; // return percento;
+      var percento = 100 * this.meeting.users.length / this.meeting.council_users.length; // return percento;
 
       if (percento > this.council.quorate) {
         return "bg-green-200 ";
@@ -5747,7 +5747,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     quorateMeeting: function quorateMeeting() {
-      var percento = 100 * this.meeting.users.length / this.meeting.council_users; // return percento;
+      var percento = 100 * this.meeting.users.length / this.meeting.council_users.length; // return percento;
 
       if (percento > this.council.quorate) {
         return "bg-green-200 ";
@@ -9107,7 +9107,6 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   meeting: '',
   items: [],
-  meetingUsers: [],
   councilUsers: [],
   council: '',
   files: [],
@@ -9137,7 +9136,6 @@ var mutations = {
   },
   SET_MEETING: function SET_MEETING(state, meeting) {
     state.meeting = meeting;
-    state.meetingUsers = meeting.users;
     state.files = meeting.files;
     state.items = meeting.items.sort(function (a, b) {
       return a.position > b.position ? 1 : -1;
@@ -77539,7 +77537,7 @@ var render = function () {
                   "\n            (" +
                     _vm._s(_vm.meeting.users.length) +
                     "/" +
-                    _vm._s(_vm.meeting.council_users) +
+                    _vm._s(_vm.meeting.council_users.length) +
                     ")\n        "
                 ),
               ]),

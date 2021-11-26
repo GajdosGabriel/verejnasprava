@@ -16,7 +16,7 @@
             </div>
 
             <span class="text-sm flex">
-                ({{ meeting.users.length }}/{{ meeting.council_users }})
+                ({{ meeting.users.length }}/{{ meeting.council_users.length }})
             </span>
 
             <svg
@@ -97,7 +97,7 @@ export default {
     computed: {
         quorateMeeting() {
             var percento =
-                (100 * this.meeting.users.length) / this.meeting.council_users;
+                (100 * this.meeting.users.length) / this.meeting.council_users.length;
             // return percento;
             if (percento > this.council.quorate) {
                 return "bg-green-200 ";

@@ -1,7 +1,6 @@
 const state = {
     meeting:'',
     items:[],
-    meetingUsers:[],
     councilUsers:[],
     council:'',
     files:[],
@@ -26,7 +25,6 @@ const mutations = {
     },
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
-        state.meetingUsers = meeting.users;
         state.files = meeting.files;
         state.items = meeting.items.sort((a, b) => a.position > b.position ? 1: -1);
     },
