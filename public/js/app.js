@@ -4090,9 +4090,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).length;
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
-    meetingUsers: function meetingUsers(state) {
-      return state.meetings.meetingUsers;
-    },
     councilUsers: function councilUsers(state) {
       return state.meetings.councilUsers;
     },
@@ -4118,7 +4115,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      if (this.sendUsers == this.councilUsers.length) {
+      if (this.sendUsers == this.council_users) {
         alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
       }
 
@@ -4301,9 +4298,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "bg-blue-300";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
-    meetingUsers: function meetingUsers(state) {
-      return state.meetings.meetingUsers;
-    },
     councilUsers: function councilUsers(state) {
       return state.meetings.councilUsers;
     },
@@ -5553,7 +5547,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     isUserPresent: function isUserPresent() {
       var _this = this;
 
-      return this.meetingUsers.filter(function (value) {
+      return this.meeting.users.filter(function (value) {
         return value.id == _this.user.id;
       }).length;
     },
@@ -5563,9 +5557,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     meeting: function meeting(state) {
       return state.meetings.meeting;
-    },
-    meetingUsers: function meetingUsers(state) {
-      return state.meetings.meetingUsers;
     },
     files: function files(state) {
       return state.meetings.files;
@@ -5756,7 +5747,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     quorateMeeting: function quorateMeeting() {
-      var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
+      var percento = 100 * this.meeting.users.length / this.meeting.council_users; // return percento;
 
       if (percento > this.council.quorate) {
         return "bg-green-200 ";
@@ -5765,9 +5756,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "bg-red-200";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
-    meetingUsers: function meetingUsers(state) {
-      return state.meetings.meetingUsers;
-    },
     councilUsers: function councilUsers(state) {
       return state.meetings.councilUsers;
     },
@@ -77340,7 +77328,7 @@ var render = function () {
                             "\n                Prihlásený " +
                               _vm._s(_vm.user.last_name) +
                               " (" +
-                              _vm._s(_vm.meetingUsers.length) +
+                              _vm._s(_vm.meeting.users.length) +
                               ")\n            "
                           ),
                         ]
@@ -77355,7 +77343,7 @@ var render = function () {
                         [
                           _vm._v(
                             "\n                Prezentovať sa (" +
-                              _vm._s(_vm.meetingUsers.length) +
+                              _vm._s(_vm.meeting.users.length) +
                               ")\n            "
                           ),
                         ]
@@ -77549,9 +77537,9 @@ var render = function () {
               _c("span", { staticClass: "text-sm flex" }, [
                 _vm._v(
                   "\n            (" +
-                    _vm._s(_vm.meetingUsers.length) +
+                    _vm._s(_vm.meeting.users.length) +
                     "/" +
-                    _vm._s(_vm.councilUsers.length) +
+                    _vm._s(_vm.meeting.council_users) +
                     ")\n        "
                 ),
               ]),
@@ -77587,7 +77575,7 @@ var render = function () {
                         staticClass:
                           "flex justify-between border-b-2 border-dotted px-2 text-gray-600",
                         class: {
-                          "text-gray-700 font-semibold": _vm.meetingUsers.find(
+                          "text-gray-700 font-semibold": _vm.meeting.users.find(
                             function (o) {
                               return o.id == user.id
                             }
@@ -77603,7 +77591,7 @@ var render = function () {
                           },
                         }),
                         _vm._v(" "),
-                        _vm.meetingUsers.find(function (o) {
+                        _vm.meeting.users.find(function (o) {
                           return o.id == user.id
                         })
                           ? _c("div", [

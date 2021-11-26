@@ -144,7 +144,6 @@ export default {
         },
 
         ...mapState({
-            meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
             council: state => state.meetings.council,
             meeting: state => state.meetings.meeting

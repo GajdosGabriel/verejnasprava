@@ -16,7 +16,7 @@
             </div>
 
             <span class="text-sm flex">
-                ({{ meetingUsers.length }}/{{ councilUsers.length }})
+                ({{ meeting.users.length }}/{{ meeting.council_users }})
             </span>
 
             <svg
@@ -39,7 +39,7 @@
                     :key="user.id"
                     class="flex justify-between border-b-2 border-dotted px-2 text-gray-600"
                     :class="{
-                        'text-gray-700 font-semibold': meetingUsers.find(
+                        'text-gray-700 font-semibold': meeting.users.find(
                             o => o.id == user.id
                         )
                     }"
@@ -48,7 +48,7 @@
                         v-text="user.first_name + ' ' + user.last_name"
                     ></span>
 
-                    <div v-if="meetingUsers.find(o => o.id == user.id)">
+                    <div v-if="meeting.users.find(o => o.id == user.id)">
                         <svg
                             class="w-4 h-4 mr-1 fill-current my-1 text-gray-500"
                             xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ export default {
     computed: {
         quorateMeeting() {
             var percento =
-                (100 * this.meetingUsers.length) / this.councilUsers.length;
+                (100 * this.meeting.users.length) / this.meeting.council_users;
             // return percento;
             if (percento > this.council.quorate) {
                 return "bg-green-200 ";
@@ -105,7 +105,6 @@ export default {
             return "bg-red-200";
         },
         ...mapState({
-            meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
             council: state => state.meetings.council,
             meeting: state => state.meetings.meeting

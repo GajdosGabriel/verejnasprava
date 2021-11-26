@@ -54,7 +54,6 @@ export default {
         },
 
         ...mapState({
-            meetingUsers: state => state.meetings.meetingUsers,
             councilUsers: state => state.meetings.councilUsers,
             council: state => state.meetings.council,
             meeting: state => state.meetings.meeting
@@ -77,7 +76,7 @@ export default {
                 return;
             }
 
-            if (this.sendUsers == this.councilUsers.length) {
+            if (this.sendUsers == this.council_users) {
                 alert(
                     "Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!"
                 );

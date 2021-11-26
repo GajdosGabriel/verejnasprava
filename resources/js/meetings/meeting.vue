@@ -184,7 +184,7 @@
                     @click="updateMeetingUser"
                     class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
                 >
-                    Prihlásený {{ user.last_name }} ({{ meetingUsers.length }})
+                    Prihlásený {{ user.last_name }} ({{ meeting.users.length }})
                 </button>
 
                 <button
@@ -192,7 +192,7 @@
                     @click="storeMeetingUser"
                     class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
                 >
-                    Prezentovať sa ({{ meetingUsers.length }})
+                    Prezentovať sa ({{ meeting.users.length }})
                 </button>
             </div>
 
@@ -286,7 +286,7 @@ export default {
     },
     computed: {
         isUserPresent() {
-            return this.meetingUsers.filter(value => value.id == this.user.id)
+            return this.meeting.users.filter(value => value.id == this.user.id)
                 .length;
         },
         notificationStatus() {
@@ -298,7 +298,6 @@ export default {
         },
         ...mapState({
             meeting: state => state.meetings.meeting,
-            meetingUsers: state => state.meetings.meetingUsers,
             files: state => state.meetings.files
         }),
 
