@@ -2569,6 +2569,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3779,35 +3809,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Modals/Modal.vue */ "./resources/js/components/Modals/Modal.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -72932,9 +72933,30 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
-                          _vm._t("default"),
-                        ],
-                        2
+                          _c("div", [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "\n                                    inline-flex\n                                    justify-center\n                                    w-full\n                                    rounded-md\n                                    border border-transparent\n                                    px-4\n                                    py-2\n                                    bg-red-600\n                                    text-base\n                                    leading-6\n                                    font-medium\n                                    text-white\n                                    shadow-sm\n                                    hover:bg-red-500\n                                    focus:outline-none\n                                    focus:border-red-700\n                                    focus:shadow-outline-red\n                                    transition\n                                    ease-in-out\n                                    duration-150\n                                    sm:text-sm sm:leading-5\n                                ",
+                                attrs: { type: "submit" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.$emit(
+                                      "clickDeleteItem",
+                                      _vm.item
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Zmazať\n                            "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]
                       ),
                     ]),
                   ]
@@ -75122,30 +75144,10 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "Modal",
-    {
-      attrs: {
-        title: "Zmazať",
-        description: "Skutočne vymazať",
-        item: _vm.item,
-      },
-    },
-    [
-      _c("div", [
-        _c(
-          "button",
-          {
-            staticClass:
-              "\n                inline-flex\n                justify-center\n                w-full\n                rounded-md\n                border border-transparent\n                px-4\n                py-2\n                bg-red-600\n                text-base\n                leading-6\n                font-medium\n                text-white\n                shadow-sm\n                hover:bg-red-500\n                focus:outline-none\n                focus:border-red-700\n                focus:shadow-outline-red\n                transition\n                ease-in-out\n                duration-150\n                sm:text-sm sm:leading-5\n            ",
-            attrs: { type: "submit" },
-            on: { click: _vm.deleteItem },
-          },
-          [_vm._v("\n            Zmazať\n        ")]
-        ),
-      ]),
-    ]
-  )
+  return _c("Modal", {
+    attrs: { title: "Zmazať", description: "Skutočne vymazať", item: _vm.item },
+    on: { clickDeleteItem: _vm.deleteItem },
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
