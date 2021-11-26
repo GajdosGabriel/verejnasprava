@@ -60,13 +60,24 @@
                                     "
                                     id="modal-headline"
                                 >
-                                    Upraviť
+                                    {{ title }}
                                 </h3>
                                 <span
                                     @click="modalToggle"
                                     class="cursor-pointer text-gray-500"
                                     >X</span
                                 >
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="mb-4">
+                                    <div class="block">{{ description }}</div>
+                                    <div
+                                        class="font-semibold block text-center"
+                                    >
+                                        {{ item.name }}
+                                    </div>
+                                </div>
                             </div>
 
                             <slot></slot>
@@ -122,8 +133,6 @@
                         >
                             Zrušiť
                         </button>
-
-                       
                     </span>
                 </div>
             </div>
@@ -135,6 +144,20 @@
 import { mapState } from "vuex";
 
 export default {
+    props: {
+        title: {
+            Type: String,
+            default: "Položka",
+        },
+        description: {
+            Type: String,
+            default: "",
+        },
+        item: {
+            Type: Object,
+            default: null,
+        },
+    },
     computed: mapState({
         showModal: (state) => state.modals.showModal,
     }),
@@ -142,7 +165,7 @@ export default {
     methods: {
         modalToggle() {
             this.$store.dispatch("modals/open_form");
-        }
+        },
     },
 };
 </script>

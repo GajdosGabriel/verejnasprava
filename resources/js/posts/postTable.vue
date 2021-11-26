@@ -118,7 +118,7 @@
 
         <paginator :data="posts" @pathUrl="changePaginateUrl" />
 
-        <notification-list></notification-list>
+
     </div>
 </template>
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <Modal title="Upraviť">
+    <Modal title="Upraviť" :item="council">
         <form @submit.prevent="updateCouncil">
             <div class="mt-2">
                 <div class="md:flex">

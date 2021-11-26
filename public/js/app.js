@@ -2560,8 +2560,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    title: {
+      Type: String,
+      "default": "Položka"
+    },
+    description: {
+      Type: String,
+      "default": ""
+    },
+    item: {
+      Type: Object,
+      "default": null
+    }
+  },
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
     showModal: function showModal(state) {
       return state.modals.showModal;
@@ -3794,14 +3817,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3814,13 +3829,13 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.createNamespace
     Modal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
-    council: function council(state) {
+    item: function item(state) {
       return state.councils.council;
     }
   }),
   methods: {
-    deleteCouncil: function deleteCouncil() {
-      this.$store.dispatch("councils/deleteCouncil", this.council);
+    deleteItem: function deleteItem() {
+      this.$store.dispatch("councils/deleteCouncil", this.item);
     }
   }
 });
@@ -72877,7 +72892,9 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Upraviť\n                            "
+                                  "\n                                " +
+                                    _vm._s(_vm.title) +
+                                    "\n                            "
                                 ),
                               ]
                             ),
@@ -72890,6 +72907,29 @@ var render = function () {
                               },
                               [_vm._v("X")]
                             ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "mt-2" }, [
+                            _c("div", { staticClass: "mb-4" }, [
+                              _c("div", { staticClass: "block" }, [
+                                _vm._v(_vm._s(_vm.description)),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "font-semibold block text-center",
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(_vm.item.name) +
+                                      "\n                                "
+                                  ),
+                                ]
+                              ),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _vm._t("default"),
@@ -75082,46 +75122,30 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Modal", { attrs: { title: "Zmazať" } }, [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function ($event) {
-            $event.preventDefault()
-            return _vm.deleteCouncil.apply(null, arguments)
-          },
-        },
+  return _c(
+    "Modal",
+    {
+      attrs: {
+        title: "Zmazať",
+        description: "Skutočne vymazať",
+        item: _vm.item,
       },
-      [
-        _c("div", { staticClass: "mt-2" }, [
-          _c("div", { staticClass: "mb-4" }, [
-            _c("div", { staticClass: "block" }, [_vm._v("Skutočne vymazať")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "font-semibold block text-center" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.council.name) +
-                  "\n                "
-              ),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "button",
-            {
-              staticClass:
-                "\n                    inline-flex\n                    justify-center\n                    w-full\n                    rounded-md\n                    border border-transparent\n                    px-4\n                    py-2\n                    bg-red-600\n                    text-base\n                    leading-6\n                    font-medium\n                    text-white\n                    shadow-sm\n                    hover:bg-red-500\n                    focus:outline-none\n                    focus:border-red-700\n                    focus:shadow-outline-red\n                    transition\n                    ease-in-out\n                    duration-150\n                    sm:text-sm sm:leading-5\n                ",
-              attrs: { type: "submit" },
-            },
-            [_vm._v("\n                Zmazať\n            ")]
-          ),
-        ]),
-      ]
-    ),
-  ])
+    },
+    [
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass:
+              "\n                inline-flex\n                justify-center\n                w-full\n                rounded-md\n                border border-transparent\n                px-4\n                py-2\n                bg-red-600\n                text-base\n                leading-6\n                font-medium\n                text-white\n                shadow-sm\n                hover:bg-red-500\n                focus:outline-none\n                focus:border-red-700\n                focus:shadow-outline-red\n                transition\n                ease-in-out\n                duration-150\n                sm:text-sm sm:leading-5\n            ",
+            attrs: { type: "submit" },
+            on: { click: _vm.deleteItem },
+          },
+          [_vm._v("\n            Zmazať\n        ")]
+        ),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -75146,7 +75170,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Modal", { attrs: { title: "Upraviť" } }, [
+  return _c("Modal", { attrs: { title: "Upraviť", item: _vm.council } }, [
     _c(
       "form",
       {
@@ -78708,8 +78732,6 @@ var render = function () {
         attrs: { data: _vm.posts },
         on: { pathUrl: _vm.changePaginateUrl },
       }),
-      _vm._v(" "),
-      _c("notification-list"),
     ],
     1
   )
