@@ -109,7 +109,6 @@
                 <button
                     type="submit"
                     class="
-                        ml-3
                         inline-flex
                         justify-center
                         w-full
@@ -117,15 +116,15 @@
                         border border-transparent
                         px-4
                         py-2
-                        bg-red-600
+                        bg-blue-600
                         text-base
                         leading-6
                         font-medium
                         text-white
                         shadow-sm
-                        hover:bg-red-500
+                        hover:bg-blue-500
                         focus:outline-none
-                        focus:border-red-700
+                        focus:border-blue-700
                         focus:shadow-outline-red
                         transition
                         ease-in-out

@@ -13,11 +13,23 @@
                     <nav-drop-down v-if="$auth.can('council delete')">
                         <slot>
                             <a
-                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                class="
+                                    block
+                                    px-4
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    text-gray-700
+                                    hover:bg-gray-100 hover:text-gray-900
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    focus:text-gray-900
+                                    whitespace-no-wrap
+                                "
                                 :href="
                                     'councils/' +
-                                        council.id +
-                                        '/meetings/create'
+                                    council.id +
+                                    '/meetings/create'
                                 "
                                 title="Vytvoriť nové zasadnutie"
                             >
@@ -36,9 +48,22 @@
                             </a>
 
                             <a
-                                class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                class="
+                                    cursor-pointer
+                                    block
+                                    px-4
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    text-gray-700
+                                    hover:bg-gray-100 hover:text-gray-900
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    focus:text-gray-900
+                                    whitespace-no-wrap
+                                "
                                 title="Upraviť položku"
-                                @click="openForm(council)"
+                                @click="modalEdit(council)"
                             >
                                 <div class="flex">
                                     <svg
@@ -55,14 +80,27 @@
                             </a>
 
                             <div
-                                class="block px-4 py-2 cursor-pointer text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                @click="deleteCouncil(council)"
+                                class="
+                                    block
+                                    px-4
+                                    py-2
+                                    cursor-pointer
+                                    text-sm
+                                    leading-5
+                                    text-gray-700
+                                    hover:bg-gray-100 hover:text-gray-900
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    focus:text-gray-900
+                                    whitespace-no-wrap
+                                "
+                                @click="modalDelete(council)"
                                 :href="
                                     'admin/' +
-                                        council.id +
-                                        '/' +
-                                        council.slug +
-                                        '/council/delete'
+                                    council.id +
+                                    '/' +
+                                    council.slug +
+                                    '/council/delete'
                                 "
                                 title="Zmazať zastupiteľstvo"
                             >
@@ -85,7 +123,7 @@
             </div>
             <div class="flex flex-col sm:ml-5">
                 <div
-                    class="flex justify-between hover:underline flex-wrap "
+                    class="flex justify-between hover:underline flex-wrap"
                     :class="meeting.published ? '' : 'text-red-700'"
                     v-for="meeting in council.meetings"
                     :key="meeting.id"
@@ -102,13 +140,21 @@
 
                     <div class="cursor-pointer">
                         <a :href="'meetings/' + meeting.id">
-                            Program ({{ meeting.itemspublished.length }}<span v-if=" meeting.itemspublished.length !== meeting.items.length">/{{ meeting.items.length }}</span>)
+                            Program ({{ meeting.itemspublished.length
+                            }}<span
+                                v-if="
+                                    meeting.itemspublished.length !==
+                                    meeting.items.length
+                                "
+                                >/{{ meeting.items.length }}</span
+                            >)
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <edit-form></edit-form>
+        <component :is="opencomponent" />
+        <component :is="opencomponent" />
     </div>
 </template>
 
@@ -118,26 +164,30 @@ import { createNamespacedHelpers } from "vuex";
 
 const { mapActions } = createNamespacedHelpers("modals");
 import navDropDown from "../modules/navigation/navDropDown";
-import editForm from "./modalEdit";
+import modaledit from "./modalEdit";
+import modaldelete from "./modalDelete";
 
 export default {
-    components: { navDropDown, editForm },
-    data: function() {
+    components: { navDropDown, modaledit, modaldelete },
+    data: function () {
         return {
-            moment: require("moment")
+            moment: require("moment"),
+            opencomponent: "",
         };
     },
     computed: mapState({
-        councils: state => state.councils.councils
+        councils: (state) => state.councils.councils,
     }),
 
     methods: {
-        openForm: function(item) {
+        modalEdit: function (item) {
+            this.opencomponent = "modaledit";
             this.$store.dispatch("modals/open_form", item);
         },
-        deleteCouncil: function(council) {
-            this.$store.dispatch("councils/deleteCouncil", council);
-        }
+        modalDelete: function (item) {
+            this.opencomponent = "modaldelete";
+            this.$store.dispatch("modals/open_form", item);
+        },
     },
 
     created() {
@@ -145,6 +195,6 @@ export default {
             "councils/fetchCouncils",
             this.user.active_organization
         );
-    }
+    },
 };
 </script>

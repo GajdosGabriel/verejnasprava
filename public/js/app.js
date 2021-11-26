@@ -3539,6 +3539,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 /* harmony import */ var _modalEdit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalEdit */ "./resources/js/councils/modalEdit.vue");
+/* harmony import */ var _modalDelete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modalDelete */ "./resources/js/councils/modalDelete.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3661,14 +3708,17 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"],
-    editForm: _modalEdit__WEBPACK_IMPORTED_MODULE_2__["default"]
+    modaledit: _modalEdit__WEBPACK_IMPORTED_MODULE_2__["default"],
+    modaldelete: _modalDelete__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
-      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js")
+      moment: __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"),
+      opencomponent: ""
     };
   },
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
@@ -3677,15 +3727,103 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
     }
   }),
   methods: {
-    openForm: function openForm(item) {
+    modalEdit: function modalEdit(item) {
+      this.opencomponent = "modaledit";
       this.$store.dispatch("modals/open_form", item);
     },
-    deleteCouncil: function deleteCouncil(council) {
-      this.$store.dispatch("councils/deleteCouncil", council);
+    modalDelete: function modalDelete(item) {
+      this.opencomponent = "modaldelete";
+      this.$store.dispatch("modals/open_form", item);
     }
   },
   created: function created() {
     this.$store.dispatch("councils/fetchCouncils", this.user.active_organization);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Modals/Modal.vue */ "./resources/js/components/Modals/Modal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.createNamespacedHelpers)("modals"),
+    mapActions = _createNamespacedHelp.mapActions;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Modal: _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+    council: function council(state) {
+      return state.councils.council;
+    }
+  }),
+  methods: {
+    deleteCouncil: function deleteCouncil() {
+      this.$store.dispatch("councils/deleteCouncil", this.council);
+    }
   }
 });
 
@@ -3704,7 +3842,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_Modals_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Modals/Modal.vue */ "./resources/js/components/Modals/Modal.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
 //
 //
 //
@@ -8745,16 +8882,16 @@ var actions = {
       }, {
         root: true
       });
-      dispatch("modals/open_form", {
-        root: true
-      });
     });
   },
   deleteCouncil: function deleteCouncil(_ref6, council) {
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
     axios["delete"]("/api/organizations/" + council.organization_id + "/councils/" + council.id).then(function (response) {
-      commit("REMOVE_COUNCIL", council.id); // Notify for Delete council
+      commit("REMOVE_COUNCIL", council.id);
+      commit("modals/OPEN_FORM", null, {
+        root: true
+      }); // Notify for Delete council
 
       dispatch("notification/addNewNotification", {
         message: "Zastupiteľstvo bolo zmazané.",
@@ -69121,6 +69258,45 @@ component.options.__file = "resources/js/councils/councilTable.vue"
 
 /***/ }),
 
+/***/ "./resources/js/councils/modalDelete.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/councils/modalDelete.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalDelete.vue?vue&type=template&id=fb1b7bce& */ "./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce&");
+/* harmony import */ var _modalDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalDelete.vue?vue&type=script&lang=js& */ "./resources/js/councils/modalDelete.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _modalDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__.render,
+  _modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/councils/modalDelete.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/councils/modalEdit.vue":
 /*!*********************************************!*\
   !*** ./resources/js/councils/modalEdit.vue ***!
@@ -70640,6 +70816,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/councils/modalDelete.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/councils/modalDelete.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modalDelete.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/councils/modalEdit.vue?vue&type=script&lang=js&":
 /*!**********************************************************************!*\
   !*** ./resources/js/councils/modalEdit.vue?vue&type=script&lang=js& ***!
@@ -71641,6 +71833,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_councilTable_vue_vue_type_template_id_51e1abc8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_councilTable_vue_vue_type_template_id_51e1abc8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./councilTable.vue?vue&type=template&id=51e1abc8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/councilTable.vue?vue&type=template&id=51e1abc8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalDelete_vue_vue_type_template_id_fb1b7bce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modalDelete.vue?vue&type=template&id=fb1b7bce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce&");
 
 
 /***/ }),
@@ -74666,7 +74875,7 @@ var render = function () {
                               "a",
                               {
                                 staticClass:
-                                  "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                  "\n                                block\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
                                 attrs: {
                                   href:
                                     "councils/" +
@@ -74705,11 +74914,11 @@ var render = function () {
                               "a",
                               {
                                 staticClass:
-                                  "cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                  "\n                                cursor-pointer\n                                block\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
                                 attrs: { title: "Upraviť položku" },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.openForm(council)
+                                    return _vm.modalEdit(council)
                                   },
                                 },
                               },
@@ -74743,7 +74952,7 @@ var render = function () {
                               "div",
                               {
                                 staticClass:
-                                  "block px-4 py-2 cursor-pointer text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                  "\n                                block\n                                px-4\n                                py-2\n                                cursor-pointer\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
                                 attrs: {
                                   href:
                                     "admin/" +
@@ -74755,7 +74964,7 @@ var render = function () {
                                 },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.deleteCouncil(council)
+                                    return _vm.modalDelete(council)
                                   },
                                 },
                               },
@@ -74803,8 +75012,7 @@ var render = function () {
                 "div",
                 {
                   key: meeting.id,
-                  staticClass:
-                    "flex justify-between hover:underline flex-wrap ",
+                  staticClass: "flex justify-between hover:underline flex-wrap",
                   class: meeting.published ? "" : "text-red-700",
                 },
                 [
@@ -74846,10 +75054,78 @@ var render = function () {
         ])
       }),
       _vm._v(" "),
-      _c("edit-form"),
+      _c(_vm.opencomponent, { tag: "component" }),
+      _vm._v(" "),
+      _c(_vm.opencomponent, { tag: "component" }),
     ],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/councils/modalDelete.vue?vue&type=template&id=fb1b7bce& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("Modal", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.deleteCouncil.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _c("div", { staticClass: "mt-2" }, [
+          _c("div", {}, [
+            _c("div", { staticClass: "block" }, [
+              _vm._v("\n                Skutočne vymazať\n                "),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "font-semibold block text-center" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.council.name) +
+                  "\n                "
+              ),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass:
+                "\n                    inline-flex\n                    justify-center\n                    w-full\n                    rounded-md\n                    border border-transparent\n                    px-4\n                    py-2\n                    bg-red-600\n                    text-base\n                    leading-6\n                    font-medium\n                    text-white\n                    shadow-sm\n                    hover:bg-red-500\n                    focus:outline-none\n                    focus:border-red-700\n                    focus:shadow-outline-red\n                    transition\n                    ease-in-out\n                    duration-150\n                    sm:text-sm sm:leading-5\n                ",
+              attrs: { type: "submit" },
+            },
+            [_vm._v("\n                Zmazať\n            ")]
+          ),
+        ]),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -75106,7 +75382,7 @@ var render = function () {
             "button",
             {
               staticClass:
-                "\n                    ml-3\n                    inline-flex\n                    justify-center\n                    w-full\n                    rounded-md\n                    border border-transparent\n                    px-4\n                    py-2\n                    bg-red-600\n                    text-base\n                    leading-6\n                    font-medium\n                    text-white\n                    shadow-sm\n                    hover:bg-red-500\n                    focus:outline-none\n                    focus:border-red-700\n                    focus:shadow-outline-red\n                    transition\n                    ease-in-out\n                    duration-150\n                    sm:text-sm sm:leading-5\n                ",
+                "\n                    inline-flex\n                    justify-center\n                    w-full\n                    rounded-md\n                    border border-transparent\n                    px-4\n                    py-2\n                    bg-blue-600\n                    text-base\n                    leading-6\n                    font-medium\n                    text-white\n                    shadow-sm\n                    hover:bg-blue-500\n                    focus:outline-none\n                    focus:border-blue-700\n                    focus:shadow-outline-red\n                    transition\n                    ease-in-out\n                    duration-150\n                    sm:text-sm sm:leading-5\n                ",
               attrs: { type: "submit" },
             },
             [_vm._v("\n                Uložiť\n            ")]

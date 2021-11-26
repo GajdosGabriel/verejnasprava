@@ -68,7 +68,6 @@ const actions = {
                     { root: true }
                 );
 
-                dispatch("modals/open_form", { root: true });
             });
     },
 
@@ -82,6 +81,8 @@ const actions = {
             )
             .then((response) => {
                 commit("REMOVE_COUNCIL", council.id);
+
+                commit("modals/OPEN_FORM", null, { root: true });
 
                 // Notify for Delete council
                 dispatch(
