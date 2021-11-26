@@ -49,7 +49,7 @@ const actions = {
         commit('SET_LOADING_STATUS', true);
         axios.get('/api/meetings/' + meeting )
             .then(response => {
-                    commit('SET_MEETING', response.data);
+                    commit('SET_MEETING', response.data.data);
                     commit('SET_LOADING_STATUS', false);
                 }
             );
