@@ -122,7 +122,7 @@ export default {
     },
     computed: {
         titleToggle() {
-            if (this.sendUsers == this.councilUsers.length) {
+            if (this.sendUsers == this.meeting.council_users) {
                 return "Potvrdené";
             }
 
@@ -135,7 +135,7 @@ export default {
 
         quorateMeeting() {
             var percento =
-                (100 * this.meetingUsers.length) / this.councilUsers.length;
+                (100 * this.meeting.users.length) / this.meeting.council_users;
             // return percento;
             if (percento > this.council.quorate) {
                 return "bg-green-200 ";

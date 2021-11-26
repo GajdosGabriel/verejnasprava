@@ -4282,7 +4282,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     titleToggle: function titleToggle() {
-      if (this.sendUsers == this.councilUsers.length) {
+      if (this.sendUsers == this.meeting.council_users) {
         return "Potvrdené";
       }
 
@@ -4292,7 +4292,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.meeting.invitations.length;
     },
     quorateMeeting: function quorateMeeting() {
-      var percento = 100 * this.meetingUsers.length / this.councilUsers.length; // return percento;
+      var percento = 100 * this.meeting.users.length / this.meeting.council_users; // return percento;
 
       if (percento > this.council.quorate) {
         return "bg-green-200 ";
@@ -9171,7 +9171,7 @@ var actions = {
     var commit = _ref.commit;
     commit('SET_LOADING_STATUS', true);
     axios.get('/api/meetings/' + meeting).then(function (response) {
-      commit('SET_MEETING', response.data);
+      commit('SET_MEETING', response.data.data);
       commit('SET_LOADING_STATUS', false);
     });
   },

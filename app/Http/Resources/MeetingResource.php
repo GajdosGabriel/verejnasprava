@@ -20,12 +20,15 @@ class MeetingResource extends JsonResource
             'description' => $this->description,
             'council_id' => $this->council_id,
             'user_id' => $this->user_id,
+            'council_users' => $this->council->users,
             'locality' => $this->locality,
             'start_at' => $this->start_at,
             'published' => $this->published,
             'notification' => $this->notification,
             'users' => $this->users,
             'files' => $this->files,
+            'items' => $this->items,
+            'invitations' => $this->invitations,
         ];
     }
 }
