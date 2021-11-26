@@ -6795,7 +6795,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespacedHelpers)("posts"),
     mapActions = _createNamespacedHelp.mapActions;
 
@@ -8928,8 +8927,8 @@ var mutations = {
 var actions = {
   fetchCouncils: function fetchCouncils(_ref, organizationId) {
     var commit = _ref.commit;
-    axios.get("/organizations/" + organizationId + "/councils").then(function (response) {
-      commit("SET_COUNCILS", response.data);
+    axios.get("/api/organizations/" + organizationId + "/councils").then(function (response) {
+      commit("SET_COUNCILS", response.data.data);
     });
   },
   storeCouncil: function storeCouncil(_ref2, _ref3) {
@@ -8954,7 +8953,6 @@ var actions = {
   updateCouncil: function updateCouncil(_ref5, payload) {
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
-    console.log(payload);
     axios.put("/api/organizations/" + payload.organization_id + "/councils/" + payload.id, payload).then(function (response) {
       commit("modals/OPEN_FORM", null, {
         root: true
@@ -75059,7 +75057,7 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "ml-2" }, [
-                _vm._v("(" + _vm._s(council.meetings.length) + ")"),
+                _vm._v("(" + _vm._s(council.meetings_count) + ")"),
               ]),
             ]),
             _vm._v(" "),

@@ -21,9 +21,9 @@ const mutations = {
 const actions = {
     fetchCouncils({ commit }, organizationId) {
         axios
-            .get("/organizations/" + organizationId + "/councils")
+            .get("/api/organizations/" + organizationId + "/councils")
             .then((response) => {
-                commit("SET_COUNCILS", response.data);
+                commit("SET_COUNCILS", response.data.data);
             });
     },
 
@@ -46,7 +46,6 @@ const actions = {
     },
 
     updateCouncil({ commit, dispatch }, payload) {
-        console.log(payload);
         axios
             .put(
                 "/api/organizations/" +
@@ -67,7 +66,6 @@ const actions = {
                     },
                     { root: true }
                 );
-
             });
     },
 

@@ -6,7 +6,7 @@
                     <h1 class="page-title" :title="council.description">
                         {{ council.name }}
                     </h1>
-                    <div class="ml-2">({{ council.meetings.length }})</div>
+                    <div class="ml-2">({{ council.meetings_count }})</div>
                 </div>
 
                 <div class="flex whitespace-no-wrap">

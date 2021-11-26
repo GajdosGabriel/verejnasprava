@@ -7,10 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Council\Council;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CouncilCreateRequest;
+use App\Http\Resources\CouncilResource;
 use App\Http\Resources\OrganizationResource;
 
 class OrganizationCouncilController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Council::class, 'council');
+    }
+    
+    public function index(Organization $organization)
+    {
+        return CouncilResource::collection($organization->councils);
+    }
+
     public function update( Organization $organization, Council $council, CouncilCreateRequest $request) {
         $council->update($request->only(['name', 'description', 'quorate', 'min_user']));
         return $council;

@@ -9,15 +9,8 @@ use App\Http\Controllers\Controller;
 
 class OrganizationCouncilController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Council::class, 'council');
-    }
+
     
-    public function index(Organization $organization)
-    {
-        return $organization->councils;
-    }
 
     public function create(Organization $organization)
     {

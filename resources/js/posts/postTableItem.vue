@@ -51,7 +51,6 @@
 import { filterMixin } from "../mixins/filterMixin";
 import dropDownComponent from "../components/dropDown/dropDownComponent";
 
-import { mapState, mapGetters } from "vuex";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 export default {
