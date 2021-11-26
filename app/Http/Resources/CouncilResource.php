@@ -22,7 +22,13 @@ class CouncilResource extends JsonResource
             'quorate' => $this->quorate,
             'name' => $this->name,
             'description' => $this->description,
-            'checked' =>  $this->users->contains(auth()->user()->id)        
+            'checked' =>  $this->users->contains(auth()->user()->id),
+            'url'               => [
+                'index'     =>  route('organizations.councils.index', [auth()->user()->active_organization]),
+                'show'      =>  route('organizations.councils.show', [auth()->user()->active_organization, $this->id]),
+                'store'     =>  route('organizations.councils.store', [auth()->user()->active_organization]),
+                'destroy'   =>  route('organizations.councils.destroy', [auth()->user()->active_organization, $this->id]),
+            ],
         ];
     }
 }

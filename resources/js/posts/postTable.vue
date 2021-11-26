@@ -5,27 +5,55 @@
                 <search-form @emitForm="searchForm"></search-form>
 
                 <div
-                    class="font-semibold bg-red-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
+                    class="
+                        font-semibold
+                        bg-red-700
+                        text-gray-100
+                        rounded-md
+                        px-2
+                        mr-1
+                        ml-3
+                        flex
+                    "
                     v-if="contactName"
                 >
                     <span>{{ contactName }}</span>
                     <div
-                        class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
+                        class="
+                            cursor-pointer
+                            ml-3
+                            text-gray-300
+                            hover:text-gray-400
+                        "
                         @click="clearContactSearch"
                     >
-                        <span class=" text-sm">X</span>
+                        <span class="text-sm">X</span>
                     </div>
                 </div>
                 <div
-                    class="font-semibold bg-green-700 text-gray-100 rounded-md px-2 mr-1 ml-3 flex"
+                    class="
+                        font-semibold
+                        bg-green-700
+                        text-gray-100
+                        rounded-md
+                        px-2
+                        mr-1
+                        ml-3
+                        flex
+                    "
                     v-if="categoryName"
                 >
                     <span>{{ categoryName }}</span>
                     <div
-                        class="cursor-pointer ml-3 text-gray-300 hover:text-gray-400"
+                        class="
+                            cursor-pointer
+                            ml-3
+                            text-gray-300
+                            hover:text-gray-400
+                        "
                         @click="clearCategorySearch"
                     >
-                        <span class=" text-sm">X</span>
+                        <span class="text-sm">X</span>
                     </div>
                 </div>
             </div>
@@ -60,140 +88,81 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="hover:bg-gray-100"
+                <post-table-item
+                    :post="post"
                     v-for="post in posts.data"
                     :key="post.id"
-                >
-                    <td
-                        class="border px-4 py-2 whitespace-no-wrap"
-                        v-text="moment(post.date_in).format('DD. MM. YYYY')"
-                    ></td>
-                    <td class="border px-4 py-2" v-text="post.name"></td>
-                    <td
-                        class="border px-4 py-2 cursor-pointer"
-                        v-text="post.category.name"
-                        @click="searchByCategory(post.category)"
-                    ></td>
-                    <td
-                        class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
-                        v-text="post.contact.name"
-                        @click="searchByContact(post.contact)"
-                    ></td>
-                    <td class="border px-4 py-2 whitespace-no-wrap">
-                        {{ post.price | priceFormat }} Eu
-                    </td>
-                    <td class="border px-4 py-2">
-                        <span v-if="post.files.length > 0">
-                            <div v-for="file in post.files" :key="file.id">
-                                <a
-                                    target="_blank"
-                                    :href="
-                                        '/file/' +
-                                            file.id +
-                                            '/' +
-                                            file.filename +
-                                            '/file/show'
-                                    "
-                                    >Príloha</a
-                                >
-                            </div>
-                        </span>
-                        <span v-else class="whitespace-no-wrap"
-                            >Bez prílohy</span
-                        >
-                    </td>
-
-                    <td class="border px-4 py-2" v-text="post.int_number"></td>
-
-                    <td class="border text-center">
-                        <drop-down-component
-                            :items="post"
-                            @fromItem="clickOnItem"
-                        ></drop-down-component>
-                    </td>
-                </tr>
+                    @searchByCategory="searchByCategory"
+                    @searchByContact="searchByContact"
+                ></post-table-item>
             </tbody>
         </table>
 
         <paginator :data="posts" @pathUrl="changePaginateUrl" />
-
-
     </div>
 </template>
 <script>
+import postTableItem from "./postTableItem.vue";
 import searchForm from "../components/SearchForm";
 import paginator from "../modules/pagination";
-import dropDownComponent from "../components/dropDown/dropDownComponent";
-import { filterMixin } from "../mixins/filterMixin";
 
 import { mapState, mapGetters } from "vuex";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("posts");
 
 export default {
-    components: { paginator, dropDownComponent, searchForm },
-    mixins: [filterMixin],
-    data: function() {
+    components: { paginator, searchForm, postTableItem },
+
+    data: function () {
         return {
-            moment: require("moment"),
             search: "",
             contactName: "",
             categoryName: "",
             year: new Date().getFullYear(),
             url:
-                "/api/organizations/" + this.user.active_organization + "/posts"
+                "/api/organizations/" +
+                this.user.active_organization +
+                "/posts",
         };
     },
 
     computed: {
         ...mapGetters("organizations", ["orgPosts"]),
-        ...mapState("posts", ["posts"])
+        ...mapState("posts", ["posts"]),
     },
     created() {
         this.fetchPosts(this.url);
     },
 
     watch: {
-        search: function(val) {
+        search: function (val) {
             this.fetchPosts(this.url + "?name=" + this.search);
         },
 
-        year: function(val) {
+        year: function (val) {
             this.fetchPosts(this.url + "?year=" + this.year);
-        }
+        },
     },
 
     methods: {
-        ...mapActions(["fetchPosts", "editPost", "deletePost"]),
-
-        searchByContact: function(contact) {
+        ...mapActions(["fetchPosts"]),
+        searchByContact: function (contact) {
             this.fetchPosts(this.url + "?contact=" + contact.id);
             this.contactName = contact.name;
         },
-        searchByCategory: function(category) {
+        searchByCategory: function (category) {
             this.fetchPosts(this.url + "?category=" + category.id);
             this.categoryName = category.name;
         },
 
-        clearContactSearch: function() {
+        clearContactSearch: function () {
             this.fetchPosts(this.url);
             this.contactName = "";
         },
 
-        clearCategorySearch: function() {
+        clearCategorySearch: function () {
             this.fetchPosts(this.url);
             this.categoryName = "";
-        },
-
-        clickOnItem(action, post) {
-            if (action == "edit") {
-                this.editPost(post.navigations.edit.url);
-            }
-
-            if (action == "delete") {
-                this.deletePost(post.navigations.delete.url);
-            }
         },
 
         changePaginateUrl(path) {
@@ -203,7 +172,7 @@ export default {
 
         searchForm(val) {
             this.search = val;
-        }
-    }
+        },
+    },
 };
 </script>
