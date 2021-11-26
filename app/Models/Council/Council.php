@@ -17,7 +17,7 @@ class Council extends Model
 {
     use SoftDeletes,  RecordsActivity;
     protected $guarded = [];
-    protected $with = ['meetings', 'users'];
+
 
     public function meetings(){
         return $this->hasMany(Meeting::class)->orderBy('start_at', 'asc');
