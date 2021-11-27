@@ -139,7 +139,7 @@
                     </a>
 
                     <div class="cursor-pointer">
-                        <a :href="'meetings/' + meeting.id">
+                        <!-- <a :href="'meetings/' + meeting.id">
                             Program ({{ meeting.itemspublished.length
                             }}<span
                                 v-if="
@@ -148,12 +148,11 @@
                                 "
                                 >/{{ meeting.items.length }}</span
                             >)
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
         </div>
-        <component :is="opencomponent" />
         <component :is="opencomponent" />
     </div>
 </template>
