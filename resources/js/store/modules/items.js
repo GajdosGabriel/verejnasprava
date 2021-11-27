@@ -43,7 +43,7 @@ const actions = {
     getItem({commit}, item) {
         axios.get('/api/items/' + item )
             .then(response => {
-                commit('SET_ITEM', response.data );
+                commit('SET_ITEM', response.data.data );
             });
     },
 

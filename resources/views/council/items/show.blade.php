@@ -26,10 +26,6 @@
         <item-show :pitem="{{ $item }}"></item-show>
 
 
-
-        <notification-list></notification-list>
-
-
     </x-page.container>
 
 

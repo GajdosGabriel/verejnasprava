@@ -12,8 +12,8 @@
             </x-slot>
         </x-page.page-title>
 
-        <div class="col-md-12">
-            <div class="md:w-1/2 ">
+        <x-page.page3_3>
+            <div class="col-span-9 bg-white p-3">
                 <form method="POST" action="{{ route('organizations.councils.store', $organization->id) }}">
                     @csrf @method('POST')
                     @include('modul.errors')
@@ -30,7 +30,11 @@
 
             </div>
 
-        </div>
+            <div class="col-span-3 bg-white p-3">
+                {{-- aside --}}
+            </div>
+
+        </x-page.page3_3>
     </x-page.container>
 
 
