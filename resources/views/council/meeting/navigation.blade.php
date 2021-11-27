@@ -39,6 +39,8 @@
                     @continue($menu->type == 'vertical')
                     @continue($menu->url == 'supports')
                     @continue($menu->url == 'tasts')
+                    @continue($menu->url == 'posts')
+                    @continue($menu->url == 'contacts')
                     <a :class="isOpen ? 'block' : 'hidden'"
                         class="text-teal-200 block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4" @if (\Route::currentRouteName() == $menu['route']) class="font-semibold text-white underline" @endif
                         href="{{ route($menu['route']) }}">{{ $menu['name'] }}</a>
