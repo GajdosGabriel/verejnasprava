@@ -75166,7 +75166,20 @@ var render = function () {
                     _c("strong", [_vm._v(_vm._s(meeting.name))]),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "cursor-pointer" }),
+                  _c("div", { staticClass: "cursor-pointer" }, [
+                    _c("a", { attrs: { href: "meetings/" + meeting.id } }, [
+                      _vm._v(
+                        "\n                        Program (" +
+                          _vm._s(meeting.itemspublished.length)
+                      ),
+                      meeting.itemspublished.length !== meeting.items.length
+                        ? _c("span", [
+                            _vm._v("/" + _vm._s(meeting.items.length)),
+                          ])
+                        : _vm._e(),
+                      _vm._v(")\n                    "),
+                    ]),
+                  ]),
                 ]
               )
             }),

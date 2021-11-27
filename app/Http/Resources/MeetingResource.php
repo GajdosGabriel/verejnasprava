@@ -30,6 +30,7 @@ class MeetingResource extends JsonResource
             'files' => $this->files,
             'items' => $this->items,
             'invitations' => $this->invitations,
+            'itemspublished' => $this->itemspublished,
         ];
     }
 }

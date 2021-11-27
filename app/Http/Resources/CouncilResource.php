@@ -24,7 +24,7 @@ class CouncilResource extends JsonResource
             'description' => $this->description,
             'checked' =>  $this->users->contains(auth()->user()->id),
             'meetings_count' => $this->meetings()->count(),
-            'meetings' => $this->meetings,
+            'meetings' => MeetingResource::collection($this->meetings),
             'users' => $this->users,
             'url'               => [
                 'index'     =>  route('organizations.councils.index', [auth()->user()->active_organization]),
