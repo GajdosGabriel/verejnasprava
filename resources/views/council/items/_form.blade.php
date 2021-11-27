@@ -4,16 +4,16 @@
 
             {{--  title --}}
             <div class="flex w-full flex-col">
-                <label for="name" class="font-semibold">Bod programu</label>
+                <label for="name" class="font-semibold">Názov uznesenia</label>
 
                 <input id="name" type="text"
-                       class="flex-grow block @error('first_name') is-invalid @enderror"
+                       class="flex-grow block @error('first_name') is-invalid @enderror" placeholder="Názov uznesenia"
                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
             </div>
             {{--  type vote --}}
             <div class="md:px-10 ">
-                <label for="vote_type" class="font-semibold">Hlasovanie</label>
+                <label for="vote_type" class="font-semibold">Typ hlasovania</label>
 
                 <select name="vote_type" class="block" id="vote_type">
                     <option value="0">Verejné</option>
