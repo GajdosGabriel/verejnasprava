@@ -15,7 +15,6 @@ class Item extends Model
 {
     use SoftDeletes, FileUpload, Notifiable;
     protected $guarded = [];
-    protected $with = ['interpellations', 'files', 'user', 'votes'];
 
     protected $casts = [
         'vote_status' => 'boolean',
