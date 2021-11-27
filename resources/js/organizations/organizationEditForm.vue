@@ -63,7 +63,7 @@
 
                 <FormulateInput
                     type="text"
-                    label="ICO"
+                    label="IČO"
                     validation-name="Ičo"
                     placeholder="Ičo firmy"
                     v-model="organization.ico"
@@ -71,7 +71,7 @@
 
                 <FormulateInput
                     type="text"
-                    label="DIC"
+                    label="DIČ"
                     validation-name="DIC"
                     placeholder="Dič firmy"
                     v-model="organization.dic"

@@ -2,7 +2,7 @@
     <Card>
         <card-header
             icon="user"
-            :title="'Osobné nastavenia'"
+            :title="'Osobné údaje'"
             :isOpen="isOpen"
             @click.native="isOpen = !isOpen"
         />

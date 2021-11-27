@@ -78478,7 +78478,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
-                      label: "ICO",
+                      label: "IČO",
                       "validation-name": "Ičo",
                       placeholder: "Ičo firmy",
                     },
@@ -78494,7 +78494,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
-                      label: "DIC",
+                      label: "DIČ",
                       "validation-name": "DIC",
                       placeholder: "Dič firmy",
                     },
@@ -80605,7 +80605,7 @@ var render = function () {
     "Card",
     [
       _c("card-header", {
-        attrs: { icon: "user", title: "Osobné nastavenia", isOpen: _vm.isOpen },
+        attrs: { icon: "user", title: "Osobné údake", isOpen: _vm.isOpen },
         nativeOn: {
           click: function ($event) {
             _vm.isOpen = !_vm.isOpen
