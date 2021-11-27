@@ -347,7 +347,7 @@ export default {
             );
         },
         publishedMeeting: function(published) {
-            this.$store.dispatch("meetings/update", {
+            this.$store.dispatch("meetings/updateMeeting", {
                 published: published,
                 id: this.meeting.id
             });

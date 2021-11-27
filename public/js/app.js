@@ -4827,7 +4827,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
         return;
       }
 
-      this.$store.dispatch("meetings/updateItem", {
+      this.$store.dispatch("items/updateItem", {
         id: this.item.id,
         vote_status: !this.item.vote_status
       });
@@ -4844,11 +4844,11 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
     },
     updateItem: function updateItem(item) {
       if (item.votes.length) {
-        alert("O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!");
+        alert("O bode sa hlasovalo. Publikovanie sa nemôže zastaviť!");
         return;
       }
 
-      this.$store.dispatch("meetings/updateItem", {
+      this.$store.dispatch("items/updateItem", {
         id: item.id,
         published: !item.published
       });
@@ -5597,7 +5597,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.location.href = "/zastupitelstva");
     },
     publishedMeeting: function publishedMeeting(published) {
-      this.$store.dispatch("meetings/update", {
+      this.$store.dispatch("meetings/updateMeeting", {
         published: published,
         id: this.meeting.id
       });
@@ -9023,13 +9023,17 @@ var actions = {
       commit('SET_ITEM', response.data);
     });
   },
-  update: function update(_ref3, item) {
+  updateItem: function updateItem(_ref3, item) {
+    var _this = this;
+
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
     axios.put('/api/items/' + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
-      commit('SET_ITEM', response.data); // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
-      // Notify for add task
+      commit('SET_ITEM', response.data.data);
+      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
+        root: true
+      }); // Notify for add task
 
       dispatch('notification/addNewNotification', {
         message: response.headers.notification,
@@ -9055,12 +9059,12 @@ var actions = {
     });
   },
   deleteInterpellation: function deleteInterpellation(_ref5, id) {
-    var _this = this;
+    var _this2 = this;
 
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
     axios["delete"]('/interpellations/' + id).then(function (response) {
-      dispatch('items/getItem', _this.state.items.item.id, {
+      dispatch('items/getItem', _this2.state.items.item.id, {
         root: true
       });
     });
@@ -9088,7 +9092,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var state = {
-  meeting: '',
+  meeting: "",
   items: [],
   files: [],
   loadingStatus: false,
@@ -9132,101 +9136,89 @@ var mutations = {
 var actions = {
   fetchMeeting: function fetchMeeting(_ref, meeting) {
     var commit = _ref.commit;
-    commit('SET_LOADING_STATUS', true);
-    axios.get('/api/meetings/' + meeting).then(function (response) {
-      commit('SET_MEETING', response.data.data);
-      commit('SET_LOADING_STATUS', false);
+    commit("SET_LOADING_STATUS", true);
+    axios.get("/api/meetings/" + meeting).then(function (response) {
+      commit("SET_MEETING", response.data.data);
+      commit("SET_LOADING_STATUS", false);
     });
   },
-  update: function update(_ref2, meeting) {
+  updateMeeting: function updateMeeting(_ref2, meeting) {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    commit('SET_LOADING_STATUS', true);
-    axios.put('/api/meetings/' + meeting.id, meeting).then(function (response) {
-      commit('SET_MEETING', response.data);
-      commit('SET_LOADING_STATUS', false); // dispatch('notification/addNewNotification', { message: response.data, type: 'bg-green-400' }, { root: true})
-    });
-  },
-  updateItem: function updateItem(_ref3, item) {
-    var _this = this;
-
-    var commit = _ref3.commit,
-        dispatch = _ref3.dispatch;
-    axios.put('/api/items/' + item.id, item).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
-        root: true
-      }); // Notify for add task
-
-      dispatch('notification/addNewNotification', {
-        message: response.headers.notification,
-        type: 'bg-green-400'
+    commit("SET_LOADING_STATUS", true);
+    axios.put("/api/meetings/" + meeting.id, meeting).then(function (response) {
+      commit("SET_MEETING", response.data.data);
+      commit("SET_LOADING_STATUS", false);
+      dispatch("notification/addNewNotification", {
+        message: "Publikovanie zmenené",
+        type: "bg-green-400"
       }, {
         root: true
       });
     });
   },
-  updateInterpellation: function updateInterpellation(_ref4, item) {
+  updateInterpellation: function updateInterpellation(_ref3, item) {
+    var _this = this;
+
+    var commit = _ref3.commit,
+        dispatch = _ref3.dispatch;
+    axios.put("/interpellations/" + item.id).then(function (response) {
+      dispatch("meetings/fetchMeeting", _this.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteInterpellation: function deleteInterpellation(_ref4, item) {
     var _this2 = this;
 
     var commit = _ref4.commit,
         dispatch = _ref4.dispatch;
-    axios.put('/interpellations/' + item.id).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this2.state.meetings.meeting.id, {
+    axios["delete"]("/interpellations/" + item.id).then(function (response) {
+      dispatch("meetings/fetchMeeting", _this2.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteInterpellation: function deleteInterpellation(_ref5, item) {
+  storeMeetingUser: function storeMeetingUser(_ref5, meeting) {
     var _this3 = this;
 
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
-    axios["delete"]('/interpellations/' + item.id).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this3.state.meetings.meeting.id, {
+    axios.post("/api/meetings/" + meeting.id + "/users", meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", _this3.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  storeMeetingUser: function storeMeetingUser(_ref6, meeting) {
+  updateMeetingUser: function updateMeetingUser(_ref6, meeting) {
     var _this4 = this;
 
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
-    axios.post('/api/meetings/' + meeting.id + '/users', meeting).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this4.state.meetings.meeting.id, {
+    axios.put("/api/meetings/" + meeting.id + "/users/" + meeting.user, meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", _this4.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  updateMeetingUser: function updateMeetingUser(_ref7, meeting) {
+  deleteMeetingUsers: function deleteMeetingUsers(_ref7, meeting) {
     var _this5 = this;
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios.put('/api/meetings/' + meeting.id + '/users/' + meeting.user, meeting).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this5.state.meetings.meeting.id, {
+    axios["delete"]("/api/meetings/" + meeting.id + "/users/1").then(function (response) {
+      dispatch("meetings/fetchMeeting", _this5.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteMeetingUsers: function deleteMeetingUsers(_ref8, meeting) {
+  deleteItemMeeting: function deleteItemMeeting(_ref8, item) {
     var _this6 = this;
 
     var commit = _ref8.commit,
         dispatch = _ref8.dispatch;
-    axios["delete"]('/api/meetings/' + meeting.id + '/users/1').then(function (response) {
-      dispatch('meetings/fetchMeeting', _this6.state.meetings.meeting.id, {
-        root: true
-      });
-    });
-  },
-  deleteItemMeeting: function deleteItemMeeting(_ref9, item) {
-    var _this7 = this;
-
-    var commit = _ref9.commit,
-        dispatch = _ref9.dispatch;
-    axios["delete"]('/api/meetings/' + this.state.meetings.meeting.id + '/items/' + item.id).then(function (response) {
-      dispatch('meetings/fetchMeeting', _this7.state.meetings.meeting.id, {
+    axios["delete"]("/api/meetings/" + this.state.meetings.meeting.id + "/items/" + item.id).then(function (response) {
+      dispatch("meetings/fetchMeeting", _this6.state.meetings.meeting.id, {
         root: true
       });
     });

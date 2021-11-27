@@ -350,7 +350,7 @@ export default {
                 alert("Zasadnutie nie je publikované.");
                 return;
             }
-            this.$store.dispatch("meetings/updateItem", {
+            this.$store.dispatch("items/updateItem", {
                 id: this.item.id,
                 vote_status: !this.item.vote_status
             });
@@ -369,10 +369,10 @@ export default {
 
         updateItem: function(item) {
             if (item.votes.length) {
-                alert("O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!");
+                alert("O bode sa hlasovalo. Publikovanie sa nemôže zastaviť!");
                 return;
             }
-            this.$store.dispatch("meetings/updateItem", {
+            this.$store.dispatch("items/updateItem", {
                 id: item.id,
                 published: !item.published
             });

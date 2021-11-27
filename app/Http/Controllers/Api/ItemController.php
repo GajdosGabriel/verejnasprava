@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
 use App\Models\Council\Item;
 use App\Notifications\Item\RequireItemvote;
 use GuzzleHttp\Psr7\Response;
@@ -59,7 +60,7 @@ class ItemController extends Controller
             }
             return response($item)->header('notification', 'Žiadosť o hlasovanie bola odoslovaná.');
         }
-        return response($item);
+        return new ItemResource($item);
     }
 
     /**

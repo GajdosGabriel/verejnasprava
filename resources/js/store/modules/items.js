@@ -55,12 +55,12 @@ const actions = {
 
     },
 
-    update({commit, dispatch}, item) {
+    updateItem({commit, dispatch}, item) {
         axios.put('/api/items/' + item.id, item)
             .then(response => {
                 // console.log(response.headers.notification);
-                commit('SET_ITEM', response.data);
-                // dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+                commit('SET_ITEM', response.data.data);
+                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
 
                 // Notify for add task
                 dispatch('notification/addNewNotification', { message: response.headers.notification, type: 'bg-green-400' }, { root: true}

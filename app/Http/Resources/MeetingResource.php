@@ -28,7 +28,7 @@ class MeetingResource extends JsonResource
             'notification' => $this->notification,
             'users' => $this->users,
             'files' => $this->files,
-            'items' => $this->items,
+            'items' =>ItemResource::collection($this->items),
             'invitations' => $this->invitations,
             'itemspublished' => $this->itemspublished,
         ];
