@@ -16,7 +16,7 @@
             </div>
 
             <span class="text-sm flex">
-                ({{ sendUsers }}/{{ councilUsers.length }})
+                ({{ sendUsers }}/{{ meeting.council_users.length }})
             </span>
 
             <svg
@@ -45,7 +45,7 @@
                         Účasť
                     </th>
                 </tr>
-                <tr v-for="councilUser in councilUsers" :key="councilUser.id">
+                <tr v-for="councilUser in meeting.council_users" :key="councilUser.id">
                     <td
                         v-text="
                             councilUser.first_name + ' ' + councilUser.last_name
@@ -137,15 +137,15 @@ export default {
             var percento =
                 (100 * this.meeting.users.length) / this.meeting.council_users.length;
             // return percento;
-            if (percento > this.council.quorate) {
+            if (percento > this.meeting.council_quorate) {
                 return "bg-green-200 ";
             }
             return "bg-blue-300";
         },
 
         ...mapState({
-            councilUsers: state => state.meetings.councilUsers,
-            council: state => state.meetings.council,
+            // councilUsers: state => state.meetings.councilUsers,
+            // council: state => state.meetings.council,
             meeting: state => state.meetings.meeting
         })
     },

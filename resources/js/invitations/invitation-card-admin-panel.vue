@@ -38,7 +38,7 @@ import { mapState } from "vuex";
 export default {
     computed: {
         unsendUsers() {
-            return this.councilUsers.length - this.sendUsers;
+            return this.meeting.council_users.length - this.sendUsers;
         },
 
         sendUsers() {
@@ -47,15 +47,13 @@ export default {
 
         unconfirmedUsers() {
             return (
-                this.councilUsers.length -
+                this.meeting.council_users.length -
                 this.meeting.invitations.filter(o => o.confirmed_at != null)
                     .length
             );
         },
 
         ...mapState({
-            councilUsers: state => state.meetings.councilUsers,
-            council: state => state.meetings.council,
             meeting: state => state.meetings.meeting
         })
     },
@@ -76,7 +74,7 @@ export default {
                 return;
             }
 
-            if (this.sendUsers == this.council_users) {
+            if (this.sendUsers == this.meeting.council_users) {
                 alert(
                     "Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!"
                 );

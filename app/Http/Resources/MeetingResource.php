@@ -21,6 +21,7 @@ class MeetingResource extends JsonResource
             'council_id' => $this->council_id,
             'user_id' => $this->user_id,
             'council_users' => $this->council->users,
+            'council_quorate' => $this->council->quorate,
             'locality' => $this->locality,
             'start_at' => $this->start_at,
             'published' => $this->published,

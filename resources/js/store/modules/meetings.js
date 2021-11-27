@@ -1,8 +1,6 @@
 const state = {
     meeting:'',
     items:[],
-    councilUsers:[],
-    council:'',
     files:[],
     loadingStatus: false,
     positionActive: false
@@ -27,11 +25,6 @@ const mutations = {
         state.meeting = meeting;
         state.files = meeting.files;
         state.items = meeting.items.sort((a, b) => a.position > b.position ? 1: -1);
-    },
-
-    SET_COUNCIL: function (state, council) {
-        state.councilUsers = council.users;
-        state.council = council;
     },
 
     UPDATE_LIST: function (state, payload) {
@@ -118,17 +111,6 @@ const actions = {
                 dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
             });
     },
-
-    getCouncil({commit}, council) {
-        commit('SET_LOADING_STATUS', true);
-        axios.get('/councils/' + council )
-            .then(response => {
-                    commit('SET_COUNCIL', response.data.data);
-                    commit('SET_LOADING_STATUS', false);
-                }
-            );
-    },
-
 };
 
 export default {

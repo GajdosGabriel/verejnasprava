@@ -35,7 +35,7 @@
         <transition name="fade">
             <ul v-if="openList">
                 <li
-                    v-for="user in councilUsers"
+                    v-for="user in meeting.council_users"
                     :key="user.id"
                     class="flex justify-between border-b-2 border-dotted px-2 text-gray-600"
                     :class="{
@@ -63,7 +63,7 @@
             </ul>
         </transition>
 
-        <div v-if="councilUsers < 2" class="text-center">
+        <div v-if="meeting.council_users.length < 2" class="text-center">
             V zastupiteľstve nie sú členovia.
 
             <a href="/users" class="block my-2">
@@ -99,19 +99,14 @@ export default {
             var percento =
                 (100 * this.meeting.users.length) / this.meeting.council_users.length;
             // return percento;
-            if (percento > this.council.quorate) {
+            if (percento > this.meeting.council_quorate) {
                 return "bg-green-200 ";
             }
             return "bg-red-200";
         },
         ...mapState({
-            councilUsers: state => state.meetings.councilUsers,
-            council: state => state.meetings.council,
             meeting: state => state.meetings.meeting
         })
-    },
-    created() {
-        this.$store.dispatch("meetings/getCouncil", this.councilid);
     },
     methods: {
         openToggle() {

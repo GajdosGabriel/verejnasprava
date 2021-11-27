@@ -4079,23 +4079,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: _objectSpread({
     unsendUsers: function unsendUsers() {
-      return this.councilUsers.length - this.sendUsers;
+      return this.meeting.council_users.length - this.sendUsers;
     },
     sendUsers: function sendUsers() {
       return this.meeting.invitations.length;
     },
     unconfirmedUsers: function unconfirmedUsers() {
-      return this.councilUsers.length - this.meeting.invitations.filter(function (o) {
+      return this.meeting.council_users.length - this.meeting.invitations.filter(function (o) {
         return o.confirmed_at != null;
       }).length;
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
-    councilUsers: function councilUsers(state) {
-      return state.meetings.councilUsers;
-    },
-    council: function council(state) {
-      return state.meetings.council;
-    },
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
@@ -4115,7 +4109,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      if (this.sendUsers == this.council_users) {
+      if (this.sendUsers == this.meeting.council_users) {
         alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
       }
 
@@ -4291,19 +4285,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     quorateMeeting: function quorateMeeting() {
       var percento = 100 * this.meeting.users.length / this.meeting.council_users.length; // return percento;
 
-      if (percento > this.council.quorate) {
+      if (percento > this.meeting.council_quorate) {
         return "bg-green-200 ";
       }
 
       return "bg-blue-300";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
-    councilUsers: function councilUsers(state) {
-      return state.meetings.councilUsers;
-    },
-    council: function council(state) {
-      return state.meetings.council;
-    },
+    // councilUsers: state => state.meetings.councilUsers,
+    // council: state => state.meetings.council,
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
@@ -5749,26 +5739,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     quorateMeeting: function quorateMeeting() {
       var percento = 100 * this.meeting.users.length / this.meeting.council_users.length; // return percento;
 
-      if (percento > this.council.quorate) {
+      if (percento > this.meeting.council_quorate) {
         return "bg-green-200 ";
       }
 
       return "bg-red-200";
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
-    councilUsers: function councilUsers(state) {
-      return state.meetings.councilUsers;
-    },
-    council: function council(state) {
-      return state.meetings.council;
-    },
     meeting: function meeting(state) {
       return state.meetings.meeting;
     }
   })),
-  created: function created() {
-    this.$store.dispatch("meetings/getCouncil", this.councilid);
-  },
   methods: {
     openToggle: function openToggle() {
       this.openList = !this.openList;
@@ -9107,8 +9088,6 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   meeting: '',
   items: [],
-  councilUsers: [],
-  council: '',
   files: [],
   loadingStatus: false,
   positionActive: false
@@ -9140,10 +9119,6 @@ var mutations = {
     state.items = meeting.items.sort(function (a, b) {
       return a.position > b.position ? 1 : -1;
     });
-  },
-  SET_COUNCIL: function SET_COUNCIL(state, council) {
-    state.councilUsers = council.users;
-    state.council = council;
   },
   UPDATE_LIST: function UPDATE_LIST(state, payload) {
     state.items = payload;
@@ -9252,14 +9227,6 @@ var actions = {
       dispatch('meetings/fetchMeeting', _this7.state.meetings.meeting.id, {
         root: true
       });
-    });
-  },
-  getCouncil: function getCouncil(_ref10, council) {
-    var commit = _ref10.commit;
-    commit('SET_LOADING_STATUS', true);
-    axios.get('/councils/' + council).then(function (response) {
-      commit('SET_COUNCIL', response.data.data);
-      commit('SET_LOADING_STATUS', false);
     });
   }
 };
@@ -75697,7 +75664,7 @@ var render = function () {
                   "\n            (" +
                     _vm._s(_vm.sendUsers) +
                     "/" +
-                    _vm._s(_vm.councilUsers.length) +
+                    _vm._s(_vm.meeting.council_users.length) +
                     ")\n        "
                 ),
               ]),
@@ -75764,7 +75731,7 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _vm._l(_vm.councilUsers, function (councilUser) {
+                    _vm._l(_vm.meeting.council_users, function (councilUser) {
                       return _c("tr", { key: councilUser.id }, [
                         _c("td", {
                           staticClass: "border px-4 py-2",
@@ -77565,7 +77532,7 @@ var render = function () {
             _vm.openList
               ? _c(
                   "ul",
-                  _vm._l(_vm.councilUsers, function (user) {
+                  _vm._l(_vm.meeting.council_users, function (user) {
                     return _c(
                       "li",
                       {
@@ -77621,7 +77588,7 @@ var render = function () {
               : _vm._e(),
           ]),
           _vm._v(" "),
-          _vm.councilUsers < 2
+          _vm.meeting.council_users.length < 2
             ? _c("div", { staticClass: "text-center" }, [
                 _vm._v(
                   "\n        V zastupiteľstve nie sú členovia.\n\n        "

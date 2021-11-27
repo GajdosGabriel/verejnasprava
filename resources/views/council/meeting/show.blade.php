@@ -16,7 +16,6 @@
         <div class="col-span-4 bg-white p-3">
             {{-- Vuex component --}}
             <meeting :pmeeting="{{ $meeting }}"></meeting>
-            <notification-list></notification-list>
         </div>
 
         <div class="col-span-4 bg-white p-3">
