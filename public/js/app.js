@@ -4077,6 +4077,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: _objectSpread({
@@ -4115,10 +4118,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         alert("Všetci už poli pozvaný. Na zopakovanie pozvania kliknite na konkrétne mená!");
       }
 
-      axios.post("/api/meetings/" + this.meeting.id + "/invitation", {
+      axios.post("/api/meetings/" + this.meeting.id + "/invitations", {
         allUsers: true
       }).then(function (response) {
-        _this.$store.dispatch("meetings/fetchMeeting", _this.meeting.id);
+        _this.$store.dispatch("meetings/fetchMeeting", "/api/councils/" + _this.meeting.council_id + "/meetings/" + _this.meeting.id);
       });
     }
   }
@@ -4300,16 +4303,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.meetings.meeting;
     }
   })),
-  created: function created() {
-    this.fetchInvitations();
-  },
+  // created() {
+  //     this.fetchInvitations();
+  // },
   methods: {
     openToggle: function openToggle() {
       this.openList = !this.openList;
     },
-    fetchInvitations: function fetchInvitations() {
-      this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
-    },
+    // fetchInvitations() {
+    //     this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
+    // },
     checkIfMeetingPublished: function checkIfMeetingPublished() {
       if (!this.meeting.published) {
         return alert("Zasadnutie nie je publikované. Najprv zapnite publikovanie!");
@@ -5564,7 +5567,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.$store.dispatch("meetings/fetchMeeting", this.pmeeting.id);
+    this.$store.dispatch("meetings/fetchMeeting", "/api/councils/" + this.pmeeting.council_id + "/meetings/" + this.pmeeting.id);
   },
   methods: {
     changeOrderItems: function changeOrderItems() {
@@ -5597,10 +5600,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.location.href = "/zastupitelstva");
     },
     publishedMeeting: function publishedMeeting(published) {
-      this.$store.dispatch("meetings/updateMeeting", {
-        published: published,
-        id: this.meeting.id
-      });
+      this.$store.dispatch("meetings/updateMeeting", [this.meeting, {
+        published: published
+      }]);
     },
     savePosition: function savePosition() {
       this.items.forEach(function (item, key) {
@@ -9031,7 +9033,7 @@ var actions = {
     axios.put('/api/items/' + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
       commit('SET_ITEM', response.data.data);
-      dispatch('meetings/fetchMeeting', _this.state.meetings.meeting.id, {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
         root: true
       }); // Notify for add task
 
@@ -9091,6 +9093,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 var state = {
   meeting: "",
   items: [],
@@ -9121,8 +9135,8 @@ var mutations = {
   },
   SET_MEETING: function SET_MEETING(state, meeting) {
     state.meeting = meeting;
-    state.files = meeting.files;
-    state.items = meeting.items.sort(function (a, b) {
+    state.files = meeting === null || meeting === void 0 ? void 0 : meeting.files;
+    state.items = meeting === null || meeting === void 0 ? void 0 : meeting.items.sort(function (a, b) {
       return a.position > b.position ? 1 : -1;
     });
   },
@@ -9137,16 +9151,21 @@ var actions = {
   fetchMeeting: function fetchMeeting(_ref, meeting) {
     var commit = _ref.commit;
     commit("SET_LOADING_STATUS", true);
-    axios.get("/api/meetings/" + meeting).then(function (response) {
+    axios.get(meeting).then(function (response) {
       commit("SET_MEETING", response.data.data);
       commit("SET_LOADING_STATUS", false);
     });
   },
-  updateMeeting: function updateMeeting(_ref2, meeting) {
+  updateMeeting: function updateMeeting(_ref2, _ref3) {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
+
+    var _ref4 = _slicedToArray(_ref3, 2),
+        url = _ref4[0],
+        meeting = _ref4[1];
+
     commit("SET_LOADING_STATUS", true);
-    axios.put("/api/meetings/" + meeting.id, meeting).then(function (response) {
+    axios.put("/api/councils/" + url.council_id + "/meetings/" + url.id, meeting).then(function (response) {
       commit("SET_MEETING", response.data.data);
       commit("SET_LOADING_STATUS", false);
       dispatch("notification/addNewNotification", {
@@ -9157,66 +9176,66 @@ var actions = {
       });
     });
   },
-  updateInterpellation: function updateInterpellation(_ref3, item) {
+  updateInterpellation: function updateInterpellation(_ref5, item) {
     var _this = this;
 
-    var commit = _ref3.commit,
-        dispatch = _ref3.dispatch;
+    var commit = _ref5.commit,
+        dispatch = _ref5.dispatch;
     axios.put("/interpellations/" + item.id).then(function (response) {
       dispatch("meetings/fetchMeeting", _this.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteInterpellation: function deleteInterpellation(_ref4, item) {
+  deleteInterpellation: function deleteInterpellation(_ref6, item) {
     var _this2 = this;
 
-    var commit = _ref4.commit,
-        dispatch = _ref4.dispatch;
+    var commit = _ref6.commit,
+        dispatch = _ref6.dispatch;
     axios["delete"]("/interpellations/" + item.id).then(function (response) {
       dispatch("meetings/fetchMeeting", _this2.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  storeMeetingUser: function storeMeetingUser(_ref5, meeting) {
+  storeMeetingUser: function storeMeetingUser(_ref7, meeting) {
     var _this3 = this;
-
-    var commit = _ref5.commit,
-        dispatch = _ref5.dispatch;
-    axios.post("/api/meetings/" + meeting.id + "/users", meeting).then(function (response) {
-      dispatch("meetings/fetchMeeting", _this3.state.meetings.meeting.id, {
-        root: true
-      });
-    });
-  },
-  updateMeetingUser: function updateMeetingUser(_ref6, meeting) {
-    var _this4 = this;
-
-    var commit = _ref6.commit,
-        dispatch = _ref6.dispatch;
-    axios.put("/api/meetings/" + meeting.id + "/users/" + meeting.user, meeting).then(function (response) {
-      dispatch("meetings/fetchMeeting", _this4.state.meetings.meeting.id, {
-        root: true
-      });
-    });
-  },
-  deleteMeetingUsers: function deleteMeetingUsers(_ref7, meeting) {
-    var _this5 = this;
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios["delete"]("/api/meetings/" + meeting.id + "/users/1").then(function (response) {
-      dispatch("meetings/fetchMeeting", _this5.state.meetings.meeting.id, {
+    axios.post("/api/meetings/" + meeting.id + "/users", meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this3.state.meetings.meeting.council_id + "/meetings/" + _this3.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteItemMeeting: function deleteItemMeeting(_ref8, item) {
-    var _this6 = this;
+  updateMeetingUser: function updateMeetingUser(_ref8, meeting) {
+    var _this4 = this;
 
     var commit = _ref8.commit,
         dispatch = _ref8.dispatch;
+    axios.put("/api/meetings/" + meeting.id + "/users/" + meeting.user, meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this4.state.meetings.meeting.council_id + "/meetings/" + _this4.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteMeetingUsers: function deleteMeetingUsers(_ref9, meeting) {
+    var _this5 = this;
+
+    var commit = _ref9.commit,
+        dispatch = _ref9.dispatch;
+    axios["delete"]("/api/meetings/" + meeting.id + "/users/" + meeting.user).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this5.state.meetings.meeting.council_id + "/meetings/" + _this5.state.meetings.meeting.id, {
+        root: true
+      });
+    });
+  },
+  deleteItemMeeting: function deleteItemMeeting(_ref10, item) {
+    var _this6 = this;
+
+    var commit = _ref10.commit,
+        dispatch = _ref10.dispatch;
     axios["delete"]("/api/meetings/" + this.state.meetings.meeting.id + "/items/" + item.id).then(function (response) {
       dispatch("meetings/fetchMeeting", _this6.state.meetings.meeting.id, {
         root: true
@@ -77397,7 +77416,7 @@ var render = function () {
             0
           ),
       _vm._v(" "),
-      _vm.files.length
+      _vm.files
         ? _c(
             "div",
             { staticClass: "max-w-sm" },
@@ -80605,7 +80624,7 @@ var render = function () {
     "Card",
     [
       _c("card-header", {
-        attrs: { icon: "user", title: "Osobné údake", isOpen: _vm.isOpen },
+        attrs: { icon: "user", title: "Osobné údaje", isOpen: _vm.isOpen },
         nativeOn: {
           click: function ($event) {
             _vm.isOpen = !_vm.isOpen

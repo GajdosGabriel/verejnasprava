@@ -247,7 +247,7 @@
         </transition-group>
 
         <!--   Files-->
-        <div class="max-w-sm" v-if="files.length">
+        <div class="max-w-sm" v-if="files">
             <h5 class="mt-4" style="border-bottom: 2px solid silver">
                 Príloha
             </h5>
@@ -312,7 +312,7 @@ export default {
     },
 
     created() {
-        this.$store.dispatch("meetings/fetchMeeting", this.pmeeting.id);
+        this.$store.dispatch("meetings/fetchMeeting", "/api/councils/"+ this.pmeeting.council_id +"/meetings/"+this.pmeeting.id);
     },
     methods: {
         changeOrderItems() {
@@ -347,10 +347,9 @@ export default {
             );
         },
         publishedMeeting: function(published) {
-            this.$store.dispatch("meetings/updateMeeting", {
-                published: published,
-                id: this.meeting.id
-            });
+            this.$store.dispatch("meetings/updateMeeting", [ this.meeting, {
+                published: published
+            }]);
         },
 
         savePosition() {

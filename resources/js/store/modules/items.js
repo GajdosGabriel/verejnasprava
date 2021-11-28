@@ -60,7 +60,12 @@ const actions = {
             .then(response => {
                 // console.log(response.headers.notification);
                 commit('SET_ITEM', response.data.data);
-                dispatch('meetings/fetchMeeting', this.state.meetings.meeting.id,  {root:true});
+                dispatch(
+                    "meetings/fetchMeeting", "/api/councils/" +
+                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
+                    { root: true }
+                );
+                
 
                 // Notify for add task
                 dispatch('notification/addNewNotification', { message: response.headers.notification, type: 'bg-green-400' }, { root: true}

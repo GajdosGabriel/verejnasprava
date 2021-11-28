@@ -17,7 +17,10 @@
             </div>
         </div>
         <div class="text-xs">
-            <div class="flex items-center cursor-pointer" v-if="unconfirmedUsers">
+            <div
+                class="flex items-center cursor-pointer"
+                v-if="unconfirmedUsers"
+            >
                 <svg
                     class="w-3 h-3 mr-1 fill-current"
                     xmlns="http://www.w3.org/2000/svg"
@@ -48,14 +51,14 @@ export default {
         unconfirmedUsers() {
             return (
                 this.meeting.council_users.length -
-                this.meeting.invitations.filter(o => o.confirmed_at != null)
+                this.meeting.invitations.filter((o) => o.confirmed_at != null)
                     .length
             );
         },
 
         ...mapState({
-            meeting: state => state.meetings.meeting
-        })
+            meeting: (state) => state.meetings.meeting,
+        }),
     },
     methods: {
         checkIfMeetingPublished() {
@@ -81,16 +84,19 @@ export default {
             }
 
             axios
-                .post("/api/meetings/" + this.meeting.id + "/invitation", {
-                    allUsers: true
+                .post("/api/meetings/" + this.meeting.id + "/invitations", {
+                    allUsers: true,
                 })
-                .then(response => {
+                .then((response) => {
                     this.$store.dispatch(
                         "meetings/fetchMeeting",
-                        this.meeting.id
+                        "/api/councils/" +
+                            this.meeting.council_id +
+                            "/meetings/" +
+                            this.meeting.id
                     );
                 });
-        }
-    }
+        },
+    },
 };
 </script>

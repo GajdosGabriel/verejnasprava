@@ -149,17 +149,17 @@ export default {
             meeting: state => state.meetings.meeting
         })
     },
-    created() {
-        this.fetchInvitations();
-    },
+    // created() {
+    //     this.fetchInvitations();
+    // },
     methods: {
         openToggle() {
             this.openList = !this.openList;
         },
 
-        fetchInvitations() {
-            this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
-        },
+        // fetchInvitations() {
+        //     this.$store.dispatch("meetings/fetchMeeting", this.meeting_id);
+        // },
 
         checkIfMeetingPublished() {
             if (!this.meeting.published) {

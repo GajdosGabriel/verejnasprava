@@ -23,8 +23,8 @@ const mutations = {
     },
     SET_MEETING: function (state, meeting) {
         state.meeting = meeting;
-        state.files = meeting.files;
-        state.items = meeting.items.sort((a, b) =>
+        state.files = meeting?.files;
+        state.items = meeting?.items.sort((a, b) =>
             a.position > b.position ? 1 : -1
         );
     },
@@ -39,15 +39,17 @@ const mutations = {
 const actions = {
     fetchMeeting({ commit }, meeting) {
         commit("SET_LOADING_STATUS", true);
-        axios.get("/api/meetings/" + meeting).then((response) => {
+        axios.get(meeting).then((response) => {
             commit("SET_MEETING", response.data.data);
             commit("SET_LOADING_STATUS", false);
         });
     },
 
-    updateMeeting({ commit, dispatch }, meeting) {
+    updateMeeting({ commit, dispatch }, [url, meeting]) {
         commit("SET_LOADING_STATUS", true);
-        axios.put("/api/meetings/" + meeting.id, meeting).then((response) => {
+
+   
+        axios.put("/api/councils/"+ url.council_id + "/meetings/" + url.id, meeting).then((response) => {
             commit("SET_MEETING", response.data.data);
             commit("SET_LOADING_STATUS", false);
 
@@ -80,8 +82,8 @@ const actions = {
             .post("/api/meetings/" + meeting.id + "/users", meeting)
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting",
-                    this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting", "/api/councils/" +
+                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
                     { root: true }
                 );
             });
@@ -95,8 +97,8 @@ const actions = {
             )
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting",
-                    this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting", "/api/councils/" +
+                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
                     { root: true }
                 );
             });
@@ -104,11 +106,11 @@ const actions = {
 
     deleteMeetingUsers({ commit, dispatch }, meeting) {
         axios
-            .delete("/api/meetings/" + meeting.id + "/users/1")
+            .delete("/api/meetings/" + meeting.id + "/users/"  + meeting.user)
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting",
-                    this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting", "/api/councils/" +
+                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
                     { root: true }
                 );
             });

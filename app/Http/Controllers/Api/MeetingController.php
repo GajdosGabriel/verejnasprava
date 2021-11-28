@@ -10,15 +10,5 @@ use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {
-    public function show(Meeting $meeting)
-    {
-        return new MeetingResource($meeting);
-    }
-
-    public function update(Request $request, Meeting $meeting)
-    {
-        $meeting->update($request->all());
-
-        return new MeetingResource($meeting);
-    }
+   
 }

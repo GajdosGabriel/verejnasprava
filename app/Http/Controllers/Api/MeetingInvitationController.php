@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Council\Meeting;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MeetingResource;
 use App\Notifications\Invitation\InvitationForUser;
 use Carbon\Carbon;
 
@@ -45,6 +46,7 @@ class MeetingInvitationController extends Controller
             }
         }
 
-        return Response('Pozvánka na zasadnutie bola odoslaná.');
+        // return Response('Pozvánka na zasadnutie bola odoslaná.');
+        return new MeetingResource($meeting);
     }
 }
