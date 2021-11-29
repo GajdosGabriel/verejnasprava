@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Councils;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Council\Interpellation;
 use App\Models\Council\Item;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Council\Interpellation;
 
-class InterpellationController extends Controller
+class ItemInterpellationController extends Controller
 {
-    public function update(Item $interpellation)
+    public function update(Item $item, Item $interpellation)
     {
 
         if ($int = $interpellation->interpellations()->withTrashed()->whereUserId(auth()->user()->id)->first()) {
@@ -31,7 +31,7 @@ class InterpellationController extends Controller
 //        return $item->interpellations()->get();
     }
 
-    public function destroy(Interpellation $interpellation){
+    public function destroy(Item $item, Interpellation $interpellation){
         $interpellation->update(['hand_up' => $interpellation->hand_up +1]);
         $interpellation->delete();
     }

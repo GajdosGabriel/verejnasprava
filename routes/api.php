@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResources([
     'votes'                     => 'Api\VoteController',
     'items'                     => 'Api\ItemController',
+    'items.interpellations'     => 'Api\ItemInterpellationController',
     'meetings'                  => 'Api\MeetingController',
     'councils.meetings'         => 'Api\CouncilMeetingController',
     'meetings.invitations'      => 'Api\MeetingInvitationController',

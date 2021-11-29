@@ -73,36 +73,45 @@ const actions = {
             );
         });
     },
-
+    // Using user of meeting
     updateInterpellation({ commit, dispatch }, item) {
         if (item.vote_status) {
             alert("Hlasovanie sa už začalo, interpelácie sú zastavené!");
             return;
         }
-        axios.put("/interpellations/" + item.id).then((response) => {
-            dispatch(
-                "meetings/fetchMeeting",
-                "/api/councils/" +
-                    this.state.meetings.meeting.council_id +
-                    "/meetings/" +
-                    this.state.meetings.meeting.id,
-                { root: true }
-            );
-
-        })
+        axios
+            .put("/api/items/" + item.id + "/interpellations/" + item.id)
+            .then((response) => {
+                dispatch(
+                    "meetings/fetchMeeting",
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
+                    { root: true }
+                );
+            });
     },
 
-    deleteInterpellation({ commit, dispatch }, id) {
-        axios.delete("/interpellations/" + id).then((response) => {
-            dispatch(
-                "meetings/fetchMeeting",
-                "/api/councils/" +
-                    this.state.meetings.meeting.council_id +
-                    "/meetings/" +
-                    this.state.meetings.meeting.id,
-                { root: true }
-            );
-        });
+    // Using admin of meeting
+    deleteInterpellation({ commit, dispatch }, [item, interpellation]) {
+        axios
+            .delete(
+                "/api/items/" +
+                    item.id +
+                    "/interpellations/" +
+                    interpellation.id
+            )
+            .then((response) => {
+                dispatch(
+                    "meetings/fetchMeeting",
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
+                    { root: true }
+                );
+            });
     },
 };
 

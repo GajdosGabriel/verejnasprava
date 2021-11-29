@@ -456,8 +456,11 @@ export default {
             });
         },
 
-        deleteInterpellation(item) {
-            this.$store.dispatch("items/deleteInterpellation", item.id);
+        deleteInterpellation(interpellation) {
+            this.$store.dispatch("items/deleteInterpellation", [
+                this.item,
+                interpellation,
+            ]);
         },
     },
 };
