@@ -4751,12 +4751,88 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
-var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespacedHelpers)("meetings"),
+var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespacedHelpers)("items"),
     mapActions = _createNamespacedHelp.mapActions;
 
 
@@ -4797,7 +4873,8 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       return state.meetings.meeting;
     }
   })),
-  methods: _objectSpread(_objectSpread({}, mapActions(["updateInterpellation", "deleteInterpellation", "deleteItemMeeting"])), {}, {
+  methods: _objectSpread(_objectSpread({}, mapActions(["updateInterpellation", // "deleteInterpellation",
+  "deleteItemMeeting"])), {}, {
     saveNotification: function saveNotification() {
       if (!this.item.published) {
         alert("Bod programu nie je publikovaný. Zapnite publikovanie!");
@@ -4855,6 +4932,9 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
         id: item.id,
         published: !item.published
       });
+    },
+    deleteInterpellation: function deleteInterpellation(item) {
+      this.$store.dispatch("items/deleteInterpellation", item.id);
     }
   })
 });
@@ -8251,9 +8331,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-/* harmony import */ var _items_InterpellationCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../items/InterpellationCard.vue */ "./resources/js/items/InterpellationCard.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _items_InterpellationCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../items/InterpellationCard.vue */ "./resources/js/items/InterpellationCard.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8274,11 +8353,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['item'],
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({// item: state => state.items.item,
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({// item: state => state.items.item,
   })), {}, {
     buttonClass: function buttonClass() {
       return this.item.vote_status == 1 ? 'btn-primary' : 'btn-secondary';
@@ -8982,8 +9059,8 @@ var state = {
   interpellations: [],
   votes: [],
   files: [],
-  item: '',
-  user: ''
+  item: "",
+  user: ""
 };
 var getters = {
   resultYes: function resultYes(state) {
@@ -9014,15 +9091,15 @@ var mutations = {
 var actions = {
   getItem: function getItem(_ref, item) {
     var commit = _ref.commit;
-    axios.get('/api/items/' + item).then(function (response) {
-      commit('SET_ITEM', response.data.data);
+    axios.get("/api/items/" + item).then(function (response) {
+      commit("SET_ITEM", response.data.data);
     });
   },
   storeVote: function storeVote(_ref2, item) {
     var commit = _ref2.commit,
         dispatch = _ref2.dispatch;
-    axios.put('/api/votes/' + item.id, item).then(function (response) {
-      commit('SET_ITEM', response.data);
+    axios.put("/api/votes/" + item.id, item).then(function (response) {
+      commit("SET_ITEM", response.data);
     });
   },
   updateItem: function updateItem(_ref3, item) {
@@ -9030,43 +9107,45 @@ var actions = {
 
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios.put('/api/items/' + item.id, item).then(function (response) {
+    axios.put("/api/items/" + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
-      commit('SET_ITEM', response.data.data);
+      commit("SET_ITEM", response.data.data);
       dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
         root: true
       }); // Notify for add task
 
-      dispatch('notification/addNewNotification', {
+      dispatch("notification/addNewNotification", {
         message: response.headers.notification,
-        type: 'bg-green-400'
+        type: "bg-green-400"
       }, {
         root: true
       });
     });
   },
   updateInterpellation: function updateInterpellation(_ref4, item) {
+    var _this2 = this;
+
     var commit = _ref4.commit,
         dispatch = _ref4.dispatch;
 
     if (item.vote_status) {
-      alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
+      alert("Hlasovanie sa už začalo, interpelácie sú zastavené!");
       return;
     }
 
-    axios.put('/interpellations/' + item.id).then(function (response) {
-      dispatch('items/getItem', item.id, {
+    axios.put("/interpellations/" + item.id).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this2.state.meetings.meeting.council_id + "/meetings/" + _this2.state.meetings.meeting.id, {
         root: true
       });
     });
   },
   deleteInterpellation: function deleteInterpellation(_ref5, id) {
-    var _this2 = this;
+    var _this3 = this;
 
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
-    axios["delete"]('/interpellations/' + id).then(function (response) {
-      dispatch('items/getItem', _this2.state.items.item.id, {
+    axios["delete"]("/interpellations/" + id).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this3.state.meetings.meeting.council_id + "/meetings/" + _this3.state.meetings.meeting.id, {
         root: true
       });
     });
@@ -9176,68 +9255,46 @@ var actions = {
       });
     });
   },
-  updateInterpellation: function updateInterpellation(_ref5, item) {
+  storeMeetingUser: function storeMeetingUser(_ref5, meeting) {
     var _this = this;
 
     var commit = _ref5.commit,
         dispatch = _ref5.dispatch;
-    axios.put("/interpellations/" + item.id).then(function (response) {
-      dispatch("meetings/fetchMeeting", _this.state.meetings.meeting.id, {
+    axios.post("/api/meetings/" + meeting.id + "/users", meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  deleteInterpellation: function deleteInterpellation(_ref6, item) {
+  updateMeetingUser: function updateMeetingUser(_ref6, meeting) {
     var _this2 = this;
 
     var commit = _ref6.commit,
         dispatch = _ref6.dispatch;
-    axios["delete"]("/interpellations/" + item.id).then(function (response) {
-      dispatch("meetings/fetchMeeting", _this2.state.meetings.meeting.id, {
+    axios.put("/api/meetings/" + meeting.id + "/users/" + meeting.user, meeting).then(function (response) {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this2.state.meetings.meeting.council_id + "/meetings/" + _this2.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  storeMeetingUser: function storeMeetingUser(_ref7, meeting) {
+  deleteMeetingUsers: function deleteMeetingUsers(_ref7, meeting) {
     var _this3 = this;
 
     var commit = _ref7.commit,
         dispatch = _ref7.dispatch;
-    axios.post("/api/meetings/" + meeting.id + "/users", meeting).then(function (response) {
+    axios["delete"]("/api/meetings/" + meeting.id + "/users/" + meeting.user).then(function (response) {
       dispatch("meetings/fetchMeeting", "/api/councils/" + _this3.state.meetings.meeting.council_id + "/meetings/" + _this3.state.meetings.meeting.id, {
         root: true
       });
     });
   },
-  updateMeetingUser: function updateMeetingUser(_ref8, meeting) {
+  deleteItemMeeting: function deleteItemMeeting(_ref8, item) {
     var _this4 = this;
 
     var commit = _ref8.commit,
         dispatch = _ref8.dispatch;
-    axios.put("/api/meetings/" + meeting.id + "/users/" + meeting.user, meeting).then(function (response) {
-      dispatch("meetings/fetchMeeting", "/api/councils/" + _this4.state.meetings.meeting.council_id + "/meetings/" + _this4.state.meetings.meeting.id, {
-        root: true
-      });
-    });
-  },
-  deleteMeetingUsers: function deleteMeetingUsers(_ref9, meeting) {
-    var _this5 = this;
-
-    var commit = _ref9.commit,
-        dispatch = _ref9.dispatch;
-    axios["delete"]("/api/meetings/" + meeting.id + "/users/" + meeting.user).then(function (response) {
-      dispatch("meetings/fetchMeeting", "/api/councils/" + _this5.state.meetings.meeting.council_id + "/meetings/" + _this5.state.meetings.meeting.id, {
-        root: true
-      });
-    });
-  },
-  deleteItemMeeting: function deleteItemMeeting(_ref10, item) {
-    var _this6 = this;
-
-    var commit = _ref10.commit,
-        dispatch = _ref10.dispatch;
     axios["delete"]("/api/meetings/" + this.state.meetings.meeting.id + "/items/" + item.id).then(function (response) {
-      dispatch("meetings/fetchMeeting", _this6.state.meetings.meeting.id, {
+      dispatch("meetings/fetchMeeting", "/api/councils/" + _this4.state.meetings.meeting.council_id + "/meetings/" + _this4.state.meetings.meeting.id, {
         root: true
       });
     });
@@ -75973,7 +76030,7 @@ var render = function () {
                   _c(
                     "span",
                     {
-                      staticClass: "font-semibold ",
+                      staticClass: "font-semibold",
                       class: { "text-green-700": _vm.item.result },
                     },
                     [_vm._v(_vm._s(_vm.item.name))]
@@ -75991,7 +76048,7 @@ var render = function () {
                                 "button",
                                 {
                                   staticClass:
-                                    "w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                    "\n                                w-full\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
                                   attrs: { title: "Publikovať" },
                                   on: {
                                     click: function ($event) {
@@ -76075,7 +76132,7 @@ var render = function () {
                                 "a",
                                 {
                                   staticClass:
-                                    "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                    "\n                                block\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
                                   attrs: {
                                     href: "/items/" + _vm.item.id + "/edit",
                                     title: "Upraviť bod programu",
@@ -76113,7 +76170,7 @@ var render = function () {
                               "a",
                               {
                                 staticClass:
-                                  "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                  "\n                            whitespace-no-wrap\n                            block\n                            px-4\n                            py-2\n                            text-sm\n                            leading-5\n                            text-gray-700\n                            hover:bg-gray-100 hover:text-gray-900\n                            focus:outline-none\n                            focus:bg-gray-100\n                            focus:text-gray-900\n                            whitespace-no-wrap\n                        ",
                                 attrs: {
                                   href: "#",
                                   title: "Notifikácia pre voliteľov",
@@ -76162,7 +76219,7 @@ var render = function () {
                               "button",
                               {
                                 staticClass:
-                                  "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
+                                  "\n                            block\n                            px-4\n                            py-2\n                            text-sm\n                            leading-5\n                            text-gray-700\n                            hover:bg-gray-100 hover:text-gray-900\n                            focus:outline-none\n                            focus:bg-gray-100\n                            focus:text-gray-900\n                            whitespace-no-wrap\n                        ",
                                 attrs: { title: "Zmazať položku" },
                                 on: {
                                   click: function ($event) {
@@ -76279,7 +76336,11 @@ var render = function () {
                     "div",
                     {
                       staticClass:
-                        "p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+                        "\n                    p-1\n                    text-center\n                    whitespace-no-wrap\n                    flex-1\n                    bg-gray-100\n                    hover:bg-gray-200\n                    cursor-pointer1\n                    whitespace-no-wrap\n                    cursor-pointer\n                ",
+                      class: {
+                        " bg-gray-300 hover:bg-gray-300 rounded-t-lg ":
+                          _vm.openList,
+                      },
                       on: { click: _vm.listToggle },
                     },
                     [
@@ -76294,7 +76355,7 @@ var render = function () {
               _vm.item.published && _vm.$auth.can("council delete")
                 ? _c("div", {
                     staticClass:
-                      "p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer",
+                      "\n                    p-1\n                    text-center\n                    whitespace-no-wrap\n                    flex-1\n                    bg-gray-100\n                    hover:bg-gray-200\n                    cursor-pointer\n                ",
                     class:
                       _vm.item.vote_status == 1
                         ? "bg-blue-700 text-gray-200"
@@ -76322,7 +76383,7 @@ var render = function () {
                       "div",
                       {
                         staticClass:
-                          " border-2 rounded-md border-gray-300 w-full",
+                          "border-2 rounded-md border-gray-300 w-full",
                       },
                       [
                         _c(
@@ -76379,7 +76440,7 @@ var render = function () {
                                 {
                                   key: interpellation.user_id,
                                   staticClass:
-                                    "flex justify-between border-b-2 border-dotted px-2",
+                                    "\n                            flex\n                            justify-between\n                            border-b-2 border-dotted\n                            px-2\n                        ",
                                 },
                                 [
                                   _c("span", {

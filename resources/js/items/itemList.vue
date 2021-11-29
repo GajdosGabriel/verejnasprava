@@ -5,7 +5,7 @@
             :class="{
                 'border-red-300': !item.published,
                 'border-green-500': item.result,
-                'border-blue-500 rounded-sm': item.vote_status == 1
+                'border-blue-500 rounded-sm': item.vote_status == 1,
             }"
         >
             <div
@@ -14,7 +14,7 @@
             >
                 <a :href="'/items/' + item.id">
                     <span
-                        class="font-semibold "
+                        class="font-semibold"
                         :class="{ 'text-green-700': item.result }"
                         >{{ item.name }}</span
                     >
@@ -25,7 +25,19 @@
                         <!-- Item Edit button-->
                         <div class="py-1">
                             <button
-                                class="w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                class="
+                                    w-full
+                                    px-4
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    text-gray-700
+                                    hover:bg-gray-100 hover:text-gray-900
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    focus:text-gray-900
+                                    whitespace-no-wrap
+                                "
                                 @click="updateItem(item)"
                                 title="Publikovať"
                             >
@@ -51,7 +63,7 @@
                                     v-else
                                     class="flex"
                                     :class="{
-                                        'text-red-700': !item.published
+                                        'text-red-700': !item.published,
                                     }"
                                 >
                                     <svg
@@ -76,7 +88,19 @@
                         <!-- Item Edit button-->
                         <div class="py-1">
                             <a
-                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                                class="
+                                    block
+                                    px-4
+                                    py-2
+                                    text-sm
+                                    leading-5
+                                    text-gray-700
+                                    hover:bg-gray-100 hover:text-gray-900
+                                    focus:outline-none
+                                    focus:bg-gray-100
+                                    focus:text-gray-900
+                                    whitespace-no-wrap
+                                "
                                 :href="'/items/' + item.id + '/edit'"
                                 title="Upraviť bod programu"
                             >
@@ -97,7 +121,20 @@
 
                         <!--  Poslať všetkým notifikáciu -->
                         <a
-                            class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                            class="
+                                whitespace-no-wrap
+                                block
+                                px-4
+                                py-2
+                                text-sm
+                                leading-5
+                                text-gray-700
+                                hover:bg-gray-100 hover:text-gray-900
+                                focus:outline-none
+                                focus:bg-gray-100
+                                focus:text-gray-900
+                                whitespace-no-wrap
+                            "
                             href="#"
                             title="Notifikácia pre voliteľov"
                         >
@@ -117,7 +154,19 @@
 
                         <!-- Item Delete button-->
                         <button
-                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                            class="
+                                block
+                                px-4
+                                py-2
+                                text-sm
+                                leading-5
+                                text-gray-700
+                                hover:bg-gray-100 hover:text-gray-900
+                                focus:outline-none
+                                focus:bg-gray-100
+                                focus:text-gray-900
+                                whitespace-no-wrap
+                            "
                             @click="deleteItemMeeting(item)"
                             title="Zmazať položku"
                         >
@@ -176,7 +225,7 @@
             <transition name="fade">
                 <div v-if="!readMore" v-html="item.body"></div>
             </transition>
-            
+
             <div class="flex justify-between w-full text-sm">
                 <!-- <div @click="updateItem(item)"
                      v-if="$auth.can('council delete')"
@@ -186,7 +235,21 @@
                 </div> -->
 
                 <div
-                    class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-100 cursor-pointer1 whitespace-no-wrap cursor-pointer"
+                    :class="{
+                        ' bg-gray-300 hover:bg-gray-300 rounded-t-lg ':
+                            openList,
+                    }"
+                    class="
+                        p-1
+                        text-center
+                        whitespace-no-wrap
+                        flex-1
+                        bg-gray-100
+                        hover:bg-gray-200
+                        cursor-pointer1
+                        whitespace-no-wrap
+                        cursor-pointer
+                    "
                     @click="listToggle"
                     v-if="item.published"
                 >
@@ -197,7 +260,15 @@
                 </div>
 
                 <div
-                    class="p-1 text-center whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer"
+                    class="
+                        p-1
+                        text-center
+                        whitespace-no-wrap
+                        flex-1
+                        bg-gray-100
+                        hover:bg-gray-200
+                        cursor-pointer
+                    "
                     v-if="item.published && $auth.can('council delete')"
                     :class="
                         item.vote_status == 1
@@ -217,7 +288,7 @@
                 <vote-form-button :item="item"></vote-form-button>
 
                 <div
-                    class=" border-2 rounded-md border-gray-300 w-full"
+                    class="border-2 rounded-md border-gray-300 w-full"
                     v-if="openList"
                 >
                     <div class="flex justify-between bg-gray-300 p-1">
@@ -240,13 +311,18 @@
                         <li
                             v-for="interpellation in item.interpellations"
                             :key="interpellation.user_id"
-                            class="flex justify-between border-b-2 border-dotted px-2"
+                            class="
+                                flex
+                                justify-between
+                                border-b-2 border-dotted
+                                px-2
+                            "
                         >
                             <span
                                 v-text="
                                     interpellation.user.first_name +
-                                        ' ' +
-                                        interpellation.user.last_name
+                                    ' ' +
+                                    interpellation.user.last_name
                                 "
                             ></span>
                             <span
@@ -270,7 +346,7 @@ import { bus } from "../app";
 import moment from "moment";
 import { mapState } from "vuex";
 import { createNamespacedHelpers } from "vuex";
-const { mapActions } = createNamespacedHelpers("meetings");
+const { mapActions } = createNamespacedHelpers("items");
 import publishedButton from "./publishedButton";
 import interpellation from "./InterpellationCard";
 import navDropDown from "../modules/navigation/navDropDown";
@@ -278,10 +354,10 @@ import navDropDown from "../modules/navigation/navDropDown";
 export default {
     props: ["item"],
     components: { publishedButton, interpellation, navDropDown },
-    data: function() {
+    data: function () {
         return {
             openList: false,
-            readMore: true
+            readMore: true,
         };
     },
     computed: {
@@ -297,22 +373,24 @@ export default {
                 : moment(this.item.notification).format("DD. MM. YYYY, k:mm");
         },
 
-        hasUserInterpellation: function() {
-            var intUsers = this.item.interpellations.map(role => role.user.id);
+        hasUserInterpellation: function () {
+            var intUsers = this.item.interpellations.map(
+                (role) => role.user.id
+            );
             return intUsers.includes(this.user.id)
                 ? "Odhlásiť sa"
                 : "Prihlásiť sa";
         },
 
         ...mapState({
-            meeting: state => state.meetings.meeting
-        })
+            meeting: (state) => state.meetings.meeting,
+        }),
     },
     methods: {
         ...mapActions([
             "updateInterpellation",
-            "deleteInterpellation",
-            "deleteItemMeeting"
+            // "deleteInterpellation",
+            "deleteItemMeeting",
         ]),
 
         saveNotification() {
@@ -332,10 +410,10 @@ export default {
                     .toISOString()
                     .slice(0, 19)
                     .replace("T", " "),
-                id: this.item.id
+                id: this.item.id,
             });
         },
-        voteStatus: function() {
+        voteStatus: function () {
             if (!this.item.published) {
                 alert("Bod programu nie je publikovaný. Zapnite publikovanie!");
                 return;
@@ -352,11 +430,11 @@ export default {
             }
             this.$store.dispatch("items/updateItem", {
                 id: this.item.id,
-                vote_status: !this.item.vote_status
+                vote_status: !this.item.vote_status,
             });
         },
 
-        listToggle: function() {
+        listToggle: function () {
             if (this.item.vote_status || this.item.votes.length > 0) {
                 return alert("Počas hlasovania sú interpelácie vypnuté!");
             }
@@ -367,17 +445,21 @@ export default {
             bus.$emit("imterpellationlist", this.item);
         },
 
-        updateItem: function(item) {
+        updateItem: function (item) {
             if (item.votes.length) {
                 alert("O bode sa hlasovalo. Publikovanie sa nemôže zastaviť!");
                 return;
             }
             this.$store.dispatch("items/updateItem", {
                 id: item.id,
-                published: !item.published
+                published: !item.published,
             });
-        }
-    }
+        },
+
+        deleteInterpellation(item) {
+            this.$store.dispatch("items/deleteInterpellation", item.id);
+        },
+    },
 };
 </script>
 <style></style>

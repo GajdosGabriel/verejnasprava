@@ -36,6 +36,7 @@ const mutations = {
         state.positionActive = payload;
     },
 };
+
 const actions = {
     fetchMeeting({ commit }, meeting) {
         commit("SET_LOADING_STATUS", true);
@@ -48,33 +49,21 @@ const actions = {
     updateMeeting({ commit, dispatch }, [url, meeting]) {
         commit("SET_LOADING_STATUS", true);
 
-   
-        axios.put("/api/councils/"+ url.council_id + "/meetings/" + url.id, meeting).then((response) => {
-            commit("SET_MEETING", response.data.data);
-            commit("SET_LOADING_STATUS", false);
+        axios
+            .put(
+                "/api/councils/" + url.council_id + "/meetings/" + url.id,
+                meeting
+            )
+            .then((response) => {
+                commit("SET_MEETING", response.data.data);
+                commit("SET_LOADING_STATUS", false);
 
-            dispatch(
-                "notification/addNewNotification",
-                { message: "Publikovanie zmenené", type: "bg-green-400" },
-                { root: true }
-            );
-        });
-    },
-
-    updateInterpellation({ commit, dispatch }, item) {
-        axios.put("/interpellations/" + item.id).then((response) => {
-            dispatch("meetings/fetchMeeting", this.state.meetings.meeting.id, {
-                root: true,
+                dispatch(
+                    "notification/addNewNotification",
+                    { message: "Publikovanie zmenené", type: "bg-green-400" },
+                    { root: true }
+                );
             });
-        });
-    },
-
-    deleteInterpellation({ commit, dispatch }, item) {
-        axios.delete("/interpellations/" + item.id).then((response) => {
-            dispatch("meetings/fetchMeeting", this.state.meetings.meeting.id, {
-                root: true,
-            });
-        });
     },
 
     storeMeetingUser({ commit, dispatch }, meeting) {
@@ -82,8 +71,11 @@ const actions = {
             .post("/api/meetings/" + meeting.id + "/users", meeting)
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting", "/api/councils/" +
-                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting",
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
                     { root: true }
                 );
             });
@@ -97,8 +89,11 @@ const actions = {
             )
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting", "/api/councils/" +
-                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting",
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
                     { root: true }
                 );
             });
@@ -106,11 +101,14 @@ const actions = {
 
     deleteMeetingUsers({ commit, dispatch }, meeting) {
         axios
-            .delete("/api/meetings/" + meeting.id + "/users/"  + meeting.user)
+            .delete("/api/meetings/" + meeting.id + "/users/" + meeting.user)
             .then((response) => {
                 dispatch(
-                    "meetings/fetchMeeting", "/api/councils/" +
-                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
+                    "meetings/fetchMeeting",
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
                     { root: true }
                 );
             });
@@ -127,7 +125,10 @@ const actions = {
             .then((response) => {
                 dispatch(
                     "meetings/fetchMeeting",
-                    this.state.meetings.meeting.id,
+                    "/api/councils/" +
+                        this.state.meetings.meeting.council_id +
+                        "/meetings/" +
+                        this.state.meetings.meeting.id,
                     { root: true }
                 );
             });

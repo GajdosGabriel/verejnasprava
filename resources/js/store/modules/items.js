@@ -2,20 +2,18 @@ const state = {
     interpellations: [],
     votes: [],
     files: [],
-    item: '',
-    user: ''
+    item: "",
+    user: "",
 };
 
 const getters = {
-
-    resultYes:(state) => {
-        return state.item.votes
+    resultYes: (state) => {
+        return state.item.votes;
     },
 
     // get_votes: (state) => {
     //     return state.votes.find(todo => todo.user_id == 1)
     // }
-
 };
 
 const mutations = {
@@ -36,61 +34,76 @@ const mutations = {
     },
     PUBLISHED_STATUS: function (state, item) {
         item.published = !item.published;
-    }
-
+    },
 };
 const actions = {
-    getItem({commit}, item) {
-        axios.get('/api/items/' + item )
-            .then(response => {
-                commit('SET_ITEM', response.data.data );
-            });
+    getItem({ commit }, item) {
+        axios.get("/api/items/" + item).then((response) => {
+            commit("SET_ITEM", response.data.data);
+        });
     },
 
-    storeVote({commit, dispatch}, item) {
-        axios.put('/api/votes/' + item.id, item)
-            .then(response => {
-                commit('SET_ITEM', response.data );
-            });
-
+    storeVote({ commit, dispatch }, item) {
+        axios.put("/api/votes/" + item.id, item).then((response) => {
+            commit("SET_ITEM", response.data);
+        });
     },
 
-    updateItem({commit, dispatch}, item) {
-        axios.put('/api/items/' + item.id, item)
-            .then(response => {
-                // console.log(response.headers.notification);
-                commit('SET_ITEM', response.data.data);
-                dispatch(
-                    "meetings/fetchMeeting", "/api/councils/" +
-                    this.state.meetings.meeting.council_id + "/meetings/" + this.state.meetings.meeting.id,
-                    { root: true }
-                );
-                
+    updateItem({ commit, dispatch }, item) {
+        axios.put("/api/items/" + item.id, item).then((response) => {
+            // console.log(response.headers.notification);
+            commit("SET_ITEM", response.data.data);
+            dispatch(
+                "meetings/fetchMeeting",
+                "/api/councils/" +
+                    this.state.meetings.meeting.council_id +
+                    "/meetings/" +
+                    this.state.meetings.meeting.id,
+                { root: true }
+            );
 
-                // Notify for add task
-                dispatch('notification/addNewNotification', { message: response.headers.notification, type: 'bg-green-400' }, { root: true}
-                )
-            });
+            // Notify for add task
+            dispatch(
+                "notification/addNewNotification",
+                {
+                    message: response.headers.notification,
+                    type: "bg-green-400",
+                },
+                { root: true }
+            );
+        });
     },
 
-    updateInterpellation({commit, dispatch}, item) {
-        if (item.vote_status){
-            alert('Hlasovanie sa už začalo, interpelácie sú zastavené!');
-            return
+    updateInterpellation({ commit, dispatch }, item) {
+        if (item.vote_status) {
+            alert("Hlasovanie sa už začalo, interpelácie sú zastavené!");
+            return;
         }
-        axios.put('/interpellations/' + item.id )
-            .then(response => {
-                dispatch('items/getItem', item.id, {root:true});
-            });
+        axios.put("/interpellations/" + item.id).then((response) => {
+            dispatch(
+                "meetings/fetchMeeting",
+                "/api/councils/" +
+                    this.state.meetings.meeting.council_id +
+                    "/meetings/" +
+                    this.state.meetings.meeting.id,
+                { root: true }
+            );
+
+        })
     },
 
-    deleteInterpellation({commit, dispatch}, id) {
-        axios.delete('/interpellations/' + id)
-            .then(response => {
-                dispatch('items/getItem', this.state.items.item.id, {root:true});
-            });
+    deleteInterpellation({ commit, dispatch }, id) {
+        axios.delete("/interpellations/" + id).then((response) => {
+            dispatch(
+                "meetings/fetchMeeting",
+                "/api/councils/" +
+                    this.state.meetings.meeting.council_id +
+                    "/meetings/" +
+                    this.state.meetings.meeting.id,
+                { root: true }
+            );
+        });
     },
-
 };
 
 export default {
@@ -98,5 +111,5 @@ export default {
     state,
     getters,
     actions,
-    mutations
-}
+    mutations,
+};

@@ -11,10 +11,10 @@
 </template>
 
 <script>
-    import {bus} from '../app';
+
     import interpellationTable from '../items/InterpellationCard.vue';
     import {mapState} from 'vuex';
-    import {mapGetters} from 'vuex';
+
 
     export default {
         props: ['item'],
