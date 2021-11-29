@@ -30,7 +30,7 @@ class MeetingPolicy
      */
     public function view(User $user, Meeting $meeting)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class MeetingPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class MeetingPolicy
      */
     public function update(User $user, Meeting $meeting)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class MeetingPolicy
      */
     public function delete(User $user, Meeting $meeting)
     {
-        //
+        return true;
     }
 
     /**

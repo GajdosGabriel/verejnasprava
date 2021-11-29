@@ -31,6 +31,24 @@ class MeetingResource extends JsonResource
             'items' =>ItemResource::collection($this->items),
             'invitations' => $this->invitations,
             'itemspublished' => $this->itemspublished,
+         
+            'navigations' => [
+                'edit' => $this->when(auth()->user()->can("update", $this->resource), [
+                    'name' => 'Upraviť',
+                    'title' => 'Upraviť položku',
+                    'action' => 'edit',
+                    'url' => route('councils.meetings.edit', [$this->council_id, $this->id]),
+                    'icon' => 'iconEdit',
+                ]),
+
+                'delete' =>  $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => 'Zmazať',
+                    'title' => 'Zmazať položku',
+                    'action' => 'delete',
+                    'url' => route('councils.meetings.destroy', [$this->council_id, $this->id]),
+                    'icon' => 'iconDelete',
+                ])
+            ],
         ];
     }
 }

@@ -4826,7 +4826,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -76374,11 +76373,11 @@ var render = function () {
               _vm.item.published && _vm.$auth.can("council delete")
                 ? _c("div", {
                     staticClass:
-                      "\n                    p-1\n                    text-center\n                    whitespace-no-wrap\n                    flex-1\n                    bg-gray-100\n                    hover:bg-gray-200\n                    cursor-pointer\n                ",
+                      "\n                    p-1\n                    text-center\n                    whitespace-no-wrap\n                    flex-1\n                    bg-gray-100\n                    cursor-pointer\n                ",
                     class:
                       _vm.item.vote_status == 1
-                        ? "bg-blue-700 text-gray-200"
-                        : "text-gray-900",
+                        ? "bg-blue-600 text-gray-200 hover:bg-blue-500"
+                        : "text-gray-900 hover:bg-gray-200",
                     domProps: {
                       textContent: _vm._s(
                         _vm.item.vote_status == 0
@@ -77496,7 +77495,7 @@ var render = function () {
             0
           ),
       _vm._v(" "),
-      _vm.files
+      _vm.files.length
         ? _c(
             "div",
             { staticClass: "max-w-sm" },

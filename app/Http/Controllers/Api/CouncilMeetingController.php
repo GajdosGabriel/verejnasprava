@@ -10,6 +10,11 @@ use App\Models\Council\Council;
 
 class CouncilMeetingController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Meeting::class, 'meeting');
+    }
+
     public function show(Council $council, Meeting $meeting)
     {
         return new MeetingResource($meeting);
