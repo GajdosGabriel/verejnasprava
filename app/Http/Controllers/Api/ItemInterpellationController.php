@@ -20,9 +20,10 @@ class ItemInterpellationController extends Controller
             } else {
                 $int->restore();
             }
-            return $interpellation->interpellations()->get();
+            return $item->interpellations;
         }
-        $interpellation->interpellations()->create([
+
+        $item->interpellations()->create([
             'name' => 'Prihlásený do rozpravy',
             'body' => $interpellation->name,
             'user_id' => auth()->user()->id,

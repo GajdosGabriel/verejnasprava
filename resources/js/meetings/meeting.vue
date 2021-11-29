@@ -247,7 +247,7 @@
         </transition-group>
 
         <!--   Files-->
-        <div class="max-w-sm" v-if="files">
+        <div class="max-w-sm" v-if="files.length">
             <h5 class="mt-4" style="border-bottom: 2px solid silver">
                 Príloha
             </h5>

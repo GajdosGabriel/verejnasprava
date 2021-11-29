@@ -266,14 +266,13 @@
                         whitespace-no-wrap
                         flex-1
                         bg-gray-100
-                        hover:bg-gray-200
                         cursor-pointer
                     "
                     v-if="item.published && $auth.can('council delete')"
                     :class="
                         item.vote_status == 1
-                            ? 'bg-blue-700 text-gray-200'
-                            : 'text-gray-900'
+                            ? 'bg-blue-600 text-gray-200 hover:bg-blue-500'
+                            : 'text-gray-900 hover:bg-gray-200'
                     "
                     @click="voteStatus"
                     v-text="
