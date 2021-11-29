@@ -40,13 +40,14 @@
 </template>
 
 <script>
+import iconCreate from "./itemIcons/createIcon.vue";
 import iconShow from "./itemIcons/showIcon.vue";
 import iconEdit from "./itemIcons/editIcon.vue";
 import iconDelete from "./itemIcons/deleteIcon.vue";
 
 export default {
     props: ["items"],
-    components: { iconEdit, iconDelete, iconShow },
+    components: { iconEdit, iconDelete, iconShow, iconCreate },
     data() {
         return {
             isOpen: false,

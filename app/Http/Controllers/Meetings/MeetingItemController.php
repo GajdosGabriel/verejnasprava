@@ -13,7 +13,7 @@ class MeetingItemController extends Controller
         return view('council.meeting.createItem', compact('meeting'));
     }
 
-    public function update(Request $request, $meeting = null , Item $item) {
+    public function update(Request $request, $meeting, Item $item) {
 
         $item->meetings()->attach($request->meeting);
 
@@ -31,7 +31,7 @@ class MeetingItemController extends Controller
         return redirect()->route('meetings.show', $meeting->id);
     }
 
-    public function destroy($meeting = null, Item $item) {
+    public function destroy($meeting , Item $item) {
         $item->meetings()->detach();
     }
 }
