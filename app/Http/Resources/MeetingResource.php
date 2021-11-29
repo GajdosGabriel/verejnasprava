@@ -35,18 +35,26 @@ class MeetingResource extends JsonResource
             'navigations' => [
 
                 'create' => $this->when(auth()->user()->can("create", $this->resource), [
-                    'name' => 'Vytvoriť',
-                    'title' => 'Vytnoviť položku',
+                    'name' => 'Nový návrh',
+                    'title' => 'Vytvoriť položku',
                     'action' => 'create',
-                    'url' => route('councils.meetings.create', [$this->council_id, $this->id]),
+                    'url' => route('council.meeting.create', [$this->council_id, $this->id]),
                     'icon' => 'iconCreate',
                 ]),
 
+                'published' => $this->when(auth()->user()->can("view", $this->resource), [
+                    'name' => 'Publikovať zasadnutie',
+                    'title' => 'Publikovať zqasadnutie',
+                    'action' => 'published',
+                    'url' => route('council.meeting.create', [$this->council_id, $this->id]),
+                    'icon' => 'iconPublished',
+                ]),
+
                 'edit' => $this->when(auth()->user()->can("update", $this->resource), [
-                    'name' => 'Upraviť',
+                    'name' => 'Upraviť zasadnutie',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
-                    'url' => route('councils.meetings.edit', [$this->council_id, $this->id]),
+                    'url' => route('meetings.edit', [$this->id]),
                     'icon' => 'iconEdit',
                 ]),
 

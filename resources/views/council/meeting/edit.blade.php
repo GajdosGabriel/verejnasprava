@@ -8,7 +8,7 @@
 
         <x-page.page-title>
             <x-slot name="title">
-                Upraviť zastupiteľstvo
+                Upraviť zasadnutie
             </x-slot>
 
             <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>

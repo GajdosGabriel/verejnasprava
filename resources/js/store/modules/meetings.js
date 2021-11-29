@@ -99,6 +99,12 @@ const actions = {
             });
     },
 
+    deleteMeeting({ commit, dispatch }, url) {
+        axios.delete(url).then((response) => {
+            window.location.href = "/zastupitelstva";
+        });
+    },
+
     deleteMeetingUsers({ commit, dispatch }, meeting) {
         axios
             .delete("/api/meetings/" + meeting.id + "/users/" + meeting.user)

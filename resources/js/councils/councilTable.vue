@@ -27,9 +27,9 @@
                                     whitespace-no-wrap
                                 "
                                 :href="
-                                    'councils/' +
+                                    'council/' +
                                     council.id +
-                                    '/meetings/create'
+                                    '/meeting/create'
                                 "
                                 title="Vytvoriť nové zasadnutie"
                             >

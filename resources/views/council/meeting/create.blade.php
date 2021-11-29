@@ -20,7 +20,7 @@
         <x-page.page3_3>
             <div class="col-span-9 bg-white p-3">
 
-                <form method="POST" action="{{ route('councils.meetings.store', $council->id) }}"
+                <form method="POST" action="{{ route('council.meeting.store', $council->id) }}"
                     enctype="multipart/form-data">
                     @csrf @method('POST')
                     @include('modul.errors')

@@ -16,11 +16,28 @@
                 >
             </div>
 
+            <drop-down-component
+                :items="meeting"
+                @fromItem="clickOnItem"
+            ></drop-down-component>
+
             <nav-drop-down v-if="$auth.can('council delete')">
                 <slot>
                     <div class="py-1">
                         <a
-                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                            class="
+                                block
+                                px-4
+                                py-2
+                                text-sm
+                                leading-5
+                                text-gray-700
+                                hover:bg-gray-100 hover:text-gray-900
+                                focus:outline-none
+                                focus:bg-gray-100
+                                focus:text-gray-900
+                                whitespace-no-wrap
+                            "
                             :href="'/meetings/' + meeting.id + '/items/create'"
                             title="Vytvoriť nové zasadnutie"
                         >
@@ -41,7 +58,19 @@
 
                     <!-- Meeting published button-->
                     <a
-                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                        class="
+                            block
+                            px-4
+                            py-2
+                            text-sm
+                            leading-5
+                            text-gray-700
+                            hover:bg-gray-100 hover:text-gray-900
+                            focus:outline-none
+                            focus:bg-gray-100
+                            focus:text-gray-900
+                            whitespace-no-wrap
+                        "
                         href="#"
                         title="Zmazať položku"
                     >
@@ -64,7 +93,7 @@
                         <div
                             v-else
                             class="flex"
-                            @click="publishedMeeting(1)"
+                            @click="publishedMeeting()"
                             :class="{ 'text-red-700': !meeting.published }"
                         >
                             <svg
@@ -82,7 +111,19 @@
 
                     <!-- Meeting Edit button-->
                     <a
-                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                        class="
+                            block
+                            px-4
+                            py-2
+                            text-sm
+                            leading-5
+                            text-gray-700
+                            hover:bg-gray-100 hover:text-gray-900
+                            focus:outline-none
+                            focus:bg-gray-100
+                            focus:text-gray-900
+                            whitespace-no-wrap
+                        "
                         :href="'/meetings/' + meeting.id + '/edit'"
                         title="Zmazať položku"
                     >
@@ -102,7 +143,20 @@
 
                     <!--  Position save button -->
                     <a
-                        class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                        class="
+                            whitespace-no-wrap
+                            block
+                            px-4
+                            py-2
+                            text-sm
+                            leading-5
+                            text-gray-700
+                            hover:bg-gray-100 hover:text-gray-900
+                            focus:outline-none
+                            focus:bg-gray-100
+                            focus:text-gray-900
+                            whitespace-no-wrap
+                        "
                         href="#"
                         title="Notifikácia pre voliteľov"
                     >
@@ -123,13 +177,26 @@
                     <!-- Meeting Delete button-->
                     <div
                         @click="deleteMeeting(meeting)"
-                        class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                        class="
+                            cursor-pointer
+                            block
+                            px-4
+                            py-2
+                            text-sm
+                            leading-5
+                            text-gray-700
+                            hover:bg-gray-100 hover:text-gray-900
+                            focus:outline-none
+                            focus:bg-gray-100
+                            focus:text-gray-900
+                            whitespace-no-wrap
+                        "
                         :href="
                             '/meet/' +
-                                meeting.id +
-                                '/' +
-                                meeting.slug +
-                                '/meeting/delete'
+                            meeting.id +
+                            '/' +
+                            meeting.slug +
+                            '/meeting/delete'
                         "
                         title="Zmazať položku"
                     >
@@ -156,7 +223,15 @@
         >
             <a
                 :href="'/meetings/' + meeting.id + '/file/show'"
-                class="border-orange-300 bg-orange-100 border-2 text-gray-600 px-1 rounded-sm flex"
+                class="
+                    border-orange-300
+                    bg-orange-100
+                    border-2
+                    text-gray-600
+                    px-1
+                    rounded-sm
+                    flex
+                "
                 target="_blank"
             >
                 <svg
@@ -182,7 +257,14 @@
                 <button
                     v-if="isUserPresent"
                     @click="updateMeetingUser"
-                    class="border-blue-300 bg-blue-100 border-2 text-gray-600 px-1 rounded-sm"
+                    class="
+                        border-blue-300
+                        bg-blue-100
+                        border-2
+                        text-gray-600
+                        px-1
+                        rounded-sm
+                    "
                 >
                     Prihlásený {{ user.last_name }} ({{ meeting.users.length }})
                 </button>
@@ -190,7 +272,14 @@
                 <button
                     v-else
                     @click="storeMeetingUser"
-                    class="border-green-300 bg-green-100 border-2 text-gray-600 px-1 rounded-sm"
+                    class="
+                        border-green-300
+                        bg-green-100
+                        border-2
+                        text-gray-600
+                        px-1
+                        rounded-sm
+                    "
                 >
                     Prezentovať sa ({{ meeting.users.length }})
                 </button>
@@ -199,7 +288,14 @@
             <button
                 v-if="$auth.can('council delete') && meeting.published"
                 @click="resetMeetingUser"
-                class="border-red-300 bg-red-100 border-2 text-gray-600 px-1 rounded-sm"
+                class="
+                    border-red-300
+                    bg-red-100
+                    border-2
+                    text-gray-600
+                    px-1
+                    rounded-sm
+                "
             >
                 Nová prezentácia
             </button>
@@ -253,7 +349,7 @@
             </h5>
             <div v-for="(file, index) in files" :key="file.id">
                 <a
-                    class="mr-2 hover:text-blue-500 "
+                    class="mr-2 hover:text-blue-500"
                     target="_blank"
                     :title="file.org_name"
                     :href="
@@ -274,20 +370,22 @@ import navDropDown from "../modules/navigation/navDropDown";
 import { mapState } from "vuex";
 import itemList from "../items/itemList";
 import { bus } from "../app";
+import dropDownComponent from "../components/dropDown/dropDownComponent";
 
 export default {
     props: ["pmeeting"],
-    components: { itemList, navDropDown, draggable },
-    data: function() {
+    components: { itemList, navDropDown, draggable, dropDownComponent },
+    data: function () {
         return {
             moment: require("moment"),
-            positionSaveButton: false
+            positionSaveButton: false,
         };
     },
     computed: {
         isUserPresent() {
-            return this.meeting.users.filter(value => value.id == this.user.id)
-                .length;
+            return this.meeting.users.filter(
+                (value) => value.id == this.user.id
+            ).length;
         },
         notificationStatus() {
             return this.meeting.notification == null
@@ -297,8 +395,8 @@ export default {
                   );
         },
         ...mapState({
-            meeting: state => state.meetings.meeting,
-            files: state => state.meetings.files
+            meeting: (state) => state.meetings.meeting,
+            files: (state) => state.meetings.files,
         }),
 
         items: {
@@ -307,14 +405,38 @@ export default {
             },
             set(value) {
                 this.$store.commit("meetings/UPDATE_LIST", value);
-            }
-        }
+            },
+        },
     },
 
     created() {
-        this.$store.dispatch("meetings/fetchMeeting", "/api/councils/"+ this.pmeeting.council_id +"/meetings/"+this.pmeeting.id);
+        this.$store.dispatch(
+            "meetings/fetchMeeting",
+            "/api/councils/" +
+                this.pmeeting.council_id +
+                "/meetings/" +
+                this.pmeeting.id
+        );
     },
     methods: {
+        clickOnItem(action, meeting) {
+            if (action == "delete") {
+                this.$store.dispatch(
+                    "meetings/deleteMeeting",
+                    meeting.navigations.delete.url
+                );
+            }
+
+            if (action == "published") {
+                this.$store.dispatch("meetings/updateMeeting", [
+                    this.meeting,
+                    {
+                        published: !this.meeting.published,
+                    },
+                ]);
+            }
+        },
+
         changeOrderItems() {
             bus.$emit("closeDropDown", () => {
                 this.isOpen = false;
@@ -323,34 +445,24 @@ export default {
         },
         resetMeetingUser() {
             this.$store.dispatch("meetings/deleteMeetingUsers", {
-                id: this.meeting.id
+                id: this.meeting.id,
             });
         },
         updateMeetingUser() {
             this.$store.dispatch("meetings/updateMeetingUser", {
                 user: this.user.id,
-                id: this.meeting.id
+                id: this.meeting.id,
             });
         },
 
         storeMeetingUser() {
             this.$store.dispatch("meetings/storeMeetingUser", {
                 user: this.user.id,
-                id: this.meeting.id
+                id: this.meeting.id,
             });
         },
 
-        deleteMeeting(meeting) {
-            axios.delete("/meetings/" + meeting.id).then(
-                // window.location.reload();
-                (window.location.href = "/zastupitelstva")
-            );
-        },
-        publishedMeeting: function(published) {
-            this.$store.dispatch("meetings/updateMeeting", [ this.meeting, {
-                published: published
-            }]);
-        },
+  
 
         savePosition() {
             this.items.forEach((item, key) => {
@@ -358,19 +470,19 @@ export default {
             });
 
             let postData = {};
-            postData.items = this.items.map(item => {
+            postData.items = this.items.map((item) => {
                 return {
-                    id: item.id
+                    id: item.id,
                 };
             });
 
             axios
                 .put("/item/position/slug/item/position", postData)
-                .then(response => console.log("response", response));
+                .then((response) => console.log("response", response));
 
             this.positionSaveButton = !this.positionSaveButton;
-        }
-    }
+        },
+    },
 };
 </script>
 <style>

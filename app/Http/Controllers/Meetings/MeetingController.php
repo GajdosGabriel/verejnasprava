@@ -25,12 +25,6 @@ class MeetingController extends Controller
         return redirect()->route('meetings.show', $meeting->id);
     }
 
-
-    public function destroy(Meeting $meeting) {
-        $meeting->delete();
-    }
-
-
     public function pozvankaPdf(Meeting $meeting) {
         $pdf = \PDF::loadView('council.meeting.print', compact('meeting'));
         return $pdf->stream();

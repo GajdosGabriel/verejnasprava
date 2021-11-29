@@ -26,4 +26,9 @@ class CouncilMeetingController extends Controller
 
         return new MeetingResource($meeting);
     }
+
+    public function destroy(Council $council, Meeting $meeting) {
+        $meeting->delete();
+    }
+
 }

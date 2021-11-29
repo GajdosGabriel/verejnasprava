@@ -5,7 +5,15 @@
                 <button
                     @click="isOpen = !isOpen"
                     :class="addBackground"
-                    class="focus:outline-none hover:bg-gray-300 p-1 rounded-full transition duration-400 ease-in-out"
+                    class="
+                        focus:outline-none
+                        hover:bg-gray-300
+                        p-1
+                        rounded-full
+                        transition
+                        duration-400
+                        ease-in-out
+                    "
                 >
                     <svg
                         class="w-4 h-4"
@@ -22,24 +30,46 @@
 
         <div
             v-show="isOpen"
-            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-10 bg-gray-100"
+            class="
+                origin-top-right
+                absolute
+                right-0
+                mt-2
+                w-56
+                rounded-md
+                shadow-lg
+                z-10
+                bg-white
+            "
         >
             <div v-for="(item, index) in items.navigations" :key="index">
-                <div
-                    class="flex cursor-pointer px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
+                <a :href="item.url"
+                    class="
+                        flex
+                        cursor-pointer
+                        px-4
+                        py-2
+                        text-sm
+                        leading-5
+                        text-gray-700
+                        hover:bg-gray-200 hover:text-gray-900
+                        focus:outline-none focus:bg-gray-100 focus:text-gray-900
+                        whitespace-no-wrap
+                    "
                     :title="item.title"
                     @click="$emit('fromItem', item.action, items)"
                 >
                     <component :is="item.icon" class="mr-2"></component>
 
                     {{ item.name }}
-                </div>
+                </a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import iconPublished from "./itemIcons/publishedIcon.vue";
 import iconCreate from "./itemIcons/createIcon.vue";
 import iconShow from "./itemIcons/showIcon.vue";
 import iconEdit from "./itemIcons/editIcon.vue";
@@ -47,29 +77,29 @@ import iconDelete from "./itemIcons/deleteIcon.vue";
 
 export default {
     props: ["items"],
-    components: { iconEdit, iconDelete, iconShow, iconCreate },
+    components: { iconEdit, iconDelete, iconShow, iconCreate, iconPublished },
     data() {
         return {
             isOpen: false,
-            dropdown: false
+            dropdown: false,
         };
     },
 
     computed: {
-        addBackground: function() {
+        addBackground: function () {
             return this.isOpen ? "bg-gray-400" : "";
-        }
+        },
     },
 
-    created: function() {
+    created: function () {
         let self = this;
-        window.addEventListener("click", function(e) {
+        window.addEventListener("click", function (e) {
             // close dropdown when clicked outside
             if (!self.$el.contains(e.target)) {
                 self.isOpen = false;
                 self.dropdown = false;
             }
         });
-    }
+    },
 };
 </script>
