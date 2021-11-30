@@ -69,11 +69,11 @@
 </template>
 
 <script>
-import iconPublished from "./itemIcons/publishedIcon.vue";
-import iconCreate from "./itemIcons/createIcon.vue";
-import iconShow from "./itemIcons/showIcon.vue";
-import iconEdit from "./itemIcons/editIcon.vue";
-import iconDelete from "./itemIcons/deleteIcon.vue";
+import iconPublished from "./dropDownIcons/publishedIcon.vue";
+import iconCreate from "./dropDownIcons/createIcon.vue";
+import iconShow from "./dropDownIcons/showIcon.vue";
+import iconEdit from "./dropDownIcons/editIcon.vue";
+import iconDelete from "./dropDownIcons/deleteIcon.vue";
 
 export default {
     props: ["items"],
