@@ -99,9 +99,12 @@ import iconShow from "./dropDownIcons/showIcon.vue";
 import iconEdit from "./dropDownIcons/editIcon.vue";
 import iconDelete from "./dropDownIcons/deleteIcon.vue";
 
+import { createdMixin } from "../../mixins/createdMixin";
+
 export default {
     props: ["items"],
     components: { iconEdit, iconDelete, iconShow, iconCreate, iconPublished },
+    mixins: [createdMixin],
     data() {
         return {
             isOpen: false,
@@ -113,17 +116,6 @@ export default {
         addBackground: function () {
             return this.isOpen ? "bg-gray-400" : "";
         },
-    },
-
-    created: function () {
-        let self = this;
-        window.addEventListener("click", function (e) {
-            // close dropdown when clicked outside
-            if (!self.$el.contains(e.target)) {
-                self.isOpen = false;
-                self.dropdown = false;
-            }
-        });
-    },
+    }
 };
 </script>

@@ -2668,6 +2668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dropDownIcons_showIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropDownIcons/showIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/showIcon.vue");
 /* harmony import */ var _dropDownIcons_editIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropDownIcons/editIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/editIcon.vue");
 /* harmony import */ var _dropDownIcons_deleteIcon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dropDownIcons/deleteIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/deleteIcon.vue");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
 //
 //
 //
@@ -2762,6 +2763,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2776,6 +2778,7 @@ __webpack_require__.r(__webpack_exports__);
     iconCreate: _dropDownIcons_createIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     iconPublished: _dropDownIcons_publishedIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_5__.createdMixin],
   data: function data() {
     return {
       isOpen: false,
@@ -2786,16 +2789,6 @@ __webpack_require__.r(__webpack_exports__);
     addBackground: function addBackground() {
       return this.isOpen ? "bg-gray-400" : "";
     }
-  },
-  created: function created() {
-    var self = this;
-    window.addEventListener("click", function (e) {
-      // close dropdown when clicked outside
-      if (!self.$el.contains(e.target)) {
-        self.isOpen = false;
-        self.dropdown = false;
-      }
-    });
   }
 });
 
