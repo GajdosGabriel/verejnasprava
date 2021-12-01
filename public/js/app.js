@@ -3676,114 +3676,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3813,9 +3705,13 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
     }
   }),
   methods: {
-    clickOnItem: function clickOnItem(action, meeting) {
+    clickOnItem: function clickOnItem(action, item) {
+      if (action == "edit") {
+        this.modalEdit(item);
+      }
+
       if (action == "delete") {
-        this.$store.dispatch("councils/deleteCouncil", meeting.navigations["delete"].url);
+        this.modalDelete(item);
       }
     },
     modalEdit: function modalEdit(item) {
@@ -75478,139 +75374,6 @@ var render = function () {
                   attrs: { items: council },
                   on: { fromItem: _vm.clickOnItem },
                 }),
-                _vm._v(" "),
-                _vm.$auth.can("council delete")
-                  ? _c(
-                      "nav-drop-down",
-                      [
-                        _vm._t("default", function () {
-                          return [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "\n                                block\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
-                                attrs: {
-                                  href:
-                                    "council/" + council.id + "/meeting/create",
-                                  title: "Vytvoriť nové zasadnutie",
-                                },
-                              },
-                              [
-                                _c("div", { staticClass: "flex" }, [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                Nové zasadnutie\n                            "
-                                  ),
-                                ]),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "\n                                cursor-pointer\n                                block\n                                px-4\n                                py-2\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
-                                attrs: { title: "Upraviť položku" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.modalEdit(council)
-                                  },
-                                },
-                              },
-                              [
-                                _c("div", { staticClass: "flex" }, [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                Upraviť položku\n                            "
-                                  ),
-                                ]),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "\n                                block\n                                px-4\n                                py-2\n                                cursor-pointer\n                                text-sm\n                                leading-5\n                                text-gray-700\n                                hover:bg-gray-100 hover:text-gray-900\n                                focus:outline-none\n                                focus:bg-gray-100\n                                focus:text-gray-900\n                                whitespace-no-wrap\n                            ",
-                                attrs: {
-                                  href:
-                                    "admin/" +
-                                    council.id +
-                                    "/" +
-                                    council.slug +
-                                    "/council/delete",
-                                  title: "Zmazať zastupiteľstvo",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.modalDelete(council)
-                                  },
-                                },
-                              },
-                              [
-                                _c("div", { staticClass: "flex" }, [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                Zmazať\n                            "
-                                  ),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        }),
-                      ],
-                      2
-                    )
-                  : _vm._e(),
               ],
               1
             ),

@@ -47,6 +47,7 @@ class CouncilResource extends JsonResource
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
+                    'typeOfButton' => 'button',
                     'url' => route('organizations.councils.edit', [$this->organization_id, $this->id]),
                     'icon' => 'iconEdit',
                 ]),
