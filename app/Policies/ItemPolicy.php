@@ -68,6 +68,13 @@ class ItemPolicy
         return $user->active_organization == $item->organization_id;
     }
 
+
+    // Notifikacia odkaz iba ak má Item meeting
+    public function notifiToVote(User $user, Item $item)
+    {
+        return $item->meetings()->exists();
+    }
+
     /**
      * Determine whether the user can restore the model.
      *

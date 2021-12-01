@@ -47,7 +47,7 @@
                     alert('Zoznam prihlásených do rozpravy nie je prázdny.');
                     return
                 }
-                this.$store.dispatch('items/update', {id: this.item.id, vote_status: ! this.item.vote_status})
+                this.$store.dispatch('items/updateItem', {id: this.item.id, vote_status: ! this.item.vote_status})
             },
         }
     }

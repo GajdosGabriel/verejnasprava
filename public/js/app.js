@@ -4773,13 +4773,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _publishedButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./publishedButton */ "./resources/js/items/publishedButton.vue");
 /* harmony import */ var _InterpellationCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InterpellationCard */ "./resources/js/items/InterpellationCard.vue");
-/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/dropDown/dropDownComponent */ "./resources/js/components/dropDown/dropDownComponent.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4940,17 +4939,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['pitem'],
+  props: ["pitem"],
   components: {
     publishedButton: _publishedButton__WEBPACK_IMPORTED_MODULE_1__["default"],
-    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_2__["default"]
+    interpellation: _InterpellationCard__WEBPACK_IMPORTED_MODULE_2__["default"],
+    dropDownComponent: _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   computed: _objectSpread({
     countYes: function countYes() {
@@ -4969,9 +4986,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).length;
     },
     notificationStatus: function notificationStatus() {
-      return this.item.notification == null ? 'Notifikácia hlasovať' : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.item.notification).format('DD. MM. YYYY, k:mm');
+      return this.item.notification == null ? "Notifikácia hlasovať" : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.item.notification).format("DD. MM. YYYY, k:mm");
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
     item: function item(state) {
       return state.items.item;
     },
@@ -4989,21 +5006,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.$store.dispatch('items/getItem', this.pitem.id);
+    this.$store.dispatch("items/getItem", this.pitem.id);
   },
   methods: {
+    clickOnItem: function clickOnItem(action, item) {
+      if (action == "moveToItems") {
+        this.$store.dispatch("meetings/deleteItemMeeting", item);
+      }
+
+      if (action == "notifiToVote") {
+        this.sendNotification();
+      }
+
+      if (action == "published") {
+        if (item.votes.length) {
+          alert("O bode sa hlasovalo. Publikovanie sa nemôže zastaviť!");
+          return;
+        }
+
+        this.updateItem({
+          id: item.id,
+          published: !item.published
+        });
+      }
+    },
     itemDelete: function itemDelete(item) {
-      axios["delete"]('/items/' + item.id).then(location.href = '/items' // window.location.reload()
+      axios["delete"]("/items/" + item.id).then(location.href = "/items" // window.location.reload()
       );
     },
     saveNotification: function saveNotification() {
-      this.$store.dispatch('items/update', {
-        notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      this.$store.dispatch("items/update", {
+        notification: new Date().toISOString().slice(0, 19).replace("T", " "),
         id: this.item.id
       });
     },
     openInterpellation: function openInterpellation() {
-      _app__WEBPACK_IMPORTED_MODULE_4__.bus.$emit('imterpellationlist', this.item);
+      bus.$emit("imterpellationlist", this.item);
     }
   }
 });
@@ -5052,7 +5090,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      this.$store.dispatch('items/update', {
+      this.$store.dispatch('items/updateItem', {
         id: item.id,
         published: !item.published
       });
@@ -8106,7 +8144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      this.$store.dispatch('items/update', {
+      this.$store.dispatch('items/updateItem', {
         id: this.item.id,
         vote_status: !this.item.vote_status
       });
@@ -76415,14 +76453,20 @@ var render = function () {
                 staticClass: "text-lg page-title",
                 class: { "text-green-700": _vm.item.result },
               },
-              [_vm._v(" " + _vm._s(_vm.item.name))]
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.item.name) +
+                    "\n            "
+                ),
+              ]
             ),
             _vm._v(" "),
             _c("span", { staticClass: "text-sm text-gray-500" }, [
               _vm._v(
                 "Návrh uznesenia vypracoval: " +
                   _vm._s(_vm.user.first_name) +
-                  " " +
+                  "\n                " +
                   _vm._s(_vm.user.last_name) +
                   ", " +
                   _vm._s(_vm.user.employment)
@@ -76433,7 +76477,7 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "flex justify-between mt-3 mb-5 py-1 border-gray-200 border-t-2 border-b-2 items-center",
+                  "\n                    flex\n                    justify-between\n                    mt-3\n                    mb-5\n                    py-1\n                    border-gray-200 border-t-2 border-b-2\n                    items-center\n                ",
               },
               [
                 _c(
@@ -76457,153 +76501,25 @@ var render = function () {
                       "div",
                       {
                         staticClass:
-                          "cursor-pointer flex text-gray-700 text-sm rounded-md",
+                          "\n                            cursor-pointer\n                            flex\n                            text-gray-700 text-sm\n                            rounded-md\n                        ",
                         on: { click: _vm.openInterpellation },
                       },
-                      [_vm._v("Rozprava " + _vm._s(_vm.interpellations.length))]
+                      [
+                        _vm._v(
+                          "\n                        Rozprava " +
+                            _vm._s(_vm.interpellations.length) +
+                            "\n                    "
+                        ),
+                      ]
                     ),
                   ],
                   1
                 ),
                 _vm._v(" "),
-                _vm.item.user_id == _vm.user.id ||
-                _vm.$auth.can("council delete")
-                  ? _c(
-                      "nav-drop-down",
-                      [
-                        _vm._t("default", function () {
-                          return [
-                            _c("div", { staticClass: "py-1" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                                  attrs: {
-                                    href: "/items/" + _vm.item.id + "/edit",
-                                    title: "Upraviť bod programu",
-                                  },
-                                },
-                                [
-                                  _c("div", { staticClass: "flex" }, [
-                                    _c(
-                                      "svg",
-                                      {
-                                        staticClass:
-                                          "w-4 h-4 mr-2 fill-current",
-                                        attrs: {
-                                          xmlns: "http://www.w3.org/2000/svg",
-                                          viewBox: "0 0 20 20",
-                                        },
-                                      },
-                                      [
-                                        _c("path", {
-                                          attrs: {
-                                            d: "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                    _vm._v(
-                                      "\n                                    Upraviť položku\n                                "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                                attrs: {
-                                  href: "#",
-                                  title: "Notifikácia pre voliteľov",
-                                },
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "flex",
-                                    on: { click: _vm.saveNotification },
-                                  },
-                                  [
-                                    _c(
-                                      "svg",
-                                      {
-                                        staticClass:
-                                          "w-4 h-4 mr-2 fill-current",
-                                        attrs: {
-                                          xmlns: "http://www.w3.org/2000/svg",
-                                          viewBox: "0 0 20 20",
-                                        },
-                                      },
-                                      [
-                                        _c("path", {
-                                          attrs: {
-                                            d: "M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("span", {
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          _vm.notificationStatus
-                                        ),
-                                      },
-                                    }),
-                                  ]
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap",
-                                attrs: { title: "Zmazať položku" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.itemDelete(_vm.item)
-                                  },
-                                },
-                              },
-                              [
-                                _c("div", { staticClass: "flex" }, [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2 fill-current",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                Zmazať\n                            "
-                                  ),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        }),
-                      ],
-                      2
-                    )
-                  : _vm._e(),
+                _c("drop-down-component", {
+                  attrs: { items: _vm.item },
+                  on: { fromItem: _vm.clickOnItem },
+                }),
               ],
               1
             ),
@@ -76623,7 +76539,11 @@ var render = function () {
                           staticClass: "mt-4",
                           staticStyle: { "border-bottom": "2px solid silver" },
                         },
-                        [_vm._v("Príloha")]
+                        [
+                          _vm._v(
+                            "\n                        Príloha\n                    "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _vm._l(_vm.files, function (file, index) {
@@ -76631,7 +76551,7 @@ var render = function () {
                           _c(
                             "a",
                             {
-                              staticClass: "mr-2 hover:text-blue-500 ",
+                              staticClass: "mr-2 hover:text-blue-500",
                               attrs: {
                                 target: "_blank",
                                 title: file.org_name,
@@ -76681,13 +76601,17 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "flex my-5 items-center justify-between border-t-2 border-b-2 border-gray-300",
+                    "\n                    flex\n                    my-5\n                    items-center\n                    justify-between\n                    border-t-2 border-b-2 border-gray-300\n                ",
                 },
                 [
                   _c(
                     "h2",
                     { staticClass: "text-lg font-semibold whitespace-no-wrap" },
-                    [_vm._v("Výsledky hlasovania")]
+                    [
+                      _vm._v(
+                        "\n                    Výsledky hlasovania\n                "
+                      ),
+                    ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-sm cursor-pointer" }, [
@@ -76724,7 +76648,7 @@ var render = function () {
                   _vm._v(
                     "\n                    " +
                       _vm._s(vote.user.last_name) +
-                      "  " +
+                      " " +
                       _vm._s(vote.user.first_name) +
                       "\n                    "
                   ),

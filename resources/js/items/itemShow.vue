@@ -2,72 +2,58 @@
     <div class="p-3 w-full sm:flex">
         <div class="sm:mx-3 border-gray-300 border-2 p-4 md:w-8/12 xs:w-full">
             <div class="w-full">
+                <h1
+                    class="text-lg page-title"
+                    :class="{ 'text-green-700': item.result }"
+                >
+                    {{ item.name }}
+                </h1>
 
-                <h1 class="text-lg page-title" :class="{'text-green-700' : item.result }"> {{ item.name }}</h1>
-
-                <span class="text-sm text-gray-500">Návrh uznesenia vypracoval: {{ user.first_name }} {{ user.last_name }}, {{ user.employment }}</span>
+                <span class="text-sm text-gray-500"
+                    >Návrh uznesenia vypracoval: {{ user.first_name }}
+                    {{ user.last_name }}, {{ user.employment }}</span
+                >
                 <!--   Badge line-->
-                <div class="flex justify-between mt-3 mb-5 py-1 border-gray-200 border-t-2 border-b-2 items-center">
+                <div
+                    class="
+                        flex
+                        justify-between
+                        mt-3
+                        mb-5
+                        py-1
+                        border-gray-200 border-t-2 border-b-2
+                        items-center
+                    "
+                >
                     <div class="flex flex-wrap items-center space-x-3">
-
-                        <div v-text="item.vote_type == 0 ? 'Hlasovanie verejné' :'Hlasovanie tajné' "
-                             class="badge badge-primary"></div>
+                        <div
+                            v-text="
+                                item.vote_type == 0
+                                    ? 'Hlasovanie verejné'
+                                    : 'Hlasovanie tajné'
+                            "
+                            class="badge badge-primary"
+                        ></div>
 
                         <published-button :item="item"></published-button>
 
-                            <div  @click="openInterpellation" class="cursor-pointer flex text-gray-700 text-sm rounded-md">Rozprava {{ interpellations.length }}</div>
-
+                        <div
+                            @click="openInterpellation"
+                            class="
+                                cursor-pointer
+                                flex
+                                text-gray-700 text-sm
+                                rounded-md
+                            "
+                        >
+                            Rozprava {{ interpellations.length }}
+                        </div>
                     </div>
 
-                    <nav-drop-down v-if="item.user_id == user.id  || $auth.can('council delete')">
-                        <slot>
-                            <!-- Item Edit button-->
-                            <div class="py-1">
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                   :href="'/items/'+ item.id + '/edit'"
-                                   title="Upraviť bod programu">
-                                    <div class="flex">
-                                        <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 20 20">
-                                            <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
-                                        </svg>
-                                        Upraviť položku
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <!--  Poslať všetkým notifikáciu -->
-                            <a class="whitespace-no-wrap block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                               href="#"
-                               title="Notifikácia pre voliteľov">
-                                <div class="flex" @click="saveNotification">
-                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 20 20">
-                                        <path
-                                            d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
-                                    </svg>
-                                    <span v-text="notificationStatus"></span>
-                                </div>
-                            </a>
-
-
-                            <!-- Item Delete button-->
-                            <div @click="itemDelete(item)"
-                                 class="cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 whitespace-no-wrap"
-                                 title="Zmazať položku">
-                                <div class="flex">
-                                    <svg class="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 20 20">
-                                        <path
-                                            d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
-                                    </svg>
-                                    Zmazať
-                                </div>
-                            </div>
-                        </slot>
-                    </nav-drop-down>
-
+                    <drop-down-component
+                        :items="item"
+                        @fromItem="clickOnItem"
+                    ></drop-down-component>
                 </div>
 
                 <!--  Votes Buttons-->
@@ -80,24 +66,37 @@
                     <p v-html="item.body"></p>
                     <!--  File-->
                     <div v-if="files.length">
-                        <h5 class="mt-4" style="border-bottom: 2px solid silver">Príloha</h5>
+                        <h5
+                            class="mt-4"
+                            style="border-bottom: 2px solid silver"
+                        >
+                            Príloha
+                        </h5>
                         <div v-for="(file, index) in files" :key="file.id">
-                            <a class="mr-2 hover:text-blue-500 " target="_blank" :title="file.org_name"
-                               :href="'/file/'+ file.id + '/' + file.filename +'/file/show'">
-                                {{ index +1 }}. Príloha
+                            <a
+                                class="mr-2 hover:text-blue-500"
+                                target="_blank"
+                                :title="file.org_name"
+                                :href="
+                                    '/file/' +
+                                    file.id +
+                                    '/' +
+                                    file.filename +
+                                    '/file/show'
+                                "
+                            >
+                                {{ index + 1 }}. Príloha
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
 
         <!--  Aside part-->
-        <div class="border-gray-300 border-2 sm:mx-3 p-4 flex flex-col md:w-4/12">
-
+        <div
+            class="border-gray-300 border-2 sm:mx-3 p-4 flex flex-col md:w-4/12"
+        >
             <vote-start-button :item="item"></vote-start-button>
 
             <!--            &lt;!&ndash;Vote results Variant I.&ndash;&gt;-->
@@ -123,8 +122,19 @@
             <interpellation :item="item"></interpellation>
 
             <div class="">
-                <div class="flex my-5 items-center justify-between border-t-2 border-b-2 border-gray-300" v-if="item.vote_status || votes.length > 0">
-                    <h2 class="text-lg font-semibold whitespace-no-wrap">Výsledky hlasovania</h2>
+                <div
+                    class="
+                        flex
+                        my-5
+                        items-center
+                        justify-between
+                        border-t-2 border-b-2 border-gray-300
+                    "
+                    v-if="item.vote_status || votes.length > 0"
+                >
+                    <h2 class="text-lg font-semibold whitespace-no-wrap">
+                        Výsledky hlasovania
+                    </h2>
                     <div class="text-sm cursor-pointer">
                         <span title="Áno" v-text="countYes"></span>
                         -
@@ -134,80 +144,114 @@
                     </div>
                 </div>
 
-
                 <ul class="">
-                    <li v-for="vote in item.votes" :key="vote.id" class="flex justify-between border-b-2 border-dotted">
-                        {{ vote.user.last_name }}  {{ vote.user.first_name }}
+                    <li
+                        v-for="vote in item.votes"
+                        :key="vote.id"
+                        class="flex justify-between border-b-2 border-dotted"
+                    >
+                        {{ vote.user.last_name }} {{ vote.user.first_name }}
                         <div v-if="item.vote_type == 0">
-                            <span v-if="vote.vote == 1" class="font-semibold">Áno</span>
-                            <span v-if="vote.vote == 0" class="font-semibold">Nie</span>
-                            <span v-if="vote.vote == 2" class="font-semibold">Zdržal</span>
+                            <span v-if="vote.vote == 1" class="font-semibold"
+                                >Áno</span
+                            >
+                            <span v-if="vote.vote == 0" class="font-semibold"
+                                >Nie</span
+                            >
+                            <span v-if="vote.vote == 2" class="font-semibold"
+                                >Zdržal</span
+                            >
                         </div>
                         <span v-else class="font-semibold">Hlasoval</span>
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import moment from "moment";
-    import publishedButton from "./publishedButton";
-    import interpellation from "./InterpellationCard";
-    import navDropDown from "../modules/navigation/navDropDown";
-    import {bus} from "../app";
+import { mapState } from "vuex";
+import moment from "moment";
+import publishedButton from "./publishedButton";
+import interpellation from "./InterpellationCard";
 
-    export default {
-        props: ['pitem'],
-        components: {publishedButton, interpellation},
-        computed: {
-            countYes() {
-                return this.votes.filter(value => value.vote == 1).length
-            },
-            countUndecided() {
-                return this.votes.filter(value => value.vote == 2).length
-            },
-            countNo() {
-                return this.votes.filter(value => value.vote == 0).length
-            },
+import dropDownComponent from "../components/dropDown/dropDownComponent";
 
-            notificationStatus() {
-                return this.item.notification == null ? 'Notifikácia hlasovať' : moment(this.item.notification).format('DD. MM. YYYY, k:mm');
-            },
-
-            ...mapState({
-                item: state => state.items.item,
-                user: state => state.items.user,
-                votes: state => state.items.votes,
-                interpellations: state => state.items.interpellations,
-                files: state => state.items.files,
-            }),
+export default {
+    props: ["pitem"],
+    components: { publishedButton, interpellation, dropDownComponent },
+    computed: {
+        countYes() {
+            return this.votes.filter((value) => value.vote == 1).length;
         },
-        created: function () {
-            this.$store.dispatch('items/getItem', this.pitem.id)
+        countUndecided() {
+            return this.votes.filter((value) => value.vote == 2).length;
         },
-        methods: {
-            itemDelete(item) {
-                axios.delete('/items/' + item.id)
-                    .then(
-                        location.href = '/items',
-                        // window.location.reload()
-                    )
-            },
-            saveNotification() {
-                this.$store.dispatch('items/update', {
-                    notification: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    id: this.item.id
-                })
-            },
+        countNo() {
+            return this.votes.filter((value) => value.vote == 0).length;
+        },
 
-            openInterpellation() {
-                bus.$emit('imterpellationlist', this.item);
+        notificationStatus() {
+            return this.item.notification == null
+                ? "Notifikácia hlasovať"
+                : moment(this.item.notification).format("DD. MM. YYYY, k:mm");
+        },
+
+        ...mapState({
+            item: (state) => state.items.item,
+            user: (state) => state.items.user,
+            votes: (state) => state.items.votes,
+            interpellations: (state) => state.items.interpellations,
+            files: (state) => state.items.files,
+        }),
+    },
+    created: function () {
+        this.$store.dispatch("items/getItem", this.pitem.id);
+    },
+    methods: {
+        clickOnItem(action, item) {
+            if (action == "moveToItems") {
+                this.$store.dispatch("meetings/deleteItemMeeting", item);
             }
-        }
 
-    }
+            if (action == "notifiToVote") {
+                this.sendNotification();
+            }
+
+            if (action == "published") {
+                if (item.votes.length) {
+                    alert(
+                        "O bode sa hlasovalo. Publikovanie sa nemôže zastaviť!"
+                    );
+                    return;
+                }
+                this.updateItem({
+                    id: item.id,
+                    published: !item.published,
+                });
+            }
+        },
+
+        itemDelete(item) {
+            axios.delete("/items/" + item.id).then(
+                (location.href = "/items")
+                // window.location.reload()
+            );
+        },
+        saveNotification() {
+            this.$store.dispatch("items/update", {
+                notification: new Date()
+                    .toISOString()
+                    .slice(0, 19)
+                    .replace("T", " "),
+                id: this.item.id,
+            });
+        },
+
+        openInterpellation() {
+            bus.$emit("imterpellationlist", this.item);
+        },
+    },
+};
 </script>

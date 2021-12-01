@@ -13,12 +13,4 @@ class MeetingItemController extends Controller
         return view('council.meeting.createItem', compact('meeting'));
     }
 
-    public function update(Request $request, $meeting, Item $item) {
-
-        $item->meetings()->attach($request->meeting);
-
-        return  back();
-    }
-
-
 }

@@ -33,7 +33,7 @@ class ItemResource extends JsonResource
 
             'navigations' => [
 
-                'published' => $this->when(auth()->user()->can("delete", $this->resource), [
+                'published' => $this->when(auth()->user()->can("notifiToVote", $this->resource), [
                     'name' => 'Publikovať položku',
                     'title' => 'Publikovať bod programu',
                     'action' => 'published',
@@ -50,7 +50,7 @@ class ItemResource extends JsonResource
                     'icon' => 'iconEdit',
                 ]),
 
-                'notifiToVote' => $this->when(auth()->user()->can("delete", $this->resource), [
+                'notifiToVote' => $this->when(auth()->user()->can("notifiToVote", $this->resource), [
                     'name' => 'Výzva k hlasovanie',
                     'title' => 'Zaslať emailovú výzvu na hlasovanie',
                     'action' => 'notifiToVote',
@@ -59,7 +59,7 @@ class ItemResource extends JsonResource
                     'icon' => 'iconEnvelop',
                 ]),
 
-                'moveToItems' => $this->when(auth()->user()->can("delete", $this->resource), [
+                'moveToItems' => $this->when(auth()->user()->can("notifiToVote", $this->resource), [
                     'name' => 'Späť do návrhoch',
                     'title' => 'Stiahnúť návrh z rokovania.',
                     'action' => 'moveToItems',
@@ -67,6 +67,15 @@ class ItemResource extends JsonResource
                     'url' => '',
                     'icon' => 'iconArrow',
                 ]),
+
+                'delete' =>  $this->when(! auth()->user()->can("notifiToVote", $this->resource), [
+                    'name' => 'Zmazať',
+                    'title' => 'Zmazať položku',
+                    'action' => 'delete',
+                    'typeOfButton' => 'button',
+                    'url' => '',
+                    'icon' => 'iconDelete',
+                ])
             ],
         ];
     }

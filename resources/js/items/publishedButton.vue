@@ -25,7 +25,7 @@
                     alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
                     return
                 }
-                this.$store.dispatch('items/update', {id: item.id, published: ! item.published})
+                this.$store.dispatch('items/updateItem', {id: item.id, published: ! item.published})
             }
         }
 

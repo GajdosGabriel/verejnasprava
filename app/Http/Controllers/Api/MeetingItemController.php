@@ -20,7 +20,17 @@ class MeetingItemController extends Controller
         return redirect()->route('meetings.show', $meeting->id);
     }
 
-    public function destroy($meeting , Item $item) {
+    public function update(Request $request, $meeting, Item $item)
+    {
+
+        $item->meetings()->attach($request->meeting);
+
+        return  back();
+    }
+
+
+    public function destroy($meeting, Item $item)
+    {
         $item->meetings()->detach();
     }
 }
