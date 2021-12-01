@@ -41,7 +41,8 @@ class ContactResource extends JsonResource
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
-                    'url' => '',
+                    'url' => route('organizations.contacts.edit', [$this->organization_id, $this->id]),
+                    'typeOfButton' => 'button',
                     'icon' => 'iconEdit',
                 ]),
 

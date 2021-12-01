@@ -44,7 +44,7 @@ const actions = {
                 "notification/NEW_NOTIFICATION",
                 {
                     type: "bg-green-400",
-                    message: "Doklad uložený!"
+                    message: "Doklad zmazaný!"
                 },
                 { root: true }
             )

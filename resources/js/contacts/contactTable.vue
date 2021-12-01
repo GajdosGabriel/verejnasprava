@@ -31,9 +31,9 @@
                         <a
                             :href="
                                 /organizations/ +
-                                    contact.organization_id +
-                                    /contacts/ +
-                                    contact.id
+                                contact.organization_id +
+                                /contacts/ +
+                                contact.id
                             "
                             >{{ contact.name }}</a
                         >
@@ -54,9 +54,7 @@
                     <td class="px-4 py-2 border whitespace-no-wrap">
                         <a href="tel: contact.phone">{{ contact.phone }}</a>
                     </td>
-                    <td
-                        class="px-4 py-2 border text-center"
-                    >
+                    <td class="px-4 py-2 border text-center">
                         <drop-down-component
                             :items="contact"
                             @fromItem="clickOnItem"
@@ -99,36 +97,36 @@ export default {
         formEdit,
         newContactButton,
         searchForm,
-        dropDownComponent
+        dropDownComponent,
     },
     mixins: [filterMixin],
-    data: function() {
+    data: function () {
         return {
             numeral: numeral,
             search: "",
             url:
                 "/api/organizations/" +
                 this.user.active_organization +
-                "/contacts"
+                "/contacts",
         };
     },
     computed: mapState({
-        contacts: state => state.contacts.contacts
+        contacts: (state) => state.contacts.contacts,
     }),
     created() {
         this.fetchContacts(this.url);
     },
     watch: {
-        search: function(val) {
+        search: function (val) {
             this.fetchContacts(this.url + "?multi=" + this.search);
-        }
+        },
     },
     methods: {
         ...mapActions([
             "newContactToggle",
             "openEditForm",
             "filterContact",
-            "fetchContacts"
+            "fetchContacts",
         ]),
 
         changePaginateUrl(path) {
@@ -148,9 +146,11 @@ export default {
             }
 
             if (action == "delete") {
-                this.deletePost(post);
+                this.$store.dispatch(
+                    "contacts/deleteContact", post
+                );
             }
-        }
-    }
+        },
+    },
 };
 </script>

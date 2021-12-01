@@ -2906,8 +2906,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -2968,7 +2966,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
       }
 
       if (action == "delete") {
-        this.deletePost(post);
+        this.$store.dispatch("contacts/deleteContact", post);
       }
     }
   })
@@ -9759,7 +9757,7 @@ var actions = {
 
       commit("notification/NEW_NOTIFICATION", {
         type: "bg-green-400",
-        message: "Doklad uložený!"
+        message: "Doklad zmazaný!"
       }, {
         root: true
       }); // window.location.reload();
