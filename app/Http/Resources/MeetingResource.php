@@ -44,7 +44,7 @@ class MeetingResource extends JsonResource
 
                 'published' => $this->when(auth()->user()->can("view", $this->resource), [
                     'name' => 'Publikovať zasadnutie',
-                    'title' => 'Publikovať zqasadnutie',
+                    'title' => 'Publikovať zasadnutie',
                     'action' => 'published',
                     'typeOfButton' => 'button',
                     'url' => route('council.meeting.create', [$this->council_id, $this->id]),

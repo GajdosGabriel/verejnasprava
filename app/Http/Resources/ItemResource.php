@@ -30,6 +30,44 @@ class ItemResource extends JsonResource
             'files' => $this->files,
             'votes' => $this->votes,
             'user' => $this->user,
+
+            'navigations' => [
+
+                'published' => $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => 'Publikovať položku',
+                    'title' => 'Publikovať bod programu',
+                    'action' => 'published',
+                    'typeOfButton' => 'button',
+                    'url' => route('items.update', [$this->id]),
+                    'icon' => 'iconPublished',
+                ]),
+
+                'edit' => $this->when(auth()->user()->can("update", $this->resource), [
+                    'name' => 'Upraviť položku',
+                    'title' => 'Upraviť návrh',
+                    'action' => 'edit',
+                    'url' => route('items.edit', [$this->id]),
+                    'icon' => 'iconEdit',
+                ]),
+
+                'notifiToVote' => $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => 'Výzva k hlasovanie',
+                    'title' => 'Zaslať emailovú výzvu na hlasovanie',
+                    'action' => 'notifiToVote',
+                    'typeOfButton' => 'button',
+                    'url' => '',
+                    'icon' => 'iconEnvelop',
+                ]),
+
+                'moveToItems' => $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => 'Späť do návrhoch',
+                    'title' => 'Stiahnúť návrh z rokovania.',
+                    'action' => 'moveToItems',
+                    'typeOfButton' => 'button',
+                    'url' => '',
+                    'icon' => 'iconArrow',
+                ]),
+            ],
         ];
     }
 }

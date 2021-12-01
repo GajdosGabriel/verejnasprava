@@ -20,9 +20,5 @@ class MeetingItemController extends Controller
         return  back();
     }
 
-   
 
-    public function destroy($meeting , Item $item) {
-        $item->meetings()->detach();
-    }
 }
