@@ -46,6 +46,7 @@ class MeetingResource extends JsonResource
                     'name' => 'Publikovať zasadnutie',
                     'title' => 'Publikovať zqasadnutie',
                     'action' => 'published',
+                    'typeOfButton' => 'button',
                     'url' => route('council.meeting.create', [$this->council_id, $this->id]),
                     'icon' => 'iconPublished',
                 ]),
@@ -56,6 +57,15 @@ class MeetingResource extends JsonResource
                     'action' => 'edit',
                     'url' => route('meetings.edit', [$this->id]),
                     'icon' => 'iconEdit',
+                ]),
+
+                'orderItem' => $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => 'Zmeniť poradie',
+                    'title' => 'Zmeniť poradie programu',
+                    'action' => 'orderItem',
+                    'typeOfButton' => 'button',
+                    'url' => '',
+                    'icon' => 'iconOrderItem',
                 ]),
 
                 'delete' =>  $this->when(auth()->user()->can("delete", $this->resource), [

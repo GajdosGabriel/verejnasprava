@@ -160,7 +160,9 @@
                         href="#"
                         title="Notifikácia pre voliteľov"
                     >
-                        <div class="flex" @click="changeOrderItems">
+                        <div class="flex" 
+
+                        >
                             <svg
                                 class="w-4 h-4 mr-2 fill-current"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -435,14 +437,21 @@ export default {
                     },
                 ]);
             }
+
+            if (action == "orderItem") {
+                bus.$emit("closeDropDown", () => {
+                    this.isOpen = false;
+                });
+                this.positionSaveButton = !this.positionSaveButton;
+            }
         },
 
-        changeOrderItems() {
-            bus.$emit("closeDropDown", () => {
-                this.isOpen = false;
-            });
-            this.positionSaveButton = !this.positionSaveButton;
-        },
+        // changeOrderItems() {
+        //     bus.$emit("closeDropDown", () => {
+        //         this.isOpen = false;
+        //     });
+        //     this.positionSaveButton = !this.positionSaveButton;
+        // },
         resetMeetingUser() {
             this.$store.dispatch("meetings/deleteMeetingUsers", {
                 id: this.meeting.id,
@@ -461,8 +470,6 @@ export default {
                 id: this.meeting.id,
             });
         },
-
-  
 
         savePosition() {
             this.items.forEach((item, key) => {

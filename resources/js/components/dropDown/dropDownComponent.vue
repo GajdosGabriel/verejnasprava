@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import iconOrderItem from "./dropDownIcons/orderItemIcon.vue";
 import iconPublished from "./dropDownIcons/publishedIcon.vue";
 import iconCreate from "./dropDownIcons/createIcon.vue";
 import iconShow from "./dropDownIcons/showIcon.vue";
@@ -103,7 +104,7 @@ import { createdMixin } from "../../mixins/createdMixin";
 
 export default {
     props: ["items"],
-    components: { iconEdit, iconDelete, iconShow, iconCreate, iconPublished },
+    components: { iconEdit, iconDelete, iconShow, iconCreate, iconPublished, iconOrderItem },
     mixins: [createdMixin],
     data() {
         return {
