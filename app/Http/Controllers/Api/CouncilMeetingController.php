@@ -20,7 +20,7 @@ class CouncilMeetingController extends Controller
         return new MeetingResource($meeting);
     }
 
-    public function update(Council $council, Meeting $meeting, Request $request,)
+    public function update(Council $council, Meeting $meeting, Request $request)
     {
         $meeting->update($request->all());
 

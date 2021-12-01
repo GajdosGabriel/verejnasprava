@@ -5279,11 +5279,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _items_itemList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/itemList */ "./resources/js/items/itemList.vue");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-/* harmony import */ var _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/dropDown/dropDownComponent */ "./resources/js/components/dropDown/dropDownComponent.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _items_itemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../items/itemList */ "./resources/js/items/itemList.vue");
+/* harmony import */ var _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/dropDown/dropDownComponent */ "./resources/js/components/dropDown/dropDownComponent.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5460,205 +5458,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 
@@ -5667,10 +5466,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["pmeeting"],
   components: {
-    itemList: _items_itemList__WEBPACK_IMPORTED_MODULE_3__["default"],
-    navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_2__["default"],
+    itemList: _items_itemList__WEBPACK_IMPORTED_MODULE_2__["default"],
     draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_0___default()),
-    dropDownComponent: _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
+    dropDownComponent: _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -5689,7 +5487,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     notificationStatus: function notificationStatus() {
       return this.meeting.notification == null ? "Pozvánka na zasadnutie" : moment__WEBPACK_IMPORTED_MODULE_1___default()(this.meeting.notification).format("DD. MM. YYYY, HH:mm");
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
     meeting: function meeting(state) {
       return state.meetings.meeting;
     },
@@ -5724,18 +5522,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (action == "orderItem") {
-        _app__WEBPACK_IMPORTED_MODULE_4__.bus.$emit("closeDropDown", function () {
+        bus.$emit("closeDropDown", function () {
           _this2.isOpen = false;
         });
         this.positionSaveButton = !this.positionSaveButton;
       }
     },
-    // changeOrderItems() {
-    //     bus.$emit("closeDropDown", () => {
-    //         this.isOpen = false;
-    //     });
-    //     this.positionSaveButton = !this.positionSaveButton;
-    // },
     resetMeetingUser: function resetMeetingUser() {
       this.$store.dispatch("meetings/deleteMeetingUsers", {
         id: this.meeting.id
@@ -77328,257 +77120,6 @@ var render = function () {
             attrs: { items: _vm.meeting },
             on: { fromItem: _vm.clickOnItem },
           }),
-          _vm._v(" "),
-          _vm.$auth.can("council delete")
-            ? _c(
-                "nav-drop-down",
-                [
-                  _vm._t("default", function () {
-                    return [
-                      _c("div", { staticClass: "py-1" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "\n                            block\n                            px-4\n                            py-2\n                            text-sm\n                            leading-5\n                            text-gray-700\n                            hover:bg-gray-100 hover:text-gray-900\n                            focus:outline-none\n                            focus:bg-gray-100\n                            focus:text-gray-900\n                            whitespace-no-wrap\n                        ",
-                            attrs: {
-                              href:
-                                "/meetings/" + _vm.meeting.id + "/items/create",
-                              title: "Vytvoriť nové zasadnutie",
-                            },
-                          },
-                          [
-                            _c("div", { staticClass: "flex" }, [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "w-4 h-4 mr-2 fill-current",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 20 20",
-                                  },
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: {
-                                      d: "M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zm-5 8h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z",
-                                    },
-                                  }),
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                            Nový návrh\n                        "
-                              ),
-                            ]),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "\n                        block\n                        px-4\n                        py-2\n                        text-sm\n                        leading-5\n                        text-gray-700\n                        hover:bg-gray-100 hover:text-gray-900\n                        focus:outline-none\n                        focus:bg-gray-100\n                        focus:text-gray-900\n                        whitespace-no-wrap\n                    ",
-                          attrs: { href: "#", title: "Zmazať položku" },
-                        },
-                        [
-                          _vm.meeting.published
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass: "flex",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.publishedMeeting(
-                                        !_vm.meeting.published
-                                      )
-                                    },
-                                  },
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2 fill-current",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M12.81 4.36l-1.77 1.78a4 4 0 0 0-4.9 4.9l-2.76 2.75C2.06 12.79.96 11.49.2 10a11 11 0 0 1 12.6-5.64zm3.8 1.85c1.33 1 2.43 2.3 3.2 3.79a11 11 0 0 1-12.62 5.64l1.77-1.78a4 4 0 0 0 4.9-4.9l2.76-2.75zm-.25-3.99l1.42 1.42L3.64 17.78l-1.42-1.42L16.36 2.22z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                        Zastaviť publikovanie\n                    "
-                                  ),
-                                ]
-                              )
-                            : _c(
-                                "div",
-                                {
-                                  staticClass: "flex",
-                                  class: {
-                                    "text-red-700": !_vm.meeting.published,
-                                  },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.publishedMeeting()
-                                    },
-                                  },
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "w-4 h-4 mr-2 fill-current",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                      },
-                                    },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          d: "M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z",
-                                        },
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                        Publikovať zasadnutie\n                    "
-                                  ),
-                                ]
-                              ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "\n                        block\n                        px-4\n                        py-2\n                        text-sm\n                        leading-5\n                        text-gray-700\n                        hover:bg-gray-100 hover:text-gray-900\n                        focus:outline-none\n                        focus:bg-gray-100\n                        focus:text-gray-900\n                        whitespace-no-wrap\n                    ",
-                          attrs: {
-                            href: "/meetings/" + _vm.meeting.id + "/edit",
-                            title: "Zmazať položku",
-                          },
-                        },
-                        [
-                          _c("div", { staticClass: "flex" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20",
-                                },
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d: "M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z",
-                                  },
-                                }),
-                              ]
-                            ),
-                            _vm._v(
-                              "\n                        Upraviť zasadnutie\n                    "
-                            ),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "\n                        whitespace-no-wrap\n                        block\n                        px-4\n                        py-2\n                        text-sm\n                        leading-5\n                        text-gray-700\n                        hover:bg-gray-100 hover:text-gray-900\n                        focus:outline-none\n                        focus:bg-gray-100\n                        focus:text-gray-900\n                        whitespace-no-wrap\n                    ",
-                          attrs: {
-                            href: "#",
-                            title: "Notifikácia pre voliteľov",
-                          },
-                        },
-                        [
-                          _c("div", { staticClass: "flex" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20",
-                                },
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d: "M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z",
-                                  },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("Zmeniť poradie")]),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "\n                        cursor-pointer\n                        block\n                        px-4\n                        py-2\n                        text-sm\n                        leading-5\n                        text-gray-700\n                        hover:bg-gray-100 hover:text-gray-900\n                        focus:outline-none\n                        focus:bg-gray-100\n                        focus:text-gray-900\n                        whitespace-no-wrap\n                    ",
-                          attrs: {
-                            href:
-                              "/meet/" +
-                              _vm.meeting.id +
-                              "/" +
-                              _vm.meeting.slug +
-                              "/meeting/delete",
-                            title: "Zmazať položku",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.deleteMeeting(_vm.meeting)
-                            },
-                          },
-                        },
-                        [
-                          _c("div", { staticClass: "flex" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-4 h-4 mr-2 fill-current",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20",
-                                },
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d: "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z",
-                                  },
-                                }),
-                              ]
-                            ),
-                            _vm._v(
-                              "\n                        Odstrániť\n                    "
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]
-                  }),
-                ],
-                2
-              )
-            : _vm._e(),
         ],
         1
       ),
