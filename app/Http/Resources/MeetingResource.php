@@ -62,6 +62,7 @@ class MeetingResource extends JsonResource
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
+                    'typeOfButton' => 'button',
                     'url' => route('councils.meetings.destroy', [$this->council_id, $this->id]),
                     'icon' => 'iconDelete',
                 ])

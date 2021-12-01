@@ -10,6 +10,11 @@
                 </div>
 
                 <div class="flex whitespace-no-wrap">
+                    <drop-down-component
+                        :items="council"
+                        @fromItem="clickOnItem"
+                    ></drop-down-component>
+
                     <nav-drop-down v-if="$auth.can('council delete')">
                         <slot>
                             <a
@@ -27,9 +32,7 @@
                                     whitespace-no-wrap
                                 "
                                 :href="
-                                    'council/' +
-                                    council.id +
-                                    '/meeting/create'
+                                    'council/' + council.id + '/meeting/create'
                                 "
                                 title="Vytvoriť nové zasadnutie"
                             >
@@ -165,9 +168,10 @@ const { mapActions } = createNamespacedHelpers("modals");
 import navDropDown from "../modules/navigation/navDropDown";
 import modaledit from "./modalEdit";
 import modaldelete from "./modalDelete";
+import dropDownComponent from "../components/dropDown/dropDownComponent";
 
 export default {
-    components: { navDropDown, modaledit, modaldelete },
+    components: { navDropDown, modaledit, modaldelete, dropDownComponent },
     data: function () {
         return {
             moment: require("moment"),
@@ -179,6 +183,15 @@ export default {
     }),
 
     methods: {
+        clickOnItem(action, meeting) {
+            if (action == "delete") {
+                this.$store.dispatch(
+                    "councils/deleteCouncil",
+                    meeting.navigations.delete.url
+                );
+            }
+
+        },
         modalEdit: function (item) {
             this.opencomponent = "modaledit";
             this.$store.dispatch("modals/open_form", item);

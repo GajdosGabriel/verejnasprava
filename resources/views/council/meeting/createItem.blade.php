@@ -14,7 +14,7 @@
 
         <x-page.page-title>
             <x-slot name="title">
-                Nový návrh programu
+                Nový bod programu
             </x-slot>
 
             <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>

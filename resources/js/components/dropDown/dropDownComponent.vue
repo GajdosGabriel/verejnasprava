@@ -44,7 +44,7 @@
         >
             <div v-for="(item, index) in items.navigations" :key="index">
                 <button
-                    v-if="item.action == 'delete'"
+                    v-if="item.typeOfButton"
                     class="
                         flex
                         w-full

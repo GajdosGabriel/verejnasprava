@@ -49,6 +49,7 @@ class ContactResource extends JsonResource
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
+                    'typeOfButton' => 'button',
                     'url' => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
                 ])

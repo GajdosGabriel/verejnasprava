@@ -3623,6 +3623,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navigation/navDropDown */ "./resources/js/modules/navigation/navDropDown.vue");
 /* harmony import */ var _modalEdit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalEdit */ "./resources/js/councils/modalEdit.vue");
 /* harmony import */ var _modalDelete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modalDelete */ "./resources/js/councils/modalDelete.vue");
+/* harmony import */ var _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/dropDown/dropDownComponent */ "./resources/js/components/dropDown/dropDownComponent.vue");
+//
+//
+//
 //
 //
 //
@@ -3791,11 +3795,13 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     navDropDown: _modules_navigation_navDropDown__WEBPACK_IMPORTED_MODULE_1__["default"],
     modaledit: _modalEdit__WEBPACK_IMPORTED_MODULE_2__["default"],
-    modaldelete: _modalDelete__WEBPACK_IMPORTED_MODULE_3__["default"]
+    modaldelete: _modalDelete__WEBPACK_IMPORTED_MODULE_3__["default"],
+    dropDownComponent: _components_dropDown_dropDownComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -3809,6 +3815,11 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createNamespace
     }
   }),
   methods: {
+    clickOnItem: function clickOnItem(action, meeting) {
+      if (action == "delete") {
+        this.$store.dispatch("councils/deleteCouncil", meeting.navigations["delete"].url);
+      }
+    },
     modalEdit: function modalEdit(item) {
       this.opencomponent = "modaledit";
       this.$store.dispatch("modals/open_form", item);
@@ -73588,7 +73599,7 @@ var render = function () {
           },
           _vm._l(_vm.items.navigations, function (item, index) {
             return _c("div", { key: index }, [
-              item.action == "delete"
+              item.typeOfButton
                 ? _c(
                     "button",
                     {
@@ -75465,6 +75476,11 @@ var render = function () {
               "div",
               { staticClass: "flex whitespace-no-wrap" },
               [
+                _c("drop-down-component", {
+                  attrs: { items: council },
+                  on: { fromItem: _vm.clickOnItem },
+                }),
+                _vm._v(" "),
                 _vm.$auth.can("council delete")
                   ? _c(
                       "nav-drop-down",

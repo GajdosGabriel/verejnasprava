@@ -34,6 +34,15 @@ class CouncilResource extends JsonResource
             ],
 
             'navigations' => [
+
+                'create' => $this->when(auth()->user()->can("create", $this->resource), [
+                    'name' => 'Nové zasadnutie',
+                    'title' => 'Vytvoriť nové zasadnutie zastupiteľstva',
+                    'action' => 'create',
+                    'url' => route('council.meeting.create', [$this->organization_id]),
+                    'icon' => 'iconCreate',
+                ]),
+
                 'edit' => $this->when(auth()->user()->can("update", $this->resource), [
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
@@ -46,6 +55,7 @@ class CouncilResource extends JsonResource
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
+                    'typeOfButton' => 'button',
                     'url' => route('organizations.councils.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
                 ])

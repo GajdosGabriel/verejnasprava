@@ -50,6 +50,7 @@ class PostResource extends JsonResource
                     'name' => 'Zmazať',
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
+                    'typeOfButton' => 'button',
                     'url' => route('organizations.posts.destroy', [$this->organization_id, $this->id]),
                     'icon' => 'iconDelete',
                 ])
