@@ -29,7 +29,6 @@ class OrganizationContactController extends Controller
 
     public function update(Organization $organization, Contact $contact, ContactCreateRequest $request)
     {
-        //        $this->authorize('update', $company);
         $contact->update($request->all());
         //        flash()->success('Dodávateľ aktualizovaný!');
         //        return redirect()->route('contact.index');

@@ -15,7 +15,8 @@
         <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
     </x-page.page-title>
 
-    <h6>Kód chyby 403</h6>
+    <h6 class="mb-10">Kód chyby 403</h6>
+    <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
 </x-page.container>
 
 @endsection

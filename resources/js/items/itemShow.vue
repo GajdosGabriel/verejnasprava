@@ -239,8 +239,8 @@ export default {
                 // window.location.reload()
             );
         },
-        saveNotification() {
-            this.$store.dispatch("items/update", {
+        sendNotification() {
+            this.$store.dispatch("items/updateItem", {
                 notification: new Date()
                     .toISOString()
                     .slice(0, 19)

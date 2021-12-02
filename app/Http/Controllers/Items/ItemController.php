@@ -51,6 +51,7 @@ class ItemController extends Controller
     {
         $item->update(array_merge($request->except('filename', 'fileDelete'), ['user_id' => auth()->user()->id]));
         $item->saveFile($request);
+        session()->flash('flash', 'Návrh bol aktualizovaný.');
         return redirect()->route('items.show', $item->id);
     }
 

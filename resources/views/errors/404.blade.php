@@ -16,7 +16,8 @@
         <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
     </x-page.page-title>
 
-    <h6>Ospravedlňujeme sa, niekde sa stala chyba 404</h6>
+    <h6 class="mb-10">Ospravedlňujeme sa, niekde sa stala chyba 404</h6>
+    <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
 </x-page.container>
 
 @endsection

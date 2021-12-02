@@ -5034,8 +5034,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios["delete"]("/items/" + item.id).then(location.href = "/items" // window.location.reload()
       );
     },
-    saveNotification: function saveNotification() {
-      this.$store.dispatch("items/update", {
+    sendNotification: function sendNotification() {
+      this.$store.dispatch("items/updateItem", {
         notification: new Date().toISOString().slice(0, 19).replace("T", " "),
         id: this.item.id
       });
@@ -73430,7 +73430,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "w-5 h-5",
+      staticClass: "w-4 h-4",
       attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" },
     },
     [_c("path", { attrs: { d: "M10 7H2v6h8v5l8-8-8-8v5z" } })]
@@ -73462,7 +73462,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "h-5 w-5",
+      staticClass: "w-4 h-4",
       attrs: {
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 20 20",
@@ -73582,7 +73582,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "w-5 h-5",
+      staticClass: "w-4 h-4",
       attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" },
     },
     [
@@ -73620,7 +73620,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "w-5 h-5",
+      staticClass: "w-4 h-4",
       attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" },
     },
     [
@@ -73658,7 +73658,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "w-5 h-5",
+      staticClass: "w-4 h-4",
       attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" },
     },
     [
@@ -73696,7 +73696,7 @@ var render = function () {
   return _c(
     "svg",
     {
-      staticClass: "w-5 h-5",
+      staticClass: "w-4 h-4",
       attrs: {
         xmlns: "http://www.w3.org/2000/svg",
         fill: "none",
