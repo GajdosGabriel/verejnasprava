@@ -3578,6 +3578,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -6342,6 +6344,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -7874,6 +7881,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -8270,7 +8280,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.$auth = new _Auth__WEBPACK
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(_braid_vue_formulate__WEBPACK_IMPORTED_MODULE_3__["default"], {
   classes: {
     outer: "mb-4",
-    input: "w-full px-3 py-2 border border-gray-400 border-box rounded leading-none focus:border-green-500 outline-none",
+    input: "",
     label: "font-medium text-sm",
     help: "text-xs mb-1 text-gray-600",
     error: "text-red-700 text-xs mb-1"
@@ -8399,10 +8409,9 @@ var createdMixin = {
         self.isOpen = false;
       }
     });
-    var that = this;
     document.addEventListener('keyup', function (evt) {
       if (evt.keyCode === 27) {
-        that.open = false;
+        self.isOpen = false;
       }
     });
   }
@@ -75230,6 +75239,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Názov zastupiteľstva",
                       validation: "bail|required",
                       "validation-name": "Názov zastupiteľstva",
@@ -75247,6 +75257,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Popis zastupiteľstva",
                       placeholder: "Popis zastupiteľstva",
                     },
@@ -75296,7 +75307,7 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c("FormulateInput", {
-                    staticClass: "btn btn-primary mt-4",
+                    staticClass: "btn btn-primary mt-4 text-center",
                     attrs: { type: "submit", label: "Uložiť" },
                   }),
                 ],
@@ -78041,6 +78052,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Firma",
                       validation: "bail|required",
                       "validation-name": "Názov firmy",
@@ -78058,6 +78070,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Ulica a číslo",
                       validation: "bail|required",
                       "validation-name": "Adresa",
@@ -78075,6 +78088,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Mesto",
                       validation: "bail|required",
                       "validation-name": "Mesto",
@@ -78092,6 +78106,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "PSČ",
                       validation: "bail|required",
                       "validation-name": "Psč",
@@ -78109,6 +78124,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "email",
+                      "input-class": "w-full",
                       label: "Email",
                       validation: "bail|email",
                       placeholder: "Váš email",
@@ -78235,7 +78251,7 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c("FormulateInput", {
-                    staticClass: "btn btn-primary mt-4",
+                    staticClass: "btn btn-primary mt-4 text-center",
                     attrs: { type: "submit", label: "Uložiť" },
                   }),
                 ],
@@ -80288,6 +80304,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Meno",
                       validation: "bail|required",
                       "validation-name": "Meno",
@@ -80305,6 +80322,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "text",
+                      "input-class": "w-full",
                       label: "Priezvisko",
                       validation: "bail|required",
                       "validation-name": "Priezvisko",
@@ -80322,6 +80340,7 @@ var render = function () {
                   _c("FormulateInput", {
                     attrs: {
                       type: "email",
+                      "input-class": "w-full",
                       label: "Email",
                       validation: "bail|required|email",
                       "validation-name": "Email",
@@ -80337,7 +80356,7 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c("FormulateInput", {
-                    staticClass: "btn btn-primary mt-4",
+                    staticClass: "btn btn-primary mt-4 text-center",
                     attrs: { type: "submit", label: "Uložiť" },
                   }),
                 ],

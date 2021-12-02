@@ -11,6 +11,7 @@
             <FormulateForm @submit="update">
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Meno"
                     validation="bail|required"
                     validation-name="Meno"
@@ -20,6 +21,7 @@
 
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Priezvisko"
                     validation="bail|required"
                     validation-name="Priezvisko"
@@ -29,6 +31,7 @@
 
                 <FormulateInput
                     type="email"
+                    input-class="w-full"
                     label="Email"
                     validation="bail|required|email"
                     validation-name="Email"
@@ -39,7 +42,7 @@
                 <FormulateInput
                     type="submit"
                     label="Uložiť"
-                    class="btn btn-primary mt-4"
+                    class="btn btn-primary mt-4 text-center"
                 />
             </FormulateForm>
         </div>

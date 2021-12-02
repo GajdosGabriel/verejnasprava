@@ -43,7 +43,7 @@ class MeetingResource extends JsonResource
                 ]),
 
                 'published' => $this->when(auth()->user()->can("view", $this->resource), [
-                    'name' => 'Publikovať zasadnutie',
+                    'name' => $this->published ? 'Zastaviť publikovanie' : 'Publikovať zasadnutie',
                     'title' => 'Publikovať zasadnutie',
                     'action' => 'published',
                     'typeOfButton' => 'button',

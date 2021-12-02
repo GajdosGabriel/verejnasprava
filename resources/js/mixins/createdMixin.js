@@ -15,10 +15,9 @@ export const createdMixin = {
             }
         });
 
-        let that = this;
         document.addEventListener('keyup', function (evt) {
             if (evt.keyCode === 27) {
-                that.open = false;
+                self.isOpen = false;
             }
         });
     },

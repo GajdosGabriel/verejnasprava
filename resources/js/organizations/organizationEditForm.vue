@@ -11,6 +11,7 @@
             <FormulateForm @submit="updateOrg">
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Firma"
                     validation="bail|required"
                     validation-name="Názov firmy"
@@ -20,6 +21,7 @@
 
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Ulica a číslo"
                     validation="bail|required"
                     validation-name="Adresa"
@@ -29,6 +31,7 @@
 
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Mesto"
                     validation="bail|required"
                     validation-name="Mesto"
@@ -38,6 +41,7 @@
 
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="PSČ"
                     validation="bail|required"
                     validation-name="Psč"
@@ -47,6 +51,7 @@
 
                 <FormulateInput
                     type="email"
+                    input-class="w-full"
                     label="Email"
                     validation="bail|email"
                     placeholder="Váš email"
@@ -112,7 +117,7 @@
                 <FormulateInput
                     type="submit"
                     label="Uložiť"
-                    class="btn btn-primary mt-4"
+                    class="btn btn-primary mt-4 text-center"
                 />
             </FormulateForm>
         </div>
@@ -133,7 +138,10 @@ export default {
     },
     methods: {
         updateOrg: function () {
-            this.$store.dispatch("organizations/updateOrganization", this.organization);
+            this.$store.dispatch(
+                "organizations/updateOrganization",
+                this.organization
+            );
         },
     },
 };

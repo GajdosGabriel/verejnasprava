@@ -11,6 +11,7 @@
             <FormulateForm @submit="storeCouncil">
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Názov zastupiteľstva"
                     validation="bail|required"
                     validation-name="Názov zastupiteľstva"
@@ -20,6 +21,7 @@
 
                 <FormulateInput
                     type="text"
+                    input-class="w-full"
                     label="Popis zastupiteľstva"
                     placeholder="Popis zastupiteľstva"
                     v-model="council.description"
@@ -48,7 +50,7 @@
                 <FormulateInput
                     type="submit"
                     label="Uložiť"
-                    class="btn btn-primary mt-4"
+                    class="btn btn-primary mt-4 text-center"
                 />
             </FormulateForm>
         </div>

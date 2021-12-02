@@ -25,7 +25,7 @@ import VueFormulate from "@braid/vue-formulate";
 Vue.use(VueFormulate, {
     classes: {
         outer: "mb-4",
-        input: "w-full px-3 py-2 border border-gray-400 border-box rounded leading-none focus:border-green-500 outline-none",
+        input: "",
         label: "font-medium text-sm",
         help: "text-xs mb-1 text-gray-600",
         error: "text-red-700 text-xs mb-1",
