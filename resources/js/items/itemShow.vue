@@ -192,12 +192,6 @@ export default {
             return this.votes.filter((value) => value.vote == 0).length;
         },
 
-        notificationStatus() {
-            return this.item.notification == null
-                ? "Notifikácia hlasovať"
-                : moment(this.item.notification).format("DD. MM. YYYY, k:mm");
-        },
-
         ...mapState({
             item: (state) => state.items.item,
             user: (state) => state.items.user,
@@ -216,6 +210,9 @@ export default {
             }
 
             if (action == "notifiToVote") {
+                if(this.item.notification != null){
+                    alert('Výzva na hlasovanie bola znova zaslaná.')
+                }
                 this.sendNotification();
             }
 

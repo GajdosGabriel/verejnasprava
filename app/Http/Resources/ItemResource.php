@@ -33,8 +33,8 @@ class ItemResource extends JsonResource
 
             'navigations' => [
 
-                'published' => $this->when(auth()->user()->can("notifiToVote", $this->resource), [
-                    'name' => 'Publikovať položku',
+                'published' => $this->when(auth()->user()->can("delete", $this->resource), [
+                    'name' => $this->published ? 'Zastaviť publikovanie' : 'Publikovať položku',
                     'title' => 'Publikovať bod programu',
                     'action' => 'published',
                     'typeOfButton' => 'button',
@@ -50,8 +50,8 @@ class ItemResource extends JsonResource
                     'icon' => 'iconEdit',
                 ]),
 
-                'notifiToVote' => $this->when(auth()->user()->can("notifiToVote", $this->resource), [
-                    'name' => 'Výzva k hlasovanie',
+                'notifiToVote' => $this->when( auth()->user()->can("notifiToVote", $this->resource), [
+                    'name' => $this->notification ?? 'Výzva k hlasovanie',
                     'title' => 'Zaslať emailovú výzvu na hlasovanie',
                     'action' => 'notifiToVote',
                     'typeOfButton' => 'button',
