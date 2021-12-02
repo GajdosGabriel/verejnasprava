@@ -36,4 +36,10 @@ class OrganizationItemController extends Controller
         }
         return new ItemResource($item);
     }
+
+    public function destroy(Organization $organization, Item $item)
+    {
+        $item->delete();
+        return new ItemResource($item);
+    }
 }

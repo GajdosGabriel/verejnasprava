@@ -235,12 +235,6 @@ export default {
             }
         },
 
-        // itemDelete(item) {
-        //     axios.delete("/items/" + item.id).then(
-        //         // (location.href = "/items")
-        //         // window.location.reload()
-        //     );
-        // },
         sendNotification() {
             this.$store.dispatch("items/updateItem", {
                 notification: new Date()

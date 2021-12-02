@@ -5035,12 +5035,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
     },
-    // itemDelete(item) {
-    //     axios.delete("/items/" + item.id).then(
-    //         // (location.href = "/items")
-    //         // window.location.reload()
-    //     );
-    // },
     sendNotification: function sendNotification() {
       this.$store.dispatch("items/updateItem", {
         notification: new Date().toISOString().slice(0, 19).replace("T", " "),
