@@ -5080,20 +5080,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['item'],
+  props: ["item"],
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({// item: state => state.items.item,
   })),
   methods: {
     update: function update(item) {
       if (item.votes.length) {
-        alert('O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!');
+        alert("O bode sa hlasovalo. Publikovanie sa nemôže zrušiť!");
         return;
       }
 
-      this.$store.dispatch('items/updateItem', {
+      this.$store.dispatch("items/updateItem", {
         id: item.id,
+        organization_id: item.organization_id,
         published: !item.published
       });
     }
@@ -8893,9 +8904,13 @@ var actions = {
     axios.put("/api/organizations/" + item.organization_id + "/items/" + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
       commit("SET_ITEM", response.data.data);
-      dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
-        root: true
-      }); // Notify for add task
+
+      if (_this.state.meetings.meeting.council_id) {
+        dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
+          root: true
+        });
+      } // Notify for add task
+
 
       dispatch("notification/addNewNotification", {
         message: response.headers.notification,
@@ -76719,12 +76734,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.$auth.can("council delete")
+  return _vm.item.navigations.published
     ? _c(
         "div",
         {
           staticClass:
-            "p-1 text-center text-sm rounded-md whitespace-no-wrap flex-1 bg-gray-300 cursor-pointer1 whitespace-no-wrap cursor-pointer",
+            "\n        p-1\n        text-center text-sm\n        rounded-md\n        whitespace-no-wrap\n        flex-1\n        bg-gray-300\n        cursor-pointer1\n        whitespace-no-wrap\n        cursor-pointer\n    ",
           on: {
             click: function ($event) {
               return _vm.update(_vm.item)

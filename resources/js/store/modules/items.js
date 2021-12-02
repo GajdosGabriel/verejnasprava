@@ -38,9 +38,16 @@ const mutations = {
 };
 const actions = {
     getItem({ commit }, item) {
-        axios.get("/api/organizations/" + item.organization_id + "/items/" + item.id).then((response) => {
-            commit("SET_ITEM", response.data.data);
-        });
+        axios
+            .get(
+                "/api/organizations/" +
+                    item.organization_id +
+                    "/items/" +
+                    item.id
+            )
+            .then((response) => {
+                commit("SET_ITEM", response.data.data);
+            });
     },
 
     storeVote({ commit, dispatch }, item) {
@@ -57,29 +64,39 @@ const actions = {
     },
 
     updateItem({ commit, dispatch }, item) {
+        axios
+            .put(
+                "/api/organizations/" +
+                    item.organization_id +
+                    "/items/" +
+                    item.id,
+                item
+            )
+            .then((response) => {
+                // console.log(response.headers.notification);
+                commit("SET_ITEM", response.data.data);
 
-        axios.put("/api/organizations/" + item.organization_id + "/items/" + item.id, item).then((response) => {
-            // console.log(response.headers.notification);
-            commit("SET_ITEM", response.data.data);
-            dispatch(
-                "meetings/fetchMeeting",
-                "/api/councils/" +
-                    this.state.meetings.meeting.council_id +
-                    "/meetings/" +
-                    this.state.meetings.meeting.id,
-                { root: true }
-            );
+                if (this.state.meetings.meeting.council_id) {
+                    dispatch(
+                        "meetings/fetchMeeting",
+                        "/api/councils/" +
+                            this.state.meetings.meeting.council_id +
+                            "/meetings/" +
+                            this.state.meetings.meeting.id,
+                        { root: true }
+                    );
+                }
 
-            // Notify for add task
-            dispatch(
-                "notification/addNewNotification",
-                {
-                    message: response.headers.notification,
-                    type: "bg-green-400",
-                },
-                { root: true }
-            );
-        });
+                // Notify for add task
+                dispatch(
+                    "notification/addNewNotification",
+                    {
+                        message: response.headers.notification,
+                        type: "bg-green-400",
+                    },
+                    { root: true }
+                );
+            });
     },
     // Using user of meeting
     updateInterpellation({ commit, dispatch }, item) {
