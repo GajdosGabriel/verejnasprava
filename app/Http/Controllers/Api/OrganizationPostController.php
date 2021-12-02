@@ -21,14 +21,14 @@ class OrganizationPostController extends Controller
     public function index(Organization $organization, PostFilters $postFilters)
     {
         $posts = $organization->posts()->filter($postFilters)
-           ->latest()->paginate(15);
+            ->latest()->paginate(15);
 
         return PostResource::collection($posts);
     }
 
     public function store(Organization $organization, SavePostRequest $request)
     {
-        $post = $organization->posts()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id] ));
+        $post = $organization->posts()->create(array_merge($request->except('filename'), ['user_id' => auth()->user()->id]));
 
         $post->saveFile($request);
 
@@ -37,11 +37,10 @@ class OrganizationPostController extends Controller
 
     public function update(Organization $organization, Post $post, SavePostRequest $request)
     {
-        $post->update($request->except('filename', 'fileDelete') );
+        $post->update($request->except('filename', 'fileDelete'));
         $post->saveFile($request);
-//        $post->saveImage($request, $post);
+        //  $post->saveImage($request, $post);
 
-//        flash()->success('Doklad opravený! ');
         return redirect()->route('posts.index');
     }
 

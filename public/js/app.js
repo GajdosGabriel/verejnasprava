@@ -2958,17 +2958,17 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
     searchForm: function searchForm(val) {
       this.search = val;
     },
-    clickOnItem: function clickOnItem(action, post) {
+    clickOnItem: function clickOnItem(action, item) {
       if (action == "show") {
-        window.location.href = post.navigations.show.url;
+        window.location.href = item.navigations.show.url;
       }
 
       if (action == "edit") {
-        this.openEditForm(post);
+        this.openEditForm(item);
       }
 
       if (action == "delete") {
-        this.$store.dispatch("contacts/deleteContact", post);
+        this.$store.dispatch("contacts/deleteContact", item);
       }
     }
   })
@@ -8548,7 +8548,7 @@ var state = {
   errors: [],
   showEditForm: false,
   showCreateForm: false,
-  contact: ''
+  contact: ""
 };
 var getters = {};
 var mutations = {
@@ -8603,7 +8603,7 @@ var actions = {
             case 0:
               commit = _ref3.commit;
               _context.next = 3;
-              return axios["delete"]("/api/organizations/" + contact.organization_id + "/contacts/" + contact.id).then(function (response) {
+              return axios["delete"](contact.url.updateDelete).then(function (response) {
                 commit("REMOVE_CONTACT", contact.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
                   type: "bg-green-300",
                   message: "Kontakt zmazaný!"
@@ -8636,7 +8636,7 @@ var actions = {
             case 0:
               commit = _ref4.commit;
               _context2.next = 3;
-              return axios.put("/api/organizations/" + contact.organization_id + "/contacts/" + contact.id, contact).then(function (response) {
+              return axios.put(contact.url.updateDelete, contact).then(function (response) {
                 commit("SHOW_FORM"); // Notify for add task
 
                 // Notify for add task
@@ -8703,7 +8703,7 @@ var actions = {
     commit("SET_LOADING_STATUS", "loading");
     axios.get(url).then(function (response) {
       commit("SET_LOADING_STATUS", "notLoading");
-      commit("SET_CONTACTS", response.data);
+      commit("SET_CONTACTS", response.data.data);
     });
   }
 };
@@ -74166,7 +74166,7 @@ var render = function () {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.contacts.data, function (contact) {
+          _vm._l(_vm.contacts, function (contact) {
             return _c(
               "tr",
               { key: contact.id, staticClass: "hover:bg-gray-200" },

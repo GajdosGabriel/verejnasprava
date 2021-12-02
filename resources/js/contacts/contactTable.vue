@@ -24,7 +24,7 @@
             <tbody>
                 <tr
                     class="hover:bg-gray-200"
-                    v-for="contact in contacts.data"
+                    v-for="contact in contacts"
                     :key="contact.id"
                 >
                     <td class="px-4 py-2 border">
@@ -136,18 +136,18 @@ export default {
         searchForm(val) {
             this.search = val;
         },
-        clickOnItem(action, post) {
+        clickOnItem(action, item) {
             if (action == "show") {
-                window.location.href = post.navigations.show.url;
+                window.location.href = item.navigations.show.url;
             }
 
             if (action == "edit") {
-                this.openEditForm(post);
+                this.openEditForm(item);
             }
 
             if (action == "delete") {
                 this.$store.dispatch(
-                    "contacts/deleteContact", post
+                    "contacts/deleteContact", item
                 );
             }
         },

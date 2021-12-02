@@ -4,45 +4,45 @@ const state = {
     errors: [],
     showEditForm: false,
     showCreateForm: false,
-    contact: ''
+    contact: "",
 };
 const getters = {};
 
 const mutations = {
-    SET_LOADING_STATUS: function(state, payload) {
+    SET_LOADING_STATUS: function (state, payload) {
         state.loadingStatus = payload;
     },
-    SET_CONTACTS: function(state, payload) {
+    SET_CONTACTS: function (state, payload) {
         state.contacts = payload;
     },
-    SET_CONTACT: function(state, payload) {
+    SET_CONTACT: function (state, payload) {
         state.contact = payload;
     },
-    SET_ERRORS: function(state, payload) {
+    SET_ERRORS: function (state, payload) {
         state.errors = payload;
     },
 
-    INSERT_CONTACT: function(state, payload) {
+    INSERT_CONTACT: function (state, payload) {
         state.contacts.data.unshift(payload);
     },
-    SHOW_FORM: function(state, payload) {
+    SHOW_FORM: function (state, payload) {
         state.showEditForm = !state.showEditForm;
         state.contact = payload;
     },
-    SHOW_CREATE_FORM: function(state, payload) {
+    SHOW_CREATE_FORM: function (state, payload) {
         state.showCreateForm = !state.showCreateForm;
         state.contact = payload;
     },
 
-    SHOW_NEW_FORM: function(state, payload) {
+    SHOW_NEW_FORM: function (state, payload) {
         state.showCreateForm = !state.showCreateForm;
         state.contact = payload;
     },
-    REMOVE_CONTACT: function(state, id) {
+    REMOVE_CONTACT: function (state, id) {
         state.contacts.data = state.contacts.data.filter(
-            contact => contact.id !== id
+            (contact) => contact.id !== id
         );
-    }
+    },
 };
 const actions = {
     openEditForm({ commit }, data) {
@@ -55,46 +55,36 @@ const actions = {
 
     async deleteContact({ commit }, contact) {
         await axios
-            .delete(
-                "/api/organizations/" +
-                    contact.organization_id +
-                    "/contacts/" +
-                    contact.id
-            )
-            .then(response => {
+            .delete(contact.url.updateDelete)
+            .then((response) => {
                 commit("REMOVE_CONTACT", contact.id),
                     commit("SHOW_FORM"),
                     commit(
                         "notification/NEW_NOTIFICATION",
                         {
                             type: "bg-green-300",
-                            message: "Kontakt zmazaný!"
+                            message: "Kontakt zmazaný!",
                         },
                         { root: true }
                     );
-            }) .catch(error => {
+            })
+            .catch((error) => {
                 commit("SHOW_FORM"),
-                commit(
-                    "notification/NEW_NOTIFICATION",
-                    {
-                        type: "bg-red-200",
-                        message: "Kontakt už obsahuje zverejnené doklady."
-                    },
-                    { root: true }
-                );
-              });
+                    commit(
+                        "notification/NEW_NOTIFICATION",
+                        {
+                            type: "bg-red-200",
+                            message: "Kontakt už obsahuje zverejnené doklady.",
+                        },
+                        { root: true }
+                    );
+            });
     },
 
     async updateContact({ commit }, contact) {
         await axios
-            .put(
-                "/api/organizations/" +
-                    contact.organization_id +
-                    "/contacts/" +
-                    contact.id,
-                contact
-            )
-            .then(response => {
+            .put(contact.url.updateDelete, contact)
+            .then((response) => {
                 commit("SHOW_FORM");
 
                 // Notify for add task
@@ -102,18 +92,18 @@ const actions = {
                     "notification/NEW_NOTIFICATION",
                     {
                         type: "bg-green-400",
-                        message: "Kontakt aktualizovaný!"
+                        message: "Kontakt aktualizovaný!",
                     },
                     { root: true }
                 );
             })
-            .catch(error => {
+            .catch((error) => {
                 // Notify for add task
                 commit(
                     "notification/NEW_NOTIFICATION",
                     {
                         type: "bg-red-400",
-                        message: "Chyba, kontakt nebol aktualizovaný!"
+                        message: "Chyba, kontakt nebol aktualizovaný!",
                     },
                     { root: true }
                 );
@@ -139,7 +129,7 @@ const actions = {
             "notification/NEW_NOTIFICATION",
             {
                 type: "bg-green-400",
-                message: "Kontakt uložený!"
+                message: "Kontakt uložený!",
             },
             { root: true }
         );
@@ -147,11 +137,11 @@ const actions = {
 
     fetchContacts({ commit }, url) {
         commit("SET_LOADING_STATUS", "loading");
-        axios.get(url).then(response => {
+        axios.get(url).then((response) => {
             commit("SET_LOADING_STATUS", "notLoading");
-            commit("SET_CONTACTS", response.data);
+            commit("SET_CONTACTS", response.data.data);
         });
-    }
+    },
 };
 
 export default {
@@ -159,5 +149,5 @@ export default {
     state,
     getters,
     actions,
-    mutations
+    mutations,
 };

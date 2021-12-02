@@ -27,13 +27,17 @@ class ContactResource extends JsonResource
             'ico'             => $this->ico,
             'dic'             => $this->dic,
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
+            'url' => [
+                'updateDelete'  => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
+                'store'         => route('organizations.contacts.store', [$this->organization_id]),
+            ],
 
             'navigations' => [
                 'show' =>  $this->when(auth()->user()->can("view", $this->resource), [
                     'name' => 'Zobraziť',
                     'title' => 'Zobraziť položku',
                     'action' => 'show',
-                    'url' => route('organizations.contacts.show', [$this->organization_id, $this->id]),
+                    'url' => route('organization.contact.show', [$this->organization_id, $this->id]),
                     'icon' => 'iconShow',
                 ]),
 
@@ -41,7 +45,7 @@ class ContactResource extends JsonResource
                     'name' => 'Upraviť',
                     'title' => 'Upraviť položku',
                     'action' => 'edit',
-                    'url' => route('organizations.contacts.edit', [$this->organization_id, $this->id]),
+                    'url' => route('organization.contact.edit', [$this->organization_id, $this->id]),
                     'typeOfButton' => 'button',
                     'icon' => 'iconEdit',
                 ]),

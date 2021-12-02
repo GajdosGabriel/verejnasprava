@@ -57,7 +57,6 @@
 
         {{-- JS only --}}
         <notification-list></notification-list>
-        <flash-message message="{{ session('flash') }}"></flash-message>
     </div>
 
     @include('layouts.footer')
