@@ -19,9 +19,9 @@ class ItemController extends Controller
 
     public function index()
     {
-        if(auth()->user()->hasRole('admin')){
+        if (auth()->user()->hasRole('admin')) {
             $items = Item::whereOrganizationId(auth()->user()->active_organization)->whereDoesntHave('meetings')->get();
-        }else {
+        } else {
             $items = Item::whereUserId(auth()->user()->id)->whereDoesntHave('meetings')->get();
         };
 
@@ -62,8 +62,7 @@ class ItemController extends Controller
             'organization_id' => auth()->user()->active_organization,
         ]));
 
-//        $item->update(['order' => $meeting->items()->count() +1] );
-//
+        //        $item->update(['order' => $meeting->items()->count() +1] );
         $item->saveFile($request);
         return redirect()->route('items.show', $item->id);
     }
@@ -72,7 +71,8 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        $item->delete();
-        return redirect()->route('items.index');
+        dd($item);
+        // $item->delete();
+        // return redirect()->route('items.index');
     }
 }

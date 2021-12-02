@@ -2,42 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Council\Item;
+use App\Models\Organization;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
-use App\Models\Council\Item;
 use App\Notifications\Item\RequireItemvote;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class OrganizationItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        dd($request->all());
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Item $item)
+    public function show(Organization $organization, Item $item)
     {
         return new ItemResource($item);
     }
@@ -62,16 +36,4 @@ class ItemController extends Controller
         }
         return new ItemResource($item);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 }

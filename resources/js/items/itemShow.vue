@@ -201,7 +201,7 @@ export default {
         }),
     },
     created: function () {
-        this.$store.dispatch("items/getItem", this.pitem.id);
+        this.$store.dispatch("items/getItem", this.pitem);
     },
     methods: {
         clickOnItem(action, item) {
@@ -210,10 +210,15 @@ export default {
             }
 
             if (action == "notifiToVote") {
-                if(this.item.notification != null){
-                    alert('Výzva na hlasovanie bola znova zaslaná.')
+                if (this.item.notification != null) {
+                    alert("Výzva na hlasovanie bola znova zaslaná.");
                 }
                 this.sendNotification();
+            }
+
+            if (action == "delete") {
+          
+                this.$store.dispatch("items/deleteItem", item);
             }
 
             if (action == "published") {
@@ -230,12 +235,12 @@ export default {
             }
         },
 
-        itemDelete(item) {
-            axios.delete("/items/" + item.id).then(
-                (location.href = "/items")
-                // window.location.reload()
-            );
-        },
+        // itemDelete(item) {
+        //     axios.delete("/items/" + item.id).then(
+        //         // (location.href = "/items")
+        //         // window.location.reload()
+        //     );
+        // },
         sendNotification() {
             this.$store.dispatch("items/updateItem", {
                 notification: new Date()

@@ -73,7 +73,7 @@ class ItemResource extends JsonResource
                     'title' => 'Zmazať položku',
                     'action' => 'delete',
                     'typeOfButton' => 'button',
-                    'url' => '',
+                    'url' =>  route('items.destroy', [$this->id]),
                     'icon' => 'iconDelete',
                 ])
             ],

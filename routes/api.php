@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResources([
     'votes'                     => 'Api\VoteController',
-    'items'                     => 'Api\ItemController',
     'items.interpellations'     => 'Api\ItemInterpellationController',
     'meetings'                  => 'Api\MeetingController',
     'councils.meetings'         => 'Api\CouncilMeetingController',
@@ -34,6 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     'organizations.contacts'    => 'Api\OrganizationContactController',
     'organizations.councils'    => 'Api\OrganizationCouncilController',
     'organizations.posts'       => 'Api\OrganizationPostController',
+    'organizations.items'       => 'Api\OrganizationItemController',
     'users.meetings'            => 'Api\UserMeetingController',
     'invitations'               => 'Api\InvitationController',
     'menus'                     => 'Api\MenuController',

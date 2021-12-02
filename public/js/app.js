@@ -4984,9 +4984,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.votes.filter(function (value) {
         return value.vote == 0;
       }).length;
-    },
-    notificationStatus: function notificationStatus() {
-      return this.item.notification == null ? "Notifikácia hlasovať" : moment__WEBPACK_IMPORTED_MODULE_0___default()(this.item.notification).format("DD. MM. YYYY, k:mm");
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
     item: function item(state) {
@@ -5006,7 +5003,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.$store.dispatch("items/getItem", this.pitem.id);
+    this.$store.dispatch("items/getItem", this.pitem);
   },
   methods: {
     clickOnItem: function clickOnItem(action, item) {
@@ -5015,7 +5012,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (action == "notifiToVote") {
+        if (this.item.notification != null) {
+          alert("Výzva na hlasovanie bola znova zaslaná.");
+        }
+
         this.sendNotification();
+      }
+
+      if (action == "delete") {
+        this.$store.dispatch("items/deleteItem", item);
       }
 
       if (action == "published") {
@@ -5030,10 +5035,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
     },
-    itemDelete: function itemDelete(item) {
-      axios["delete"]("/items/" + item.id).then(location.href = "/items" // window.location.reload()
-      );
-    },
+    // itemDelete(item) {
+    //     axios.delete("/items/" + item.id).then(
+    //         // (location.href = "/items")
+    //         // window.location.reload()
+    //     );
+    // },
     sendNotification: function sendNotification() {
       this.$store.dispatch("items/updateItem", {
         notification: new Date().toISOString().slice(0, 19).replace("T", " "),
@@ -8864,7 +8871,7 @@ var mutations = {
 var actions = {
   getItem: function getItem(_ref, item) {
     var commit = _ref.commit;
-    axios.get("/api/items/" + item).then(function (response) {
+    axios.get("/api/organizations/" + item.organization_id + "/items/" + item.id).then(function (response) {
       commit("SET_ITEM", response.data.data);
     });
   },
@@ -8875,12 +8882,20 @@ var actions = {
       commit("SET_ITEM", response.data);
     });
   },
-  updateItem: function updateItem(_ref3, item) {
-    var _this = this;
-
+  deleteItem: function deleteItem(_ref3, item) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios.put("/api/items/" + item.id, item).then(function (response) {
+    axios["delete"]("/api/organizations/" + item.organization_id + "/items/" + item.id).then(function (response) {
+      commit("SET_ITEM", response.data);
+      location.href = "/items";
+    });
+  },
+  updateItem: function updateItem(_ref4, item) {
+    var _this = this;
+
+    var commit = _ref4.commit,
+        dispatch = _ref4.dispatch;
+    axios.put("/api/organizations/" + item.organization_id + "/items/" + item.id, item).then(function (response) {
       // console.log(response.headers.notification);
       commit("SET_ITEM", response.data.data);
       dispatch("meetings/fetchMeeting", "/api/councils/" + _this.state.meetings.meeting.council_id + "/meetings/" + _this.state.meetings.meeting.id, {
@@ -8896,11 +8911,11 @@ var actions = {
     });
   },
   // Using user of meeting
-  updateInterpellation: function updateInterpellation(_ref4, item) {
+  updateInterpellation: function updateInterpellation(_ref5, item) {
     var _this2 = this;
 
-    var commit = _ref4.commit,
-        dispatch = _ref4.dispatch;
+    var commit = _ref5.commit,
+        dispatch = _ref5.dispatch;
 
     if (item.vote_status) {
       alert("Hlasovanie sa už začalo, interpelácie sú zastavené!");
@@ -8914,15 +8929,15 @@ var actions = {
     });
   },
   // Using admin of meeting
-  deleteInterpellation: function deleteInterpellation(_ref5, _ref6) {
+  deleteInterpellation: function deleteInterpellation(_ref6, _ref7) {
     var _this3 = this;
 
-    var commit = _ref5.commit,
-        dispatch = _ref5.dispatch;
+    var commit = _ref6.commit,
+        dispatch = _ref6.dispatch;
 
-    var _ref7 = _slicedToArray(_ref6, 2),
-        item = _ref7[0],
-        interpellation = _ref7[1];
+    var _ref8 = _slicedToArray(_ref7, 2),
+        item = _ref8[0],
+        interpellation = _ref8[1];
 
     axios["delete"]("/api/items/" + item.id + "/interpellations/" + interpellation.id).then(function (response) {
       dispatch("meetings/fetchMeeting", "/api/councils/" + _this3.state.meetings.meeting.council_id + "/meetings/" + _this3.state.meetings.meeting.id, {
