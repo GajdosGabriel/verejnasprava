@@ -50,14 +50,14 @@ const actions = {
     },
 
     deleteItem({ commit, dispatch }, item) {
-
-        axios.delete("/api/organizations/" + item.organization_id + "/items/" + item.id).then((response) => {
+        axios.delete(item).then((response) => {
             commit("SET_ITEM", response.data);
             location.href = "/items";
         });
     },
 
     updateItem({ commit, dispatch }, item) {
+
         axios.put("/api/organizations/" + item.organization_id + "/items/" + item.id, item).then((response) => {
             // console.log(response.headers.notification);
             commit("SET_ITEM", response.data.data);

@@ -23,7 +23,7 @@ class OrganizationItemController extends Controller
      * @param  object  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item) {
+    public function update(Organization $organization, Item $item, Request $request) {
         $item->update($request->all());
 
         if ($request->has('notification')){

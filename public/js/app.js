@@ -4633,7 +4633,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -4700,6 +4699,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
 
         this.updateItem({
           id: item.id,
+          organization_id: item.organization_id,
           published: !item.published
         });
       }
@@ -5020,7 +5020,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (action == "delete") {
-        this.$store.dispatch("items/deleteItem", item);
+        this.$store.dispatch("items/deleteItem", item.navigations["delete"].url);
       }
 
       if (action == "published") {
@@ -5029,8 +5029,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return;
         }
 
-        this.updateItem({
+        this.$store.dispatch("items/updateItem", {
           id: item.id,
+          organization_id: item.organization_id,
           published: !item.published
         });
       }
@@ -8879,7 +8880,7 @@ var actions = {
   deleteItem: function deleteItem(_ref3, item) {
     var commit = _ref3.commit,
         dispatch = _ref3.dispatch;
-    axios["delete"]("/api/organizations/" + item.organization_id + "/items/" + item.id).then(function (response) {
+    axios["delete"](item).then(function (response) {
       commit("SET_ITEM", response.data);
       location.href = "/items";
     });

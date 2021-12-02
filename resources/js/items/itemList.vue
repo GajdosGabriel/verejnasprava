@@ -24,7 +24,6 @@
                     :items="item"
                     @fromItem="clickOnItem"
                 ></drop-down-component>
-
             </div>
 
             <!-- Body  -->
@@ -256,6 +255,7 @@ export default {
                 }
                 this.updateItem({
                     id: item.id,
+                    organization_id: item.organization_id,
                     published: !item.published,
                 });
             }

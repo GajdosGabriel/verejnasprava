@@ -217,8 +217,10 @@ export default {
             }
 
             if (action == "delete") {
-          
-                this.$store.dispatch("items/deleteItem", item);
+                this.$store.dispatch(
+                    "items/deleteItem",
+                    item.navigations.delete.url
+                );
             }
 
             if (action == "published") {
@@ -228,8 +230,10 @@ export default {
                     );
                     return;
                 }
-                this.updateItem({
+
+                this.$store.dispatch("items/updateItem", {
                     id: item.id,
+                    organization_id: item.organization_id,
                     published: !item.published,
                 });
             }
