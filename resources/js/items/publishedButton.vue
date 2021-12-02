@@ -1,7 +1,7 @@
 <template>
     <div
         @click="update(item)"
-        v-if="item.navigations.published"
+        v-if="$auth.can('council delete')"
         class="
             p-1
             text-center text-sm

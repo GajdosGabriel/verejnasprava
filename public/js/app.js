@@ -4717,7 +4717,8 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
 
       this.$store.dispatch("items/updateItem", {
         notification: new Date().toISOString().slice(0, 19).replace("T", " "),
-        id: this.item.id
+        id: this.item.id,
+        organization_id: this.item.organization_id
       });
     },
     voteStatus: function voteStatus() {
@@ -5039,7 +5040,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sendNotification: function sendNotification() {
       this.$store.dispatch("items/updateItem", {
         notification: new Date().toISOString().slice(0, 19).replace("T", " "),
-        id: this.item.id
+        id: this.item.id,
+        organization_id: this.item.organization_id
       });
     },
     openInterpellation: function openInterpellation() {
@@ -76734,7 +76736,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.item.navigations.published
+  return _vm.$auth.can("council delete")
     ? _c(
         "div",
         {

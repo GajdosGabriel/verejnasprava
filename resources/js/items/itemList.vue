@@ -279,6 +279,7 @@ export default {
                     .slice(0, 19)
                     .replace("T", " "),
                 id: this.item.id,
+                organization_id: this.item.organization_id,
             });
         },
         voteStatus: function () {
