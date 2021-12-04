@@ -37,9 +37,8 @@ class OrganizationContactController extends Controller
 
     public function store(Organization $organization, ContactCreateRequest $contactRequest)
     {
-        $organization->contacts()->create(array_merge($contactRequest->all(),  ['user_id' => auth()->user()->id]));
-        //        flash()->success('Dodávateľ bol vytvorený');
-        //        return redirect()->route('contact.index');
+       $contact = $organization->contacts()->create(array_merge($contactRequest->all(),  ['user_id' => auth()->user()->id]));
+        return new ContactResource($contact);
     }
 
 

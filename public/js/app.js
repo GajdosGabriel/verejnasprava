@@ -8575,7 +8575,7 @@ var mutations = {
     state.errors = payload;
   },
   INSERT_CONTACT: function INSERT_CONTACT(state, payload) {
-    state.contacts.data.unshift(payload);
+    state.contacts.unshift(payload);
   },
   SHOW_FORM: function SHOW_FORM(state, payload) {
     state.showEditForm = !state.showEditForm;
@@ -8590,7 +8590,7 @@ var mutations = {
     state.contact = payload;
   },
   REMOVE_CONTACT: function REMOVE_CONTACT(state, id) {
-    state.contacts.data = state.contacts.data.filter(function (contact) {
+    state.contacts.data = state.contacts.filter(function (contact) {
       return contact.id !== id;
     });
   }
@@ -8605,47 +8605,33 @@ var actions = {
     commit("SHOW_NEW_FORM", data);
   },
   deleteContact: function deleteContact(_ref3, contact) {
+    var commit = _ref3.commit;
+    axios["delete"](contact.url.updateDelete).then(function (response) {
+      console.log(response.data.data);
+      commit("REMOVE_CONTACT", response.data.data.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+        type: "bg-green-300",
+        message: "Kontakt zmazaný!"
+      }, {
+        root: true
+      });
+    })["catch"](function (error) {
+      commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+        type: "bg-red-200",
+        message: "Kontakt už obsahuje zverejnené doklady."
+      }, {
+        root: true
+      });
+    });
+  },
+  updateContact: function updateContact(_ref4, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref3.commit;
-              _context.next = 3;
-              return axios["delete"](contact.url.updateDelete).then(function (response) {
-                commit("REMOVE_CONTACT", contact.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
-                  type: "bg-green-300",
-                  message: "Kontakt zmazaný!"
-                }, {
-                  root: true
-                });
-              })["catch"](function (error) {
-                commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
-                  type: "bg-red-200",
-                  message: "Kontakt už obsahuje zverejnené doklady."
-                }, {
-                  root: true
-                });
-              });
-
-            case 3:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  updateContact: function updateContact(_ref4, contact) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      var commit;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
               commit = _ref4.commit;
-              _context2.next = 3;
+              _context.next = 3;
               return axios.put(contact.url.updateDelete, contact).then(function (response) {
                 commit("SHOW_FORM"); // Notify for add task
 
@@ -8669,43 +8655,39 @@ var actions = {
 
             case 3:
             case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  saveContact: function saveContact(_ref5, _ref6) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var commit, _ref7, data, user;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref5.commit;
+              _ref7 = _slicedToArray(_ref6, 2), data = _ref7[0], user = _ref7[1];
+              _context2.next = 4;
+              return axios.post("/api/organizations/" + user.active_organization + "/contacts", data).then(function (response) {
+                commit("SHOW_CREATE_FORM"), commit("INSERT_CONTACT", response.data.data), // Notify for add task
+                commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-green-400",
+                  message: "Kontakt uložený!"
+                }, {
+                  root: true
+                });
+              });
+
+            case 4:
+            case "end":
               return _context2.stop();
           }
         }
       }, _callee2);
-    }))();
-  },
-  saveContact: function saveContact(_ref5, _ref6) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var commit, _ref7, data, user;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              commit = _ref5.commit;
-              _ref7 = _slicedToArray(_ref6, 2), data = _ref7[0], user = _ref7[1];
-              console.log(user);
-              _context3.next = 5;
-              return axios.post("/api/organizations/" + user.active_organization + "/contacts", data);
-
-            case 5:
-              commit("SHOW_CREATE_FORM");
-              commit("INSERT_CONTACT", data); // Notify for add task
-
-              commit("notification/NEW_NOTIFICATION", {
-                type: "bg-green-400",
-                message: "Kontakt uložený!"
-              }, {
-                root: true
-              });
-
-            case 8:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
     }))();
   },
   fetchContacts: function fetchContacts(_ref8, url) {

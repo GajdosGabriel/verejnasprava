@@ -23,7 +23,7 @@ const mutations = {
     },
 
     INSERT_CONTACT: function (state, payload) {
-        state.contacts.data.unshift(payload);
+        state.contacts.unshift(payload);
     },
     SHOW_FORM: function (state, payload) {
         state.showEditForm = !state.showEditForm;
@@ -53,11 +53,11 @@ const actions = {
         commit("SHOW_NEW_FORM", data);
     },
 
-     deleteContact({ commit }, contact) {
-         axios
+    deleteContact({ commit }, contact) {
+        axios
             .delete(contact.url.updateDelete)
             .then((response) => {
-                console.log(response.data.data)
+                console.log(response.data.data);
                 commit("REMOVE_CONTACT", response.data.data.id),
                     commit("SHOW_FORM"),
                     commit(
@@ -116,24 +116,24 @@ const actions = {
     },
 
     async saveContact({ commit }, [data, user]) {
-        console.log(user);
-        await axios.post(
-            "/api/organizations/" + user.active_organization + "/contacts",
-            data
-        );
-
-        commit("SHOW_CREATE_FORM");
-        commit("INSERT_CONTACT", data);
-
-        // Notify for add task
-        commit(
-            "notification/NEW_NOTIFICATION",
-            {
-                type: "bg-green-400",
-                message: "Kontakt uložený!",
-            },
-            { root: true }
-        );
+        await axios
+            .post(
+                "/api/organizations/" + user.active_organization + "/contacts",
+                data
+            )
+            .then((response) => {
+                commit("SHOW_CREATE_FORM"),
+                    commit("INSERT_CONTACT", response.data.data),
+                    // Notify for add task
+                    commit(
+                        "notification/NEW_NOTIFICATION",
+                        {
+                            type: "bg-green-400",
+                            message: "Kontakt uložený!",
+                        },
+                        { root: true }
+                    );
+            });
     },
 
     fetchContacts({ commit }, url) {
