@@ -51,5 +51,6 @@ class OrganizationContactController extends Controller
         }
 
         $contact->delete();
+        return new ContactResource($contact);
     }
 }

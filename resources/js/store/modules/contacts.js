@@ -39,7 +39,7 @@ const mutations = {
         state.contact = payload;
     },
     REMOVE_CONTACT: function (state, id) {
-        state.contacts.data = state.contacts.data.filter(
+        state.contacts.data = state.contacts.filter(
             (contact) => contact.id !== id
         );
     },
@@ -53,11 +53,12 @@ const actions = {
         commit("SHOW_NEW_FORM", data);
     },
 
-    async deleteContact({ commit }, contact) {
-        await axios
+     deleteContact({ commit }, contact) {
+         axios
             .delete(contact.url.updateDelete)
             .then((response) => {
-                commit("REMOVE_CONTACT", contact.id),
+                console.log(response.data.data)
+                commit("REMOVE_CONTACT", response.data.data.id),
                     commit("SHOW_FORM"),
                     commit(
                         "notification/NEW_NOTIFICATION",
