@@ -40,6 +40,16 @@
                 />
 
                 <FormulateInput
+                    v-model="council"
+                    label="Člen zastupiteľstva"
+                    :options="user.organization.councils.map(p => ({  value: p.id , label: p.name }))"
+                    type="checkbox"
+                    :element-class="['border-2 border-red-500 px-4']"
+                    :label-class="['ml-4']"
+                />
+                    <!-- :wrapper-class="['flex items-center flex-row-reverse']" -->
+
+                <FormulateInput
                     type="submit"
                     label="Uložiť"
                     class="btn btn-primary mt-4 text-center"
@@ -57,6 +67,11 @@ import { mapState } from "vuex";
 export default {
     components: { cardHeader, Card },
     mixins: [createdMixin],
+    data(){
+        return {
+        council: []
+        }
+    },
     computed: {
         ...mapState("organizations", ["user"]),
     },

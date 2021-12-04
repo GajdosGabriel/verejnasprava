@@ -29,12 +29,7 @@
                 >
                     <td class="px-4 py-2 border">
                         <a
-                            :href="
-                                /organizations/ +
-                                contact.organization_id +
-                                /contacts/ +
-                                contact.id
-                            "
+                            :href="contact.url.show"
                             >{{ contact.name }}</a
                         >
                     </td>

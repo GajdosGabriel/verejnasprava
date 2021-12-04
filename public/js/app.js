@@ -2903,11 +2903,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -7884,6 +7879,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7894,6 +7899,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Card: _components_Cards_Card_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_2__.createdMixin],
+  data: function data() {
+    return {
+      council: []
+    };
+  },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)("organizations", ["user"])),
   methods: {
     update: function update() {
@@ -74172,19 +74182,9 @@ var render = function () {
               { key: contact.id, staticClass: "hover:bg-gray-200" },
               [
                 _c("td", { staticClass: "px-4 py-2 border" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          /organizations/ +
-                          contact.organization_id +
-                          /contacts/ +
-                          contact.id,
-                      },
-                    },
-                    [_vm._v(_vm._s(contact.name))]
-                  ),
+                  _c("a", { attrs: { href: contact.url.show } }, [
+                    _vm._v(_vm._s(contact.name)),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("td", {
@@ -80352,6 +80352,25 @@ var render = function () {
                         _vm.$set(_vm.user, "email", $$v)
                       },
                       expression: "user.email",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("FormulateInput", {
+                    attrs: {
+                      label: "Člen zastupiteľstva",
+                      options: _vm.user.organization.councils.map(function (p) {
+                        return { value: p.id, label: p.name }
+                      }),
+                      type: "checkbox",
+                      "element-class": ["border-2 border-red-500 px-4"],
+                      "label-class": ["ml-4"],
+                    },
+                    model: {
+                      value: _vm.council,
+                      callback: function ($$v) {
+                        _vm.council = $$v
+                      },
+                      expression: "council",
                     },
                   }),
                   _vm._v(" "),

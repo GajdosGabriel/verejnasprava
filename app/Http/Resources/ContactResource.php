@@ -28,6 +28,7 @@ class ContactResource extends JsonResource
             'dic'             => $this->dic,
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
             'url' => [
+                'show'          => route('organization.contact.show', [$this->organization_id, $this->id]),
                 'updateDelete'  => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
                 'store'         => route('organizations.contacts.store', [$this->organization_id]),
             ],
