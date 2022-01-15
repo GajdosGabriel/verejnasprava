@@ -38,7 +38,6 @@ class HomeController extends Controller
 
         //        Po registrácií presmeruje na create org formulár
         return redirect()->route('organizations.create', [auth()->user()->id, auth()->user()->slug]);
-
     }
 
     public function contact()
@@ -53,23 +52,15 @@ class HomeController extends Controller
         return view('public.zverejnovanie');
     }
 
-    public function gdpr(){
+    public function gdpr()
+    {
         return view('public.ochrana-osobnych-udajov');
     }
 
-    public function frontPosts(PostFilters $postFilters) {
-//        $posts =  Post::orderBy('date_in', 'desc')->paginate()->groupBy(function($item){
-//            return Carbon::parse($item->date_in)->format('F-Y');
-//        });
-
-//        $posts = Post::select(\DB::raw('max(id) as id'))
-//            ->groupBy('organization_id')
-//            ->paginate(20)
-//        ;
-
+    public function frontPosts(PostFilters $postFilters)
+    {
         $posts = Post::filter($postFilters)
-            ->latest()->paginate(20);
-//        dd($posts);
+            ->orderBy('date_in', 'desc')->paginate(20);
         return PostfrontedResource::collection($posts);
     }
 
@@ -94,6 +85,4 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
-
-
 }
