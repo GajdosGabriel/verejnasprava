@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection
+{{-- @section('recaptcha') {!! htmlScriptTagJsApi(['action' => 'homepage']) !!} @endsection --}}
 @section('page-title', 'Kontakt')
 
 @section('navigation')

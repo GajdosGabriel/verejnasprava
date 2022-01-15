@@ -3,11 +3,11 @@
 @section('page-title', 'Registrácie')
 
 {{-- Google reCaptcha --}}
-@section('recaptcha') {!! htmlScriptTagJsApi([
+{{-- @section('recaptcha') {!! htmlScriptTagJsApi([
     'action' => 'homepage',
     'callback_then' => 'callbackThen',
     'callback_catch' => 'callbackCatch',
-]) !!} @endsection
+]) !!} @endsection --}}
 
 @section('navigation')
 <x-navigation.navPublic /> @endsection
