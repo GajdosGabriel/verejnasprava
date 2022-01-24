@@ -63,7 +63,7 @@
             </ul>
         </transition>
 
-        <div v-if="meeting.council_users.length < 2" class="text-center">
+        <div v-if="meeting.council_users.length < 0" class="text-center">
             V zastupiteľstve nie sú členovia.
 
             <a href="/users" class="block my-2">
