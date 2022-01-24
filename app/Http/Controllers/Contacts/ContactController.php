@@ -15,7 +15,7 @@ use App\Http\Requests\ContactCreateRequest;
 use App\Http\Requests\OrganizationFormRequest;
 use App\Http\Requests\OrganizationUpdateRequest;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
     public function __construct()
     {

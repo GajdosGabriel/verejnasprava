@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth', 'checkOrganization']], function () {
         'users'                 => 'UserController',
         'tags'                  => 'TagController',
         'messengers'            => 'MessengerController',
-        'contacts'              => 'Contacts\ContactsController',
+        'contacts'              => 'Contacts\ContactController',
     ]);
 
 
