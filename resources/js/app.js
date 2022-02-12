@@ -71,6 +71,7 @@ Vue.component("activatorModules", require("./modules/activator/activationMenu.vu
 // Vue.component('messenger-card', require('./messenger/card.vue').default);
 // Vue.component('messenger-mails-card-user', require('./messenger/mail/card-user.vue').default);
 Vue.component("tags-card", require("./tags/tagsCard.vue").default);
+Vue.component("new-tag-form", require("./tags/tagForm.vue").default);
 Vue.component("login-form", require("./auth/login.vue").default);
 
 Vue.component("tasks-component", require("./tasks/Tasks.vue").default);
