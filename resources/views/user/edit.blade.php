@@ -17,7 +17,7 @@
                 Upraviť užívateľa
             </x-slot>
 
-            <a href="{{ URL::previous() }}" class="btn btn-secondary">Späť</a>
+            <a href="{{ route('users.index') }}" class="btn btn-secondary">Späť</a>
         </x-page.page-title>
 
         {{-- <h1 class="font-bold text-2xl">Upraviť užívateľa</h1> --}}

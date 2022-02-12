@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'checkOrganization']], function () {
         'comments'              => 'CommentController',
         'councils'              => 'Councils\CouncilController',
         'council.meeting'       => 'Councils\CouncilMeetingController',
+        'council.user'          => 'Councils\CouncilUserController',
         'items'                 => 'Items\ItemController',
         'supports'              => 'SupportController',
         'meetings'              => 'Meetings\MeetingController',

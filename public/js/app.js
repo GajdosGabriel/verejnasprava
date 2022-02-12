@@ -77240,7 +77240,7 @@ var render = function () {
               : _vm._e(),
           ]),
           _vm._v(" "),
-          _vm.meeting.council_users.length < 2
+          _vm.meeting.council_users.length < 0
             ? _c("div", { staticClass: "text-center" }, [
                 _vm._v(
                   "\n        V zastupiteľstve nie sú členovia.\n\n        "
