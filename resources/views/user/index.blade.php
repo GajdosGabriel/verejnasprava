@@ -15,6 +15,16 @@
                 Všetci užívatelia
             </x-slot>
 
+            {{-- Labels pri vyhľadávaní --}}
+            @if (isset($council))
+                <div class="mb-3 text-center">
+                    <a href="{{ route('users.index') }}">
+                        <span class="border-2 rounded-md border-gray-400 px-2 bg-red-600 hover:bg-red-500 text-gray-200 ">
+                            {{ $council->name }} X</span>
+                    </a>
+                </div>
+            @endif
+
             @role('admin')
                 <a class="float-right btn btn-primary" href="{{ route('users.create') }}">Nový člen
                 </a>
