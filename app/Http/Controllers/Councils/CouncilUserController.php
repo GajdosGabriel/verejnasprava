@@ -11,7 +11,7 @@ class CouncilUserController extends Controller
 {
     public function index(Council $council)
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Council::class);
 
         $users = $council->users()->get();
 
