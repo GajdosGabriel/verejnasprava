@@ -6479,15 +6479,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -78276,8 +78267,7 @@ var render = function () {
               ? _c(
                   "div",
                   {
-                    staticClass:
-                      "\n                    font-semibold\n                    bg-red-700\n                    text-gray-100\n                    rounded-md\n                    px-2\n                    mr-1\n                    ml-3\n                    flex\n                ",
+                    staticClass: "lable-default lable-red px-2 mr-1 ml-3 flex",
                   },
                   [
                     _c("span", [_vm._v(_vm._s(_vm.contactName))]),

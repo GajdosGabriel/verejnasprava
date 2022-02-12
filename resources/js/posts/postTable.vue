@@ -5,16 +5,7 @@
                 <search-form @emitForm="searchForm"></search-form>
 
                 <div
-                    class="
-                        font-semibold
-                        bg-red-700
-                        text-gray-100
-                        rounded-md
-                        px-2
-                        mr-1
-                        ml-3
-                        flex
-                    "
+                    class="lable-default lable-red px-2 mr-1 ml-3 flex"
                     v-if="contactName"
                 >
                     <span>{{ contactName }}</span>

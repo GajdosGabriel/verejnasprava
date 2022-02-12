@@ -46,12 +46,12 @@
                     </td>
                     <td class="table-data">
                         @foreach ($user->roles as $role)
-                            <span class="border-2 rounded-md border-gray-400 px-2">{{ $role->name }}</span>
+                            <span class="lable-default">{{ $role->name }}</span>
                         @endforeach
                     </td>
                     <td class="table-data">
                         @foreach ($user->tags as $tag)
-                            <span class="border-2 rounded-md border-gray-400 px-2">{{ $tag->name }}</span>
+                            <span class="lable-default">{{ $tag->name }}</span>
                         @endforeach
                     </td>
 

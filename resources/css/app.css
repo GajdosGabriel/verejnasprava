@@ -36,3 +36,12 @@
     @apply border px-4 py-2
 }
 
+
+.lable-default {
+    @apply border-2 rounded-md border-gray-400 px-2
+}
+
+.lable-red {
+    @apply bg-red-600 hover:bg-red-500 text-gray-200
+}
+
