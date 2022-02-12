@@ -15,7 +15,7 @@
                         <input class="form-check-input" name="council[]" type="checkbox" id="council"
                                value="{{ $council->id }}"
                                @if($council->users->contains($user->id) ) checked @endif
-                               @if( ! request()->is('users/*/edit') ) disabled @endif
+                               @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                         >
                         <label class="input-label" for="council">{{ $council->name }}</label>
                     </div>
@@ -38,7 +38,7 @@
                         <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}"
                                value="{{ $role->id }}"
                                @if($user->roles->contains($role->id))  checked @endif
-                               @if( ! request()->is('users/*/edit') ) disabled @endif
+                               @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                         >
                         <label class="input-label" for="role">{{ $role->name }}</label>
                     </div>
@@ -56,7 +56,7 @@
                         <input class="form-check-input" name="role[]" type="checkbox" id="role{{ $role->id }}"
                                value="{{ $role->id }}"
                                @if($user->roles->contains($role->id))  checked @endif
-                               @if( ! request()->is('users/*/edit') ) disabled @endif
+                               @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                         >
                         <label class="input-label" for="role">{{ $role->name }}</label>
                     </div>

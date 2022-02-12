@@ -17,7 +17,7 @@
                                     <input class="form-check-input" name="permission[]" type="checkbox" id="council"
                                            value="{{ $permission->id }}"
                                            @if($permission->users->contains($user->id) ) checked @endif
-                                           @if( ! request()->is('users/*/edit') ) disabled @endif
+                                           @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                                     >
                                     <label class="input-label" for="council">{{ $permission->title }}</label>
                                 </div>
@@ -44,7 +44,7 @@
                                     <input class="form-check-input" name="permission[]" type="checkbox" id="council"
                                            value="{{ $permission->id }}"
                                            @if($permission->users->contains($user->id) ) checked @endif
-                                           @if( ! request()->is('users/*/edit') ) disabled @endif
+                                           @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                                     >
                                     <label class="input-label" for="council">{{ $permission->title }}</label>
                                 </div>
@@ -70,7 +70,7 @@
                                     <input class="form-check-input" name="permission[]" type="checkbox" id="council"
                                            value="{{ $permission->id }}"
                                            @if($permission->users->contains($user->id) ) checked @endif
-                                           @if( ! request()->is('users/*/edit') ) disabled @endif
+                                           @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                                     >
                                     <label class="input-label" for="council">{{ $permission->title }}</label>
                                 </div>
@@ -97,7 +97,7 @@
                                     <input class="form-check-input" name="permission[]" type="checkbox" id="council"
                                            value="{{ $permission->id }}"
                                            @if($permission->users->contains($user->id) ) checked @endif
-                                           @if( ! request()->is('users/*/edit') ) disabled @endif
+                                           @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                                     >
                                     <label class="input-label" for="council">{{ $permission->title }}</label>
                                 </div>
@@ -124,7 +124,7 @@
                                     <input class="form-check-input" name="permission[]" type="checkbox" id="council"
                                            value="{{ $permission->id }}"
                                            @if($permission->users->contains($user->id) ) checked @endif
-                                           @if( ! request()->is('users/*/edit') ) disabled @endif
+                                           @if( ! request()->is('users/*/edit') && ! request()->is('users/create') ) disabled @endif
                                     >
                                     <label class="input-label" for="council">{{ $permission->title }}</label>
                                 </div>
