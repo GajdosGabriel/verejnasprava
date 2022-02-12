@@ -74132,27 +74132,27 @@ var render = function () {
       _c("table", { staticClass: "table-auto w-full" }, [
         _c("thead", [
           _c("tr", { staticClass: "bg-gray-300" }, [
-            _c("th", { staticClass: "px-4 py-2 whitespace-no-wrap" }, [
+            _c("th", { staticClass: "table-header whitespace-no-wrap" }, [
               _vm._v("Názov firmy"),
             ]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ulica")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Ulica")]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Mesto")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Mesto")]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Psč")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Psč")]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Ičo")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Ičo")]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dič")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Dič")]),
             _vm._v(" "),
             _vm.$auth.isAdmin()
-              ? _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Email")])
+              ? _c("th", { staticClass: "table-header" }, [_vm._v("Email")])
               : _vm._e(),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Tel.")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Tel.")]),
             _vm._v(" "),
-            _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Panel")]),
+            _c("th", { staticClass: "table-header" }, [_vm._v("Panel")]),
           ]),
         ]),
         _vm._v(" "),
@@ -74163,65 +74163,57 @@ var render = function () {
               "tr",
               { key: contact.id, staticClass: "hover:bg-gray-200" },
               [
-                _c("td", { staticClass: "px-4 py-2 border" }, [
+                _c("td", { staticClass: "table-data" }, [
                   _c("a", { attrs: { href: contact.url.show } }, [
                     _vm._v(_vm._s(contact.name)),
                   ]),
                 ]),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "px-4 py-2 border",
+                  staticClass: "table-data",
                   domProps: { textContent: _vm._s(contact.street) },
                 }),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "px-4 py-2 border whitespace-no-wrap",
+                  staticClass: "table-data whitespace-no-wrap",
                   domProps: { textContent: _vm._s(contact.city) },
                 }),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "px-4 py-2 border whitespace-no-wrap" },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm._f("pscFormat")(contact.psc)) +
-                        "\n                "
-                    ),
-                  ]
-                ),
+                _c("td", { staticClass: "table-data whitespace-no-wrap" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm._f("pscFormat")(contact.psc)) +
+                      "\n                "
+                  ),
+                ]),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "px-4 py-2 border",
+                  staticClass: "table-data",
                   domProps: { textContent: _vm._s(contact.ico) },
                 }),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "px-4 py-2 border",
+                  staticClass: "table-data",
                   domProps: { textContent: _vm._s(contact.dic) },
                 }),
                 _vm._v(" "),
                 _vm.$auth.isAdmin()
-                  ? _c("td", { staticClass: "px-4 py-2 border" }, [
+                  ? _c("td", { staticClass: "table-data" }, [
                       _c("a", { attrs: { href: "mailto: contact.email" } }, [
                         _vm._v(_vm._s(contact.email)),
                       ]),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "px-4 py-2 border whitespace-no-wrap" },
-                  [
-                    _c("a", { attrs: { href: "tel: contact.phone" } }, [
-                      _vm._v(_vm._s(contact.phone)),
-                    ]),
-                  ]
-                ),
+                _c("td", { staticClass: "table-data whitespace-no-wrap" }, [
+                  _c("a", { attrs: { href: "tel: contact.phone" } }, [
+                    _vm._v(_vm._s(contact.phone)),
+                  ]),
+                ]),
                 _vm._v(" "),
                 _c(
                   "td",
-                  { staticClass: "px-4 py-2 border text-center" },
+                  { staticClass: "table-data text-center" },
                   [
                     _c("drop-down-component", {
                       attrs: { items: contact },
@@ -75966,7 +75958,7 @@ var render = function () {
                     _vm._l(_vm.meeting.council_users, function (councilUser) {
                       return _c("tr", { key: councilUser.id }, [
                         _c("td", {
-                          staticClass: "border px-4 py-2",
+                          staticClass: "table-data",
                           domProps: {
                             textContent: _vm._s(
                               councilUser.first_name +
@@ -75978,7 +75970,7 @@ var render = function () {
                         _vm._v(" "),
                         _vm.$auth.isAdmin()
                           ? _c("td", {
-                              staticClass: "border px-4 py-2 cursor-pointer",
+                              staticClass: "table-data cursor-pointer",
                               domProps: {
                                 textContent: _vm._s(
                                   _vm.invitationDetails(councilUser).send_at
@@ -75992,7 +75984,7 @@ var render = function () {
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("td", { staticClass: "border px-4 py-2 text-xs" }, [
+                        _c("td", { staticClass: "table-data text-xs" }, [
                           _vm.invitationDetails(councilUser).send_at
                             ? _c("div", [
                                 _vm.invitationDetails(councilUser).send_at !=
@@ -78404,21 +78396,21 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "bg-gray-300" }, [
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dátum")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Dátum")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Popis")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Popis")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Kategória")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Kategória")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dodávateľ")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Dodávateľ")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Cena spolu")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Cena spolu")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Súbor")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Súbor")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Int. číslo")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Int. číslo")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Panel")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Panel")]),
       ]),
     ])
   },
@@ -78447,7 +78439,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("tr", { staticClass: "hover:bg-gray-100" }, [
     _c("td", {
-      staticClass: "border px-4 py-2 whitespace-no-wrap",
+      staticClass: "table-data whitespace-no-wrap",
       domProps: {
         textContent: _vm._s(
           _vm.moment(_vm.post.date_in).format("DD. MM. YYYY")
@@ -78456,12 +78448,12 @@ var render = function () {
     }),
     _vm._v(" "),
     _c("td", {
-      staticClass: "border px-4 py-2",
+      staticClass: "table-data",
       domProps: { textContent: _vm._s(_vm.post.name) },
     }),
     _vm._v(" "),
     _c("td", {
-      staticClass: "border px-4 py-2 cursor-pointer",
+      staticClass: "table-data cursor-pointer",
       domProps: { textContent: _vm._s(_vm.post.category.name) },
       on: {
         click: function ($event) {
@@ -78471,7 +78463,7 @@ var render = function () {
     }),
     _vm._v(" "),
     _c("td", {
-      staticClass: "border px-4 py-2 whitespace-no-wrap cursor-pointer",
+      staticClass: "table-data whitespace-no-wrap cursor-pointer",
       domProps: { textContent: _vm._s(_vm.post.contact.name) },
       on: {
         click: function ($event) {
@@ -78480,7 +78472,7 @@ var render = function () {
       },
     }),
     _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2 whitespace-no-wrap" }, [
+    _c("td", { staticClass: "table-data whitespace-no-wrap" }, [
       _vm._v(
         "\n        " +
           _vm._s(_vm._f("priceFormat")(_vm.post.price)) +
@@ -78488,7 +78480,7 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "border px-4 py-2" }, [
+    _c("td", { staticClass: "table-data" }, [
       _vm.post.files.length > 0
         ? _c(
             "span",
@@ -78515,7 +78507,7 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("td", {
-      staticClass: "border px-4 py-2",
+      staticClass: "table-data",
       domProps: { textContent: _vm._s(_vm.post.int_number) },
     }),
     _vm._v(" "),
@@ -78588,7 +78580,7 @@ var render = function () {
               { key: post.id, staticClass: "hover:bg-gray-100" },
               [
                 _c("td", {
-                  staticClass: "border px-4 py-2 whitespace-no-wrap",
+                  staticClass: "border table-header whitespace-no-wrap",
                   domProps: {
                     textContent: _vm._s(
                       _vm.moment(post.date_in).format("DD. MM. YYYY")
@@ -78598,7 +78590,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("td", {
                   staticClass:
-                    "border px-4 py-2 whitespace-no-wrap cursor-pointer",
+                    "border table-header whitespace-no-wrap cursor-pointer",
                   domProps: { textContent: _vm._s(post.organization_name) },
                   on: {
                     click: function ($event) {
@@ -78608,23 +78600,23 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "border px-4 py-2",
+                  staticClass: "border table-header",
                   domProps: { textContent: _vm._s(post.name) },
                 }),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "border px-4 py-2",
+                  staticClass: "border table-header",
                   domProps: { textContent: _vm._s(post.category.name) },
                 }),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "border px-4 py-2 whitespace-no-wrap",
+                  staticClass: "border table-header whitespace-no-wrap",
                   domProps: { textContent: _vm._s(post.contact_name) },
                 }),
                 _vm._v(" "),
                 _c(
                   "td",
-                  { staticClass: "border px-4 py-2 whitespace-no-wrap" },
+                  { staticClass: "border table-header whitespace-no-wrap" },
                   [
                     _vm._v(
                       "\n                    " +
@@ -78634,7 +78626,7 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
-                _c("td", { staticClass: "border px-4 py-2" }, [
+                _c("td", { staticClass: "border table-header" }, [
                   post.files.length > 0
                     ? _c(
                         "span",
@@ -78665,7 +78657,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("td", {
-                  staticClass: "border px-4 py-2",
+                  staticClass: "border table-header",
                   domProps: { textContent: _vm._s(post.int_number) },
                 }),
               ]
@@ -78713,21 +78705,21 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "bg-gray-300" }, [
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dátum")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Dátum")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Organizácia")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Organizácia")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Popis")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Popis")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Kategória")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Kategória")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Dodávateľ")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Dodávateľ")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Cena spolu")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Cena spolu")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Súbor")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Súbor")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-4 py-2" }, [_vm._v("Int. číslo")]),
+        _c("th", { staticClass: "table-header" }, [_vm._v("Int. číslo")]),
       ]),
     ])
   },

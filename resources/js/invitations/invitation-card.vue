@@ -50,19 +50,19 @@
                         v-text="
                             councilUser.first_name + ' ' + councilUser.last_name
                         "
-                        class="border px-4 py-2"
+                        class="table-data"
                     ></td>
 
                     <!-- Pozvánka -->
                     <td
                         v-if="$auth.isAdmin()"
-                        class="border px-4 py-2 cursor-pointer"
+                        class="table-data cursor-pointer"
                         @click="updateInvitation(councilUser)"
                         v-text="invitationDetails(councilUser).send_at"
                     ></td>
 
                     <!--Učasť -->
-                    <td class="border px-4 py-2 text-xs">
+                    <td class="table-data text-xs">
                         <div v-if="invitationDetails(councilUser).send_at">
                             <!-- {{ invitationDetails(councilUser).confirmed_at }} -->
                             <div

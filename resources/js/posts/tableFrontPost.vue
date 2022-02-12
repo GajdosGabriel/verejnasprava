@@ -14,14 +14,14 @@
         <table class="table-auto table-bordered text-sm w-full">
             <thead>
                 <tr class="bg-gray-300">
-                    <th class="px-4 py-2">Dátum</th>
-                    <th class="px-4 py-2">Organizácia</th>
-                    <th class="px-4 py-2">Popis</th>
-                    <th class="px-4 py-2">Kategória</th>
-                    <th class="px-4 py-2">Dodávateľ</th>
-                    <th class="px-4 py-2">Cena spolu</th>
-                    <th class="px-4 py-2">Súbor</th>
-                    <th class="px-4 py-2">Int. číslo</th>
+                    <th class="table-header">Dátum</th>
+                    <th class="table-header">Organizácia</th>
+                    <th class="table-header">Popis</th>
+                    <th class="table-header">Kategória</th>
+                    <th class="table-header">Dodávateľ</th>
+                    <th class="table-header">Cena spolu</th>
+                    <th class="table-header">Súbor</th>
+                    <th class="table-header">Int. číslo</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,27 +31,27 @@
                     :key="post.id"
                 >
                     <td
-                        class="border px-4 py-2 whitespace-no-wrap"
+                        class="border table-header whitespace-no-wrap"
                         v-text="moment(post.date_in).format('DD. MM. YYYY')"
                     ></td>
                     <td
-                        class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
+                        class="border table-header whitespace-no-wrap cursor-pointer"
                         v-text="post.organization_name"
                         @click="pushOrganization(post)"
                     ></td>
-                    <td class="border px-4 py-2" v-text="post.name"></td>
+                    <td class="border table-header" v-text="post.name"></td>
                     <td
-                        class="border px-4 py-2"
+                        class="border table-header"
                         v-text="post.category.name"
                     ></td>
                     <td
-                        class="border px-4 py-2 whitespace-no-wrap"
+                        class="border table-header whitespace-no-wrap"
                         v-text="post.contact_name"
                     ></td>
-                    <td class="border px-4 py-2 whitespace-no-wrap">
+                    <td class="border table-header whitespace-no-wrap">
                         {{ post.price | priceFormat }} Eu
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="border table-header">
                         <span v-if="post.files.length > 0">
                             <div v-for="file in post.files" :key="file.id">
                                 <a
@@ -72,7 +72,7 @@
                         >
                     </td>
 
-                    <td class="border px-4 py-2" v-text="post.int_number"></td>
+                    <td class="border table-header" v-text="post.int_number"></td>
                 </tr>
             </tbody>
         </table>

@@ -77,14 +77,14 @@
         <table class="table-auto table-bordered text-sm w-full">
             <thead>
                 <tr class="bg-gray-300">
-                    <th class="px-4 py-2">Dátum</th>
-                    <th class="px-4 py-2">Popis</th>
-                    <th class="px-4 py-2">Kategória</th>
-                    <th class="px-4 py-2">Dodávateľ</th>
-                    <th class="px-4 py-2">Cena spolu</th>
-                    <th class="px-4 py-2">Súbor</th>
-                    <th class="px-4 py-2">Int. číslo</th>
-                    <th class="px-4 py-2">Panel</th>
+                    <th class="table-header">Dátum</th>
+                    <th class="table-header">Popis</th>
+                    <th class="table-header">Kategória</th>
+                    <th class="table-header">Dodávateľ</th>
+                    <th class="table-header">Cena spolu</th>
+                    <th class="table-header">Súbor</th>
+                    <th class="table-header">Int. číslo</th>
+                    <th class="table-header">Panel</th>
                 </tr>
             </thead>
             <tbody>

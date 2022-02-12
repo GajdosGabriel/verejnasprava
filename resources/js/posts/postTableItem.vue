@@ -1,24 +1,24 @@
 <template>
     <tr class="hover:bg-gray-100">
         <td
-            class="border px-4 py-2 whitespace-no-wrap"
+            class="table-data whitespace-no-wrap"
             v-text="moment(post.date_in).format('DD. MM. YYYY')"
         ></td>
-        <td class="border px-4 py-2" v-text="post.name"></td>
+        <td class="table-data" v-text="post.name"></td>
         <td
-            class="border px-4 py-2 cursor-pointer"
+            class="table-data cursor-pointer"
             v-text="post.category.name"
             @click="$emit('searchByCategory', post.category)"
         ></td>
         <td
-            class="border px-4 py-2 whitespace-no-wrap cursor-pointer"
+            class="table-data whitespace-no-wrap cursor-pointer"
             v-text="post.contact.name"
             @click="$emit('searchByContact', post.contact)"
         ></td>
-        <td class="border px-4 py-2 whitespace-no-wrap">
+        <td class="table-data whitespace-no-wrap">
             {{ post.price | priceFormat }} Eu
         </td>
-        <td class="border px-4 py-2">
+        <td class="table-data">
             <span v-if="post.files.length > 0">
                 <div v-for="file in post.files" :key="file.id">
                     <a
@@ -37,7 +37,7 @@
             <span v-else class="whitespace-no-wrap">Bez prílohy</span>
         </td>
 
-        <td class="border px-4 py-2" v-text="post.int_number"></td>
+        <td class="table-data" v-text="post.int_number"></td>
 
         <td class="border text-center">
             <drop-down-component

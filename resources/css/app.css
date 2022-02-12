@@ -27,3 +27,12 @@
 .form-control {
     @apply w-full;
 }
+
+.table-header {
+    @apply px-4 py-2 text-left
+}
+
+.table-data {
+    @apply border px-4 py-2
+}
+

@@ -2,27 +2,27 @@
    
     <thead class="bg-gray-300">
         <tr>
-            <th class="px-4 py-2">Meno</th>
-            <th class="px-4 py-2">Pracovné zaradenie</th>
-            <th class="px-4 py-2">Zastupiteľstvo</th>
+            <th class="table-header">Meno</th>
+            <th class="table-header">Pracovné zaradenie</th>
+            <th class="table-header">Zastupiteľstvo</th>
             @role('admin')
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2">Role</th>
-                <th class="px-4 py-2">Nálepka</th>
-                <th class="px-4 py-2">Panel</th>
+                <th class="table-header">Status</th>
+                <th class="table-header">Role</th>
+                <th class="table-header">Nálepka</th>
+                <th class="table-header">Panel</th>
             @endrole
         </tr>
     </thead>
     <tbody>
         @forelse($users as $user)
             <tr>
-                <td class="border px-4 py-2">
+                <td class="table-data">
                     <a href="{{ route('users.show', $user->id) }}"><strong>{{ $user->full_name() }}</strong></a>
                 </td>
-                <td class="border px-4 py-2">
+                <td class="table-data">
                     {{ $user->employment }}
                 </td>
-                <td class="border px-4 py-2">
+                <td class="table-data">
                     @foreach ($user->councils as $council)
                         <a href="{{ route('council.user.index', $council->id) }}">
                             <span class="badge badge-secondary">{{ $council->name }}</span>
@@ -30,7 +30,7 @@
                     @endforeach
                 </td>
                 @role('admin')
-                    <td class="border px-4 py-2">
+                    <td class="table-data">
                         @if ($user->email_verified_at)
                             <span class="badge badge-primary">Aktívny</span>
                         @else
@@ -44,18 +44,18 @@
                             </a>
                         @endif
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="table-data">
                         @foreach ($user->roles as $role)
                             <span class="border-2 rounded-md border-gray-400 px-2">{{ $role->name }}</span>
                         @endforeach
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="table-data">
                         @foreach ($user->tags as $tag)
                             <span class="border-2 rounded-md border-gray-400 px-2">{{ $tag->name }}</span>
                         @endforeach
                     </td>
 
-                    <td class="border px-4 py-2">
+                    <td class="table-data">
                         <nav-drop-down inline-template>
                             <div class="relative flex items-start">
                                 <a @click="isOpen =! isOpen" class="" href="#">

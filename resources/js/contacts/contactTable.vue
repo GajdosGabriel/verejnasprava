@@ -10,15 +10,15 @@
         <table class="table-auto w-full">
             <thead>
                 <tr class="bg-gray-300">
-                    <th class="px-4 py-2 whitespace-no-wrap">Názov firmy</th>
-                    <th class="px-4 py-2">Ulica</th>
-                    <th class="px-4 py-2">Mesto</th>
-                    <th class="px-4 py-2">Psč</th>
-                    <th class="px-4 py-2">Ičo</th>
-                    <th class="px-4 py-2">Dič</th>
-                    <th class="px-4 py-2" v-if="$auth.isAdmin()">Email</th>
-                    <th class="px-4 py-2">Tel.</th>
-                    <th class="px-4 py-2">Panel</th>
+                    <th class="table-header whitespace-no-wrap">Názov firmy</th>
+                    <th class="table-header">Ulica</th>
+                    <th class="table-header">Mesto</th>
+                    <th class="table-header">Psč</th>
+                    <th class="table-header">Ičo</th>
+                    <th class="table-header">Dič</th>
+                    <th class="table-header" v-if="$auth.isAdmin()">Email</th>
+                    <th class="table-header">Tel.</th>
+                    <th class="table-header">Panel</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,29 +27,29 @@
                     v-for="contact in contacts"
                     :key="contact.id"
                 >
-                    <td class="px-4 py-2 border">
+                    <td class="table-data">
                         <a
                             :href="contact.url.show"
                             >{{ contact.name }}</a
                         >
                     </td>
-                    <td class="px-4 py-2 border" v-text="contact.street"></td>
+                    <td class="table-data" v-text="contact.street"></td>
                     <td
-                        class="px-4 py-2 border whitespace-no-wrap"
+                        class="table-data whitespace-no-wrap"
                         v-text="contact.city"
                     ></td>
-                    <td class="px-4 py-2 border whitespace-no-wrap">
+                    <td class="table-data whitespace-no-wrap">
                         {{ contact.psc | pscFormat }}
                     </td>
-                    <td class="px-4 py-2 border" v-text="contact.ico"></td>
-                    <td class="px-4 py-2 border" v-text="contact.dic"></td>
-                    <td class="px-4 py-2 border" v-if="$auth.isAdmin()">
+                    <td class="table-data" v-text="contact.ico"></td>
+                    <td class="table-data" v-text="contact.dic"></td>
+                    <td class="table-data" v-if="$auth.isAdmin()">
                         <a href="mailto: contact.email">{{ contact.email }}</a>
                     </td>
-                    <td class="px-4 py-2 border whitespace-no-wrap">
+                    <td class="table-data whitespace-no-wrap">
                         <a href="tel: contact.phone">{{ contact.phone }}</a>
                     </td>
-                    <td class="px-4 py-2 border text-center">
+                    <td class="table-data text-center">
                         <drop-down-component
                             :items="contact"
                             @fromItem="clickOnItem"
