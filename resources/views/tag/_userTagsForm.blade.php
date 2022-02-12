@@ -12,6 +12,8 @@
                         <input class="form-check-input" name="tag[]" type="checkbox" id="tag"
                                value="{{ $tag->id }}"
                                @if($tag->users->contains($user->id) ) checked @endif
+                               @unless( request()->is('users/*/edit') || request()->is('users/create')) disabled
+                               @endunless
                         >
                         <label class="input-label" for="tag">{{ $tag->name }}</label>
 
