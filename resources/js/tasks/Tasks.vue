@@ -89,7 +89,6 @@ export default {
 
     created() {
         this.$store.dispatch("tasks/getTasks", { root: true });
-        this.$store.dispatch("users/getUsers", { root: true });
     },
     watch: {
         showCard() {
@@ -99,7 +98,7 @@ export default {
 
     computed: {
         ...mapState("tasks", ["setTaskList"]),
-        ...mapState("users", ["users"]),
+        ...mapState("organizations", ["users"]),
         ...mapGetters("organizations", ["menuActive"]),
         ...mapGetters("tasks", ["taskList"]),
 

@@ -7714,16 +7714,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch("tasks/getTasks", {
       root: true
     });
-    this.$store.dispatch("users/getUsers", {
-      root: true
-    });
   },
   watch: {
     showCard: function showCard() {
       this.markAsCompleted = [];
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("tasks", ["setTaskList"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("users", ["users"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("organizations", ["menuActive"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("tasks", ["taskList"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("tasks", ["setTaskList"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)("organizations", ["users"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("organizations", ["menuActive"])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("tasks", ["taskList"])), {}, {
     sortedList: function sortedList() {
       return _.orderBy(this.taskList, "due_date");
     },
@@ -8324,6 +8321,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("activatorModules", (__web
 // Vue.component('messenger-mails-card-user', require('./messenger/mail/card-user.vue').default);
 
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("tags-card", (__webpack_require__(/*! ./tags/tagsCard.vue */ "./resources/js/tags/tagsCard.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("new-tag-form", (__webpack_require__(/*! ./tags/tagForm.vue */ "./resources/js/tags/tagForm.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("login-form", (__webpack_require__(/*! ./auth/login.vue */ "./resources/js/auth/login.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("tasks-component", (__webpack_require__(/*! ./tasks/Tasks.vue */ "./resources/js/tasks/Tasks.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].component("home-card-meeting", (__webpack_require__(/*! ./meetings/homeCardMeeting.vue */ "./resources/js/meetings/homeCardMeeting.vue")["default"]));
@@ -9225,6 +9223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   user: {},
+  users: [],
   organization: {},
   horizontalMenu: [],
   verticalMenu: []
@@ -9284,6 +9283,7 @@ var mutations = {
     state.organization = payload.data.organization;
     state.horizontalMenu = payload.data.organization.menus.horizontal;
     state.verticalMenu = payload.data.organization.menus.vertical;
+    state.users = payload.data.organization.users;
   }
 };
 var actions = {
@@ -9491,34 +9491,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var state = {
-  user: {},
-  users: []
+  user: {}
 };
 var getters = {};
 var mutations = {
-  SET_USERS: function SET_USERS(state, payload) {
-    state.users = payload.data;
-  },
   SET_USER: function SET_USER(state, payload) {
     state.user = payload;
   }
 };
 var actions = {
-  getUsers: function getUsers(_ref) {
+  getUser: function getUser(_ref) {
     var commit = _ref.commit;
-    axios.get("/api/organizations/1/users").then(function (response) {
-      commit("SET_USERS", response.data);
-    });
-  },
-  getUser: function getUser(_ref2) {
-    var commit = _ref2.commit;
     axios.get("/api/user").then(function (response) {
       commit("SET_USER", response.data);
     });
   },
-  updateUser: function updateUser(_ref3, user) {
-    var commit = _ref3.commit,
-        dispatch = _ref3.dispatch;
+  updateUser: function updateUser(_ref2, user) {
+    var commit = _ref2.commit,
+        dispatch = _ref2.dispatch;
     axios.put("/api/users/" + user.id + "/", user).then(function (response) {
       commit("SET_USER", response.data); // Notify for update user
 

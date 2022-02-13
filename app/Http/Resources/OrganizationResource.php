@@ -30,6 +30,7 @@ class OrganizationResource extends JsonResource
             'ico'               => $this->ico,
             'dic'               => $this->when($this->ic_dic, $this->ic_dic),
             'user'              => $this->user,
+            'users'             => $this->users,
             'ic_dic'            => $this->when($this->ic_dic, $this->ic_dic),
             'menus'             => [
                 'menuActive'    => MenuResource::collection($this->menus),

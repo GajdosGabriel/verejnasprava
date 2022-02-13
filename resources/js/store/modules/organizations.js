@@ -1,5 +1,6 @@
 const state = {
     user: {},
+    users: [],
     organization: {},
     horizontalMenu: [],
     verticalMenu: [],
@@ -35,7 +36,7 @@ const getters = {
     },
     userAdmin: (state) => {
         return state.user?.roles?.find((o) => o.name == "admin");
-    },
+    }
 };
 
 const mutations = {
@@ -44,6 +45,7 @@ const mutations = {
         state.organization = payload.data.organization;
         state.horizontalMenu = payload.data.organization.menus.horizontal;
         state.verticalMenu = payload.data.organization.menus.vertical;
+        state.users = payload.data.organization.users;
     },
 };
 const actions = {
