@@ -17,6 +17,12 @@
                 ></Task>
             </ul>
 
+            <div v-if="markAsCompleted.length" class="py-2 text-center">
+                <button class="btn btn-primary" @click="multiUpdateCompleted">
+                    Označiť ako vybavené
+                </button>
+            </div>
+
             <div class="flex justify-between text-xs text-gray-500 px-2">
                 <span
                     class="cursor-pointer hover:text-gray-800"
@@ -44,7 +50,6 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import Task from "./Task";
 import NewTask from "./NewTask";
 import CardHeaderIcon from "../components/Cards/CardHeaderIcon";
-
 
 export default {
     components: { Task, NewTask, CardHeaderIcon, cardHeader, Card },
@@ -83,9 +88,9 @@ export default {
             return this.$store.getters["organizations/menuActive"](6);
         },
 
-        cardTitle(){
-            return "Úlohy (" + this.taskList.length + ')'; 
-        }
+        cardTitle() {
+            return "Úlohy (" + this.taskList.length + ")";
+        },
     },
     methods: {
         ...mapActions("tasks", ["variantTaskList"]),

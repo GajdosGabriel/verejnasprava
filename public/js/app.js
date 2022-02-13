@@ -7663,6 +7663,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7706,7 +7712,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$store.getters["organizations/menuActive"](6);
     },
     cardTitle: function cardTitle() {
-      return "Úlohy (" + this.taskList.length + ')';
+      return "Úlohy (" + this.taskList.length + ")";
     }
   }),
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("tasks", ["variantTaskList"])), {}, {
@@ -80154,6 +80160,23 @@ var render = function () {
                     }),
                     1
                   ),
+                  _vm._v(" "),
+                  _vm.markAsCompleted.length
+                    ? _c("div", { staticClass: "py-2 text-center" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            on: { click: _vm.multiUpdateCompleted },
+                          },
+                          [
+                            _vm._v(
+                              "\n                Označiť ako vybavené\n            "
+                            ),
+                          ]
+                        ),
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "div",
