@@ -13,9 +13,9 @@ class Organization extends Model
 
     protected $guarded = ['id'];
 
-    protected $withCount = [
-        'orders',
-    ];
+    // protected $withCount = [
+    //     'orders',
+    // ];
 
     public function users()
     {
