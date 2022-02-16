@@ -28,10 +28,7 @@
                     :key="contact.id"
                 >
                     <td class="table-data">
-                        <a
-                            :href="contact.url.show"
-                            >{{ contact.name }}</a
-                        >
+                        <a :href="contact.url.show">{{ contact.name }}</a>
                     </td>
                     <td class="table-data" v-text="contact.street"></td>
                     <td
@@ -141,9 +138,10 @@ export default {
             }
 
             if (action == "delete") {
-                this.$store.dispatch(
-                    "contacts/deleteContact", item
-                );
+                if (!window.confirm("Skutočne zmazať položku?")) {
+                    return;
+                }
+                this.$store.dispatch("contacts/deleteContact", item);
             }
         },
     },

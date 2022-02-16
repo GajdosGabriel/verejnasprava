@@ -319,6 +319,9 @@ export default {
         },
 
         deleteInterpellation(interpellation) {
+            if (!window.confirm("Skutočne zmazať interpeláciu?")) {
+                return;
+            }
             this.$store.dispatch("items/deleteInterpellation", [
                 this.item,
                 interpellation,

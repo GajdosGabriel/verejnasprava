@@ -66,13 +66,16 @@ export default {
 
     methods: {
         ...mapActions(["editPost", "deletePost"]),
-        
+
         clickOnItem(action, post) {
             if (action == "edit") {
                 this.editPost(post.navigations.edit.url);
             }
 
             if (action == "delete") {
+                if (!window.confirm("Skutočne zmazať položku?")) {
+                    return;
+                }
                 this.deletePost(post.navigations.delete.url);
             }
         },

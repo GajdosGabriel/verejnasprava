@@ -2903,9 +2903,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -2966,6 +2963,10 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
       }
 
       if (action == "delete") {
+        if (!window.confirm("Skutočne zmazať položku?")) {
+          return;
+        }
+
         this.$store.dispatch("contacts/deleteContact", item);
       }
     }
@@ -4756,6 +4757,10 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       this.$store.dispatch("items/updateItem", item);
     },
     deleteInterpellation: function deleteInterpellation(interpellation) {
+      if (!window.confirm("Skutočne zmazať interpeláciu?")) {
+        return;
+      }
+
       this.$store.dispatch("items/deleteInterpellation", [this.item, interpellation]);
     }
   })
@@ -5426,6 +5431,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     clickOnItem: function clickOnItem(action, meeting) {
       var _this2 = this;
 
+      if (!window.confirm("Skutočne zmazať zasadnutie?")) {
+        return;
+      }
+
       if (action == "delete") {
         this.$store.dispatch("meetings/deleteMeeting", meeting.navigations["delete"].url);
       }
@@ -5444,6 +5453,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     resetMeetingUser: function resetMeetingUser() {
+      if (!window.confirm("Skutočne to spraviť?")) {
+        return;
+      }
+
       this.$store.dispatch("meetings/deleteMeetingUsers", {
         id: this.meeting.id
       });
@@ -6641,6 +6654,10 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
       }
 
       if (action == "delete") {
+        if (!window.confirm("Skutočne zmazať položku?")) {
+          return;
+        }
+
         this.deletePost(post.navigations["delete"].url);
       }
     }

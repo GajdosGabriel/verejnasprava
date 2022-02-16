@@ -223,6 +223,9 @@ export default {
     },
     methods: {
         clickOnItem(action, meeting) {
+            if (!window.confirm("Skutočne zmazať zasadnutie?")) {
+                return;
+            }
             if (action == "delete") {
                 this.$store.dispatch(
                     "meetings/deleteMeeting",
@@ -247,6 +250,9 @@ export default {
             }
         },
         resetMeetingUser() {
+            if (!window.confirm("Skutočne to spraviť?")) {
+                return;
+            }
             this.$store.dispatch("meetings/deleteMeetingUsers", {
                 id: this.meeting.id,
             });
