@@ -17,7 +17,7 @@ class CheckOrganization
     {
 
        if(auth()->user()->active_organization == null )
-           return redirect()->route('organizations.create');
+           return redirect()->route('user.organization.create', [auth()->user()->id]);
 
         return $next($request);
     }

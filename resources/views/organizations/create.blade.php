@@ -11,7 +11,7 @@
 
         <div class="md:w-1/2">
             <h2 class="page-title">Vytvoriť organizáciu</h2>
-            <form action="{{ route('organizations.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.organization.store', auth()->user()->id ) }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('POST')
                 @include('modul.errors')
                 @include('organizations._form')

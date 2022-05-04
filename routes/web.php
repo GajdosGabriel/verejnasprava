@@ -28,7 +28,7 @@ Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallba
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resources([
-        'organizations'   => 'Organizations\OrganizationController',
+        'user.organization'   => 'UserOrganizationController',
     ]);
 });
 
@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'checkOrganization']], function () {
         'supports'              => 'SupportController',
         'meetings'              => 'Meetings\MeetingController',
         'meeting.item'          => 'Meetings\MeetingItemController',
+        'organizations'         => 'Organizations\OrganizationController',
         'organizations.councils' => 'Organizations\OrganizationCouncilController',
         'organizations.users'   => 'Organizations\OrganizationUserController',
         'organization.contact' => 'Organizations\OrganizationContactController',

@@ -14,22 +14,8 @@ use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {
-
-
-    public function index() {
+    public function index()
+    {
         return view('organizations.home');
     }
-
-
-    public function create() {
-        return view('organizations.create', ['organization' => new Organization]);
-    }
-
-
-    public function store( OrganizationFormRequest $request) {
-        auth()->user()->organizations()->create($request->all());
-        return redirect()->route('organizations.index');
-    }
-
-
 }
