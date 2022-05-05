@@ -13,10 +13,17 @@
                 <div
                     v-for="menu in paidmodules"
                     :key="menu.id"
-                    class="bg-white"
+                    class="bg-white shadow-md my-3"
                 >
                     <div
-                        class="flex my-3 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                        class="
+                            flex
+                            border-t-4 border-teal-500
+                            rounded-b
+                            text-teal-900
+                            px-4
+                            py-3
+                        "
                     >
                         <div class="py-1">
                             <svg
@@ -32,19 +39,34 @@
                         <div
                             class="md:flex w-full justify-between items-center"
                         >
-                            <div class="md:font-bold">
+                            <div
+                                @click="onClickReadMore"
+                                class="md:font-bold cursor-pointer"
+                            >
                                 Modul: {{ menu.name }}
                             </div>
                             <button
-                                class="px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm"
+                                class="
+                                    px-2
+                                    py-1
+                                    bg-gray-700
+                                    text-white
+                                    rounded-lg
+                                    ml-4
+                                    hover:text-gray-200
+                                    text-sm
+                                "
                                 :class="{
-                                    'bg-red-700 font-semibold': menu.active
+                                    'bg-red-700 font-semibold': menu.active,
                                 }"
                                 @click="saveModul(menu.id)"
                             >
                                 {{ menu.active ? "Aktivne" : "Aktivovať" }}
                             </button>
                         </div>
+                    </div>
+                    <div class="px-4 text-sm text-gray-500" v-if="readMore">
+                        {{ menu.description }}
                     </div>
                 </div>
             </transition-group>
@@ -60,29 +82,37 @@ import { createdMixin } from "../../mixins/createdMixin";
 export default {
     components: { cardHeader },
     mixins: [createdMixin],
+    data() {
+        return {
+            readMore: false,
+        };
+    },
     computed: {
         ...mapGetters("organizations", [
             "paidmodules",
             "paidmodulesCount",
-            "menuActiveCount"
+            "menuActiveCount",
         ]),
         statisticActiveModules() {
             return this.menuActiveCount + "/" + this.paidmodulesCount;
-        }
+        },
     },
     methods: {
         saveModul(id) {
             axios
                 .put("/api/menus/" + this.user.active_organization, {
-                    modul: id
+                    modul: id,
                 })
-                .then(response => {
+                .then((response) => {
                     this.$store.dispatch(
                         "organizations/getOrganization",
                         "/api/organizations/" + this.user.active_organization
                     );
                 });
-        }
-    }
+        },
+        onClickReadMore() {
+            this.readMore = !this.readMore;
+        },
+    },
 };
 </script>

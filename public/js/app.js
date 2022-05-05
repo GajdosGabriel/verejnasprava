@@ -5706,6 +5706,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5714,6 +5736,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cardHeader: _components_Cards_CardHeader_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_1__.createdMixin],
+  data: function data() {
+    return {
+      readMore: false
+    };
+  },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("organizations", ["paidmodules", "paidmodulesCount", "menuActiveCount"])), {}, {
     statisticActiveModules: function statisticActiveModules() {
       return this.menuActiveCount + "/" + this.paidmodulesCount;
@@ -5728,6 +5755,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         _this.$store.dispatch("organizations/getOrganization", "/api/organizations/" + _this.user.active_organization);
       });
+    },
+    onClickReadMore: function onClickReadMore() {
+      this.readMore = !this.readMore;
     }
   }
 });
@@ -77393,79 +77423,104 @@ var render = function () {
                 "transition-group",
                 { attrs: { name: "fade" } },
                 _vm._l(_vm.paidmodules, function (menu) {
-                  return _c("div", { key: menu.id, staticClass: "bg-white" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "flex my-3 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md",
-                      },
-                      [
-                        _c("div", { staticClass: "py-1" }, [
-                          _c(
-                            "svg",
-                            {
-                              staticClass:
-                                "fill-current h-6 w-6 text-teal-500 mr-4",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                viewBox: "0 0 20 20",
-                              },
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  d: "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z",
-                                },
-                              }),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "md:flex w-full justify-between items-center",
-                          },
-                          [
-                            _c("div", { staticClass: "md:font-bold" }, [
-                              _vm._v(
-                                "\n                            Modul: " +
-                                  _vm._s(menu.name) +
-                                  "\n                        "
-                              ),
-                            ]),
-                            _vm._v(" "),
+                  return _c(
+                    "div",
+                    { key: menu.id, staticClass: "bg-white shadow-md my-3" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "\n                        flex\n                        border-t-4 border-teal-500\n                        rounded-b\n                        text-teal-900\n                        px-4\n                        py-3\n                    ",
+                        },
+                        [
+                          _c("div", { staticClass: "py-1" }, [
                             _c(
-                              "button",
+                              "svg",
                               {
                                 staticClass:
-                                  "px-2 py-1 bg-gray-700 text-white rounded-lg ml-4 hover:text-gray-200 text-sm",
-                                class: {
-                                  "bg-red-700 font-semibold": menu.active,
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.saveModul(menu.id)
-                                  },
+                                  "fill-current h-6 w-6 text-teal-500 mr-4",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20",
                                 },
                               },
                               [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(
-                                      menu.active ? "Aktivne" : "Aktivovať"
-                                    ) +
-                                    "\n                        "
-                                ),
+                                _c("path", {
+                                  attrs: {
+                                    d: "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z",
+                                  },
+                                }),
                               ]
                             ),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "md:flex w-full justify-between items-center",
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "md:font-bold cursor-pointer",
+                                  on: { click: _vm.onClickReadMore },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Modul: " +
+                                      _vm._s(menu.name) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "\n                                px-2\n                                py-1\n                                bg-gray-700\n                                text-white\n                                rounded-lg\n                                ml-4\n                                hover:text-gray-200\n                                text-sm\n                            ",
+                                  class: {
+                                    "bg-red-700 font-semibold": menu.active,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.saveModul(menu.id)
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(
+                                        menu.active ? "Aktivne" : "Aktivovať"
+                                      ) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.readMore
+                        ? _c(
+                            "div",
+                            { staticClass: "px-4 text-sm text-gray-500" },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(menu.description) +
+                                  "\n                "
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
+                    ]
+                  )
                 }),
                 0
               ),
