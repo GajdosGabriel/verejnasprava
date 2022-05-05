@@ -65,9 +65,14 @@
                             </button>
                         </div>
                     </div>
-                    <div class="px-4 text-sm text-gray-500" v-if="readMore">
-                        {{ menu.description }}
-                    </div>
+                    <transition name="fade">
+                        <div
+                            class="px-4 text-sm text-gray-500 pb-2"
+                            v-if="readMore"
+                        >
+                            {{ menu.description }}
+                        </div>
+                    </transition>
                 </div>
             </transition-group>
         </div>

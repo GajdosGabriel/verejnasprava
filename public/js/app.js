@@ -5728,6 +5728,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -77506,20 +77511,25 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.readMore
-                        ? _c(
-                            "div",
-                            { staticClass: "px-4 text-sm text-gray-500" },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(menu.description) +
-                                  "\n                "
-                              ),
-                            ]
-                          )
-                        : _vm._e(),
-                    ]
+                      _c("transition", { attrs: { name: "fade" } }, [
+                        _vm.readMore
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "px-4 text-sm text-gray-500 pb-2",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(menu.description) +
+                                    "\n                    "
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]),
+                    ],
+                    1
                   )
                 }),
                 0
