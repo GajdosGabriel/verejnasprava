@@ -5,7 +5,19 @@
             <new-contact-button />
         </div>
 
-        <search-form @emitForm="searchForm"></search-form>
+        <div class="flex items-center">
+            <search-form @emitForm="searchForm"></search-form>
+
+            <div class="ml-4 mr-2">
+                <input
+                    type="checkbox"
+                    id="deleted"
+                    name="horns"
+                    v-model="deletedContacts"
+                />
+                <label for="deleted">Zmazané</label>
+            </div>
+        </div>
 
         <table class="table-auto w-full">
             <thead>
@@ -54,9 +66,9 @@
 
                         <!-- <button
                             class="hover:underline cursor-pointer text-sm"
-                            @click="openEditForm(contact)"
+                            @click="clickOnDeleteButton(contact)"
                         >
-                            Upraviť
+                            Obnoviť
                         </button> -->
                     </td>
                 </tr>
@@ -96,6 +108,7 @@ export default {
         return {
             numeral: numeral,
             search: "",
+            deletedContacts: false,
             url:
                 "/api/organizations/" +
                 this.user.active_organization +
@@ -112,13 +125,18 @@ export default {
         search: function (val) {
             this.fetchContacts(this.url + "?multi=" + this.search);
         },
+        deletedContacts: function (val) {
+            this.fetchContacts(
+                this.url + [this.deletedContacts ? "?deletedContacts=true" : ""]
+            );
+        },
     },
     methods: {
         ...mapActions([
             "newContactToggle",
             "openEditForm",
             "filterContact",
-            "fetchContacts",
+            "fetchContacts"
         ]),
 
         changePaginateUrl(path) {
@@ -143,7 +161,7 @@ export default {
                 }
                 this.$store.dispatch("contacts/deleteContact", item);
             }
-        },
+        }
     },
 };
 </script>

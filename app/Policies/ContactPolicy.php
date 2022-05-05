@@ -65,7 +65,7 @@ class ContactPolicy
      */
     public function delete(User $user, Contact $contact)
     {
-        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $contact->user_id;
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class ContactPolicy
      */
     public function restore(User $user, Contact $contact)
     {
-        //
+        return true;
     }
 
     /**

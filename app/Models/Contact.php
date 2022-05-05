@@ -15,6 +15,10 @@ class Contact extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'deleted_at' => 'boolean'
+    ];
+
 
     public function user()
     {

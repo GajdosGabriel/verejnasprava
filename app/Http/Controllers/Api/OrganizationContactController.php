@@ -37,19 +37,27 @@ class OrganizationContactController extends Controller
 
     public function store(Organization $organization, ContactCreateRequest $contactRequest)
     {
-       $contact = $organization->contacts()->create(array_merge($contactRequest->all(),  ['user_id' => auth()->user()->id]));
+        $contact = $organization->contacts()->create(array_merge($contactRequest->all(),  ['user_id' => auth()->user()->id]));
         return new ContactResource($contact);
     }
 
 
 
-    public function destroy(Organization $organization, Contact $contact)
+    public function destroy(Organization $organization, $contact)
     {
+
+        $contact = Contact::withTrashed()->whereId($contact)->first();
+
         if ($contact->posts->count()) {
             return response()->json(['message' => 'Kontakt už obsahuje zverejnené doklady.'], 401);
         }
 
-        $contact->delete();
+        if ($contact->deleted_at) {
+            $contact->restore();
+        } else {
+            $contact->delete();
+        }
+
         return new ContactResource($contact);
     }
 }

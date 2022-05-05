@@ -2666,15 +2666,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _dropDownIcons_arrowIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropDownIcons/arrowIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/arrowIcon.vue");
-/* harmony import */ var _dropDownIcons_envelopIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropDownIcons/envelopIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/envelopIcon.vue");
-/* harmony import */ var _dropDownIcons_orderItemIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropDownIcons/orderItemIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/orderItemIcon.vue");
-/* harmony import */ var _dropDownIcons_publishedIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropDownIcons/publishedIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/publishedIcon.vue");
-/* harmony import */ var _dropDownIcons_createIcon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dropDownIcons/createIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/createIcon.vue");
-/* harmony import */ var _dropDownIcons_showIcon_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dropDownIcons/showIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/showIcon.vue");
-/* harmony import */ var _dropDownIcons_editIcon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dropDownIcons/editIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/editIcon.vue");
-/* harmony import */ var _dropDownIcons_deleteIcon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dropDownIcons/deleteIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/deleteIcon.vue");
-/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
+/* harmony import */ var _dropDownIcons_backIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropDownIcons/backIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/backIcon.vue");
+/* harmony import */ var _dropDownIcons_arrowIcon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropDownIcons/arrowIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/arrowIcon.vue");
+/* harmony import */ var _dropDownIcons_envelopIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropDownIcons/envelopIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/envelopIcon.vue");
+/* harmony import */ var _dropDownIcons_orderItemIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropDownIcons/orderItemIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/orderItemIcon.vue");
+/* harmony import */ var _dropDownIcons_publishedIcon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dropDownIcons/publishedIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/publishedIcon.vue");
+/* harmony import */ var _dropDownIcons_createIcon_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dropDownIcons/createIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/createIcon.vue");
+/* harmony import */ var _dropDownIcons_showIcon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dropDownIcons/showIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/showIcon.vue");
+/* harmony import */ var _dropDownIcons_editIcon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dropDownIcons/editIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/editIcon.vue");
+/* harmony import */ var _dropDownIcons_deleteIcon_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dropDownIcons/deleteIcon.vue */ "./resources/js/components/dropDown/dropDownIcons/deleteIcon.vue");
+/* harmony import */ var _mixins_createdMixin__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../mixins/createdMixin */ "./resources/js/mixins/createdMixin.js");
 //
 //
 //
@@ -2769,6 +2770,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2781,16 +2783,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["items"],
   components: {
-    iconEdit: _dropDownIcons_editIcon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    iconDelete: _dropDownIcons_deleteIcon_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    iconShow: _dropDownIcons_showIcon_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    iconCreate: _dropDownIcons_createIcon_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    iconPublished: _dropDownIcons_publishedIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    iconOrderItem: _dropDownIcons_orderItemIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    iconEnvelop: _dropDownIcons_envelopIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    iconArrow: _dropDownIcons_arrowIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    iconEdit: _dropDownIcons_editIcon_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    iconDelete: _dropDownIcons_deleteIcon_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    iconShow: _dropDownIcons_showIcon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    iconCreate: _dropDownIcons_createIcon_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    iconPublished: _dropDownIcons_publishedIcon_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    iconOrderItem: _dropDownIcons_orderItemIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    iconEnvelop: _dropDownIcons_envelopIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    iconArrow: _dropDownIcons_arrowIcon_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    iconBack: _dropDownIcons_backIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_8__.createdMixin],
+  mixins: [_mixins_createdMixin__WEBPACK_IMPORTED_MODULE_9__.createdMixin],
   data: function data() {
     return {
       isOpen: false,
@@ -2903,6 +2906,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2929,6 +2944,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
     return {
       numeral: (numeral__WEBPACK_IMPORTED_MODULE_5___default()),
       search: "",
+      deletedContacts: false,
       url: "/api/organizations/" + this.user.active_organization + "/contacts"
     };
   },
@@ -2943,6 +2959,9 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
   watch: {
     search: function search(val) {
       this.fetchContacts(this.url + "?multi=" + this.search);
+    },
+    deletedContacts: function deletedContacts(val) {
+      this.fetchContacts(this.url + [this.deletedContacts ? "?deletedContacts=true" : ""]);
     }
   },
   methods: _objectSpread(_objectSpread({}, mapActions(["newContactToggle", "openEditForm", "filterContact", "fetchContacts"])), {}, {
@@ -68552,6 +68571,43 @@ component.options.__file = "resources/js/components/dropDown/dropDownIcons/arrow
 
 /***/ }),
 
+/***/ "./resources/js/components/dropDown/dropDownIcons/backIcon.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/dropDown/dropDownIcons/backIcon.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./backIcon.vue?vue&type=template&id=3bdadc09& */ "./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__.render,
+  _backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dropDown/dropDownIcons/backIcon.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/dropDown/dropDownIcons/createIcon.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/dropDown/dropDownIcons/createIcon.vue ***!
@@ -71762,6 +71818,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_backIcon_vue_vue_type_template_id_3bdadc09___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./backIcon.vue?vue&type=template&id=3bdadc09& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/dropDown/dropDownIcons/createIcon.vue?vue&type=template&id=d4fd0a44&":
 /*!******************************************************************************************************!*\
   !*** ./resources/js/components/dropDown/dropDownIcons/createIcon.vue?vue&type=template&id=d4fd0a44& ***!
@@ -73542,6 +73615,51 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/dropDown/dropDownIcons/backIcon.vue?vue&type=template&id=3bdadc09& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "svg",
+    {
+      staticClass: "h-4 w-4 mb-5 mt-2 text-gray-500 cursor-pointer",
+      attrs: {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 20 20",
+        fill: "currentColor",
+        stroke: "currentColor",
+      },
+    },
+    [
+      _c("path", {
+        attrs: {
+          "fill-rule": "evenodd",
+          d: "M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+          "clip-rule": "evenodd",
+        },
+      }),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/dropDown/dropDownIcons/createIcon.vue?vue&type=template&id=d4fd0a44&":
 /*!*********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/dropDown/dropDownIcons/createIcon.vue?vue&type=template&id=d4fd0a44& ***!
@@ -74244,7 +74362,56 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("search-form", { on: { emitForm: _vm.searchForm } }),
+      _c(
+        "div",
+        { staticClass: "flex items-center" },
+        [
+          _c("search-form", { on: { emitForm: _vm.searchForm } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "ml-4 mr-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.deletedContacts,
+                  expression: "deletedContacts",
+                },
+              ],
+              attrs: { type: "checkbox", id: "deleted", name: "horns" },
+              domProps: {
+                checked: Array.isArray(_vm.deletedContacts)
+                  ? _vm._i(_vm.deletedContacts, null) > -1
+                  : _vm.deletedContacts,
+              },
+              on: {
+                change: function ($event) {
+                  var $$a = _vm.deletedContacts,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.deletedContacts = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.deletedContacts = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.deletedContacts = $$c
+                  }
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "deleted" } }, [_vm._v("Zmazané")]),
+          ]),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("table", { staticClass: "table-auto w-full" }, [
         _c("thead", [

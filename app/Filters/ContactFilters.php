@@ -12,6 +12,7 @@ class ContactFilters extends Filters
     protected $filters = [
         'id',
         'name',
+        'deletedContacts',
         'multi',
         'categories',
         'supplierFilter'
@@ -37,6 +38,10 @@ class ContactFilters extends Filters
         return $this->builder->where('name', 'like', "%$search%");
     }
 
+    public function deletedContacts()
+    {
+        return $this->builder->onlyTrashed();
+    }
 
 
     public function contact($contactName)
@@ -49,13 +54,13 @@ class ContactFilters extends Filters
 
 
 
-//    public function categories($categories)
-//    {
-//        $ids = explode(',', $categories);
-//
-//        return $this->builder->whereHas('categories', function (Builder $query) use ($ids) {
-//            $query->whereIn('category_id', $ids);
-//        });
-//    }
+    //    public function categories($categories)
+    //    {
+    //        $ids = explode(',', $categories);
+    //
+    //        return $this->builder->whereHas('categories', function (Builder $query) use ($ids) {
+    //            $query->whereIn('category_id', $ids);
+    //        });
+    //    }
 
 }

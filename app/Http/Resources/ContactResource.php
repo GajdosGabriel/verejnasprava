@@ -26,6 +26,7 @@ class ContactResource extends JsonResource
             'phone'           => $this->phone,
             'ico'             => $this->ico,
             'dic'             => $this->dic,
+            'deleted_at'       => $this->deleted_at,
             'ic_dic'          => $this->when($this->ic_dic, $this->ic_dic),
             'url' => [
                 'show'          => route('organization.contact.show', [$this->organization_id, $this->id]),
@@ -52,8 +53,8 @@ class ContactResource extends JsonResource
                 ]),
 
                 'delete' => $this->when(auth()->user()->can("delete", $this->resource), [
-                    'name' => 'Zmazať',
-                    'title' => 'Zmazať položku',
+                    'name' => $this->deleted_at ? 'Obnoviť' : 'Zmazať',
+                    'title' =>  $this->deleted_at ? 'Obnoviť kontakt' : 'Zmazať položku',
                     'action' => 'delete',
                     'typeOfButton' => 'button',
                     'url' => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
