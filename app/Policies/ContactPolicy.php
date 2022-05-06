@@ -30,7 +30,7 @@ class ContactPolicy
      */
     public function view(User $user, Contact $contact)
     {
-        return $user->active_organization == $contact->organization_id;
+        return $user->active_organization == $contact->organization_id  and ! $contact->deleted_at;
     }
 
     /**
@@ -53,7 +53,7 @@ class ContactPolicy
      */
     public function update(User $user, Contact $contact)
     {
-        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $contact->user_id;
+        return auth()->user()->hasAnyRole(['admin', 'moderator']) || $user->id == $contact->user_id and ! $contact->deleted_at;
     }
 
     /**

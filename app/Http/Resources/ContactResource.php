@@ -58,17 +58,17 @@ class ContactResource extends JsonResource
                     'action' => 'delete',
                     'typeOfButton' => 'button',
                     'url' => route('organizations.contacts.destroy', [$this->organization_id, $this->id]),
-                    'icon' => 'iconDelete',
+                    'icon' =>  $this->deleted_at ? 'iconBack' : 'iconDelete',
                 ])
             ],
 
-            "can" => [
-                "viewAny"   => auth()->user()->can("viewAny", $this->resource),
-                "view"      => auth()->user()->can("view", $this->resource),
-                "create"    => auth()->user()->can("create", $this->resource),
-                "update"    => auth()->user()->can("update", $this->resource),
-                "delete"    => auth()->user()->can("delete", $this->resource)
-            ]
+            // "can" => [
+            //     "viewAny"   => auth()->user()->can("viewAny", $this->resource),
+            //     "view"      => auth()->user()->can("view", $this->resource),
+            //     "create"    => auth()->user()->can("create", $this->resource),
+            //     "update"    => auth()->user()->can("update", $this->resource),
+            //     "delete"    => auth()->user()->can("delete", $this->resource)
+            // ]
         ];
        
     }

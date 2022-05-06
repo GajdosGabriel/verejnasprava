@@ -74,7 +74,7 @@ class ItemResource extends JsonResource
                     'action' => 'delete',
                     'typeOfButton' => 'button',
                     'url' =>  route('organizations.items.destroy', [$this->organization_id, $this->id]),
-                    'icon' => 'iconDelete',
+                    'icon' =>  $this->deleted_at ? 'iconBack' : 'iconDelete',
                 ])
             ],
         ];

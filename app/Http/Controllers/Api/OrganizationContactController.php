@@ -45,7 +45,7 @@ class OrganizationContactController extends Controller
 
     public function destroy(Organization $organization, $contact)
     {
-        $this->authorize('delete', $contact);
+        // $this->authorize('delete', $contact);
 
         $contact = Contact::withTrashed()->whereId($contact)->first();
 
@@ -61,4 +61,21 @@ class OrganizationContactController extends Controller
 
         return new ContactResource($contact);
     }
+
+    // public function restore(Organization $organization, $contact)
+    // {
+    //     // $this->authorize('restore', $contact);
+
+    //     $contact = Contact::withTrashed()->whereId($contact)->first();
+
+    //     $contact->restore();
+
+
+    //     return new ContactResource($contact);
+    // }
+
+    // public function restoreAll()
+    // {
+    //     Contact::onlyTrashed()->restore();
+    // }
 }

@@ -58,7 +58,7 @@ class CouncilResource extends JsonResource
                     'action' => 'delete',
                     'typeOfButton' => 'button',
                     'url' => route('organizations.councils.destroy', [$this->organization_id, $this->id]),
-                    'icon' => 'iconDelete',
+                    'icon' =>  $this->deleted_at ? 'iconBack' : 'iconDelete',
                 ])
             ],
 

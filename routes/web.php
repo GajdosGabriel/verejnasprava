@@ -1,42 +1,68 @@
 <?php
 
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FilesController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SupportController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\MessengerController;
+use App\Http\Controllers\Items\ItemController;
+use App\Http\Controllers\Tasks\TaskController;
+use App\Http\Controllers\Items\ItemOrderController;
+use App\Http\Controllers\Contacts\ContactController;
+use App\Http\Controllers\Councils\CouncilController;
+use App\Http\Controllers\Meetings\MeetingController;
+use App\Http\Controllers\UserOrganizationController;
+use App\Http\Controllers\Tasks\TaskCommentController;
+use App\Http\Controllers\Councils\CouncilUserController;
+use App\Http\Controllers\Meetings\MeetingItemController;
+use App\Http\Controllers\Councils\CouncilMeetingController;
+use App\Http\Controllers\Organizations\OrganizationController;
+use App\Http\Controllers\Organizations\OrganizationUserController;
+use App\Http\Controllers\Organizations\OrganizationContactController;
+use App\Http\Controllers\Organizations\OrganizationCouncilController;
+
 // Zmena auth Usera
 // $userId = 137;
 // Auth::loginUsingId($userId, true);
 Route::group(['middleware' => ['checkAuth']], function () {
-    Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/home', 'HomeController@redirect');
-    Route::get('/contact', 'HomeController@contact')->name('home.contact');
-    Route::get('/zverejnovanie', 'HomeController@zverejnovanie')->name('home.zverejnovanie');
-    Route::get('/gdpr', 'HomeController@gdpr')->name('home.gdpr');
-    Route::post('/contactUs', 'HomeController@store')->name('home.contactUs');
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/home', [HomeController::class, 'redirect']);
+    Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+    Route::get('/zverejnovanie', [HomeController::class, 'zverejnovanie'])->name('home.zverejnovanie');
+    Route::get('/gdpr', [HomeController::class, 'gdpr'])->name('home.gdpr');
+    Route::post('/contactUs', [HomeController::class, 'store'])->name('home.contactUs');
 });
 
 
-Route::get('/posts/frontPostsTable', 'HomeController@frontPosts');
+Route::get('/posts/frontPostsTable', [HomeController::class, 'frontPosts']);
 
-Route::get('{organization}/{slug}/index', 'HomeController@publishedPosts')->name('publishedPosts');
-Route::get('file/{file}/{filename?}/file/show', 'FilesController@show')->name('file.show');
+Route::get('{organization}/{slug}/index', [HomeController::class, 'publishedPosts'])->name('publishedPosts');
+Route::get('file/{file}/{filename?}/file/show', [FilesController::class, 'show'])->name('file.show');
 
 // oAuth Routes...
-Route::get('/auth/{service}', 'Auth\AuthController@redirectToProvider')
+Route::get('/auth/{service}', [AuthController::class, 'redirectToProvider'])
     ->where('service', '(github|facebook|google|twitter|linkedin|bitbucket)');
 
-Route::get('/auth/{service}/callback', 'Auth\AuthController@handleProviderCallback')
+Route::get('/auth/{service}/callback', [AuthController::class, 'handleProviderCallback'])
     ->where('service', '(github|facebook|google|twitter|linkedin|bitbucket)');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resources([
-        'user.organization'   => 'UserOrganizationController',
+        'user.organization'   => UserOrganizationController::class,
     ]);
 });
 
 Route::group(['middleware' => ['auth', 'checkOrganization']], function () {
 
     Route::prefix('user')->name('user.')->middleware(['checkUser'])->group(function () {
-        Route::get('{user}/invitation', 'UserController@sendInvitation')->name('invitation');
-        Route::get('users/setup/', 'UserController@setup')->name('setup');
+        Route::get('{user}/invitation', [UserController::class, 'sendInvitation'])->name('invitation');
+        Route::get('users/setup/', [UserController::class, 'setup'])->name('setup');
     });
 
     Route::prefix('objednavky')->name('order.')->group(function () {
@@ -52,41 +78,41 @@ Route::group(['middleware' => ['auth', 'checkOrganization']], function () {
     });
 
     Route::name('council.')->namespace('Councils')->group(function () {
-        Route::get('zastupitelstva', 'CouncilController@index')->name('index');
-        Route::get('zastupitelstvo/{council}/{slug}/user/list', 'CouncilController@userList')->name('userList');
+        Route::get('zastupitelstva', [CouncilController::class, 'index'])->name('index');
+        Route::get('zastupitelstvo/{council}/{slug}/user/list', [CouncilController::class, 'userList'])->name('userList');
     });
 
 
-    Route::get('meetings/{meeting}/file/show', 'Meetings\MeetingController@pozvankaPdf')->name('meet');
-    Route::put('item/position/slug/item/position', 'Items\ItemOrderController@position')->name('item.position');
-    Route::get('posts/copy/{post}', 'Posts\PostController@copy')->name('post.copy');
+    Route::get('meetings/{meeting}/file/show', [MeetingController::class, 'pozvankaPdf'])->name('meet');
+    Route::put('item/position/slug/item/position', [ItemOrderController::class, 'position'])->name('item.position');
+    Route::get('posts/copy/{post}', [PostController::class, 'copy'])->name('post.copy');
 
 
     // https://laraveldaily.com/nested-resource-controllers-and-routes-laravel-crud-example/
     Route::resources([
-        'comments'              => 'CommentController',
-        'councils'              => 'Councils\CouncilController',
-        'council.meeting'       => 'Councils\CouncilMeetingController',
-        'council.user'          => 'Councils\CouncilUserController',
-        'items'                 => 'Items\ItemController',
-        'supports'              => 'SupportController',
-        'meetings'              => 'Meetings\MeetingController',
-        'meeting.item'          => 'Meetings\MeetingItemController',
-        'organizations'         => 'Organizations\OrganizationController',
-        'organizations.councils' => 'Organizations\OrganizationCouncilController',
-        'organizations.users'   => 'Organizations\OrganizationUserController',
-        'organization.contact' => 'Organizations\OrganizationContactController',
-        'posts'                 => 'Posts\PostController',
-        'tasks'                 => 'Tasks\TaskController',
-        'tasks.comments'        => 'Tasks\TaskCommentController',
-        'users'                 => 'UserController',
-        'tags'                  => 'TagController',
-        'messengers'            => 'MessengerController',
-        'contacts'              => 'Contacts\ContactController',
+        'comments'              => CommentController::class,
+        'councils'              => CouncilController::class,
+        'council.meeting'       => CouncilMeetingController::class,
+        'council.user'          => CouncilUserController::class,
+        'items'                 => ItemController::class,
+        'supports'              => SupportController::class,
+        'meetings'              => MeetingController::class,
+        'meeting.item'          => MeetingItemController::class,
+        'organizations'         => OrganizationController::class,
+        'organizations.councils' => OrganizationCouncilController::class,
+        'organizations.users'   => OrganizationUserController::class,
+        'organization.contact' => OrganizationContactController::class,
+        'posts'                 => PostController::class,
+        'tasks'                 => TaskController::class,
+        'tasks.comments'        => TaskCommentController::class,
+        'users'                 => UserController::class,
+        'tags'                  => TagController::class,
+        'messengers'            => MessengerController::class,
+        'contacts'              => ContactController::class,
     ]);
 
 
-    Route::get('test/test/test', 'TestController@test');
+    Route::get('test/test/test', [TestController::class, 'test']);
 });
 
 
