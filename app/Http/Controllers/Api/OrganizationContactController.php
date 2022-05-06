@@ -14,7 +14,7 @@ class OrganizationContactController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Contact::class, 'contact');
+        // $this->authorizeResource(Contact::class, 'contact');
     }
 
     public function index(Organization $organization, ContactFilters $contactFilters)
@@ -45,12 +45,13 @@ class OrganizationContactController extends Controller
 
     public function destroy(Organization $organization, $contact)
     {
+        $this->authorize('delete', $contact);
 
         $contact = Contact::withTrashed()->whereId($contact)->first();
 
-        if ($contact->posts->count()) {
-            return response()->json(['message' => 'Kontakt už obsahuje zverejnené doklady.'], 401);
-        }
+        // if ($contact->posts->count()) {
+        //     return response()->json(['message' => 'Kontakt už obsahuje zverejnené doklady.'], 401);
+        // }
 
         if ($contact->deleted_at) {
             $contact->restore();

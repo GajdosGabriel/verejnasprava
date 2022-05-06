@@ -89,6 +89,6 @@ class ContactPolicy
      */
     public function forceDelete(User $user, Contact $contact)
     {
-        //
+        return true;
     }
 }

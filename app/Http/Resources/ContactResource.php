@@ -67,7 +67,6 @@ class ContactResource extends JsonResource
                 "view"      => auth()->user()->can("view", $this->resource),
                 "create"    => auth()->user()->can("create", $this->resource),
                 "update"    => auth()->user()->can("update", $this->resource),
-                "store"     => auth()->user()->can("store", $this->resource),
                 "delete"    => auth()->user()->can("delete", $this->resource)
             ]
         ];
