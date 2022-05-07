@@ -21,7 +21,7 @@ class OrganizationContactController extends Controller
     {
         $contacts = $organization->contacts()
             ->filter($contactFilters)
-            ->paginate();
+            ->paginate(15);
 
         return ContactResource::collection($contacts);
     }

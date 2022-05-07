@@ -57,7 +57,7 @@
                 <td colspan="2">S DPH 20%: <strong>{{ totalPrice | vat20 }}</strong> || S DPH 10%: <strong>{{ totalPrice | vat10 }}</strong></td>
 
                 <td><strong>Počet {{ totalQuantity }}</strong></td>
-                <td class="pull-right"><strong style="font-size: 115%">Celkom: {{ totalPrice }},- Eu</strong></td>
+                <td class="pull-right"><strong style="font-size: 115%">Celkom: {{ totalPrice }},- €</strong></td>
 
                 <td>
                     <div class=" btn-group pull-right">

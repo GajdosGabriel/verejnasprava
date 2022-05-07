@@ -16,7 +16,7 @@
             @click="$emit('searchByContact', post.contact)"
         ></td>
         <td class="table-data whitespace-no-wrap">
-            {{ post.price | priceFormat }} Eu
+            {{ post.price | priceFormat }} €
         </td>
         <td class="table-data">
             <span v-if="post.files.length > 0">

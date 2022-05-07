@@ -49,7 +49,7 @@
                         v-text="post.contact_name"
                     ></td>
                     <td class="border table-header whitespace-no-wrap">
-                        {{ post.price | priceFormat }} Eu
+                        {{ post.price | priceFormat }} €
                     </td>
                     <td class="border table-header">
                         <span v-if="post.files.length > 0">

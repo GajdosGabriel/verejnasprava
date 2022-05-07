@@ -84,7 +84,7 @@
                     <td><strong>{{ $item->name }}</strong></td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->price }}</td>
-                    <td>{{ $grandSum = $item->quantity * $item->price }},- Eu</td>
+                    <td>{{ $grandSum = $item->quantity * $item->price }},- €</td>
                 </tr>
             @empty
                 <p>Bez položiek</p>

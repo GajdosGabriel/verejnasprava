@@ -56,13 +56,13 @@ class PostResource extends JsonResource
                 ])
             ],
 
-            "can" => [
-                "viewAny"   => auth()->user()->can("viewAny", $this->resource),
-                "view"      => auth()->user()->can("view", $this->resource),
-                "create"    => auth()->user()->can("create", $this->resource),
-                "update"    => auth()->user()->can("update", $this->resource),
-                "delete"    => auth()->user()->can("delete", $this->resource)
-            ]
+            // "can" => [
+            //     "viewAny"   => auth()->user()->can("viewAny", $this->resource),
+            //     "view"      => auth()->user()->can("view", $this->resource),
+            //     "create"    => auth()->user()->can("create", $this->resource),
+            //     "update"    => auth()->user()->can("update", $this->resource),
+            //     "delete"    => auth()->user()->can("delete", $this->resource)
+            // ]
         ];
     }
 }

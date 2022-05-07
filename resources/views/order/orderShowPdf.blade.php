@@ -109,7 +109,7 @@
                         <td>{{ $item->orderItem }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->price }}</td>
-                        <td>{{ $item->quantity * $item->price }},- Eu</td>
+                        <td>{{ $item->quantity * $item->price }},- €</td>
                     </tr>
                 @empty
                     <p>Bez položiek</p>
@@ -117,7 +117,7 @@
                 </tbody>
                 <tfoot>
                 <tr class="bg-success">
-                    <td><strong>Celkom:</strong> 100.- Eu</td>
+                    <td><strong>Celkom:</strong> 100.- €</td>
                 </tr>
                 </tfoot>
             </table>

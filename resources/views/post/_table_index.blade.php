@@ -18,7 +18,7 @@
                 <td class="border px-4 py-2">{{ $post->name }}</td>
                 <td class="border px-4 py-2">{{ $post->category->name }}</td>
                 <td class="border px-4 py-2">{{ $post->contact->name }}</td>
-                <td class="border px-4 py-2 whitespace-no-wrap">{{ number_format($post->price, 2, ',', ' ') }} Eu</td>
+                <td class="border px-4 py-2 whitespace-no-wrap">{{ number_format($post->price, 2, ',', ' ') }} €</td>
                 <td class="border px-4 py-2">
                     @forelse($post->files as $file)
                         <a target="_blank"

@@ -78799,7 +78799,7 @@ var render = function () {
       _vm._v(
         "\n        " +
           _vm._s(_vm._f("priceFormat")(_vm.post.price)) +
-          " Eu\n    "
+          " €\n    "
       ),
     ]),
     _vm._v(" "),
@@ -78944,7 +78944,7 @@ var render = function () {
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm._f("priceFormat")(post.price)) +
-                        " Eu\n                "
+                        " €\n                "
                     ),
                   ]
                 ),
