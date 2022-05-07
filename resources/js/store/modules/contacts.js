@@ -140,7 +140,7 @@ const actions = {
         commit("SET_LOADING_STATUS", "loading");
         axios.get(url).then((response) => {
             commit("SET_LOADING_STATUS", "notLoading");
-            commit("SET_CONTACTS", response.data.data);
+            commit("SET_CONTACTS", response.data);
         });
     },
 };

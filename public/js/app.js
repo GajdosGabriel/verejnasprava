@@ -8756,7 +8756,7 @@ var actions = {
     commit("SET_LOADING_STATUS", "loading");
     axios.get(url).then(function (response) {
       commit("SET_LOADING_STATUS", "notLoading");
-      commit("SET_CONTACTS", response.data.data);
+      commit("SET_CONTACTS", response.data);
     });
   }
 };
@@ -74452,7 +74452,7 @@ var render = function () {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.contacts, function (contact) {
+          _vm._l(_vm.contacts.data, function (contact) {
             return _c(
               "tr",
               { key: contact.id, staticClass: "hover:bg-gray-200" },

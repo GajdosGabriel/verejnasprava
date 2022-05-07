@@ -36,7 +36,7 @@
             <tbody>
                 <tr
                     class="hover:bg-gray-200"
-                    v-for="contact in contacts"
+                    v-for="contact in contacts.data"
                     :key="contact.id"
                 >
                     <td class="table-data">
