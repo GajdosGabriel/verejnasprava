@@ -53,8 +53,8 @@ const actions = {
         commit("SHOW_NEW_FORM", data);
     },
 
-    deleteContact({ commit }, contact) {
-        axios
+   async deleteContact({ commit }, contact) {
+    await axios
             .delete(contact.url.updateDelete)
             .then((response) => {
                 console.log(response.data.data);

@@ -299,6 +299,7 @@ export default {
             }
             this.$store.dispatch("items/updateItem", {
                 id: this.item.id,
+                organization_id: this.item.organization_id,
                 vote_status: !this.item.vote_status,
             });
         },

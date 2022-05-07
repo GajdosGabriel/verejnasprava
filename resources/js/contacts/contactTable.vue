@@ -136,7 +136,7 @@ export default {
             "newContactToggle",
             "openEditForm",
             "filterContact",
-            "fetchContacts"
+            "fetchContacts",
         ]),
 
         changePaginateUrl(path) {
@@ -160,8 +160,10 @@ export default {
                     return;
                 }
                 this.$store.dispatch("contacts/deleteContact", item);
+
+                this.fetchContacts(this.url);
             }
-        }
+        },
     },
 };
 </script>

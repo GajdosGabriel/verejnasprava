@@ -2987,6 +2987,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createNamespace
         }
 
         this.$store.dispatch("contacts/deleteContact", item);
+        this.fetchContacts(this.url);
       }
     }
   })
@@ -4759,6 +4760,7 @@ var _createNamespacedHelp = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createNamespace
 
       this.$store.dispatch("items/updateItem", {
         id: this.item.id,
+        organization_id: this.item.organization_id,
         vote_status: !this.item.vote_status
       });
     },
@@ -8649,33 +8651,48 @@ var actions = {
     commit("SHOW_NEW_FORM", data);
   },
   deleteContact: function deleteContact(_ref3, contact) {
-    var commit = _ref3.commit;
-    axios["delete"](contact.url.updateDelete).then(function (response) {
-      console.log(response.data.data);
-      commit("REMOVE_CONTACT", response.data.data.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
-        type: "bg-green-300",
-        message: "Kontakt zmazaný!"
-      }, {
-        root: true
-      });
-    })["catch"](function (error) {
-      commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
-        type: "bg-red-200",
-        message: "Kontakt už obsahuje zverejnené doklady."
-      }, {
-        root: true
-      });
-    });
-  },
-  updateContact: function updateContact(_ref4, contact) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref3.commit;
               _context.next = 3;
+              return axios["delete"](contact.url.updateDelete).then(function (response) {
+                console.log(response.data.data);
+                commit("REMOVE_CONTACT", response.data.data.id), commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-green-300",
+                  message: "Kontakt zmazaný!"
+                }, {
+                  root: true
+                });
+              })["catch"](function (error) {
+                commit("SHOW_FORM"), commit("notification/NEW_NOTIFICATION", {
+                  type: "bg-red-200",
+                  message: "Kontakt už obsahuje zverejnené doklady."
+                }, {
+                  root: true
+                });
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  updateContact: function updateContact(_ref4, contact) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context2.next = 3;
               return axios.put(contact.url.updateDelete, contact).then(function (response) {
                 commit("SHOW_FORM"); // Notify for add task
 
@@ -8699,23 +8716,23 @@ var actions = {
 
             case 3:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }))();
   },
   saveContact: function saveContact(_ref5, _ref6) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var commit, _ref7, data, user;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               commit = _ref5.commit;
               _ref7 = _slicedToArray(_ref6, 2), data = _ref7[0], user = _ref7[1];
-              _context2.next = 4;
+              _context3.next = 4;
               return axios.post("/api/organizations/" + user.active_organization + "/contacts", data).then(function (response) {
                 commit("SHOW_CREATE_FORM"), commit("INSERT_CONTACT", response.data.data), // Notify for add task
                 commit("notification/NEW_NOTIFICATION", {
@@ -8728,10 +8745,10 @@ var actions = {
 
             case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
   },
   fetchContacts: function fetchContacts(_ref8, url) {
